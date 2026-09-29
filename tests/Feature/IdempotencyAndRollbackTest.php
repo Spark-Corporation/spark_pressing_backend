@@ -13,7 +13,7 @@ use Tests\TestCase;
 
 class IdempotencyAndRollbackTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_same_client_uuid_replays_deposit_without_duplicate(): void
     {

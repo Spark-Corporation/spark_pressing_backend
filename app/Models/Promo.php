@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promo extends Model
 {
-    use HasFactory, BelongsToTenant;
+    use BelongsToTenant, HasFactory;
 
     protected $fillable = [
         'pressing_id', 'code', 'rate_percent', 'starts_at', 'ends_at', 'quota', 'used', 'status',

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PrintLog extends Model
 {
-    use HasFactory, BelongsToTenant;
+    use BelongsToTenant, HasFactory;
 
     protected $fillable = [
         'pressing_id', 'agency_id', 'deposit_id', 'user_id', 'document',

@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class ClientPortalTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_client_sees_only_own_deposits(): void
     {

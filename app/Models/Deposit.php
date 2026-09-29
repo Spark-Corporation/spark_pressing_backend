@@ -10,17 +10,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Deposit extends \Illuminate\Database\Eloquent\Model
 {
-    use HasFactory, SoftDeletes, BelongsToTenant;
+    use BelongsToTenant, HasFactory, SoftDeletes;
 
     public const ETAT_WAITING = 'waiting';
+
     public const ETAT_IN_PROGRESS = 'in_progress';
+
     public const ETAT_TREATED = 'treated';
+
     public const ETAT_CLASSED = 'classed';
 
     public const DELIVERY_PENDING = 'pending';
+
     public const DELIVERY_ASSIGNED = 'assigned';
+
     public const DELIVERY_OUT = 'out_for_delivery';
+
     public const DELIVERY_DELIVERED = 'delivered';
+
     public const DELIVERY_FAILED = 'failed';
 
     protected $fillable = [

@@ -81,6 +81,7 @@ class PosController extends Controller
                         'code' => $deposit->code,
                         'replayed' => false,
                     ];
+
                     continue;
                 }
 

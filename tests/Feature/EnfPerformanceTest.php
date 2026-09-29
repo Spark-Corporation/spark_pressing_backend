@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class EnfPerformanceTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_deposit_with_20_lines_completes_under_two_seconds(): void
     {

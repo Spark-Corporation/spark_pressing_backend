@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class CdcV3FeaturesTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_agency_currency_and_qr_token_on_deposit(): void
     {

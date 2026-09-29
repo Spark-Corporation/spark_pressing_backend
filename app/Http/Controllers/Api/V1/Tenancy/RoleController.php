@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\V1\Tenancy;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use Knuckles\Scribe\Attributes\Group;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 #[Group('Organisation')]
