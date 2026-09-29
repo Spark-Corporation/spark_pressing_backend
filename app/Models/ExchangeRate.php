@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class ExchangeRate extends \Illuminate\Database\Eloquent\Model
 {
-    use HasFactory, BelongsToTenant;
+    use BelongsToTenant, HasFactory;
 
     protected $fillable = [
         'pressing_id',

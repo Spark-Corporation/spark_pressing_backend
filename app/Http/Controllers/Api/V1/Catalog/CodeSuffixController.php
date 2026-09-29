@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\V1\Catalog;
 
 use App\Models\Agency;
 use App\Models\CodeSuffix;
-use Knuckles\Scribe\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Knuckles\Scribe\Attributes\Group;
 
 #[Group('Catalogue')]
 class CodeSuffixController extends TenantResourceController

@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class DepositFlowTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_cashier_creates_pays_and_retrieves_a_deposit(): void
     {

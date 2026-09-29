@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1\Catalog;
 
 use App\Models\Render;
-
 use Knuckles\Scribe\Attributes\Group;
 
 #[Group('Catalogue')]

@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Client extends Authenticatable
 {
-    use HasApiTokens, HasFactory, SoftDeletes, BelongsToTenant;
+    use BelongsToTenant, HasApiTokens, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'pressing_id',

@@ -10,8 +10,7 @@ class DateRange
     public function __construct(
         public readonly CarbonImmutable $from,
         public readonly CarbonImmutable $to,
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(Request $request, bool $defaultToday = true): self
     {

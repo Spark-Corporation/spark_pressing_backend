@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\LoyalGroup;
 use App\Models\Promo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -11,7 +10,7 @@ use Tests\TestCase;
 
 class LoyaltyAndPromoTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_payment_earns_loyalty_points(): void
     {

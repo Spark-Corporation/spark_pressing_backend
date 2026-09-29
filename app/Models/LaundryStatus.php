@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaundryStatus extends Model
 {
-    use HasFactory, BelongsToTenant;
+    use BelongsToTenant, HasFactory;
 
     protected $fillable = [
         'pressing_id', 'title', 'status',

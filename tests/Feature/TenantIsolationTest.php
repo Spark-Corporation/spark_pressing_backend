@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class TenantIsolationTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_staff_cannot_see_another_agency_deposits(): void
     {

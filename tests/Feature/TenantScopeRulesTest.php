@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class TenantScopeRulesTest extends TestCase
 {
-    use RefreshDatabase, CreatesSparkFixtures;
+    use CreatesSparkFixtures, RefreshDatabase;
 
     public function test_admin_sees_all_agencies_of_own_pressing_only(): void
     {
