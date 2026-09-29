@@ -61,6 +61,8 @@ class DepositController extends Controller
             'with_delivery' => ['sometimes', 'boolean'],
             'collection_fee' => ['nullable', 'integer', 'min:0'],
             'delivery_fee' => ['nullable', 'integer', 'min:0'],
+            'delivery_zone_id' => ['nullable', 'exists:delivery_zones,id'],
+            'delivery_address' => ['nullable', 'string', 'max:500'],
             'advanced' => ['nullable', 'integer', 'min:0'],
             'payment_method' => ['nullable', 'in:cash,card,mobile_money,wallet,other'],
             'deposit_date' => ['nullable', 'date'],
@@ -68,6 +70,7 @@ class DepositController extends Controller
             'notes' => ['nullable', 'string'],
             'lines' => ['required', 'array', 'min:1'],
             'lines.*.article_id' => ['required', 'exists:articles,id'],
+            'lines.*.service_id' => ['nullable', 'exists:services,id'],
             'lines.*.quantity' => ['nullable', 'integer', 'min:1'],
             'lines.*.type_action' => ['nullable', 'integer', 'in:0,1,2'],
             'lines.*.pricing_type' => ['nullable', 'in:piece,kilo'],
@@ -122,7 +125,12 @@ class DepositController extends Controller
     {
         $payload = $request->validate([
             'etat' => ['required', 'in:waiting,in_progress,treated,classed'],
+            'qr_token' => ['nullable', 'string'],
         ]);
+
+        if (! empty($payload['qr_token']) && $deposit->qr_token && $payload['qr_token'] !== $deposit->qr_token) {
+            abort(422, 'QR token invalide pour ce dépôt.');
+        }
 
         $deposit = $action->handle($request->user(), $deposit, $payload['etat']);
 

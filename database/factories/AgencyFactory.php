@@ -18,6 +18,7 @@ class AgencyFactory extends Factory
             'name' => fake()->city(),
             'address' => fake()->address(),
             'country_code' => 'CM',
+            'currency' => 'XAF',
             'code_prefix' => strtoupper(fake()->lexify('??')),
             'code_suffix' => 'SP',
             'status' => true,

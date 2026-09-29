@@ -36,6 +36,7 @@ class DemoSeeder extends Seeder
                 'address' => 'Douala, Akwa',
                 'contact' => '+237600000001',
                 'country_code' => 'CM',
+                'currency' => 'XAF',
                 'code_prefix' => 'AK',
                 'code_suffix' => 'EL',
                 'status' => true,
@@ -47,6 +48,7 @@ class DemoSeeder extends Seeder
             [
                 'address' => 'Douala, Bonabéri',
                 'country_code' => 'CM',
+                'currency' => 'XAF',
                 'code_prefix' => 'BB',
                 'code_suffix' => 'EL',
                 'status' => true,
@@ -58,6 +60,8 @@ class DemoSeeder extends Seeder
             ['email' => 'manager@elegance.local', 'fullname' => 'Marc Manager', 'role' => 'manager', 'agency' => $akwa],
             ['email' => 'admin@elegance.local', 'fullname' => 'Amina Admin', 'role' => 'admin', 'agency' => $akwa],
             ['email' => 'laveur@elegance.local', 'fullname' => 'Léo Laveur', 'role' => 'laveur', 'agency' => $akwa],
+            ['email' => 'classeur@elegance.local', 'fullname' => 'Carla Classeur', 'role' => 'classeur', 'agency' => $akwa],
+            ['email' => 'livreur@elegance.local', 'fullname' => 'Paul Livreur', 'role' => 'livreur', 'agency' => $akwa],
             ['email' => 'caissier.bb@elegance.local', 'fullname' => 'Boris Bonabéri', 'role' => 'caissier', 'agency' => $bonaberi],
         ];
 
@@ -110,6 +114,17 @@ class DemoSeeder extends Seeder
             Article::query()->firstOrCreate(
                 ['pressing_id' => $pressing->id, 'name' => $article['name']],
                 $article + ['status' => true]
+            );
+        }
+
+        foreach ([
+            ['name' => 'Classique', 'code' => 'classic', 'legacy_type_action' => 0, 'sort_order' => 1, 'default_hours' => 48],
+            ['name' => 'Express', 'code' => 'express', 'legacy_type_action' => 1, 'sort_order' => 2, 'default_hours' => 24],
+            ['name' => 'Repassage', 'code' => 'repass', 'legacy_type_action' => 2, 'sort_order' => 3, 'default_hours' => 12],
+        ] as $service) {
+            \App\Models\Service::query()->firstOrCreate(
+                ['pressing_id' => $pressing->id, 'code' => $service['code']],
+                $service + ['status' => true]
             );
         }
 

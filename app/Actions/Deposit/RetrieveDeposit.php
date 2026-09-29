@@ -5,34 +5,41 @@ namespace App\Actions\Deposit;
 use App\Models\AuditLog;
 use App\Models\Deposit;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class RetrieveDeposit
 {
     public function handle(User $cashier, Deposit $deposit, array $payload = []): Deposit
     {
-        if (! $deposit->isOpen()) {
-            throw ValidationException::withMessages(['deposit' => 'Ce dépôt est déjà retiré.']);
-        }
+        return DB::transaction(function () use ($cashier, $deposit, $payload) {
+            /** @var Deposit $locked */
+            $locked = Deposit::query()->whereKey($deposit->id)->lockForUpdate()->firstOrFail();
 
-        $pressing = $deposit->pressing;
+            // Idempotent : second retrait renvoie l'état déjà clôturé.
+            if (! $locked->isOpen()) {
+                return $locked->fresh(['units', 'client', 'transactions']);
+            }
 
-        if ($pressing->block_retrieve_if_unpaid && ! $deposit->isSettled()) {
-            throw ValidationException::withMessages([
-                'deposit' => 'Retrait bloqué : solde impayé.',
+            $pressing = $locked->pressing;
+
+            if ($pressing->block_retrieve_if_unpaid && ! $locked->isSettled()) {
+                throw ValidationException::withMessages([
+                    'deposit' => 'Retrait bloqué : solde impayé.',
+                ]);
+            }
+
+            $locked->status = false;
+            $locked->retrieved_at = now();
+            $locked->receiver_id = $cashier->id;
+            $locked->receiver_name = $payload['receiver_name'] ?? $locked->client?->fullname;
+            $locked->save();
+
+            AuditLog::record('deposit.retrieved', $locked, [
+                'receiver_name' => $locked->receiver_name,
             ]);
-        }
 
-        $deposit->status = false;
-        $deposit->retrieved_at = now();
-        $deposit->receiver_id = $cashier->id;
-        $deposit->receiver_name = $payload['receiver_name'] ?? $deposit->client?->fullname;
-        $deposit->save();
-
-        AuditLog::record('deposit.retrieved', $deposit, [
-            'receiver_name' => $deposit->receiver_name,
-        ]);
-
-        return $deposit->fresh(['units', 'client', 'transactions']);
+            return $locked->fresh(['units', 'client', 'transactions']);
+        });
     }
 }

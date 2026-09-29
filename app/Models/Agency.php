@@ -18,6 +18,7 @@ class Agency extends Model
         'address',
         'contact',
         'country_code',
+        'currency',
         'code_prefix',
         'code_suffix',
         'last_deposit_sequence',

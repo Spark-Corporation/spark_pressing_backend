@@ -17,11 +17,19 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
     public const ETAT_TREATED = 'treated';
     public const ETAT_CLASSED = 'classed';
 
+    public const DELIVERY_PENDING = 'pending';
+    public const DELIVERY_ASSIGNED = 'assigned';
+    public const DELIVERY_OUT = 'out_for_delivery';
+    public const DELIVERY_DELIVERED = 'delivered';
+    public const DELIVERY_FAILED = 'failed';
+
     protected $fillable = [
         'client_uuid',
         'code',
+        'qr_token',
         'pressing_id',
         'agency_id',
+        'currency',
         'client_id',
         'user_id',
         'laveur_id',
@@ -38,6 +46,15 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
         'payment_method',
         'status',
         'etat',
+        'delivery_status',
+        'delivery_round_id',
+        'delivery_zone_id',
+        'livreur_id',
+        'delivered_at',
+        'delivery_confirmation_type',
+        'delivery_confirmation_value',
+        'delivery_confirmed_at',
+        'delivery_address',
         'receiver_name',
         'notes',
         'collection_fee',
@@ -52,6 +69,8 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
         'deposit_date' => 'datetime',
         'retrieve_date' => 'datetime',
         'retrieved_at' => 'datetime',
+        'delivered_at' => 'datetime',
+        'delivery_confirmed_at' => 'datetime',
         'status' => 'boolean',
     ];
 
@@ -83,6 +102,21 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function livreur(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'livreur_id');
+    }
+
+    public function deliveryRound(): BelongsTo
+    {
+        return $this->belongsTo(DeliveryRound::class, 'delivery_round_id');
+    }
+
+    public function deliveryZone(): BelongsTo
+    {
+        return $this->belongsTo(DeliveryZone::class, 'delivery_zone_id');
     }
 
     public function isOpen(): bool

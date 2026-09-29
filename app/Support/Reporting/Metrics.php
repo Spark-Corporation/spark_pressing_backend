@@ -5,11 +5,15 @@ namespace App\Support\Reporting;
 use App\Models\CashMovement;
 use App\Models\Client;
 use App\Models\Deposit;
+use App\Models\ExchangeRate;
+use App\Models\Pressing;
 use App\Models\Transaction;
 use App\Support\DateRange;
+use App\Support\Money\Currency;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class Metrics
 {
@@ -116,9 +120,20 @@ class Metrics
             ]);
     }
 
-    public static function byAgency(DateRange $range, Collection $agencies): Collection
+    public static function byAgency(DateRange $range, Collection $agencies, ?string $targetCurrency = null, ?int $pressingId = null): Collection
     {
         $ids = $agencies->pluck('id');
+        $pressingId = $pressingId ?? $agencies->first()?->pressing_id;
+        $target = $targetCurrency
+            ? Currency::normalize($targetCurrency)
+            : null;
+
+        if (! $target && $pressingId) {
+            $target = Pressing::query()->whereKey($pressingId)->value('reporting_currency')
+                ?: $agencies->first()?->currency
+                ?: config('spark.currency');
+            $target = Currency::normalize($target);
+        }
 
         $deposits = Deposit::query()
             ->select('agency_id', DB::raw('count(*) as aggregate'))
@@ -154,20 +169,51 @@ class Metrics
             ->get()
             ->keyBy('agency_id');
 
-        return $agencies->map(function ($agency) use ($deposits, $retrieves, $receipts, $cash) {
+        return $agencies->map(function ($agency) use ($deposits, $retrieves, $receipts, $cash, $target, $pressingId, $range) {
             $in = (int) ($cash[$agency->id]->cash_in ?? 0);
             $out = (int) ($cash[$agency->id]->cash_out ?? 0);
             $receipt = (int) ($receipts[$agency->id] ?? 0);
+            $currency = Currency::normalize($agency->currency ?: config('spark.currency'));
+            $balance = $receipt + $in - $out;
+
+            $converted = [
+                'receipts' => $receipt,
+                'cash_in' => $in,
+                'cash_out' => $out,
+                'balance' => $balance,
+                'rate' => 1.0,
+                'rate_date' => $range->to->toDateString(),
+            ];
+
+            if ($target && $pressingId && $currency !== $target) {
+                try {
+                    $fxReceipt = ExchangeRate::convert($receipt, $pressingId, $currency, $target, $range->to);
+                    $fxIn = ExchangeRate::convert($in, $pressingId, $currency, $target, $range->to);
+                    $fxOut = ExchangeRate::convert($out, $pressingId, $currency, $target, $range->to);
+                    $converted = [
+                        'receipts' => $fxReceipt['amount_minor'],
+                        'cash_in' => $fxIn['amount_minor'],
+                        'cash_out' => $fxOut['amount_minor'],
+                        'balance' => $fxReceipt['amount_minor'] + $fxIn['amount_minor'] - $fxOut['amount_minor'],
+                        'rate' => $fxReceipt['rate'],
+                        'rate_date' => $fxReceipt['rate_date'],
+                    ];
+                } catch (ValidationException $e) {
+                    $converted['fx_error'] = $e->errors()['exchange_rate'][0] ?? 'Taux manquant';
+                }
+            }
 
             return [
                 'agency_id' => $agency->id,
                 'agency' => $agency->name,
+                'currency' => $currency,
                 'deposits' => (int) ($deposits[$agency->id] ?? 0),
                 'retrieves' => (int) ($retrieves[$agency->id] ?? 0),
                 'receipts' => $receipt,
                 'cash_in' => $in,
                 'cash_out' => $out,
-                'balance' => $receipt + $in - $out,
+                'balance' => $balance,
+                'converted' => $converted + ['target_currency' => $target],
             ];
         });
     }
