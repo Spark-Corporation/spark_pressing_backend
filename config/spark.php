@@ -3,12 +3,14 @@
 return [
     'currency' => 'XAF',
     'api_prefix' => 'v1',
+    'force_https' => (bool) env('SPARK_FORCE_HTTPS', false),
 
     /*
     | Decisions Phase 0 (CDC §18) — défauts en attendant l'atelier métier.
     | 1. Clients : globaux au pressing, agence d'origine enregistrée.
-    | 2. Catalogue : partagé au pressing.
+    | 2. Catalogue : partagé au pressing ; tarifs par agence (agency_prices).
     | 3. Retrait si impayé : bloqué, configurable par pressing.
+    | 8. Montants : entiers en unité mineure ISO 4217 (Currency).
     | 9. Cycle atelier : laveur + classeur activés par défaut.
     | 10. Points fidélité : taux paramétrable par pressing (Phase 2).
     */

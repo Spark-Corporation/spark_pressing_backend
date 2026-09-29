@@ -8,9 +8,11 @@ use App\Http\Resources\AgencyResource;
 use App\Http\Resources\UserResource;
 use App\Models\Agency;
 use App\Models\User;
+use App\Support\Money\Currency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Knuckles\Scribe\Attributes\Group;
 
 #[Group('Organisation')]
@@ -33,12 +35,23 @@ class PressingAgencyController extends Controller
             'address' => ['nullable', 'string'],
             'contact' => ['nullable', 'string'],
             'country_code' => ['nullable', 'string', 'size:2'],
+            'currency' => ['nullable', 'string', 'size:3'],
             'code_prefix' => ['nullable', 'string', 'max:8'],
             'code_suffix' => ['nullable', 'string', 'max:8'],
         ]);
 
+        if (! empty($data['currency'])) {
+            $data['currency'] = Currency::normalize($data['currency']);
+            if (! Currency::isValid($data['currency'])) {
+                throw ValidationException::withMessages([
+                    'currency' => 'Code devise ISO 4217 invalide.',
+                ]);
+            }
+        }
+
         $agency = Agency::query()->create($data + [
             'pressing_id' => $request->user()->pressing_id,
+            'currency' => $data['currency'] ?? config('spark.currency'),
             'status' => true,
         ]);
 
@@ -65,7 +78,7 @@ class PressingAgencyController extends Controller
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8'],
             'agency_id' => ['required', 'exists:agencies,id'],
-            'role' => ['required', Rule::in(['admin', 'manager', 'caissier', 'laveur', 'classeur'])],
+            'role' => ['required', Rule::in(['admin', 'manager', 'caissier', 'laveur', 'classeur', 'livreur'])],
         ]);
 
         $user = $persist->create($data + [
@@ -84,7 +97,7 @@ class PressingAgencyController extends Controller
             'email' => ['sometimes', 'email', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:8'],
             'agency_id' => ['sometimes', 'exists:agencies,id'],
-            'role' => ['sometimes', Rule::in(['admin', 'manager', 'caissier', 'laveur', 'classeur'])],
+            'role' => ['sometimes', Rule::in(['admin', 'manager', 'caissier', 'laveur', 'classeur', 'livreur'])],
             'status' => ['sometimes', 'boolean'],
         ]);
 

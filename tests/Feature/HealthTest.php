@@ -11,7 +11,10 @@ class HealthTest extends TestCase
         $this->getJson('/api/v1/health')
             ->assertOk()
             ->assertJsonPath('data.name', 'Spark Pressing API')
-            ->assertJsonPath('errors', null);
+            ->assertJsonPath('data.status', 'ok')
+            ->assertJsonPath('data.database', 'ok')
+            ->assertJsonPath('errors', null)
+            ->assertHeader('X-Request-Id');
     }
 
     public function test_root_redirects_to_docs(): void

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('permission:cash.manage')->group(function () {
     Route::get('cash-movements', [CashMovementController::class, 'index'])->name('cash.index');
-    Route::post('cash-movements', [CashMovementController::class, 'store'])->name('cash.store');
+    Route::post('cash-movements', [CashMovementController::class, 'store'])->middleware('idempotent')->name('cash.store');
     Route::put('cash-movements/{cashMovement}', [CashMovementController::class, 'update'])->name('cash.update');
     Route::post('cash-movements/{cashMovement}/validate', [CashMovementController::class, 'validateMovement'])->name('cash.validate');
     Route::delete('cash-movements/{cashMovement}', [CashMovementController::class, 'destroy'])->name('cash.destroy');

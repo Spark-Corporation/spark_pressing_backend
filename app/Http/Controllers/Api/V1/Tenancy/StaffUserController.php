@@ -62,7 +62,7 @@ class StaffUserController extends Controller
             'phone_number' => ['nullable', 'string'],
             'pressing_id' => [$update ? 'sometimes' : 'required', 'exists:pressings,id'],
             'agency_id' => [$update ? 'sometimes' : 'required', 'exists:agencies,id'],
-            'role' => [$update ? 'sometimes' : 'required', Rule::in(['admin', 'manager', 'caissier', 'laveur', 'classeur'])],
+            'role' => [$update ? 'sometimes' : 'required', Rule::in(['admin', 'manager', 'caissier', 'laveur', 'classeur', 'livreur'])],
             'status' => ['sometimes', 'boolean'],
         ];
     }

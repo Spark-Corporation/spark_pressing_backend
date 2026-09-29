@@ -18,6 +18,7 @@ class Pressing extends Model
         'pricing_mode',
         'workflow_laveur_enabled',
         'workflow_classeur_enabled',
+        'qr_labels_enabled',
         'block_retrieve_if_unpaid',
         'loyalty_points_rate',
         'hours_classic',
@@ -28,6 +29,7 @@ class Pressing extends Model
         'logo_path',
         'collection_fee',
         'delivery_fee',
+        'reporting_currency',
         'loyalty_redeem_threshold',
         'loyalty_redeem_value',
     ];
@@ -36,6 +38,7 @@ class Pressing extends Model
         'status' => 'boolean',
         'workflow_laveur_enabled' => 'boolean',
         'workflow_classeur_enabled' => 'boolean',
+        'qr_labels_enabled' => 'boolean',
         'block_retrieve_if_unpaid' => 'boolean',
     ];
 
@@ -57,5 +60,10 @@ class Pressing extends Model
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
     }
 }

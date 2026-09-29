@@ -25,7 +25,7 @@ class TicketDocument
 
         return [
             'type' => $type,
-            'currency' => config('spark.currency'),
+            'currency' => $deposit->currency ?: config('spark.currency'),
             'pressing' => $deposit->pressing?->name,
             'agency' => $deposit->agency?->name,
             'print_html' => $html,

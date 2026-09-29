@@ -8,8 +8,10 @@ use App\Http\Resources\PressingResource;
 use App\Models\Agency;
 use App\Models\License;
 use App\Models\Pressing;
+use App\Support\Money\Currency;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Knuckles\Scribe\Attributes\Group;
 
 #[Group('Organisation')]
@@ -32,6 +34,7 @@ class SettingsController extends Controller
             'pricing_mode' => ['sometimes', 'in:piece,kilo,mixed'],
             'workflow_laveur_enabled' => ['sometimes', 'boolean'],
             'workflow_classeur_enabled' => ['sometimes', 'boolean'],
+            'qr_labels_enabled' => ['sometimes', 'boolean'],
             'block_retrieve_if_unpaid' => ['sometimes', 'boolean'],
             'loyalty_points_rate' => ['sometimes', 'integer', 'min:0'],
             'loyalty_redeem_threshold' => ['sometimes', 'integer', 'min:1'],
@@ -41,9 +44,14 @@ class SettingsController extends Controller
             'hours_repass' => ['sometimes', 'integer', 'min:1'],
             'collection_fee' => ['sometimes', 'integer', 'min:0'],
             'delivery_fee' => ['sometimes', 'integer', 'min:0'],
+            'reporting_currency' => ['nullable', 'string', 'size:3'],
             'primary_color' => ['nullable', 'string', 'max:16'],
             'secondary_color' => ['nullable', 'string', 'max:16'],
         ]);
+
+        if (! empty($data['reporting_currency'])) {
+            $data['reporting_currency'] = strtoupper($data['reporting_currency']);
+        }
 
         $pressing->update($data);
 
@@ -74,10 +82,20 @@ class SettingsController extends Controller
             'name' => ['sometimes', 'string', 'max:191'],
             'address' => ['nullable', 'string'],
             'contact' => ['nullable', 'string'],
+            'currency' => ['nullable', 'string', 'size:3'],
             'code_prefix' => ['nullable', 'string', 'max:8'],
             'code_suffix' => ['nullable', 'string', 'max:8'],
             'status' => ['sometimes', 'boolean'],
         ]);
+
+        if (! empty($data['currency'])) {
+            $data['currency'] = Currency::normalize($data['currency']);
+            if (! Currency::isValid($data['currency'])) {
+                throw ValidationException::withMessages([
+                    'currency' => 'Code devise ISO 4217 invalide.',
+                ]);
+            }
+        }
 
         $agency->update($data);
 

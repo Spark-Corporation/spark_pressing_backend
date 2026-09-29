@@ -12,6 +12,7 @@ class DepositUnitResource extends JsonResource
         return [
             'id' => $this->id,
             'article_id' => $this->article_id,
+            'service_id' => $this->service_id,
             'designation' => $this->designation,
             'pricing_type' => $this->pricing_type,
             'quantity' => $this->quantity,

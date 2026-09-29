@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Catalog\AgencyPriceController;
 use App\Http\Controllers\Api\V1\Catalog\ArticleController;
 use App\Http\Controllers\Api\V1\Catalog\ArticleImportController;
 use App\Http\Controllers\Api\V1\Catalog\CodeSuffixController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Api\V1\Catalog\LoyalGroupController;
 use App\Http\Controllers\Api\V1\Catalog\PromoController;
 use App\Http\Controllers\Api\V1\Catalog\PromoSpecialController;
 use App\Http\Controllers\Api\V1\Catalog\RenderController;
+use App\Http\Controllers\Api\V1\Catalog\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('articles')->name('articles.')->group(function () {
@@ -20,6 +22,19 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('{article}', [ArticleController::class, 'show'])->name('show');
     Route::put('{article}', [ArticleController::class, 'update'])->middleware('permission:articles.manage')->name('update');
     Route::delete('{article}', [ArticleController::class, 'destroy'])->middleware('permission:articles.manage')->name('destroy');
+});
+
+Route::prefix('services')->name('services.')->group(function () {
+    Route::get('/', [ServiceController::class, 'index'])->name('index');
+    Route::post('/', [ServiceController::class, 'store'])->middleware('permission:articles.manage')->name('store');
+    Route::put('{id}', [ServiceController::class, 'update'])->middleware('permission:articles.manage')->name('update');
+    Route::delete('{id}', [ServiceController::class, 'destroy'])->middleware('permission:articles.manage')->name('destroy');
+});
+
+Route::prefix('agency-prices')->name('agency-prices.')->group(function () {
+    Route::get('/', [AgencyPriceController::class, 'index'])->middleware('permission:prices.manage|articles.manage|deposits.create')->name('index');
+    Route::get('resolve', [AgencyPriceController::class, 'resolve'])->middleware('permission:prices.manage|articles.manage|deposits.create')->name('resolve');
+    Route::post('/', [AgencyPriceController::class, 'store'])->middleware('permission:prices.manage')->name('store');
 });
 
 Route::prefix('laundry-statuses')->name('laundry-statuses.')->group(function () {

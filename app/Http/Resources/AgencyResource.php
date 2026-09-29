@@ -16,6 +16,7 @@ class AgencyResource extends JsonResource
             'address' => $this->address,
             'contact' => $this->contact,
             'country_code' => $this->country_code,
+            'currency' => $this->currency,
             'code_prefix' => $this->code_prefix,
             'code_suffix' => $this->code_suffix,
             'status' => $this->status,

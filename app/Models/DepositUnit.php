@@ -15,6 +15,7 @@ class DepositUnit extends \Illuminate\Database\Eloquent\Model
         'pressing_id',
         'agency_id',
         'article_id',
+        'service_id',
         'client_id',
         'designation',
         'pricing_type',
@@ -40,5 +41,10 @@ class DepositUnit extends \Illuminate\Database\Eloquent\Model
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
+    }
+
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
     }
 }

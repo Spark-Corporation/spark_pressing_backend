@@ -129,18 +129,26 @@ class ReportController extends Controller
         $range = DateRange::fromRequest($request);
         $agencies = Agency::query()
             ->where('pressing_id', $request->user()->pressing_id)
-            ->get(['id', 'name']);
+            ->get(['id', 'name', 'currency', 'pressing_id']);
 
-        $rows = Metrics::byAgency($range, $agencies);
+        $target = $request->query('target_currency');
+        $rows = Metrics::byAgency($range, $agencies, $target, $request->user()->pressing_id);
         $tenant->agencyId = $previousAgency;
 
+        $convertedReceipts = $rows->sum(fn ($r) => $r['converted']['receipts'] ?? 0);
+        $convertedBalance = $rows->sum(fn ($r) => $r['converted']['balance'] ?? 0);
+        $targetCurrency = $rows->first()['converted']['target_currency'] ?? config('spark.currency');
+
         return $this->ok($range->toArray() + [
+            'target_currency' => $targetCurrency,
             'agencies' => $rows->values(),
             'totals' => [
                 'deposits' => $rows->sum('deposits'),
                 'retrieves' => $rows->sum('retrieves'),
                 'receipts' => $rows->sum('receipts'),
                 'balance' => $rows->sum('balance'),
+                'receipts_converted' => $convertedReceipts,
+                'balance_converted' => $convertedBalance,
             ],
         ]);
     }
