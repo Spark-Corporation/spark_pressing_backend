@@ -45,6 +45,9 @@ Flux critiques : auth, dépôt, paiement, retrait, isolation tenant, devise/FX, 
 composer docs   # artisan scribe:generate
 ```
 
+Contrat d’API frontend : [`docs/api/CONTRACT.md`](api/CONTRACT.md) + [`docs/api/openapi.yaml`](api/openapi.yaml).  
+Après changement d’endpoint : `composer docs` (synchronise OpenAPI versionné).
+
 ## CI (ENF14)
 
 GitHub Actions : `.github/workflows/ci.yml` (Composer, Pint, PHPUnit).

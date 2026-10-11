@@ -143,6 +143,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-ready">
                                 <a href="#depots-GETapi-v1-deposits-ready">GET api/v1/deposits/ready</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-qr--token-">
+                                <a href="#depots-GETapi-v1-deposits-qr--token-">GET api/v1/deposits/qr/{token}</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits">
                                 <a href="#depots-GETapi-v1-deposits">GET api/v1/deposits</a>
                             </li>
@@ -243,6 +246,15 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-articles--id-">
                                 <a href="#catalogue-DELETEapi-v1-articles--id-">DELETE api/v1/articles/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-agency-prices">
+                                <a href="#catalogue-GETapi-v1-agency-prices">GET api/v1/agency-prices</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-agency-prices-resolve">
+                                <a href="#catalogue-GETapi-v1-agency-prices-resolve">GET api/v1/agency-prices/resolve</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-agency-prices">
+                                <a href="#catalogue-POSTapi-v1-agency-prices">POST api/v1/agency-prices</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-laundry-statuses">
                                 <a href="#catalogue-GETapi-v1-laundry-statuses">GET api/v1/laundry-statuses</a>
@@ -449,6 +461,15 @@
                                                                                 <li class="tocify-item level-2" data-unique="organisation-GETapi-v1-settings-license">
                                 <a href="#organisation-GETapi-v1-settings-license">GET api/v1/settings/license</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="organisation-GETapi-v1-settings-exchange-rates">
+                                <a href="#organisation-GETapi-v1-settings-exchange-rates">GET api/v1/settings/exchange-rates</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="organisation-POSTapi-v1-settings-exchange-rates">
+                                <a href="#organisation-POSTapi-v1-settings-exchange-rates">POST api/v1/settings/exchange-rates</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="organisation-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">
+                                <a href="#organisation-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">DELETE api/v1/settings/exchange-rates/{exchangeRate_id}</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="organisation-GETapi-v1-org-agencies">
                                 <a href="#organisation-GETapi-v1-org-agencies">GET api/v1/org/agencies</a>
                             </li>
@@ -570,6 +591,62 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-services">
+                                <a href="#endpoints-GETapi-v1-services">GET api/v1/services</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-services">
+                                <a href="#endpoints-POSTapi-v1-services">POST api/v1/services</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-v1-services--id-">
+                                <a href="#endpoints-PUTapi-v1-services--id-">PUT api/v1/services/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-v1-services--id-">
+                                <a href="#endpoints-DELETEapi-v1-services--id-">DELETE api/v1/services/{id}</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-livraison" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="livraison">
+                    <a href="#livraison">Livraison</a>
+                </li>
+                                    <ul id="tocify-subheader-livraison" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="livraison-GETapi-v1-deliveries-queue">
+                                <a href="#livraison-GETapi-v1-deliveries-queue">GET api/v1/deliveries/queue</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-GETapi-v1-deliveries-history">
+                                <a href="#livraison-GETapi-v1-deliveries-history">GET api/v1/deliveries/history</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-GETapi-v1-deliveries-zones">
+                                <a href="#livraison-GETapi-v1-deliveries-zones">GET api/v1/deliveries/zones</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-zones">
+                                <a href="#livraison-POSTapi-v1-deliveries-zones">POST api/v1/deliveries/zones</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-PUTapi-v1-deliveries-zones--id-">
+                                <a href="#livraison-PUTapi-v1-deliveries-zones--id-">PUT api/v1/deliveries/zones/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-GETapi-v1-deliveries-rounds">
+                                <a href="#livraison-GETapi-v1-deliveries-rounds">GET api/v1/deliveries/rounds</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-rounds">
+                                <a href="#livraison-POSTapi-v1-deliveries-rounds">POST api/v1/deliveries/rounds</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-rounds--round_id--assign">
+                                <a href="#livraison-POSTapi-v1-deliveries-rounds--round_id--assign">POST api/v1/deliveries/rounds/{round_id}/assign</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-deposits--deposit_id--schedule">
+                                <a href="#livraison-POSTapi-v1-deliveries-deposits--deposit_id--schedule">POST api/v1/deliveries/deposits/{deposit_id}/schedule</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-deposits--deposit_id--deliver">
+                                <a href="#livraison-POSTapi-v1-deliveries-deposits--deposit_id--deliver">POST api/v1/deliveries/deposits/{deposit_id}/deliver</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
             </div>
 
     <ul class="toc-footer" id="toc-footer">
@@ -579,7 +656,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: September 26, 2026</li>
+        <li>Last updated: October 6, 2026</li>
     </ul>
 </div>
 
@@ -621,7 +698,7 @@ Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.</code></pre>
 <p>
 </p>
 
-<p>Vérifie que l'API est joignable.</p>
+<p>Vérifie que l'API et la base sont joignables (sonde LB / ENF02).</p>
 
 <span id="example-requests-GETapi-v1-health">
 <blockquote>Example request:</blockquote>
@@ -666,14 +743,19 @@ fetch(url, {
 content-type: application/json
 x-ratelimit-limit: 60
 x-ratelimit-remaining: 59
+x-request-id: a22b6ccb-77d7-4d44-bc81-53d3bfc475bf
 access-control-allow-origin: *
+access-control-expose-headers: X-Request-Id
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;name&quot;: &quot;Spark Pressing API&quot;,
         &quot;version&quot;: &quot;v1&quot;,
-        &quot;currency&quot;: &quot;XAF&quot;
+        &quot;status&quot;: &quot;ok&quot;,
+        &quot;database&quot;: &quot;ok&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;locale&quot;: &quot;fr&quot;
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -913,7 +995,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="qkunze@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>qkunze@example.com</code></p>
+<p>validation.email. Example: <code>qkunze@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1071,7 +1153,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="qkunze@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>qkunze@example.com</code></p>
+<p>validation.email. Example: <code>qkunze@example.com</code></p>
         </div>
         </form>
 
@@ -1221,7 +1303,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="qkunze@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>qkunze@example.com</code></p>
+<p>validation.email. Example: <code>qkunze@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
@@ -1245,7 +1327,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="[2UZ5ij-e/dl4"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>[2UZ5ij-e/dl4</code></p>
+<p>validation.min. Example: <code>[2UZ5ij-e/dl4</code></p>
         </div>
         </form>
 
@@ -1585,7 +1667,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mqeopfuudtdsufvyvddqa"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -1597,7 +1679,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mniihfqcoynlazghdtqtq"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>mniihfqcoynlazghdtqtq</code></p>
+<p>validation.max. Example: <code>mniihfqcoynlazghdtqtq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1609,7 +1691,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="ablanda@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>ablanda@example.org</code></p>
+<p>validation.email. Example: <code>ablanda@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1621,7 +1703,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="'YAKYLk4>SJIrIV#lz."
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>'YAKYLk4&gt;SJIrIV#lz.</code></p>
+<p>validation.min. Example: <code>'YAKYLk4&gt;SJIrIV#lz.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sponsor_code</code></b>&nbsp;&nbsp;
@@ -1633,7 +1715,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="lsmsjuryvo"
                data-component="body">
     <br>
-<p>Must not be greater than 12 characters. Example: <code>lsmsjuryvo</code></p>
+<p>validation.max. Example: <code>lsmsjuryvo</code></p>
         </div>
         </form>
 
@@ -1781,7 +1863,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="qkunze@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>qkunze@example.com</code></p>
+<p>validation.email. Example: <code>qkunze@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -2102,7 +2184,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -2114,7 +2196,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="amniihfqcoynlazghdtqt"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -2138,7 +2220,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="carolyne.luettgen@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>carolyne.luettgen@example.org</code></p>
+<p>validation.email. Example: <code>carolyne.luettgen@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -2150,7 +2232,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="ij-e/dl4m"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>ij-e/dl4m</code></p>
+<p>validation.min. Example: <code>ij-e/dl4m</code></p>
         </div>
         </form>
 
@@ -2459,7 +2541,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -2471,7 +2553,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="amniihfqcoynlazghdtqt"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -2495,7 +2577,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="carolyne.luettgen@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>carolyne.luettgen@example.org</code></p>
+<p>validation.email. Example: <code>carolyne.luettgen@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -2507,7 +2589,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="ij-e/dl4m"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>ij-e/dl4m</code></p>
+<p>validation.min. Example: <code>ij-e/dl4m</code></p>
         </div>
         </form>
 
@@ -2962,7 +3044,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-<p>Must have at least 1 items.</p>
+<p>validation.min.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -3000,7 +3082,7 @@ Must be one of:
                value="66529e01-d113-3473-8d6f-9e11e09332ea"
                data-component="body">
     <br>
-<p>Must be a valid UUID. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
                     </div>
                                     </details>
         </div>
@@ -3430,6 +3512,159 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="depots-GETapi-v1-deposits-qr--token-">GET api/v1/deposits/qr/{token}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deposits-qr--token-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deposits/qr/consequatur" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/qr/consequatur"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deposits-qr--token-">
+    </span>
+<span id="execution-results-GETapi-v1-deposits-qr--token-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deposits-qr--token-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deposits-qr--token-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deposits-qr--token-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deposits-qr--token-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deposits-qr--token-" data-method="GET"
+      data-path="api/v1/deposits/qr/{token}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deposits-qr--token-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deposits-qr--token-"
+                    onclick="tryItOut('GETapi-v1-deposits-qr--token-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deposits-qr--token-"
+                    onclick="cancelTryOut('GETapi-v1-deposits-qr--token-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deposits-qr--token-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deposits/qr/{token}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deposits-qr--token-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deposits-qr--token-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deposits-qr--token-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deposits-qr--token-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="GETapi-v1-deposits-qr--token-"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>Example: <code>consequatur</code></p>
+            </div>
+                    </form>
+
                     <h2 id="depots-GETapi-v1-deposits">GET api/v1/deposits</h2>
 
 <p>
@@ -3601,10 +3836,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"with_delivery\": false,
     \"collection_fee\": 50,
     \"delivery_fee\": 55,
-    \"advanced\": 19,
-    \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-09-26T18:21:38\",
-    \"retrieve_date\": \"2026-09-26T18:21:38\",
+    \"delivery_address\": \"fuudtdsufvyvddqamniih\",
+    \"advanced\": 18,
+    \"payment_method\": \"wallet\",
+    \"deposit_date\": \"2026-10-06T13:01:15\",
+    \"retrieve_date\": \"2026-10-06T13:01:15\",
     \"notes\": \"consequatur\",
     \"lines\": [
         {
@@ -3647,10 +3883,11 @@ let body = {
     "with_delivery": false,
     "collection_fee": 50,
     "delivery_fee": 55,
-    "advanced": 19,
-    "payment_method": "cash",
-    "deposit_date": "2026-09-26T18:21:38",
-    "retrieve_date": "2026-09-26T18:21:38",
+    "delivery_address": "fuudtdsufvyvddqamniih",
+    "advanced": 18,
+    "payment_method": "wallet",
+    "deposit_date": "2026-10-06T13:01:15",
+    "retrieve_date": "2026-10-06T13:01:15",
     "notes": "consequatur",
     "lines": [
         {
@@ -3783,7 +4020,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="66529e01-d113-3473-8d6f-9e11e09332ea"
                data-component="body">
     <br>
-<p>Must be a valid UUID. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
@@ -3807,7 +4044,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="45"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>45</code></p>
+<p>validation.min. Example: <code>45</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount_percent</code></b>&nbsp;&nbsp;
@@ -3819,7 +4056,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="16"
                data-component="body">
     <br>
-<p>Must be at least 0. Must not be greater than 100. Example: <code>16</code></p>
+<p>validation.min validation.max. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>promo_code</code></b>&nbsp;&nbsp;
@@ -3855,7 +4092,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="45"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>45</code></p>
+<p>validation.min. Example: <code>45</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
@@ -3911,7 +4148,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="50"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>50</code></p>
+<p>validation.min. Example: <code>50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -3923,7 +4160,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="55"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>55</code></p>
+<p>validation.min. Example: <code>55</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="delivery_zone_id"                data-endpoint="POSTapi-v1-deposits"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="delivery_address"                data-endpoint="POSTapi-v1-deposits"
+               value="fuudtdsufvyvddqamniih"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>fuudtdsufvyvddqamniih</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>advanced</code></b>&nbsp;&nbsp;
@@ -3932,10 +4193,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="advanced"                data-endpoint="POSTapi-v1-deposits"
-               value="19"
+               value="18"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>19</code></p>
+<p>validation.min. Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -3944,10 +4205,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-v1-deposits"
-               value="cash"
+               value="wallet"
                data-component="body">
     <br>
-<p>Example: <code>cash</code></p>
+<p>Example: <code>wallet</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
         </div>
@@ -3958,10 +4219,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-09-26T18:21:38"
+               value="2026-10-06T13:01:15"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-09-26T18:21:38</code></p>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -3970,10 +4231,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-09-26T18:21:38"
+               value="2026-10-06T13:01:15"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-09-26T18:21:38</code></p>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -3995,7 +4256,7 @@ Must be one of:
  &nbsp;
  &nbsp;
 <br>
-<p>Must have at least 1 items.</p>
+<p>validation.min.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
@@ -4010,6 +4271,18 @@ Must be one of:
 <p>Must match an existing stored value. Example: <code>consequatur</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="lines.0.service_id"                data-endpoint="POSTapi-v1-deposits"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -4019,7 +4292,7 @@ Must be one of:
                value="45"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>45</code></p>
+<p>validation.min. Example: <code>45</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type_action</code></b>&nbsp;&nbsp;
@@ -4059,7 +4332,7 @@ Must be one of:
                value="50"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>50</code></p>
+<p>validation.min. Example: <code>50</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>unit_price</code></b>&nbsp;&nbsp;
@@ -4071,7 +4344,7 @@ Must be one of:
                value="55"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>55</code></p>
+<p>validation.min. Example: <code>55</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>designation</code></b>&nbsp;&nbsp;
@@ -4289,7 +4562,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"66529e01-d113-3473-8d6f-9e11e09332ea\",
     \"amount\": 56,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-09-26T18:21:38\"
+    \"transaction_date\": \"2026-10-06T13:01:15\"
 }"
 </code></pre></div>
 
@@ -4310,7 +4583,7 @@ let body = {
     "client_uuid": "66529e01-d113-3473-8d6f-9e11e09332ea",
     "amount": 56,
     "payment_method": "cash",
-    "transaction_date": "2026-09-26T18:21:38"
+    "transaction_date": "2026-10-06T13:01:15"
 };
 
 fetch(url, {
@@ -4442,7 +4715,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="66529e01-d113-3473-8d6f-9e11e09332ea"
                data-component="body">
     <br>
-<p>Must be a valid UUID. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -4454,7 +4727,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="56"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>56</code></p>
+<p>validation.min. Example: <code>56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -4477,10 +4750,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-09-26T18:21:38"
+               value="2026-10-06T13:01:15"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-09-26T18:21:38</code></p>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
         </div>
         </form>
 
@@ -4654,7 +4927,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
         </form>
 
@@ -4836,7 +5109,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-<p>Must have at least 1 items.</p>
+<p>validation.min.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -4860,7 +5133,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="45"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>45</code></p>
+<p>validation.min. Example: <code>45</code></p>
                     </div>
                                     </details>
         </div>
@@ -4886,7 +5159,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"etat\": \"waiting\"
+    \"etat\": \"waiting\",
+    \"qr_token\": \"consequatur\"
 }"
 </code></pre></div>
 
@@ -4904,7 +5178,8 @@ const headers = {
 };
 
 let body = {
-    "etat": "waiting"
+    "etat": "waiting",
+    "qr_token": "consequatur"
 };
 
 fetch(url, {
@@ -5039,6 +5314,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>waiting</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>waiting</code></li> <li><code>in_progress</code></li> <li><code>treated</code></li> <li><code>classed</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>qr_token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="qr_token"                data-endpoint="POSTapi-v1-deposits--deposit_id--workshop"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
         </div>
         </form>
 
@@ -5801,7 +6088,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -5813,7 +6100,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="amniihfqcoynlazghdtqt"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5825,7 +6112,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="andreanne00@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>andreanne00@example.org</code></p>
+<p>validation.email. Example: <code>andreanne00@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -5861,7 +6148,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="[2UZ5ij-e/dl4"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>[2UZ5ij-e/dl4</code></p>
+<p>validation.min. Example: <code>[2UZ5ij-e/dl4</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sponsor_code</code></b>&nbsp;&nbsp;
@@ -5873,7 +6160,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vyvddqamni"
                data-component="body">
     <br>
-<p>Must not be greater than 12 characters. Example: <code>vyvddqamni</code></p>
+<p>validation.max. Example: <code>vyvddqamni</code></p>
         </div>
         </form>
 
@@ -6518,7 +6805,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -6530,7 +6817,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="amniihfqcoynlazghdtqt"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6542,7 +6829,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="andreanne00@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>andreanne00@example.org</code></p>
+<p>validation.email. Example: <code>andreanne00@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -6600,7 +6887,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2UZ5ij-e/dl4m{o"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>2UZ5ij-e/dl4m{o</code></p>
+<p>validation.min. Example: <code>2UZ5ij-e/dl4m{o</code></p>
         </div>
         </form>
 
@@ -7235,7 +7522,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="73"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>73</code></p>
+<p>validation.min. Example: <code>73</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -7247,7 +7534,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mqeopfuudtdsufvyvddqa"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
         </div>
         </form>
 
@@ -7423,7 +7710,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="73"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>73</code></p>
+<p>validation.min. Example: <code>73</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -7435,13 +7722,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mqeopfuudtdsufvyvddqa"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
         </div>
         </form>
 
                 <h1 id="catalogue">Catalogue</h1>
 
-    
+    <p>Tarifs par agence (séparés du catalogue).</p>
 
                                 <h2 id="catalogue-GETapi-v1-articles-export">GET api/v1/articles/export</h2>
 
@@ -7742,7 +8029,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php928C.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpD4E3.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -7876,7 +8163,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\ativo\AppData\Local\Temp\php928C.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpD4E3.tmp</code></p>
         </div>
         </form>
 
@@ -8193,7 +8480,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -8217,7 +8504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="12"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>12</code></p>
+<p>validation.min. Example: <code>12</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
@@ -8229,7 +8516,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="66"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>66</code></p>
+<p>validation.min. Example: <code>66</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
@@ -8241,7 +8528,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="13"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>13</code></p>
+<p>validation.min. Example: <code>13</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
@@ -8253,7 +8540,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="65"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>65</code></p>
+<p>validation.min. Example: <code>65</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
@@ -8265,7 +8552,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="72"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>72</code></p>
+<p>validation.min. Example: <code>72</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
@@ -8277,7 +8564,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="18"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>18</code></p>
+<p>validation.min. Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -8642,7 +8929,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -8666,7 +8953,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="12"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>12</code></p>
+<p>validation.min. Example: <code>12</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
@@ -8678,7 +8965,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="66"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>66</code></p>
+<p>validation.min. Example: <code>66</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
@@ -8690,7 +8977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="13"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>13</code></p>
+<p>validation.min. Example: <code>13</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
@@ -8702,7 +8989,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="65"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>65</code></p>
+<p>validation.min. Example: <code>65</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
@@ -8714,7 +9001,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="72"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>72</code></p>
+<p>validation.min. Example: <code>72</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
@@ -8726,7 +9013,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="18"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>18</code></p>
+<p>validation.min. Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -8904,6 +9191,612 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The ID of the article. Example: <code>1</code></p>
             </div>
                     </form>
+
+                    <h2 id="catalogue-GETapi-v1-agency-prices">GET api/v1/agency-prices</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-agency-prices">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/agency-prices" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/agency-prices"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-agency-prices">
+    </span>
+<span id="execution-results-GETapi-v1-agency-prices" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-agency-prices"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-agency-prices"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-agency-prices" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-agency-prices">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-agency-prices" data-method="GET"
+      data-path="api/v1/agency-prices"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-agency-prices', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-agency-prices"
+                    onclick="tryItOut('GETapi-v1-agency-prices');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-agency-prices"
+                    onclick="cancelTryOut('GETapi-v1-agency-prices');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-agency-prices"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/agency-prices</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-agency-prices"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-agency-prices"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-agency-prices"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-agency-prices"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-GETapi-v1-agency-prices-resolve">GET api/v1/agency-prices/resolve</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-agency-prices-resolve">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/agency-prices/resolve" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"agency_id\": \"consequatur\",
+    \"article_id\": \"consequatur\",
+    \"service_id\": \"consequatur\",
+    \"pricing_type\": \"kilo\",
+    \"at\": \"2026-10-06T13:01:15\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/agency-prices/resolve"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "agency_id": "consequatur",
+    "article_id": "consequatur",
+    "service_id": "consequatur",
+    "pricing_type": "kilo",
+    "at": "2026-10-06T13:01:15"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-agency-prices-resolve">
+    </span>
+<span id="execution-results-GETapi-v1-agency-prices-resolve" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-agency-prices-resolve"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-agency-prices-resolve"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-agency-prices-resolve" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-agency-prices-resolve">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-agency-prices-resolve" data-method="GET"
+      data-path="api/v1/agency-prices/resolve"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-agency-prices-resolve', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-agency-prices-resolve"
+                    onclick="tryItOut('GETapi-v1-agency-prices-resolve');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-agency-prices-resolve"
+                    onclick="cancelTryOut('GETapi-v1-agency-prices-resolve');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-agency-prices-resolve"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/agency-prices/resolve</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="article_id"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="service_id"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pricing_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pricing_type"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="kilo"
+               data-component="body">
+    <br>
+<p>Example: <code>kilo</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
+               value="2026-10-06T13:01:15"
+               data-component="body">
+    <br>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+        </div>
+        </form>
+
+                    <h2 id="catalogue-POSTapi-v1-agency-prices">POST api/v1/agency-prices</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-agency-prices">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/agency-prices" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"agency_id\": \"consequatur\",
+    \"article_id\": \"consequatur\",
+    \"service_id\": \"consequatur\",
+    \"pricing_type\": \"kilo\",
+    \"amount_minor\": 56,
+    \"valid_from\": \"2026-10-06T13:01:15\",
+    \"valid_to\": \"2107-11-05\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/agency-prices"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "agency_id": "consequatur",
+    "article_id": "consequatur",
+    "service_id": "consequatur",
+    "pricing_type": "kilo",
+    "amount_minor": 56,
+    "valid_from": "2026-10-06T13:01:15",
+    "valid_to": "2107-11-05"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-agency-prices">
+</span>
+<span id="execution-results-POSTapi-v1-agency-prices" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-agency-prices"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-agency-prices"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-agency-prices" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-agency-prices">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-agency-prices" data-method="POST"
+      data-path="api/v1/agency-prices"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-agency-prices', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-agency-prices"
+                    onclick="tryItOut('POSTapi-v1-agency-prices');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-agency-prices"
+                    onclick="cancelTryOut('POSTapi-v1-agency-prices');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-agency-prices"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/agency-prices</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-agency-prices"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-agency-prices"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-agency-prices"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-agency-prices"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="POSTapi-v1-agency-prices"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="article_id"                data-endpoint="POSTapi-v1-agency-prices"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="service_id"                data-endpoint="POSTapi-v1-agency-prices"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pricing_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pricing_type"                data-endpoint="POSTapi-v1-agency-prices"
+               value="kilo"
+               data-component="body">
+    <br>
+<p>Example: <code>kilo</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount_minor</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="amount_minor"                data-endpoint="POSTapi-v1-agency-prices"
+               value="56"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>56</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>valid_from</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
+               value="2026-10-06T13:01:15"
+               data-component="body">
+    <br>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="valid_to"                data-endpoint="POSTapi-v1-agency-prices"
+               value="2107-11-05"
+               data-component="body">
+    <br>
+<p>validation.date validation.after_or_equal. Example: <code>2107-11-05</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-GETapi-v1-laundry-statuses">GET api/v1/laundry-statuses</h2>
 
@@ -12720,7 +13613,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -12732,7 +13625,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>Must be at least 0. Must not be greater than 100. Example: <code>1</code></p>
+<p>validation.min validation.max. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -13711,7 +14604,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"qeopfuudtdsufvyvddqam\",
     \"type\": \"in\",
     \"amount\": 29,
-    \"action_date\": \"2026-09-26T18:21:38\",
+    \"action_date\": \"2026-10-06T13:01:15\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -13734,7 +14627,7 @@ let body = {
     "label": "qeopfuudtdsufvyvddqam",
     "type": "in",
     "amount": 29,
-    "action_date": "2026-09-26T18:21:38",
+    "action_date": "2026-10-06T13:01:15",
     "validated": true
 };
 
@@ -13854,7 +14747,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="66529e01-d113-3473-8d6f-9e11e09332ea"
                data-component="body">
     <br>
-<p>Must be a valid UUID. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
@@ -13866,7 +14759,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="qeopfuudtdsufvyvddqam"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>qeopfuudtdsufvyvddqam</code></p>
+<p>validation.max. Example: <code>qeopfuudtdsufvyvddqam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -13892,7 +14785,7 @@ Must be one of:
                value="29"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>29</code></p>
+<p>validation.min. Example: <code>29</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -13913,10 +14806,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-09-26T18:21:38"
+               value="2026-10-06T13:01:15"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-09-26T18:21:38</code></p>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -13965,7 +14858,7 @@ Must be one of:
     \"label\": \"vmqeopfuudtdsufvyvddq\",
     \"type\": \"in\",
     \"amount\": 45,
-    \"action_date\": \"2026-09-26T18:21:38\"
+    \"action_date\": \"2026-10-06T13:01:15\"
 }"
 </code></pre></div>
 
@@ -13986,7 +14879,7 @@ let body = {
     "label": "vmqeopfuudtdsufvyvddq",
     "type": "in",
     "amount": 45,
-    "action_date": "2026-09-26T18:21:38"
+    "action_date": "2026-10-06T13:01:15"
 };
 
 fetch(url, {
@@ -14118,7 +15011,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -14144,7 +15037,7 @@ Must be one of:
                value="45"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>45</code></p>
+<p>validation.min. Example: <code>45</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -14165,10 +15058,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-09-26T18:21:38"
+               value="2026-10-06T13:01:15"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-09-26T18:21:38</code></p>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
         </div>
         </form>
 
@@ -14777,7 +15670,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>direction</code></b>&nbsp;&nbsp;
@@ -16765,7 +17658,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                 <h1 id="organisation">Organisation</h1>
 
-    
+    <p>Taux de change (consolidation multi-devise).</p>
 
                                 <h2 id="organisation-GETapi-v1-superadmin-roles">GET api/v1/superadmin/roles</h2>
 
@@ -17392,17 +18285,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"pricing_mode\": \"piece\",
     \"workflow_laveur_enabled\": true,
     \"workflow_classeur_enabled\": false,
+    \"qr_labels_enabled\": true,
     \"block_retrieve_if_unpaid\": true,
-    \"loyalty_points_rate\": 55,
-    \"loyalty_redeem_threshold\": 20,
+    \"loyalty_points_rate\": 19,
+    \"loyalty_redeem_threshold\": 70,
     \"loyalty_redeem_value\": 70,
-    \"hours_classic\": 71,
-    \"hours_express\": 13,
-    \"hours_repass\": 66,
-    \"collection_fee\": 13,
-    \"delivery_fee\": 65,
-    \"primary_color\": \"ufvyvddqamnii\",
-    \"secondary_color\": \"hfqcoynlazghd\"
+    \"hours_classic\": 13,
+    \"hours_express\": 66,
+    \"hours_repass\": 14,
+    \"collection_fee\": 65,
+    \"delivery_fee\": 72,
+    \"reporting_currency\": \"fvy\",
+    \"primary_color\": \"vddqamniihfqc\",
+    \"secondary_color\": \"oynlazghdtqtq\"
 }"
 </code></pre></div>
 
@@ -17425,17 +18320,19 @@ let body = {
     "pricing_mode": "piece",
     "workflow_laveur_enabled": true,
     "workflow_classeur_enabled": false,
+    "qr_labels_enabled": true,
     "block_retrieve_if_unpaid": true,
-    "loyalty_points_rate": 55,
-    "loyalty_redeem_threshold": 20,
+    "loyalty_points_rate": 19,
+    "loyalty_redeem_threshold": 70,
     "loyalty_redeem_value": 70,
-    "hours_classic": 71,
-    "hours_express": 13,
-    "hours_repass": 66,
-    "collection_fee": 13,
-    "delivery_fee": 65,
-    "primary_color": "ufvyvddqamnii",
-    "secondary_color": "hfqcoynlazghd"
+    "hours_classic": 13,
+    "hours_express": 66,
+    "hours_repass": 14,
+    "collection_fee": 65,
+    "delivery_fee": 72,
+    "reporting_currency": "fvy",
+    "primary_color": "vddqamniihfqc",
+    "secondary_color": "oynlazghdtqtq"
 };
 
 fetch(url, {
@@ -17554,7 +18451,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -17627,6 +18524,28 @@ Must be one of:
 <p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>qr_labels_enabled</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-settings-pressing" style="display: none">
+            <input type="radio" name="qr_labels_enabled"
+                   value="true"
+                   data-endpoint="PUTapi-v1-settings-pressing"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-settings-pressing" style="display: none">
+            <input type="radio" name="qr_labels_enabled"
+                   value="false"
+                   data-endpoint="PUTapi-v1-settings-pressing"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>block_retrieve_if_unpaid</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -17655,10 +18574,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_points_rate"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="55"
+               value="19"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>55</code></p>
+<p>validation.min. Example: <code>19</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_threshold</code></b>&nbsp;&nbsp;
@@ -17667,10 +18586,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_redeem_threshold"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="20"
+               value="70"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>20</code></p>
+<p>validation.min. Example: <code>70</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_value</code></b>&nbsp;&nbsp;
@@ -17682,7 +18601,7 @@ Must be one of:
                value="70"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>70</code></p>
+<p>validation.min. Example: <code>70</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -17691,10 +18610,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_classic"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="71"
+               value="13"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>71</code></p>
+<p>validation.min. Example: <code>13</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -17703,10 +18622,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_express"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="13"
+               value="66"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>13</code></p>
+<p>validation.min. Example: <code>66</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -17715,10 +18634,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_repass"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="66"
+               value="14"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>66</code></p>
+<p>validation.min. Example: <code>14</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -17727,10 +18646,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="13"
+               value="65"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>13</code></p>
+<p>validation.min. Example: <code>65</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -17739,10 +18658,22 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="65"
+               value="72"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>65</code></p>
+<p>validation.min. Example: <code>72</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reporting_currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reporting_currency"                data-endpoint="PUTapi-v1-settings-pressing"
+               value="fvy"
+               data-component="body">
+    <br>
+<p>validation.size. Example: <code>fvy</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>primary_color</code></b>&nbsp;&nbsp;
@@ -17751,10 +18682,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="primary_color"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="ufvyvddqamnii"
+               value="vddqamniihfqc"
                data-component="body">
     <br>
-<p>Must not be greater than 16 characters. Example: <code>ufvyvddqamnii</code></p>
+<p>validation.max. Example: <code>vddqamniihfqc</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>secondary_color</code></b>&nbsp;&nbsp;
@@ -17763,10 +18694,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="secondary_color"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="hfqcoynlazghd"
+               value="oynlazghdtqtq"
                data-component="body">
     <br>
-<p>Must not be greater than 16 characters. Example: <code>hfqcoynlazghd</code></p>
+<p>validation.max. Example: <code>oynlazghdtqtq</code></p>
         </div>
         </form>
 
@@ -17793,8 +18724,9 @@ Must be one of:
     \"name\": \"vmqeopfuudtdsufvyvddq\",
     \"address\": \"consequatur\",
     \"contact\": \"consequatur\",
-    \"code_prefix\": \"mqeopfu\",
-    \"code_suffix\": \"udtdsuf\",
+    \"currency\": \"mqe\",
+    \"code_prefix\": \"opfuudt\",
+    \"code_suffix\": \"dsufvyv\",
     \"status\": true
 }"
 </code></pre></div>
@@ -17816,8 +18748,9 @@ let body = {
     "name": "vmqeopfuudtdsufvyvddq",
     "address": "consequatur",
     "contact": "consequatur",
-    "code_prefix": "mqeopfu",
-    "code_suffix": "udtdsuf",
+    "currency": "mqe",
+    "code_prefix": "opfuudt",
+    "code_suffix": "dsufvyv",
     "status": true
 };
 
@@ -17950,7 +18883,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -17977,16 +18910,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>consequatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="currency"                data-endpoint="PUTapi-v1-settings-agencies--id-"
+               value="mqe"
+               data-component="body">
+    <br>
+<p>validation.size. Example: <code>mqe</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="mqeopfu"
+               value="opfuudt"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>mqeopfu</code></p>
+<p>validation.max. Example: <code>opfuudt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -17995,10 +18940,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="udtdsuf"
+               value="dsufvyv"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>udtdsuf</code></p>
+<p>validation.max. Example: <code>dsufvyv</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -18164,6 +19109,502 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="organisation-GETapi-v1-settings-exchange-rates">GET api/v1/settings/exchange-rates</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-settings-exchange-rates">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/settings/exchange-rates" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/settings/exchange-rates"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-settings-exchange-rates">
+    </span>
+<span id="execution-results-GETapi-v1-settings-exchange-rates" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-settings-exchange-rates"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-settings-exchange-rates"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-settings-exchange-rates" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-settings-exchange-rates">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-settings-exchange-rates" data-method="GET"
+      data-path="api/v1/settings/exchange-rates"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-settings-exchange-rates', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-settings-exchange-rates"
+                    onclick="tryItOut('GETapi-v1-settings-exchange-rates');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-settings-exchange-rates"
+                    onclick="cancelTryOut('GETapi-v1-settings-exchange-rates');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-settings-exchange-rates"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/settings/exchange-rates</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-settings-exchange-rates"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-settings-exchange-rates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-settings-exchange-rates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-settings-exchange-rates"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="organisation-POSTapi-v1-settings-exchange-rates">POST api/v1/settings/exchange-rates</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-settings-exchange-rates">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/settings/exchange-rates" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"source_currency\": \"vmq\",
+    \"target_currency\": \"eop\",
+    \"rate\": 11613.31890586,
+    \"rate_date\": \"2026-10-06T13:01:15\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/settings/exchange-rates"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "source_currency": "vmq",
+    "target_currency": "eop",
+    "rate": 11613.31890586,
+    "rate_date": "2026-10-06T13:01:15"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-settings-exchange-rates">
+</span>
+<span id="execution-results-POSTapi-v1-settings-exchange-rates" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-settings-exchange-rates"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-settings-exchange-rates"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-settings-exchange-rates" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-settings-exchange-rates">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-settings-exchange-rates" data-method="POST"
+      data-path="api/v1/settings/exchange-rates"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-settings-exchange-rates', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-settings-exchange-rates"
+                    onclick="tryItOut('POSTapi-v1-settings-exchange-rates');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-settings-exchange-rates"
+                    onclick="cancelTryOut('POSTapi-v1-settings-exchange-rates');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-settings-exchange-rates"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/settings/exchange-rates</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>source_currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="source_currency"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="vmq"
+               data-component="body">
+    <br>
+<p>validation.size. Example: <code>vmq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>target_currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="target_currency"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="eop"
+               data-component="body">
+    <br>
+<p>The value and <code>source_currency</code> must be different. validation.size. Example: <code>eop</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="11613.31890586"
+               data-component="body">
+    <br>
+<p>Example: <code>11613.31890586</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
+               value="2026-10-06T13:01:15"
+               data-component="body">
+    <br>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+        </div>
+        </form>
+
+                    <h2 id="organisation-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">DELETE api/v1/settings/exchange-rates/{exchangeRate_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/v1/settings/exchange-rates/17" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/settings/exchange-rates/17"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">
+</span>
+<span id="execution-results-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-" data-method="DELETE"
+      data-path="api/v1/settings/exchange-rates/{exchangeRate_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-settings-exchange-rates--exchangeRate_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+                    onclick="tryItOut('DELETEapi-v1-settings-exchange-rates--exchangeRate_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+                    onclick="cancelTryOut('DELETEapi-v1-settings-exchange-rates--exchangeRate_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/settings/exchange-rates/{exchangeRate_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>exchangeRate_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="exchangeRate_id"                data-endpoint="DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
+               value="17"
+               data-component="url">
+    <br>
+<p>The ID of the exchangeRate. Example: <code>17</code></p>
+            </div>
+                    </form>
+
                     <h2 id="organisation-GETapi-v1-org-agencies">GET api/v1/org/agencies</h2>
 
 <p>
@@ -18328,8 +19769,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"address\": \"consequatur\",
     \"contact\": \"consequatur\",
     \"country_code\": \"mq\",
-    \"code_prefix\": \"eopfuud\",
-    \"code_suffix\": \"tdsufvy\"
+    \"currency\": \"eop\",
+    \"code_prefix\": \"fuudtds\",
+    \"code_suffix\": \"ufvyvdd\"
 }"
 </code></pre></div>
 
@@ -18351,8 +19793,9 @@ let body = {
     "address": "consequatur",
     "contact": "consequatur",
     "country_code": "mq",
-    "code_prefix": "eopfuud",
-    "code_suffix": "tdsufvy"
+    "currency": "eop",
+    "code_prefix": "fuudtds",
+    "code_suffix": "ufvyvdd"
 };
 
 fetch(url, {
@@ -18471,7 +19914,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -18507,7 +19950,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mq"
                data-component="body">
     <br>
-<p>Must be 2 characters. Example: <code>mq</code></p>
+<p>validation.size. Example: <code>mq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="currency"                data-endpoint="POSTapi-v1-org-agencies"
+               value="eop"
+               data-component="body">
+    <br>
+<p>validation.size. Example: <code>eop</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -18516,10 +19971,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="POSTapi-v1-org-agencies"
-               value="eopfuud"
+               value="fuudtds"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>eopfuud</code></p>
+<p>validation.max. Example: <code>fuudtds</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -18528,10 +19983,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="POSTapi-v1-org-agencies"
-               value="tdsufvy"
+               value="ufvyvdd"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>tdsufvy</code></p>
+<p>validation.max. Example: <code>ufvyvdd</code></p>
         </div>
         </form>
 
@@ -18840,7 +20295,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -18852,7 +20307,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="kunde.eloisa@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>kunde.eloisa@example.com</code></p>
+<p>validation.email. Example: <code>kunde.eloisa@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -18864,7 +20319,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="4[*UyPJ"}6"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>4[*UyPJ"}6</code></p>
+<p>validation.min. Example: <code>4[*UyPJ"}6</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -19068,7 +20523,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -19080,7 +20535,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="kunde.eloisa@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>kunde.eloisa@example.com</code></p>
+<p>validation.email. Example: <code>kunde.eloisa@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -19092,7 +20547,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="4[*UyPJ"}6"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>4[*UyPJ"}6</code></p>
+<p>validation.min. Example: <code>4[*UyPJ"}6</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -21063,7 +22518,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -21506,7 +22961,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -21632,7 +23087,7 @@ Must be one of:
                value="19"
                data-component="body">
     <br>
-<p>Must be at least 0. Example: <code>19</code></p>
+<p>validation.min. Example: <code>19</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -21644,7 +23099,7 @@ Must be one of:
                value="70"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>70</code></p>
+<p>validation.min. Example: <code>70</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -21656,7 +23111,7 @@ Must be one of:
                value="71"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>71</code></p>
+<p>validation.min. Example: <code>71</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -21668,7 +23123,7 @@ Must be one of:
                value="13"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>13</code></p>
+<p>validation.min. Example: <code>13</code></p>
         </div>
         </form>
 
@@ -21990,8 +23445,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"address\": \"consequatur\",
     \"contact\": \"consequatur\",
     \"country_code\": \"mq\",
-    \"code_prefix\": \"eopfuud\",
-    \"code_suffix\": \"tdsufvy\"
+    \"currency\": \"eop\",
+    \"code_prefix\": \"fuudtds\",
+    \"code_suffix\": \"ufvyvdd\"
 }"
 </code></pre></div>
 
@@ -22014,8 +23470,9 @@ let body = {
     "address": "consequatur",
     "contact": "consequatur",
     "country_code": "mq",
-    "code_prefix": "eopfuud",
-    "code_suffix": "tdsufvy"
+    "currency": "eop",
+    "code_prefix": "fuudtds",
+    "code_suffix": "ufvyvdd"
 };
 
 fetch(url, {
@@ -22146,7 +23603,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mqeopfuudtdsufvyvddqa"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -22182,7 +23639,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mq"
                data-component="body">
     <br>
-<p>Must be 2 characters. Example: <code>mq</code></p>
+<p>validation.size. Example: <code>mq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="currency"                data-endpoint="POSTapi-v1-superadmin-agencies"
+               value="eop"
+               data-component="body">
+    <br>
+<p>validation.size. Example: <code>eop</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -22191,10 +23660,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="eopfuud"
+               value="fuudtds"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>eopfuud</code></p>
+<p>validation.max. Example: <code>fuudtds</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -22203,10 +23672,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="tdsufvy"
+               value="ufvyvdd"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>tdsufvy</code></p>
+<p>validation.max. Example: <code>ufvyvdd</code></p>
         </div>
         </form>
 
@@ -22387,8 +23856,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"address\": \"consequatur\",
     \"contact\": \"consequatur\",
     \"country_code\": \"mq\",
-    \"code_prefix\": \"eopfuud\",
-    \"code_suffix\": \"tdsufvy\",
+    \"currency\": \"eop\",
+    \"code_prefix\": \"fuudtds\",
+    \"code_suffix\": \"ufvyvdd\",
     \"status\": true
 }"
 </code></pre></div>
@@ -22411,8 +23881,9 @@ let body = {
     "address": "consequatur",
     "contact": "consequatur",
     "country_code": "mq",
-    "code_prefix": "eopfuud",
-    "code_suffix": "tdsufvy",
+    "currency": "eop",
+    "code_prefix": "fuudtds",
+    "code_suffix": "ufvyvdd",
     "status": true
 };
 
@@ -22549,7 +24020,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 191 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -22585,7 +24056,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mq"
                data-component="body">
     <br>
-<p>Must be 2 characters. Example: <code>mq</code></p>
+<p>validation.size. Example: <code>mq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="currency"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
+               value="eop"
+               data-component="body">
+    <br>
+<p>validation.size. Example: <code>eop</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -22594,10 +24077,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="eopfuud"
+               value="fuudtds"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>eopfuud</code></p>
+<p>validation.max. Example: <code>fuudtds</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -22606,10 +24089,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="tdsufvy"
+               value="ufvyvdd"
                data-component="body">
     <br>
-<p>Must not be greater than 8 characters. Example: <code>tdsufvy</code></p>
+<p>validation.max. Example: <code>ufvyvdd</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -23691,7 +25174,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="mqeopfuudtdsufvyvddqa"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
@@ -23703,7 +25186,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="45"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>45</code></p>
+<p>validation.min. Example: <code>45</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>months</code></b>&nbsp;&nbsp;
@@ -23715,7 +25198,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="46"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>46</code></p>
+<p>validation.min. Example: <code>46</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>activate</code></b>&nbsp;&nbsp;
@@ -23764,7 +25247,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"plan\": \"vmqeopfuudtdsufvyvddq\",
     \"seats\": 2,
     \"status\": true,
-    \"expires_at\": \"2026-09-26T18:21:38\"
+    \"expires_at\": \"2026-10-06T13:01:15\"
 }"
 </code></pre></div>
 
@@ -23785,7 +25268,7 @@ let body = {
     "plan": "vmqeopfuudtdsufvyvddq",
     "seats": 2,
     "status": true,
-    "expires_at": "2026-09-26T18:21:38"
+    "expires_at": "2026-10-06T13:01:15"
 };
 
 fetch(url, {
@@ -23917,7 +25400,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="vmqeopfuudtdsufvyvddq"
                data-component="body">
     <br>
-<p>Must not be greater than 32 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
@@ -23929,7 +25412,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>2</code></p>
+<p>validation.min. Example: <code>2</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -23960,10 +25443,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-09-26T18:21:38"
+               value="2026-10-06T13:01:15"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-09-26T18:21:38</code></p>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
         </div>
         </form>
 
@@ -24137,7 +25620,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="73"
                data-component="body">
     <br>
-<p>Must be at least 1. Example: <code>73</code></p>
+<p>validation.min. Example: <code>73</code></p>
         </div>
         </form>
 
@@ -24293,6 +25776,2458 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The ID of the license. Example: <code>1</code></p>
             </div>
                     </form>
+
+                <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-v1-services">GET api/v1/services</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-services">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/services" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/services"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-services">
+    </span>
+<span id="execution-results-GETapi-v1-services" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-services"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-services"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-services" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-services">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-services" data-method="GET"
+      data-path="api/v1/services"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-services', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-services"
+                    onclick="tryItOut('GETapi-v1-services');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-services"
+                    onclick="cancelTryOut('GETapi-v1-services');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-services"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/services</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-services"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-services"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-services"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-services"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-v1-services">POST api/v1/services</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-services">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/services" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/services"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-services">
+</span>
+<span id="execution-results-POSTapi-v1-services" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-services"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-services"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-services" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-services">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-services" data-method="POST"
+      data-path="api/v1/services"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-services', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-services"
+                    onclick="tryItOut('POSTapi-v1-services');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-services"
+                    onclick="cancelTryOut('POSTapi-v1-services');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-services"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/services</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-services"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-services"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-services"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-services"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-PUTapi-v1-services--id-">PUT api/v1/services/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-services--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v1/services/consequatur" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/services/consequatur"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-services--id-">
+</span>
+<span id="execution-results-PUTapi-v1-services--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-services--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-services--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-services--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-services--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-services--id-" data-method="PUT"
+      data-path="api/v1/services/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-services--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-services--id-"
+                    onclick="tryItOut('PUTapi-v1-services--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-services--id-"
+                    onclick="cancelTryOut('PUTapi-v1-services--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-services--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/services/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-services--id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-services--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-services--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="PUTapi-v1-services--id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PUTapi-v1-services--id-"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the service. Example: <code>consequatur</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-DELETEapi-v1-services--id-">DELETE api/v1/services/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-services--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/v1/services/consequatur" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/services/consequatur"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-services--id-">
+</span>
+<span id="execution-results-DELETEapi-v1-services--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-services--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-services--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-services--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-services--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-services--id-" data-method="DELETE"
+      data-path="api/v1/services/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-services--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-services--id-"
+                    onclick="tryItOut('DELETEapi-v1-services--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-services--id-"
+                    onclick="cancelTryOut('DELETEapi-v1-services--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-services--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/services/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-services--id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-services--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-services--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="DELETEapi-v1-services--id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="DELETEapi-v1-services--id-"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the service. Example: <code>consequatur</code></p>
+            </div>
+                    </form>
+
+                <h1 id="livraison">Livraison</h1>
+
+    <p>Module Livreur v3.0 — tournées, marquage livré, encaissement mobile.</p>
+
+                                <h2 id="livraison-GETapi-v1-deliveries-queue">GET api/v1/deliveries/queue</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deliveries-queue">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deliveries/queue" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/queue"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deliveries-queue">
+    </span>
+<span id="execution-results-GETapi-v1-deliveries-queue" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deliveries-queue"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deliveries-queue"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deliveries-queue" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deliveries-queue">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deliveries-queue" data-method="GET"
+      data-path="api/v1/deliveries/queue"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deliveries-queue', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deliveries-queue"
+                    onclick="tryItOut('GETapi-v1-deliveries-queue');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deliveries-queue"
+                    onclick="cancelTryOut('GETapi-v1-deliveries-queue');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deliveries-queue"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deliveries/queue</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deliveries-queue"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deliveries-queue"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deliveries-queue"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deliveries-queue"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="livraison-GETapi-v1-deliveries-history">GET api/v1/deliveries/history</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deliveries-history">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deliveries/history" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/history"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deliveries-history">
+    </span>
+<span id="execution-results-GETapi-v1-deliveries-history" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deliveries-history"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deliveries-history"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deliveries-history" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deliveries-history">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deliveries-history" data-method="GET"
+      data-path="api/v1/deliveries/history"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deliveries-history', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deliveries-history"
+                    onclick="tryItOut('GETapi-v1-deliveries-history');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deliveries-history"
+                    onclick="cancelTryOut('GETapi-v1-deliveries-history');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deliveries-history"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deliveries/history</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deliveries-history"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deliveries-history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deliveries-history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deliveries-history"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="livraison-GETapi-v1-deliveries-zones">GET api/v1/deliveries/zones</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deliveries-zones">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deliveries/zones" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/zones"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deliveries-zones">
+    </span>
+<span id="execution-results-GETapi-v1-deliveries-zones" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deliveries-zones"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deliveries-zones"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deliveries-zones" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deliveries-zones">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deliveries-zones" data-method="GET"
+      data-path="api/v1/deliveries/zones"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deliveries-zones', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deliveries-zones"
+                    onclick="tryItOut('GETapi-v1-deliveries-zones');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deliveries-zones"
+                    onclick="cancelTryOut('GETapi-v1-deliveries-zones');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deliveries-zones"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deliveries/zones</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deliveries-zones"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deliveries-zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deliveries-zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deliveries-zones"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="livraison-POSTapi-v1-deliveries-zones">POST api/v1/deliveries/zones</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deliveries-zones">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deliveries/zones" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"vmqeopfuudtdsufvyvddq\",
+    \"code\": \"amniihfqcoynlazghdtqt\",
+    \"status\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/zones"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "name": "vmqeopfuudtdsufvyvddq",
+    "code": "amniihfqcoynlazghdtqt",
+    "status": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deliveries-zones">
+</span>
+<span id="execution-results-POSTapi-v1-deliveries-zones" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deliveries-zones"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deliveries-zones"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deliveries-zones" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deliveries-zones">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deliveries-zones" data-method="POST"
+      data-path="api/v1/deliveries/zones"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deliveries-zones', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deliveries-zones"
+                    onclick="tryItOut('POSTapi-v1-deliveries-zones');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deliveries-zones"
+                    onclick="cancelTryOut('POSTapi-v1-deliveries-zones');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deliveries-zones"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deliveries/zones</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deliveries-zones"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="vmqeopfuudtdsufvyvddq"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="amniihfqcoynlazghdtqt"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deliveries-zones" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deliveries-zones"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deliveries-zones" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deliveries-zones"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="livraison-PUTapi-v1-deliveries-zones--id-">PUT api/v1/deliveries/zones/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-deliveries-zones--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v1/deliveries/zones/17" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"vmqeopfuudtdsufvyvddq\",
+    \"code\": \"amniihfqcoynlazghdtqt\",
+    \"status\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/zones/17"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "name": "vmqeopfuudtdsufvyvddq",
+    "code": "amniihfqcoynlazghdtqt",
+    "status": true
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-deliveries-zones--id-">
+</span>
+<span id="execution-results-PUTapi-v1-deliveries-zones--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-deliveries-zones--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-deliveries-zones--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-deliveries-zones--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-deliveries-zones--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-deliveries-zones--id-" data-method="PUT"
+      data-path="api/v1/deliveries/zones/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-deliveries-zones--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-deliveries-zones--id-"
+                    onclick="tryItOut('PUTapi-v1-deliveries-zones--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-deliveries-zones--id-"
+                    onclick="cancelTryOut('PUTapi-v1-deliveries-zones--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-deliveries-zones--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/deliveries/zones/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="17"
+               data-component="url">
+    <br>
+<p>The ID of the zone. Example: <code>17</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="vmqeopfuudtdsufvyvddq"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="amniihfqcoynlazghdtqt"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-deliveries-zones--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-deliveries-zones--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-deliveries-zones--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-deliveries-zones--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="livraison-GETapi-v1-deliveries-rounds">GET api/v1/deliveries/rounds</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deliveries-rounds">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deliveries/rounds" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/rounds"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deliveries-rounds">
+    </span>
+<span id="execution-results-GETapi-v1-deliveries-rounds" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deliveries-rounds"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deliveries-rounds"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deliveries-rounds" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deliveries-rounds">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deliveries-rounds" data-method="GET"
+      data-path="api/v1/deliveries/rounds"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deliveries-rounds', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deliveries-rounds"
+                    onclick="tryItOut('GETapi-v1-deliveries-rounds');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deliveries-rounds"
+                    onclick="cancelTryOut('GETapi-v1-deliveries-rounds');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deliveries-rounds"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deliveries/rounds</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deliveries-rounds"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deliveries-rounds"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deliveries-rounds"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deliveries-rounds"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="livraison-POSTapi-v1-deliveries-rounds">POST api/v1/deliveries/rounds</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deliveries-rounds">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deliveries/rounds" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"agency_id\": \"consequatur\",
+    \"livreur_id\": \"consequatur\",
+    \"round_date\": \"2026-10-06T13:01:15\",
+    \"name\": \"mqeopfuudtdsufvyvddqa\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/rounds"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "agency_id": "consequatur",
+    "livreur_id": "consequatur",
+    "round_date": "2026-10-06T13:01:15",
+    "name": "mqeopfuudtdsufvyvddqa"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deliveries-rounds">
+</span>
+<span id="execution-results-POSTapi-v1-deliveries-rounds" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deliveries-rounds"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deliveries-rounds"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deliveries-rounds" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deliveries-rounds">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deliveries-rounds" data-method="POST"
+      data-path="api/v1/deliveries/rounds"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deliveries-rounds', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deliveries-rounds"
+                    onclick="tryItOut('POSTapi-v1-deliveries-rounds');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deliveries-rounds"
+                    onclick="cancelTryOut('POSTapi-v1-deliveries-rounds');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deliveries-rounds"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deliveries/rounds</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="livreur_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="delivery_zone_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>round_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="2026-10-06T13:01:15"
+               data-component="body">
+    <br>
+<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-deliveries-rounds"
+               value="mqeopfuudtdsufvyvddqa"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+        </div>
+        </form>
+
+                    <h2 id="livraison-POSTapi-v1-deliveries-rounds--round_id--assign">POST api/v1/deliveries/rounds/{round_id}/assign</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deliveries-rounds--round_id--assign">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deliveries/rounds/17/assign" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"deposit_ids\": [
+        17
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/rounds/17/assign"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "deposit_ids": [
+        17
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deliveries-rounds--round_id--assign">
+</span>
+<span id="execution-results-POSTapi-v1-deliveries-rounds--round_id--assign" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deliveries-rounds--round_id--assign"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deliveries-rounds--round_id--assign"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deliveries-rounds--round_id--assign" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deliveries-rounds--round_id--assign">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deliveries-rounds--round_id--assign" data-method="POST"
+      data-path="api/v1/deliveries/rounds/{round_id}/assign"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deliveries-rounds--round_id--assign', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deliveries-rounds--round_id--assign"
+                    onclick="tryItOut('POSTapi-v1-deliveries-rounds--round_id--assign');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deliveries-rounds--round_id--assign"
+                    onclick="cancelTryOut('POSTapi-v1-deliveries-rounds--round_id--assign');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deliveries-rounds--round_id--assign"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deliveries/rounds/{round_id}/assign</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>round_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="round_id"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               value="17"
+               data-component="url">
+    <br>
+<p>The ID of the round. Example: <code>17</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>deposit_ids</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_ids[0]"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="deposit_ids[1]"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+        </form>
+
+                    <h2 id="livraison-POSTapi-v1-deliveries-deposits--deposit_id--schedule">POST api/v1/deliveries/deposits/{deposit_id}/schedule</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deliveries-deposits--deposit_id--schedule">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deliveries/deposits/17/schedule" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"delivery_address\": \"vmqeopfuudtdsufvyvddq\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/deposits/17/schedule"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "delivery_address": "vmqeopfuudtdsufvyvddq"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deliveries-deposits--deposit_id--schedule">
+</span>
+<span id="execution-results-POSTapi-v1-deliveries-deposits--deposit_id--schedule" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deliveries-deposits--deposit_id--schedule"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deliveries-deposits--deposit_id--schedule" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deliveries-deposits--deposit_id--schedule">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deliveries-deposits--deposit_id--schedule" data-method="POST"
+      data-path="api/v1/deliveries/deposits/{deposit_id}/schedule"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deliveries-deposits--deposit_id--schedule', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+                    onclick="tryItOut('POSTapi-v1-deliveries-deposits--deposit_id--schedule');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+                    onclick="cancelTryOut('POSTapi-v1-deliveries-deposits--deposit_id--schedule');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deliveries/deposits/{deposit_id}/schedule</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value="17"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>17</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="delivery_zone_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="delivery_address"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value="vmqeopfuudtdsufvyvddq"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="livreur_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
+               value=""
+               data-component="body">
+    <br>
+<p>Must match an existing stored value.</p>
+        </div>
+        </form>
+
+                    <h2 id="livraison-POSTapi-v1-deliveries-deposits--deposit_id--deliver">POST api/v1/deliveries/deposits/{deposit_id}/deliver</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deliveries-deposits--deposit_id--deliver">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deliveries/deposits/17/deliver" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"confirmation_type\": \"consequatur\",
+    \"confirmation_value\": \"consequatur\",
+    \"receiver_name\": \"mqeopfuudtdsufvyvddqa\",
+    \"collect_amount\": 45,
+    \"payment_method\": \"other\",
+    \"require_settled\": false,
+    \"client_uuid\": \"d63469cd-6701-3555-a16b-fc9764100c9a\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/deposits/17/deliver"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "confirmation_type": "consequatur",
+    "confirmation_value": "consequatur",
+    "receiver_name": "mqeopfuudtdsufvyvddqa",
+    "collect_amount": 45,
+    "payment_method": "other",
+    "require_settled": false,
+    "client_uuid": "d63469cd-6701-3555-a16b-fc9764100c9a"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deliveries-deposits--deposit_id--deliver">
+</span>
+<span id="execution-results-POSTapi-v1-deliveries-deposits--deposit_id--deliver" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deliveries-deposits--deposit_id--deliver"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deliveries-deposits--deposit_id--deliver" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deliveries-deposits--deposit_id--deliver">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deliveries-deposits--deposit_id--deliver" data-method="POST"
+      data-path="api/v1/deliveries/deposits/{deposit_id}/deliver"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deliveries-deposits--deposit_id--deliver', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+                    onclick="tryItOut('POSTapi-v1-deliveries-deposits--deposit_id--deliver');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+                    onclick="cancelTryOut('POSTapi-v1-deliveries-deposits--deposit_id--deliver');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deliveries/deposits/{deposit_id}/deliver</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="17"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>17</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>confirmation_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="confirmation_type"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>confirmation_value</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="confirmation_value"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>receiver_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="receiver_name"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="mqeopfuudtdsufvyvddqa"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>collect_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="collect_amount"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="45"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>45</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="payment_method"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="other"
+               data-component="body">
+    <br>
+<p>Example: <code>other</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>require_settled</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver" style="display: none">
+            <input type="radio" name="require_settled"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver" style="display: none">
+            <input type="radio" name="require_settled"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>client_uuid</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="client_uuid"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
+               value="d63469cd-6701-3555-a16b-fc9764100c9a"
+               data-component="body">
+    <br>
+<p>validation.uuid. Example: <code>d63469cd-6701-3555-a16b-fc9764100c9a</code></p>
+        </div>
+        </form>
 
             
 

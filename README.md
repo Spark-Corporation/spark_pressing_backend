@@ -15,6 +15,8 @@ php artisan serve
 
 Docs OpenAPI : `/docs` (`composer docs`).
 
+**Contrat API ↔ frontend** : [docs/api/CONTRACT.md](docs/api/CONTRACT.md) + spécification versionnée [docs/api/openapi.yaml](docs/api/openapi.yaml) (`composer docs` pour régénérer).
+
 ## Exigences non fonctionnelles (ENF)
 
 | ID | Couverture API |
@@ -32,3 +34,20 @@ Docs OpenAPI : `/docs` (`composer docs`).
 | ENF14 CI/CD | [.github/workflows/ci.yml](.github/workflows/ci.yml) |
 
 ENF05/06/11 (UX POS, responsive, a11y) : côté clients web/mobile, hors ce repo.
+
+## Déploiement FTP (GitHub Actions)
+
+Le push sur `main` lance [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) : `composer install --no-dev`, envoi FTP vers `public_html/pressing-api`, puis migrations.
+
+Les identifiants ne sont pas dans le dépôt. Secrets du repo GitHub (`Settings` → `Secrets` → `Actions`) :
+
+| Secret | Valeur |
+|--------|--------|
+| `FTP_HOST` | `pressing-api.pressingelegance.com` |
+| `FTP_USER` | compte FTP |
+| `FTP_PASSWORD` | mot de passe FTP |
+| `APP_KEY` | sortie de `php artisan key:generate --show` |
+| `APP_URL` | optionnel, défaut `https://pressing-api.pressingelegance.com` |
+| `CORS_ALLOWED_ORIGINS` | optionnel, défaut `*` |
+
+L’hébergeur doit exposer PHP 8.1+ avec `pdo_sqlite`, et le document root du sous-domaine doit être `/home/sparqrqm/public_html/pressing-api` (le `.htaccess` racine renvoie vers `public/`).

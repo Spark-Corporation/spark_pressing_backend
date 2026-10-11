@@ -1,0 +1,4673 @@
+openapi: 3.0.3
+info:
+  title: 'Spark Pressing API API Documentation'
+  description: 'API REST Spark Pressing — multi-tenant (pressing / agence), Sanctum, montants en XAF entiers.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+tags:
+  -
+    name: Système
+    description: ''
+  -
+    name: Authentification
+    description: ''
+  -
+    name: POS
+    description: ''
+  -
+    name: Dépôts
+    description: 'Cycle dépôt → paiement → atelier → retrait.'
+  -
+    name: Clients
+    description: ''
+  -
+    name: Catalogue
+    description: 'Tarifs par agence (séparés du catalogue).'
+  -
+    name: Caisse
+    description: ''
+  -
+    name: Recettes
+    description: ''
+  -
+    name: Rapports
+    description: ''
+  -
+    name: Organisation
+    description: 'Taux de change (consolidation multi-devise).'
+  -
+    name: 'Espace client'
+    description: ''
+  -
+    name: Superadmin
+    description: ''
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Livraison
+    description: 'Module Livreur v3.0 — tournées, marquage livré, encaissement mobile.'
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'Obtenez le token via `POST /api/v1/auth/staff/login` (email + password). Sur les routes staff, envoyez aussi `X-Agency-Id` pour filtrer une agence.'
+security:
+  -
+    default: []
+paths:
+  /api/v1/health:
+    get:
+      summary: "Santé de l'API"
+      operationId: santDeLAPI
+      description: "Vérifie que l'API et la base sont joignables (sonde LB / ENF02)."
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    name: 'Spark Pressing API'
+                    version: v1
+                    status: ok
+                    database: ok
+                    currency: XAF
+                    locale: fr
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: 'Spark Pressing API'
+                      version:
+                        type: string
+                        example: v1
+                      status:
+                        type: string
+                        example: ok
+                      database:
+                        type: string
+                        example: ok
+                      currency:
+                        type: string
+                        example: XAF
+                      locale:
+                        type: string
+                        example: fr
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Système
+      security: []
+  /api/v1/auth/staff/login:
+    post:
+      summary: 'Connexion staff'
+      operationId: connexionStaff
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: validation.email.
+                  example: qkunze@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: 'O[2UZ5ij-e/dl4m{o,'
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/auth/staff/forgot-password:
+    post:
+      summary: 'Mot de passe oublié'
+      operationId: motDePasseOubli
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: validation.email.
+                  example: qkunze@example.com
+              required:
+                - email
+      security: []
+  /api/v1/auth/staff/reset-password:
+    post:
+      summary: 'Réinitialiser le mot de passe'
+      operationId: rinitialiserLeMotDePasse
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: validation.email.
+                  example: qkunze@example.com
+                token:
+                  type: string
+                  description: ''
+                  example: consequatur
+                password:
+                  type: string
+                  description: validation.min.
+                  example: '[2UZ5ij-e/dl4'
+              required:
+                - email
+                - token
+                - password
+      security: []
+  /api/v1/auth/client/login:
+    post:
+      summary: 'Connexion client'
+      operationId: connexionClient
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: ''
+                  example: consequatur
+                password:
+                  type: string
+                  description: ''
+                  example: 'O[2UZ5ij-e/dl4m{o,'
+              required:
+                - login
+                - password
+      security: []
+  /api/v1/auth/client/register:
+    post:
+      summary: 'Inscription client'
+      operationId: inscriptionClient
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pressing_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                phone_number:
+                  type: string
+                  description: validation.max.
+                  example: mniihfqcoynlazghdtqtq
+                email:
+                  type: string
+                  description: validation.email.
+                  example: ablanda@example.org
+                  nullable: true
+                password:
+                  type: string
+                  description: validation.min.
+                  example: "'YAKYLk4>SJIrIV#lz."
+                sponsor_code:
+                  type: string
+                  description: validation.max.
+                  example: lsmsjuryvo
+                  nullable: true
+              required:
+                - pressing_id
+                - fullname
+                - phone_number
+                - password
+      security: []
+  /api/v1/auth/superadmin/login:
+    post:
+      summary: 'Connexion superadmin'
+      operationId: connexionSuperadmin
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: validation.email.
+                  example: qkunze@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: 'O[2UZ5ij-e/dl4m{o,'
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/auth/me:
+    get:
+      summary: ''
+      operationId: getApiV1AuthMe
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+  /api/v1/auth/profile:
+    put:
+      summary: ''
+      operationId: putApiV1AuthProfile
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                phone_number:
+                  type: string
+                  description: validation.max.
+                  example: amniihfqcoynlazghdtqt
+                  nullable: true
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                email:
+                  type: string
+                  description: validation.email.
+                  example: carolyne.luettgen@example.org
+                password:
+                  type: string
+                  description: validation.min.
+                  example: ij-e/dl4m
+                  nullable: true
+  /api/v1/auth/logout:
+    post:
+      summary: ''
+      operationId: postApiV1AuthLogout
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+  /api/v1/client/profile:
+    put:
+      summary: ''
+      operationId: putApiV1ClientProfile
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentification
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                phone_number:
+                  type: string
+                  description: validation.max.
+                  example: amniihfqcoynlazghdtqt
+                  nullable: true
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                email:
+                  type: string
+                  description: validation.email.
+                  example: carolyne.luettgen@example.org
+                password:
+                  type: string
+                  description: validation.min.
+                  example: ij-e/dl4m
+                  nullable: true
+    get:
+      summary: ''
+      operationId: getApiV1ClientProfile
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Espace client'
+  /api/v1/dashboard:
+    get:
+      summary: ''
+      operationId: getApiV1Dashboard
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - POS
+  /api/v1/pos/bootstrap:
+    get:
+      summary: ''
+      operationId: getApiV1PosBootstrap
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - POS
+  /api/v1/sync:
+    post:
+      summary: ''
+      operationId: postApiV1Sync
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - POS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operations:
+                  type: array
+                  description: validation.min.
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: ''
+                        example: payment
+                        enum:
+                          - deposit
+                          - payment
+                      payload:
+                        type: object
+                        description: ''
+                        example: []
+                        properties: {  }
+                      client_uuid:
+                        type: string
+                        description: validation.uuid.
+                        example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                    required:
+                      - type
+                      - payload
+                      - client_uuid
+              required:
+                - operations
+  /api/v1/deposits/due:
+    get:
+      summary: ''
+      operationId: getApiV1DepositsDue
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+  /api/v1/deposits/retrieved:
+    get:
+      summary: ''
+      operationId: getApiV1DepositsRetrieved
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+  /api/v1/deposits/ready:
+    get:
+      summary: ''
+      operationId: getApiV1DepositsReady
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+  '/api/v1/deposits/qr/{token}':
+    get:
+      summary: ''
+      operationId: getApiV1DepositsQrToken
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/deposits:
+    get:
+      summary: ''
+      operationId: getApiV1Deposits
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+    post:
+      summary: ''
+      operationId: postApiV1Deposits
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_uuid:
+                  type: string
+                  description: validation.uuid.
+                  example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                  nullable: true
+                client_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                discount:
+                  type: integer
+                  description: validation.min.
+                  example: 45
+                  nullable: true
+                discount_percent:
+                  type: integer
+                  description: 'validation.min validation.max.'
+                  example: 16
+                  nullable: true
+                promo_code:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                promo_special_code:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                points_to_redeem:
+                  type: integer
+                  description: validation.min.
+                  example: 45
+                  nullable: true
+                with_collection:
+                  type: boolean
+                  description: ''
+                  example: true
+                with_delivery:
+                  type: boolean
+                  description: ''
+                  example: false
+                collection_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 50
+                  nullable: true
+                delivery_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 55
+                  nullable: true
+                delivery_zone_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                delivery_address:
+                  type: string
+                  description: validation.max.
+                  example: fuudtdsufvyvddqamniih
+                  nullable: true
+                advanced:
+                  type: integer
+                  description: validation.min.
+                  example: 18
+                  nullable: true
+                payment_method:
+                  type: string
+                  description: ''
+                  example: wallet
+                  enum:
+                    - cash
+                    - card
+                    - mobile_money
+                    - wallet
+                    - other
+                  nullable: true
+                deposit_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+                retrieve_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+                notes:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                lines:
+                  type: array
+                  description: validation.min.
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      article_id:
+                        type: string
+                        description: 'Must match an existing stored value.'
+                        example: consequatur
+                      service_id:
+                        type: string
+                        description: 'Must match an existing stored value.'
+                        example: null
+                        nullable: true
+                      quantity:
+                        type: integer
+                        description: validation.min.
+                        example: 45
+                        nullable: true
+                      type_action:
+                        type: integer
+                        description: ''
+                        example: 0
+                        enum:
+                          - 0
+                          - 1
+                          - 2
+                        nullable: true
+                      pricing_type:
+                        type: string
+                        description: ''
+                        example: kilo
+                        enum:
+                          - piece
+                          - kilo
+                        nullable: true
+                      weight_kg:
+                        type: number
+                        description: validation.min.
+                        example: 50
+                        nullable: true
+                      unit_price:
+                        type: integer
+                        description: validation.min.
+                        example: 55
+                        nullable: true
+                      designation:
+                        type: string
+                        description: ''
+                        example: consequatur
+                        nullable: true
+                      state:
+                        type: string
+                        description: ''
+                        example: consequatur
+                        nullable: true
+                      render_id:
+                        type: integer
+                        description: ''
+                        example: 17
+                        nullable: true
+                    required:
+                      - article_id
+              required:
+                - client_id
+                - lines
+  '/api/v1/deposits/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1DepositsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+    delete:
+      summary: ''
+      operationId: deleteApiV1DepositsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/payments':
+    post:
+      summary: ''
+      operationId: postApiV1DepositsDeposit_idPayments
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_uuid:
+                  type: string
+                  description: validation.uuid.
+                  example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                  nullable: true
+                amount:
+                  type: integer
+                  description: validation.min.
+                  example: 56
+                payment_method:
+                  type: string
+                  description: ''
+                  example: cash
+                  enum:
+                    - cash
+                    - card
+                    - mobile_money
+                    - wallet
+                    - other
+                  nullable: true
+                transaction_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+              required:
+                - amount
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/retrieve':
+    post:
+      summary: ''
+      operationId: postApiV1DepositsDeposit_idRetrieve
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                receiver_name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/retrieve-partial':
+    post:
+      summary: ''
+      operationId: postApiV1DepositsDeposit_idRetrievePartial
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                units:
+                  type: array
+                  description: validation.min.
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ''
+                        example: 17
+                      quantity:
+                        type: integer
+                        description: validation.min.
+                        example: 45
+                    required:
+                      - id
+                      - quantity
+              required:
+                - units
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/workshop':
+    post:
+      summary: ''
+      operationId: postApiV1DepositsDeposit_idWorkshop
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                etat:
+                  type: string
+                  description: ''
+                  example: waiting
+                  enum:
+                    - waiting
+                    - in_progress
+                    - treated
+                    - classed
+                qr_token:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+              required:
+                - etat
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/document':
+    get:
+      summary: ''
+      operationId: getApiV1DepositsDeposit_idDocument
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Dépôts
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/v1/clients/inactive:
+    get:
+      summary: ''
+      operationId: getApiV1ClientsInactive
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+  /api/v1/clients:
+    get:
+      summary: ''
+      operationId: getApiV1Clients
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    post:
+      summary: ''
+      operationId: postApiV1Clients
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                phone_number:
+                  type: string
+                  description: validation.max.
+                  example: amniihfqcoynlazghdtqt
+                email:
+                  type: string
+                  description: validation.email.
+                  example: andreanne00@example.org
+                  nullable: true
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                city:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                password:
+                  type: string
+                  description: validation.min.
+                  example: '[2UZ5ij-e/dl4'
+                  nullable: true
+                sponsor_code:
+                  type: string
+                  description: validation.max.
+                  example: vyvddqamni
+                  nullable: true
+              required:
+                - fullname
+                - phone_number
+  '/api/v1/clients/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1ClientsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    put:
+      summary: ''
+      operationId: putApiV1ClientsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                phone_number:
+                  type: string
+                  description: validation.max.
+                  example: amniihfqcoynlazghdtqt
+                email:
+                  type: string
+                  description: validation.email.
+                  example: andreanne00@example.org
+                  nullable: true
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                city:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: false
+                password:
+                  type: string
+                  description: validation.min.
+                  example: '2UZ5ij-e/dl4m{o'
+                  nullable: true
+    delete:
+      summary: ''
+      operationId: deleteApiV1ClientsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/clients/{client_id}/state':
+    get:
+      summary: ''
+      operationId: getApiV1ClientsClient_idState
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/clients/{client_id}/referrals':
+    get:
+      summary: ''
+      operationId: getApiV1ClientsClient_idReferrals
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/clients/{client_id}/loyalty':
+    get:
+      summary: ''
+      operationId: getApiV1ClientsClient_idLoyalty
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/clients/{client_id}/wallet':
+    get:
+      summary: ''
+      operationId: getApiV1ClientsClient_idWallet
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/clients/{client_id}/wallet/credit':
+    post:
+      summary: ''
+      operationId: postApiV1ClientsClient_idWalletCredit
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  description: validation.min.
+                  example: 73
+                reason:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+              required:
+                - amount
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/clients/{client_id}/wallet/debit':
+    post:
+      summary: ''
+      operationId: postApiV1ClientsClient_idWalletDebit
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  description: validation.min.
+                  example: 73
+                reason:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+              required:
+                - amount
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/articles/export:
+    get:
+      summary: ''
+      operationId: getApiV1ArticlesExport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  /api/v1/articles/template:
+    get:
+      summary: ''
+      operationId: getApiV1ArticlesTemplate
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  /api/v1/articles/import:
+    post:
+      summary: ''
+      operationId: postApiV1ArticlesImport
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. validation.max.'
+              required:
+                - file
+  /api/v1/articles:
+    get:
+      summary: ''
+      operationId: getApiV1Articles
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1Articles
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  nullable: true
+                classic_price:
+                  type: integer
+                  description: validation.min.
+                  example: 12
+                express_price:
+                  type: integer
+                  description: validation.min.
+                  example: 66
+                repass_price:
+                  type: integer
+                  description: validation.min.
+                  example: 13
+                classic_price_kilo:
+                  type: integer
+                  description: validation.min.
+                  example: 65
+                  nullable: true
+                express_price_kilo:
+                  type: integer
+                  description: validation.min.
+                  example: 72
+                  nullable: true
+                repass_price_kilo:
+                  type: integer
+                  description: validation.min.
+                  example: 18
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - name
+                - classic_price
+                - express_price
+                - repass_price
+  '/api/v1/articles/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1ArticlesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    put:
+      summary: ''
+      operationId: putApiV1ArticlesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  nullable: true
+                classic_price:
+                  type: integer
+                  description: validation.min.
+                  example: 12
+                express_price:
+                  type: integer
+                  description: validation.min.
+                  example: 66
+                repass_price:
+                  type: integer
+                  description: validation.min.
+                  example: 13
+                classic_price_kilo:
+                  type: integer
+                  description: validation.min.
+                  example: 65
+                express_price_kilo:
+                  type: integer
+                  description: validation.min.
+                  example: 72
+                repass_price_kilo:
+                  type: integer
+                  description: validation.min.
+                  example: 18
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+    delete:
+      summary: ''
+      operationId: deleteApiV1ArticlesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the article.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/agency-prices:
+    get:
+      summary: ''
+      operationId: getApiV1AgencyPrices
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1AgencyPrices
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                article_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                service_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                pricing_type:
+                  type: string
+                  description: ''
+                  example: kilo
+                  enum:
+                    - piece
+                    - kilo
+                  nullable: true
+                amount_minor:
+                  type: integer
+                  description: validation.min.
+                  example: 56
+                valid_from:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                valid_to:
+                  type: string
+                  description: 'validation.date validation.after_or_equal.'
+                  example: '2107-11-05'
+                  nullable: true
+              required:
+                - agency_id
+                - article_id
+                - service_id
+                - amount_minor
+                - valid_from
+  /api/v1/agency-prices/resolve:
+    get:
+      summary: ''
+      operationId: getApiV1AgencyPricesResolve
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                article_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                service_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                pricing_type:
+                  type: string
+                  description: ''
+                  example: kilo
+                  enum:
+                    - piece
+                    - kilo
+                  nullable: true
+                at:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+              required:
+                - agency_id
+                - article_id
+                - service_id
+  /api/v1/laundry-statuses:
+    get:
+      summary: ''
+      operationId: getApiV1LaundryStatuses
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1LaundryStatuses
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  '/api/v1/laundry-statuses/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1LaundryStatusesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1LaundryStatusesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the laundry status.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/renders:
+    get:
+      summary: ''
+      operationId: getApiV1Renders
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1Renders
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  '/api/v1/renders/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1RendersId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1RendersId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the render.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/promos:
+    get:
+      summary: ''
+      operationId: getApiV1Promos
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1Promos
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  '/api/v1/promos/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1PromosId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1PromosId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the promo.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/promo-specials:
+    get:
+      summary: ''
+      operationId: getApiV1PromoSpecials
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1PromoSpecials
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  '/api/v1/promo-specials/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1PromoSpecialsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1PromoSpecialsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the promo special.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/delivery-hours:
+    get:
+      summary: ''
+      operationId: getApiV1DeliveryHours
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1DeliveryHours
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  '/api/v1/delivery-hours/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1DeliveryHoursId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1DeliveryHoursId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the delivery hour.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/code-suffixes:
+    get:
+      summary: ''
+      operationId: getApiV1CodeSuffixes
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1CodeSuffixes
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+  '/api/v1/code-suffixes/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1CodeSuffixesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1CodeSuffixesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the code suffix.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/loyal-groups:
+    get:
+      summary: ''
+      operationId: getApiV1LoyalGroups
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1LoyalGroups
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                rate_percent:
+                  type: integer
+                  description: 'validation.min validation.max.'
+                  example: 1
+              required:
+                - name
+                - rate_percent
+  '/api/v1/loyal-groups/{loyalGroup_id}':
+    put:
+      summary: ''
+      operationId: putApiV1LoyalGroupsLoyalGroup_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1LoyalGroupsLoyalGroup_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: loyalGroup_id
+        description: 'The ID of the loyalGroup.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/loyal-groups/{loyalGroup_id}/clients':
+    get:
+      summary: ''
+      operationId: getApiV1LoyalGroupsLoyalGroup_idClients
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1LoyalGroupsLoyalGroup_idClients
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+              required:
+                - client_id
+    delete:
+      summary: ''
+      operationId: deleteApiV1LoyalGroupsLoyalGroup_idClients
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+              required:
+                - client_id
+    parameters:
+      -
+        in: path
+        name: loyalGroup_id
+        description: 'The ID of the loyalGroup.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/v1/cash-movements:
+    get:
+      summary: ''
+      operationId: getApiV1CashMovements
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+    post:
+      summary: ''
+      operationId: postApiV1CashMovements
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_uuid:
+                  type: string
+                  description: validation.uuid.
+                  example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                  nullable: true
+                label:
+                  type: string
+                  description: validation.max.
+                  example: qeopfuudtdsufvyvddqam
+                type:
+                  type: string
+                  description: ''
+                  example: in
+                  enum:
+                    - in
+                    - out
+                amount:
+                  type: integer
+                  description: validation.min.
+                  example: 29
+                category_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                action_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+                validated:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - label
+                - type
+                - amount
+  '/api/v1/cash-movements/{cashMovement_id}':
+    put:
+      summary: ''
+      operationId: putApiV1CashMovementsCashMovement_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                type:
+                  type: string
+                  description: ''
+                  example: in
+                  enum:
+                    - in
+                    - out
+                amount:
+                  type: integer
+                  description: validation.min.
+                  example: 45
+                category_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                action_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+    delete:
+      summary: ''
+      operationId: deleteApiV1CashMovementsCashMovement_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+    parameters:
+      -
+        in: path
+        name: cashMovement_id
+        description: 'The ID of the cashMovement.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/cash-movements/{cashMovement_id}/validate':
+    post:
+      summary: ''
+      operationId: postApiV1CashMovementsCashMovement_idValidate
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+    parameters:
+      -
+        in: path
+        name: cashMovement_id
+        description: 'The ID of the cashMovement.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/v1/cash-categories:
+    get:
+      summary: ''
+      operationId: getApiV1CashCategories
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+    post:
+      summary: ''
+      operationId: postApiV1CashCategories
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Caisse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                direction:
+                  type: string
+                  description: ''
+                  example: in
+                  enum:
+                    - in
+                    - out
+              required:
+                - name
+                - direction
+  /api/v1/receipts/daily:
+    get:
+      summary: ''
+      operationId: getApiV1ReceiptsDaily
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Recettes
+  /api/v1/receipts/general:
+    get:
+      summary: ''
+      operationId: getApiV1ReceiptsGeneral
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Recettes
+  /api/v1/receipts/close:
+    get:
+      summary: ''
+      operationId: getApiV1ReceiptsClose
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Recettes
+  /api/v1/receipts/unpaid:
+    get:
+      summary: ''
+      operationId: getApiV1ReceiptsUnpaid
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Recettes
+  /api/v1/receipts/settled:
+    get:
+      summary: ''
+      operationId: getApiV1ReceiptsSettled
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Recettes
+  /api/v1/receipts/transactions:
+    get:
+      summary: ''
+      operationId: getApiV1ReceiptsTransactions
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Recettes
+  /api/v1/reports/sales:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsSales
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/cashiers:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsCashiers
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/clients:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsClients
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/ranking:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsRanking
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/discounts:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsDiscounts
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/daily-balance:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsDailyBalance
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/orders:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsOrders
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/reports/consolidated:
+    get:
+      summary: ''
+      operationId: getApiV1ReportsConsolidated
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Rapports
+  /api/v1/superadmin/roles:
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminRoles
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  /api/v1/superadmin/permissions:
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminPermissions
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  '/api/v1/superadmin/roles/{role_id}':
+    put:
+      summary: ''
+      operationId: putApiV1SuperadminRolesRole_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permissions:
+                  type: array
+                  description: 'Must match an existing stored value.'
+                  example:
+                    - consequatur
+                  items:
+                    type: string
+    parameters:
+      -
+        in: path
+        name: role_id
+        description: 'The ID of the role.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/settings/pressing:
+    get:
+      summary: ''
+      operationId: getApiV1SettingsPressing
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+    put:
+      summary: ''
+      operationId: putApiV1SettingsPressing
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                details:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                pricing_mode:
+                  type: string
+                  description: ''
+                  example: piece
+                  enum:
+                    - piece
+                    - kilo
+                    - mixed
+                workflow_laveur_enabled:
+                  type: boolean
+                  description: ''
+                  example: true
+                workflow_classeur_enabled:
+                  type: boolean
+                  description: ''
+                  example: false
+                qr_labels_enabled:
+                  type: boolean
+                  description: ''
+                  example: true
+                block_retrieve_if_unpaid:
+                  type: boolean
+                  description: ''
+                  example: true
+                loyalty_points_rate:
+                  type: integer
+                  description: validation.min.
+                  example: 19
+                loyalty_redeem_threshold:
+                  type: integer
+                  description: validation.min.
+                  example: 70
+                loyalty_redeem_value:
+                  type: integer
+                  description: validation.min.
+                  example: 70
+                hours_classic:
+                  type: integer
+                  description: validation.min.
+                  example: 13
+                hours_express:
+                  type: integer
+                  description: validation.min.
+                  example: 66
+                hours_repass:
+                  type: integer
+                  description: validation.min.
+                  example: 14
+                collection_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 65
+                delivery_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 72
+                reporting_currency:
+                  type: string
+                  description: validation.size.
+                  example: fvy
+                  nullable: true
+                primary_color:
+                  type: string
+                  description: validation.max.
+                  example: vddqamniihfqc
+                  nullable: true
+                secondary_color:
+                  type: string
+                  description: validation.max.
+                  example: oynlazghdtqtq
+                  nullable: true
+  '/api/v1/settings/agencies/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1SettingsAgenciesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                contact:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                currency:
+                  type: string
+                  description: validation.size.
+                  example: mqe
+                  nullable: true
+                code_prefix:
+                  type: string
+                  description: validation.max.
+                  example: opfuudt
+                  nullable: true
+                code_suffix:
+                  type: string
+                  description: validation.max.
+                  example: dsufvyv
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the agency.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/settings/license:
+    get:
+      summary: ''
+      operationId: getApiV1SettingsLicense
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  /api/v1/settings/exchange-rates:
+    get:
+      summary: ''
+      operationId: getApiV1SettingsExchangeRates
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+    post:
+      summary: ''
+      operationId: postApiV1SettingsExchangeRates
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source_currency:
+                  type: string
+                  description: validation.size.
+                  example: vmq
+                target_currency:
+                  type: string
+                  description: 'The value and <code>source_currency</code> must be different. validation.size.'
+                  example: eop
+                rate:
+                  type: number
+                  description: ''
+                  example: 11613.31890586
+                rate_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+              required:
+                - source_currency
+                - target_currency
+                - rate
+                - rate_date
+  '/api/v1/settings/exchange-rates/{exchangeRate_id}':
+    delete:
+      summary: ''
+      operationId: deleteApiV1SettingsExchangeRatesExchangeRate_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+    parameters:
+      -
+        in: path
+        name: exchangeRate_id
+        description: 'The ID of the exchangeRate.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/v1/org/agencies:
+    get:
+      summary: ''
+      operationId: getApiV1OrgAgencies
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+    post:
+      summary: ''
+      operationId: postApiV1OrgAgencies
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                contact:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                country_code:
+                  type: string
+                  description: validation.size.
+                  example: mq
+                  nullable: true
+                currency:
+                  type: string
+                  description: validation.size.
+                  example: eop
+                  nullable: true
+                code_prefix:
+                  type: string
+                  description: validation.max.
+                  example: fuudtds
+                  nullable: true
+                code_suffix:
+                  type: string
+                  description: validation.max.
+                  example: ufvyvdd
+                  nullable: true
+              required:
+                - name
+  /api/v1/org/users:
+    get:
+      summary: ''
+      operationId: getApiV1OrgUsers
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+    post:
+      summary: ''
+      operationId: postApiV1OrgUsers
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                email:
+                  type: string
+                  description: validation.email.
+                  example: kunde.eloisa@example.com
+                password:
+                  type: string
+                  description: validation.min.
+                  example: '4[*UyPJ"}6'
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                role:
+                  type: string
+                  description: ''
+                  example: consequatur
+              required:
+                - fullname
+                - email
+                - password
+                - agency_id
+                - role
+  '/api/v1/org/users/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1OrgUsersId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                email:
+                  type: string
+                  description: validation.email.
+                  example: kunde.eloisa@example.com
+                password:
+                  type: string
+                  description: validation.min.
+                  example: '4[*UyPJ"}6'
+                  nullable: true
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                role:
+                  type: string
+                  description: ''
+                  example: null
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+    delete:
+      summary: ''
+      operationId: deleteApiV1OrgUsersId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/roles:
+    get:
+      summary: ''
+      operationId: getApiV1Roles
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  /api/v1/permissions:
+    get:
+      summary: ''
+      operationId: getApiV1Permissions
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  '/api/v1/roles/{role_id}':
+    put:
+      summary: ''
+      operationId: putApiV1RolesRole_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permissions:
+                  type: array
+                  description: 'Must match an existing stored value.'
+                  example:
+                    - consequatur
+                  items:
+                    type: string
+    parameters:
+      -
+        in: path
+        name: role_id
+        description: 'The ID of the role.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/audit-logs:
+    get:
+      summary: ''
+      operationId: getApiV1AuditLogs
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  /api/v1/print-logs:
+    get:
+      summary: ''
+      operationId: getApiV1PrintLogs
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Organisation
+  /api/v1/client/deposits:
+    get:
+      summary: ''
+      operationId: getApiV1ClientDeposits
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Espace client'
+  /api/v1/client/retrieves:
+    get:
+      summary: ''
+      operationId: getApiV1ClientRetrieves
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Espace client'
+  '/api/v1/client/deposits/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1ClientDepositsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Espace client'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/v1/client/loyalty:
+    get:
+      summary: ''
+      operationId: getApiV1ClientLoyalty
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Espace client'
+  /api/v1/superadmin/pressings:
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminPressings
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminPressings
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                details:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                pricing_mode:
+                  type: string
+                  description: ''
+                  example: piece
+                  enum:
+                    - piece
+                    - kilo
+                    - mixed
+                  nullable: true
+                workflow_laveur_enabled:
+                  type: boolean
+                  description: ''
+                  example: true
+                workflow_classeur_enabled:
+                  type: boolean
+                  description: ''
+                  example: false
+                block_retrieve_if_unpaid:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - name
+  '/api/v1/superadmin/pressings/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminPressingsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    put:
+      summary: ''
+      operationId: putApiV1SuperadminPressingsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                details:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: false
+                pricing_mode:
+                  type: string
+                  description: ''
+                  example: piece
+                  enum:
+                    - piece
+                    - kilo
+                    - mixed
+                workflow_laveur_enabled:
+                  type: boolean
+                  description: ''
+                  example: false
+                workflow_classeur_enabled:
+                  type: boolean
+                  description: ''
+                  example: true
+                block_retrieve_if_unpaid:
+                  type: boolean
+                  description: ''
+                  example: true
+                loyalty_points_rate:
+                  type: integer
+                  description: validation.min.
+                  example: 19
+                hours_classic:
+                  type: integer
+                  description: validation.min.
+                  example: 70
+                hours_express:
+                  type: integer
+                  description: validation.min.
+                  example: 71
+                hours_repass:
+                  type: integer
+                  description: validation.min.
+                  example: 13
+    delete:
+      summary: ''
+      operationId: deleteApiV1SuperadminPressingsId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the pressing.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/superadmin/agencies:
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminAgencies
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminAgencies
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pressing_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                name:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                contact:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                country_code:
+                  type: string
+                  description: validation.size.
+                  example: mq
+                  nullable: true
+                currency:
+                  type: string
+                  description: validation.size.
+                  example: eop
+                  nullable: true
+                code_prefix:
+                  type: string
+                  description: validation.max.
+                  example: fuudtds
+                  nullable: true
+                code_suffix:
+                  type: string
+                  description: validation.max.
+                  example: ufvyvdd
+                  nullable: true
+              required:
+                - pressing_id
+                - name
+  '/api/v1/superadmin/agencies/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminAgenciesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    put:
+      summary: ''
+      operationId: putApiV1SuperadminAgenciesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                address:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                contact:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: true
+                country_code:
+                  type: string
+                  description: validation.size.
+                  example: mq
+                  nullable: true
+                currency:
+                  type: string
+                  description: validation.size.
+                  example: eop
+                  nullable: true
+                code_prefix:
+                  type: string
+                  description: validation.max.
+                  example: fuudtds
+                  nullable: true
+                code_suffix:
+                  type: string
+                  description: validation.max.
+                  example: ufvyvdd
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+    delete:
+      summary: ''
+      operationId: deleteApiV1SuperadminAgenciesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the agency.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/superadmin/users:
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminUsers
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminUsers
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+  '/api/v1/superadmin/users/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1SuperadminUsersId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    delete:
+      summary: ''
+      operationId: deleteApiV1SuperadminUsersId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/superadmin/licenses:
+    get:
+      summary: ''
+      operationId: getApiV1SuperadminLicenses
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminLicenses
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pressing_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                plan:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+                seats:
+                  type: integer
+                  description: validation.min.
+                  example: 45
+                  nullable: true
+                months:
+                  type: integer
+                  description: validation.min.
+                  example: 46
+                  nullable: true
+                activate:
+                  type: boolean
+                  description: ''
+                  example: false
+              required:
+                - pressing_id
+  '/api/v1/superadmin/licenses/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1SuperadminLicensesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                plan:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                seats:
+                  type: integer
+                  description: validation.min.
+                  example: 2
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+                expires_at:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                  nullable: true
+    delete:
+      summary: ''
+      operationId: deleteApiV1SuperadminLicensesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/activate':
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminLicensesLicense_idActivate
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Superadmin
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                months:
+                  type: integer
+                  description: validation.min.
+                  example: 73
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/services:
+    get:
+      summary: ''
+      operationId: getApiV1Services
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    post:
+      summary: ''
+      operationId: postApiV1Services
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+  '/api/v1/services/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1ServicesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    delete:
+      summary: ''
+      operationId: deleteApiV1ServicesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the service.'
+        example: consequatur
+        required: true
+        schema:
+          type: string
+  /api/v1/deliveries/queue:
+    get:
+      summary: ''
+      operationId: getApiV1DeliveriesQueue
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+  /api/v1/deliveries/history:
+    get:
+      summary: ''
+      operationId: getApiV1DeliveriesHistory
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+  /api/v1/deliveries/zones:
+    get:
+      summary: ''
+      operationId: getApiV1DeliveriesZones
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+    post:
+      summary: ''
+      operationId: postApiV1DeliveriesZones
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                code:
+                  type: string
+                  description: validation.max.
+                  example: amniihfqcoynlazghdtqt
+                  nullable: true
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+              required:
+                - name
+  '/api/v1/deliveries/zones/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1DeliveriesZonesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                code:
+                  type: string
+                  description: validation.max.
+                  example: amniihfqcoynlazghdtqt
+                  nullable: true
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                status:
+                  type: boolean
+                  description: ''
+                  example: true
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the zone.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  /api/v1/deliveries/rounds:
+    get:
+      summary: ''
+      operationId: getApiV1DeliveriesRounds
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+    post:
+      summary: ''
+      operationId: postApiV1DeliveriesRounds
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                livreur_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                delivery_zone_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                round_date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-06T13:01:15'
+                name:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+              required:
+                - agency_id
+                - livreur_id
+                - round_date
+  '/api/v1/deliveries/rounds/{round_id}/assign':
+    post:
+      summary: ''
+      operationId: postApiV1DeliveriesRoundsRound_idAssign
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deposit_ids:
+                  type: array
+                  description: 'Must match an existing stored value.'
+                  example:
+                    - 17
+                  items:
+                    type: integer
+    parameters:
+      -
+        in: path
+        name: round_id
+        description: 'The ID of the round.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deliveries/deposits/{deposit_id}/schedule':
+    post:
+      summary: ''
+      operationId: postApiV1DeliveriesDepositsDeposit_idSchedule
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delivery_zone_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+                delivery_address:
+                  type: string
+                  description: validation.max.
+                  example: vmqeopfuudtdsufvyvddq
+                  nullable: true
+                livreur_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: null
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deliveries/deposits/{deposit_id}/deliver':
+    post:
+      summary: ''
+      operationId: postApiV1DeliveriesDepositsDeposit_idDeliver
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Livraison
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                confirmation_type:
+                  type: string
+                  description: ''
+                  example: consequatur
+                confirmation_value:
+                  type: string
+                  description: ''
+                  example: consequatur
+                receiver_name:
+                  type: string
+                  description: validation.max.
+                  example: mqeopfuudtdsufvyvddqa
+                  nullable: true
+                collect_amount:
+                  type: integer
+                  description: validation.min.
+                  example: 45
+                  nullable: true
+                payment_method:
+                  type: string
+                  description: ''
+                  example: other
+                  enum:
+                    - cash
+                    - card
+                    - mobile_money
+                    - wallet
+                    - other
+                  nullable: true
+                require_settled:
+                  type: boolean
+                  description: ''
+                  example: false
+                client_uuid:
+                  type: string
+                  description: validation.uuid.
+                  example: d63469cd-6701-3555-a16b-fc9764100c9a
+                  nullable: true
+              required:
+                - confirmation_type
+                - confirmation_value
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 17
+        required: true
+        schema:
+          type: integer
