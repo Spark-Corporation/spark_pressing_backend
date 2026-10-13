@@ -33,25 +33,30 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           APP_KEY: ${{ secrets.APP_KEY }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           test -n "$FTP_HOST" || { echo "Secret manquant: FTP_HOST"; exit 1; }
           test -n "$FTP_USER" || { echo "Secret manquant: FTP_USER"; exit 1; }
           test -n "$FTP_PASSWORD" || { echo "Secret manquant: FTP_PASSWORD"; exit 1; }
           test -n "$APP_KEY" || { echo "Secret manquant: APP_KEY (php artisan key:generate --show)"; exit 1; }
+          test -n "$DB_PASSWORD" || { echo "Secret manquant: DB_PASSWORD"; exit 1; }
 
       - name: Write production .env
         env:
           APP_KEY: ${{ secrets.APP_KEY }}
           APP_URL: ${{ secrets.APP_URL }}
           CORS_ALLOWED_ORIGINS: ${{ secrets.CORS_ALLOWED_ORIGINS }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          APP_URL="${APP_URL:-https://pressing-api.pressingelegance.com}"
-          CORS_ALLOWED_ORIGINS="${CORS_ALLOWED_ORIGINS:-*}"
-          sed \
-            -e "s|__APP_KEY__|${APP_KEY}|" \
-            -e "s|__APP_URL__|${APP_URL}|" \
-            -e "s|__CORS_ALLOWED_ORIGINS__|${CORS_ALLOWED_ORIGINS}|" \
-            deploy/env.production.template > .env
+          export APP_URL="${APP_URL:-https://pressing-api.pressingelegance.com}"
+          export CORS_ALLOWED_ORIGINS="${CORS_ALLOWED_ORIGINS:-*}"
+          export DB_HOST="${DB_HOST:-localhost}"
+          export DB_DATABASE="${DB_DATABASE:-sparqrqm_pressing_api}"
+          export DB_USERNAME="${DB_USERNAME:-sparqrqm_api}"
+          php deploy/write-env.php
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6

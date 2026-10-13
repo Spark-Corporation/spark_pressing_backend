@@ -1,13 +1,35 @@
-# Document root cPanel = /home/sparqrqm/public_html/pressing-api
-# Les requêtes web doivent entrer par public/ (Laravel).
+# Document root = racine Laravel (public_html/pressing-api), pas public/.
 <IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
     RewriteEngine On
 
-    RewriteRule ^\.env$ - [F,L]
-    RewriteRule ^(?:app|bootstrap|config|database|resources|routes|storage|vendor|tests)(?:/|$) - [F,L]
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    RewriteCond %{REQUEST_URI} !^/public/
+    # Ancienne réécriture vers public/ : ne plus exposer ce préfixe.
+    RewriteRule ^public/(.*)$ /$1 [R=301,L]
+
+    # /docs est une route Scribe. Le dossier docs/ du dépôt ne doit pas la masquer.
+    RewriteRule ^docs/?$ index.php [L]
+    RewriteRule ^docs\.(postman|openapi)$ index.php [L]
+
+    # Fichiers statiques publiés dans public/ (CSS Scribe, etc.).
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
     RewriteRule ^(.*)$ public/$1 [L]
+
+    RewriteRule ^(?:\.env|composer\.(?:json|lock)|artisan|package\.json|phpunit\.xml)$ - [F,L]
+    RewriteRule ^(?:app|bootstrap|config|database|resources|routes|storage|tests|deploy|vendor|docs)(?:/|$) - [F,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
 </IfModule>
 
 Options -Indexes

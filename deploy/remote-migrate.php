@@ -5,15 +5,28 @@ if (! hash_equals('__TOKEN__', (string) ($_GET['token'] ?? ''))) {
     exit;
 }
 
-$db = '/home/sparqrqm/public_html/pressing-api/database/database.sqlite';
-if (! is_file($db)) {
-    touch($db);
+$storage = dirname(__DIR__).'/storage';
+foreach ([
+    $storage.'/framework/cache/data',
+    $storage.'/framework/sessions',
+    $storage.'/framework/views',
+    $storage.'/logs',
+    $storage.'/app/public',
+    dirname(__DIR__).'/bootstrap/cache',
+] as $dir) {
+    if (! is_dir($dir)) {
+        mkdir($dir, 0775, true);
+    }
 }
 
 require __DIR__.'/../vendor/autoload.php';
 $app = require __DIR__.'/../bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
-$kernel->call('migrate', ['--force' => true]);
 
-echo 'migrated';
+$status = $kernel->call('migrate', ['--force' => true]);
+echo $kernel->output();
+
+if ($status !== 0) {
+    http_response_code(500);
+}

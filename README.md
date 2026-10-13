@@ -47,7 +47,11 @@ Les identifiants ne sont pas dans le dépôt. Secrets du repo GitHub (`Settings`
 | `FTP_USER` | compte FTP |
 | `FTP_PASSWORD` | mot de passe FTP |
 | `APP_KEY` | sortie de `php artisan key:generate --show` |
+| `DB_PASSWORD` | mot de passe MySQL |
 | `APP_URL` | optionnel, défaut `https://pressing-api.pressingelegance.com` |
+| `DB_HOST` | optionnel, défaut `localhost` |
+| `DB_DATABASE` | optionnel, défaut `sparqrqm_pressing_api` |
+| `DB_USERNAME` | optionnel, défaut `sparqrqm_api` |
 | `CORS_ALLOWED_ORIGINS` | optionnel, défaut `*` |
 
-L’hébergeur doit exposer PHP 8.1+ avec `pdo_sqlite`, et le document root du sous-domaine doit être `/home/sparqrqm/public_html/pressing-api` (le `.htaccess` racine renvoie vers `public/`).
+Après l’envoi FTP, le workflow exécute `php artisan migrate --force` sur MySQL. L’hébergeur doit exposer PHP 8.1+ avec `pdo_mysql`, et le document root du sous-domaine doit être `/home/sparqrqm/public_html/pressing-api` (le `.htaccess` racine renvoie vers `public/`).
