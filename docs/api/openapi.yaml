@@ -5,11 +5,8 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost:8000'
+    url: 'https://pressing-api.pressingelegance.com'
 tags:
-  -
-    name: Système
-    description: ''
   -
     name: Authentification
     description: ''
@@ -59,11 +56,11 @@ security:
   -
     default: []
 paths:
-  /api/v1/health:
-    get:
-      summary: "Santé de l'API"
-      operationId: santDeLAPI
-      description: "Vérifie que l'API et la base sont joignables (sonde LB / ENF02)."
+  /api/v1/auth/staff/login:
+    post:
+      summary: 'Connexion staff'
+      operationId: connexionStaff
+      description: 'Retourne un token Sanctum Bearer et le profil staff (rôles, agence, pressing).'
       parameters:
         -
           in: header
@@ -74,43 +71,251 @@ paths:
             type: string
       responses:
         200:
-          description: ''
+          description: Succès
           content:
             application/json:
               schema:
                 type: object
                 example:
                   data:
-                    name: 'Spark Pressing API'
-                    version: v1
-                    status: ok
-                    database: ok
-                    currency: XAF
-                    locale: fr
+                    token: 1|abcExampleSanctumToken
+                    token_type: Bearer
+                    actor: staff
+                    user:
+                      id: 1
+                      fullname: 'Claire Caissier'
+                      email: caissier@elegance.local
+                      phone_number: null
+                      pressing_id: 1
+                      agency_id: 1
+                      status: true
+                      roles:
+                        - caissier
+                      agency:
+                        id: 1
+                        pressing_id: 1
+                        name: Akwa
+                        address: 'Douala, Akwa'
+                        contact: '+237600000001'
+                        country_code: CM
+                        currency: XAF
+                        code_prefix: AK
+                        code_suffix: EL
+                        status: true
+                      agencies:
+                        -
+                          id: 1
+                          pressing_id: 1
+                          name: Akwa
+                          address: 'Douala, Akwa'
+                          contact: '+237600000001'
+                          country_code: CM
+                          currency: XAF
+                          code_prefix: AK
+                          code_suffix: EL
+                          status: true
+                      pressing:
+                        id: 1
+                        name: 'Élégance Pressing'
+                        details: 'Enseigne de démonstration'
+                        status: true
+                        pricing_mode: piece
+                        workflow_laveur_enabled: true
+                        workflow_classeur_enabled: true
+                        qr_labels_enabled: false
+                        block_retrieve_if_unpaid: true
+                        reporting_currency: null
+                        collection_fee: 0
+                        delivery_fee: 0
+                        loyalty_points_rate: 0
+                        hours_classic: null
+                        hours_express: null
+                        hours_repass: null
+                      can_view_all_agencies: false
                   meta: {  }
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
-                      name:
+                      token:
                         type: string
-                        example: 'Spark Pressing API'
-                      version:
+                        example: 1|abcExampleSanctumToken
+                      token_type:
                         type: string
-                        example: v1
-                      status:
+                        example: Bearer
+                      actor:
                         type: string
-                        example: ok
-                      database:
-                        type: string
-                        example: ok
-                      currency:
-                        type: string
-                        example: XAF
-                      locale:
-                        type: string
-                        example: fr
+                        example: staff
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          fullname:
+                            type: string
+                            example: 'Claire Caissier'
+                          email:
+                            type: string
+                            example: caissier@elegance.local
+                          phone_number:
+                            type: string
+                            example: null
+                            nullable: true
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          status:
+                            type: boolean
+                            example: true
+                          roles:
+                            type: array
+                            example:
+                              - caissier
+                            items:
+                              type: string
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              pressing_id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Akwa
+                              address:
+                                type: string
+                                example: 'Douala, Akwa'
+                              contact:
+                                type: string
+                                example: '+237600000001'
+                              country_code:
+                                type: string
+                                example: CM
+                              currency:
+                                type: string
+                                example: XAF
+                              code_prefix:
+                                type: string
+                                example: AK
+                              code_suffix:
+                                type: string
+                                example: EL
+                              status:
+                                type: boolean
+                                example: true
+                          agencies:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                pressing_id: 1
+                                name: Akwa
+                                address: 'Douala, Akwa'
+                                contact: '+237600000001'
+                                country_code: CM
+                                currency: XAF
+                                code_prefix: AK
+                                code_suffix: EL
+                                status: true
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                pressing_id:
+                                  type: integer
+                                  example: 1
+                                name:
+                                  type: string
+                                  example: Akwa
+                                address:
+                                  type: string
+                                  example: 'Douala, Akwa'
+                                contact:
+                                  type: string
+                                  example: '+237600000001'
+                                country_code:
+                                  type: string
+                                  example: CM
+                                currency:
+                                  type: string
+                                  example: XAF
+                                code_prefix:
+                                  type: string
+                                  example: AK
+                                code_suffix:
+                                  type: string
+                                  example: EL
+                                status:
+                                  type: boolean
+                                  example: true
+                          pressing:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: 'Élégance Pressing'
+                              details:
+                                type: string
+                                example: 'Enseigne de démonstration'
+                              status:
+                                type: boolean
+                                example: true
+                              pricing_mode:
+                                type: string
+                                example: piece
+                              workflow_laveur_enabled:
+                                type: boolean
+                                example: true
+                              workflow_classeur_enabled:
+                                type: boolean
+                                example: true
+                              qr_labels_enabled:
+                                type: boolean
+                                example: false
+                              block_retrieve_if_unpaid:
+                                type: boolean
+                                example: true
+                              reporting_currency:
+                                type: string
+                                example: null
+                                nullable: true
+                              collection_fee:
+                                type: integer
+                                example: 0
+                              delivery_fee:
+                                type: integer
+                                example: 0
+                              loyalty_points_rate:
+                                type: integer
+                                example: 0
+                              hours_classic:
+                                type: string
+                                example: null
+                                nullable: true
+                              hours_express:
+                                type: string
+                                example: null
+                                nullable: true
+                              hours_repass:
+                                type: string
+                                example: null
+                                nullable: true
+                          can_view_all_agencies:
+                            type: boolean
+                            example: false
                   meta:
                     type: object
                     properties: {  }
@@ -118,23 +323,91 @@ paths:
                     type: string
                     example: null
                     nullable: true
-      tags:
-        - Système
-      security: []
-  /api/v1/auth/staff/login:
-    post:
-      summary: 'Connexion staff'
-      operationId: connexionStaff
-      description: ''
-      parameters:
-        -
-          in: header
-          name: X-Agency-Id
-          description: ''
-          example: '1'
-          schema:
-            type: string
-      responses: {  }
+        403:
+          description: 'Compte désactivé'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Compte désactivé.'
+                  errors:
+                    -
+                      code: error
+                      detail: 'Compte désactivé.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Compte désactivé.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: error
+                        detail: 'Compte désactivé.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: error
+                        detail:
+                          type: string
+                          example: 'Compte désactivé.'
+        422:
+          description: 'Identifiants invalides'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: email
+                      detail: 'Identifiants invalides.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: email
+                        detail: 'Identifiants invalides.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: email
+                        detail:
+                          type: string
+                          example: 'Identifiants invalides.'
       tags:
         - Authentification
       requestBody:
@@ -146,12 +419,12 @@ paths:
               properties:
                 email:
                   type: string
-                  description: validation.email.
-                  example: qkunze@example.com
+                  description: 'Email du compte staff.'
+                  example: caissier@elegance.local
                 password:
                   type: string
-                  description: ''
-                  example: 'O[2UZ5ij-e/dl4m{o,'
+                  description: 'Mot de passe.'
+                  example: password
               required:
                 - email
                 - password
@@ -169,7 +442,32 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'Lien envoyé (toujours 200 pour ne pas divulguer l’existence du compte)'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    sent: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      sent:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
       tags:
         - Authentification
       requestBody:
@@ -181,8 +479,8 @@ paths:
               properties:
                 email:
                   type: string
-                  description: validation.email.
-                  example: qkunze@example.com
+                  description: ''
+                  example: caissier@elegance.local
               required:
                 - email
       security: []
@@ -199,7 +497,32 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'Mot de passe réinitialisé'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    reset: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      reset:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
       tags:
         - Authentification
       requestBody:
@@ -211,26 +534,31 @@ paths:
               properties:
                 email:
                   type: string
-                  description: validation.email.
-                  example: qkunze@example.com
+                  description: ''
+                  example: caissier@elegance.local
                 token:
                   type: string
-                  description: ''
-                  example: consequatur
+                  description: 'Token reçu par email.'
+                  example: reset-token
                 password:
                   type: string
-                  description: validation.min.
-                  example: '[2UZ5ij-e/dl4'
+                  description: ''
+                  example: password
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: password
               required:
                 - email
                 - token
                 - password
+                - password_confirmation
       security: []
   /api/v1/auth/client/login:
     post:
       summary: 'Connexion client'
       operationId: connexionClient
-      description: ''
+      description: 'Login par email ou téléphone. Retourne un token Bearer et le profil client.'
       parameters:
         -
           in: header
@@ -239,7 +567,153 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    token: 2|abcExampleClientToken
+                    token_type: Bearer
+                    actor: client
+                    user:
+                      id: 1
+                      pressing_id: 1
+                      agency_id: 1
+                      code: C000001
+                      fullname: 'Jean Client'
+                      email: jean.client@example.com
+                      phone_number: '690000001'
+                      address: null
+                      city: null
+                      loyalty_points: 0
+                      wallet_balance: 0
+                      sponsor_code: JEAN01
+                      referred_by_id: null
+                      last_deposit_at: null
+                      status: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: 2|abcExampleClientToken
+                      token_type:
+                        type: string
+                        example: Bearer
+                      actor:
+                        type: string
+                        example: client
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: C000001
+                          fullname:
+                            type: string
+                            example: 'Jean Client'
+                          email:
+                            type: string
+                            example: jean.client@example.com
+                          phone_number:
+                            type: string
+                            example: '690000001'
+                          address:
+                            type: string
+                            example: null
+                            nullable: true
+                          city:
+                            type: string
+                            example: null
+                            nullable: true
+                          loyalty_points:
+                            type: integer
+                            example: 0
+                          wallet_balance:
+                            type: integer
+                            example: 0
+                          sponsor_code:
+                            type: string
+                            example: JEAN01
+                          referred_by_id:
+                            type: string
+                            example: null
+                            nullable: true
+                          last_deposit_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          status:
+                            type: boolean
+                            example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        422:
+          description: 'Identifiants invalides'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: email
+                      detail: 'Identifiants invalides.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: email
+                        detail: 'Identifiants invalides.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: email
+                        detail:
+                          type: string
+                          example: 'Identifiants invalides.'
       tags:
         - Authentification
       requestBody:
@@ -251,12 +725,12 @@ paths:
               properties:
                 login:
                   type: string
-                  description: ''
-                  example: consequatur
+                  description: 'Email ou numéro de téléphone.'
+                  example: jean.client@example.com
                 password:
                   type: string
-                  description: ''
-                  example: 'O[2UZ5ij-e/dl4m{o,'
+                  description: 'Mot de passe.'
+                  example: password
               required:
                 - login
                 - password
@@ -265,7 +739,7 @@ paths:
     post:
       summary: 'Inscription client'
       operationId: inscriptionClient
-      description: ''
+      description: 'Crée un compte client et retourne immédiatement un token Bearer.'
       parameters:
         -
           in: header
@@ -274,7 +748,107 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        201:
+          description: Créé
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    token: 3|abcExampleRegisterToken
+                    token_type: Bearer
+                    actor: client
+                    user:
+                      id: 2
+                      pressing_id: 1
+                      agency_id: 1
+                      code: C000002
+                      fullname: 'Marie Dupont'
+                      email: marie@example.com
+                      phone_number: '690000099'
+                      address: null
+                      city: null
+                      loyalty_points: 0
+                      wallet_balance: 0
+                      sponsor_code: MARIE1
+                      referred_by_id: 1
+                      last_deposit_at: null
+                      status: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: 3|abcExampleRegisterToken
+                      token_type:
+                        type: string
+                        example: Bearer
+                      actor:
+                        type: string
+                        example: client
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: C000002
+                          fullname:
+                            type: string
+                            example: 'Marie Dupont'
+                          email:
+                            type: string
+                            example: marie@example.com
+                          phone_number:
+                            type: string
+                            example: '690000099'
+                          address:
+                            type: string
+                            example: null
+                            nullable: true
+                          city:
+                            type: string
+                            example: null
+                            nullable: true
+                          loyalty_points:
+                            type: integer
+                            example: 0
+                          wallet_balance:
+                            type: integer
+                            example: 0
+                          sponsor_code:
+                            type: string
+                            example: MARIE1
+                          referred_by_id:
+                            type: integer
+                            example: 1
+                          last_deposit_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          status:
+                            type: boolean
+                            example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
       tags:
         - Authentification
       requestBody:
@@ -285,36 +859,33 @@ paths:
               type: object
               properties:
                 pressing_id:
-                  type: string
-                  description: 'Must match an existing stored value.'
-                  example: consequatur
+                  type: integer
+                  description: 'ID du pressing.'
+                  example: 1
                 agency_id:
-                  type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
-                  nullable: true
+                  type: integer
+                  description: 'Agence de rattachement.'
+                  example: 1
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  description: 'Nom complet.'
+                  example: 'Marie Dupont'
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: mniihfqcoynlazghdtqtq
+                  description: 'Téléphone unique par pressing.'
+                  example: '690000099'
                 email:
                   type: string
-                  description: validation.email.
-                  example: ablanda@example.org
-                  nullable: true
+                  description: 'Email optionnel.'
+                  example: marie@example.com
                 password:
                   type: string
-                  description: validation.min.
-                  example: "'YAKYLk4>SJIrIV#lz."
+                  description: 'Mot de passe (min. 8).'
+                  example: password
                 sponsor_code:
                   type: string
-                  description: validation.max.
-                  example: lsmsjuryvo
-                  nullable: true
+                  description: 'Code parrainage.'
+                  example: JEAN01
               required:
                 - pressing_id
                 - fullname
@@ -325,7 +896,7 @@ paths:
     post:
       summary: 'Connexion superadmin'
       operationId: connexionSuperadmin
-      description: ''
+      description: 'Back-office multi-pressing. `actor` vaut `superadmin`.'
       parameters:
         -
           in: header
@@ -334,7 +905,105 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    token: 4|abcExampleSuperadminToken
+                    token_type: Bearer
+                    actor: superadmin
+                    user:
+                      id: 1
+                      fullname: 'Super Admin SPARK'
+                      email: superadmin@spark.local
+                      type: superadmin
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: 4|abcExampleSuperadminToken
+                      token_type:
+                        type: string
+                        example: Bearer
+                      actor:
+                        type: string
+                        example: superadmin
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          fullname:
+                            type: string
+                            example: 'Super Admin SPARK'
+                          email:
+                            type: string
+                            example: superadmin@spark.local
+                          type:
+                            type: string
+                            example: superadmin
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        422:
+          description: 'Identifiants invalides'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: email
+                      detail: 'Identifiants invalides.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: email
+                        detail: 'Identifiants invalides.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: email
+                        detail:
+                          type: string
+                          example: 'Identifiants invalides.'
       tags:
         - Authentification
       requestBody:
@@ -346,21 +1015,21 @@ paths:
               properties:
                 email:
                   type: string
-                  description: validation.email.
-                  example: qkunze@example.com
+                  description: 'Email superadmin.'
+                  example: superadmin@spark.local
                 password:
                   type: string
-                  description: ''
-                  example: 'O[2UZ5ij-e/dl4m{o,'
+                  description: 'Mot de passe.'
+                  example: password
               required:
                 - email
                 - password
       security: []
   /api/v1/auth/me:
     get:
-      summary: ''
-      operationId: getApiV1AuthMe
-      description: ''
+      summary: 'Profil courant'
+      operationId: profilCourant
+      description: 'Retourne l’acteur authentifié (staff, client ou superadmin) selon le token Bearer.'
       parameters:
         -
           in: header
@@ -369,13 +1038,190 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: Staff
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    fullname: 'Claire Caissier'
+                    email: caissier@elegance.local
+                    phone_number: null
+                    pressing_id: 1
+                    agency_id: 1
+                    status: true
+                    roles:
+                      - caissier
+                    permissions:
+                      - deposits.view
+                      - deposits.create
+                      - cash.manage
+                    agency:
+                      id: 1
+                      name: Akwa
+                      currency: XAF
+                    agencies:
+                      -
+                        id: 1
+                        name: Akwa
+                    pressing:
+                      id: 1
+                      name: 'Élégance Pressing'
+                    can_view_all_agencies: false
+                  meta:
+                    actor: staff
+                    can_view_all_agencies: false
+                    allowed_agency_ids:
+                      - 1
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      fullname:
+                        type: string
+                        example: 'Claire Caissier'
+                      email:
+                        type: string
+                        example: caissier@elegance.local
+                      phone_number:
+                        type: string
+                        example: null
+                        nullable: true
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: boolean
+                        example: true
+                      roles:
+                        type: array
+                        example:
+                          - caissier
+                        items:
+                          type: string
+                      permissions:
+                        type: array
+                        example:
+                          - deposits.view
+                          - deposits.create
+                          - cash.manage
+                        items:
+                          type: string
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Akwa
+                          currency:
+                            type: string
+                            example: XAF
+                      agencies:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            name: Akwa
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Akwa
+                      pressing:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'Élégance Pressing'
+                      can_view_all_agencies:
+                        type: boolean
+                        example: false
+                  meta:
+                    type: object
+                    properties:
+                      actor:
+                        type: string
+                        example: staff
+                      can_view_all_agencies:
+                        type: boolean
+                        example: false
+                      allowed_agency_ids:
+                        type: array
+                        example:
+                          - 1
+                        items:
+                          type: integer
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
       tags:
         - Authentification
   /api/v1/auth/profile:
     put:
-      summary: ''
-      operationId: putApiV1AuthProfile
+      summary: 'Mettre à jour le profil'
+      operationId: mettreJourLeProfil
       description: ''
       parameters:
         -
@@ -385,7 +1231,64 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'Profil mis à jour'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    fullname: 'Claire Caissier'
+                    email: caissier@elegance.local
+                    phone_number: '690000010'
+                    pressing_id: 1
+                    agency_id: 1
+                    status: true
+                    roles:
+                      - caissier
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      fullname:
+                        type: string
+                        example: 'Claire Caissier'
+                      email:
+                        type: string
+                        example: caissier@elegance.local
+                      phone_number:
+                        type: string
+                        example: '690000010'
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: boolean
+                        example: true
+                      roles:
+                        type: array
+                        example:
+                          - caissier
+                        items:
+                          type: string
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
       tags:
         - Authentification
       requestBody:
@@ -397,32 +1300,33 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  description: ''
+                  example: 'Claire Caissier'
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: amniihfqcoynlazghdtqt
-                  nullable: true
+                  description: ''
+                  example: '690000010'
                 address:
                   type: string
                   description: ''
-                  example: consequatur
-                  nullable: true
+                  example: architecto
                 email:
                   type: string
-                  description: validation.email.
-                  example: carolyne.luettgen@example.org
+                  description: ''
+                  example: caissier@elegance.local
                 password:
                   type: string
-                  description: validation.min.
-                  example: ij-e/dl4m
-                  nullable: true
+                  description: 'Nouveau mot de passe (min. 8).'
+                  example: password
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: password
   /api/v1/auth/logout:
     post:
-      summary: ''
-      operationId: postApiV1AuthLogout
-      description: ''
+      summary: Déconnexion
+      operationId: dconnexion
+      description: 'Invalide le token Sanctum courant.'
       parameters:
         -
           in: header
@@ -431,13 +1335,38 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: Déconnecté
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    logged_out: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      logged_out:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
       tags:
         - Authentification
   /api/v1/client/profile:
     put:
-      summary: ''
-      operationId: putApiV1ClientProfile
+      summary: 'Mettre à jour le profil'
+      operationId: mettreJourLeProfil
       description: ''
       parameters:
         -
@@ -447,7 +1376,64 @@ paths:
           example: '1'
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'Profil mis à jour'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    fullname: 'Claire Caissier'
+                    email: caissier@elegance.local
+                    phone_number: '690000010'
+                    pressing_id: 1
+                    agency_id: 1
+                    status: true
+                    roles:
+                      - caissier
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      fullname:
+                        type: string
+                        example: 'Claire Caissier'
+                      email:
+                        type: string
+                        example: caissier@elegance.local
+                      phone_number:
+                        type: string
+                        example: '690000010'
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: boolean
+                        example: true
+                      roles:
+                        type: array
+                        example:
+                          - caissier
+                        items:
+                          type: string
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
       tags:
         - Authentification
       requestBody:
@@ -459,27 +1445,28 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  description: ''
+                  example: 'Claire Caissier'
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: amniihfqcoynlazghdtqt
-                  nullable: true
+                  description: ''
+                  example: '690000010'
                 address:
                   type: string
                   description: ''
-                  example: consequatur
-                  nullable: true
+                  example: architecto
                 email:
                   type: string
-                  description: validation.email.
-                  example: carolyne.luettgen@example.org
+                  description: ''
+                  example: caissier@elegance.local
                 password:
                   type: string
-                  description: validation.min.
-                  example: ij-e/dl4m
-                  nullable: true
+                  description: 'Nouveau mot de passe (min. 8).'
+                  example: password
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: password
     get:
       summary: ''
       operationId: getApiV1ClientProfile
@@ -573,7 +1560,7 @@ paths:
                       client_uuid:
                         type: string
                         description: validation.uuid.
-                        example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
                     required:
                       - type
                       - payload
@@ -649,7 +1636,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -694,36 +1681,36 @@ paths:
                 client_uuid:
                   type: string
                   description: validation.uuid.
-                  example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
                   nullable: true
                 client_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 discount:
                   type: integer
                   description: validation.min.
-                  example: 45
+                  example: 39
                   nullable: true
                 discount_percent:
                   type: integer
                   description: 'validation.min validation.max.'
-                  example: 16
+                  example: 7
                   nullable: true
                 promo_code:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 promo_special_code:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 points_to_redeem:
                   type: integer
                   description: validation.min.
-                  example: 45
+                  example: 39
                   nullable: true
                 with_collection:
                   type: boolean
@@ -736,12 +1723,12 @@ paths:
                 collection_fee:
                   type: integer
                   description: validation.min.
-                  example: 50
+                  example: 77
                   nullable: true
                 delivery_fee:
                   type: integer
                   description: validation.min.
-                  example: 55
+                  example: 8
                   nullable: true
                 delivery_zone_id:
                   type: string
@@ -751,17 +1738,17 @@ paths:
                 delivery_address:
                   type: string
                   description: validation.max.
-                  example: fuudtdsufvyvddqamniih
+                  example: 'y'
                   nullable: true
                 advanced:
                   type: integer
                   description: validation.min.
-                  example: 18
+                  example: 60
                   nullable: true
                 payment_method:
                   type: string
                   description: ''
-                  example: wallet
+                  example: cash
                   enum:
                     - cash
                     - card
@@ -772,17 +1759,17 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                   nullable: true
                 notes:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 lines:
                   type: array
@@ -795,7 +1782,7 @@ paths:
                       article_id:
                         type: string
                         description: 'Must match an existing stored value.'
-                        example: consequatur
+                        example: architecto
                       service_id:
                         type: string
                         description: 'Must match an existing stored value.'
@@ -804,7 +1791,7 @@ paths:
                       quantity:
                         type: integer
                         description: validation.min.
-                        example: 45
+                        example: 22
                         nullable: true
                       type_action:
                         type: integer
@@ -826,27 +1813,27 @@ paths:
                       weight_kg:
                         type: number
                         description: validation.min.
-                        example: 50
+                        example: 77
                         nullable: true
                       unit_price:
                         type: integer
                         description: validation.min.
-                        example: 55
+                        example: 8
                         nullable: true
                       designation:
                         type: string
                         description: ''
-                        example: consequatur
+                        example: architecto
                         nullable: true
                       state:
                         type: string
                         description: ''
-                        example: consequatur
+                        example: architecto
                         nullable: true
                       render_id:
                         type: integer
                         description: ''
-                        example: 17
+                        example: 16
                         nullable: true
                     required:
                       - article_id
@@ -889,7 +1876,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -919,12 +1906,12 @@ paths:
                 client_uuid:
                   type: string
                   description: validation.uuid.
-                  example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
                   nullable: true
                 amount:
                   type: integer
                   description: validation.min.
-                  example: 56
+                  example: 67
                 payment_method:
                   type: string
                   description: ''
@@ -939,7 +1926,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                   nullable: true
               required:
                 - amount
@@ -948,7 +1935,7 @@ paths:
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -978,14 +1965,14 @@ paths:
                 receiver_name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                   nullable: true
     parameters:
       -
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -1023,11 +2010,11 @@ paths:
                       id:
                         type: integer
                         description: ''
-                        example: 17
+                        example: 16
                       quantity:
                         type: integer
                         description: validation.min.
-                        example: 45
+                        example: 22
                     required:
                       - id
                       - quantity
@@ -1038,7 +2025,7 @@ paths:
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -1077,7 +2064,7 @@ paths:
                 qr_token:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
               required:
                 - etat
@@ -1086,7 +2073,7 @@ paths:
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -1111,7 +2098,7 @@ paths:
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -1172,35 +2159,35 @@ paths:
                 fullname:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 phone_number:
                   type: string
                   description: validation.max.
-                  example: amniihfqcoynlazghdtqt
+                  example: 'n'
                 email:
                   type: string
                   description: validation.email.
-                  example: andreanne00@example.org
+                  example: ashly64@example.com
                   nullable: true
                 address:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 city:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 password:
                   type: string
                   description: validation.min.
-                  example: '[2UZ5ij-e/dl4'
+                  example: ']|{+-0pBNvYg'
                   nullable: true
                 sponsor_code:
                   type: string
                   description: validation.max.
-                  example: vyvddqamni
+                  example: hway
                   nullable: true
               required:
                 - fullname
@@ -1246,25 +2233,25 @@ paths:
                 fullname:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 phone_number:
                   type: string
                   description: validation.max.
-                  example: amniihfqcoynlazghdtqt
+                  example: 'n'
                 email:
                   type: string
                   description: validation.email.
-                  example: andreanne00@example.org
+                  example: ashly64@example.com
                   nullable: true
                 address:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 city:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 status:
                   type: boolean
@@ -1273,7 +2260,7 @@ paths:
                 password:
                   type: string
                   description: validation.min.
-                  example: '2UZ5ij-e/dl4m{o'
+                  example: '|{+-0pBNvYgx'
                   nullable: true
     delete:
       summary: ''
@@ -1295,7 +2282,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1320,7 +2307,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1345,7 +2332,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1370,7 +2357,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1395,7 +2382,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1425,11 +2412,11 @@ paths:
                 amount:
                   type: integer
                   description: validation.min.
-                  example: 73
+                  example: 16
                 reason:
                   type: string
                   description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  example: 'n'
                   nullable: true
               required:
                 - amount
@@ -1438,7 +2425,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1468,11 +2455,11 @@ paths:
                 amount:
                   type: integer
                   description: validation.min.
-                  example: 73
+                  example: 16
                 reason:
                   type: string
                   description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  example: 'n'
                   nullable: true
               required:
                 - amount
@@ -1481,7 +2468,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1587,38 +2574,38 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 description:
                   type: string
                   description: ''
-                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  example: 'Eius et animi quos velit et.'
                   nullable: true
                 classic_price:
                   type: integer
                   description: validation.min.
-                  example: 12
+                  example: 60
                 express_price:
                   type: integer
                   description: validation.min.
-                  example: 66
+                  example: 42
                 repass_price:
                   type: integer
                   description: validation.min.
-                  example: 13
+                  example: 37
                 classic_price_kilo:
                   type: integer
                   description: validation.min.
-                  example: 65
+                  example: 9
                   nullable: true
                 express_price_kilo:
                   type: integer
                   description: validation.min.
-                  example: 72
+                  example: 52
                   nullable: true
                 repass_price_kilo:
                   type: integer
                   description: validation.min.
-                  example: 18
+                  example: 8
                   nullable: true
                 status:
                   type: boolean
@@ -1670,36 +2657,36 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 description:
                   type: string
                   description: ''
-                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  example: 'Eius et animi quos velit et.'
                   nullable: true
                 classic_price:
                   type: integer
                   description: validation.min.
-                  example: 12
+                  example: 60
                 express_price:
                   type: integer
                   description: validation.min.
-                  example: 66
+                  example: 42
                 repass_price:
                   type: integer
                   description: validation.min.
-                  example: 13
+                  example: 37
                 classic_price_kilo:
                   type: integer
                   description: validation.min.
-                  example: 65
+                  example: 9
                 express_price_kilo:
                   type: integer
                   description: validation.min.
-                  example: 72
+                  example: 52
                 repass_price_kilo:
                   type: integer
                   description: validation.min.
-                  example: 18
+                  example: 8
                 status:
                   type: boolean
                   description: ''
@@ -1724,7 +2711,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the article.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -1769,15 +2756,15 @@ paths:
                 agency_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 article_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 service_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 pricing_type:
                   type: string
                   description: ''
@@ -1789,15 +2776,15 @@ paths:
                 amount_minor:
                   type: integer
                   description: validation.min.
-                  example: 56
+                  example: 84
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
-                  example: '2107-11-05'
+                  example: '2052-11-07'
                   nullable: true
               required:
                 - agency_id
@@ -1831,15 +2818,15 @@ paths:
                 agency_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 article_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 service_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 pricing_type:
                   type: string
                   description: ''
@@ -1851,7 +2838,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                   nullable: true
               required:
                 - agency_id
@@ -1924,7 +2911,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the laundry status.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -1995,7 +2982,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the render.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -2066,7 +3053,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the promo.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -2137,7 +3124,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the promo special.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -2208,7 +3195,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delivery hour.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -2279,7 +3266,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the code suffix.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -2324,11 +3311,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 rate_percent:
                   type: integer
                   description: 'validation.min validation.max.'
-                  example: 1
+                  example: 22
               required:
                 - name
                 - rate_percent
@@ -2368,7 +3355,7 @@ paths:
         in: path
         name: loyalGroup_id
         description: 'The ID of the loyalGroup.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -2413,7 +3400,7 @@ paths:
                 client_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
               required:
                 - client_id
     delete:
@@ -2441,7 +3428,7 @@ paths:
                 client_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
               required:
                 - client_id
     parameters:
@@ -2449,7 +3436,7 @@ paths:
         in: path
         name: loyalGroup_id
         description: 'The ID of the loyalGroup.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -2494,23 +3481,23 @@ paths:
                 client_uuid:
                   type: string
                   description: validation.uuid.
-                  example: 66529e01-d113-3473-8d6f-9e11e09332ea
+                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
                   nullable: true
                 label:
                   type: string
                   description: validation.max.
-                  example: qeopfuudtdsufvyvddqam
+                  example: g
                 type:
                   type: string
                   description: ''
-                  example: in
+                  example: out
                   enum:
                     - in
                     - out
                 amount:
                   type: integer
                   description: validation.min.
-                  example: 29
+                  example: 27
                 category_id:
                   type: string
                   description: 'Must match an existing stored value.'
@@ -2519,7 +3506,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                   nullable: true
                 validated:
                   type: boolean
@@ -2555,18 +3542,18 @@ paths:
                 label:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 type:
                   type: string
                   description: ''
-                  example: in
+                  example: out
                   enum:
                     - in
                     - out
                 amount:
                   type: integer
                   description: validation.min.
-                  example: 45
+                  example: 67
                 category_id:
                   type: string
                   description: 'Must match an existing stored value.'
@@ -2575,7 +3562,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                   nullable: true
     delete:
       summary: ''
@@ -2597,7 +3584,7 @@ paths:
         in: path
         name: cashMovement_id
         description: 'The ID of the cashMovement.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -2622,7 +3609,7 @@ paths:
         in: path
         name: cashMovement_id
         description: 'The ID of the cashMovement.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -2667,11 +3654,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 direction:
                   type: string
                   description: ''
-                  example: in
+                  example: out
                   enum:
                     - in
                     - out
@@ -2961,7 +3948,7 @@ paths:
                   type: array
                   description: 'Must match an existing stored value.'
                   example:
-                    - consequatur
+                    - architecto
                   items:
                     type: string
     parameters:
@@ -2969,7 +3956,7 @@ paths:
         in: path
         name: role_id
         description: 'The ID of the role.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -3014,11 +4001,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 details:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 pricing_mode:
                   type: string
@@ -3047,49 +4034,49 @@ paths:
                 loyalty_points_rate:
                   type: integer
                   description: validation.min.
-                  example: 19
+                  example: 76
                 loyalty_redeem_threshold:
                   type: integer
                   description: validation.min.
-                  example: 70
+                  example: 16
                 loyalty_redeem_value:
                   type: integer
                   description: validation.min.
-                  example: 70
+                  example: 42
                 hours_classic:
                   type: integer
                   description: validation.min.
-                  example: 13
+                  example: 40
                 hours_express:
                   type: integer
                   description: validation.min.
-                  example: 66
+                  example: 4
                 hours_repass:
                   type: integer
                   description: validation.min.
-                  example: 14
+                  example: 2
                 collection_fee:
                   type: integer
                   description: validation.min.
-                  example: 65
+                  example: 8
                 delivery_fee:
                   type: integer
                   description: validation.min.
-                  example: 72
+                  example: 75
                 reporting_currency:
                   type: string
                   description: validation.size.
-                  example: fvy
+                  example: hwa
                   nullable: true
                 primary_color:
                   type: string
                   description: validation.max.
-                  example: vddqamniihfqc
+                  example: ykcmyuwpwlvqwrsi
                   nullable: true
                 secondary_color:
                   type: string
                   description: validation.max.
-                  example: oynlazghdtqtq
+                  example: tcpscqldzsnrwtuj
                   nullable: true
   '/api/v1/settings/agencies/{id}':
     put:
@@ -3117,31 +4104,31 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 address:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 contact:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 currency:
                   type: string
                   description: validation.size.
-                  example: mqe
+                  example: ngz
                   nullable: true
                 code_prefix:
                   type: string
                   description: validation.max.
-                  example: opfuudt
+                  example: miyvdljn
                   nullable: true
                 code_suffix:
                   type: string
                   description: validation.max.
-                  example: dsufvyv
+                  example: ikhwaykc
                   nullable: true
                 status:
                   type: boolean
@@ -3152,7 +4139,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the agency.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -3213,19 +4200,19 @@ paths:
                 source_currency:
                   type: string
                   description: validation.size.
-                  example: vmq
+                  example: bng
                 target_currency:
                   type: string
                   description: 'The value and <code>source_currency</code> must be different. validation.size.'
-                  example: eop
+                  example: zmi
                 rate:
                   type: number
                   description: ''
-                  example: 11613.31890586
+                  example: 4326.41688
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
               required:
                 - source_currency
                 - target_currency
@@ -3252,7 +4239,7 @@ paths:
         in: path
         name: exchangeRate_id
         description: 'The ID of the exchangeRate.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -3297,36 +4284,36 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 address:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 contact:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 country_code:
                   type: string
                   description: validation.size.
-                  example: mq
+                  example: ng
                   nullable: true
                 currency:
                   type: string
                   description: validation.size.
-                  example: eop
+                  example: zmi
                   nullable: true
                 code_prefix:
                   type: string
                   description: validation.max.
-                  example: fuudtds
+                  example: yvdljnik
                   nullable: true
                 code_suffix:
                   type: string
                   description: validation.max.
-                  example: ufvyvdd
+                  example: hwaykcmy
                   nullable: true
               required:
                 - name
@@ -3371,23 +4358,23 @@ paths:
                 fullname:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 email:
                   type: string
                   description: validation.email.
-                  example: kunde.eloisa@example.com
+                  example: zbailey@example.net
                 password:
                   type: string
                   description: validation.min.
-                  example: '4[*UyPJ"}6'
+                  example: '-0pBNvYgxw'
                 agency_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 role:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
               required:
                 - fullname
                 - email
@@ -3420,15 +4407,15 @@ paths:
                 fullname:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 email:
                   type: string
                   description: validation.email.
-                  example: kunde.eloisa@example.com
+                  example: zbailey@example.net
                 password:
                   type: string
                   description: validation.min.
-                  example: '4[*UyPJ"}6'
+                  example: '-0pBNvYgxw'
                   nullable: true
                 agency_id:
                   type: string
@@ -3462,7 +4449,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -3525,7 +4512,7 @@ paths:
                   type: array
                   description: 'Must match an existing stored value.'
                   example:
-                    - consequatur
+                    - architecto
                   items:
                     type: string
     parameters:
@@ -3533,7 +4520,7 @@ paths:
         in: path
         name: role_id
         description: 'The ID of the role.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -3622,7 +4609,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -3683,11 +4670,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 details:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 pricing_mode:
                   type: string
@@ -3753,11 +4740,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 details:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 status:
                   type: boolean
@@ -3786,19 +4773,19 @@ paths:
                 loyalty_points_rate:
                   type: integer
                   description: validation.min.
-                  example: 19
+                  example: 76
                 hours_classic:
                   type: integer
                   description: validation.min.
-                  example: 70
+                  example: 16
                 hours_express:
                   type: integer
                   description: validation.min.
-                  example: 71
+                  example: 26
                 hours_repass:
                   type: integer
                   description: validation.min.
-                  example: 13
+                  example: 40
     delete:
       summary: ''
       operationId: deleteApiV1SuperadminPressingsId
@@ -3819,7 +4806,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the pressing.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -3864,40 +4851,40 @@ paths:
                 pressing_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 name:
                   type: string
                   description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  example: 'n'
                 address:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 contact:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 country_code:
                   type: string
                   description: validation.size.
-                  example: mq
+                  example: ng
                   nullable: true
                 currency:
                   type: string
                   description: validation.size.
-                  example: eop
+                  example: zmi
                   nullable: true
                 code_prefix:
                   type: string
                   description: validation.max.
-                  example: fuudtds
+                  example: yvdljnik
                   nullable: true
                 code_suffix:
                   type: string
                   description: validation.max.
-                  example: ufvyvdd
+                  example: hwaykcmy
                   nullable: true
               required:
                 - pressing_id
@@ -3943,36 +4930,36 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 address:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 contact:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                   nullable: true
                 country_code:
                   type: string
                   description: validation.size.
-                  example: mq
+                  example: ng
                   nullable: true
                 currency:
                   type: string
                   description: validation.size.
-                  example: eop
+                  example: zmi
                   nullable: true
                 code_prefix:
                   type: string
                   description: validation.max.
-                  example: fuudtds
+                  example: yvdljnik
                   nullable: true
                 code_suffix:
                   type: string
                   description: validation.max.
-                  example: ufvyvdd
+                  example: hwaykcmy
                   nullable: true
                 status:
                   type: boolean
@@ -3998,7 +4985,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the agency.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -4069,7 +5056,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -4114,26 +5101,26 @@ paths:
                 pressing_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 plan:
                   type: string
                   description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  example: 'n'
                   nullable: true
                 seats:
                   type: integer
                   description: validation.min.
-                  example: 45
+                  example: 67
                   nullable: true
                 months:
                   type: integer
                   description: validation.min.
-                  example: 46
+                  example: 66
                   nullable: true
                 activate:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - pressing_id
   '/api/v1/superadmin/licenses/{id}':
@@ -4162,11 +5149,11 @@ paths:
                 plan:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 seats:
                   type: integer
                   description: validation.min.
-                  example: 2
+                  example: 22
                 status:
                   type: boolean
                   description: ''
@@ -4174,7 +5161,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:01'
                   nullable: true
     delete:
       summary: ''
@@ -4196,7 +5183,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -4226,14 +5213,14 @@ paths:
                 months:
                   type: integer
                   description: validation.min.
-                  example: 73
+                  example: 16
                   nullable: true
     parameters:
       -
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -4304,7 +5291,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the service.'
-        example: consequatur
+        example: architecto
         required: true
         schema:
           type: string
@@ -4381,11 +5368,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 code:
                   type: string
                   description: validation.max.
-                  example: amniihfqcoynlazghdtqt
+                  example: 'n'
                   nullable: true
                 agency_id:
                   type: string
@@ -4424,11 +5411,11 @@ paths:
                 name:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                 code:
                   type: string
                   description: validation.max.
-                  example: amniihfqcoynlazghdtqt
+                  example: 'n'
                   nullable: true
                 agency_id:
                   type: string
@@ -4444,7 +5431,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the zone.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -4489,11 +5476,11 @@ paths:
                 agency_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 livreur_id:
                   type: string
                   description: 'Must match an existing stored value.'
-                  example: consequatur
+                  example: architecto
                 delivery_zone_id:
                   type: string
                   description: 'Must match an existing stored value.'
@@ -4502,11 +5489,11 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-06T13:01:15'
+                  example: '2026-10-15T17:43:02'
                 name:
                   type: string
                   description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  example: 'n'
                   nullable: true
               required:
                 - agency_id
@@ -4539,7 +5526,7 @@ paths:
                   type: array
                   description: 'Must match an existing stored value.'
                   example:
-                    - 17
+                    - 16
                   items:
                     type: integer
     parameters:
@@ -4547,7 +5534,7 @@ paths:
         in: path
         name: round_id
         description: 'The ID of the round.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -4582,7 +5569,7 @@ paths:
                 delivery_address:
                   type: string
                   description: validation.max.
-                  example: vmqeopfuudtdsufvyvddq
+                  example: b
                   nullable: true
                 livreur_id:
                   type: string
@@ -4594,7 +5581,7 @@ paths:
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer
@@ -4624,25 +5611,25 @@ paths:
                 confirmation_type:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                 confirmation_value:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: architecto
                 receiver_name:
                   type: string
                   description: validation.max.
-                  example: mqeopfuudtdsufvyvddqa
+                  example: 'n'
                   nullable: true
                 collect_amount:
                   type: integer
                   description: validation.min.
-                  example: 45
+                  example: 84
                   nullable: true
                 payment_method:
                   type: string
                   description: ''
-                  example: other
+                  example: cash
                   enum:
                     - cash
                     - card
@@ -4653,11 +5640,11 @@ paths:
                 require_settled:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 client_uuid:
                   type: string
                   description: validation.uuid.
-                  example: d63469cd-6701-3555-a16b-fc9764100c9a
+                  example: a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f
                   nullable: true
               required:
                 - confirmation_type
@@ -4667,7 +5654,7 @@ paths:
         in: path
         name: deposit_id
         description: 'The ID of the deposit.'
-        example: 17
+        example: 16
         required: true
         schema:
           type: integer

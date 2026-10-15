@@ -80,7 +80,7 @@ Réponse login (shape) :
   "data": {
     "token": "...",
     "token_type": "Bearer",
-    "actor": "staff|client|admin",
+    "actor": "staff|client|superadmin",
     "user": {}
   },
   "meta": {},

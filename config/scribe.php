@@ -21,9 +21,10 @@ return [
             API JSON `{ data, meta, errors }`. Authentification **Bearer Sanctum**.
 
             **Acteurs**
-            - Staff : `POST /api/v1/auth/staff/login` puis header `Authorization: Bearer {token}`
-            - Client : `POST /api/v1/auth/client/login`
-            - Superadmin : `POST /api/v1/auth/superadmin/login`
+            - Staff : `POST /api/v1/auth/staff/login` → `{ data: { token, token_type, actor: "staff", user } }`
+            - Client : `POST /api/v1/auth/client/login` → `actor: "client"`
+            - Superadmin : `POST /api/v1/auth/superadmin/login` → `actor: "superadmin"`
+            - Ensuite : header `Authorization: Bearer {token}`
 
             **Multi-tenant**
             - Un caissier est limité à son agence.

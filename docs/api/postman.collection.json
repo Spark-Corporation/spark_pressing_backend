@@ -5,90 +5,16 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost:8000"
+            "value": "https:\/\/pressing-api.pressingelegance.com"
         }
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "43f64c1d-a91e-47b8-a3e9-80aa3b526cc4",
+        "_postman_id": "69bb6b31-33fa-47cf-8310-7eb341677a98",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
-        {
-            "name": "Syst\u00e8me",
-            "description": "",
-            "item": [
-                {
-                    "name": "Sant\u00e9 de l'API",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/health",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/health"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "X-Agency-Id",
-                                "value": "1"
-                            }
-                        ],
-                        "body": null,
-                        "description": "V\u00e9rifie que l'API et la base sont joignables (sonde LB \/ ENF02).",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "59"
-                                },
-                                {
-                                    "key": "x-request-id",
-                                    "value": "a22b6ccb-77d7-4d44-bc81-53d3bfc475bf"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                },
-                                {
-                                    "key": "access-control-expose-headers",
-                                    "value": "X-Request-Id"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"name\":\"Spark Pressing API\",\"version\":\"v1\",\"status\":\"ok\",\"database\":\"ok\",\"currency\":\"XAF\",\"locale\":\"fr\"},\"meta\":{},\"errors\":null}",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        },
         {
             "name": "Authentification",
             "description": "",
@@ -119,14 +45,33 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"qkunze@example.com\",\"password\":\"O[2UZ5ij-e\\\/dl4m{o,\"}"
+                            "raw": "{\"email\":\"caissier@elegance.local\",\"password\":\"password\"}"
                         },
-                        "description": "",
+                        "description": "Retourne un token Sanctum Bearer et le profil staff (r\u00f4les, agence, pressing).",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"token\":\"1|abcExampleSanctumToken\",\"token_type\":\"Bearer\",\"actor\":\"staff\",\"user\":{\"id\":1,\"fullname\":\"Claire Caissier\",\"email\":\"caissier@elegance.local\",\"phone_number\":null,\"pressing_id\":1,\"agency_id\":1,\"status\":true,\"roles\":[\"caissier\"],\"agency\":{\"id\":1,\"pressing_id\":1,\"name\":\"Akwa\",\"address\":\"Douala, Akwa\",\"contact\":\"+237600000001\",\"country_code\":\"CM\",\"currency\":\"XAF\",\"code_prefix\":\"AK\",\"code_suffix\":\"EL\",\"status\":true},\"agencies\":[{\"id\":1,\"pressing_id\":1,\"name\":\"Akwa\",\"address\":\"Douala, Akwa\",\"contact\":\"+237600000001\",\"country_code\":\"CM\",\"currency\":\"XAF\",\"code_prefix\":\"AK\",\"code_suffix\":\"EL\",\"status\":true}],\"pressing\":{\"id\":1,\"name\":\"\\u00c9l\\u00e9gance Pressing\",\"details\":\"Enseigne de d\\u00e9monstration\",\"status\":true,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"qr_labels_enabled\":false,\"block_retrieve_if_unpaid\":true,\"reporting_currency\":null,\"collection_fee\":0,\"delivery_fee\":0,\"loyalty_points_rate\":0,\"hours_classic\":null,\"hours_express\":null,\"hours_repass\":null},\"can_view_all_agencies\":false}},\"meta\":{},\"errors\":null}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Compte d\\u00e9sactiv\\u00e9.\"},\"errors\":[{\"code\":\"error\",\"detail\":\"Compte d\\u00e9sactiv\\u00e9.\"}]}",
+                            "name": "Compte d\u00e9sactiv\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Les donn\\u00e9es sont invalides.\"},\"errors\":[{\"code\":\"validation\",\"field\":\"email\",\"detail\":\"Identifiants invalides.\"}]}",
+                            "name": "Identifiants invalides"
+                        }
+                    ]
                 },
                 {
                     "name": "Mot de passe oubli\u00e9",
@@ -154,14 +99,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"qkunze@example.com\"}"
+                            "raw": "{\"email\":\"caissier@elegance.local\"}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"sent\":true},\"meta\":{},\"errors\":null}",
+                            "name": "Lien envoy\u00e9 (toujours 200 pour ne pas divulguer l\u2019existence du compte)"
+                        }
+                    ]
                 },
                 {
                     "name": "R\u00e9initialiser le mot de passe",
@@ -189,14 +141,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"qkunze@example.com\",\"token\":\"consequatur\",\"password\":\"[2UZ5ij-e\\\/dl4\"}"
+                            "raw": "{\"email\":\"caissier@elegance.local\",\"token\":\"reset-token\",\"password\":\"password\",\"password_confirmation\":\"password\"}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"reset\":true},\"meta\":{},\"errors\":null}",
+                            "name": "Mot de passe r\u00e9initialis\u00e9"
+                        }
+                    ]
                 },
                 {
                     "name": "Connexion client",
@@ -224,14 +183,27 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"login\":\"consequatur\",\"password\":\"O[2UZ5ij-e\\\/dl4m{o,\"}"
+                            "raw": "{\"login\":\"jean.client@example.com\",\"password\":\"password\"}"
                         },
-                        "description": "",
+                        "description": "Login par email ou t\u00e9l\u00e9phone. Retourne un token Bearer et le profil client.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"token\":\"2|abcExampleClientToken\",\"token_type\":\"Bearer\",\"actor\":\"client\",\"user\":{\"id\":1,\"pressing_id\":1,\"agency_id\":1,\"code\":\"C000001\",\"fullname\":\"Jean Client\",\"email\":\"jean.client@example.com\",\"phone_number\":\"690000001\",\"address\":null,\"city\":null,\"loyalty_points\":0,\"wallet_balance\":0,\"sponsor_code\":\"JEAN01\",\"referred_by_id\":null,\"last_deposit_at\":null,\"status\":true}},\"meta\":{},\"errors\":null}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Les donn\\u00e9es sont invalides.\"},\"errors\":[{\"code\":\"validation\",\"field\":\"email\",\"detail\":\"Identifiants invalides.\"}]}",
+                            "name": "Identifiants invalides"
+                        }
+                    ]
                 },
                 {
                     "name": "Inscription client",
@@ -259,14 +231,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pressing_id\":\"consequatur\",\"fullname\":\"mqeopfuudtdsufvyvddqa\",\"phone_number\":\"mniihfqcoynlazghdtqtq\",\"email\":\"ablanda@example.org\",\"password\":\"'YAKYLk4>SJIrIV#lz.\",\"sponsor_code\":\"lsmsjuryvo\"}"
+                            "raw": "{\"pressing_id\":1,\"agency_id\":1,\"fullname\":\"Marie Dupont\",\"phone_number\":\"690000099\",\"email\":\"marie@example.com\",\"password\":\"password\",\"sponsor_code\":\"JEAN01\"}"
                         },
-                        "description": "",
+                        "description": "Cr\u00e9e un compte client et retourne imm\u00e9diatement un token Bearer.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"token\":\"3|abcExampleRegisterToken\",\"token_type\":\"Bearer\",\"actor\":\"client\",\"user\":{\"id\":2,\"pressing_id\":1,\"agency_id\":1,\"code\":\"C000002\",\"fullname\":\"Marie Dupont\",\"email\":\"marie@example.com\",\"phone_number\":\"690000099\",\"address\":null,\"city\":null,\"loyalty_points\":0,\"wallet_balance\":0,\"sponsor_code\":\"MARIE1\",\"referred_by_id\":1,\"last_deposit_at\":null,\"status\":true}},\"meta\":{},\"errors\":null}",
+                            "name": "Cr\u00e9\u00e9"
+                        }
+                    ]
                 },
                 {
                     "name": "Connexion superadmin",
@@ -294,17 +273,30 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"qkunze@example.com\",\"password\":\"O[2UZ5ij-e\\\/dl4m{o,\"}"
+                            "raw": "{\"email\":\"superadmin@spark.local\",\"password\":\"password\"}"
                         },
-                        "description": "",
+                        "description": "Back-office multi-pressing. `actor` vaut `superadmin`.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"token\":\"4|abcExampleSuperadminToken\",\"token_type\":\"Bearer\",\"actor\":\"superadmin\",\"user\":{\"id\":1,\"fullname\":\"Super Admin SPARK\",\"email\":\"superadmin@spark.local\",\"type\":\"superadmin\"}},\"meta\":{},\"errors\":null}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Les donn\\u00e9es sont invalides.\"},\"errors\":[{\"code\":\"validation\",\"field\":\"email\",\"detail\":\"Identifiants invalides.\"}]}",
+                            "name": "Identifiants invalides"
+                        }
+                    ]
                 },
                 {
-                    "name": "GET api\/v1\/auth\/me",
+                    "name": "Profil courant",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -328,12 +320,25 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Retourne l\u2019acteur authentifi\u00e9 (staff, client ou superadmin) selon le token Bearer."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"fullname\":\"Claire Caissier\",\"email\":\"caissier@elegance.local\",\"phone_number\":null,\"pressing_id\":1,\"agency_id\":1,\"status\":true,\"roles\":[\"caissier\"],\"permissions\":[\"deposits.view\",\"deposits.create\",\"cash.manage\"],\"agency\":{\"id\":1,\"name\":\"Akwa\",\"currency\":\"XAF\"},\"agencies\":[{\"id\":1,\"name\":\"Akwa\"}],\"pressing\":{\"id\":1,\"name\":\"\\u00c9l\\u00e9gance Pressing\"},\"can_view_all_agencies\":false},\"meta\":{\"actor\":\"staff\",\"can_view_all_agencies\":false,\"allowed_agency_ids\":[1]},\"errors\":null}",
+                            "name": "Staff"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Non authentifi\\u00e9.\"},\"errors\":[{\"code\":\"unauthenticated\",\"detail\":\"Non authentifi\\u00e9.\"}]}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
                 },
                 {
-                    "name": "PUT api\/v1\/auth\/profile",
+                    "name": "Mettre \u00e0 jour le profil",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -358,14 +363,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"vmqeopfuudtdsufvyvddq\",\"phone_number\":\"amniihfqcoynlazghdtqt\",\"address\":\"consequatur\",\"email\":\"carolyne.luettgen@example.org\",\"password\":\"ij-e\\\/dl4m\"}"
+                            "raw": "{\"fullname\":\"Claire Caissier\",\"phone_number\":\"690000010\",\"address\":\"architecto\",\"email\":\"caissier@elegance.local\",\"password\":\"password\",\"password_confirmation\":\"password\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"fullname\":\"Claire Caissier\",\"email\":\"caissier@elegance.local\",\"phone_number\":\"690000010\",\"pressing_id\":1,\"agency_id\":1,\"status\":true,\"roles\":[\"caissier\"]},\"meta\":{},\"errors\":null}",
+                            "name": "Profil mis \u00e0 jour"
+                        }
+                    ]
                 },
                 {
-                    "name": "POST api\/v1\/auth\/logout",
+                    "name": "D\u00e9connexion",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -389,12 +401,19 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Invalide le token Sanctum courant."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"logged_out\":true},\"meta\":{},\"errors\":null}",
+                            "name": "D\u00e9connect\u00e9"
+                        }
+                    ]
                 },
                 {
-                    "name": "PUT api\/v1\/client\/profile",
+                    "name": "Mettre \u00e0 jour le profil",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -419,11 +438,18 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"vmqeopfuudtdsufvyvddq\",\"phone_number\":\"amniihfqcoynlazghdtqt\",\"address\":\"consequatur\",\"email\":\"carolyne.luettgen@example.org\",\"password\":\"ij-e\\\/dl4m\"}"
+                            "raw": "{\"fullname\":\"Claire Caissier\",\"phone_number\":\"690000010\",\"address\":\"architecto\",\"email\":\"caissier@elegance.local\",\"password\":\"password\",\"password_confirmation\":\"password\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"fullname\":\"Claire Caissier\",\"email\":\"caissier@elegance.local\",\"phone_number\":\"690000010\",\"pressing_id\":1,\"agency_id\":1,\"status\":true,\"roles\":[\"caissier\"]},\"meta\":{},\"errors\":null}",
+                            "name": "Profil mis \u00e0 jour"
+                        }
+                    ]
                 }
             ]
         },
@@ -515,7 +541,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"operations\":[{\"type\":\"payment\",\"payload\":[],\"client_uuid\":\"66529e01-d113-3473-8d6f-9e11e09332ea\"}]}"
+                            "raw": "{\"operations\":[{\"type\":\"payment\",\"payload\":[],\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\"}]}"
                         },
                         "description": ""
                     },
@@ -626,7 +652,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": ""
                                 }
                             ]
@@ -706,7 +732,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"66529e01-d113-3473-8d6f-9e11e09332ea\",\"client_id\":\"consequatur\",\"discount\":45,\"discount_percent\":16,\"promo_code\":\"consequatur\",\"promo_special_code\":\"consequatur\",\"points_to_redeem\":45,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":50,\"delivery_fee\":55,\"delivery_address\":\"fuudtdsufvyvddqamniih\",\"advanced\":18,\"payment_method\":\"wallet\",\"deposit_date\":\"2026-10-06T13:01:15\",\"retrieve_date\":\"2026-10-06T13:01:15\",\"notes\":\"consequatur\",\"lines\":[{\"article_id\":\"consequatur\",\"quantity\":45,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":50,\"unit_price\":55,\"designation\":\"consequatur\",\"state\":\"consequatur\",\"render_id\":17}]}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-15T17:43:02\",\"retrieve_date\":\"2026-10-15T17:43:02\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16}]}"
                         },
                         "description": ""
                     },
@@ -724,7 +750,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -761,7 +787,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -783,7 +809,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"66529e01-d113-3473-8d6f-9e11e09332ea\",\"amount\":56,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-06T13:01:15\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-15T17:43:02\"}"
                         },
                         "description": ""
                     },
@@ -801,7 +827,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -823,7 +849,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"receiver_name\":\"vmqeopfuudtdsufvyvddq\"}"
+                            "raw": "{\"receiver_name\":\"b\"}"
                         },
                         "description": ""
                     },
@@ -841,7 +867,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -863,7 +889,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"units\":[{\"id\":17,\"quantity\":45}]}"
+                            "raw": "{\"units\":[{\"id\":16,\"quantity\":22}]}"
                         },
                         "description": ""
                     },
@@ -881,7 +907,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -903,7 +929,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"etat\":\"waiting\",\"qr_token\":\"consequatur\"}"
+                            "raw": "{\"etat\":\"waiting\",\"qr_token\":\"architecto\"}"
                         },
                         "description": ""
                     },
@@ -921,7 +947,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -958,7 +984,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -1073,7 +1099,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"vmqeopfuudtdsufvyvddq\",\"phone_number\":\"amniihfqcoynlazghdtqt\",\"email\":\"andreanne00@example.org\",\"address\":\"consequatur\",\"city\":\"consequatur\",\"password\":\"[2UZ5ij-e\\\/dl4\",\"sponsor_code\":\"vyvddqamni\"}"
+                            "raw": "{\"fullname\":\"b\",\"phone_number\":\"n\",\"email\":\"ashly64@example.com\",\"address\":\"architecto\",\"city\":\"architecto\",\"password\":\"]|{+-0pBNvYg\",\"sponsor_code\":\"hway\"}"
                         },
                         "description": ""
                     },
@@ -1091,7 +1117,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1128,7 +1154,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1165,7 +1191,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1202,7 +1228,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1224,7 +1250,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"vmqeopfuudtdsufvyvddq\",\"phone_number\":\"amniihfqcoynlazghdtqt\",\"email\":\"andreanne00@example.org\",\"address\":\"consequatur\",\"city\":\"consequatur\",\"status\":false,\"password\":\"2UZ5ij-e\\\/dl4m{o\"}"
+                            "raw": "{\"fullname\":\"b\",\"phone_number\":\"n\",\"email\":\"ashly64@example.com\",\"address\":\"architecto\",\"city\":\"architecto\",\"status\":false,\"password\":\"|{+-0pBNvYgx\"}"
                         },
                         "description": ""
                     },
@@ -1242,7 +1268,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1279,7 +1305,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1316,7 +1342,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1353,7 +1379,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1375,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"amount\":73,\"reason\":\"mqeopfuudtdsufvyvddqa\"}"
+                            "raw": "{\"amount\":16,\"reason\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -1393,7 +1419,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1415,7 +1441,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"amount\":73,\"reason\":\"mqeopfuudtdsufvyvddqa\"}"
+                            "raw": "{\"amount\":16,\"reason\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -1578,7 +1604,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"description\":\"Dolores dolorum amet iste laborum eius est dolor.\",\"classic_price\":12,\"express_price\":66,\"repass_price\":13,\"classic_price_kilo\":65,\"express_price_kilo\":72,\"repass_price_kilo\":18,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"description\":\"Eius et animi quos velit et.\",\"classic_price\":60,\"express_price\":42,\"repass_price\":37,\"classic_price_kilo\":9,\"express_price_kilo\":52,\"repass_price_kilo\":8,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -1596,7 +1622,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -1633,7 +1659,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -1655,7 +1681,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"description\":\"Dolores dolorum amet iste laborum eius est dolor.\",\"classic_price\":12,\"express_price\":66,\"repass_price\":13,\"classic_price_kilo\":65,\"express_price_kilo\":72,\"repass_price_kilo\":18,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"description\":\"Eius et animi quos velit et.\",\"classic_price\":60,\"express_price\":42,\"repass_price\":37,\"classic_price_kilo\":9,\"express_price_kilo\":52,\"repass_price_kilo\":8,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -1673,7 +1699,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -1753,7 +1779,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"consequatur\",\"article_id\":\"consequatur\",\"service_id\":\"consequatur\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-06T13:01:15\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-15T17:43:02\"}"
                         },
                         "description": ""
                     },
@@ -1785,7 +1811,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"consequatur\",\"article_id\":\"consequatur\",\"service_id\":\"consequatur\",\"pricing_type\":\"kilo\",\"amount_minor\":56,\"valid_from\":\"2026-10-06T13:01:15\",\"valid_to\":\"2107-11-05\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-15T17:43:02\",\"valid_to\":\"2052-11-07\"}"
                         },
                         "description": ""
                     },
@@ -1861,7 +1887,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the laundry status."
                                 }
                             ]
@@ -1898,7 +1924,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the laundry status."
                                 }
                             ]
@@ -1993,7 +2019,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the render."
                                 }
                             ]
@@ -2030,7 +2056,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the render."
                                 }
                             ]
@@ -2125,7 +2151,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the promo."
                                 }
                             ]
@@ -2162,7 +2188,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the promo."
                                 }
                             ]
@@ -2257,7 +2283,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the promo special."
                                 }
                             ]
@@ -2294,7 +2320,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the promo special."
                                 }
                             ]
@@ -2389,7 +2415,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the delivery hour."
                                 }
                             ]
@@ -2426,7 +2452,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the delivery hour."
                                 }
                             ]
@@ -2521,7 +2547,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the code suffix."
                                 }
                             ]
@@ -2558,7 +2584,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the code suffix."
                                 }
                             ]
@@ -2638,7 +2664,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"rate_percent\":1}"
+                            "raw": "{\"name\":\"b\",\"rate_percent\":22}"
                         },
                         "description": ""
                     },
@@ -2656,7 +2682,7 @@
                                 {
                                     "id": "loyalGroup_id",
                                     "key": "loyalGroup_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the loyalGroup."
                                 }
                             ]
@@ -2693,7 +2719,7 @@
                                 {
                                     "id": "loyalGroup_id",
                                     "key": "loyalGroup_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the loyalGroup."
                                 }
                             ]
@@ -2730,7 +2756,7 @@
                                 {
                                     "id": "loyalGroup_id",
                                     "key": "loyalGroup_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the loyalGroup."
                                 }
                             ]
@@ -2752,7 +2778,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_id\":\"consequatur\"}"
+                            "raw": "{\"client_id\":\"architecto\"}"
                         },
                         "description": ""
                     },
@@ -2770,7 +2796,7 @@
                                 {
                                     "id": "loyalGroup_id",
                                     "key": "loyalGroup_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the loyalGroup."
                                 }
                             ]
@@ -2792,7 +2818,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_id\":\"consequatur\"}"
+                            "raw": "{\"client_id\":\"architecto\"}"
                         },
                         "description": ""
                     },
@@ -2810,7 +2836,7 @@
                                 {
                                     "id": "loyalGroup_id",
                                     "key": "loyalGroup_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the loyalGroup."
                                 }
                             ]
@@ -2896,7 +2922,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"66529e01-d113-3473-8d6f-9e11e09332ea\",\"label\":\"qeopfuudtdsufvyvddqam\",\"type\":\"in\",\"amount\":29,\"action_date\":\"2026-10-06T13:01:15\",\"validated\":true}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-15T17:43:02\",\"validated\":true}"
                         },
                         "description": ""
                     },
@@ -2914,7 +2940,7 @@
                                 {
                                     "id": "cashMovement_id",
                                     "key": "cashMovement_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the cashMovement."
                                 }
                             ]
@@ -2936,7 +2962,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"vmqeopfuudtdsufvyvddq\",\"type\":\"in\",\"amount\":45,\"action_date\":\"2026-10-06T13:01:15\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-15T17:43:02\"}"
                         },
                         "description": ""
                     },
@@ -2954,7 +2980,7 @@
                                 {
                                     "id": "cashMovement_id",
                                     "key": "cashMovement_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the cashMovement."
                                 }
                             ]
@@ -2991,7 +3017,7 @@
                                 {
                                     "id": "cashMovement_id",
                                     "key": "cashMovement_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the cashMovement."
                                 }
                             ]
@@ -3071,7 +3097,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"direction\":\"in\"}"
+                            "raw": "{\"name\":\"b\",\"direction\":\"out\"}"
                         },
                         "description": ""
                     },
@@ -3571,7 +3597,7 @@
                                 {
                                     "id": "role_id",
                                     "key": "role_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -3593,7 +3619,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"permissions\":[\"consequatur\"]}"
+                            "raw": "{\"permissions\":[\"architecto\"]}"
                         },
                         "description": ""
                     },
@@ -3654,7 +3680,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"details\":\"consequatur\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":false,\"qr_labels_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":19,\"loyalty_redeem_threshold\":70,\"loyalty_redeem_value\":70,\"hours_classic\":13,\"hours_express\":66,\"hours_repass\":14,\"collection_fee\":65,\"delivery_fee\":72,\"reporting_currency\":\"fvy\",\"primary_color\":\"vddqamniihfqc\",\"secondary_color\":\"oynlazghdtqtq\"}"
+                            "raw": "{\"name\":\"b\",\"details\":\"architecto\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":false,\"qr_labels_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":76,\"loyalty_redeem_threshold\":16,\"loyalty_redeem_value\":42,\"hours_classic\":40,\"hours_express\":4,\"hours_repass\":2,\"collection_fee\":8,\"delivery_fee\":75,\"reporting_currency\":\"hwa\",\"primary_color\":\"ykcmyuwpwlvqwrsi\",\"secondary_color\":\"tcpscqldzsnrwtuj\"}"
                         },
                         "description": ""
                     },
@@ -3672,7 +3698,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -3694,7 +3720,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"address\":\"consequatur\",\"contact\":\"consequatur\",\"currency\":\"mqe\",\"code_prefix\":\"opfuudt\",\"code_suffix\":\"dsufvyv\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -3784,7 +3810,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"vmq\",\"target_currency\":\"eop\",\"rate\":11613.31890586,\"rate_date\":\"2026-10-06T13:01:15\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-15T17:43:02\"}"
                         },
                         "description": ""
                     },
@@ -3802,7 +3828,7 @@
                                 {
                                     "id": "exchangeRate_id",
                                     "key": "exchangeRate_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the exchangeRate."
                                 }
                             ]
@@ -3882,7 +3908,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"address\":\"consequatur\",\"contact\":\"consequatur\",\"country_code\":\"mq\",\"currency\":\"eop\",\"code_prefix\":\"fuudtds\",\"code_suffix\":\"ufvyvdd\"}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\"}"
                         },
                         "description": ""
                     },
@@ -3943,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"vmqeopfuudtdsufvyvddq\",\"email\":\"kunde.eloisa@example.com\",\"password\":\"4[*UyPJ\\\"}6\",\"agency_id\":\"consequatur\",\"role\":\"consequatur\"}"
+                            "raw": "{\"fullname\":\"b\",\"email\":\"zbailey@example.net\",\"password\":\"-0pBNvYgxw\",\"agency_id\":\"architecto\",\"role\":\"architecto\"}"
                         },
                         "description": ""
                     },
@@ -3961,7 +3987,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -3983,7 +4009,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"vmqeopfuudtdsufvyvddq\",\"email\":\"kunde.eloisa@example.com\",\"password\":\"4[*UyPJ\\\"}6\",\"status\":true}"
+                            "raw": "{\"fullname\":\"b\",\"email\":\"zbailey@example.net\",\"password\":\"-0pBNvYgxw\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -4001,7 +4027,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -4096,7 +4122,7 @@
                                 {
                                     "id": "role_id",
                                     "key": "role_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -4118,7 +4144,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"permissions\":[\"consequatur\"]}"
+                            "raw": "{\"permissions\":[\"architecto\"]}"
                         },
                         "description": ""
                     },
@@ -4287,7 +4313,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -4402,7 +4428,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"details\":\"consequatur\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":false,\"block_retrieve_if_unpaid\":true}"
+                            "raw": "{\"name\":\"b\",\"details\":\"architecto\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":false,\"block_retrieve_if_unpaid\":true}"
                         },
                         "description": ""
                     },
@@ -4420,7 +4446,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -4457,7 +4483,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -4479,7 +4505,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"details\":\"consequatur\",\"status\":false,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":false,\"workflow_classeur_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":19,\"hours_classic\":70,\"hours_express\":71,\"hours_repass\":13}"
+                            "raw": "{\"name\":\"b\",\"details\":\"architecto\",\"status\":false,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":false,\"workflow_classeur_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":76,\"hours_classic\":16,\"hours_express\":26,\"hours_repass\":40}"
                         },
                         "description": ""
                     },
@@ -4497,7 +4523,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -4577,7 +4603,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pressing_id\":\"consequatur\",\"name\":\"mqeopfuudtdsufvyvddqa\",\"address\":\"consequatur\",\"contact\":\"consequatur\",\"country_code\":\"mq\",\"currency\":\"eop\",\"code_prefix\":\"fuudtds\",\"code_suffix\":\"ufvyvdd\"}"
+                            "raw": "{\"pressing_id\":\"architecto\",\"name\":\"n\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\"}"
                         },
                         "description": ""
                     },
@@ -4595,7 +4621,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -4632,7 +4658,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -4654,7 +4680,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"address\":\"consequatur\",\"contact\":\"consequatur\",\"country_code\":\"mq\",\"currency\":\"eop\",\"code_prefix\":\"fuudtds\",\"code_suffix\":\"ufvyvdd\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -4672,7 +4698,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -4767,7 +4793,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -4804,7 +4830,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -4884,7 +4910,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pressing_id\":\"consequatur\",\"plan\":\"mqeopfuudtdsufvyvddqa\",\"seats\":45,\"months\":46,\"activate\":false}"
+                            "raw": "{\"pressing_id\":\"architecto\",\"plan\":\"n\",\"seats\":67,\"months\":66,\"activate\":true}"
                         },
                         "description": ""
                     },
@@ -4902,7 +4928,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -4924,7 +4950,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"vmqeopfuudtdsufvyvddq\",\"seats\":2,\"status\":true,\"expires_at\":\"2026-10-06T13:01:15\"}"
+                            "raw": "{\"plan\":\"b\",\"seats\":22,\"status\":true,\"expires_at\":\"2026-10-15T17:43:01\"}"
                         },
                         "description": ""
                     },
@@ -4942,7 +4968,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -4964,7 +4990,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"months\":73}"
+                            "raw": "{\"months\":16}"
                         },
                         "description": ""
                     },
@@ -4982,7 +5008,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -5083,7 +5109,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the service."
                                 }
                             ]
@@ -5120,7 +5146,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consequatur",
+                                    "value": "architecto",
                                     "description": "The ID of the service."
                                 }
                             ]
@@ -5264,7 +5290,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"code\":\"amniihfqcoynlazghdtqt\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -5282,7 +5308,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the zone."
                                 }
                             ]
@@ -5304,7 +5330,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"code\":\"amniihfqcoynlazghdtqt\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -5365,7 +5391,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"consequatur\",\"livreur_id\":\"consequatur\",\"round_date\":\"2026-10-06T13:01:15\",\"name\":\"mqeopfuudtdsufvyvddqa\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-15T17:43:02\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -5383,7 +5409,7 @@
                                 {
                                     "id": "round_id",
                                     "key": "round_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the round."
                                 }
                             ]
@@ -5405,7 +5431,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"deposit_ids\":[17]}"
+                            "raw": "{\"deposit_ids\":[16]}"
                         },
                         "description": ""
                     },
@@ -5423,7 +5449,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -5445,7 +5471,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"delivery_address\":\"vmqeopfuudtdsufvyvddq\"}"
+                            "raw": "{\"delivery_address\":\"b\"}"
                         },
                         "description": ""
                     },
@@ -5463,7 +5489,7 @@
                                 {
                                     "id": "deposit_id",
                                     "key": "deposit_id",
-                                    "value": 17,
+                                    "value": 16,
                                     "description": "The ID of the deposit."
                                 }
                             ]
@@ -5485,7 +5511,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"confirmation_type\":\"consequatur\",\"confirmation_value\":\"consequatur\",\"receiver_name\":\"mqeopfuudtdsufvyvddqa\",\"collect_amount\":45,\"payment_method\":\"other\",\"require_settled\":false,\"client_uuid\":\"d63469cd-6701-3555-a16b-fc9764100c9a\"}"
+                            "raw": "{\"confirmation_type\":\"architecto\",\"confirmation_value\":\"architecto\",\"receiver_name\":\"n\",\"collect_amount\":84,\"payment_method\":\"cash\",\"require_settled\":true,\"client_uuid\":\"a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f\"}"
                         },
                         "description": ""
                     },

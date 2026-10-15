@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost:8000";
+        var tryItOutBaseUrl = "https://pressing-api.pressingelegance.com";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -66,16 +66,6 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
-                    <ul id="tocify-header-systeme" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="systeme">
-                    <a href="#systeme">Système</a>
-                </li>
-                                    <ul id="tocify-subheader-systeme" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="systeme-GETapi-v1-health">
-                                <a href="#systeme-GETapi-v1-health">Santé de l'API</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
                     <ul id="tocify-header-authentification" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentification">
                     <a href="#authentification">Authentification</a>
@@ -100,16 +90,16 @@
                                 <a href="#authentification-POSTapi-v1-auth-superadmin-login">Connexion superadmin</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-GETapi-v1-auth-me">
-                                <a href="#authentification-GETapi-v1-auth-me">GET api/v1/auth/me</a>
+                                <a href="#authentification-GETapi-v1-auth-me">Profil courant</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-PUTapi-v1-auth-profile">
-                                <a href="#authentification-PUTapi-v1-auth-profile">PUT api/v1/auth/profile</a>
+                                <a href="#authentification-PUTapi-v1-auth-profile">Mettre à jour le profil</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-logout">
-                                <a href="#authentification-POSTapi-v1-auth-logout">POST api/v1/auth/logout</a>
+                                <a href="#authentification-POSTapi-v1-auth-logout">Déconnexion</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-PUTapi-v1-client-profile">
-                                <a href="#authentification-PUTapi-v1-client-profile">PUT api/v1/client/profile</a>
+                                <a href="#authentification-PUTapi-v1-client-profile">Mettre à jour le profil</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -656,7 +646,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 6, 2026</li>
+        <li>Last updated: October 15, 2026</li>
     </ul>
 </div>
 
@@ -666,14 +656,15 @@
         <h1 id="introduction">Introduction</h1>
 <p>API REST Spark Pressing — multi-tenant (pressing / agence), Sanctum, montants en XAF entiers.</p>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost:8000</code>
+    <strong>Base URL</strong>: <code>https://pressing-api.pressingelegance.com</code>
 </aside>
 <pre><code>API JSON `{ data, meta, errors }`. Authentification **Bearer Sanctum**.
 
 **Acteurs**
-- Staff : `POST /api/v1/auth/staff/login` puis header `Authorization: Bearer {token}`
-- Client : `POST /api/v1/auth/client/login`
-- Superadmin : `POST /api/v1/auth/superadmin/login`
+- Staff : `POST /api/v1/auth/staff/login` → `{ data: { token, token_type, actor: "staff", user } }`
+- Client : `POST /api/v1/auth/client/login` → `actor: "client"`
+- Superadmin : `POST /api/v1/auth/superadmin/login` → `actor: "superadmin"`
+- Ensuite : header `Authorization: Bearer {token}`
 
 **Multi-tenant**
 - Un caissier est limité à son agence.
@@ -689,165 +680,7 @@ Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.</code></pre>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>Obtenez le token via <code>POST /api/v1/auth/staff/login</code> (email + password). Sur les routes staff, envoyez aussi <code>X-Agency-Id</code> pour filtrer une agence.</p>
 
-        <h1 id="systeme">Système</h1>
-
-    
-
-                                <h2 id="systeme-GETapi-v1-health">Santé de l&#039;API</h2>
-
-<p>
-</p>
-
-<p>Vérifie que l'API et la base sont joignables (sonde LB / ENF02).</p>
-
-<span id="example-requests-GETapi-v1-health">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/health" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/health"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "X-Agency-Id": "1",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-health">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-x-request-id: a22b6ccb-77d7-4d44-bc81-53d3bfc475bf
-access-control-allow-origin: *
-access-control-expose-headers: X-Request-Id
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;name&quot;: &quot;Spark Pressing API&quot;,
-        &quot;version&quot;: &quot;v1&quot;,
-        &quot;status&quot;: &quot;ok&quot;,
-        &quot;database&quot;: &quot;ok&quot;,
-        &quot;currency&quot;: &quot;XAF&quot;,
-        &quot;locale&quot;: &quot;fr&quot;
-    },
-    &quot;meta&quot;: {},
-    &quot;errors&quot;: null
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-health" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-health"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-health"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-health" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-health">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-health" data-method="GET"
-      data-path="api/v1/health"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-health', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-health"
-                    onclick="tryItOut('GETapi-v1-health');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-health"
-                    onclick="cancelTryOut('GETapi-v1-health');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-health"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/health</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-health"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-health"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Agency-Id"                data-endpoint="GETapi-v1-health"
-               value="1"
-               data-component="header">
-    <br>
-<p>Example: <code>1</code></p>
-            </div>
-                        </form>
-
-                <h1 id="authentification">Authentification</h1>
+        <h1 id="authentification">Authentification</h1>
 
     
 
@@ -856,7 +689,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-
+<p>Retourne un token Sanctum Bearer et le profil staff (rôles, agence, pressing).</p>
 
 <span id="example-requests-POSTapi-v1-auth-staff-login">
 <blockquote>Example request:</blockquote>
@@ -864,20 +697,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/staff/login" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"email\": \"qkunze@example.com\",
-    \"password\": \"O[2UZ5ij-e\\/dl4m{o,\"
+    \"email\": \"caissier@elegance.local\",
+    \"password\": \"password\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/staff/login"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/login"
 );
 
 const headers = {
@@ -887,8 +720,8 @@ const headers = {
 };
 
 let body = {
-    "email": "qkunze@example.com",
-    "password": "O[2UZ5ij-e\/dl4m{o,"
+    "email": "caissier@elegance.local",
+    "password": "password"
 };
 
 fetch(url, {
@@ -900,7 +733,116 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-staff-login">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;1|abcExampleSanctumToken&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;actor&quot;: &quot;staff&quot;,
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+            &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+            &quot;phone_number&quot;: null,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;status&quot;: true,
+            &quot;roles&quot;: [
+                &quot;caissier&quot;
+            ],
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;,
+                &quot;address&quot;: &quot;Douala, Akwa&quot;,
+                &quot;contact&quot;: &quot;+237600000001&quot;,
+                &quot;country_code&quot;: &quot;CM&quot;,
+                &quot;currency&quot;: &quot;XAF&quot;,
+                &quot;code_prefix&quot;: &quot;AK&quot;,
+                &quot;code_suffix&quot;: &quot;EL&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;agencies&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;pressing_id&quot;: 1,
+                    &quot;name&quot;: &quot;Akwa&quot;,
+                    &quot;address&quot;: &quot;Douala, Akwa&quot;,
+                    &quot;contact&quot;: &quot;+237600000001&quot;,
+                    &quot;country_code&quot;: &quot;CM&quot;,
+                    &quot;currency&quot;: &quot;XAF&quot;,
+                    &quot;code_prefix&quot;: &quot;AK&quot;,
+                    &quot;code_suffix&quot;: &quot;EL&quot;,
+                    &quot;status&quot;: true
+                }
+            ],
+            &quot;pressing&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+                &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+                &quot;status&quot;: true,
+                &quot;pricing_mode&quot;: &quot;piece&quot;,
+                &quot;workflow_laveur_enabled&quot;: true,
+                &quot;workflow_classeur_enabled&quot;: true,
+                &quot;qr_labels_enabled&quot;: false,
+                &quot;block_retrieve_if_unpaid&quot;: true,
+                &quot;reporting_currency&quot;: null,
+                &quot;collection_fee&quot;: 0,
+                &quot;delivery_fee&quot;: 0,
+                &quot;loyalty_points_rate&quot;: 0,
+                &quot;hours_classic&quot;: null,
+                &quot;hours_express&quot;: null,
+                &quot;hours_repass&quot;: null
+            },
+            &quot;can_view_all_agencies&quot;: false
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Compte désactivé):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Compte d&eacute;sactiv&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;error&quot;,
+            &quot;detail&quot;: &quot;Compte d&eacute;sactiv&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Identifiants invalides):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;email&quot;,
+            &quot;detail&quot;: &quot;Identifiants invalides.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-staff-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-staff-login"></span>:
@@ -992,10 +934,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-staff-login"
-               value="qkunze@example.com"
+               value="caissier@elegance.local"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>qkunze@example.com</code></p>
+<p>Email du compte staff. Example: <code>caissier@elegance.local</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1004,10 +946,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-staff-login"
-               value="O[2UZ5ij-e/dl4m{o,"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>O[2UZ5ij-e/dl4m{o,</code></p>
+<p>Mot de passe. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -1024,19 +966,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/staff/forgot-password" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/forgot-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"email\": \"qkunze@example.com\"
+    \"email\": \"caissier@elegance.local\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/staff/forgot-password"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/forgot-password"
 );
 
 const headers = {
@@ -1046,7 +988,7 @@ const headers = {
 };
 
 let body = {
-    "email": "qkunze@example.com"
+    "email": "caissier@elegance.local"
 };
 
 fetch(url, {
@@ -1058,7 +1000,20 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-staff-forgot-password">
-</span>
+            <blockquote>
+            <p>Example response (200, Lien envoyé (toujours 200 pour ne pas divulguer l’existence du compte)):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;sent&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-staff-forgot-password" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-staff-forgot-password"></span>:
@@ -1150,10 +1105,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-staff-forgot-password"
-               value="qkunze@example.com"
+               value="caissier@elegance.local"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>qkunze@example.com</code></p>
+<p>Example: <code>caissier@elegance.local</code></p>
         </div>
         </form>
 
@@ -1170,21 +1125,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/staff/reset-password" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/reset-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"email\": \"qkunze@example.com\",
-    \"token\": \"consequatur\",
-    \"password\": \"[2UZ5ij-e\\/dl4\"
+    \"email\": \"caissier@elegance.local\",
+    \"token\": \"reset-token\",
+    \"password\": \"password\",
+    \"password_confirmation\": \"password\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/staff/reset-password"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/reset-password"
 );
 
 const headers = {
@@ -1194,9 +1150,10 @@ const headers = {
 };
 
 let body = {
-    "email": "qkunze@example.com",
-    "token": "consequatur",
-    "password": "[2UZ5ij-e\/dl4"
+    "email": "caissier@elegance.local",
+    "token": "reset-token",
+    "password": "password",
+    "password_confirmation": "password"
 };
 
 fetch(url, {
@@ -1208,7 +1165,20 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-staff-reset-password">
-</span>
+            <blockquote>
+            <p>Example response (200, Mot de passe réinitialisé):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;reset&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-staff-reset-password" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-staff-reset-password"></span>:
@@ -1300,10 +1270,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-staff-reset-password"
-               value="qkunze@example.com"
+               value="caissier@elegance.local"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>qkunze@example.com</code></p>
+<p>Example: <code>caissier@elegance.local</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
@@ -1312,10 +1282,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="token"                data-endpoint="POSTapi-v1-auth-staff-reset-password"
-               value="consequatur"
+               value="reset-token"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Token reçu par email. Example: <code>reset-token</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1324,10 +1294,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-staff-reset-password"
-               value="[2UZ5ij-e/dl4"
+               value="password"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>[2UZ5ij-e/dl4</code></p>
+<p>Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-v1-auth-staff-reset-password"
+               value="password"
+               data-component="body">
+    <br>
+<p>Example: <code>password</code></p>
         </div>
         </form>
 
@@ -1336,7 +1318,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-
+<p>Login par email ou téléphone. Retourne un token Bearer et le profil client.</p>
 
 <span id="example-requests-POSTapi-v1-auth-client-login">
 <blockquote>Example request:</blockquote>
@@ -1344,20 +1326,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/client/login" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/client/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"login\": \"consequatur\",
-    \"password\": \"O[2UZ5ij-e\\/dl4m{o,\"
+    \"login\": \"jean.client@example.com\",
+    \"password\": \"password\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/client/login"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/client/login"
 );
 
 const headers = {
@@ -1367,8 +1349,8 @@ const headers = {
 };
 
 let body = {
-    "login": "consequatur",
-    "password": "O[2UZ5ij-e\/dl4m{o,"
+    "login": "jean.client@example.com",
+    "password": "password"
 };
 
 fetch(url, {
@@ -1380,7 +1362,58 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-client-login">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;2|abcExampleClientToken&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;actor&quot;: &quot;client&quot;,
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: null,
+            &quot;loyalty_points&quot;: 0,
+            &quot;wallet_balance&quot;: 0,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: null,
+            &quot;status&quot;: true
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Identifiants invalides):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;email&quot;,
+            &quot;detail&quot;: &quot;Identifiants invalides.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-client-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-client-login"></span>:
@@ -1472,10 +1505,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="login"                data-endpoint="POSTapi-v1-auth-client-login"
-               value="consequatur"
+               value="jean.client@example.com"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Email ou numéro de téléphone. Example: <code>jean.client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1484,10 +1517,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-client-login"
-               value="O[2UZ5ij-e/dl4m{o,"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>O[2UZ5ij-e/dl4m{o,</code></p>
+<p>Mot de passe. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -1496,7 +1529,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-
+<p>Crée un compte client et retourne immédiatement un token Bearer.</p>
 
 <span id="example-requests-POSTapi-v1-auth-client-register">
 <blockquote>Example request:</blockquote>
@@ -1504,24 +1537,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/client/register" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/client/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"pressing_id\": \"consequatur\",
-    \"fullname\": \"mqeopfuudtdsufvyvddqa\",
-    \"phone_number\": \"mniihfqcoynlazghdtqtq\",
-    \"email\": \"ablanda@example.org\",
-    \"password\": \"\'YAKYLk4&gt;SJIrIV#lz.\",
-    \"sponsor_code\": \"lsmsjuryvo\"
+    \"pressing_id\": 1,
+    \"agency_id\": 1,
+    \"fullname\": \"Marie Dupont\",
+    \"phone_number\": \"690000099\",
+    \"email\": \"marie@example.com\",
+    \"password\": \"password\",
+    \"sponsor_code\": \"JEAN01\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/client/register"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/client/register"
 );
 
 const headers = {
@@ -1531,12 +1565,13 @@ const headers = {
 };
 
 let body = {
-    "pressing_id": "consequatur",
-    "fullname": "mqeopfuudtdsufvyvddqa",
-    "phone_number": "mniihfqcoynlazghdtqtq",
-    "email": "ablanda@example.org",
-    "password": "'YAKYLk4&gt;SJIrIV#lz.",
-    "sponsor_code": "lsmsjuryvo"
+    "pressing_id": 1,
+    "agency_id": 1,
+    "fullname": "Marie Dupont",
+    "phone_number": "690000099",
+    "email": "marie@example.com",
+    "password": "password",
+    "sponsor_code": "JEAN01"
 };
 
 fetch(url, {
@@ -1548,7 +1583,39 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-client-register">
-</span>
+            <blockquote>
+            <p>Example response (201, Créé):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;3|abcExampleRegisterToken&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;actor&quot;: &quot;client&quot;,
+        &quot;user&quot;: {
+            &quot;id&quot;: 2,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000002&quot;,
+            &quot;fullname&quot;: &quot;Marie Dupont&quot;,
+            &quot;email&quot;: &quot;marie@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000099&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: null,
+            &quot;loyalty_points&quot;: 0,
+            &quot;wallet_balance&quot;: 0,
+            &quot;sponsor_code&quot;: &quot;MARIE1&quot;,
+            &quot;referred_by_id&quot;: 1,
+            &quot;last_deposit_at&quot;: null,
+            &quot;status&quot;: true
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-client-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-client-register"></span>:
@@ -1635,27 +1702,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pressing_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="pressing_id"                data-endpoint="POSTapi-v1-auth-client-register"
-               value="consequatur"
+                <input type="number" style="display: none"
+               step="any"               name="pressing_id"                data-endpoint="POSTapi-v1-auth-client-register"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>ID du pressing. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="agency_id"                data-endpoint="POSTapi-v1-auth-client-register"
-               value=""
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="POSTapi-v1-auth-client-register"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>Agence de rattachement. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
@@ -1664,10 +1731,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="POSTapi-v1-auth-client-register"
-               value="mqeopfuudtdsufvyvddqa"
+               value="Marie Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>Nom complet. Example: <code>Marie Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -1676,10 +1743,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="POSTapi-v1-auth-client-register"
-               value="mniihfqcoynlazghdtqtq"
+               value="690000099"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mniihfqcoynlazghdtqtq</code></p>
+<p>Téléphone unique par pressing. Example: <code>690000099</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1688,10 +1755,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-client-register"
-               value="ablanda@example.org"
+               value="marie@example.com"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>ablanda@example.org</code></p>
+<p>Email optionnel. Example: <code>marie@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1700,10 +1767,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-client-register"
-               value="'YAKYLk4>SJIrIV#lz."
+               value="password"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>'YAKYLk4&gt;SJIrIV#lz.</code></p>
+<p>Mot de passe (min. 8). Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sponsor_code</code></b>&nbsp;&nbsp;
@@ -1712,10 +1779,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="sponsor_code"                data-endpoint="POSTapi-v1-auth-client-register"
-               value="lsmsjuryvo"
+               value="JEAN01"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>lsmsjuryvo</code></p>
+<p>Code parrainage. Example: <code>JEAN01</code></p>
         </div>
         </form>
 
@@ -1724,7 +1791,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-
+<p>Back-office multi-pressing. <code>actor</code> vaut <code>superadmin</code>.</p>
 
 <span id="example-requests-POSTapi-v1-auth-superadmin-login">
 <blockquote>Example request:</blockquote>
@@ -1732,20 +1799,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/superadmin/login" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/superadmin/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"email\": \"qkunze@example.com\",
-    \"password\": \"O[2UZ5ij-e\\/dl4m{o,\"
+    \"email\": \"superadmin@spark.local\",
+    \"password\": \"password\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/superadmin/login"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/superadmin/login"
 );
 
 const headers = {
@@ -1755,8 +1822,8 @@ const headers = {
 };
 
 let body = {
-    "email": "qkunze@example.com",
-    "password": "O[2UZ5ij-e\/dl4m{o,"
+    "email": "superadmin@spark.local",
+    "password": "password"
 };
 
 fetch(url, {
@@ -1768,7 +1835,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-superadmin-login">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;4|abcExampleSuperadminToken&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;actor&quot;: &quot;superadmin&quot;,
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Super Admin SPARK&quot;,
+            &quot;email&quot;: &quot;superadmin@spark.local&quot;,
+            &quot;type&quot;: &quot;superadmin&quot;
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Identifiants invalides):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;email&quot;,
+            &quot;detail&quot;: &quot;Identifiants invalides.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-superadmin-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-superadmin-login"></span>:
@@ -1860,10 +1967,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-superadmin-login"
-               value="qkunze@example.com"
+               value="superadmin@spark.local"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>qkunze@example.com</code></p>
+<p>Email superadmin. Example: <code>superadmin@spark.local</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1872,20 +1979,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-superadmin-login"
-               value="O[2UZ5ij-e/dl4m{o,"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>O[2UZ5ij-e/dl4m{o,</code></p>
+<p>Mot de passe. Example: <code>password</code></p>
         </div>
         </form>
 
-                    <h2 id="authentification-GETapi-v1-auth-me">GET api/v1/auth/me</h2>
+                    <h2 id="authentification-GETapi-v1-auth-me">Profil courant</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Retourne l’acteur authentifié (staff, client ou superadmin) selon le token Bearer.</p>
 
 <span id="example-requests-GETapi-v1-auth-me">
 <blockquote>Example request:</blockquote>
@@ -1893,7 +2000,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/auth/me" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/auth/me" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1902,7 +2009,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/me"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/me"
 );
 
 const headers = {
@@ -1921,6 +2028,73 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-auth-me">
+            <blockquote>
+            <p>Example response (200, Staff):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: null,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ],
+        &quot;permissions&quot;: [
+            &quot;deposits.view&quot;,
+            &quot;deposits.create&quot;,
+            &quot;cash.manage&quot;
+        ],
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;,
+            &quot;currency&quot;: &quot;XAF&quot;
+        },
+        &quot;agencies&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            }
+        ],
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;
+        },
+        &quot;can_view_all_agencies&quot;: false
+    },
+    &quot;meta&quot;: {
+        &quot;actor&quot;: &quot;staff&quot;,
+        &quot;can_view_all_agencies&quot;: false,
+        &quot;allowed_agency_ids&quot;: [
+            1
+        ]
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-auth-me" hidden>
     <blockquote>Received response<span
@@ -2019,7 +2193,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="authentification-PUTapi-v1-auth-profile">PUT api/v1/auth/profile</h2>
+                    <h2 id="authentification-PUTapi-v1-auth-profile">Mettre à jour le profil</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2033,24 +2207,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/auth/profile" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/profile" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"vmqeopfuudtdsufvyvddq\",
-    \"phone_number\": \"amniihfqcoynlazghdtqt\",
-    \"address\": \"consequatur\",
-    \"email\": \"carolyne.luettgen@example.org\",
-    \"password\": \"ij-e\\/dl4m\"
+    \"fullname\": \"Claire Caissier\",
+    \"phone_number\": \"690000010\",
+    \"address\": \"architecto\",
+    \"email\": \"caissier@elegance.local\",
+    \"password\": \"password\",
+    \"password_confirmation\": \"password\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/profile"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/profile"
 );
 
 const headers = {
@@ -2061,11 +2236,12 @@ const headers = {
 };
 
 let body = {
-    "fullname": "vmqeopfuudtdsufvyvddq",
-    "phone_number": "amniihfqcoynlazghdtqt",
-    "address": "consequatur",
-    "email": "carolyne.luettgen@example.org",
-    "password": "ij-e\/dl4m"
+    "fullname": "Claire Caissier",
+    "phone_number": "690000010",
+    "address": "architecto",
+    "email": "caissier@elegance.local",
+    "password": "password",
+    "password_confirmation": "password"
 };
 
 fetch(url, {
@@ -2077,7 +2253,29 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-auth-profile">
-</span>
+            <blockquote>
+            <p>Example response (200, Profil mis à jour):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: &quot;690000010&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-auth-profile" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-auth-profile"></span>:
@@ -2181,10 +2379,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-auth-profile"
-               value="vmqeopfuudtdsufvyvddq"
+               value="Claire Caissier"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>Example: <code>Claire Caissier</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -2193,10 +2391,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="PUTapi-v1-auth-profile"
-               value="amniihfqcoynlazghdtqt"
+               value="690000010"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>Example: <code>690000010</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -2205,10 +2403,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-auth-profile"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -2217,10 +2415,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-auth-profile"
-               value="carolyne.luettgen@example.org"
+               value="caissier@elegance.local"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>carolyne.luettgen@example.org</code></p>
+<p>Example: <code>caissier@elegance.local</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -2229,20 +2427,32 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-auth-profile"
-               value="ij-e/dl4m"
+               value="password"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>ij-e/dl4m</code></p>
+<p>Nouveau mot de passe (min. 8). Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="PUTapi-v1-auth-profile"
+               value="password"
+               data-component="body">
+    <br>
+<p>Example: <code>password</code></p>
         </div>
         </form>
 
-                    <h2 id="authentification-POSTapi-v1-auth-logout">POST api/v1/auth/logout</h2>
+                    <h2 id="authentification-POSTapi-v1-auth-logout">Déconnexion</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Invalide le token Sanctum courant.</p>
 
 <span id="example-requests-POSTapi-v1-auth-logout">
 <blockquote>Example request:</blockquote>
@@ -2250,7 +2460,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/logout" \
+    "https://pressing-api.pressingelegance.com/api/v1/auth/logout" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2259,7 +2469,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/logout"
+    "https://pressing-api.pressingelegance.com/api/v1/auth/logout"
 );
 
 const headers = {
@@ -2278,7 +2488,20 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-logout">
-</span>
+            <blockquote>
+            <p>Example response (200, Déconnecté):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;logged_out&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-auth-logout" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-auth-logout"></span>:
@@ -2376,7 +2599,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="authentification-PUTapi-v1-client-profile">PUT api/v1/client/profile</h2>
+                    <h2 id="authentification-PUTapi-v1-client-profile">Mettre à jour le profil</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2390,24 +2613,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/client/profile" \
+    "https://pressing-api.pressingelegance.com/api/v1/client/profile" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"vmqeopfuudtdsufvyvddq\",
-    \"phone_number\": \"amniihfqcoynlazghdtqt\",
-    \"address\": \"consequatur\",
-    \"email\": \"carolyne.luettgen@example.org\",
-    \"password\": \"ij-e\\/dl4m\"
+    \"fullname\": \"Claire Caissier\",
+    \"phone_number\": \"690000010\",
+    \"address\": \"architecto\",
+    \"email\": \"caissier@elegance.local\",
+    \"password\": \"password\",
+    \"password_confirmation\": \"password\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/client/profile"
+    "https://pressing-api.pressingelegance.com/api/v1/client/profile"
 );
 
 const headers = {
@@ -2418,11 +2642,12 @@ const headers = {
 };
 
 let body = {
-    "fullname": "vmqeopfuudtdsufvyvddq",
-    "phone_number": "amniihfqcoynlazghdtqt",
-    "address": "consequatur",
-    "email": "carolyne.luettgen@example.org",
-    "password": "ij-e\/dl4m"
+    "fullname": "Claire Caissier",
+    "phone_number": "690000010",
+    "address": "architecto",
+    "email": "caissier@elegance.local",
+    "password": "password",
+    "password_confirmation": "password"
 };
 
 fetch(url, {
@@ -2434,7 +2659,29 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-client-profile">
-</span>
+            <blockquote>
+            <p>Example response (200, Profil mis à jour):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: &quot;690000010&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-client-profile" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-client-profile"></span>:
@@ -2538,10 +2785,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-client-profile"
-               value="vmqeopfuudtdsufvyvddq"
+               value="Claire Caissier"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>Example: <code>Claire Caissier</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -2550,10 +2797,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="PUTapi-v1-client-profile"
-               value="amniihfqcoynlazghdtqt"
+               value="690000010"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>Example: <code>690000010</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -2562,10 +2809,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-client-profile"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -2574,10 +2821,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-client-profile"
-               value="carolyne.luettgen@example.org"
+               value="caissier@elegance.local"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>carolyne.luettgen@example.org</code></p>
+<p>Example: <code>caissier@elegance.local</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -2586,10 +2833,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-client-profile"
-               value="ij-e/dl4m"
+               value="password"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>ij-e/dl4m</code></p>
+<p>Nouveau mot de passe (min. 8). Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="PUTapi-v1-client-profile"
+               value="password"
+               data-component="body">
+    <br>
+<p>Example: <code>password</code></p>
         </div>
         </form>
 
@@ -2611,7 +2870,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/dashboard" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/dashboard" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2620,7 +2879,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/dashboard"
+    "https://pressing-api.pressingelegance.com/api/v1/dashboard"
 );
 
 const headers = {
@@ -2751,7 +3010,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/pos/bootstrap" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/pos/bootstrap" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2760,7 +3019,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/pos/bootstrap"
+    "https://pressing-api.pressingelegance.com/api/v1/pos/bootstrap"
 );
 
 const headers = {
@@ -2891,7 +3150,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/sync" \
+    "https://pressing-api.pressingelegance.com/api/v1/sync" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2901,7 +3160,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         {
             \"type\": \"payment\",
             \"payload\": [],
-            \"client_uuid\": \"66529e01-d113-3473-8d6f-9e11e09332ea\"
+            \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\"
         }
     ]
 }"
@@ -2910,7 +3169,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/sync"
+    "https://pressing-api.pressingelegance.com/api/v1/sync"
 );
 
 const headers = {
@@ -2925,7 +3184,7 @@ let body = {
         {
             "type": "payment",
             "payload": [],
-            "client_uuid": "66529e01-d113-3473-8d6f-9e11e09332ea"
+            "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed"
         }
     ]
 };
@@ -3079,10 +3338,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="operations.0.client_uuid"                data-endpoint="POSTapi-v1-sync"
-               value="66529e01-d113-3473-8d6f-9e11e09332ea"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
                     </div>
                                     </details>
         </div>
@@ -3106,7 +3365,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits/due" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/due" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3115,7 +3374,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/due"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/due"
 );
 
 const headers = {
@@ -3246,7 +3505,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits/retrieved" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/retrieved" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3255,7 +3514,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/retrieved"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/retrieved"
 );
 
 const headers = {
@@ -3386,7 +3645,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits/ready" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/ready" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3395,7 +3654,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/ready"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/ready"
 );
 
 const headers = {
@@ -3526,7 +3785,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits/qr/consequatur" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/qr/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3535,7 +3794,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/qr/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/qr/architecto"
 );
 
 const headers = {
@@ -3658,10 +3917,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="token"                data-endpoint="GETapi-v1-deposits-qr--token-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -3679,7 +3938,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3688,7 +3947,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits"
 );
 
 const headers = {
@@ -3819,40 +4078,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deposits" \
+    "https://pressing-api.pressingelegance.com/api/v1/deposits" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"66529e01-d113-3473-8d6f-9e11e09332ea\",
-    \"client_id\": \"consequatur\",
-    \"discount\": 45,
-    \"discount_percent\": 16,
-    \"promo_code\": \"consequatur\",
-    \"promo_special_code\": \"consequatur\",
-    \"points_to_redeem\": 45,
+    \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"client_id\": \"architecto\",
+    \"discount\": 39,
+    \"discount_percent\": 7,
+    \"promo_code\": \"architecto\",
+    \"promo_special_code\": \"architecto\",
+    \"points_to_redeem\": 39,
     \"with_collection\": true,
     \"with_delivery\": false,
-    \"collection_fee\": 50,
-    \"delivery_fee\": 55,
-    \"delivery_address\": \"fuudtdsufvyvddqamniih\",
-    \"advanced\": 18,
-    \"payment_method\": \"wallet\",
-    \"deposit_date\": \"2026-10-06T13:01:15\",
-    \"retrieve_date\": \"2026-10-06T13:01:15\",
-    \"notes\": \"consequatur\",
+    \"collection_fee\": 77,
+    \"delivery_fee\": 8,
+    \"delivery_address\": \"y\",
+    \"advanced\": 60,
+    \"payment_method\": \"cash\",
+    \"deposit_date\": \"2026-10-15T17:43:02\",
+    \"retrieve_date\": \"2026-10-15T17:43:02\",
+    \"notes\": \"architecto\",
     \"lines\": [
         {
-            \"article_id\": \"consequatur\",
-            \"quantity\": 45,
+            \"article_id\": \"architecto\",
+            \"quantity\": 22,
             \"type_action\": 0,
             \"pricing_type\": \"kilo\",
-            \"weight_kg\": 50,
-            \"unit_price\": 55,
-            \"designation\": \"consequatur\",
-            \"state\": \"consequatur\",
-            \"render_id\": 17
+            \"weight_kg\": 77,
+            \"unit_price\": 8,
+            \"designation\": \"architecto\",
+            \"state\": \"architecto\",
+            \"render_id\": 16
         }
     ]
 }"
@@ -3861,7 +4120,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits"
 );
 
 const headers = {
@@ -3872,34 +4131,34 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "66529e01-d113-3473-8d6f-9e11e09332ea",
-    "client_id": "consequatur",
-    "discount": 45,
-    "discount_percent": 16,
-    "promo_code": "consequatur",
-    "promo_special_code": "consequatur",
-    "points_to_redeem": 45,
+    "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "client_id": "architecto",
+    "discount": 39,
+    "discount_percent": 7,
+    "promo_code": "architecto",
+    "promo_special_code": "architecto",
+    "points_to_redeem": 39,
     "with_collection": true,
     "with_delivery": false,
-    "collection_fee": 50,
-    "delivery_fee": 55,
-    "delivery_address": "fuudtdsufvyvddqamniih",
-    "advanced": 18,
-    "payment_method": "wallet",
-    "deposit_date": "2026-10-06T13:01:15",
-    "retrieve_date": "2026-10-06T13:01:15",
-    "notes": "consequatur",
+    "collection_fee": 77,
+    "delivery_fee": 8,
+    "delivery_address": "y",
+    "advanced": 60,
+    "payment_method": "cash",
+    "deposit_date": "2026-10-15T17:43:02",
+    "retrieve_date": "2026-10-15T17:43:02",
+    "notes": "architecto",
     "lines": [
         {
-            "article_id": "consequatur",
-            "quantity": 45,
+            "article_id": "architecto",
+            "quantity": 22,
             "type_action": 0,
             "pricing_type": "kilo",
-            "weight_kg": 50,
-            "unit_price": 55,
-            "designation": "consequatur",
-            "state": "consequatur",
-            "render_id": 17
+            "weight_kg": 77,
+            "unit_price": 8,
+            "designation": "architecto",
+            "state": "architecto",
+            "render_id": 16
         }
     ]
 };
@@ -4017,10 +4276,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits"
-               value="66529e01-d113-3473-8d6f-9e11e09332ea"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
@@ -4029,10 +4288,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_id"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount</code></b>&nbsp;&nbsp;
@@ -4041,10 +4300,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="discount"                data-endpoint="POSTapi-v1-deposits"
-               value="45"
+               value="39"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>39</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount_percent</code></b>&nbsp;&nbsp;
@@ -4053,10 +4312,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="discount_percent"                data-endpoint="POSTapi-v1-deposits"
-               value="16"
+               value="7"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>16</code></p>
+<p>validation.min validation.max. Example: <code>7</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>promo_code</code></b>&nbsp;&nbsp;
@@ -4065,10 +4324,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="promo_code"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>promo_special_code</code></b>&nbsp;&nbsp;
@@ -4077,10 +4336,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="promo_special_code"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>points_to_redeem</code></b>&nbsp;&nbsp;
@@ -4089,10 +4348,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="points_to_redeem"                data-endpoint="POSTapi-v1-deposits"
-               value="45"
+               value="39"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>39</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
@@ -4145,10 +4404,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="POSTapi-v1-deposits"
-               value="50"
+               value="77"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>50</code></p>
+<p>validation.min. Example: <code>77</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -4157,10 +4416,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="POSTapi-v1-deposits"
-               value="55"
+               value="8"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>55</code></p>
+<p>validation.min. Example: <code>8</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
@@ -4181,10 +4440,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_address"                data-endpoint="POSTapi-v1-deposits"
-               value="fuudtdsufvyvddqamniih"
+               value="y"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>fuudtdsufvyvddqamniih</code></p>
+<p>validation.max. Example: <code>y</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>advanced</code></b>&nbsp;&nbsp;
@@ -4193,10 +4452,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="advanced"                data-endpoint="POSTapi-v1-deposits"
-               value="18"
+               value="60"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>18</code></p>
+<p>validation.min. Example: <code>60</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -4205,10 +4464,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-v1-deposits"
-               value="wallet"
+               value="cash"
                data-component="body">
     <br>
-<p>Example: <code>wallet</code></p>
+<p>Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
         </div>
@@ -4219,10 +4478,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -4231,10 +4490,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -4243,10 +4502,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="notes"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -4265,10 +4524,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.article_id"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
@@ -4289,10 +4548,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.quantity"                data-endpoint="POSTapi-v1-deposits"
-               value="45"
+               value="22"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>22</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type_action</code></b>&nbsp;&nbsp;
@@ -4329,10 +4588,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.weight_kg"                data-endpoint="POSTapi-v1-deposits"
-               value="50"
+               value="77"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>50</code></p>
+<p>validation.min. Example: <code>77</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>unit_price</code></b>&nbsp;&nbsp;
@@ -4341,10 +4600,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.unit_price"                data-endpoint="POSTapi-v1-deposits"
-               value="55"
+               value="8"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>55</code></p>
+<p>validation.min. Example: <code>8</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>designation</code></b>&nbsp;&nbsp;
@@ -4353,10 +4612,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.designation"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
@@ -4365,10 +4624,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.state"                data-endpoint="POSTapi-v1-deposits"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>render_id</code></b>&nbsp;&nbsp;
@@ -4377,10 +4636,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.render_id"                data-endpoint="POSTapi-v1-deposits"
-               value="17"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>17</code></p>
+<p>Example: <code>16</code></p>
                     </div>
                                     </details>
         </div>
@@ -4400,7 +4659,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits/17" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4409,7 +4668,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16"
 );
 
 const headers = {
@@ -4532,10 +4791,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-deposits--id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4553,23 +4812,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deposits/17/payments" \
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/payments" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"66529e01-d113-3473-8d6f-9e11e09332ea\",
-    \"amount\": 56,
+    \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-06T13:01:15\"
+    \"transaction_date\": \"2026-10-15T17:43:02\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17/payments"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/payments"
 );
 
 const headers = {
@@ -4580,10 +4839,10 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "66529e01-d113-3473-8d6f-9e11e09332ea",
-    "amount": 56,
+    "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-06T13:01:15"
+    "transaction_date": "2026-10-15T17:43:02"
 };
 
 fetch(url, {
@@ -4699,10 +4958,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4712,10 +4971,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="66529e01-d113-3473-8d6f-9e11e09332ea"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -4724,10 +4983,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="56"
+               value="67"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>56</code></p>
+<p>validation.min. Example: <code>67</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -4750,10 +5009,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
         </form>
 
@@ -4771,20 +5030,20 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deposits/17/retrieve" \
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"receiver_name\": \"vmqeopfuudtdsufvyvddq\"
+    \"receiver_name\": \"b\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17/retrieve"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve"
 );
 
 const headers = {
@@ -4795,7 +5054,7 @@ const headers = {
 };
 
 let body = {
-    "receiver_name": "vmqeopfuudtdsufvyvddq"
+    "receiver_name": "b"
 };
 
 fetch(url, {
@@ -4911,10 +5170,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4924,10 +5183,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="receiver_name"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
         </form>
 
@@ -4945,7 +5204,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deposits/17/retrieve-partial" \
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve-partial" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4953,8 +5212,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"units\": [
         {
-            \"id\": 17,
-            \"quantity\": 45
+            \"id\": 16,
+            \"quantity\": 22
         }
     ]
 }"
@@ -4963,7 +5222,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17/retrieve-partial"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve-partial"
 );
 
 const headers = {
@@ -4976,8 +5235,8 @@ const headers = {
 let body = {
     "units": [
         {
-            "id": 17,
-            "quantity": 45
+            "id": 16,
+            "quantity": 22
         }
     ]
 };
@@ -5095,10 +5354,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve-partial"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -5118,10 +5377,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="units.0.id"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve-partial"
-               value="17"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>17</code></p>
+<p>Example: <code>16</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -5130,10 +5389,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="units.0.quantity"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve-partial"
-               value="45"
+               value="22"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>22</code></p>
                     </div>
                                     </details>
         </div>
@@ -5153,21 +5412,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deposits/17/workshop" \
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/workshop" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
     \"etat\": \"waiting\",
-    \"qr_token\": \"consequatur\"
+    \"qr_token\": \"architecto\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17/workshop"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/workshop"
 );
 
 const headers = {
@@ -5179,7 +5438,7 @@ const headers = {
 
 let body = {
     "etat": "waiting",
-    "qr_token": "consequatur"
+    "qr_token": "architecto"
 };
 
 fetch(url, {
@@ -5295,10 +5554,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--workshop"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -5322,10 +5581,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="qr_token"                data-endpoint="POSTapi-v1-deposits--deposit_id--workshop"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -5343,7 +5602,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deposits/17/document" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/16/document" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5352,7 +5611,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17/document"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/document"
 );
 
 const headers = {
@@ -5475,10 +5734,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="GETapi-v1-deposits--deposit_id--document"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -5496,7 +5755,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/deposits/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5505,7 +5764,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deposits/17"
+    "https://pressing-api.pressingelegance.com/api/v1/deposits/16"
 );
 
 const headers = {
@@ -5628,10 +5887,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-deposits--id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -5653,7 +5912,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/inactive" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients/inactive" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5662,7 +5921,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/inactive"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/inactive"
 );
 
 const headers = {
@@ -5793,7 +6052,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5802,7 +6061,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients"
+    "https://pressing-api.pressingelegance.com/api/v1/clients"
 );
 
 const headers = {
@@ -5933,26 +6192,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients" \
+    "https://pressing-api.pressingelegance.com/api/v1/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"vmqeopfuudtdsufvyvddq\",
-    \"phone_number\": \"amniihfqcoynlazghdtqt\",
-    \"email\": \"andreanne00@example.org\",
-    \"address\": \"consequatur\",
-    \"city\": \"consequatur\",
-    \"password\": \"[2UZ5ij-e\\/dl4\",
-    \"sponsor_code\": \"vyvddqamni\"
+    \"fullname\": \"b\",
+    \"phone_number\": \"n\",
+    \"email\": \"ashly64@example.com\",
+    \"address\": \"architecto\",
+    \"city\": \"architecto\",
+    \"password\": \"]|{+-0pBNvYg\",
+    \"sponsor_code\": \"hway\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients"
+    "https://pressing-api.pressingelegance.com/api/v1/clients"
 );
 
 const headers = {
@@ -5963,13 +6222,13 @@ const headers = {
 };
 
 let body = {
-    "fullname": "vmqeopfuudtdsufvyvddq",
-    "phone_number": "amniihfqcoynlazghdtqt",
-    "email": "andreanne00@example.org",
-    "address": "consequatur",
-    "city": "consequatur",
-    "password": "[2UZ5ij-e\/dl4",
-    "sponsor_code": "vyvddqamni"
+    "fullname": "b",
+    "phone_number": "n",
+    "email": "ashly64@example.com",
+    "address": "architecto",
+    "city": "architecto",
+    "password": "]|{+-0pBNvYg",
+    "sponsor_code": "hway"
 };
 
 fetch(url, {
@@ -6085,10 +6344,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="POSTapi-v1-clients"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -6097,10 +6356,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="POSTapi-v1-clients"
-               value="amniihfqcoynlazghdtqt"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6109,10 +6368,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-clients"
-               value="andreanne00@example.org"
+               value="ashly64@example.com"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>andreanne00@example.org</code></p>
+<p>validation.email. Example: <code>ashly64@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -6121,10 +6380,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="POSTapi-v1-clients"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>city</code></b>&nbsp;&nbsp;
@@ -6133,10 +6392,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="city"                data-endpoint="POSTapi-v1-clients"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -6145,10 +6404,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-clients"
-               value="[2UZ5ij-e/dl4"
+               value="]|{+-0pBNvYg"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>[2UZ5ij-e/dl4</code></p>
+<p>validation.min. Example: <code>]|{+-0pBNvYg</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sponsor_code</code></b>&nbsp;&nbsp;
@@ -6157,10 +6416,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="sponsor_code"                data-endpoint="POSTapi-v1-clients"
-               value="vyvddqamni"
+               value="hway"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vyvddqamni</code></p>
+<p>validation.max. Example: <code>hway</code></p>
         </div>
         </form>
 
@@ -6178,7 +6437,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6187,7 +6446,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16"
 );
 
 const headers = {
@@ -6310,10 +6569,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-clients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -6331,7 +6590,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/state" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/state" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6340,7 +6599,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/state"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/state"
 );
 
 const headers = {
@@ -6463,10 +6722,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--state"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -6484,7 +6743,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/referrals" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/referrals" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6493,7 +6752,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/referrals"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/referrals"
 );
 
 const headers = {
@@ -6616,10 +6875,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--referrals"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -6637,26 +6896,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/clients/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"vmqeopfuudtdsufvyvddq\",
-    \"phone_number\": \"amniihfqcoynlazghdtqt\",
-    \"email\": \"andreanne00@example.org\",
-    \"address\": \"consequatur\",
-    \"city\": \"consequatur\",
+    \"fullname\": \"b\",
+    \"phone_number\": \"n\",
+    \"email\": \"ashly64@example.com\",
+    \"address\": \"architecto\",
+    \"city\": \"architecto\",
     \"status\": false,
-    \"password\": \"2UZ5ij-e\\/dl4m{o\"
+    \"password\": \"|{+-0pBNvYgx\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16"
 );
 
 const headers = {
@@ -6667,13 +6926,13 @@ const headers = {
 };
 
 let body = {
-    "fullname": "vmqeopfuudtdsufvyvddq",
-    "phone_number": "amniihfqcoynlazghdtqt",
-    "email": "andreanne00@example.org",
-    "address": "consequatur",
-    "city": "consequatur",
+    "fullname": "b",
+    "phone_number": "n",
+    "email": "ashly64@example.com",
+    "address": "architecto",
+    "city": "architecto",
     "status": false,
-    "password": "2UZ5ij-e\/dl4m{o"
+    "password": "|{+-0pBNvYgx"
 };
 
 fetch(url, {
@@ -6789,10 +7048,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-clients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -6802,10 +7061,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-clients--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -6814,10 +7073,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="PUTapi-v1-clients--id-"
-               value="amniihfqcoynlazghdtqt"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6826,10 +7085,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-clients--id-"
-               value="andreanne00@example.org"
+               value="ashly64@example.com"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>andreanne00@example.org</code></p>
+<p>validation.email. Example: <code>ashly64@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -6838,10 +7097,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-clients--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>city</code></b>&nbsp;&nbsp;
@@ -6850,10 +7109,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="city"                data-endpoint="PUTapi-v1-clients--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -6884,10 +7143,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-clients--id-"
-               value="2UZ5ij-e/dl4m{o"
+               value="|{+-0pBNvYgx"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>2UZ5ij-e/dl4m{o</code></p>
+<p>validation.min. Example: <code>|{+-0pBNvYgx</code></p>
         </div>
         </form>
 
@@ -6905,7 +7164,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/clients/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6914,7 +7173,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16"
 );
 
 const headers = {
@@ -7037,10 +7296,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-clients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -7058,7 +7317,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/loyalty" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/loyalty" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7067,7 +7326,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/loyalty"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/loyalty"
 );
 
 const headers = {
@@ -7190,10 +7449,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--loyalty"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -7211,7 +7470,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/wallet" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7220,7 +7479,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/wallet"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet"
 );
 
 const headers = {
@@ -7343,10 +7602,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--wallet"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -7364,21 +7623,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/wallet/credit" \
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/credit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"amount\": 73,
-    \"reason\": \"mqeopfuudtdsufvyvddqa\"
+    \"amount\": 16,
+    \"reason\": \"n\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/wallet/credit"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/credit"
 );
 
 const headers = {
@@ -7389,8 +7648,8 @@ const headers = {
 };
 
 let body = {
-    "amount": 73,
-    "reason": "mqeopfuudtdsufvyvddqa"
+    "amount": 16,
+    "reason": "n"
 };
 
 fetch(url, {
@@ -7506,10 +7765,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -7519,10 +7778,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="73"
+               value="16"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>73</code></p>
+<p>validation.min. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -7531,10 +7790,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="mqeopfuudtdsufvyvddqa"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
         </form>
 
@@ -7552,21 +7811,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/wallet/debit" \
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/debit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"amount\": 73,
-    \"reason\": \"mqeopfuudtdsufvyvddqa\"
+    \"amount\": 16,
+    \"reason\": \"n\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/wallet/debit"
+    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/debit"
 );
 
 const headers = {
@@ -7577,8 +7836,8 @@ const headers = {
 };
 
 let body = {
-    "amount": 73,
-    "reason": "mqeopfuudtdsufvyvddqa"
+    "amount": 16,
+    "reason": "n"
 };
 
 fetch(url, {
@@ -7694,10 +7953,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -7707,10 +7966,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="73"
+               value="16"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>73</code></p>
+<p>validation.min. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -7719,10 +7978,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="mqeopfuudtdsufvyvddqa"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
         </form>
 
@@ -7744,7 +8003,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/articles/export" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/articles/export" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7753,7 +8012,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/export"
+    "https://pressing-api.pressingelegance.com/api/v1/articles/export"
 );
 
 const headers = {
@@ -7884,7 +8143,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/articles/template" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/articles/template" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7893,7 +8152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/template"
+    "https://pressing-api.pressingelegance.com/api/v1/articles/template"
 );
 
 const headers = {
@@ -8024,17 +8283,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/articles/import" \
+    "https://pressing-api.pressingelegance.com/api/v1/articles/import" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpD4E3.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpAF78.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/import"
+    "https://pressing-api.pressingelegance.com/api/v1/articles/import"
 );
 
 const headers = {
@@ -8163,7 +8422,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpD4E3.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpAF78.tmp</code></p>
         </div>
         </form>
 
@@ -8181,7 +8440,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/articles" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/articles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8190,7 +8449,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles"
+    "https://pressing-api.pressingelegance.com/api/v1/articles"
 );
 
 const headers = {
@@ -8321,20 +8580,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/articles" \
+    "https://pressing-api.pressingelegance.com/api/v1/articles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"classic_price\": 12,
-    \"express_price\": 66,
-    \"repass_price\": 13,
-    \"classic_price_kilo\": 65,
-    \"express_price_kilo\": 72,
-    \"repass_price_kilo\": 18,
+    \"name\": \"b\",
+    \"description\": \"Eius et animi quos velit et.\",
+    \"classic_price\": 60,
+    \"express_price\": 42,
+    \"repass_price\": 37,
+    \"classic_price_kilo\": 9,
+    \"express_price_kilo\": 52,
+    \"repass_price_kilo\": 8,
     \"status\": true
 }"
 </code></pre></div>
@@ -8342,7 +8601,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles"
+    "https://pressing-api.pressingelegance.com/api/v1/articles"
 );
 
 const headers = {
@@ -8353,14 +8612,14 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "classic_price": 12,
-    "express_price": 66,
-    "repass_price": 13,
-    "classic_price_kilo": 65,
-    "express_price_kilo": 72,
-    "repass_price_kilo": 18,
+    "name": "b",
+    "description": "Eius et animi quos velit et.",
+    "classic_price": 60,
+    "express_price": 42,
+    "repass_price": 37,
+    "classic_price_kilo": 9,
+    "express_price_kilo": 52,
+    "repass_price_kilo": 8,
     "status": true
 };
 
@@ -8477,10 +8736,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-articles"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -8489,10 +8748,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-v1-articles"
-               value="Dolores dolorum amet iste laborum eius est dolor."
+               value="Eius et animi quos velit et."
                data-component="body">
     <br>
-<p>Example: <code>Dolores dolorum amet iste laborum eius est dolor.</code></p>
+<p>Example: <code>Eius et animi quos velit et.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price</code></b>&nbsp;&nbsp;
@@ -8501,10 +8760,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="classic_price"                data-endpoint="POSTapi-v1-articles"
-               value="12"
+               value="60"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>12</code></p>
+<p>validation.min. Example: <code>60</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
@@ -8513,10 +8772,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="express_price"                data-endpoint="POSTapi-v1-articles"
-               value="66"
+               value="42"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>66</code></p>
+<p>validation.min. Example: <code>42</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
@@ -8525,10 +8784,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="repass_price"                data-endpoint="POSTapi-v1-articles"
-               value="13"
+               value="37"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>13</code></p>
+<p>validation.min. Example: <code>37</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
@@ -8537,10 +8796,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="classic_price_kilo"                data-endpoint="POSTapi-v1-articles"
-               value="65"
+               value="9"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>65</code></p>
+<p>validation.min. Example: <code>9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
@@ -8549,10 +8808,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="express_price_kilo"                data-endpoint="POSTapi-v1-articles"
-               value="72"
+               value="52"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>72</code></p>
+<p>validation.min. Example: <code>52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
@@ -8561,10 +8820,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="repass_price_kilo"                data-endpoint="POSTapi-v1-articles"
-               value="18"
+               value="8"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>18</code></p>
+<p>validation.min. Example: <code>8</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -8604,7 +8863,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/articles/1" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8613,7 +8872,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/1"
+    "https://pressing-api.pressingelegance.com/api/v1/articles/16"
 );
 
 const headers = {
@@ -8736,10 +8995,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-articles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>1</code></p>
+<p>The ID of the article. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -8757,20 +9016,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/articles/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"classic_price\": 12,
-    \"express_price\": 66,
-    \"repass_price\": 13,
-    \"classic_price_kilo\": 65,
-    \"express_price_kilo\": 72,
-    \"repass_price_kilo\": 18,
+    \"name\": \"b\",
+    \"description\": \"Eius et animi quos velit et.\",
+    \"classic_price\": 60,
+    \"express_price\": 42,
+    \"repass_price\": 37,
+    \"classic_price_kilo\": 9,
+    \"express_price_kilo\": 52,
+    \"repass_price_kilo\": 8,
     \"status\": true
 }"
 </code></pre></div>
@@ -8778,7 +9037,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/1"
+    "https://pressing-api.pressingelegance.com/api/v1/articles/16"
 );
 
 const headers = {
@@ -8789,14 +9048,14 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "classic_price": 12,
-    "express_price": 66,
-    "repass_price": 13,
-    "classic_price_kilo": 65,
-    "express_price_kilo": 72,
-    "repass_price_kilo": 18,
+    "name": "b",
+    "description": "Eius et animi quos velit et.",
+    "classic_price": 60,
+    "express_price": 42,
+    "repass_price": 37,
+    "classic_price_kilo": 9,
+    "express_price_kilo": 52,
+    "repass_price_kilo": 8,
     "status": true
 };
 
@@ -8913,10 +9172,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-articles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>1</code></p>
+<p>The ID of the article. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -8926,10 +9185,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-articles--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -8938,10 +9197,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-v1-articles--id-"
-               value="Dolores dolorum amet iste laborum eius est dolor."
+               value="Eius et animi quos velit et."
                data-component="body">
     <br>
-<p>Example: <code>Dolores dolorum amet iste laborum eius est dolor.</code></p>
+<p>Example: <code>Eius et animi quos velit et.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price</code></b>&nbsp;&nbsp;
@@ -8950,10 +9209,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="classic_price"                data-endpoint="PUTapi-v1-articles--id-"
-               value="12"
+               value="60"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>12</code></p>
+<p>validation.min. Example: <code>60</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
@@ -8962,10 +9221,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="express_price"                data-endpoint="PUTapi-v1-articles--id-"
-               value="66"
+               value="42"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>66</code></p>
+<p>validation.min. Example: <code>42</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
@@ -8974,10 +9233,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="repass_price"                data-endpoint="PUTapi-v1-articles--id-"
-               value="13"
+               value="37"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>13</code></p>
+<p>validation.min. Example: <code>37</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
@@ -8986,10 +9245,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="classic_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
-               value="65"
+               value="9"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>65</code></p>
+<p>validation.min. Example: <code>9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
@@ -8998,10 +9257,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="express_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
-               value="72"
+               value="52"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>72</code></p>
+<p>validation.min. Example: <code>52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
@@ -9010,10 +9269,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="repass_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
-               value="18"
+               value="8"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>18</code></p>
+<p>validation.min. Example: <code>8</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -9053,7 +9312,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/articles/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9062,7 +9321,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/1"
+    "https://pressing-api.pressingelegance.com/api/v1/articles/16"
 );
 
 const headers = {
@@ -9185,10 +9444,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-articles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>1</code></p>
+<p>The ID of the article. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -9206,7 +9465,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/agency-prices" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/agency-prices" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9215,7 +9474,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/agency-prices"
+    "https://pressing-api.pressingelegance.com/api/v1/agency-prices"
 );
 
 const headers = {
@@ -9346,24 +9605,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/agency-prices/resolve" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/agency-prices/resolve" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"agency_id\": \"consequatur\",
-    \"article_id\": \"consequatur\",
-    \"service_id\": \"consequatur\",
+    \"agency_id\": \"architecto\",
+    \"article_id\": \"architecto\",
+    \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-06T13:01:15\"
+    \"at\": \"2026-10-15T17:43:02\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/agency-prices/resolve"
+    "https://pressing-api.pressingelegance.com/api/v1/agency-prices/resolve"
 );
 
 const headers = {
@@ -9374,11 +9633,11 @@ const headers = {
 };
 
 let body = {
-    "agency_id": "consequatur",
-    "article_id": "consequatur",
-    "service_id": "consequatur",
+    "agency_id": "architecto",
+    "article_id": "architecto",
+    "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-06T13:01:15"
+    "at": "2026-10-15T17:43:02"
 };
 
 fetch(url, {
@@ -9494,10 +9753,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
@@ -9506,10 +9765,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="article_id"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
@@ -9518,10 +9777,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="service_id"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_type</code></b>&nbsp;&nbsp;
@@ -9544,10 +9803,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
         </form>
 
@@ -9565,26 +9824,26 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/agency-prices" \
+    "https://pressing-api.pressingelegance.com/api/v1/agency-prices" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"agency_id\": \"consequatur\",
-    \"article_id\": \"consequatur\",
-    \"service_id\": \"consequatur\",
+    \"agency_id\": \"architecto\",
+    \"article_id\": \"architecto\",
+    \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"amount_minor\": 56,
-    \"valid_from\": \"2026-10-06T13:01:15\",
-    \"valid_to\": \"2107-11-05\"
+    \"amount_minor\": 84,
+    \"valid_from\": \"2026-10-15T17:43:02\",
+    \"valid_to\": \"2052-11-07\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/agency-prices"
+    "https://pressing-api.pressingelegance.com/api/v1/agency-prices"
 );
 
 const headers = {
@@ -9595,13 +9854,13 @@ const headers = {
 };
 
 let body = {
-    "agency_id": "consequatur",
-    "article_id": "consequatur",
-    "service_id": "consequatur",
+    "agency_id": "architecto",
+    "article_id": "architecto",
+    "service_id": "architecto",
     "pricing_type": "kilo",
-    "amount_minor": 56,
-    "valid_from": "2026-10-06T13:01:15",
-    "valid_to": "2107-11-05"
+    "amount_minor": 84,
+    "valid_from": "2026-10-15T17:43:02",
+    "valid_to": "2052-11-07"
 };
 
 fetch(url, {
@@ -9717,10 +9976,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-agency-prices"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
@@ -9729,10 +9988,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="article_id"                data-endpoint="POSTapi-v1-agency-prices"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
@@ -9741,10 +10000,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="service_id"                data-endpoint="POSTapi-v1-agency-prices"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_type</code></b>&nbsp;&nbsp;
@@ -9767,10 +10026,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount_minor"                data-endpoint="POSTapi-v1-agency-prices"
-               value="56"
+               value="84"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>56</code></p>
+<p>validation.min. Example: <code>84</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_from</code></b>&nbsp;&nbsp;
@@ -9779,10 +10038,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -9791,10 +10050,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_to"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2107-11-05"
+               value="2052-11-07"
                data-component="body">
     <br>
-<p>validation.date validation.after_or_equal. Example: <code>2107-11-05</code></p>
+<p>validation.date validation.after_or_equal. Example: <code>2052-11-07</code></p>
         </div>
         </form>
 
@@ -9812,7 +10071,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/laundry-statuses" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9821,7 +10080,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/laundry-statuses"
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses"
 );
 
 const headers = {
@@ -9952,7 +10211,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/laundry-statuses" \
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9961,7 +10220,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/laundry-statuses"
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses"
 );
 
 const headers = {
@@ -10092,7 +10351,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/laundry-statuses/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10101,7 +10360,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/laundry-statuses/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto"
 );
 
 const headers = {
@@ -10224,10 +10483,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-laundry-statuses--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the laundry status. Example: <code>consequatur</code></p>
+<p>The ID of the laundry status. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -10245,7 +10504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/laundry-statuses/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10254,7 +10513,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/laundry-statuses/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto"
 );
 
 const headers = {
@@ -10377,10 +10636,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-laundry-statuses--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the laundry status. Example: <code>consequatur</code></p>
+<p>The ID of the laundry status. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -10398,7 +10657,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/renders" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/renders" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10407,7 +10666,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/renders"
+    "https://pressing-api.pressingelegance.com/api/v1/renders"
 );
 
 const headers = {
@@ -10538,7 +10797,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/renders" \
+    "https://pressing-api.pressingelegance.com/api/v1/renders" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10547,7 +10806,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/renders"
+    "https://pressing-api.pressingelegance.com/api/v1/renders"
 );
 
 const headers = {
@@ -10678,7 +10937,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/renders/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10687,7 +10946,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/renders/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto"
 );
 
 const headers = {
@@ -10810,10 +11069,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-renders--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the render. Example: <code>consequatur</code></p>
+<p>The ID of the render. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -10831,7 +11090,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/renders/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10840,7 +11099,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/renders/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto"
 );
 
 const headers = {
@@ -10963,10 +11222,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-renders--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the render. Example: <code>consequatur</code></p>
+<p>The ID of the render. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -10984,7 +11243,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/promos" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/promos" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10993,7 +11252,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promos"
+    "https://pressing-api.pressingelegance.com/api/v1/promos"
 );
 
 const headers = {
@@ -11124,7 +11383,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/promos" \
+    "https://pressing-api.pressingelegance.com/api/v1/promos" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11133,7 +11392,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promos"
+    "https://pressing-api.pressingelegance.com/api/v1/promos"
 );
 
 const headers = {
@@ -11264,7 +11523,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/promos/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11273,7 +11532,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promos/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto"
 );
 
 const headers = {
@@ -11396,10 +11655,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-promos--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the promo. Example: <code>consequatur</code></p>
+<p>The ID of the promo. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -11417,7 +11676,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/promos/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11426,7 +11685,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promos/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto"
 );
 
 const headers = {
@@ -11549,10 +11808,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-promos--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the promo. Example: <code>consequatur</code></p>
+<p>The ID of the promo. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -11570,7 +11829,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/promo-specials" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/promo-specials" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11579,7 +11838,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promo-specials"
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials"
 );
 
 const headers = {
@@ -11710,7 +11969,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/promo-specials" \
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11719,7 +11978,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promo-specials"
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials"
 );
 
 const headers = {
@@ -11850,7 +12109,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/promo-specials/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11859,7 +12118,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promo-specials/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto"
 );
 
 const headers = {
@@ -11982,10 +12241,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-promo-specials--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the promo special. Example: <code>consequatur</code></p>
+<p>The ID of the promo special. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -12003,7 +12262,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/promo-specials/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12012,7 +12271,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/promo-specials/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto"
 );
 
 const headers = {
@@ -12135,10 +12394,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-promo-specials--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the promo special. Example: <code>consequatur</code></p>
+<p>The ID of the promo special. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -12156,7 +12415,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/delivery-hours" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/delivery-hours" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12165,7 +12424,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/delivery-hours"
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours"
 );
 
 const headers = {
@@ -12296,7 +12555,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/delivery-hours" \
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12305,7 +12564,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/delivery-hours"
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours"
 );
 
 const headers = {
@@ -12436,7 +12695,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/delivery-hours/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12445,7 +12704,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/delivery-hours/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto"
 );
 
 const headers = {
@@ -12568,10 +12827,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-delivery-hours--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the delivery hour. Example: <code>consequatur</code></p>
+<p>The ID of the delivery hour. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -12589,7 +12848,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/delivery-hours/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12598,7 +12857,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/delivery-hours/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto"
 );
 
 const headers = {
@@ -12721,10 +12980,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-delivery-hours--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the delivery hour. Example: <code>consequatur</code></p>
+<p>The ID of the delivery hour. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -12742,7 +13001,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/code-suffixes" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/code-suffixes" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12751,7 +13010,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/code-suffixes"
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes"
 );
 
 const headers = {
@@ -12882,7 +13141,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/code-suffixes" \
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12891,7 +13150,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/code-suffixes"
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes"
 );
 
 const headers = {
@@ -13022,7 +13281,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/code-suffixes/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13031,7 +13290,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/code-suffixes/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto"
 );
 
 const headers = {
@@ -13154,10 +13413,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-code-suffixes--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the code suffix. Example: <code>consequatur</code></p>
+<p>The ID of the code suffix. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -13175,7 +13434,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/code-suffixes/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13184,7 +13443,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/code-suffixes/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto"
 );
 
 const headers = {
@@ -13307,10 +13566,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-code-suffixes--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the code suffix. Example: <code>consequatur</code></p>
+<p>The ID of the code suffix. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -13328,7 +13587,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/loyal-groups" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/loyal-groups" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13337,7 +13596,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups"
 );
 
 const headers = {
@@ -13468,21 +13727,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/loyal-groups" \
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"rate_percent\": 1
+    \"name\": \"b\",
+    \"rate_percent\": 22
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups"
 );
 
 const headers = {
@@ -13493,8 +13752,8 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "rate_percent": 1
+    "name": "b",
+    "rate_percent": 22
 };
 
 fetch(url, {
@@ -13610,10 +13869,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-loyal-groups"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -13622,10 +13881,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="rate_percent"                data-endpoint="POSTapi-v1-loyal-groups"
-               value="1"
+               value="22"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>1</code></p>
+<p>validation.min validation.max. Example: <code>22</code></p>
         </div>
         </form>
 
@@ -13643,7 +13902,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/loyal-groups/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13652,7 +13911,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups/17"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16"
 );
 
 const headers = {
@@ -13775,10 +14034,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalGroup_id"                data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the loyalGroup. Example: <code>17</code></p>
+<p>The ID of the loyalGroup. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -13796,7 +14055,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/loyal-groups/17/clients" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13805,7 +14064,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups/17/clients"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients"
 );
 
 const headers = {
@@ -13928,10 +14187,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalGroup_id"                data-endpoint="GETapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the loyalGroup. Example: <code>17</code></p>
+<p>The ID of the loyalGroup. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -13949,20 +14208,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/loyal-groups/17/clients" \
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_id\": \"consequatur\"
+    \"client_id\": \"architecto\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups/17/clients"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients"
 );
 
 const headers = {
@@ -13973,7 +14232,7 @@ const headers = {
 };
 
 let body = {
-    "client_id": "consequatur"
+    "client_id": "architecto"
 };
 
 fetch(url, {
@@ -14089,10 +14348,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalGroup_id"                data-endpoint="POSTapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the loyalGroup. Example: <code>17</code></p>
+<p>The ID of the loyalGroup. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -14102,10 +14361,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_id"                data-endpoint="POSTapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -14123,20 +14382,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/loyal-groups/17/clients" \
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_id\": \"consequatur\"
+    \"client_id\": \"architecto\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups/17/clients"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients"
 );
 
 const headers = {
@@ -14147,7 +14406,7 @@ const headers = {
 };
 
 let body = {
-    "client_id": "consequatur"
+    "client_id": "architecto"
 };
 
 fetch(url, {
@@ -14263,10 +14522,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalGroup_id"                data-endpoint="DELETEapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the loyalGroup. Example: <code>17</code></p>
+<p>The ID of the loyalGroup. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -14276,10 +14535,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_id"                data-endpoint="DELETEapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -14297,7 +14556,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/loyal-groups/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14306,7 +14565,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/loyal-groups/17"
+    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16"
 );
 
 const headers = {
@@ -14429,10 +14688,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalGroup_id"                data-endpoint="DELETEapi-v1-loyal-groups--loyalGroup_id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the loyalGroup. Example: <code>17</code></p>
+<p>The ID of the loyalGroup. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -14454,7 +14713,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/cash-movements" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/cash-movements" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14463,7 +14722,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-movements"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements"
 );
 
 const headers = {
@@ -14594,17 +14853,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/cash-movements" \
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"66529e01-d113-3473-8d6f-9e11e09332ea\",
-    \"label\": \"qeopfuudtdsufvyvddqam\",
-    \"type\": \"in\",
-    \"amount\": 29,
-    \"action_date\": \"2026-10-06T13:01:15\",
+    \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"label\": \"g\",
+    \"type\": \"out\",
+    \"amount\": 27,
+    \"action_date\": \"2026-10-15T17:43:02\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -14612,7 +14871,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-movements"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements"
 );
 
 const headers = {
@@ -14623,11 +14882,11 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "66529e01-d113-3473-8d6f-9e11e09332ea",
-    "label": "qeopfuudtdsufvyvddqam",
-    "type": "in",
-    "amount": 29,
-    "action_date": "2026-10-06T13:01:15",
+    "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "label": "g",
+    "type": "out",
+    "amount": 27,
+    "action_date": "2026-10-15T17:43:02",
     "validated": true
 };
 
@@ -14744,10 +15003,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-cash-movements"
-               value="66529e01-d113-3473-8d6f-9e11e09332ea"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>66529e01-d113-3473-8d6f-9e11e09332ea</code></p>
+<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
@@ -14756,10 +15015,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="POSTapi-v1-cash-movements"
-               value="qeopfuudtdsufvyvddqam"
+               value="g"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>qeopfuudtdsufvyvddqam</code></p>
+<p>validation.max. Example: <code>g</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -14768,10 +15027,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-v1-cash-movements"
-               value="in"
+               value="out"
                data-component="body">
     <br>
-<p>Example: <code>in</code></p>
+<p>Example: <code>out</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>in</code></li> <li><code>out</code></li></ul>
         </div>
@@ -14782,10 +15041,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-cash-movements"
-               value="29"
+               value="27"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>29</code></p>
+<p>validation.min. Example: <code>27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -14806,10 +15065,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -14849,23 +15108,23 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/cash-movements/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"label\": \"vmqeopfuudtdsufvyvddq\",
-    \"type\": \"in\",
-    \"amount\": 45,
-    \"action_date\": \"2026-10-06T13:01:15\"
+    \"label\": \"b\",
+    \"type\": \"out\",
+    \"amount\": 67,
+    \"action_date\": \"2026-10-15T17:43:02\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-movements/17"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16"
 );
 
 const headers = {
@@ -14876,10 +15135,10 @@ const headers = {
 };
 
 let body = {
-    "label": "vmqeopfuudtdsufvyvddq",
-    "type": "in",
-    "amount": 45,
-    "action_date": "2026-10-06T13:01:15"
+    "label": "b",
+    "type": "out",
+    "amount": 67,
+    "action_date": "2026-10-15T17:43:02"
 };
 
 fetch(url, {
@@ -14995,10 +15254,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="cashMovement_id"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the cashMovement. Example: <code>17</code></p>
+<p>The ID of the cashMovement. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -15008,10 +15267,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -15020,10 +15279,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="in"
+               value="out"
                data-component="body">
     <br>
-<p>Example: <code>in</code></p>
+<p>Example: <code>out</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>in</code></li> <li><code>out</code></li></ul>
         </div>
@@ -15034,10 +15293,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="45"
+               value="67"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>67</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -15058,10 +15317,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
         </form>
 
@@ -15079,7 +15338,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/cash-movements/17/validate" \
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16/validate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15088,7 +15347,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-movements/17/validate"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16/validate"
 );
 
 const headers = {
@@ -15211,10 +15470,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="cashMovement_id"                data-endpoint="POSTapi-v1-cash-movements--cashMovement_id--validate"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the cashMovement. Example: <code>17</code></p>
+<p>The ID of the cashMovement. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -15232,7 +15491,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/cash-movements/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15241,7 +15500,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-movements/17"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16"
 );
 
 const headers = {
@@ -15364,10 +15623,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="cashMovement_id"                data-endpoint="DELETEapi-v1-cash-movements--cashMovement_id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the cashMovement. Example: <code>17</code></p>
+<p>The ID of the cashMovement. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -15385,7 +15644,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/cash-categories" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/cash-categories" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15394,7 +15653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-categories"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-categories"
 );
 
 const headers = {
@@ -15525,21 +15784,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/cash-categories" \
+    "https://pressing-api.pressingelegance.com/api/v1/cash-categories" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"direction\": \"in\"
+    \"name\": \"b\",
+    \"direction\": \"out\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/cash-categories"
+    "https://pressing-api.pressingelegance.com/api/v1/cash-categories"
 );
 
 const headers = {
@@ -15550,8 +15809,8 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "direction": "in"
+    "name": "b",
+    "direction": "out"
 };
 
 fetch(url, {
@@ -15667,10 +15926,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-cash-categories"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>direction</code></b>&nbsp;&nbsp;
@@ -15679,10 +15938,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="direction"                data-endpoint="POSTapi-v1-cash-categories"
-               value="in"
+               value="out"
                data-component="body">
     <br>
-<p>Example: <code>in</code></p>
+<p>Example: <code>out</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>in</code></li> <li><code>out</code></li></ul>
         </div>
@@ -15706,7 +15965,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/receipts/daily" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/daily" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15715,7 +15974,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/receipts/daily"
+    "https://pressing-api.pressingelegance.com/api/v1/receipts/daily"
 );
 
 const headers = {
@@ -15846,7 +16105,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/receipts/general" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/general" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15855,7 +16114,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/receipts/general"
+    "https://pressing-api.pressingelegance.com/api/v1/receipts/general"
 );
 
 const headers = {
@@ -15986,7 +16245,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/receipts/close" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/close" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15995,7 +16254,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/receipts/close"
+    "https://pressing-api.pressingelegance.com/api/v1/receipts/close"
 );
 
 const headers = {
@@ -16126,7 +16385,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/receipts/unpaid" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/unpaid" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16135,7 +16394,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/receipts/unpaid"
+    "https://pressing-api.pressingelegance.com/api/v1/receipts/unpaid"
 );
 
 const headers = {
@@ -16266,7 +16525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/receipts/settled" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/settled" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16275,7 +16534,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/receipts/settled"
+    "https://pressing-api.pressingelegance.com/api/v1/receipts/settled"
 );
 
 const headers = {
@@ -16406,7 +16665,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/receipts/transactions" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/transactions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16415,7 +16674,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/receipts/transactions"
+    "https://pressing-api.pressingelegance.com/api/v1/receipts/transactions"
 );
 
 const headers = {
@@ -16550,7 +16809,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/sales" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/sales" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16559,7 +16818,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/sales"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/sales"
 );
 
 const headers = {
@@ -16690,7 +16949,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/cashiers" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/cashiers" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16699,7 +16958,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/cashiers"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/cashiers"
 );
 
 const headers = {
@@ -16830,7 +17089,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/clients" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16839,7 +17098,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/clients"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/clients"
 );
 
 const headers = {
@@ -16970,7 +17229,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/ranking" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/ranking" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16979,7 +17238,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/ranking"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/ranking"
 );
 
 const headers = {
@@ -17110,7 +17369,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/discounts" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/discounts" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17119,7 +17378,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/discounts"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/discounts"
 );
 
 const headers = {
@@ -17250,7 +17509,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/daily-balance" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/daily-balance" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17259,7 +17518,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/daily-balance"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/daily-balance"
 );
 
 const headers = {
@@ -17390,7 +17649,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/orders" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/orders" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17399,7 +17658,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/orders"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/orders"
 );
 
 const headers = {
@@ -17530,7 +17789,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/reports/consolidated" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/reports/consolidated" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17539,7 +17798,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/reports/consolidated"
+    "https://pressing-api.pressingelegance.com/api/v1/reports/consolidated"
 );
 
 const headers = {
@@ -17674,7 +17933,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/roles" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17683,7 +17942,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/roles"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles"
 );
 
 const headers = {
@@ -17814,7 +18073,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/permissions" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/permissions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17823,7 +18082,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/permissions"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/permissions"
 );
 
 const headers = {
@@ -17954,14 +18213,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/roles/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
     \"permissions\": [
-        \"consequatur\"
+        \"architecto\"
     ]
 }"
 </code></pre></div>
@@ -17969,7 +18228,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/roles/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles/16"
 );
 
 const headers = {
@@ -17981,7 +18240,7 @@ const headers = {
 
 let body = {
     "permissions": [
-        "consequatur"
+        "architecto"
     ]
 };
 
@@ -18098,10 +18357,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="role_id"                data-endpoint="PUTapi-v1-superadmin-roles--role_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>1</code></p>
+<p>The ID of the role. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -18134,7 +18393,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/settings/pressing" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/settings/pressing" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18143,7 +18402,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/pressing"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/pressing"
 );
 
 const headers = {
@@ -18274,37 +18533,37 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/settings/pressing" \
+    "https://pressing-api.pressingelegance.com/api/v1/settings/pressing" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"details\": \"consequatur\",
+    \"name\": \"b\",
+    \"details\": \"architecto\",
     \"pricing_mode\": \"piece\",
     \"workflow_laveur_enabled\": true,
     \"workflow_classeur_enabled\": false,
     \"qr_labels_enabled\": true,
     \"block_retrieve_if_unpaid\": true,
-    \"loyalty_points_rate\": 19,
-    \"loyalty_redeem_threshold\": 70,
-    \"loyalty_redeem_value\": 70,
-    \"hours_classic\": 13,
-    \"hours_express\": 66,
-    \"hours_repass\": 14,
-    \"collection_fee\": 65,
-    \"delivery_fee\": 72,
-    \"reporting_currency\": \"fvy\",
-    \"primary_color\": \"vddqamniihfqc\",
-    \"secondary_color\": \"oynlazghdtqtq\"
+    \"loyalty_points_rate\": 76,
+    \"loyalty_redeem_threshold\": 16,
+    \"loyalty_redeem_value\": 42,
+    \"hours_classic\": 40,
+    \"hours_express\": 4,
+    \"hours_repass\": 2,
+    \"collection_fee\": 8,
+    \"delivery_fee\": 75,
+    \"reporting_currency\": \"hwa\",
+    \"primary_color\": \"ykcmyuwpwlvqwrsi\",
+    \"secondary_color\": \"tcpscqldzsnrwtuj\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/pressing"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/pressing"
 );
 
 const headers = {
@@ -18315,24 +18574,24 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "details": "consequatur",
+    "name": "b",
+    "details": "architecto",
     "pricing_mode": "piece",
     "workflow_laveur_enabled": true,
     "workflow_classeur_enabled": false,
     "qr_labels_enabled": true,
     "block_retrieve_if_unpaid": true,
-    "loyalty_points_rate": 19,
-    "loyalty_redeem_threshold": 70,
-    "loyalty_redeem_value": 70,
-    "hours_classic": 13,
-    "hours_express": 66,
-    "hours_repass": 14,
-    "collection_fee": 65,
-    "delivery_fee": 72,
-    "reporting_currency": "fvy",
-    "primary_color": "vddqamniihfqc",
-    "secondary_color": "oynlazghdtqtq"
+    "loyalty_points_rate": 76,
+    "loyalty_redeem_threshold": 16,
+    "loyalty_redeem_value": 42,
+    "hours_classic": 40,
+    "hours_express": 4,
+    "hours_repass": 2,
+    "collection_fee": 8,
+    "delivery_fee": 75,
+    "reporting_currency": "hwa",
+    "primary_color": "ykcmyuwpwlvqwrsi",
+    "secondary_color": "tcpscqldzsnrwtuj"
 };
 
 fetch(url, {
@@ -18448,10 +18707,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -18460,10 +18719,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="details"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_mode</code></b>&nbsp;&nbsp;
@@ -18574,10 +18833,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_points_rate"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="19"
+               value="76"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>19</code></p>
+<p>validation.min. Example: <code>76</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_threshold</code></b>&nbsp;&nbsp;
@@ -18586,10 +18845,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_redeem_threshold"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="70"
+               value="16"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>70</code></p>
+<p>validation.min. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_value</code></b>&nbsp;&nbsp;
@@ -18598,10 +18857,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_redeem_value"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="70"
+               value="42"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>70</code></p>
+<p>validation.min. Example: <code>42</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -18610,10 +18869,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_classic"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="13"
+               value="40"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>13</code></p>
+<p>validation.min. Example: <code>40</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -18622,10 +18881,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_express"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="66"
+               value="4"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>66</code></p>
+<p>validation.min. Example: <code>4</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -18634,10 +18893,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_repass"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="14"
+               value="2"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>14</code></p>
+<p>validation.min. Example: <code>2</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -18646,10 +18905,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="65"
+               value="8"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>65</code></p>
+<p>validation.min. Example: <code>8</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -18658,10 +18917,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="72"
+               value="75"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>72</code></p>
+<p>validation.min. Example: <code>75</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reporting_currency</code></b>&nbsp;&nbsp;
@@ -18670,10 +18929,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="reporting_currency"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="fvy"
+               value="hwa"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>fvy</code></p>
+<p>validation.size. Example: <code>hwa</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>primary_color</code></b>&nbsp;&nbsp;
@@ -18682,10 +18941,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="primary_color"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="vddqamniihfqc"
+               value="ykcmyuwpwlvqwrsi"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vddqamniihfqc</code></p>
+<p>validation.max. Example: <code>ykcmyuwpwlvqwrsi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>secondary_color</code></b>&nbsp;&nbsp;
@@ -18694,10 +18953,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="secondary_color"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="oynlazghdtqtq"
+               value="tcpscqldzsnrwtuj"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>oynlazghdtqtq</code></p>
+<p>validation.max. Example: <code>tcpscqldzsnrwtuj</code></p>
         </div>
         </form>
 
@@ -18715,18 +18974,18 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/settings/agencies/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/settings/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"address\": \"consequatur\",
-    \"contact\": \"consequatur\",
-    \"currency\": \"mqe\",
-    \"code_prefix\": \"opfuudt\",
-    \"code_suffix\": \"dsufvyv\",
+    \"name\": \"b\",
+    \"address\": \"architecto\",
+    \"contact\": \"architecto\",
+    \"currency\": \"ngz\",
+    \"code_prefix\": \"miyvdljn\",
+    \"code_suffix\": \"ikhwaykc\",
     \"status\": true
 }"
 </code></pre></div>
@@ -18734,7 +18993,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/agencies/1"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/agencies/16"
 );
 
 const headers = {
@@ -18745,12 +19004,12 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "address": "consequatur",
-    "contact": "consequatur",
-    "currency": "mqe",
-    "code_prefix": "opfuudt",
-    "code_suffix": "dsufvyv",
+    "name": "b",
+    "address": "architecto",
+    "contact": "architecto",
+    "currency": "ngz",
+    "code_prefix": "miyvdljn",
+    "code_suffix": "ikhwaykc",
     "status": true
 };
 
@@ -18867,10 +19126,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -18880,10 +19139,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -18892,10 +19151,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -18904,10 +19163,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -18916,10 +19175,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="mqe"
+               value="ngz"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>mqe</code></p>
+<p>validation.size. Example: <code>ngz</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -18928,10 +19187,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="opfuudt"
+               value="miyvdljn"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>opfuudt</code></p>
+<p>validation.max. Example: <code>miyvdljn</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -18940,10 +19199,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="dsufvyv"
+               value="ikhwaykc"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>dsufvyv</code></p>
+<p>validation.max. Example: <code>ikhwaykc</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -18983,7 +19242,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/settings/license" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/settings/license" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18992,7 +19251,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/license"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/license"
 );
 
 const headers = {
@@ -19123,7 +19382,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/settings/exchange-rates" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19132,7 +19391,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/exchange-rates"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates"
 );
 
 const headers = {
@@ -19263,23 +19522,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/settings/exchange-rates" \
+    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"source_currency\": \"vmq\",
-    \"target_currency\": \"eop\",
-    \"rate\": 11613.31890586,
-    \"rate_date\": \"2026-10-06T13:01:15\"
+    \"source_currency\": \"bng\",
+    \"target_currency\": \"zmi\",
+    \"rate\": 4326.41688,
+    \"rate_date\": \"2026-10-15T17:43:02\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/exchange-rates"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates"
 );
 
 const headers = {
@@ -19290,10 +19549,10 @@ const headers = {
 };
 
 let body = {
-    "source_currency": "vmq",
-    "target_currency": "eop",
-    "rate": 11613.31890586,
-    "rate_date": "2026-10-06T13:01:15"
+    "source_currency": "bng",
+    "target_currency": "zmi",
+    "rate": 4326.41688,
+    "rate_date": "2026-10-15T17:43:02"
 };
 
 fetch(url, {
@@ -19409,10 +19668,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="source_currency"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="vmq"
+               value="bng"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>vmq</code></p>
+<p>validation.size. Example: <code>bng</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_currency</code></b>&nbsp;&nbsp;
@@ -19421,10 +19680,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="target_currency"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="eop"
+               value="zmi"
                data-component="body">
     <br>
-<p>The value and <code>source_currency</code> must be different. validation.size. Example: <code>eop</code></p>
+<p>The value and <code>source_currency</code> must be different. validation.size. Example: <code>zmi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate</code></b>&nbsp;&nbsp;
@@ -19433,10 +19692,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="rate"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="11613.31890586"
+               value="4326.41688"
                data-component="body">
     <br>
-<p>Example: <code>11613.31890586</code></p>
+<p>Example: <code>4326.41688</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_date</code></b>&nbsp;&nbsp;
@@ -19445,10 +19704,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
         </form>
 
@@ -19466,7 +19725,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/settings/exchange-rates/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19475,7 +19734,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/exchange-rates/17"
+    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates/16"
 );
 
 const headers = {
@@ -19598,10 +19857,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="exchangeRate_id"                data-endpoint="DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the exchangeRate. Example: <code>17</code></p>
+<p>The ID of the exchangeRate. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -19619,7 +19878,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/org/agencies" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/org/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19628,7 +19887,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/agencies"
+    "https://pressing-api.pressingelegance.com/api/v1/org/agencies"
 );
 
 const headers = {
@@ -19759,26 +20018,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/org/agencies" \
+    "https://pressing-api.pressingelegance.com/api/v1/org/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"address\": \"consequatur\",
-    \"contact\": \"consequatur\",
-    \"country_code\": \"mq\",
-    \"currency\": \"eop\",
-    \"code_prefix\": \"fuudtds\",
-    \"code_suffix\": \"ufvyvdd\"
+    \"name\": \"b\",
+    \"address\": \"architecto\",
+    \"contact\": \"architecto\",
+    \"country_code\": \"ng\",
+    \"currency\": \"zmi\",
+    \"code_prefix\": \"yvdljnik\",
+    \"code_suffix\": \"hwaykcmy\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/agencies"
+    "https://pressing-api.pressingelegance.com/api/v1/org/agencies"
 );
 
 const headers = {
@@ -19789,13 +20048,13 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "address": "consequatur",
-    "contact": "consequatur",
-    "country_code": "mq",
-    "currency": "eop",
-    "code_prefix": "fuudtds",
-    "code_suffix": "ufvyvdd"
+    "name": "b",
+    "address": "architecto",
+    "contact": "architecto",
+    "country_code": "ng",
+    "currency": "zmi",
+    "code_prefix": "yvdljnik",
+    "code_suffix": "hwaykcmy"
 };
 
 fetch(url, {
@@ -19911,10 +20170,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-org-agencies"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -19923,10 +20182,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="POSTapi-v1-org-agencies"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -19935,10 +20194,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="POSTapi-v1-org-agencies"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
@@ -19947,10 +20206,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="country_code"                data-endpoint="POSTapi-v1-org-agencies"
-               value="mq"
+               value="ng"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>mq</code></p>
+<p>validation.size. Example: <code>ng</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -19959,10 +20218,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="POSTapi-v1-org-agencies"
-               value="eop"
+               value="zmi"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>eop</code></p>
+<p>validation.size. Example: <code>zmi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -19971,10 +20230,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="POSTapi-v1-org-agencies"
-               value="fuudtds"
+               value="yvdljnik"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>fuudtds</code></p>
+<p>validation.max. Example: <code>yvdljnik</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -19983,10 +20242,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="POSTapi-v1-org-agencies"
-               value="ufvyvdd"
+               value="hwaykcmy"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ufvyvdd</code></p>
+<p>validation.max. Example: <code>hwaykcmy</code></p>
         </div>
         </form>
 
@@ -20004,7 +20263,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/org/users" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/org/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20013,7 +20272,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users"
+    "https://pressing-api.pressingelegance.com/api/v1/org/users"
 );
 
 const headers = {
@@ -20144,24 +20403,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/org/users" \
+    "https://pressing-api.pressingelegance.com/api/v1/org/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"vmqeopfuudtdsufvyvddq\",
-    \"email\": \"kunde.eloisa@example.com\",
-    \"password\": \"4[*UyPJ\\\"}6\",
-    \"agency_id\": \"consequatur\",
-    \"role\": \"consequatur\"
+    \"fullname\": \"b\",
+    \"email\": \"zbailey@example.net\",
+    \"password\": \"-0pBNvYgxw\",
+    \"agency_id\": \"architecto\",
+    \"role\": \"architecto\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users"
+    "https://pressing-api.pressingelegance.com/api/v1/org/users"
 );
 
 const headers = {
@@ -20172,11 +20431,11 @@ const headers = {
 };
 
 let body = {
-    "fullname": "vmqeopfuudtdsufvyvddq",
-    "email": "kunde.eloisa@example.com",
-    "password": "4[*UyPJ\"}6",
-    "agency_id": "consequatur",
-    "role": "consequatur"
+    "fullname": "b",
+    "email": "zbailey@example.net",
+    "password": "-0pBNvYgxw",
+    "agency_id": "architecto",
+    "role": "architecto"
 };
 
 fetch(url, {
@@ -20292,10 +20551,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="POSTapi-v1-org-users"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -20304,10 +20563,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-org-users"
-               value="kunde.eloisa@example.com"
+               value="zbailey@example.net"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>kunde.eloisa@example.com</code></p>
+<p>validation.email. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -20316,10 +20575,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-org-users"
-               value="4[*UyPJ"}6"
+               value="-0pBNvYgxw"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>4[*UyPJ"}6</code></p>
+<p>validation.min. Example: <code>-0pBNvYgxw</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -20328,10 +20587,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-org-users"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -20340,10 +20599,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="POSTapi-v1-org-users"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -20361,15 +20620,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/org/users/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/org/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"vmqeopfuudtdsufvyvddq\",
-    \"email\": \"kunde.eloisa@example.com\",
-    \"password\": \"4[*UyPJ\\\"}6\",
+    \"fullname\": \"b\",
+    \"email\": \"zbailey@example.net\",
+    \"password\": \"-0pBNvYgxw\",
     \"status\": true
 }"
 </code></pre></div>
@@ -20377,7 +20636,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users/1"
+    "https://pressing-api.pressingelegance.com/api/v1/org/users/16"
 );
 
 const headers = {
@@ -20388,9 +20647,9 @@ const headers = {
 };
 
 let body = {
-    "fullname": "vmqeopfuudtdsufvyvddq",
-    "email": "kunde.eloisa@example.com",
-    "password": "4[*UyPJ\"}6",
+    "fullname": "b",
+    "email": "zbailey@example.net",
+    "password": "-0pBNvYgxw",
     "status": true
 };
 
@@ -20507,10 +20766,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -20520,10 +20779,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -20532,10 +20791,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="kunde.eloisa@example.com"
+               value="zbailey@example.net"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>kunde.eloisa@example.com</code></p>
+<p>validation.email. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -20544,10 +20803,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="4[*UyPJ"}6"
+               value="-0pBNvYgxw"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>4[*UyPJ"}6</code></p>
+<p>validation.min. Example: <code>-0pBNvYgxw</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -20611,7 +20870,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/org/users/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/org/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20620,7 +20879,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users/1"
+    "https://pressing-api.pressingelegance.com/api/v1/org/users/16"
 );
 
 const headers = {
@@ -20743,10 +21002,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-org-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -20764,7 +21023,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/roles" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/roles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20773,7 +21032,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/roles"
+    "https://pressing-api.pressingelegance.com/api/v1/roles"
 );
 
 const headers = {
@@ -20904,7 +21163,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/permissions" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/permissions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20913,7 +21172,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/permissions"
+    "https://pressing-api.pressingelegance.com/api/v1/permissions"
 );
 
 const headers = {
@@ -21044,14 +21303,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/roles/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
     \"permissions\": [
-        \"consequatur\"
+        \"architecto\"
     ]
 }"
 </code></pre></div>
@@ -21059,7 +21318,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/roles/1"
+    "https://pressing-api.pressingelegance.com/api/v1/roles/16"
 );
 
 const headers = {
@@ -21071,7 +21330,7 @@ const headers = {
 
 let body = {
     "permissions": [
-        "consequatur"
+        "architecto"
     ]
 };
 
@@ -21188,10 +21447,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="role_id"                data-endpoint="PUTapi-v1-roles--role_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>1</code></p>
+<p>The ID of the role. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -21224,7 +21483,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/audit-logs" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/audit-logs" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21233,7 +21492,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/audit-logs"
+    "https://pressing-api.pressingelegance.com/api/v1/audit-logs"
 );
 
 const headers = {
@@ -21364,7 +21623,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/print-logs" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/print-logs" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21373,7 +21632,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/print-logs"
+    "https://pressing-api.pressingelegance.com/api/v1/print-logs"
 );
 
 const headers = {
@@ -21508,7 +21767,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/client/profile" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/client/profile" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21517,7 +21776,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/client/profile"
+    "https://pressing-api.pressingelegance.com/api/v1/client/profile"
 );
 
 const headers = {
@@ -21648,7 +21907,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/client/deposits" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/client/deposits" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21657,7 +21916,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/client/deposits"
+    "https://pressing-api.pressingelegance.com/api/v1/client/deposits"
 );
 
 const headers = {
@@ -21788,7 +22047,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/client/retrieves" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/client/retrieves" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21797,7 +22056,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/client/retrieves"
+    "https://pressing-api.pressingelegance.com/api/v1/client/retrieves"
 );
 
 const headers = {
@@ -21928,7 +22187,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/client/deposits/17" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/client/deposits/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21937,7 +22196,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/client/deposits/17"
+    "https://pressing-api.pressingelegance.com/api/v1/client/deposits/16"
 );
 
 const headers = {
@@ -22060,10 +22319,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-client-deposits--id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -22081,7 +22340,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/client/loyalty" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/client/loyalty" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22090,7 +22349,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/client/loyalty"
+    "https://pressing-api.pressingelegance.com/api/v1/client/loyalty"
 );
 
 const headers = {
@@ -22225,7 +22484,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/pressings" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22234,7 +22493,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings"
 );
 
 const headers = {
@@ -22365,14 +22624,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/pressings" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"details\": \"consequatur\",
+    \"name\": \"b\",
+    \"details\": \"architecto\",
     \"pricing_mode\": \"piece\",
     \"workflow_laveur_enabled\": true,
     \"workflow_classeur_enabled\": false,
@@ -22383,7 +22642,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings"
 );
 
 const headers = {
@@ -22394,8 +22653,8 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "details": "consequatur",
+    "name": "b",
+    "details": "architecto",
     "pricing_mode": "piece",
     "workflow_laveur_enabled": true,
     "workflow_classeur_enabled": false,
@@ -22515,10 +22774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-superadmin-pressings"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -22527,10 +22786,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="details"                data-endpoint="POSTapi-v1-superadmin-pressings"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_mode</code></b>&nbsp;&nbsp;
@@ -22628,7 +22887,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/pressings/1" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22637,7 +22896,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -22760,10 +23019,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-pressings--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>1</code></p>
+<p>The ID of the pressing. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -22781,30 +23040,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/pressings/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"details\": \"consequatur\",
+    \"name\": \"b\",
+    \"details\": \"architecto\",
     \"status\": false,
     \"pricing_mode\": \"piece\",
     \"workflow_laveur_enabled\": false,
     \"workflow_classeur_enabled\": true,
     \"block_retrieve_if_unpaid\": true,
-    \"loyalty_points_rate\": 19,
-    \"hours_classic\": 70,
-    \"hours_express\": 71,
-    \"hours_repass\": 13
+    \"loyalty_points_rate\": 76,
+    \"hours_classic\": 16,
+    \"hours_express\": 26,
+    \"hours_repass\": 40
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -22815,17 +23074,17 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "details": "consequatur",
+    "name": "b",
+    "details": "architecto",
     "status": false,
     "pricing_mode": "piece",
     "workflow_laveur_enabled": false,
     "workflow_classeur_enabled": true,
     "block_retrieve_if_unpaid": true,
-    "loyalty_points_rate": 19,
-    "hours_classic": 70,
-    "hours_express": 71,
-    "hours_repass": 13
+    "loyalty_points_rate": 76,
+    "hours_classic": 16,
+    "hours_express": 26,
+    "hours_repass": 40
 };
 
 fetch(url, {
@@ -22945,10 +23204,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>1</code></p>
+<p>The ID of the pressing. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -22958,10 +23217,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -22970,10 +23229,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="details"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -23084,10 +23343,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_points_rate"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="19"
+               value="76"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>19</code></p>
+<p>validation.min. Example: <code>76</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -23096,10 +23355,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_classic"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="70"
+               value="16"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>70</code></p>
+<p>validation.min. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -23108,10 +23367,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_express"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="71"
+               value="26"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>71</code></p>
+<p>validation.min. Example: <code>26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -23120,10 +23379,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_repass"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="13"
+               value="40"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>13</code></p>
+<p>validation.min. Example: <code>40</code></p>
         </div>
         </form>
 
@@ -23141,7 +23400,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/pressings/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23150,7 +23409,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -23273,10 +23532,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-pressings--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>1</code></p>
+<p>The ID of the pressing. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -23294,7 +23553,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/agencies" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23303,7 +23562,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies"
 );
 
 const headers = {
@@ -23434,27 +23693,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/agencies" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"pressing_id\": \"consequatur\",
-    \"name\": \"mqeopfuudtdsufvyvddqa\",
-    \"address\": \"consequatur\",
-    \"contact\": \"consequatur\",
-    \"country_code\": \"mq\",
-    \"currency\": \"eop\",
-    \"code_prefix\": \"fuudtds\",
-    \"code_suffix\": \"ufvyvdd\"
+    \"pressing_id\": \"architecto\",
+    \"name\": \"n\",
+    \"address\": \"architecto\",
+    \"contact\": \"architecto\",
+    \"country_code\": \"ng\",
+    \"currency\": \"zmi\",
+    \"code_prefix\": \"yvdljnik\",
+    \"code_suffix\": \"hwaykcmy\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies"
 );
 
 const headers = {
@@ -23465,14 +23724,14 @@ const headers = {
 };
 
 let body = {
-    "pressing_id": "consequatur",
-    "name": "mqeopfuudtdsufvyvddqa",
-    "address": "consequatur",
-    "contact": "consequatur",
-    "country_code": "mq",
-    "currency": "eop",
-    "code_prefix": "fuudtds",
-    "code_suffix": "ufvyvdd"
+    "pressing_id": "architecto",
+    "name": "n",
+    "address": "architecto",
+    "contact": "architecto",
+    "country_code": "ng",
+    "currency": "zmi",
+    "code_prefix": "yvdljnik",
+    "code_suffix": "hwaykcmy"
 };
 
 fetch(url, {
@@ -23588,10 +23847,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="pressing_id"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -23600,10 +23859,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="mqeopfuudtdsufvyvddqa"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -23612,10 +23871,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -23624,10 +23883,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
@@ -23636,10 +23895,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="country_code"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="mq"
+               value="ng"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>mq</code></p>
+<p>validation.size. Example: <code>ng</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -23648,10 +23907,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="eop"
+               value="zmi"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>eop</code></p>
+<p>validation.size. Example: <code>zmi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -23660,10 +23919,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="fuudtds"
+               value="yvdljnik"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>fuudtds</code></p>
+<p>validation.max. Example: <code>yvdljnik</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -23672,10 +23931,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="ufvyvdd"
+               value="hwaykcmy"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ufvyvdd</code></p>
+<p>validation.max. Example: <code>hwaykcmy</code></p>
         </div>
         </form>
 
@@ -23693,7 +23952,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/agencies/1" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23702,7 +23961,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -23825,10 +24084,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -23846,19 +24105,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/agencies/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"address\": \"consequatur\",
-    \"contact\": \"consequatur\",
-    \"country_code\": \"mq\",
-    \"currency\": \"eop\",
-    \"code_prefix\": \"fuudtds\",
-    \"code_suffix\": \"ufvyvdd\",
+    \"name\": \"b\",
+    \"address\": \"architecto\",
+    \"contact\": \"architecto\",
+    \"country_code\": \"ng\",
+    \"currency\": \"zmi\",
+    \"code_prefix\": \"yvdljnik\",
+    \"code_suffix\": \"hwaykcmy\",
     \"status\": true
 }"
 </code></pre></div>
@@ -23866,7 +24125,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -23877,13 +24136,13 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "address": "consequatur",
-    "contact": "consequatur",
-    "country_code": "mq",
-    "currency": "eop",
-    "code_prefix": "fuudtds",
-    "code_suffix": "ufvyvdd",
+    "name": "b",
+    "address": "architecto",
+    "contact": "architecto",
+    "country_code": "ng",
+    "currency": "zmi",
+    "code_prefix": "yvdljnik",
+    "code_suffix": "hwaykcmy",
     "status": true
 };
 
@@ -24004,10 +24263,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -24017,10 +24276,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -24029,10 +24288,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -24041,10 +24300,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
@@ -24053,10 +24312,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="country_code"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="mq"
+               value="ng"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>mq</code></p>
+<p>validation.size. Example: <code>ng</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -24065,10 +24324,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="eop"
+               value="zmi"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>eop</code></p>
+<p>validation.size. Example: <code>zmi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -24077,10 +24336,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="fuudtds"
+               value="yvdljnik"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>fuudtds</code></p>
+<p>validation.max. Example: <code>yvdljnik</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -24089,10 +24348,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="ufvyvdd"
+               value="hwaykcmy"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ufvyvdd</code></p>
+<p>validation.max. Example: <code>hwaykcmy</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -24132,7 +24391,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/agencies/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24141,7 +24400,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -24264,10 +24523,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -24285,7 +24544,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/users" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24294,7 +24553,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users"
 );
 
 const headers = {
@@ -24425,7 +24684,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/users" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24434,7 +24693,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users"
 );
 
 const headers = {
@@ -24565,7 +24824,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/users/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24574,7 +24833,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16"
 );
 
 const headers = {
@@ -24697,10 +24956,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -24718,7 +24977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/users/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24727,7 +24986,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16"
 );
 
 const headers = {
@@ -24850,10 +25109,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -24871,7 +25130,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/licenses" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24880,7 +25139,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses"
 );
 
 const headers = {
@@ -25011,24 +25270,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"pressing_id\": \"consequatur\",
-    \"plan\": \"mqeopfuudtdsufvyvddqa\",
-    \"seats\": 45,
-    \"months\": 46,
-    \"activate\": false
+    \"pressing_id\": \"architecto\",
+    \"plan\": \"n\",
+    \"seats\": 67,
+    \"months\": 66,
+    \"activate\": true
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses"
 );
 
 const headers = {
@@ -25039,11 +25298,11 @@ const headers = {
 };
 
 let body = {
-    "pressing_id": "consequatur",
-    "plan": "mqeopfuudtdsufvyvddqa",
-    "seats": 45,
-    "months": 46,
-    "activate": false
+    "pressing_id": "architecto",
+    "plan": "n",
+    "seats": 67,
+    "months": 66,
+    "activate": true
 };
 
 fetch(url, {
@@ -25159,10 +25418,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="pressing_id"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>plan</code></b>&nbsp;&nbsp;
@@ -25171,10 +25430,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plan"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="mqeopfuudtdsufvyvddqa"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
@@ -25183,10 +25442,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="seats"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="45"
+               value="67"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>67</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>months</code></b>&nbsp;&nbsp;
@@ -25195,10 +25454,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="months"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="46"
+               value="66"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>46</code></p>
+<p>validation.min. Example: <code>66</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>activate</code></b>&nbsp;&nbsp;
@@ -25220,7 +25479,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -25238,23 +25497,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/licenses/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"plan\": \"vmqeopfuudtdsufvyvddq\",
-    \"seats\": 2,
+    \"plan\": \"b\",
+    \"seats\": 22,
     \"status\": true,
-    \"expires_at\": \"2026-10-06T13:01:15\"
+    \"expires_at\": \"2026-10-15T17:43:01\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -25265,10 +25524,10 @@ const headers = {
 };
 
 let body = {
-    "plan": "vmqeopfuudtdsufvyvddq",
-    "seats": 2,
+    "plan": "b",
+    "seats": 22,
     "status": true,
-    "expires_at": "2026-10-06T13:01:15"
+    "expires_at": "2026-10-15T17:43:01"
 };
 
 fetch(url, {
@@ -25384,10 +25643,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -25397,10 +25656,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plan"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
@@ -25409,10 +25668,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="seats"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2"
+               value="22"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>2</code></p>
+<p>validation.min. Example: <code>22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -25443,10 +25702,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:01"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:01</code></p>
         </div>
         </form>
 
@@ -25464,20 +25723,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/1/activate" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16/activate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"months\": 73
+    \"months\": 16
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/activate"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16/activate"
 );
 
 const headers = {
@@ -25488,7 +25747,7 @@ const headers = {
 };
 
 let body = {
-    "months": 73
+    "months": 16
 };
 
 fetch(url, {
@@ -25604,10 +25863,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--activate"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -25617,10 +25876,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="months"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--activate"
-               value="73"
+               value="16"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>73</code></p>
+<p>validation.min. Example: <code>16</code></p>
         </div>
         </form>
 
@@ -25638,7 +25897,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/licenses/1" \
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25647,7 +25906,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1"
+    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -25770,10 +26029,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-licenses--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -25795,7 +26054,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/services" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/services" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25804,7 +26063,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/services"
+    "https://pressing-api.pressingelegance.com/api/v1/services"
 );
 
 const headers = {
@@ -25935,7 +26194,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/services" \
+    "https://pressing-api.pressingelegance.com/api/v1/services" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25944,7 +26203,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/services"
+    "https://pressing-api.pressingelegance.com/api/v1/services"
 );
 
 const headers = {
@@ -26075,7 +26334,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/services/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/services/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26084,7 +26343,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/services/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/services/architecto"
 );
 
 const headers = {
@@ -26207,10 +26466,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-services--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the service. Example: <code>consequatur</code></p>
+<p>The ID of the service. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -26228,7 +26487,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/services/consequatur" \
+    "https://pressing-api.pressingelegance.com/api/v1/services/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26237,7 +26496,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/services/consequatur"
+    "https://pressing-api.pressingelegance.com/api/v1/services/architecto"
 );
 
 const headers = {
@@ -26360,10 +26619,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-services--id-"
-               value="consequatur"
+               value="architecto"
                data-component="url">
     <br>
-<p>The ID of the service. Example: <code>consequatur</code></p>
+<p>The ID of the service. Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -26385,7 +26644,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deliveries/queue" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/queue" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26394,7 +26653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/queue"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/queue"
 );
 
 const headers = {
@@ -26525,7 +26784,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deliveries/history" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/history" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26534,7 +26793,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/history"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/history"
 );
 
 const headers = {
@@ -26665,7 +26924,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deliveries/zones" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26674,7 +26933,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/zones"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones"
 );
 
 const headers = {
@@ -26805,14 +27064,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deliveries/zones" \
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"code\": \"amniihfqcoynlazghdtqt\",
+    \"name\": \"b\",
+    \"code\": \"n\",
     \"status\": true
 }"
 </code></pre></div>
@@ -26820,7 +27079,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/zones"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones"
 );
 
 const headers = {
@@ -26831,8 +27090,8 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "code": "amniihfqcoynlazghdtqt",
+    "name": "b",
+    "code": "n",
     "status": true
 };
 
@@ -26949,10 +27208,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -26961,10 +27220,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="amniihfqcoynlazghdtqt"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -27016,14 +27275,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/deliveries/zones/17" \
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"code\": \"amniihfqcoynlazghdtqt\",
+    \"name\": \"b\",
+    \"code\": \"n\",
     \"status\": true
 }"
 </code></pre></div>
@@ -27031,7 +27290,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/zones/17"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones/16"
 );
 
 const headers = {
@@ -27042,8 +27301,8 @@ const headers = {
 };
 
 let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "code": "amniihfqcoynlazghdtqt",
+    "name": "b",
+    "code": "n",
     "status": true
 };
 
@@ -27160,10 +27419,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the zone. Example: <code>17</code></p>
+<p>The ID of the zone. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -27173,10 +27432,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -27185,10 +27444,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="amniihfqcoynlazghdtqt"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>amniihfqcoynlazghdtqt</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -27240,7 +27499,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/deliveries/rounds" \
+    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27249,7 +27508,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/rounds"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds"
 );
 
 const headers = {
@@ -27380,23 +27639,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deliveries/rounds" \
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"agency_id\": \"consequatur\",
-    \"livreur_id\": \"consequatur\",
-    \"round_date\": \"2026-10-06T13:01:15\",
-    \"name\": \"mqeopfuudtdsufvyvddqa\"
+    \"agency_id\": \"architecto\",
+    \"livreur_id\": \"architecto\",
+    \"round_date\": \"2026-10-15T17:43:02\",
+    \"name\": \"n\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/rounds"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds"
 );
 
 const headers = {
@@ -27407,10 +27666,10 @@ const headers = {
 };
 
 let body = {
-    "agency_id": "consequatur",
-    "livreur_id": "consequatur",
-    "round_date": "2026-10-06T13:01:15",
-    "name": "mqeopfuudtdsufvyvddqa"
+    "agency_id": "architecto",
+    "livreur_id": "architecto",
+    "round_date": "2026-10-15T17:43:02",
+    "name": "n"
 };
 
 fetch(url, {
@@ -27526,10 +27785,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
@@ -27538,10 +27797,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="livreur_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>consequatur</code></p>
+<p>Must match an existing stored value. Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
@@ -27562,10 +27821,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-06T13:01:15"
+               value="2026-10-15T17:43:02"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-06T13:01:15</code></p>
+<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -27574,10 +27833,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="mqeopfuudtdsufvyvddqa"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
         </form>
 
@@ -27595,14 +27854,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deliveries/rounds/17/assign" \
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds/16/assign" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
     \"deposit_ids\": [
-        17
+        16
     ]
 }"
 </code></pre></div>
@@ -27610,7 +27869,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/rounds/17/assign"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds/16/assign"
 );
 
 const headers = {
@@ -27622,7 +27881,7 @@ const headers = {
 
 let body = {
     "deposit_ids": [
-        17
+        16
     ]
 };
 
@@ -27739,10 +27998,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="round_id"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the round. Example: <code>17</code></p>
+<p>The ID of the round. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -27775,20 +28034,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deliveries/deposits/17/schedule" \
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/schedule" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"delivery_address\": \"vmqeopfuudtdsufvyvddq\"
+    \"delivery_address\": \"b\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/deposits/17/schedule"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/schedule"
 );
 
 const headers = {
@@ -27799,7 +28058,7 @@ const headers = {
 };
 
 let body = {
-    "delivery_address": "vmqeopfuudtdsufvyvddq"
+    "delivery_address": "b"
 };
 
 fetch(url, {
@@ -27915,10 +28174,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -27940,10 +28199,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_address"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
-               value="vmqeopfuudtdsufvyvddq"
+               value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
+<p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
@@ -27973,26 +28232,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/deliveries/deposits/17/deliver" \
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/deliver" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"confirmation_type\": \"consequatur\",
-    \"confirmation_value\": \"consequatur\",
-    \"receiver_name\": \"mqeopfuudtdsufvyvddqa\",
-    \"collect_amount\": 45,
-    \"payment_method\": \"other\",
-    \"require_settled\": false,
-    \"client_uuid\": \"d63469cd-6701-3555-a16b-fc9764100c9a\"
+    \"confirmation_type\": \"architecto\",
+    \"confirmation_value\": \"architecto\",
+    \"receiver_name\": \"n\",
+    \"collect_amount\": 84,
+    \"payment_method\": \"cash\",
+    \"require_settled\": true,
+    \"client_uuid\": \"a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/deliveries/deposits/17/deliver"
+    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/deliver"
 );
 
 const headers = {
@@ -28003,13 +28262,13 @@ const headers = {
 };
 
 let body = {
-    "confirmation_type": "consequatur",
-    "confirmation_value": "consequatur",
-    "receiver_name": "mqeopfuudtdsufvyvddqa",
-    "collect_amount": 45,
-    "payment_method": "other",
-    "require_settled": false,
-    "client_uuid": "d63469cd-6701-3555-a16b-fc9764100c9a"
+    "confirmation_type": "architecto",
+    "confirmation_value": "architecto",
+    "receiver_name": "n",
+    "collect_amount": 84,
+    "payment_method": "cash",
+    "require_settled": true,
+    "client_uuid": "a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f"
 };
 
 fetch(url, {
@@ -28125,10 +28384,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="17"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the deposit. Example: <code>17</code></p>
+<p>The ID of the deposit. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -28138,10 +28397,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="confirmation_type"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>confirmation_value</code></b>&nbsp;&nbsp;
@@ -28150,10 +28409,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="confirmation_value"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="consequatur"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>receiver_name</code></b>&nbsp;&nbsp;
@@ -28162,10 +28421,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="receiver_name"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="mqeopfuudtdsufvyvddqa"
+               value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+<p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collect_amount</code></b>&nbsp;&nbsp;
@@ -28174,10 +28433,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collect_amount"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="45"
+               value="84"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>45</code></p>
+<p>validation.min. Example: <code>84</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -28186,10 +28445,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="other"
+               value="cash"
                data-component="body">
     <br>
-<p>Example: <code>other</code></p>
+<p>Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
         </div>
@@ -28213,7 +28472,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_uuid</code></b>&nbsp;&nbsp;
@@ -28222,10 +28481,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="d63469cd-6701-3555-a16b-fc9764100c9a"
+               value="a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>d63469cd-6701-3555-a16b-fc9764100c9a</code></p>
+<p>validation.uuid. Example: <code>a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f</code></p>
         </div>
         </form>
 
