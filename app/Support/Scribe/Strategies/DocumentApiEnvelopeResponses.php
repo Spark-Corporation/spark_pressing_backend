@@ -1,0 +1,698 @@
+<?php
+
+namespace App\Support\Scribe\Strategies;
+
+use Knuckles\Camel\Extraction\ExtractedEndpointData;
+use Knuckles\Scribe\Extracting\Strategies\Strategy;
+
+/**
+ * Injecte des exemples de réponses {data, meta, errors} pour tous les endpoints API
+ * qui n'ont pas encore d'exemples (ex. via #[Response]).
+ */
+class DocumentApiEnvelopeResponses extends Strategy
+{
+    public function __invoke(ExtractedEndpointData $endpointData, array $settings = []): ?array
+    {
+        if (! empty($endpointData->responses) && count($endpointData->responses) > 0) {
+            return null;
+        }
+
+        $method = strtoupper($endpointData->httpMethods[0] ?? 'GET');
+        $path = '/'.ltrim($endpointData->uri ?? '', '/');
+        $path = preg_replace('#\{[^}]+\}#', '{id}', $path) ?? $path;
+
+        $responses = $this->examplesFor($method, $path);
+
+        if ($responses === []) {
+            $responses = [$this->fallback($method)];
+        }
+
+        // Erreurs communes (sauf health / login déjà couverts ailleurs).
+        if (! str_contains($path, '/health')) {
+            $responses[] = $this->response(
+                401,
+                null,
+                ['message' => 'Non authentifié.'],
+                [['code' => 'unauthenticated', 'detail' => 'Non authentifié.']],
+                'Non authentifié'
+            );
+        }
+
+        if (in_array($method, ['POST', 'PUT', 'PATCH'], true)) {
+            $responses[] = $this->response(
+                422,
+                null,
+                ['message' => 'Les données sont invalides.'],
+                [['code' => 'validation', 'field' => 'field', 'detail' => 'Le champ est invalide.']],
+                'Validation'
+            );
+        }
+
+        return $responses;
+    }
+
+    /** @return list<array{status:int,description:string,content:string}> */
+    private function examplesFor(string $method, string $path): array
+    {
+        $agency = [
+            'id' => 1,
+            'pressing_id' => 1,
+            'name' => 'Akwa',
+            'address' => 'Douala, Akwa',
+            'contact' => '+237600000001',
+            'country_code' => 'CM',
+            'currency' => 'XAF',
+            'code_prefix' => 'AK',
+            'code_suffix' => 'EL',
+            'status' => true,
+        ];
+
+        $pressing = [
+            'id' => 1,
+            'name' => 'Élégance Pressing',
+            'details' => 'Enseigne de démonstration',
+            'status' => true,
+            'pricing_mode' => 'piece',
+            'workflow_laveur_enabled' => true,
+            'workflow_classeur_enabled' => true,
+            'qr_labels_enabled' => false,
+            'block_retrieve_if_unpaid' => true,
+            'reporting_currency' => 'XAF',
+            'collection_fee' => 0,
+            'delivery_fee' => 0,
+            'loyalty_points_rate' => 1,
+            'hours_classic' => 48,
+            'hours_express' => 24,
+            'hours_repass' => 12,
+        ];
+
+        $client = [
+            'id' => 1,
+            'pressing_id' => 1,
+            'agency_id' => 1,
+            'code' => 'C000001',
+            'fullname' => 'Jean Client',
+            'email' => 'jean.client@example.com',
+            'phone_number' => '690000001',
+            'address' => null,
+            'city' => 'Douala',
+            'loyalty_points' => 120,
+            'wallet_balance' => 5000,
+            'sponsor_code' => 'JEAN01',
+            'referred_by_id' => null,
+            'last_deposit_at' => '2026-10-14T10:00:00+00:00',
+            'status' => true,
+        ];
+
+        $article = [
+            'id' => 1,
+            'name' => 'Chemise',
+            'description' => null,
+            'classic_price' => 1000,
+            'express_price' => 1500,
+            'repass_price' => 700,
+            'classic_price_kilo' => null,
+            'express_price_kilo' => null,
+            'repass_price_kilo' => null,
+            'status' => true,
+        ];
+
+        $deposit = [
+            'id' => 1,
+            'client_uuid' => '550e8400-e29b-41d4-a716-446655440000',
+            'code' => 'AK-0001-EL',
+            'qr_token' => 'qr-demo-token',
+            'pressing_id' => 1,
+            'agency_id' => 1,
+            'currency' => 'XAF',
+            'client_id' => 1,
+            'deposit_date' => '2026-10-14T09:00:00+00:00',
+            'retrieve_date' => '2026-10-16T09:00:00+00:00',
+            'retrieved_at' => null,
+            'subtotal' => 3500,
+            'collection_fee' => 0,
+            'delivery_fee' => 0,
+            'discount' => 0,
+            'discount_percent' => 0,
+            'promo_code' => null,
+            'points_earned' => 35,
+            'points_redeemed' => 0,
+            'total' => 3500,
+            'advanced' => 1000,
+            'left_to_pay' => 2500,
+            'payment_method' => 'cash',
+            'status' => 'open',
+            'etat' => 'waiting',
+            'delivery_status' => null,
+            'notes' => null,
+            'items_count' => 2,
+            'client' => $client,
+            'units' => [
+                [
+                    'id' => 1,
+                    'article_id' => 1,
+                    'service_id' => 1,
+                    'designation' => 'Chemise',
+                    'pricing_type' => 'piece',
+                    'quantity' => 2,
+                    'unit_price' => 1000,
+                    'line_total' => 2000,
+                    'state' => null,
+                ],
+            ],
+            'transactions' => [
+                [
+                    'id' => 1,
+                    'amount' => 1000,
+                    'type' => 'in',
+                    'payment_method' => 'cash',
+                    'transaction_date' => '2026-10-14T09:05:00+00:00',
+                ],
+            ],
+        ];
+
+        $user = [
+            'id' => 1,
+            'fullname' => 'Claire Caissier',
+            'email' => 'caissier@elegance.local',
+            'phone_number' => null,
+            'pressing_id' => 1,
+            'agency_id' => 1,
+            'status' => true,
+            'roles' => ['caissier'],
+        ];
+
+        $cashMovement = [
+            'id' => 1,
+            'pressing_id' => 1,
+            'agency_id' => 1,
+            'client_uuid' => '550e8400-e29b-41d4-a716-446655440001',
+            'label' => 'Achat fournitures',
+            'type' => 'out',
+            'amount' => 5000,
+            'category_id' => 1,
+            'validated' => true,
+            'action_date' => '2026-10-14',
+        ];
+
+        $service = [
+            'id' => 1,
+            'pressing_id' => 1,
+            'name' => 'Classique',
+            'code' => 'classic',
+            'legacy_type_action' => 0,
+            'sort_order' => 1,
+            'default_hours' => 48,
+            'status' => true,
+        ];
+
+        $pageMeta = ['page' => 1, 'per_page' => 50, 'total' => 1, 'last_page' => 1];
+
+        // —— Health ——
+        if ($path === '/api/v1/health') {
+            return [$this->response(200, [
+                'name' => 'Spark Pressing API',
+                'version' => 'v1',
+                'status' => 'ok',
+                'database' => 'ok',
+                'currency' => 'XAF',
+                'locale' => 'fr',
+            ], description: 'API et DB OK')];
+        }
+
+        // —— POS / Dashboard ——
+        if ($path === '/api/v1/dashboard') {
+            return [$this->response(200, [
+                'agency_id' => 1,
+                'date' => '2026-10-15',
+                'deposits_count' => 12,
+                'revenue' => 185000,
+                'retrieves_count' => 8,
+                'unpaid_total' => 45000,
+            ])];
+        }
+
+        if ($path === '/api/v1/pos/bootstrap') {
+            return [$this->response(200, [
+                'agency' => $agency,
+                'pressing' => $pressing,
+                'articles' => [$article],
+                'services' => [$service],
+                'promos' => [],
+                'delivery_hours' => [],
+                'user' => $user,
+            ])];
+        }
+
+        if ($path === '/api/v1/sync') {
+            return [$this->response(200, [
+                'accepted' => 3,
+                'rejected' => 0,
+                'results' => [
+                    ['client_uuid' => '550e8400-e29b-41d4-a716-446655440000', 'status' => 'ok', 'id' => 1],
+                ],
+            ])];
+        }
+
+        // —— Dépôts ——
+        if (str_starts_with($path, '/api/v1/deposits')) {
+            if ($method === 'GET' && $path === '/api/v1/deposits') {
+                return [$this->response(200, [$deposit], $pageMeta, description: 'Liste paginée')];
+            }
+            if ($method === 'GET' && in_array($path, [
+                '/api/v1/deposits/due',
+                '/api/v1/deposits/retrieved',
+                '/api/v1/deposits/ready',
+            ], true)) {
+                return [$this->response(200, [$deposit], $pageMeta)];
+            }
+            if ($method === 'GET' && ($path === '/api/v1/deposits/{id}' || $path === '/api/v1/deposits/qr/{id}')) {
+                return [$this->response(200, $deposit)];
+            }
+            if ($method === 'POST' && $path === '/api/v1/deposits') {
+                return [$this->response(201, $deposit, description: 'Dépôt créé')];
+            }
+            if ($method === 'POST' && str_contains($path, '/payments')) {
+                return [$this->response(200, array_merge($deposit, ['advanced' => 2000, 'left_to_pay' => 1500]))];
+            }
+            if ($method === 'POST' && (str_contains($path, '/retrieve') || str_contains($path, '/workshop'))) {
+                return [$this->response(200, array_merge($deposit, ['etat' => 'ready', 'status' => 'closed']))];
+            }
+            if ($method === 'GET' && str_contains($path, '/document')) {
+                return [[
+                    'status' => 200,
+                    'description' => 'PDF ticket/facture (application/pdf)',
+                    'content' => json_encode([
+                        'data' => ['content_type' => 'application/pdf', 'note' => 'Réponse binaire PDF'],
+                        'meta' => (object) [],
+                        'errors' => null,
+                    ], JSON_UNESCAPED_UNICODE),
+                ]];
+            }
+            if ($method === 'DELETE') {
+                return [$this->response(200, ['deleted' => true])];
+            }
+        }
+
+        // —— Clients ——
+        if (str_starts_with($path, '/api/v1/clients') || str_starts_with($path, '/api/v1/client/')) {
+            if ($method === 'GET' && ($path === '/api/v1/clients' || $path === '/api/v1/clients/inactive')) {
+                return [$this->response(200, [$client], $pageMeta)];
+            }
+            if ($method === 'GET' && str_contains($path, '/loyalty')) {
+                return [$this->response(200, [
+                    'client_id' => 1,
+                    'points' => 120,
+                    'groups' => [['id' => 1, 'name' => 'Or']],
+                ])];
+            }
+            if ($method === 'GET' && str_contains($path, '/wallet')) {
+                return [$this->response(200, [
+                    'client_id' => 1,
+                    'balance' => 5000,
+                    'currency' => 'XAF',
+                ])];
+            }
+            if ($method === 'POST' && str_contains($path, '/wallet/')) {
+                return [$this->response(200, [
+                    'client_id' => 1,
+                    'balance' => 6000,
+                    'movement' => ['type' => 'credit', 'amount' => 1000],
+                ])];
+            }
+            if ($method === 'GET' && str_contains($path, '/state')) {
+                return [$this->response(200, [
+                    'client' => $client,
+                    'deposits_count' => 5,
+                    'total_spent' => 85000,
+                    'unpaid' => 2500,
+                ])];
+            }
+            if ($method === 'GET' && str_contains($path, '/referrals')) {
+                return [$this->response(200, [$client])];
+            }
+            if ($method === 'POST' && $path === '/api/v1/clients') {
+                return [$this->response(201, $client)];
+            }
+            if ($method === 'GET' && ($path === '/api/v1/clients/{id}' || $path === '/api/v1/client/profile' || str_contains($path, '/deposits') || str_contains($path, '/retrieves'))) {
+                $data = str_contains($path, '/deposits') || str_contains($path, '/retrieves') ? [$deposit] : $client;
+
+                return [$this->response(200, $data, str_contains($path, '/deposits') ? $pageMeta : [])];
+            }
+            if (in_array($method, ['PUT', 'PATCH'], true)) {
+                return [$this->response(200, $client)];
+            }
+            if ($method === 'DELETE') {
+                return [$this->response(200, ['deleted' => true])];
+            }
+        }
+
+        // —— Catalogue ——
+        if (str_starts_with($path, '/api/v1/articles')) {
+            if ($method === 'GET' && $path === '/api/v1/articles') {
+                return [$this->response(200, [$article], $pageMeta)];
+            }
+            if ($method === 'GET' && $path === '/api/v1/articles/export') {
+                return [$this->response(200, ['url' => '/storage/exports/articles.csv', 'rows' => 3])];
+            }
+            if ($method === 'GET' && $path === '/api/v1/articles/template') {
+                return [$this->response(200, ['url' => '/storage/templates/articles.csv'])];
+            }
+            if ($method === 'POST' && $path === '/api/v1/articles/import') {
+                return [$this->response(200, ['imported' => 3, 'failed' => 0])];
+            }
+            if ($method === 'POST') {
+                return [$this->response(201, $article)];
+            }
+            if ($method === 'GET') {
+                return [$this->response(200, $article)];
+            }
+            if (in_array($method, ['PUT', 'PATCH'], true)) {
+                return [$this->response(200, $article)];
+            }
+            if ($method === 'DELETE') {
+                return [$this->response(200, ['deleted' => true])];
+            }
+        }
+
+        if (preg_match('#^/api/v1/(services|laundry-statuses|renders|promos|promo-specials|delivery-hours|code-suffixes|loyal-groups|agency-prices|cash-categories)#', $path)) {
+            $item = match (true) {
+                str_contains($path, 'services') => $service,
+                str_contains($path, 'laundry-statuses') => ['id' => 1, 'name' => 'Propre', 'code' => 'clean', 'status' => true],
+                str_contains($path, 'renders') => ['id' => 1, 'title' => 'Plié', 'status' => true],
+                str_contains($path, 'promo-specials') => ['id' => 1, 'title' => 'Promo spéciale', 'percent' => 10, 'status' => true],
+                str_contains($path, 'promos') => ['id' => 1, 'code' => 'RENTREE15', 'percent' => 15, 'status' => true],
+                str_contains($path, 'delivery-hours') => ['id' => 1, 'label' => '17h', 'hour' => '17:00', 'status' => true],
+                str_contains($path, 'code-suffixes') => ['id' => 1, 'agency_id' => 1, 'suffix' => 'EL', 'status' => true],
+                str_contains($path, 'loyal-groups') => ['id' => 1, 'name' => 'Or', 'min_points' => 100, 'status' => true],
+                str_contains($path, 'agency-prices') => [
+                    'id' => 1,
+                    'agency_id' => 1,
+                    'article_id' => 1,
+                    'service_id' => 1,
+                    'pricing_type' => 'piece',
+                    'amount_minor' => 1200,
+                    'valid_from' => '2026-01-01',
+                    'valid_to' => null,
+                ],
+                default => ['id' => 1, 'name' => 'Achat fournitures', 'direction' => 'out', 'status' => true],
+            };
+
+            if ($method === 'GET' && ! str_contains($path, '{id}') && ! str_ends_with($path, '/resolve') && ! str_ends_with($path, '/clients')) {
+                return [$this->response(200, [$item], $pageMeta)];
+            }
+            if ($method === 'GET' && str_ends_with($path, '/resolve')) {
+                return [$this->response(200, $item)];
+            }
+            if ($method === 'GET' && str_ends_with($path, '/clients')) {
+                return [$this->response(200, [$client])];
+            }
+            if ($method === 'POST' && str_contains($path, '/clients')) {
+                return [$this->response(200, ['attached' => true])];
+            }
+            if ($method === 'DELETE' && str_contains($path, '/clients')) {
+                return [$this->response(200, ['detached' => true])];
+            }
+            if ($method === 'POST') {
+                return [$this->response(201, $item)];
+            }
+            if ($method === 'GET') {
+                return [$this->response(200, $item)];
+            }
+            if (in_array($method, ['PUT', 'PATCH'], true)) {
+                return [$this->response(200, $item)];
+            }
+            if ($method === 'DELETE') {
+                return [$this->response(200, ['deleted' => true])];
+            }
+        }
+
+        // —— Caisse ——
+        if (str_starts_with($path, '/api/v1/cash-movements')) {
+            if ($method === 'GET' && $path === '/api/v1/cash-movements') {
+                return [$this->response(200, [$cashMovement], $pageMeta)];
+            }
+            if ($method === 'POST' && str_contains($path, '/validate')) {
+                return [$this->response(200, array_merge($cashMovement, ['validated' => true]))];
+            }
+            if ($method === 'POST') {
+                return [$this->response(201, $cashMovement)];
+            }
+            if (in_array($method, ['PUT', 'PATCH'], true)) {
+                return [$this->response(200, $cashMovement)];
+            }
+            if ($method === 'DELETE') {
+                return [$this->response(200, ['deleted' => true])];
+            }
+        }
+
+        // —— Recettes ——
+        if (str_starts_with($path, '/api/v1/receipts')) {
+            return [$this->response(200, [
+                'date' => '2026-10-15',
+                'agency_id' => 1,
+                'total_in' => 185000,
+                'total_out' => 12000,
+                'net' => 173000,
+                'by_payment_method' => [
+                    'cash' => 80000,
+                    'mobile_money' => 90000,
+                    'card' => 15000,
+                ],
+                'rows' => [$cashMovement],
+            ])];
+        }
+
+        // —— Rapports ——
+        if (str_starts_with($path, '/api/v1/reports')) {
+            return [$this->response(200, [
+                'from' => '2026-10-01',
+                'to' => '2026-10-15',
+                'totals' => ['revenue' => 2500000, 'orders' => 180, 'average_basket' => 13888],
+                'rows' => [
+                    ['label' => 'Akwa', 'revenue' => 1200000, 'orders' => 90],
+                    ['label' => 'Bonabéri', 'revenue' => 1300000, 'orders' => 90],
+                ],
+            ])];
+        }
+
+        // —— Livraisons ——
+        if (str_starts_with($path, '/api/v1/deliveries')) {
+            $zone = ['id' => 1, 'name' => 'Centre-ville', 'code' => 'CV', 'agency_id' => 1, 'status' => true];
+            $round = ['id' => 1, 'name' => 'Tournée matin', 'round_date' => '2026-10-15', 'status' => 'open', 'livreur_id' => 6];
+            if (str_contains($path, '/zones')) {
+                if ($method === 'GET') {
+                    return [$this->response(200, [$zone])];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $zone)];
+                }
+                if (in_array($method, ['PUT', 'PATCH'], true)) {
+                    return [$this->response(200, $zone)];
+                }
+            }
+            if (str_contains($path, '/rounds')) {
+                if ($method === 'GET') {
+                    return [$this->response(200, [$round])];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $round)];
+                }
+            }
+            if (str_contains($path, '/queue') || str_contains($path, '/history')) {
+                return [$this->response(200, [$deposit], $pageMeta)];
+            }
+            if ($method === 'POST') {
+                return [$this->response(200, array_merge($deposit, ['delivery_status' => 'delivered']))];
+            }
+        }
+
+        // —— Organisation / settings / roles ——
+        if (str_starts_with($path, '/api/v1/org/') || str_starts_with($path, '/api/v1/settings') || str_starts_with($path, '/api/v1/roles') || str_starts_with($path, '/api/v1/permissions')) {
+            if (str_contains($path, 'exchange-rates')) {
+                $rate = [
+                    'id' => 1,
+                    'source_currency' => 'XAF',
+                    'target_currency' => 'EUR',
+                    'rate' => 655.957,
+                    'rate_date' => '2026-10-15',
+                ];
+                if ($method === 'GET') {
+                    return [$this->response(200, [$rate])];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $rate)];
+                }
+                if ($method === 'DELETE') {
+                    return [$this->response(200, ['deleted' => true])];
+                }
+            }
+            if (str_contains($path, 'license')) {
+                return [$this->response(200, [
+                    'plan' => 'pro',
+                    'seats' => 10,
+                    'is_activated' => true,
+                    'expires_at' => '2027-10-15T00:00:00+00:00',
+                ])];
+            }
+            if (str_contains($path, 'pressing') && $method === 'GET') {
+                return [$this->response(200, $pressing)];
+            }
+            if (str_contains($path, 'pressing') && in_array($method, ['PUT', 'PATCH'], true)) {
+                return [$this->response(200, $pressing)];
+            }
+            if (str_contains($path, 'agencies') || str_contains($path, '/agencies/')) {
+                if ($method === 'GET' && ! str_contains($path, '{id}')) {
+                    return [$this->response(200, [$agency], $pageMeta)];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $agency)];
+                }
+
+                return [$this->response(200, $agency)];
+            }
+            if (str_contains($path, 'users')) {
+                if ($method === 'GET' && ! str_contains($path, '{id}')) {
+                    return [$this->response(200, [$user], $pageMeta)];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $user)];
+                }
+                if ($method === 'DELETE') {
+                    return [$this->response(200, ['deleted' => true])];
+                }
+
+                return [$this->response(200, $user)];
+            }
+            if (str_contains($path, 'permissions')) {
+                return [$this->response(200, ['deposits.view', 'deposits.create', 'cash.manage', 'reports.view'])];
+            }
+            if (str_contains($path, 'roles')) {
+                if ($method === 'GET') {
+                    return [$this->response(200, [
+                        ['id' => 1, 'name' => 'caissier', 'permissions' => ['deposits.view', 'cash.manage']],
+                        ['id' => 2, 'name' => 'manager', 'permissions' => ['reports.view', 'settings.manage']],
+                    ])];
+                }
+
+                return [$this->response(200, ['id' => 1, 'name' => 'caissier', 'permissions' => ['deposits.view']])];
+            }
+        }
+
+        // —— Audit ——
+        if (str_starts_with($path, '/api/v1/audit-logs') || str_starts_with($path, '/api/v1/print-logs')) {
+            return [$this->response(200, [
+                [
+                    'id' => 1,
+                    'action' => 'deposit.created',
+                    'actor_type' => 'staff',
+                    'actor_id' => 1,
+                    'subject_type' => 'deposit',
+                    'subject_id' => 1,
+                    'created_at' => '2026-10-15T10:00:00+00:00',
+                ],
+            ], $pageMeta)];
+        }
+
+        // —— Superadmin ——
+        if (str_starts_with($path, '/api/v1/superadmin')) {
+            if (str_contains($path, 'pressings')) {
+                if ($method === 'GET' && ! str_contains($path, '{id}')) {
+                    return [$this->response(200, [$pressing], $pageMeta)];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $pressing)];
+                }
+                if ($method === 'DELETE') {
+                    return [$this->response(200, ['deleted' => true])];
+                }
+
+                return [$this->response(200, $pressing)];
+            }
+            if (str_contains($path, 'agencies')) {
+                if ($method === 'GET' && ! str_contains($path, '{id}')) {
+                    return [$this->response(200, [$agency], $pageMeta)];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $agency)];
+                }
+
+                return [$this->response(200, $agency)];
+            }
+            if (str_contains($path, 'users')) {
+                if ($method === 'GET') {
+                    return [$this->response(200, [$user], $pageMeta)];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $user)];
+                }
+                if ($method === 'DELETE') {
+                    return [$this->response(200, ['deleted' => true])];
+                }
+
+                return [$this->response(200, $user)];
+            }
+            if (str_contains($path, 'licenses')) {
+                $license = [
+                    'id' => 1,
+                    'pressing_id' => 1,
+                    'plan' => 'pro',
+                    'seats' => 10,
+                    'code' => 'DEMO-LICENSE',
+                    'is_activated' => true,
+                    'expires_at' => '2027-10-15T00:00:00+00:00',
+                ];
+                if ($method === 'GET') {
+                    return [$this->response(200, [$license], $pageMeta)];
+                }
+                if ($method === 'POST') {
+                    return [$this->response(201, $license)];
+                }
+                if ($method === 'DELETE') {
+                    return [$this->response(200, ['deleted' => true])];
+                }
+
+                return [$this->response(200, $license)];
+            }
+            if (str_contains($path, 'roles') || str_contains($path, 'permissions')) {
+                return [$this->response(200, [['id' => 1, 'name' => 'admin']])];
+            }
+        }
+
+        return [];
+    }
+
+    /** @return array{status:int,description:string,content:string} */
+    private function fallback(string $method): array
+    {
+        return match ($method) {
+            'POST' => $this->response(201, ['id' => 1, 'status' => true], description: 'Créé'),
+            'DELETE' => $this->response(200, ['deleted' => true], description: 'Supprimé'),
+            default => $this->response(200, ['ok' => true], description: 'Succès'),
+        };
+    }
+
+    /**
+     * @param  array<string,mixed>|list<mixed>|null  $data
+     * @param  array<string,mixed>  $meta
+     * @param  list<array<string,mixed>>|null  $errors
+     * @return array{status:int,description:string,content:string}
+     */
+    private function response(
+        int $status,
+        mixed $data,
+        array $meta = [],
+        ?array $errors = null,
+        string $description = 'Succès',
+    ): array {
+        return [
+            'status' => $status,
+            'description' => $description,
+            'content' => json_encode([
+                'data' => $data,
+                'meta' => empty($meta) ? (object) [] : $meta,
+                'errors' => $errors,
+            ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
+        ];
+    }
+}

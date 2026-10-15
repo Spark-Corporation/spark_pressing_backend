@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "https://pressing-api.pressingelegance.com";
+        var tryItOutBaseUrl = "http://localhost:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -65,6 +65,16 @@
                 <li class="tocify-item level-1" data-unique="authenticating-requests">
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
+                            </ul>
+                    <ul id="tocify-header-systeme" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="systeme">
+                    <a href="#systeme">Système</a>
+                </li>
+                                    <ul id="tocify-subheader-systeme" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="systeme-GETapi-v1-health">
+                                <a href="#systeme-GETapi-v1-health">Santé de l'API</a>
+                            </li>
+                                                                        </ul>
                             </ul>
                     <ul id="tocify-header-authentification" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentification">
@@ -656,9 +666,9 @@
         <h1 id="introduction">Introduction</h1>
 <p>API REST Spark Pressing — multi-tenant (pressing / agence), Sanctum, montants en XAF entiers.</p>
 <aside>
-    <strong>Base URL</strong>: <code>https://pressing-api.pressingelegance.com</code>
+    <strong>Base URL</strong>: <code>http://localhost:8000</code>
 </aside>
-<pre><code>API JSON `{ data, meta, errors }`. Authentification **Bearer Sanctum**.
+<pre><code>API JSON uniforme `{ data, meta, errors }` sur **tous** les endpoints.
 
 **Acteurs**
 - Staff : `POST /api/v1/auth/staff/login` → `{ data: { token, token_type, actor: "staff", user } }`
@@ -673,6 +683,8 @@
 
 **Montants** : entiers XAF. **Idempotence POS** : `client_uuid` (UUID) sur dépôts et paiements.
 
+Chaque endpoint documente ses **exemples de réponses** (200/201 + erreurs 401/422 quand applicable).
+
 Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
@@ -680,7 +692,173 @@ Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.</code></pre>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>Obtenez le token via <code>POST /api/v1/auth/staff/login</code> (email + password). Sur les routes staff, envoyez aussi <code>X-Agency-Id</code> pour filtrer une agence.</p>
 
-        <h1 id="authentification">Authentification</h1>
+        <h1 id="systeme">Système</h1>
+
+    
+
+                                <h2 id="systeme-GETapi-v1-health">Santé de l&#039;API</h2>
+
+<p>
+</p>
+
+<p>Vérifie que l'API et la base sont joignables (sonde LB / ENF02).</p>
+
+<span id="example-requests-GETapi-v1-health">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/health" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/health"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-health">
+            <blockquote>
+            <p>Example response (200, OK):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Spark Pressing API&quot;,
+        &quot;version&quot;: &quot;v1&quot;,
+        &quot;status&quot;: &quot;ok&quot;,
+        &quot;database&quot;: &quot;ok&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;locale&quot;: &quot;fr&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (503, DB indisponible):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Spark Pressing API&quot;,
+        &quot;version&quot;: &quot;v1&quot;,
+        &quot;status&quot;: &quot;degraded&quot;,
+        &quot;database&quot;: &quot;error&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;locale&quot;: &quot;fr&quot;,
+        &quot;database_error&quot;: &quot;unavailable&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-health" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-health"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-health"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-health" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-health">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-health" data-method="GET"
+      data-path="api/v1/health"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-health', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-health"
+                    onclick="tryItOut('GETapi-v1-health');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-health"
+                    onclick="cancelTryOut('GETapi-v1-health');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-health"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/health</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-health"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-health"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-health"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                <h1 id="authentification">Authentification</h1>
 
     
 
@@ -697,7 +875,7 @@ Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/login" \
+    "http://localhost:8000/api/v1/auth/staff/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -710,7 +888,7 @@ Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/login"
+    "http://localhost:8000/api/v1/auth/staff/login"
 );
 
 const headers = {
@@ -966,7 +1144,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/forgot-password" \
+    "http://localhost:8000/api/v1/auth/staff/forgot-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -978,7 +1156,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/forgot-password"
+    "http://localhost:8000/api/v1/auth/staff/forgot-password"
 );
 
 const headers = {
@@ -1125,7 +1303,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/reset-password" \
+    "http://localhost:8000/api/v1/auth/staff/reset-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -1140,7 +1318,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/staff/reset-password"
+    "http://localhost:8000/api/v1/auth/staff/reset-password"
 );
 
 const headers = {
@@ -1326,7 +1504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/client/login" \
+    "http://localhost:8000/api/v1/auth/client/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -1339,7 +1517,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/client/login"
+    "http://localhost:8000/api/v1/auth/client/login"
 );
 
 const headers = {
@@ -1537,7 +1715,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/client/register" \
+    "http://localhost:8000/api/v1/auth/client/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -1555,7 +1733,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/client/register"
+    "http://localhost:8000/api/v1/auth/client/register"
 );
 
 const headers = {
@@ -1799,7 +1977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/superadmin/login" \
+    "http://localhost:8000/api/v1/auth/superadmin/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -1812,7 +1990,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/superadmin/login"
+    "http://localhost:8000/api/v1/auth/superadmin/login"
 );
 
 const headers = {
@@ -2000,7 +2178,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/auth/me" \
+    --get "http://localhost:8000/api/v1/auth/me" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2009,7 +2187,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/me"
+    "http://localhost:8000/api/v1/auth/me"
 );
 
 const headers = {
@@ -2207,7 +2385,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/profile" \
+    "http://localhost:8000/api/v1/auth/profile" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2225,7 +2403,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/profile"
+    "http://localhost:8000/api/v1/auth/profile"
 );
 
 const headers = {
@@ -2460,7 +2638,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/auth/logout" \
+    "http://localhost:8000/api/v1/auth/logout" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2469,7 +2647,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/auth/logout"
+    "http://localhost:8000/api/v1/auth/logout"
 );
 
 const headers = {
@@ -2613,7 +2791,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/client/profile" \
+    "http://localhost:8000/api/v1/client/profile" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2631,7 +2809,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/client/profile"
+    "http://localhost:8000/api/v1/client/profile"
 );
 
 const headers = {
@@ -2870,7 +3048,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/dashboard" \
+    --get "http://localhost:8000/api/v1/dashboard" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2879,7 +3057,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/dashboard"
+    "http://localhost:8000/api/v1/dashboard"
 );
 
 const headers = {
@@ -2898,6 +3076,42 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-dashboard">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;agency_id&quot;: 1,
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;deposits_count&quot;: 12,
+        &quot;revenue&quot;: 185000,
+        &quot;retrieves_count&quot;: 8,
+        &quot;unpaid_total&quot;: 45000
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-dashboard" hidden>
     <blockquote>Received response<span
@@ -3010,7 +3224,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/pos/bootstrap" \
+    --get "http://localhost:8000/api/v1/pos/bootstrap" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3019,7 +3233,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/pos/bootstrap"
+    "http://localhost:8000/api/v1/pos/bootstrap"
 );
 
 const headers = {
@@ -3038,6 +3252,106 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-pos-bootstrap">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;,
+            &quot;address&quot;: &quot;Douala, Akwa&quot;,
+            &quot;contact&quot;: &quot;+237600000001&quot;,
+            &quot;country_code&quot;: &quot;CM&quot;,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;code_prefix&quot;: &quot;AK&quot;,
+            &quot;code_suffix&quot;: &quot;EL&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+            &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+            &quot;status&quot;: true,
+            &quot;pricing_mode&quot;: &quot;piece&quot;,
+            &quot;workflow_laveur_enabled&quot;: true,
+            &quot;workflow_classeur_enabled&quot;: true,
+            &quot;qr_labels_enabled&quot;: false,
+            &quot;block_retrieve_if_unpaid&quot;: true,
+            &quot;reporting_currency&quot;: &quot;XAF&quot;,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;loyalty_points_rate&quot;: 1,
+            &quot;hours_classic&quot;: 48,
+            &quot;hours_express&quot;: 24,
+            &quot;hours_repass&quot;: 12
+        },
+        &quot;articles&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Chemise&quot;,
+                &quot;description&quot;: null,
+                &quot;classic_price&quot;: 1000,
+                &quot;express_price&quot;: 1500,
+                &quot;repass_price&quot;: 700,
+                &quot;classic_price_kilo&quot;: null,
+                &quot;express_price_kilo&quot;: null,
+                &quot;repass_price_kilo&quot;: null,
+                &quot;status&quot;: true
+            }
+        ],
+        &quot;services&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;name&quot;: &quot;Classique&quot;,
+                &quot;code&quot;: &quot;classic&quot;,
+                &quot;legacy_type_action&quot;: 0,
+                &quot;sort_order&quot;: 1,
+                &quot;default_hours&quot;: 48,
+                &quot;status&quot;: true
+            }
+        ],
+        &quot;promos&quot;: [],
+        &quot;delivery_hours&quot;: [],
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+            &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+            &quot;phone_number&quot;: null,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;status&quot;: true,
+            &quot;roles&quot;: [
+                &quot;caissier&quot;
+            ]
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-pos-bootstrap" hidden>
     <blockquote>Received response<span
@@ -3150,7 +3464,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/sync" \
+    "http://localhost:8000/api/v1/sync" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3169,7 +3483,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/sync"
+    "http://localhost:8000/api/v1/sync"
 );
 
 const headers = {
@@ -3198,7 +3512,65 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-sync">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;accepted&quot;: 3,
+        &quot;rejected&quot;: 0,
+        &quot;results&quot;: [
+            {
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+                &quot;status&quot;: &quot;ok&quot;,
+                &quot;id&quot;: 1
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-sync" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-sync"></span>:
@@ -3365,7 +3737,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/due" \
+    --get "http://localhost:8000/api/v1/deposits/due" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3374,7 +3746,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/due"
+    "http://localhost:8000/api/v1/deposits/due"
 );
 
 const headers = {
@@ -3393,6 +3765,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits-due">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits-due" hidden>
     <blockquote>Received response<span
@@ -3505,7 +3981,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/retrieved" \
+    --get "http://localhost:8000/api/v1/deposits/retrieved" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3514,7 +3990,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/retrieved"
+    "http://localhost:8000/api/v1/deposits/retrieved"
 );
 
 const headers = {
@@ -3533,6 +4009,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits-retrieved">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits-retrieved" hidden>
     <blockquote>Received response<span
@@ -3645,7 +4225,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/ready" \
+    --get "http://localhost:8000/api/v1/deposits/ready" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3654,7 +4234,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/ready"
+    "http://localhost:8000/api/v1/deposits/ready"
 );
 
 const headers = {
@@ -3673,6 +4253,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits-ready">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits-ready" hidden>
     <blockquote>Received response<span
@@ -3785,7 +4469,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/qr/architecto" \
+    --get "http://localhost:8000/api/v1/deposits/qr/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3794,7 +4478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/qr/architecto"
+    "http://localhost:8000/api/v1/deposits/qr/architecto"
 );
 
 const headers = {
@@ -3813,6 +4497,103 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits-qr--token-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits-qr--token-" hidden>
     <blockquote>Received response<span
@@ -3938,7 +4719,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits" \
+    --get "http://localhost:8000/api/v1/deposits" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3947,7 +4728,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits"
+    "http://localhost:8000/api/v1/deposits"
 );
 
 const headers = {
@@ -3966,6 +4747,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits">
+            <blockquote>
+            <p>Example response (200, Liste paginée):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits" hidden>
     <blockquote>Received response<span
@@ -4078,7 +4963,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deposits" \
+    "http://localhost:8000/api/v1/deposits" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4098,8 +4983,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-15T17:43:02\",
-    \"retrieve_date\": \"2026-10-15T17:43:02\",
+    \"deposit_date\": \"2026-10-15T23:00:48\",
+    \"retrieve_date\": \"2026-10-15T23:00:48\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -4120,7 +5005,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits"
+    "http://localhost:8000/api/v1/deposits"
 );
 
 const headers = {
@@ -4145,8 +5030,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-15T17:43:02",
-    "retrieve_date": "2026-10-15T17:43:02",
+    "deposit_date": "2026-10-15T23:00:48",
+    "retrieve_date": "2026-10-15T23:00:48",
     "notes": "architecto",
     "lines": [
         {
@@ -4172,7 +5057,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deposits">
-</span>
+            <blockquote>
+            <p>Example response (201, Dépôt créé):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deposits" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deposits"></span>:
@@ -4478,10 +5479,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -4490,10 +5491,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -4659,7 +5660,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/16" \
+    --get "http://localhost:8000/api/v1/deposits/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4668,7 +5669,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16"
+    "http://localhost:8000/api/v1/deposits/16"
 );
 
 const headers = {
@@ -4687,6 +5688,103 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits--id-" hidden>
     <blockquote>Received response<span
@@ -4812,7 +5910,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/payments" \
+    "http://localhost:8000/api/v1/deposits/16/payments" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4821,14 +5919,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-15T17:43:02\"
+    \"transaction_date\": \"2026-10-15T23:00:48\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/payments"
+    "http://localhost:8000/api/v1/deposits/16/payments"
 );
 
 const headers = {
@@ -4842,7 +5940,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-15T17:43:02"
+    "transaction_date": "2026-10-15T23:00:48"
 };
 
 fetch(url, {
@@ -4854,7 +5952,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deposits--deposit_id--payments">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 2000,
+        &quot;left_to_pay&quot;: 1500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deposits--deposit_id--payments" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deposits--deposit_id--payments"></span>:
@@ -5009,10 +6223,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
         </form>
 
@@ -5030,7 +6244,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve" \
+    "http://localhost:8000/api/v1/deposits/16/retrieve" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5043,7 +6257,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve"
+    "http://localhost:8000/api/v1/deposits/16/retrieve"
 );
 
 const headers = {
@@ -5066,7 +6280,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deposits--deposit_id--retrieve">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;closed&quot;,
+        &quot;etat&quot;: &quot;ready&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deposits--deposit_id--retrieve" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deposits--deposit_id--retrieve"></span>:
@@ -5204,7 +6534,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve-partial" \
+    "http://localhost:8000/api/v1/deposits/16/retrieve-partial" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5222,7 +6552,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/retrieve-partial"
+    "http://localhost:8000/api/v1/deposits/16/retrieve-partial"
 );
 
 const headers = {
@@ -5250,7 +6580,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deposits--deposit_id--retrieve-partial">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;closed&quot;,
+        &quot;etat&quot;: &quot;ready&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deposits--deposit_id--retrieve-partial" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deposits--deposit_id--retrieve-partial"></span>:
@@ -5412,7 +6858,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/workshop" \
+    "http://localhost:8000/api/v1/deposits/16/workshop" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5426,7 +6872,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/workshop"
+    "http://localhost:8000/api/v1/deposits/16/workshop"
 );
 
 const headers = {
@@ -5450,7 +6896,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deposits--deposit_id--workshop">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;closed&quot;,
+        &quot;etat&quot;: &quot;ready&quot;,
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deposits--deposit_id--workshop" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deposits--deposit_id--workshop"></span>:
@@ -5602,7 +7164,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deposits/16/document" \
+    --get "http://localhost:8000/api/v1/deposits/16/document" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5611,7 +7173,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16/document"
+    "http://localhost:8000/api/v1/deposits/16/document"
 );
 
 const headers = {
@@ -5630,6 +7192,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deposits--deposit_id--document">
+            <blockquote>
+            <p>Example response (200, PDF ticket/facture (application/pdf)):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;content_type&quot;: &quot;application/pdf&quot;,
+        &quot;note&quot;: &quot;R&eacute;ponse binaire PDF&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deposits--deposit_id--document" hidden>
     <blockquote>Received response<span
@@ -5755,7 +7349,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16" \
+    "http://localhost:8000/api/v1/deposits/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5764,7 +7358,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deposits/16"
+    "http://localhost:8000/api/v1/deposits/16"
 );
 
 const headers = {
@@ -5783,7 +7377,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-deposits--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-deposits--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-deposits--id-"></span>:
@@ -5912,7 +7537,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients/inactive" \
+    --get "http://localhost:8000/api/v1/clients/inactive" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5921,7 +7546,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/inactive"
+    "http://localhost:8000/api/v1/clients/inactive"
 );
 
 const headers = {
@@ -5940,6 +7565,58 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients-inactive">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients-inactive" hidden>
     <blockquote>Received response<span
@@ -6052,7 +7729,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients" \
+    --get "http://localhost:8000/api/v1/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6061,7 +7738,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients"
+    "http://localhost:8000/api/v1/clients"
 );
 
 const headers = {
@@ -6080,6 +7757,58 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients" hidden>
     <blockquote>Received response<span
@@ -6192,7 +7921,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/clients" \
+    "http://localhost:8000/api/v1/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6211,7 +7940,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients"
+    "http://localhost:8000/api/v1/clients"
 );
 
 const headers = {
@@ -6240,7 +7969,71 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-clients">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;code&quot;: &quot;C000001&quot;,
+        &quot;fullname&quot;: &quot;Jean Client&quot;,
+        &quot;email&quot;: &quot;jean.client@example.com&quot;,
+        &quot;phone_number&quot;: &quot;690000001&quot;,
+        &quot;address&quot;: null,
+        &quot;city&quot;: &quot;Douala&quot;,
+        &quot;loyalty_points&quot;: 120,
+        &quot;wallet_balance&quot;: 5000,
+        &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+        &quot;referred_by_id&quot;: null,
+        &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-clients" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-clients"></span>:
@@ -6437,7 +8230,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16" \
+    --get "http://localhost:8000/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6446,7 +8239,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16"
+    "http://localhost:8000/api/v1/clients/16"
 );
 
 const headers = {
@@ -6465,6 +8258,51 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;code&quot;: &quot;C000001&quot;,
+        &quot;fullname&quot;: &quot;Jean Client&quot;,
+        &quot;email&quot;: &quot;jean.client@example.com&quot;,
+        &quot;phone_number&quot;: &quot;690000001&quot;,
+        &quot;address&quot;: null,
+        &quot;city&quot;: &quot;Douala&quot;,
+        &quot;loyalty_points&quot;: 120,
+        &quot;wallet_balance&quot;: 5000,
+        &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+        &quot;referred_by_id&quot;: null,
+        &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients--id-" hidden>
     <blockquote>Received response<span
@@ -6590,7 +8428,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/state" \
+    --get "http://localhost:8000/api/v1/clients/16/state" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6599,7 +8437,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/state"
+    "http://localhost:8000/api/v1/clients/16/state"
 );
 
 const headers = {
@@ -6618,6 +8456,56 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients--client_id--state">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;deposits_count&quot;: 5,
+        &quot;total_spent&quot;: 85000,
+        &quot;unpaid&quot;: 2500
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients--client_id--state" hidden>
     <blockquote>Received response<span
@@ -6743,7 +8631,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/referrals" \
+    --get "http://localhost:8000/api/v1/clients/16/referrals" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6752,7 +8640,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/referrals"
+    "http://localhost:8000/api/v1/clients/16/referrals"
 );
 
 const headers = {
@@ -6771,6 +8659,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients--client_id--referrals">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients--client_id--referrals" hidden>
     <blockquote>Received response<span
@@ -6896,7 +8831,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16" \
+    "http://localhost:8000/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6915,7 +8850,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16"
+    "http://localhost:8000/api/v1/clients/16"
 );
 
 const headers = {
@@ -6944,7 +8879,71 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-clients--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;code&quot;: &quot;C000001&quot;,
+        &quot;fullname&quot;: &quot;Jean Client&quot;,
+        &quot;email&quot;: &quot;jean.client@example.com&quot;,
+        &quot;phone_number&quot;: &quot;690000001&quot;,
+        &quot;address&quot;: null,
+        &quot;city&quot;: &quot;Douala&quot;,
+        &quot;loyalty_points&quot;: 120,
+        &quot;wallet_balance&quot;: 5000,
+        &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+        &quot;referred_by_id&quot;: null,
+        &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-clients--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-clients--id-"></span>:
@@ -7164,7 +9163,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16" \
+    "http://localhost:8000/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7173,7 +9172,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16"
+    "http://localhost:8000/api/v1/clients/16"
 );
 
 const headers = {
@@ -7192,7 +9191,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-clients--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-clients--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-clients--id-"></span>:
@@ -7317,7 +9347,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/loyalty" \
+    --get "http://localhost:8000/api/v1/clients/16/loyalty" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7326,7 +9356,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/loyalty"
+    "http://localhost:8000/api/v1/clients/16/loyalty"
 );
 
 const headers = {
@@ -7345,6 +9375,44 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients--client_id--loyalty">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;client_id&quot;: 1,
+        &quot;points&quot;: 120,
+        &quot;groups&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Or&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients--client_id--loyalty" hidden>
     <blockquote>Received response<span
@@ -7470,7 +9538,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet" \
+    --get "http://localhost:8000/api/v1/clients/16/wallet" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7479,7 +9547,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet"
+    "http://localhost:8000/api/v1/clients/16/wallet"
 );
 
 const headers = {
@@ -7498,6 +9566,39 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-clients--client_id--wallet">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;client_id&quot;: 1,
+        &quot;balance&quot;: 5000,
+        &quot;currency&quot;: &quot;XAF&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-clients--client_id--wallet" hidden>
     <blockquote>Received response<span
@@ -7623,7 +9724,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/credit" \
+    "http://localhost:8000/api/v1/clients/16/wallet/credit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7637,7 +9738,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/credit"
+    "http://localhost:8000/api/v1/clients/16/wallet/credit"
 );
 
 const headers = {
@@ -7661,7 +9762,62 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-clients--client_id--wallet-credit">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;client_id&quot;: 1,
+        &quot;balance&quot;: 6000,
+        &quot;movement&quot;: {
+            &quot;type&quot;: &quot;credit&quot;,
+            &quot;amount&quot;: 1000
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-clients--client_id--wallet-credit" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-clients--client_id--wallet-credit"></span>:
@@ -7811,7 +9967,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/debit" \
+    "http://localhost:8000/api/v1/clients/16/wallet/debit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7825,7 +9981,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/clients/16/wallet/debit"
+    "http://localhost:8000/api/v1/clients/16/wallet/debit"
 );
 
 const headers = {
@@ -7849,7 +10005,62 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-clients--client_id--wallet-debit">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;client_id&quot;: 1,
+        &quot;balance&quot;: 6000,
+        &quot;movement&quot;: {
+            &quot;type&quot;: &quot;credit&quot;,
+            &quot;amount&quot;: 1000
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-clients--client_id--wallet-debit" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-clients--client_id--wallet-debit"></span>:
@@ -8003,7 +10214,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/articles/export" \
+    --get "http://localhost:8000/api/v1/articles/export" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8012,7 +10223,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles/export"
+    "http://localhost:8000/api/v1/articles/export"
 );
 
 const headers = {
@@ -8031,6 +10242,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-articles-export">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;url&quot;: &quot;/storage/exports/articles.csv&quot;,
+        &quot;rows&quot;: 3
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-articles-export" hidden>
     <blockquote>Received response<span
@@ -8143,7 +10386,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/articles/template" \
+    --get "http://localhost:8000/api/v1/articles/template" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8152,7 +10395,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles/template"
+    "http://localhost:8000/api/v1/articles/template"
 );
 
 const headers = {
@@ -8171,6 +10414,37 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-articles-template">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;url&quot;: &quot;/storage/templates/articles.csv&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-articles-template" hidden>
     <blockquote>Received response<span
@@ -8283,17 +10557,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/articles/import" \
+    "http://localhost:8000/api/v1/articles/import" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpAF78.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php2AC.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles/import"
+    "http://localhost:8000/api/v1/articles/import"
 );
 
 const headers = {
@@ -8315,7 +10589,58 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-articles-import">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;imported&quot;: 3,
+        &quot;failed&quot;: 0
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-articles-import" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-articles-import"></span>:
@@ -8422,7 +10747,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpAF78.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2AC.tmp</code></p>
         </div>
         </form>
 
@@ -8440,7 +10765,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/articles" \
+    --get "http://localhost:8000/api/v1/articles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8449,7 +10774,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles"
+    "http://localhost:8000/api/v1/articles"
 );
 
 const headers = {
@@ -8468,6 +10793,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-articles">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Chemise&quot;,
+            &quot;description&quot;: null,
+            &quot;classic_price&quot;: 1000,
+            &quot;express_price&quot;: 1500,
+            &quot;repass_price&quot;: 700,
+            &quot;classic_price_kilo&quot;: null,
+            &quot;express_price_kilo&quot;: null,
+            &quot;repass_price_kilo&quot;: null,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-articles" hidden>
     <blockquote>Received response<span
@@ -8580,7 +10952,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/articles" \
+    "http://localhost:8000/api/v1/articles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8601,7 +10973,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles"
+    "http://localhost:8000/api/v1/articles"
 );
 
 const headers = {
@@ -8632,7 +11004,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-articles">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Chemise&quot;,
+        &quot;description&quot;: null,
+        &quot;classic_price&quot;: 1000,
+        &quot;express_price&quot;: 1500,
+        &quot;repass_price&quot;: 700,
+        &quot;classic_price_kilo&quot;: null,
+        &quot;express_price_kilo&quot;: null,
+        &quot;repass_price_kilo&quot;: null,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-articles" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-articles"></span>:
@@ -8863,7 +11294,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/articles/16" \
+    --get "http://localhost:8000/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8872,7 +11303,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles/16"
+    "http://localhost:8000/api/v1/articles/16"
 );
 
 const headers = {
@@ -8891,6 +11322,46 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-articles--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Chemise&quot;,
+        &quot;description&quot;: null,
+        &quot;classic_price&quot;: 1000,
+        &quot;express_price&quot;: 1500,
+        &quot;repass_price&quot;: 700,
+        &quot;classic_price_kilo&quot;: null,
+        &quot;express_price_kilo&quot;: null,
+        &quot;repass_price_kilo&quot;: null,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-articles--id-" hidden>
     <blockquote>Received response<span
@@ -9016,7 +11487,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/articles/16" \
+    "http://localhost:8000/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9037,7 +11508,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles/16"
+    "http://localhost:8000/api/v1/articles/16"
 );
 
 const headers = {
@@ -9068,7 +11539,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-articles--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Chemise&quot;,
+        &quot;description&quot;: null,
+        &quot;classic_price&quot;: 1000,
+        &quot;express_price&quot;: 1500,
+        &quot;repass_price&quot;: 700,
+        &quot;classic_price_kilo&quot;: null,
+        &quot;express_price_kilo&quot;: null,
+        &quot;repass_price_kilo&quot;: null,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-articles--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-articles--id-"></span>:
@@ -9312,7 +11842,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/articles/16" \
+    "http://localhost:8000/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9321,7 +11851,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/articles/16"
+    "http://localhost:8000/api/v1/articles/16"
 );
 
 const headers = {
@@ -9340,7 +11870,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-articles--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-articles--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-articles--id-"></span>:
@@ -9465,7 +12026,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/agency-prices" \
+    --get "http://localhost:8000/api/v1/agency-prices" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9474,7 +12035,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/agency-prices"
+    "http://localhost:8000/api/v1/agency-prices"
 );
 
 const headers = {
@@ -9493,6 +12054,51 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-agency-prices">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;article_id&quot;: 1,
+            &quot;service_id&quot;: 1,
+            &quot;pricing_type&quot;: &quot;piece&quot;,
+            &quot;amount_minor&quot;: 1200,
+            &quot;valid_from&quot;: &quot;2026-01-01&quot;,
+            &quot;valid_to&quot;: null
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-agency-prices" hidden>
     <blockquote>Received response<span
@@ -9605,7 +12211,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/agency-prices/resolve" \
+    --get "http://localhost:8000/api/v1/agency-prices/resolve" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9615,14 +12221,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-15T17:43:02\"
+    \"at\": \"2026-10-15T23:00:48\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/agency-prices/resolve"
+    "http://localhost:8000/api/v1/agency-prices/resolve"
 );
 
 const headers = {
@@ -9637,7 +12243,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-15T17:43:02"
+    "at": "2026-10-15T23:00:48"
 };
 
 fetch(url, {
@@ -9649,6 +12255,44 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-agency-prices-resolve">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;article_id&quot;: 1,
+        &quot;service_id&quot;: 1,
+        &quot;pricing_type&quot;: &quot;piece&quot;,
+        &quot;amount_minor&quot;: 1200,
+        &quot;valid_from&quot;: &quot;2026-01-01&quot;,
+        &quot;valid_to&quot;: null
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-agency-prices-resolve" hidden>
     <blockquote>Received response<span
@@ -9803,10 +12447,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
         </form>
 
@@ -9824,7 +12468,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/agency-prices" \
+    "http://localhost:8000/api/v1/agency-prices" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9835,7 +12479,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-15T17:43:02\",
+    \"valid_from\": \"2026-10-15T23:00:48\",
     \"valid_to\": \"2052-11-07\"
 }"
 </code></pre></div>
@@ -9843,7 +12487,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/agency-prices"
+    "http://localhost:8000/api/v1/agency-prices"
 );
 
 const headers = {
@@ -9859,7 +12503,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-15T17:43:02",
+    "valid_from": "2026-10-15T23:00:48",
     "valid_to": "2052-11-07"
 };
 
@@ -9872,7 +12516,64 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-agency-prices">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;article_id&quot;: 1,
+        &quot;service_id&quot;: 1,
+        &quot;pricing_type&quot;: &quot;piece&quot;,
+        &quot;amount_minor&quot;: 1200,
+        &quot;valid_from&quot;: &quot;2026-01-01&quot;,
+        &quot;valid_to&quot;: null
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-agency-prices" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-agency-prices"></span>:
@@ -10038,10 +12739,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -10071,7 +12772,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses" \
+    --get "http://localhost:8000/api/v1/laundry-statuses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10080,7 +12781,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses"
+    "http://localhost:8000/api/v1/laundry-statuses"
 );
 
 const headers = {
@@ -10099,6 +12800,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-laundry-statuses">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Propre&quot;,
+            &quot;code&quot;: &quot;clean&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-laundry-statuses" hidden>
     <blockquote>Received response<span
@@ -10211,7 +12953,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses" \
+    "http://localhost:8000/api/v1/laundry-statuses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10220,7 +12962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses"
+    "http://localhost:8000/api/v1/laundry-statuses"
 );
 
 const headers = {
@@ -10239,7 +12981,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-laundry-statuses">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Propre&quot;,
+        &quot;code&quot;: &quot;clean&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-laundry-statuses" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-laundry-statuses"></span>:
@@ -10351,7 +13146,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto" \
+    "http://localhost:8000/api/v1/laundry-statuses/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10360,7 +13155,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto"
+    "http://localhost:8000/api/v1/laundry-statuses/architecto"
 );
 
 const headers = {
@@ -10379,7 +13174,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-laundry-statuses--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Propre&quot;,
+        &quot;code&quot;: &quot;clean&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-laundry-statuses--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-laundry-statuses--id-"></span>:
@@ -10504,7 +13352,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto" \
+    "http://localhost:8000/api/v1/laundry-statuses/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10513,7 +13361,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/laundry-statuses/architecto"
+    "http://localhost:8000/api/v1/laundry-statuses/architecto"
 );
 
 const headers = {
@@ -10532,7 +13380,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-laundry-statuses--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-laundry-statuses--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-laundry-statuses--id-"></span>:
@@ -10657,7 +13536,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/renders" \
+    --get "http://localhost:8000/api/v1/renders" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10666,7 +13545,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/renders"
+    "http://localhost:8000/api/v1/renders"
 );
 
 const headers = {
@@ -10685,6 +13564,46 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-renders">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Pli&eacute;&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-renders" hidden>
     <blockquote>Received response<span
@@ -10797,7 +13716,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/renders" \
+    "http://localhost:8000/api/v1/renders" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10806,7 +13725,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/renders"
+    "http://localhost:8000/api/v1/renders"
 );
 
 const headers = {
@@ -10825,7 +13744,59 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-renders">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Pli&eacute;&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-renders" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-renders"></span>:
@@ -10937,7 +13908,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto" \
+    "http://localhost:8000/api/v1/renders/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10946,7 +13917,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto"
+    "http://localhost:8000/api/v1/renders/architecto"
 );
 
 const headers = {
@@ -10965,7 +13936,59 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-renders--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Pli&eacute;&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-renders--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-renders--id-"></span>:
@@ -11090,7 +14113,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto" \
+    "http://localhost:8000/api/v1/renders/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11099,7 +14122,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/renders/architecto"
+    "http://localhost:8000/api/v1/renders/architecto"
 );
 
 const headers = {
@@ -11118,7 +14141,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-renders--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-renders--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-renders--id-"></span>:
@@ -11243,7 +14297,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/promos" \
+    --get "http://localhost:8000/api/v1/promos" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11252,7 +14306,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promos"
+    "http://localhost:8000/api/v1/promos"
 );
 
 const headers = {
@@ -11271,6 +14325,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-promos">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;code&quot;: &quot;RENTREE15&quot;,
+            &quot;percent&quot;: 15,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-promos" hidden>
     <blockquote>Received response<span
@@ -11383,7 +14478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/promos" \
+    "http://localhost:8000/api/v1/promos" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11392,7 +14487,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promos"
+    "http://localhost:8000/api/v1/promos"
 );
 
 const headers = {
@@ -11411,7 +14506,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-promos">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;code&quot;: &quot;RENTREE15&quot;,
+        &quot;percent&quot;: 15,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-promos" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-promos"></span>:
@@ -11523,7 +14671,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto" \
+    "http://localhost:8000/api/v1/promos/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11532,7 +14680,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto"
+    "http://localhost:8000/api/v1/promos/architecto"
 );
 
 const headers = {
@@ -11551,7 +14699,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-promos--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;code&quot;: &quot;RENTREE15&quot;,
+        &quot;percent&quot;: 15,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-promos--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-promos--id-"></span>:
@@ -11676,7 +14877,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto" \
+    "http://localhost:8000/api/v1/promos/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11685,7 +14886,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promos/architecto"
+    "http://localhost:8000/api/v1/promos/architecto"
 );
 
 const headers = {
@@ -11704,7 +14905,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-promos--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-promos--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-promos--id-"></span>:
@@ -11829,7 +15061,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/promo-specials" \
+    --get "http://localhost:8000/api/v1/promo-specials" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11838,7 +15070,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials"
+    "http://localhost:8000/api/v1/promo-specials"
 );
 
 const headers = {
@@ -11857,6 +15089,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-promo-specials">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Promo sp&eacute;ciale&quot;,
+            &quot;percent&quot;: 10,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-promo-specials" hidden>
     <blockquote>Received response<span
@@ -11969,7 +15242,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials" \
+    "http://localhost:8000/api/v1/promo-specials" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11978,7 +15251,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials"
+    "http://localhost:8000/api/v1/promo-specials"
 );
 
 const headers = {
@@ -11997,7 +15270,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-promo-specials">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Promo sp&eacute;ciale&quot;,
+        &quot;percent&quot;: 10,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-promo-specials" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-promo-specials"></span>:
@@ -12109,7 +15435,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto" \
+    "http://localhost:8000/api/v1/promo-specials/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12118,7 +15444,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto"
+    "http://localhost:8000/api/v1/promo-specials/architecto"
 );
 
 const headers = {
@@ -12137,7 +15463,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-promo-specials--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Promo sp&eacute;ciale&quot;,
+        &quot;percent&quot;: 10,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-promo-specials--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-promo-specials--id-"></span>:
@@ -12262,7 +15641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto" \
+    "http://localhost:8000/api/v1/promo-specials/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12271,7 +15650,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/promo-specials/architecto"
+    "http://localhost:8000/api/v1/promo-specials/architecto"
 );
 
 const headers = {
@@ -12290,7 +15669,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-promo-specials--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-promo-specials--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-promo-specials--id-"></span>:
@@ -12415,7 +15825,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/delivery-hours" \
+    --get "http://localhost:8000/api/v1/delivery-hours" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12424,7 +15834,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours"
+    "http://localhost:8000/api/v1/delivery-hours"
 );
 
 const headers = {
@@ -12443,6 +15853,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-delivery-hours">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;label&quot;: &quot;17h&quot;,
+            &quot;hour&quot;: &quot;17:00&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-delivery-hours" hidden>
     <blockquote>Received response<span
@@ -12555,7 +16006,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours" \
+    "http://localhost:8000/api/v1/delivery-hours" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12564,7 +16015,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours"
+    "http://localhost:8000/api/v1/delivery-hours"
 );
 
 const headers = {
@@ -12583,7 +16034,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-delivery-hours">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;label&quot;: &quot;17h&quot;,
+        &quot;hour&quot;: &quot;17:00&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-delivery-hours" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-delivery-hours"></span>:
@@ -12695,7 +16199,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto" \
+    "http://localhost:8000/api/v1/delivery-hours/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12704,7 +16208,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto"
+    "http://localhost:8000/api/v1/delivery-hours/architecto"
 );
 
 const headers = {
@@ -12723,7 +16227,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-delivery-hours--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;label&quot;: &quot;17h&quot;,
+        &quot;hour&quot;: &quot;17:00&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-delivery-hours--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-delivery-hours--id-"></span>:
@@ -12848,7 +16405,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto" \
+    "http://localhost:8000/api/v1/delivery-hours/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12857,7 +16414,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/delivery-hours/architecto"
+    "http://localhost:8000/api/v1/delivery-hours/architecto"
 );
 
 const headers = {
@@ -12876,7 +16433,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-delivery-hours--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-delivery-hours--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-delivery-hours--id-"></span>:
@@ -13001,7 +16589,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/code-suffixes" \
+    --get "http://localhost:8000/api/v1/code-suffixes" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13010,7 +16598,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes"
+    "http://localhost:8000/api/v1/code-suffixes"
 );
 
 const headers = {
@@ -13029,6 +16617,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-code-suffixes">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;suffix&quot;: &quot;EL&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-code-suffixes" hidden>
     <blockquote>Received response<span
@@ -13141,7 +16770,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes" \
+    "http://localhost:8000/api/v1/code-suffixes" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13150,7 +16779,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes"
+    "http://localhost:8000/api/v1/code-suffixes"
 );
 
 const headers = {
@@ -13169,7 +16798,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-code-suffixes">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-code-suffixes" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-code-suffixes"></span>:
@@ -13281,7 +16963,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto" \
+    "http://localhost:8000/api/v1/code-suffixes/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13290,7 +16972,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto"
+    "http://localhost:8000/api/v1/code-suffixes/architecto"
 );
 
 const headers = {
@@ -13309,7 +16991,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-code-suffixes--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-code-suffixes--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-code-suffixes--id-"></span>:
@@ -13434,7 +17169,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto" \
+    "http://localhost:8000/api/v1/code-suffixes/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13443,7 +17178,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/code-suffixes/architecto"
+    "http://localhost:8000/api/v1/code-suffixes/architecto"
 );
 
 const headers = {
@@ -13462,7 +17197,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-code-suffixes--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-code-suffixes--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-code-suffixes--id-"></span>:
@@ -13587,7 +17353,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/loyal-groups" \
+    --get "http://localhost:8000/api/v1/loyal-groups" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13596,7 +17362,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups"
+    "http://localhost:8000/api/v1/loyal-groups"
 );
 
 const headers = {
@@ -13615,6 +17381,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-loyal-groups">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Or&quot;,
+            &quot;min_points&quot;: 100,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-loyal-groups" hidden>
     <blockquote>Received response<span
@@ -13727,7 +17534,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups" \
+    "http://localhost:8000/api/v1/loyal-groups" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13741,7 +17548,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups"
+    "http://localhost:8000/api/v1/loyal-groups"
 );
 
 const headers = {
@@ -13765,7 +17572,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-loyal-groups">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Or&quot;,
+        &quot;min_points&quot;: 100,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-loyal-groups" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-loyal-groups"></span>:
@@ -13902,7 +17762,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16" \
+    "http://localhost:8000/api/v1/loyal-groups/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -13911,7 +17771,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16"
+    "http://localhost:8000/api/v1/loyal-groups/16"
 );
 
 const headers = {
@@ -13930,7 +17790,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-loyal-groups--loyalGroup_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Or&quot;,
+        &quot;min_points&quot;: 100,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-loyal-groups--loyalGroup_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-loyal-groups--loyalGroup_id-"></span>:
@@ -14055,7 +17968,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients" \
+    --get "http://localhost:8000/api/v1/loyal-groups/16/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14064,7 +17977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients"
+    "http://localhost:8000/api/v1/loyal-groups/16/clients"
 );
 
 const headers = {
@@ -14083,6 +17996,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-loyal-groups--loyalGroup_id--clients">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-loyal-groups--loyalGroup_id--clients" hidden>
     <blockquote>Received response<span
@@ -14208,7 +18168,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients" \
+    "http://localhost:8000/api/v1/loyal-groups/16/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14221,7 +18181,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients"
+    "http://localhost:8000/api/v1/loyal-groups/16/clients"
 );
 
 const headers = {
@@ -14244,7 +18204,57 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-loyal-groups--loyalGroup_id--clients">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;attached&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-loyal-groups--loyalGroup_id--clients" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-loyal-groups--loyalGroup_id--clients"></span>:
@@ -14382,7 +18392,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients" \
+    "http://localhost:8000/api/v1/loyal-groups/16/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14395,7 +18405,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16/clients"
+    "http://localhost:8000/api/v1/loyal-groups/16/clients"
 );
 
 const headers = {
@@ -14418,7 +18428,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-loyal-groups--loyalGroup_id--clients">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;detached&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-loyal-groups--loyalGroup_id--clients" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-loyal-groups--loyalGroup_id--clients"></span>:
@@ -14556,7 +18597,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16" \
+    "http://localhost:8000/api/v1/loyal-groups/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14565,7 +18606,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/loyal-groups/16"
+    "http://localhost:8000/api/v1/loyal-groups/16"
 );
 
 const headers = {
@@ -14584,7 +18625,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-loyal-groups--loyalGroup_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-loyal-groups--loyalGroup_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-loyal-groups--loyalGroup_id-"></span>:
@@ -14713,7 +18785,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/cash-movements" \
+    --get "http://localhost:8000/api/v1/cash-movements" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14722,7 +18794,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements"
+    "http://localhost:8000/api/v1/cash-movements"
 );
 
 const headers = {
@@ -14741,6 +18813,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-cash-movements">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+            &quot;label&quot;: &quot;Achat fournitures&quot;,
+            &quot;type&quot;: &quot;out&quot;,
+            &quot;amount&quot;: 5000,
+            &quot;category_id&quot;: 1,
+            &quot;validated&quot;: true,
+            &quot;action_date&quot;: &quot;2026-10-14&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-cash-movements" hidden>
     <blockquote>Received response<span
@@ -14853,7 +18972,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements" \
+    "http://localhost:8000/api/v1/cash-movements" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -14863,7 +18982,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"g\",
     \"type\": \"out\",
     \"amount\": 27,
-    \"action_date\": \"2026-10-15T17:43:02\",
+    \"action_date\": \"2026-10-15T23:00:48\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -14871,7 +18990,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements"
+    "http://localhost:8000/api/v1/cash-movements"
 );
 
 const headers = {
@@ -14886,7 +19005,7 @@ let body = {
     "label": "g",
     "type": "out",
     "amount": 27,
-    "action_date": "2026-10-15T17:43:02",
+    "action_date": "2026-10-15T23:00:48",
     "validated": true
 };
 
@@ -14899,7 +19018,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-cash-movements">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+        &quot;label&quot;: &quot;Achat fournitures&quot;,
+        &quot;type&quot;: &quot;out&quot;,
+        &quot;amount&quot;: 5000,
+        &quot;category_id&quot;: 1,
+        &quot;validated&quot;: true,
+        &quot;action_date&quot;: &quot;2026-10-14&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-cash-movements" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-cash-movements"></span>:
@@ -15065,10 +19243,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -15108,7 +19286,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16" \
+    "http://localhost:8000/api/v1/cash-movements/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15117,14 +19295,14 @@ Must be one of:
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-15T17:43:02\"
+    \"action_date\": \"2026-10-15T23:00:48\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16"
+    "http://localhost:8000/api/v1/cash-movements/16"
 );
 
 const headers = {
@@ -15138,7 +19316,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-15T17:43:02"
+    "action_date": "2026-10-15T23:00:48"
 };
 
 fetch(url, {
@@ -15150,7 +19328,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-cash-movements--cashMovement_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+        &quot;label&quot;: &quot;Achat fournitures&quot;,
+        &quot;type&quot;: &quot;out&quot;,
+        &quot;amount&quot;: 5000,
+        &quot;category_id&quot;: 1,
+        &quot;validated&quot;: true,
+        &quot;action_date&quot;: &quot;2026-10-14&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-cash-movements--cashMovement_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-cash-movements--cashMovement_id-"></span>:
@@ -15317,10 +19554,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
         </form>
 
@@ -15338,7 +19575,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16/validate" \
+    "http://localhost:8000/api/v1/cash-movements/16/validate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15347,7 +19584,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16/validate"
+    "http://localhost:8000/api/v1/cash-movements/16/validate"
 );
 
 const headers = {
@@ -15366,7 +19603,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-cash-movements--cashMovement_id--validate">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+        &quot;label&quot;: &quot;Achat fournitures&quot;,
+        &quot;type&quot;: &quot;out&quot;,
+        &quot;amount&quot;: 5000,
+        &quot;category_id&quot;: 1,
+        &quot;validated&quot;: true,
+        &quot;action_date&quot;: &quot;2026-10-14&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-cash-movements--cashMovement_id--validate" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-cash-movements--cashMovement_id--validate"></span>:
@@ -15491,7 +19787,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16" \
+    "http://localhost:8000/api/v1/cash-movements/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15500,7 +19796,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-movements/16"
+    "http://localhost:8000/api/v1/cash-movements/16"
 );
 
 const headers = {
@@ -15519,7 +19815,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-cash-movements--cashMovement_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-cash-movements--cashMovement_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-cash-movements--cashMovement_id-"></span>:
@@ -15644,7 +19971,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/cash-categories" \
+    --get "http://localhost:8000/api/v1/cash-categories" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15653,7 +19980,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-categories"
+    "http://localhost:8000/api/v1/cash-categories"
 );
 
 const headers = {
@@ -15672,6 +19999,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-cash-categories">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Achat fournitures&quot;,
+            &quot;direction&quot;: &quot;out&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-cash-categories" hidden>
     <blockquote>Received response<span
@@ -15784,7 +20152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/cash-categories" \
+    "http://localhost:8000/api/v1/cash-categories" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15798,7 +20166,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/cash-categories"
+    "http://localhost:8000/api/v1/cash-categories"
 );
 
 const headers = {
@@ -15822,7 +20190,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-cash-categories">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Achat fournitures&quot;,
+        &quot;direction&quot;: &quot;out&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-cash-categories" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-cash-categories"></span>:
@@ -15965,7 +20386,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/daily" \
+    --get "http://localhost:8000/api/v1/receipts/daily" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15974,7 +20395,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/receipts/daily"
+    "http://localhost:8000/api/v1/receipts/daily"
 );
 
 const headers = {
@@ -15993,6 +20414,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-receipts-daily">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;total_in&quot;: 185000,
+        &quot;total_out&quot;: 12000,
+        &quot;net&quot;: 173000,
+        &quot;by_payment_method&quot;: {
+            &quot;cash&quot;: 80000,
+            &quot;mobile_money&quot;: 90000,
+            &quot;card&quot;: 15000
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+                &quot;label&quot;: &quot;Achat fournitures&quot;,
+                &quot;type&quot;: &quot;out&quot;,
+                &quot;amount&quot;: 5000,
+                &quot;category_id&quot;: 1,
+                &quot;validated&quot;: true,
+                &quot;action_date&quot;: &quot;2026-10-14&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-receipts-daily" hidden>
     <blockquote>Received response<span
@@ -16105,7 +20580,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/general" \
+    --get "http://localhost:8000/api/v1/receipts/general" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16114,7 +20589,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/receipts/general"
+    "http://localhost:8000/api/v1/receipts/general"
 );
 
 const headers = {
@@ -16133,6 +20608,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-receipts-general">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;total_in&quot;: 185000,
+        &quot;total_out&quot;: 12000,
+        &quot;net&quot;: 173000,
+        &quot;by_payment_method&quot;: {
+            &quot;cash&quot;: 80000,
+            &quot;mobile_money&quot;: 90000,
+            &quot;card&quot;: 15000
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+                &quot;label&quot;: &quot;Achat fournitures&quot;,
+                &quot;type&quot;: &quot;out&quot;,
+                &quot;amount&quot;: 5000,
+                &quot;category_id&quot;: 1,
+                &quot;validated&quot;: true,
+                &quot;action_date&quot;: &quot;2026-10-14&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-receipts-general" hidden>
     <blockquote>Received response<span
@@ -16245,7 +20774,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/close" \
+    --get "http://localhost:8000/api/v1/receipts/close" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16254,7 +20783,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/receipts/close"
+    "http://localhost:8000/api/v1/receipts/close"
 );
 
 const headers = {
@@ -16273,6 +20802,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-receipts-close">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;total_in&quot;: 185000,
+        &quot;total_out&quot;: 12000,
+        &quot;net&quot;: 173000,
+        &quot;by_payment_method&quot;: {
+            &quot;cash&quot;: 80000,
+            &quot;mobile_money&quot;: 90000,
+            &quot;card&quot;: 15000
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+                &quot;label&quot;: &quot;Achat fournitures&quot;,
+                &quot;type&quot;: &quot;out&quot;,
+                &quot;amount&quot;: 5000,
+                &quot;category_id&quot;: 1,
+                &quot;validated&quot;: true,
+                &quot;action_date&quot;: &quot;2026-10-14&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-receipts-close" hidden>
     <blockquote>Received response<span
@@ -16385,7 +20968,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/unpaid" \
+    --get "http://localhost:8000/api/v1/receipts/unpaid" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16394,7 +20977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/receipts/unpaid"
+    "http://localhost:8000/api/v1/receipts/unpaid"
 );
 
 const headers = {
@@ -16413,6 +20996,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-receipts-unpaid">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;total_in&quot;: 185000,
+        &quot;total_out&quot;: 12000,
+        &quot;net&quot;: 173000,
+        &quot;by_payment_method&quot;: {
+            &quot;cash&quot;: 80000,
+            &quot;mobile_money&quot;: 90000,
+            &quot;card&quot;: 15000
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+                &quot;label&quot;: &quot;Achat fournitures&quot;,
+                &quot;type&quot;: &quot;out&quot;,
+                &quot;amount&quot;: 5000,
+                &quot;category_id&quot;: 1,
+                &quot;validated&quot;: true,
+                &quot;action_date&quot;: &quot;2026-10-14&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-receipts-unpaid" hidden>
     <blockquote>Received response<span
@@ -16525,7 +21162,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/settled" \
+    --get "http://localhost:8000/api/v1/receipts/settled" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16534,7 +21171,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/receipts/settled"
+    "http://localhost:8000/api/v1/receipts/settled"
 );
 
 const headers = {
@@ -16553,6 +21190,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-receipts-settled">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;total_in&quot;: 185000,
+        &quot;total_out&quot;: 12000,
+        &quot;net&quot;: 173000,
+        &quot;by_payment_method&quot;: {
+            &quot;cash&quot;: 80000,
+            &quot;mobile_money&quot;: 90000,
+            &quot;card&quot;: 15000
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+                &quot;label&quot;: &quot;Achat fournitures&quot;,
+                &quot;type&quot;: &quot;out&quot;,
+                &quot;amount&quot;: 5000,
+                &quot;category_id&quot;: 1,
+                &quot;validated&quot;: true,
+                &quot;action_date&quot;: &quot;2026-10-14&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-receipts-settled" hidden>
     <blockquote>Received response<span
@@ -16665,7 +21356,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/receipts/transactions" \
+    --get "http://localhost:8000/api/v1/receipts/transactions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16674,7 +21365,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/receipts/transactions"
+    "http://localhost:8000/api/v1/receipts/transactions"
 );
 
 const headers = {
@@ -16693,6 +21384,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-receipts-transactions">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;date&quot;: &quot;2026-10-15&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;total_in&quot;: 185000,
+        &quot;total_out&quot;: 12000,
+        &quot;net&quot;: 173000,
+        &quot;by_payment_method&quot;: {
+            &quot;cash&quot;: 80000,
+            &quot;mobile_money&quot;: 90000,
+            &quot;card&quot;: 15000
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440001&quot;,
+                &quot;label&quot;: &quot;Achat fournitures&quot;,
+                &quot;type&quot;: &quot;out&quot;,
+                &quot;amount&quot;: 5000,
+                &quot;category_id&quot;: 1,
+                &quot;validated&quot;: true,
+                &quot;action_date&quot;: &quot;2026-10-14&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-receipts-transactions" hidden>
     <blockquote>Received response<span
@@ -16809,7 +21554,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/sales" \
+    --get "http://localhost:8000/api/v1/reports/sales" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16818,7 +21563,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/sales"
+    "http://localhost:8000/api/v1/reports/sales"
 );
 
 const headers = {
@@ -16837,6 +21582,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-sales">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-sales" hidden>
     <blockquote>Received response<span
@@ -16949,7 +21743,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/cashiers" \
+    --get "http://localhost:8000/api/v1/reports/cashiers" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16958,7 +21752,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/cashiers"
+    "http://localhost:8000/api/v1/reports/cashiers"
 );
 
 const headers = {
@@ -16977,6 +21771,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-cashiers">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-cashiers" hidden>
     <blockquote>Received response<span
@@ -17089,7 +21932,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/clients" \
+    --get "http://localhost:8000/api/v1/reports/clients" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17098,7 +21941,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/clients"
+    "http://localhost:8000/api/v1/reports/clients"
 );
 
 const headers = {
@@ -17117,6 +21960,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-clients">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-clients" hidden>
     <blockquote>Received response<span
@@ -17229,7 +22121,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/ranking" \
+    --get "http://localhost:8000/api/v1/reports/ranking" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17238,7 +22130,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/ranking"
+    "http://localhost:8000/api/v1/reports/ranking"
 );
 
 const headers = {
@@ -17257,6 +22149,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-ranking">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-ranking" hidden>
     <blockquote>Received response<span
@@ -17369,7 +22310,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/discounts" \
+    --get "http://localhost:8000/api/v1/reports/discounts" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17378,7 +22319,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/discounts"
+    "http://localhost:8000/api/v1/reports/discounts"
 );
 
 const headers = {
@@ -17397,6 +22338,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-discounts">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-discounts" hidden>
     <blockquote>Received response<span
@@ -17509,7 +22499,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/daily-balance" \
+    --get "http://localhost:8000/api/v1/reports/daily-balance" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17518,7 +22508,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/daily-balance"
+    "http://localhost:8000/api/v1/reports/daily-balance"
 );
 
 const headers = {
@@ -17537,6 +22527,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-daily-balance">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-daily-balance" hidden>
     <blockquote>Received response<span
@@ -17649,7 +22688,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/orders" \
+    --get "http://localhost:8000/api/v1/reports/orders" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17658,7 +22697,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/orders"
+    "http://localhost:8000/api/v1/reports/orders"
 );
 
 const headers = {
@@ -17677,6 +22716,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-orders">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-orders" hidden>
     <blockquote>Received response<span
@@ -17789,7 +22877,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/reports/consolidated" \
+    --get "http://localhost:8000/api/v1/reports/consolidated" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17798,7 +22886,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/reports/consolidated"
+    "http://localhost:8000/api/v1/reports/consolidated"
 );
 
 const headers = {
@@ -17817,6 +22905,55 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-reports-consolidated">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;from&quot;: &quot;2026-10-01&quot;,
+        &quot;to&quot;: &quot;2026-10-15&quot;,
+        &quot;totals&quot;: {
+            &quot;revenue&quot;: 2500000,
+            &quot;orders&quot;: 180,
+            &quot;average_basket&quot;: 13888
+        },
+        &quot;rows&quot;: [
+            {
+                &quot;label&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;orders&quot;: 90
+            },
+            {
+                &quot;label&quot;: &quot;Bonab&eacute;ri&quot;,
+                &quot;revenue&quot;: 1300000,
+                &quot;orders&quot;: 90
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-reports-consolidated" hidden>
     <blockquote>Received response<span
@@ -17933,7 +23070,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles" \
+    --get "http://localhost:8000/api/v1/superadmin/roles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17942,7 +23079,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles"
+    "http://localhost:8000/api/v1/superadmin/roles"
 );
 
 const headers = {
@@ -17961,6 +23098,40 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-roles">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;admin&quot;
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-roles" hidden>
     <blockquote>Received response<span
@@ -18073,7 +23244,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/permissions" \
+    --get "http://localhost:8000/api/v1/superadmin/permissions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18082,7 +23253,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/permissions"
+    "http://localhost:8000/api/v1/superadmin/permissions"
 );
 
 const headers = {
@@ -18101,6 +23272,40 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-permissions">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;admin&quot;
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-permissions" hidden>
     <blockquote>Received response<span
@@ -18213,7 +23418,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles/16" \
+    "http://localhost:8000/api/v1/superadmin/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18228,7 +23433,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/roles/16"
+    "http://localhost:8000/api/v1/superadmin/roles/16"
 );
 
 const headers = {
@@ -18253,7 +23458,60 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-superadmin-roles--role_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;admin&quot;
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-superadmin-roles--role_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-superadmin-roles--role_id-"></span>:
@@ -18393,7 +23651,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/settings/pressing" \
+    --get "http://localhost:8000/api/v1/settings/pressing" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18402,7 +23660,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/pressing"
+    "http://localhost:8000/api/v1/settings/pressing"
 );
 
 const headers = {
@@ -18421,6 +23679,52 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-settings-pressing">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+        &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+        &quot;status&quot;: true,
+        &quot;pricing_mode&quot;: &quot;piece&quot;,
+        &quot;workflow_laveur_enabled&quot;: true,
+        &quot;workflow_classeur_enabled&quot;: true,
+        &quot;qr_labels_enabled&quot;: false,
+        &quot;block_retrieve_if_unpaid&quot;: true,
+        &quot;reporting_currency&quot;: &quot;XAF&quot;,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;loyalty_points_rate&quot;: 1,
+        &quot;hours_classic&quot;: 48,
+        &quot;hours_express&quot;: 24,
+        &quot;hours_repass&quot;: 12
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-settings-pressing" hidden>
     <blockquote>Received response<span
@@ -18533,7 +23837,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/settings/pressing" \
+    "http://localhost:8000/api/v1/settings/pressing" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18563,7 +23867,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/pressing"
+    "http://localhost:8000/api/v1/settings/pressing"
 );
 
 const headers = {
@@ -18603,7 +23907,72 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-settings-pressing">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+        &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+        &quot;status&quot;: true,
+        &quot;pricing_mode&quot;: &quot;piece&quot;,
+        &quot;workflow_laveur_enabled&quot;: true,
+        &quot;workflow_classeur_enabled&quot;: true,
+        &quot;qr_labels_enabled&quot;: false,
+        &quot;block_retrieve_if_unpaid&quot;: true,
+        &quot;reporting_currency&quot;: &quot;XAF&quot;,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;loyalty_points_rate&quot;: 1,
+        &quot;hours_classic&quot;: 48,
+        &quot;hours_express&quot;: 24,
+        &quot;hours_repass&quot;: 12
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-settings-pressing" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-settings-pressing"></span>:
@@ -18974,7 +24343,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/settings/agencies/16" \
+    "http://localhost:8000/api/v1/settings/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18993,7 +24362,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/agencies/16"
+    "http://localhost:8000/api/v1/settings/agencies/16"
 );
 
 const headers = {
@@ -19022,7 +24391,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-settings-agencies--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Akwa&quot;,
+        &quot;address&quot;: &quot;Douala, Akwa&quot;,
+        &quot;contact&quot;: &quot;+237600000001&quot;,
+        &quot;country_code&quot;: &quot;CM&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;code_prefix&quot;: &quot;AK&quot;,
+        &quot;code_suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-settings-agencies--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-settings-agencies--id-"></span>:
@@ -19242,7 +24670,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/settings/license" \
+    --get "http://localhost:8000/api/v1/settings/license" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19251,7 +24679,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/license"
+    "http://localhost:8000/api/v1/settings/license"
 );
 
 const headers = {
@@ -19270,6 +24698,40 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-settings-license">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;plan&quot;: &quot;pro&quot;,
+        &quot;seats&quot;: 10,
+        &quot;is_activated&quot;: true,
+        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-settings-license" hidden>
     <blockquote>Received response<span
@@ -19382,7 +24844,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates" \
+    --get "http://localhost:8000/api/v1/settings/exchange-rates" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19391,7 +24853,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates"
+    "http://localhost:8000/api/v1/settings/exchange-rates"
 );
 
 const headers = {
@@ -19410,6 +24872,43 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-settings-exchange-rates">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;source_currency&quot;: &quot;XAF&quot;,
+            &quot;target_currency&quot;: &quot;EUR&quot;,
+            &quot;rate&quot;: 655.957,
+            &quot;rate_date&quot;: &quot;2026-10-15&quot;
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-settings-exchange-rates" hidden>
     <blockquote>Received response<span
@@ -19522,7 +25021,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates" \
+    "http://localhost:8000/api/v1/settings/exchange-rates" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19531,14 +25030,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-15T17:43:02\"
+    \"rate_date\": \"2026-10-15T23:00:48\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates"
+    "http://localhost:8000/api/v1/settings/exchange-rates"
 );
 
 const headers = {
@@ -19552,7 +25051,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-15T17:43:02"
+    "rate_date": "2026-10-15T23:00:48"
 };
 
 fetch(url, {
@@ -19564,7 +25063,61 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-settings-exchange-rates">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;source_currency&quot;: &quot;XAF&quot;,
+        &quot;target_currency&quot;: &quot;EUR&quot;,
+        &quot;rate&quot;: 655.957,
+        &quot;rate_date&quot;: &quot;2026-10-15&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-settings-exchange-rates" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-settings-exchange-rates"></span>:
@@ -19704,10 +25257,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
         </form>
 
@@ -19725,7 +25278,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates/16" \
+    "http://localhost:8000/api/v1/settings/exchange-rates/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19734,7 +25287,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/settings/exchange-rates/16"
+    "http://localhost:8000/api/v1/settings/exchange-rates/16"
 );
 
 const headers = {
@@ -19753,7 +25306,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-"></span>:
@@ -19878,7 +25462,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/org/agencies" \
+    --get "http://localhost:8000/api/v1/org/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19887,7 +25471,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/org/agencies"
+    "http://localhost:8000/api/v1/org/agencies"
 );
 
 const headers = {
@@ -19906,6 +25490,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-org-agencies">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;,
+            &quot;address&quot;: &quot;Douala, Akwa&quot;,
+            &quot;contact&quot;: &quot;+237600000001&quot;,
+            &quot;country_code&quot;: &quot;CM&quot;,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;code_prefix&quot;: &quot;AK&quot;,
+            &quot;code_suffix&quot;: &quot;EL&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-org-agencies" hidden>
     <blockquote>Received response<span
@@ -20018,7 +25649,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/org/agencies" \
+    "http://localhost:8000/api/v1/org/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20037,7 +25668,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/org/agencies"
+    "http://localhost:8000/api/v1/org/agencies"
 );
 
 const headers = {
@@ -20066,7 +25697,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-org-agencies">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Akwa&quot;,
+        &quot;address&quot;: &quot;Douala, Akwa&quot;,
+        &quot;contact&quot;: &quot;+237600000001&quot;,
+        &quot;country_code&quot;: &quot;CM&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;code_prefix&quot;: &quot;AK&quot;,
+        &quot;code_suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-org-agencies" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-org-agencies"></span>:
@@ -20263,7 +25953,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/org/users" \
+    --get "http://localhost:8000/api/v1/org/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20272,7 +25962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/org/users"
+    "http://localhost:8000/api/v1/org/users"
 );
 
 const headers = {
@@ -20291,6 +25981,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-org-users">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+            &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+            &quot;phone_number&quot;: null,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;status&quot;: true,
+            &quot;roles&quot;: [
+                &quot;caissier&quot;
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-org-users" hidden>
     <blockquote>Received response<span
@@ -20403,7 +26140,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/org/users" \
+    "http://localhost:8000/api/v1/org/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20420,7 +26157,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/org/users"
+    "http://localhost:8000/api/v1/org/users"
 );
 
 const headers = {
@@ -20447,7 +26184,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-org-users">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: null,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-org-users" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-org-users"></span>:
@@ -20620,7 +26416,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/org/users/16" \
+    "http://localhost:8000/api/v1/org/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20636,7 +26432,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/org/users/16"
+    "http://localhost:8000/api/v1/org/users/16"
 );
 
 const headers = {
@@ -20662,7 +26458,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-org-users--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: null,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-org-users--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-org-users--id-"></span>:
@@ -20870,7 +26725,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/org/users/16" \
+    "http://localhost:8000/api/v1/org/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -20879,7 +26734,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/org/users/16"
+    "http://localhost:8000/api/v1/org/users/16"
 );
 
 const headers = {
@@ -20898,7 +26753,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-org-users--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-org-users--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-org-users--id-"></span>:
@@ -21023,7 +26909,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/roles" \
+    --get "http://localhost:8000/api/v1/roles" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21032,7 +26918,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/roles"
+    "http://localhost:8000/api/v1/roles"
 );
 
 const headers = {
@@ -21051,6 +26937,52 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-roles">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;caissier&quot;,
+            &quot;permissions&quot;: [
+                &quot;deposits.view&quot;,
+                &quot;cash.manage&quot;
+            ]
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;manager&quot;,
+            &quot;permissions&quot;: [
+                &quot;reports.view&quot;,
+                &quot;settings.manage&quot;
+            ]
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-roles" hidden>
     <blockquote>Received response<span
@@ -21163,7 +27095,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/permissions" \
+    --get "http://localhost:8000/api/v1/permissions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21172,7 +27104,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/permissions"
+    "http://localhost:8000/api/v1/permissions"
 );
 
 const headers = {
@@ -21191,6 +27123,40 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-permissions">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        &quot;deposits.view&quot;,
+        &quot;deposits.create&quot;,
+        &quot;cash.manage&quot;,
+        &quot;reports.view&quot;
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-permissions" hidden>
     <blockquote>Received response<span
@@ -21303,7 +27269,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/roles/16" \
+    "http://localhost:8000/api/v1/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21318,7 +27284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/roles/16"
+    "http://localhost:8000/api/v1/roles/16"
 );
 
 const headers = {
@@ -21343,7 +27309,61 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-roles--role_id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;caissier&quot;,
+        &quot;permissions&quot;: [
+            &quot;deposits.view&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-roles--role_id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-roles--role_id-"></span>:
@@ -21483,7 +27503,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/audit-logs" \
+    --get "http://localhost:8000/api/v1/audit-logs" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21492,7 +27512,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/audit-logs"
+    "http://localhost:8000/api/v1/audit-logs"
 );
 
 const headers = {
@@ -21511,6 +27531,50 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-audit-logs">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;action&quot;: &quot;deposit.created&quot;,
+            &quot;actor_type&quot;: &quot;staff&quot;,
+            &quot;actor_id&quot;: 1,
+            &quot;subject_type&quot;: &quot;deposit&quot;,
+            &quot;subject_id&quot;: 1,
+            &quot;created_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-audit-logs" hidden>
     <blockquote>Received response<span
@@ -21623,7 +27687,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/print-logs" \
+    --get "http://localhost:8000/api/v1/print-logs" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21632,7 +27696,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/print-logs"
+    "http://localhost:8000/api/v1/print-logs"
 );
 
 const headers = {
@@ -21651,6 +27715,50 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-print-logs">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;action&quot;: &quot;deposit.created&quot;,
+            &quot;actor_type&quot;: &quot;staff&quot;,
+            &quot;actor_id&quot;: 1,
+            &quot;subject_type&quot;: &quot;deposit&quot;,
+            &quot;subject_id&quot;: 1,
+            &quot;created_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-print-logs" hidden>
     <blockquote>Received response<span
@@ -21767,7 +27875,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/client/profile" \
+    --get "http://localhost:8000/api/v1/client/profile" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21776,7 +27884,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/client/profile"
+    "http://localhost:8000/api/v1/client/profile"
 );
 
 const headers = {
@@ -21795,6 +27903,51 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-client-profile">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;code&quot;: &quot;C000001&quot;,
+        &quot;fullname&quot;: &quot;Jean Client&quot;,
+        &quot;email&quot;: &quot;jean.client@example.com&quot;,
+        &quot;phone_number&quot;: &quot;690000001&quot;,
+        &quot;address&quot;: null,
+        &quot;city&quot;: &quot;Douala&quot;,
+        &quot;loyalty_points&quot;: 120,
+        &quot;wallet_balance&quot;: 5000,
+        &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+        &quot;referred_by_id&quot;: null,
+        &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-client-profile" hidden>
     <blockquote>Received response<span
@@ -21907,7 +28060,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/client/deposits" \
+    --get "http://localhost:8000/api/v1/client/deposits" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21916,7 +28069,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/client/deposits"
+    "http://localhost:8000/api/v1/client/deposits"
 );
 
 const headers = {
@@ -21935,6 +28088,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-client-deposits">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-client-deposits" hidden>
     <blockquote>Received response<span
@@ -22047,7 +28304,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/client/retrieves" \
+    --get "http://localhost:8000/api/v1/client/retrieves" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22056,7 +28313,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/client/retrieves"
+    "http://localhost:8000/api/v1/client/retrieves"
 );
 
 const headers = {
@@ -22075,6 +28332,105 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-client-retrieves">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-client-retrieves" hidden>
     <blockquote>Received response<span
@@ -22187,7 +28543,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/client/deposits/16" \
+    --get "http://localhost:8000/api/v1/client/deposits/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22196,7 +28552,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/client/deposits/16"
+    "http://localhost:8000/api/v1/client/deposits/16"
 );
 
 const headers = {
@@ -22215,6 +28571,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-client-deposits--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-client-deposits--id-" hidden>
     <blockquote>Received response<span
@@ -22340,7 +28800,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/client/loyalty" \
+    --get "http://localhost:8000/api/v1/client/loyalty" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22349,7 +28809,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/client/loyalty"
+    "http://localhost:8000/api/v1/client/loyalty"
 );
 
 const headers = {
@@ -22368,6 +28828,44 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-client-loyalty">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;client_id&quot;: 1,
+        &quot;points&quot;: 120,
+        &quot;groups&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Or&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-client-loyalty" hidden>
     <blockquote>Received response<span
@@ -22484,7 +28982,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings" \
+    --get "http://localhost:8000/api/v1/superadmin/pressings" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22493,7 +28991,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings"
+    "http://localhost:8000/api/v1/superadmin/pressings"
 );
 
 const headers = {
@@ -22512,6 +29010,59 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-pressings">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+            &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+            &quot;status&quot;: true,
+            &quot;pricing_mode&quot;: &quot;piece&quot;,
+            &quot;workflow_laveur_enabled&quot;: true,
+            &quot;workflow_classeur_enabled&quot;: true,
+            &quot;qr_labels_enabled&quot;: false,
+            &quot;block_retrieve_if_unpaid&quot;: true,
+            &quot;reporting_currency&quot;: &quot;XAF&quot;,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;loyalty_points_rate&quot;: 1,
+            &quot;hours_classic&quot;: 48,
+            &quot;hours_express&quot;: 24,
+            &quot;hours_repass&quot;: 12
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-pressings" hidden>
     <blockquote>Received response<span
@@ -22624,7 +29175,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings" \
+    "http://localhost:8000/api/v1/superadmin/pressings" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22642,7 +29193,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings"
+    "http://localhost:8000/api/v1/superadmin/pressings"
 );
 
 const headers = {
@@ -22670,7 +29221,72 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-superadmin-pressings">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+        &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+        &quot;status&quot;: true,
+        &quot;pricing_mode&quot;: &quot;piece&quot;,
+        &quot;workflow_laveur_enabled&quot;: true,
+        &quot;workflow_classeur_enabled&quot;: true,
+        &quot;qr_labels_enabled&quot;: false,
+        &quot;block_retrieve_if_unpaid&quot;: true,
+        &quot;reporting_currency&quot;: &quot;XAF&quot;,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;loyalty_points_rate&quot;: 1,
+        &quot;hours_classic&quot;: 48,
+        &quot;hours_express&quot;: 24,
+        &quot;hours_repass&quot;: 12
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-superadmin-pressings" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-superadmin-pressings"></span>:
@@ -22887,7 +29503,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16" \
+    --get "http://localhost:8000/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -22896,7 +29512,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16"
+    "http://localhost:8000/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -22915,6 +29531,52 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-pressings--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+        &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+        &quot;status&quot;: true,
+        &quot;pricing_mode&quot;: &quot;piece&quot;,
+        &quot;workflow_laveur_enabled&quot;: true,
+        &quot;workflow_classeur_enabled&quot;: true,
+        &quot;qr_labels_enabled&quot;: false,
+        &quot;block_retrieve_if_unpaid&quot;: true,
+        &quot;reporting_currency&quot;: &quot;XAF&quot;,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;loyalty_points_rate&quot;: 1,
+        &quot;hours_classic&quot;: 48,
+        &quot;hours_express&quot;: 24,
+        &quot;hours_repass&quot;: 12
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-pressings--id-" hidden>
     <blockquote>Received response<span
@@ -23040,7 +29702,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16" \
+    "http://localhost:8000/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23063,7 +29725,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16"
+    "http://localhost:8000/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -23096,7 +29758,72 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-superadmin-pressings--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+        &quot;details&quot;: &quot;Enseigne de d&eacute;monstration&quot;,
+        &quot;status&quot;: true,
+        &quot;pricing_mode&quot;: &quot;piece&quot;,
+        &quot;workflow_laveur_enabled&quot;: true,
+        &quot;workflow_classeur_enabled&quot;: true,
+        &quot;qr_labels_enabled&quot;: false,
+        &quot;block_retrieve_if_unpaid&quot;: true,
+        &quot;reporting_currency&quot;: &quot;XAF&quot;,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;loyalty_points_rate&quot;: 1,
+        &quot;hours_classic&quot;: 48,
+        &quot;hours_express&quot;: 24,
+        &quot;hours_repass&quot;: 12
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-superadmin-pressings--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-superadmin-pressings--id-"></span>:
@@ -23400,7 +30127,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16" \
+    "http://localhost:8000/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23409,7 +30136,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/pressings/16"
+    "http://localhost:8000/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -23428,7 +30155,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-superadmin-pressings--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-superadmin-pressings--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-superadmin-pressings--id-"></span>:
@@ -23553,7 +30311,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies" \
+    --get "http://localhost:8000/api/v1/superadmin/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23562,7 +30320,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies"
+    "http://localhost:8000/api/v1/superadmin/agencies"
 );
 
 const headers = {
@@ -23581,6 +30339,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-agencies">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;,
+            &quot;address&quot;: &quot;Douala, Akwa&quot;,
+            &quot;contact&quot;: &quot;+237600000001&quot;,
+            &quot;country_code&quot;: &quot;CM&quot;,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;code_prefix&quot;: &quot;AK&quot;,
+            &quot;code_suffix&quot;: &quot;EL&quot;,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-agencies" hidden>
     <blockquote>Received response<span
@@ -23693,7 +30498,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies" \
+    "http://localhost:8000/api/v1/superadmin/agencies" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23713,7 +30518,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies"
+    "http://localhost:8000/api/v1/superadmin/agencies"
 );
 
 const headers = {
@@ -23743,7 +30548,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-superadmin-agencies">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Akwa&quot;,
+        &quot;address&quot;: &quot;Douala, Akwa&quot;,
+        &quot;contact&quot;: &quot;+237600000001&quot;,
+        &quot;country_code&quot;: &quot;CM&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;code_prefix&quot;: &quot;AK&quot;,
+        &quot;code_suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-superadmin-agencies" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-superadmin-agencies"></span>:
@@ -23952,7 +30816,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16" \
+    --get "http://localhost:8000/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -23961,7 +30825,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16"
+    "http://localhost:8000/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -23980,6 +30844,46 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-agencies--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Akwa&quot;,
+        &quot;address&quot;: &quot;Douala, Akwa&quot;,
+        &quot;contact&quot;: &quot;+237600000001&quot;,
+        &quot;country_code&quot;: &quot;CM&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;code_prefix&quot;: &quot;AK&quot;,
+        &quot;code_suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-agencies--id-" hidden>
     <blockquote>Received response<span
@@ -24105,7 +31009,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16" \
+    "http://localhost:8000/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24125,7 +31029,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16"
+    "http://localhost:8000/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -24155,7 +31059,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-superadmin-agencies--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Akwa&quot;,
+        &quot;address&quot;: &quot;Douala, Akwa&quot;,
+        &quot;contact&quot;: &quot;+237600000001&quot;,
+        &quot;country_code&quot;: &quot;CM&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;code_prefix&quot;: &quot;AK&quot;,
+        &quot;code_suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-superadmin-agencies--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-superadmin-agencies--id-"></span>:
@@ -24391,7 +31354,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16" \
+    "http://localhost:8000/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24400,7 +31363,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/agencies/16"
+    "http://localhost:8000/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -24419,7 +31382,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-superadmin-agencies--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Akwa&quot;,
+        &quot;address&quot;: &quot;Douala, Akwa&quot;,
+        &quot;contact&quot;: &quot;+237600000001&quot;,
+        &quot;country_code&quot;: &quot;CM&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;code_prefix&quot;: &quot;AK&quot;,
+        &quot;code_suffix&quot;: &quot;EL&quot;,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-superadmin-agencies--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-superadmin-agencies--id-"></span>:
@@ -24544,7 +31547,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/users" \
+    --get "http://localhost:8000/api/v1/superadmin/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24553,7 +31556,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users"
+    "http://localhost:8000/api/v1/superadmin/users"
 );
 
 const headers = {
@@ -24572,6 +31575,53 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-users">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+            &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+            &quot;phone_number&quot;: null,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;status&quot;: true,
+            &quot;roles&quot;: [
+                &quot;caissier&quot;
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-users" hidden>
     <blockquote>Received response<span
@@ -24684,7 +31734,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users" \
+    "http://localhost:8000/api/v1/superadmin/users" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24693,7 +31743,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users"
+    "http://localhost:8000/api/v1/superadmin/users"
 );
 
 const headers = {
@@ -24712,7 +31762,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-superadmin-users">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: null,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-superadmin-users" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-superadmin-users"></span>:
@@ -24824,7 +31933,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16" \
+    "http://localhost:8000/api/v1/superadmin/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24833,7 +31942,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16"
+    "http://localhost:8000/api/v1/superadmin/users/16"
 );
 
 const headers = {
@@ -24852,7 +31961,66 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-superadmin-users--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+        &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+        &quot;phone_number&quot;: null,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true,
+        &quot;roles&quot;: [
+            &quot;caissier&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-superadmin-users--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-superadmin-users--id-"></span>:
@@ -24977,7 +32145,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16" \
+    "http://localhost:8000/api/v1/superadmin/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24986,7 +32154,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/users/16"
+    "http://localhost:8000/api/v1/superadmin/users/16"
 );
 
 const headers = {
@@ -25005,7 +32173,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-superadmin-users--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-superadmin-users--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-superadmin-users--id-"></span>:
@@ -25130,7 +32329,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses" \
+    --get "http://localhost:8000/api/v1/superadmin/licenses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25139,7 +32338,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses"
+    "http://localhost:8000/api/v1/superadmin/licenses"
 );
 
 const headers = {
@@ -25158,6 +32357,50 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-superadmin-licenses">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;plan&quot;: &quot;pro&quot;,
+            &quot;seats&quot;: 10,
+            &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+            &quot;is_activated&quot;: true,
+            &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-superadmin-licenses" hidden>
     <blockquote>Received response<span
@@ -25270,7 +32513,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses" \
+    "http://localhost:8000/api/v1/superadmin/licenses" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25287,7 +32530,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses"
+    "http://localhost:8000/api/v1/superadmin/licenses"
 );
 
 const headers = {
@@ -25314,7 +32557,63 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-superadmin-licenses">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;plan&quot;: &quot;pro&quot;,
+        &quot;seats&quot;: 10,
+        &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+        &quot;is_activated&quot;: true,
+        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-superadmin-licenses" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-superadmin-licenses"></span>:
@@ -25497,7 +32796,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25506,14 +32805,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"plan\": \"b\",
     \"seats\": 22,
     \"status\": true,
-    \"expires_at\": \"2026-10-15T17:43:01\"
+    \"expires_at\": \"2026-10-15T23:00:48\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16"
+    "http://localhost:8000/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -25527,7 +32826,7 @@ let body = {
     "plan": "b",
     "seats": 22,
     "status": true,
-    "expires_at": "2026-10-15T17:43:01"
+    "expires_at": "2026-10-15T23:00:48"
 };
 
 fetch(url, {
@@ -25539,7 +32838,63 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-superadmin-licenses--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;plan&quot;: &quot;pro&quot;,
+        &quot;seats&quot;: 10,
+        &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+        &quot;is_activated&quot;: true,
+        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-superadmin-licenses--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-superadmin-licenses--id-"></span>:
@@ -25702,10 +33057,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-15T17:43:01"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:01</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
         </form>
 
@@ -25723,7 +33078,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16/activate" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16/activate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25736,7 +33091,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16/activate"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/activate"
 );
 
 const headers = {
@@ -25759,7 +33114,63 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-superadmin-licenses--license_id--activate">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;plan&quot;: &quot;pro&quot;,
+        &quot;seats&quot;: 10,
+        &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+        &quot;is_activated&quot;: true,
+        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-superadmin-licenses--license_id--activate" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-superadmin-licenses--license_id--activate"></span>:
@@ -25897,7 +33308,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25906,7 +33317,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/superadmin/licenses/16"
+    "http://localhost:8000/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -25925,7 +33336,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-superadmin-licenses--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-superadmin-licenses--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-superadmin-licenses--id-"></span>:
@@ -26054,7 +33496,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/services" \
+    --get "http://localhost:8000/api/v1/services" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26063,7 +33505,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/services"
+    "http://localhost:8000/api/v1/services"
 );
 
 const headers = {
@@ -26082,6 +33524,51 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-services">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;name&quot;: &quot;Classique&quot;,
+            &quot;code&quot;: &quot;classic&quot;,
+            &quot;legacy_type_action&quot;: 0,
+            &quot;sort_order&quot;: 1,
+            &quot;default_hours&quot;: 48,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-services" hidden>
     <blockquote>Received response<span
@@ -26194,7 +33681,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/services" \
+    "http://localhost:8000/api/v1/services" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26203,7 +33690,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/services"
+    "http://localhost:8000/api/v1/services"
 );
 
 const headers = {
@@ -26222,7 +33709,64 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-services">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Classique&quot;,
+        &quot;code&quot;: &quot;classic&quot;,
+        &quot;legacy_type_action&quot;: 0,
+        &quot;sort_order&quot;: 1,
+        &quot;default_hours&quot;: 48,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-services" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-services"></span>:
@@ -26334,7 +33878,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/services/architecto" \
+    "http://localhost:8000/api/v1/services/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26343,7 +33887,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/services/architecto"
+    "http://localhost:8000/api/v1/services/architecto"
 );
 
 const headers = {
@@ -26362,7 +33906,64 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-services--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;pressing_id&quot;: 1,
+        &quot;name&quot;: &quot;Classique&quot;,
+        &quot;code&quot;: &quot;classic&quot;,
+        &quot;legacy_type_action&quot;: 0,
+        &quot;sort_order&quot;: 1,
+        &quot;default_hours&quot;: 48,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-services--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-services--id-"></span>:
@@ -26487,7 +34088,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://pressing-api.pressingelegance.com/api/v1/services/architecto" \
+    "http://localhost:8000/api/v1/services/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26496,7 +34097,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/services/architecto"
+    "http://localhost:8000/api/v1/services/architecto"
 );
 
 const headers = {
@@ -26515,7 +34116,38 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-services--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-services--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-services--id-"></span>:
@@ -26644,7 +34276,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/queue" \
+    --get "http://localhost:8000/api/v1/deliveries/queue" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26653,7 +34285,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/queue"
+    "http://localhost:8000/api/v1/deliveries/queue"
 );
 
 const headers = {
@@ -26672,6 +34304,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deliveries-queue">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deliveries-queue" hidden>
     <blockquote>Received response<span
@@ -26784,7 +34520,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/history" \
+    --get "http://localhost:8000/api/v1/deliveries/history" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26793,7 +34529,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/history"
+    "http://localhost:8000/api/v1/deliveries/history"
 );
 
 const headers = {
@@ -26812,6 +34548,110 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deliveries-history">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deliveries-history" hidden>
     <blockquote>Received response<span
@@ -26924,7 +34764,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones" \
+    --get "http://localhost:8000/api/v1/deliveries/zones" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -26933,7 +34773,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones"
+    "http://localhost:8000/api/v1/deliveries/zones"
 );
 
 const headers = {
@@ -26952,6 +34792,43 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deliveries-zones">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Centre-ville&quot;,
+            &quot;code&quot;: &quot;CV&quot;,
+            &quot;agency_id&quot;: 1,
+            &quot;status&quot;: true
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deliveries-zones" hidden>
     <blockquote>Received response<span
@@ -27064,7 +34941,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones" \
+    "http://localhost:8000/api/v1/deliveries/zones" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27079,7 +34956,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones"
+    "http://localhost:8000/api/v1/deliveries/zones"
 );
 
 const headers = {
@@ -27104,7 +34981,61 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deliveries-zones">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Centre-ville&quot;,
+        &quot;code&quot;: &quot;CV&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deliveries-zones" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deliveries-zones"></span>:
@@ -27275,7 +35206,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones/16" \
+    "http://localhost:8000/api/v1/deliveries/zones/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27290,7 +35221,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/zones/16"
+    "http://localhost:8000/api/v1/deliveries/zones/16"
 );
 
 const headers = {
@@ -27315,7 +35246,61 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-v1-deliveries-zones--id-">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Centre-ville&quot;,
+        &quot;code&quot;: &quot;CV&quot;,
+        &quot;agency_id&quot;: 1,
+        &quot;status&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-v1-deliveries-zones--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-v1-deliveries-zones--id-"></span>:
@@ -27499,7 +35484,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds" \
+    --get "http://localhost:8000/api/v1/deliveries/rounds" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27508,7 +35493,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds"
+    "http://localhost:8000/api/v1/deliveries/rounds"
 );
 
 const headers = {
@@ -27527,6 +35512,43 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-deliveries-rounds">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Tourn&eacute;e matin&quot;,
+            &quot;round_date&quot;: &quot;2026-10-15&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;livreur_id&quot;: 6
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-v1-deliveries-rounds" hidden>
     <blockquote>Received response<span
@@ -27639,7 +35661,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds" \
+    "http://localhost:8000/api/v1/deliveries/rounds" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27647,7 +35669,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-15T17:43:02\",
+    \"round_date\": \"2026-10-15T23:00:48\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -27655,7 +35677,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds"
+    "http://localhost:8000/api/v1/deliveries/rounds"
 );
 
 const headers = {
@@ -27668,7 +35690,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-15T17:43:02",
+    "round_date": "2026-10-15T23:00:48",
     "name": "n"
 };
 
@@ -27681,7 +35703,61 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deliveries-rounds">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Tourn&eacute;e matin&quot;,
+        &quot;round_date&quot;: &quot;2026-10-15&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;livreur_id&quot;: 6
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deliveries-rounds" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deliveries-rounds"></span>:
@@ -27821,10 +35897,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-15T17:43:02"
+               value="2026-10-15T23:00:48"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T17:43:02</code></p>
+<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -27854,7 +35930,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds/16/assign" \
+    "http://localhost:8000/api/v1/deliveries/rounds/16/assign" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27869,7 +35945,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/rounds/16/assign"
+    "http://localhost:8000/api/v1/deliveries/rounds/16/assign"
 );
 
 const headers = {
@@ -27894,7 +35970,61 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deliveries-rounds--round_id--assign">
-</span>
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Tourn&eacute;e matin&quot;,
+        &quot;round_date&quot;: &quot;2026-10-15&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;livreur_id&quot;: 6
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deliveries-rounds--round_id--assign" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deliveries-rounds--round_id--assign"></span>:
@@ -28034,7 +36164,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/schedule" \
+    "http://localhost:8000/api/v1/deliveries/deposits/16/schedule" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -28047,7 +36177,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/schedule"
+    "http://localhost:8000/api/v1/deliveries/deposits/16/schedule"
 );
 
 const headers = {
@@ -28070,7 +36200,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deliveries-deposits--deposit_id--schedule">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;delivery_status&quot;: &quot;delivered&quot;,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deliveries-deposits--deposit_id--schedule" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deliveries-deposits--deposit_id--schedule"></span>:
@@ -28232,7 +36478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/deliver" \
+    "http://localhost:8000/api/v1/deliveries/deposits/16/deliver" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -28251,7 +36497,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://pressing-api.pressingelegance.com/api/v1/deliveries/deposits/16/deliver"
+    "http://localhost:8000/api/v1/deliveries/deposits/16/deliver"
 );
 
 const headers = {
@@ -28280,7 +36526,123 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-deliveries-deposits--deposit_id--deliver">
-</span>
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;delivery_status&quot;: &quot;delivered&quot;,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;C000001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-deliveries-deposits--deposit_id--deliver" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-deliveries-deposits--deposit_id--deliver"></span>:

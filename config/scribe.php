@@ -18,7 +18,7 @@ return [
 
     // Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
     'intro_text' => <<<'INTRO'
-            API JSON `{ data, meta, errors }`. Authentification **Bearer Sanctum**.
+            API JSON uniforme `{ data, meta, errors }` sur **tous** les endpoints.
 
             **Acteurs**
             - Staff : `POST /api/v1/auth/staff/login` → `{ data: { token, token_type, actor: "staff", user } }`
@@ -32,6 +32,8 @@ return [
             - Superadmin : `X-Pressing-Id` (et optionnellement `X-Agency-Id`).
 
             **Montants** : entiers XAF. **Idempotence POS** : `client_uuid` (UUID) sur dépôts et paiements.
+
+            Chaque endpoint documente ses **exemples de réponses** (200/201 + erreurs 401/422 quand applicable).
 
             Collection Postman : `/docs.postman` — OpenAPI : `/docs.openapi`.
         INTRO,
@@ -258,15 +260,16 @@ return [
         'bodyParameters' => [
             ...Defaults::BODY_PARAMETERS_STRATEGIES,
         ],
-        'responses' => configureStrategy(
-            Defaults::RESPONSES_STRATEGIES,
-            Strategies\Responses\ResponseCalls::withSettings(
-                only: ['GET api/v1/health'],
-                config: [
-                    'app.debug' => false,
-                ]
-            )
-        ),
+        'responses' => [
+            ...configureStrategy(
+                Defaults::RESPONSES_STRATEGIES,
+                // Pas d'appels HTTP live : exemples via #[Response] + DocumentApiEnvelopeResponses
+                Strategies\Responses\ResponseCalls::withSettings(
+                    except: ['*'],
+                )
+            ),
+            \App\Support\Scribe\Strategies\DocumentApiEnvelopeResponses::class,
+        ],
         'responseFields' => [
             ...Defaults::RESPONSE_FIELDS_STRATEGIES,
         ],

@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\Response;
 use Knuckles\Scribe\Attributes\Unauthenticated;
 use Throwable;
 
@@ -16,6 +17,31 @@ use Throwable;
 class HealthController extends Controller
 {
     #[Endpoint('Santé de l\'API', 'Vérifie que l\'API et la base sont joignables (sonde LB / ENF02).')]
+    #[Response([
+        'data' => [
+            'name' => 'Spark Pressing API',
+            'version' => 'v1',
+            'status' => 'ok',
+            'database' => 'ok',
+            'currency' => 'XAF',
+            'locale' => 'fr',
+        ],
+        'meta' => new \stdClass,
+        'errors' => null,
+    ], status: 200, description: 'OK')]
+    #[Response([
+        'data' => [
+            'name' => 'Spark Pressing API',
+            'version' => 'v1',
+            'status' => 'degraded',
+            'database' => 'error',
+            'currency' => 'XAF',
+            'locale' => 'fr',
+            'database_error' => 'unavailable',
+        ],
+        'meta' => new \stdClass,
+        'errors' => null,
+    ], status: 503, description: 'DB indisponible')]
     public function __invoke(): JsonResponse
     {
         $dbOk = false;
