@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Génère le .env de production à la racine du projet (CI).
+ * Génère un .env local en CI (validation / artisan local).
+ * Ne pas uploader ce fichier en prod : le .env serveur est géré à part
+ * (mots de passe avec # $ etc.).
  */
 declare(strict_types=1);
 
@@ -12,9 +14,15 @@ if ($template === false) {
 }
 
 /**
- * Escape a value for a Laravel .env file (double-quoted).
+ * Quote for dotenv using single quotes (literal # and $ — ex: ApiSpec13#$).
  */
 $quote = static function (string $value): string {
+    // In single-quoted dotenv values, only ' itself is problematic; wrap safely.
+    if (! str_contains($value, "'")) {
+        return "'{$value}'";
+    }
+
+    // Fallback: double quotes with escapes.
     $escaped = str_replace(
         ['\\', '"', "\n", "\r", "\t", '$'],
         ['\\\\', '\\"', '\\n', '\\r', '\\t', '\\$'],
@@ -38,7 +46,6 @@ if ($appKey === false || $appKey === '') {
     fwrite(STDERR, "APP_KEY manquant\n");
     exit(1);
 }
-// Strip accidental surrounding quotes from the GitHub secret.
 $appKey = trim($appKey, " \t\"'");
 
 $map = [
@@ -57,4 +64,4 @@ if (file_put_contents($target, strtr($template, $map)) === false) {
     exit(1);
 }
 
-echo "Wrote {$target}\n";
+echo "Wrote {$target} (CI only — not deployed)\n";

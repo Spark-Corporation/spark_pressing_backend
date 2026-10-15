@@ -58,8 +58,8 @@ jobs:
           export DB_USERNAME="${DB_USERNAME:-sparqrqm_api}"
           php deploy/write-env.php
           test -f .env
-          # Sanity: APP_KEY present and not empty quotes
-          grep -q '^APP_KEY="base64:' .env || grep -q '^APP_KEY=base64:' .env || {
+          # Sanity only — le .env CI n'est PAS uploadé (prod géré sur le serveur).
+          grep -qE '^APP_KEY=.+' .env || {
             echo "APP_KEY invalide dans .env généré"
             exit 1
           }
@@ -95,21 +95,14 @@ jobs:
             database/*.sqlite
             database/*.sqlite-journal
             deploy/**
+            .env
+            .env.*
+            .env.backup
+            .env.production
             storage/logs/**
             storage/framework/cache/data/**
             storage/framework/sessions/**
             storage/framework/views/**
-
-      - name: Upload .env over FTP (explicit)
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          set -euo pipefail
-          # Belt-and-suspenders: .env is gitignored and some FTP filters skip it.
-          curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
-            -T .env "ftp://${FTP_HOST}/.env"
 
       - name: Migrate + seed on server
         env:

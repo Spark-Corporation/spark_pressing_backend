@@ -40,9 +40,11 @@ ENF05/06/11 (UX POS, responsive, a11y) : côté clients web/mobile, hors ce repo
 Le push sur `main` (ou **Actions → Deploy → Run workflow**) lance [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) :
 
 1. `composer install --no-dev`
-2. génération du `.env` production + envoi FTP (dont upload explicite du `.env`)
+2. envoi FTP du code (**le `.env` serveur n’est pas écrasé** — à maintenir sur l’hébergeur)
 3. `migrate --force` + `db:seed --force` (rôles + comptes démo)
 4. health check + smoke test des logins (staff / superadmin / client)
+
+Le `.env` prod doit exister sur le serveur (ex. `DB_PASSWORD` entre **quotes simples** si le mot de passe contient `#` ou `$`).
 
 Les identifiants ne sont pas dans le dépôt. Secrets du repo GitHub (`Settings` → `Secrets` → `Actions`) :
 
