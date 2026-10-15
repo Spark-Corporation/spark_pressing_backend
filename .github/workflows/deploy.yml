@@ -117,20 +117,32 @@ jobs:
           echo "::add-mask::$TOKEN"
           sed "s/__TOKEN__/${TOKEN}/" deploy/remote-post-deploy.php > /tmp/__deploy_post.php
           cleanup() {
-            curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
+            # Docroot = racine Laravel : supprimer le runner s'il reste
+            curl --silent --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
+              -Q "DELE __deploy_post.php" "ftp://${FTP_HOST}/" || true
+            curl --silent --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
               -Q "DELE public/__deploy_post.php" "ftp://${FTP_HOST}/" || true
-            curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
+            curl --silent --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
               -Q "DELE public/__deploy_migrate.php" "ftp://${FTP_HOST}/" || true
           }
           trap cleanup EXIT
+          # Placer à la racine (même niveau qu'artisan) pour éviter le rewrite public/
           curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
-            -T /tmp/__deploy_post.php "ftp://${FTP_HOST}/public/__deploy_post.php"
+            -T /tmp/__deploy_post.php "ftp://${FTP_HOST}/__deploy_post.php"
           echo "Running post-deploy…"
-          RESP="$(curl --silent --show-error --fail --location \
+          HTTP_CODE="$(curl --silent --show-error --location \
+            -o /tmp/post-deploy.json \
+            -w '%{http_code}' \
             "${APP_URL%/}/__deploy_post.php?token=${TOKEN}")"
-          echo "$RESP"
-          echo "$RESP" | grep -q '"ok":true' || {
-            echo "Post-deploy a échoué"
+          echo "HTTP ${HTTP_CODE}"
+          cat /tmp/post-deploy.json || true
+          echo
+          test "${HTTP_CODE}" = "200" || {
+            echo "Post-deploy HTTP ${HTTP_CODE}"
+            exit 1
+          }
+          grep -q '"ok":true' /tmp/post-deploy.json || {
+            echo "Post-deploy a échoué (ok != true)"
             exit 1
           }
 
