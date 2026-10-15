@@ -21,7 +21,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, sqlite, pdo_sqlite, bcmath
+          extensions: mbstring, sqlite, pdo_sqlite, pdo_mysql, bcmath
           coverage: none
 
       - name: Install production dependencies
@@ -57,6 +57,12 @@ jobs:
           export DB_DATABASE="${DB_DATABASE:-sparqrqm_pressing_api}"
           export DB_USERNAME="${DB_USERNAME:-sparqrqm_api}"
           php deploy/write-env.php
+          test -f .env
+          # Sanity: APP_KEY present and not empty quotes
+          grep -q '^APP_KEY="base64:' .env || grep -q '^APP_KEY=base64:' .env || {
+            echo "APP_KEY invalide dans .env généré"
+            exit 1
+          }
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
@@ -70,6 +76,7 @@ jobs:
           server-dir: ./
           timeout: 1200000
           dangerous-clean-slate: false
+          log-level: standard
           exclude: |
             **/.git*
             **/.git*/**
@@ -93,7 +100,18 @@ jobs:
             storage/framework/sessions/**
             storage/framework/views/**
 
-      - name: Migrate database on server
+      - name: Upload .env over FTP (explicit)
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          # Belt-and-suspenders: .env is gitignored and some FTP filters skip it.
+          curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
+            -T .env "ftp://${FTP_HOST}/.env"
+
+      - name: Migrate + seed on server
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
@@ -104,21 +122,68 @@ jobs:
           APP_URL="${APP_URL:-https://pressing-api.pressingelegance.com}"
           TOKEN="$(openssl rand -hex 32)"
           echo "::add-mask::$TOKEN"
-          sed "s/__TOKEN__/${TOKEN}/" deploy/remote-migrate.php > /tmp/__deploy_migrate.php
+          sed "s/__TOKEN__/${TOKEN}/" deploy/remote-post-deploy.php > /tmp/__deploy_post.php
           cleanup() {
+            curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
+              -Q "DELE public/__deploy_post.php" "ftp://${FTP_HOST}/" || true
             curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
               -Q "DELE public/__deploy_migrate.php" "ftp://${FTP_HOST}/" || true
           }
           trap cleanup EXIT
           curl --silent --show-error --ftp-pasv --user "${FTP_USER}:${FTP_PASSWORD}" \
-            -T /tmp/__deploy_migrate.php "ftp://${FTP_HOST}/public/__deploy_migrate.php"
-          curl --silent --show-error --fail --location \
-            "${APP_URL%/}/__deploy_migrate.php?token=${TOKEN}"
+            -T /tmp/__deploy_post.php "ftp://${FTP_HOST}/public/__deploy_post.php"
+          echo "Running post-deploy…"
+          RESP="$(curl --silent --show-error --fail --location \
+            "${APP_URL%/}/__deploy_post.php?token=${TOKEN}")"
+          echo "$RESP"
+          echo "$RESP" | grep -q '"ok":true' || {
+            echo "Post-deploy a échoué"
+            exit 1
+          }
 
       - name: Health check
         env:
           APP_URL: ${{ secrets.APP_URL }}
         run: |
+          set -euo pipefail
           APP_URL="${APP_URL:-https://pressing-api.pressingelegance.com}"
           curl --silent --show-error --fail --location "${APP_URL%/}/api/v1/health"
           echo
+
+      - name: Smoke test logins
+        env:
+          APP_URL: ${{ secrets.APP_URL }}
+        run: |
+          set -euo pipefail
+          APP_URL="${APP_URL:-https://pressing-api.pressingelegance.com}"
+
+          login() {
+            local path="$1"
+            local body="$2"
+            local label="$3"
+            echo "Login ${label}…"
+            RESP="$(curl --silent --show-error --fail --location \
+              -H 'Accept: application/json' \
+              -H 'Content-Type: application/json' \
+              -d "${body}" \
+              "${APP_URL%/}${path}")"
+            echo "$RESP" | grep -q '"token"' || {
+              echo "Échec login ${label}: ${RESP}"
+              exit 1
+            }
+          }
+
+          login "/api/v1/auth/staff/login" \
+            '{"email":"caissier@elegance.local","password":"password"}' \
+            "caissier"
+          login "/api/v1/auth/staff/login" \
+            '{"email":"admin@elegance.local","password":"password"}' \
+            "admin"
+          login "/api/v1/auth/superadmin/login" \
+            '{"email":"superadmin@spark.local","password":"password"}' \
+            "superadmin"
+          login "/api/v1/auth/client/login" \
+            '{"login":"jean.client@example.com","password":"password"}' \
+            "client"
+
+          echo "Tous les logins smoke OK"

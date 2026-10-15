@@ -37,7 +37,12 @@ ENF05/06/11 (UX POS, responsive, a11y) : côté clients web/mobile, hors ce repo
 
 ## Déploiement FTP (GitHub Actions)
 
-Le push sur `main` lance [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) : `composer install --no-dev`, envoi FTP vers `public_html/pressing-api`, puis migrations.
+Le push sur `main` (ou **Actions → Deploy → Run workflow**) lance [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) :
+
+1. `composer install --no-dev`
+2. génération du `.env` production + envoi FTP (dont upload explicite du `.env`)
+3. `migrate --force` + `db:seed --force` (rôles + comptes démo)
+4. health check + smoke test des logins (staff / superadmin / client)
 
 Les identifiants ne sont pas dans le dépôt. Secrets du repo GitHub (`Settings` → `Secrets` → `Actions`) :
 
@@ -54,4 +59,6 @@ Les identifiants ne sont pas dans le dépôt. Secrets du repo GitHub (`Settings`
 | `DB_USERNAME` | optionnel, défaut `sparqrqm_api` |
 | `CORS_ALLOWED_ORIGINS` | optionnel, défaut `*` |
 
-Après l’envoi FTP, le workflow exécute `php artisan migrate --force` sur MySQL. L’hébergeur doit exposer PHP 8.1+ avec `pdo_mysql`, et le document root du sous-domaine doit être `/home/sparqrqm/public_html/pressing-api` (le `.htaccess` racine renvoie vers `public/`).
+Comptes démo après seed (mot de passe `password`) : `caissier@elegance.local`, `admin@elegance.local`, `superadmin@spark.local`, `jean.client@example.com`.
+
+L’hébergeur doit exposer PHP 8.1+ avec `pdo_mysql`, et le document root du sous-domaine doit être `/home/sparqrqm/public_html/pressing-api` (le `.htaccess` racine renvoie vers `public/`).

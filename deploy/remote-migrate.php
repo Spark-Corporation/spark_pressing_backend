@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @deprecated Utiliser remote-post-deploy.php (migrate + seed + vérifications).
+ * Ancien runner conserve pour référence / rollback d'urgence.
+ */
 if (! hash_equals('__TOKEN__', (string) ($_GET['token'] ?? ''))) {
     http_response_code(404);
     exit;

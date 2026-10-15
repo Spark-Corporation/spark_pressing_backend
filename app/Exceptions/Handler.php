@@ -60,7 +60,16 @@ class Handler extends ExceptionHandler
                 return ApiResponse::error($e->getMessage() ?: 'Erreur HTTP.', $e->getStatusCode());
             }
 
-            return null;
+            // Toujours du JSON sur /api/* (évite la page HTML 500 opaque en prod).
+            report($e);
+
+            $detail = config('app.debug')
+                ? $e->getMessage()
+                : 'Erreur serveur. Vérifier migrate/seed et les logs.';
+
+            return ApiResponse::error('Erreur serveur.', 500, [
+                ['code' => 'server_error', 'detail' => $detail],
+            ]);
         });
     }
 }
