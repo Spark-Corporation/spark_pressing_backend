@@ -124,6 +124,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="pos-GETapi-v1-pos-bootstrap">
                                 <a href="#pos-GETapi-v1-pos-bootstrap">GET api/v1/pos/bootstrap</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="pos-GETapi-v1-pos-sync-status">
+                                <a href="#pos-GETapi-v1-pos-sync-status">GET api/v1/pos/sync/status</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="pos-POSTapi-v1-sync">
                                 <a href="#pos-POSTapi-v1-sync">POST api/v1/sync</a>
                             </li>
@@ -142,6 +145,9 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-ready">
                                 <a href="#depots-GETapi-v1-deposits-ready">GET api/v1/deposits/ready</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-workshop">
+                                <a href="#depots-GETapi-v1-deposits-workshop">GET api/v1/deposits/workshop</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-qr--token-">
                                 <a href="#depots-GETapi-v1-deposits-qr--token-">GET api/v1/deposits/qr/{token}</a>
@@ -470,6 +476,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="organisation-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">
                                 <a href="#organisation-DELETEapi-v1-settings-exchange-rates--exchangeRate_id-">DELETE api/v1/settings/exchange-rates/{exchangeRate_id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="organisation-GETapi-v1-org-agencies-overview">
+                                <a href="#organisation-GETapi-v1-org-agencies-overview">GET api/v1/org/agencies/overview</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="organisation-GETapi-v1-org-agencies">
                                 <a href="#organisation-GETapi-v1-org-agencies">GET api/v1/org/agencies</a>
                             </li>
@@ -656,7 +665,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 15, 2026</li>
+        <li>Last updated: October 21, 2026</li>
     </ul>
 </div>
 
@@ -2027,7 +2036,11 @@ fetch(url, {
             &quot;id&quot;: 1,
             &quot;fullname&quot;: &quot;Super Admin SPARK&quot;,
             &quot;email&quot;: &quot;superadmin@spark.local&quot;,
-            &quot;type&quot;: &quot;superadmin&quot;
+            &quot;type&quot;: &quot;superadmin&quot;,
+            &quot;status&quot;: true,
+            &quot;roles&quot;: [
+                &quot;superadmin&quot;
+            ]
         }
     },
     &quot;meta&quot;: {},
@@ -3083,12 +3096,105 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;agency_id&quot;: 1,
-        &quot;date&quot;: &quot;2026-10-15&quot;,
-        &quot;deposits_count&quot;: 12,
-        &quot;revenue&quot;: 185000,
-        &quot;retrieves_count&quot;: 8,
-        &quot;unpaid_total&quot;: 45000
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;generated_at&quot;: &quot;2026-10-20T16:00:00+00:00&quot;,
+        &quot;kpis&quot;: {
+            &quot;revenue_today&quot;: 1845500,
+            &quot;revenue_delta_pct&quot;: 12.4,
+            &quot;deposits_today&quot;: 126,
+            &quot;pieces_today&quot;: 418,
+            &quot;retrieves_today&quot;: 94,
+            &quot;retrieve_rate_pct&quot;: 74.6,
+            &quot;loyalty_clients&quot;: 312,
+            &quot;new_clients_month&quot;: 23,
+            &quot;clients&quot;: 400,
+            &quot;deposits_open&quot;: 98,
+            &quot;unpaid_orders&quot;: 94,
+            &quot;overdue_retrieves&quot;: 18
+        },
+        &quot;clients&quot;: 400,
+        &quot;deposits_today&quot;: 126,
+        &quot;retrieves_today&quot;: 94,
+        &quot;receipts_today&quot;: 1845500,
+        &quot;cash_balance_today&quot;: 1745500,
+        &quot;series_7d&quot;: [
+            {
+                &quot;date&quot;: &quot;2026-10-14&quot;,
+                &quot;revenue&quot;: 1200000,
+                &quot;deposits&quot;: 80
+            }
+        ],
+        &quot;agencies&quot;: [
+            {
+                &quot;agency_id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;,
+                &quot;revenue&quot;: 983500,
+                &quot;revenue_delta_pct&quot;: 8.2,
+                &quot;deposits&quot;: 42,
+                &quot;retrieves&quot;: 38,
+                &quot;unpaid_count&quot;: 5,
+                &quot;unpaid_amount&quot;: 45000,
+                &quot;cash_balance&quot;: 900000
+            }
+        ],
+        &quot;workshop_pipeline&quot;: {
+            &quot;in_progress_deposits&quot;: 98,
+            &quot;in_progress_pieces&quot;: 320,
+            &quot;columns&quot;: [
+                {
+                    &quot;etat&quot;: &quot;waiting&quot;,
+                    &quot;colonne&quot;: &quot;attente&quot;,
+                    &quot;label&quot;: &quot;&Agrave; trier&quot;,
+                    &quot;deposits&quot;: 14,
+                    &quot;pieces&quot;: 46
+                }
+            ],
+            &quot;due_soon&quot;: []
+        },
+        &quot;cash&quot;: {
+            &quot;balance&quot;: 1745500,
+            &quot;cash_in&quot;: 0,
+            &quot;cash_out&quot;: 100000,
+            &quot;receipts_deposits&quot;: 1845500,
+            &quot;by_payment_method&quot;: {
+                &quot;cash&quot;: 742500,
+                &quot;mobile_money&quot;: 935000,
+                &quot;card&quot;: 168000,
+                &quot;wallet&quot;: 0,
+                &quot;other&quot;: 0
+            }
+        },
+        &quot;unpaid_aging&quot;: {
+            &quot;total_amount&quot;: 1240000,
+            &quot;total_count&quot;: 94,
+            &quot;overdue_count&quot;: 18,
+            &quot;buckets&quot;: {
+                &quot;0_30&quot;: {
+                    &quot;count&quot;: 32,
+                    &quot;amount&quot;: 420000
+                },
+                &quot;31_89&quot;: {
+                    &quot;count&quot;: 41,
+                    &quot;amount&quot;: 540000
+                },
+                &quot;90_plus&quot;: {
+                    &quot;count&quot;: 21,
+                    &quot;amount&quot;: 280000
+                }
+            }
+        },
+        &quot;recent_activity&quot;: [],
+        &quot;sync&quot;: {
+            &quot;online&quot;: true,
+            &quot;last_sync_at&quot;: &quot;2026-10-20T16:00:00+00:00&quot;,
+            &quot;pending_ops&quot;: 0,
+            &quot;pending&quot;: []
+        },
+        &quot;scope&quot;: {
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;network_wide&quot;: true
+        }
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -3259,6 +3365,19 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
+        &quot;generated_at&quot;: &quot;2026-10-20T16:00:00+00:00&quot;,
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Claire Caissier&quot;,
+            &quot;email&quot;: &quot;caissier@elegance.local&quot;,
+            &quot;phone_number&quot;: null,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;status&quot;: true,
+            &quot;roles&quot;: [
+                &quot;caissier&quot;
+            ]
+        },
         &quot;agency&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -3271,6 +3390,25 @@ fetch(url, {
             &quot;code_suffix&quot;: &quot;EL&quot;,
             &quot;status&quot;: true
         },
+        &quot;agency_id&quot;: 1,
+        &quot;agencies&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;,
+                &quot;address&quot;: &quot;Douala, Akwa&quot;,
+                &quot;contact&quot;: &quot;+237600000001&quot;,
+                &quot;country_code&quot;: &quot;CM&quot;,
+                &quot;currency&quot;: &quot;XAF&quot;,
+                &quot;code_prefix&quot;: &quot;AK&quot;,
+                &quot;code_suffix&quot;: &quot;EL&quot;,
+                &quot;status&quot;: true
+            }
+        ],
+        &quot;permissions&quot;: [
+            &quot;deposits.view&quot;,
+            &quot;deposits.create&quot;
+        ],
         &quot;pressing&quot;: {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
@@ -3315,19 +3453,36 @@ fetch(url, {
                 &quot;status&quot;: true
             }
         ],
+        &quot;clients&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            }
+        ],
         &quot;promos&quot;: [],
-        &quot;delivery_hours&quot;: [],
-        &quot;user&quot;: {
-            &quot;id&quot;: 1,
-            &quot;fullname&quot;: &quot;Claire Caissier&quot;,
-            &quot;email&quot;: &quot;caissier@elegance.local&quot;,
-            &quot;phone_number&quot;: null,
-            &quot;pressing_id&quot;: 1,
-            &quot;agency_id&quot;: 1,
-            &quot;status&quot;: true,
-            &quot;roles&quot;: [
-                &quot;caissier&quot;
-            ]
+        &quot;promo_specials&quot;: [],
+        &quot;delivery_hours&quot;: null,
+        &quot;code_suffixes&quot;: [],
+        &quot;laundry_statuses&quot;: [],
+        &quot;renders&quot;: [],
+        &quot;sync&quot;: {
+            &quot;online&quot;: true,
+            &quot;last_sync_at&quot;: &quot;2026-10-20T16:00:00+00:00&quot;,
+            &quot;pending_ops&quot;: 0,
+            &quot;pending&quot;: []
         }
     },
     &quot;meta&quot;: {},
@@ -3450,6 +3605,180 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="pos-GETapi-v1-pos-sync-status">GET api/v1/pos/sync/status</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-pos-sync-status">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/pos/sync/status" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/pos/sync/status"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-pos-sync-status">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;online&quot;: true,
+        &quot;last_sync_at&quot;: &quot;2026-10-20T16:00:00+00:00&quot;,
+        &quot;pending_ops&quot;: 0,
+        &quot;pending&quot;: []
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-pos-sync-status" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-pos-sync-status"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-pos-sync-status"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-pos-sync-status" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-pos-sync-status">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-pos-sync-status" data-method="GET"
+      data-path="api/v1/pos/sync/status"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-pos-sync-status', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-pos-sync-status"
+                    onclick="tryItOut('GETapi-v1-pos-sync-status');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-pos-sync-status"
+                    onclick="cancelTryOut('GETapi-v1-pos-sync-status');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-pos-sync-status"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/pos/sync/status</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-pos-sync-status"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-pos-sync-status"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-pos-sync-status"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-pos-sync-status"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
                     <h2 id="pos-POSTapi-v1-sync">POST api/v1/sync</h2>
 
 <p>
@@ -3519,13 +3848,13 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;accepted&quot;: 3,
-        &quot;rejected&quot;: 0,
-        &quot;results&quot;: [
+        &quot;operations&quot;: [
             {
+                &quot;type&quot;: &quot;deposit&quot;,
                 &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
-                &quot;status&quot;: &quot;ok&quot;,
-                &quot;id&quot;: 1
+                &quot;id&quot;: 1,
+                &quot;code&quot;: &quot;AK-0001&quot;,
+                &quot;replayed&quot;: false
             }
         ]
     },
@@ -3798,9 +4127,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -4042,9 +4380,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -4286,9 +4633,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -4455,6 +4811,270 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="depots-GETapi-v1-deposits-workshop">GET api/v1/deposits/workshop</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deposits-workshop">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deposits/workshop" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/workshop"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deposits-workshop">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;columns&quot;: [
+            {
+                &quot;etat&quot;: &quot;waiting&quot;,
+                &quot;colonne&quot;: &quot;attente&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;,
+                &quot;count&quot;: 2
+            }
+        ],
+        &quot;board&quot;: {
+            &quot;attente&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+                    &quot;code&quot;: &quot;AK-0001-EL&quot;,
+                    &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+                    &quot;pressing_id&quot;: 1,
+                    &quot;agency_id&quot;: 1,
+                    &quot;currency&quot;: &quot;XAF&quot;,
+                    &quot;client_id&quot;: 1,
+                    &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+                    &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+                    &quot;retrieved_at&quot;: null,
+                    &quot;subtotal&quot;: 3500,
+                    &quot;collection_fee&quot;: 0,
+                    &quot;delivery_fee&quot;: 0,
+                    &quot;discount&quot;: 0,
+                    &quot;discount_percent&quot;: 0,
+                    &quot;promo_code&quot;: null,
+                    &quot;points_earned&quot;: 35,
+                    &quot;points_redeemed&quot;: 0,
+                    &quot;total&quot;: 3500,
+                    &quot;advanced&quot;: 1000,
+                    &quot;left_to_pay&quot;: 2500,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;status&quot;: &quot;open&quot;,
+                    &quot;etat&quot;: &quot;waiting&quot;,
+                    &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+                    &quot;colonne&quot;: &quot;attente&quot;,
+                    &quot;delivery_status&quot;: null,
+                    &quot;notes&quot;: null,
+                    &quot;items_count&quot;: 2,
+                    &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+                    &quot;client_name&quot;: &quot;Jean Client&quot;,
+                    &quot;client_phone&quot;: &quot;690000001&quot;,
+                    &quot;agency&quot;: {
+                        &quot;id&quot;: 1,
+                        &quot;name&quot;: &quot;Akwa&quot;
+                    },
+                    &quot;client&quot;: {
+                        &quot;id&quot;: 1,
+                        &quot;pressing_id&quot;: 1,
+                        &quot;agency_id&quot;: 1,
+                        &quot;code&quot;: &quot;C000001&quot;,
+                        &quot;fullname&quot;: &quot;Jean Client&quot;,
+                        &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                        &quot;phone_number&quot;: &quot;690000001&quot;,
+                        &quot;address&quot;: null,
+                        &quot;city&quot;: &quot;Douala&quot;,
+                        &quot;loyalty_points&quot;: 120,
+                        &quot;wallet_balance&quot;: 5000,
+                        &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                        &quot;referred_by_id&quot;: null,
+                        &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                        &quot;status&quot;: true
+                    },
+                    &quot;units&quot;: [
+                        {
+                            &quot;id&quot;: 1,
+                            &quot;article_id&quot;: 1,
+                            &quot;service_id&quot;: 1,
+                            &quot;designation&quot;: &quot;Chemise&quot;,
+                            &quot;pricing_type&quot;: &quot;piece&quot;,
+                            &quot;quantity&quot;: 2,
+                            &quot;unit_price&quot;: 1000,
+                            &quot;line_total&quot;: 2000,
+                            &quot;state&quot;: null
+                        }
+                    ],
+                    &quot;transactions&quot;: [
+                        {
+                            &quot;id&quot;: 1,
+                            &quot;amount&quot;: 1000,
+                            &quot;type&quot;: &quot;in&quot;,
+                            &quot;payment_method&quot;: &quot;cash&quot;,
+                            &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                        }
+                    ],
+                    &quot;priorite&quot;: &quot;Haute&quot;
+                }
+            ],
+            &quot;cours&quot;: [],
+            &quot;traites&quot;: [],
+            &quot;classes&quot;: []
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-deposits-workshop" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deposits-workshop"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deposits-workshop"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deposits-workshop" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deposits-workshop">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deposits-workshop" data-method="GET"
+      data-path="api/v1/deposits/workshop"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deposits-workshop', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deposits-workshop"
+                    onclick="tryItOut('GETapi-v1-deposits-workshop');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deposits-workshop"
+                    onclick="cancelTryOut('GETapi-v1-deposits-workshop');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deposits-workshop"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deposits/workshop</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deposits-workshop"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deposits-workshop"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deposits-workshop"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deposits-workshop"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
                     <h2 id="depots-GETapi-v1-deposits-qr--token-">GET api/v1/deposits/qr/{token}</h2>
 
 <p>
@@ -4529,9 +5149,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;open&quot;,
         &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -4780,9 +5409,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -4983,8 +5621,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-15T23:00:48\",
-    \"retrieve_date\": \"2026-10-15T23:00:48\",
+    \"deposit_date\": \"2026-10-21T10:17:59\",
+    \"retrieve_date\": \"2026-10-21T10:17:59\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -5030,8 +5668,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-15T23:00:48",
-    "retrieve_date": "2026-10-15T23:00:48",
+    "deposit_date": "2026-10-21T10:17:59",
+    "retrieve_date": "2026-10-21T10:17:59",
     "notes": "architecto",
     "lines": [
         {
@@ -5089,9 +5727,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;open&quot;,
         &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -5479,10 +6126,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -5491,10 +6138,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -5720,9 +6367,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;open&quot;,
         &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -5919,7 +6575,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-15T23:00:48\"
+    \"transaction_date\": \"2026-10-21T10:17:59\"
 }"
 </code></pre></div>
 
@@ -5940,7 +6596,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-15T23:00:48"
+    "transaction_date": "2026-10-21T10:17:59"
 };
 
 fetch(url, {
@@ -5984,9 +6640,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;open&quot;,
         &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -6223,10 +6888,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
         </form>
 
@@ -6312,9 +6977,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;closed&quot;,
         &quot;etat&quot;: &quot;ready&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -6612,9 +7286,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;closed&quot;,
         &quot;etat&quot;: &quot;ready&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -6928,9 +7611,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;closed&quot;,
         &quot;etat&quot;: &quot;ready&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -10562,7 +11254,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php2AC.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php3887.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -10747,7 +11439,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2AC.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php3887.tmp</code></p>
         </div>
         </form>
 
@@ -12221,7 +12913,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-15T23:00:48\"
+    \"at\": \"2026-10-21T10:17:58\"
 }"
 </code></pre></div>
 
@@ -12243,7 +12935,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-15T23:00:48"
+    "at": "2026-10-21T10:17:58"
 };
 
 fetch(url, {
@@ -12447,10 +13139,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:58</code></p>
         </div>
         </form>
 
@@ -12479,8 +13171,8 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-15T23:00:48\",
-    \"valid_to\": \"2052-11-07\"
+    \"valid_from\": \"2026-10-21T10:17:58\",
+    \"valid_to\": \"2052-11-13\"
 }"
 </code></pre></div>
 
@@ -12503,8 +13195,8 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-15T23:00:48",
-    "valid_to": "2052-11-07"
+    "valid_from": "2026-10-21T10:17:58",
+    "valid_to": "2052-11-13"
 };
 
 fetch(url, {
@@ -12739,10 +13431,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -12751,10 +13443,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_to"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2052-11-07"
+               value="2052-11-13"
                data-component="body">
     <br>
-<p>validation.date validation.after_or_equal. Example: <code>2052-11-07</code></p>
+<p>validation.date validation.after_or_equal. Example: <code>2052-11-13</code></p>
         </div>
         </form>
 
@@ -18982,7 +19674,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"g\",
     \"type\": \"out\",
     \"amount\": 27,
-    \"action_date\": \"2026-10-15T23:00:48\",
+    \"action_date\": \"2026-10-21T10:17:59\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -19005,7 +19697,7 @@ let body = {
     "label": "g",
     "type": "out",
     "amount": 27,
-    "action_date": "2026-10-15T23:00:48",
+    "action_date": "2026-10-21T10:17:59",
     "validated": true
 };
 
@@ -19243,10 +19935,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -19295,7 +19987,7 @@ Must be one of:
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-15T23:00:48\"
+    \"action_date\": \"2026-10-21T10:17:59\"
 }"
 </code></pre></div>
 
@@ -19316,7 +20008,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-15T23:00:48"
+    "action_date": "2026-10-21T10:17:59"
 };
 
 fetch(url, {
@@ -19554,10 +20246,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
         </form>
 
@@ -25030,7 +25722,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-15T23:00:48\"
+    \"rate_date\": \"2026-10-21T10:17:59\"
 }"
 </code></pre></div>
 
@@ -25051,7 +25743,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-15T23:00:48"
+    "rate_date": "2026-10-21T10:17:59"
 };
 
 fetch(url, {
@@ -25257,10 +25949,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
         </form>
 
@@ -25447,6 +26139,190 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The ID of the exchangeRate. Example: <code>16</code></p>
             </div>
                     </form>
+
+                    <h2 id="organisation-GETapi-v1-org-agencies-overview">GET api/v1/org/agencies/overview</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-org-agencies-overview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/org/agencies/overview" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/org/agencies/overview"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-org-agencies-overview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;generated_at&quot;: &quot;2026-10-20T16:00:00+00:00&quot;,
+        &quot;active_count&quot;: 2,
+        &quot;agencies&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;,
+                &quot;slug&quot;: &quot;akwa&quot;,
+                &quot;revenue_today&quot;: 983500,
+                &quot;deposits_today&quot;: 42,
+                &quot;retrieves_today&quot;: 38,
+                &quot;unpaid_amount&quot;: 45000,
+                &quot;status&quot;: true
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-org-agencies-overview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-org-agencies-overview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-org-agencies-overview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-org-agencies-overview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-org-agencies-overview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-org-agencies-overview" data-method="GET"
+      data-path="api/v1/org/agencies/overview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-org-agencies-overview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-org-agencies-overview"
+                    onclick="tryItOut('GETapi-v1-org-agencies-overview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-org-agencies-overview"
+                    onclick="cancelTryOut('GETapi-v1-org-agencies-overview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-org-agencies-overview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/org/agencies/overview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-org-agencies-overview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-org-agencies-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-org-agencies-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-org-agencies-overview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
 
                     <h2 id="organisation-GETapi-v1-org-agencies">GET api/v1/org/agencies</h2>
 
@@ -28121,9 +28997,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -28365,9 +29250,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -28604,9 +29498,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -32805,7 +33708,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"plan\": \"b\",
     \"seats\": 22,
     \"status\": true,
-    \"expires_at\": \"2026-10-15T23:00:48\"
+    \"expires_at\": \"2026-10-21T10:17:57\"
 }"
 </code></pre></div>
 
@@ -32826,7 +33729,7 @@ let body = {
     "plan": "b",
     "seats": 22,
     "status": true,
-    "expires_at": "2026-10-15T23:00:48"
+    "expires_at": "2026-10-21T10:17:57"
 };
 
 fetch(url, {
@@ -33057,10 +33960,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:57"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:57</code></p>
         </div>
         </form>
 
@@ -34337,9 +35240,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -34581,9 +35493,18 @@ fetch(url, {
             &quot;payment_method&quot;: &quot;cash&quot;,
             &quot;status&quot;: &quot;open&quot;,
             &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
             &quot;client&quot;: {
                 &quot;id&quot;: 1,
                 &quot;pressing_id&quot;: 1,
@@ -35669,7 +36590,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-15T23:00:48\",
+    \"round_date\": \"2026-10-21T10:17:59\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -35690,7 +36611,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-15T23:00:48",
+    "round_date": "2026-10-21T10:17:59",
     "name": "n"
 };
 
@@ -35897,10 +36818,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-15T23:00:48"
+               value="2026-10-21T10:17:59"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-15T23:00:48</code></p>
+<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -36232,9 +37153,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;open&quot;,
         &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: &quot;delivered&quot;,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
@@ -36558,9 +37488,18 @@ fetch(url, {
         &quot;payment_method&quot;: &quot;cash&quot;,
         &quot;status&quot;: &quot;open&quot;,
         &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
         &quot;delivery_status&quot;: &quot;delivered&quot;,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
         &quot;client&quot;: {
             &quot;id&quot;: 1,
             &quot;pressing_id&quot;: 1,
