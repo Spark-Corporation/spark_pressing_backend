@@ -2,6 +2,8 @@
 
 namespace App\Support\Reporting;
 
+use App\Models\Agency;
+use App\Models\AuditLog;
 use App\Models\CashMovement;
 use App\Models\Client;
 use App\Models\Deposit;
@@ -251,5 +253,387 @@ class Metrics
             'cash_out_today' => $cash['cash_out'],
             'cash_balance_today' => $cash['balance'],
         ];
+    }
+
+    /** Dashboard enrichi pour le FE (KPIs + séries + pipeline + caisse + aging + activité). */
+    public static function dashboardNetwork(Collection $agencies, ?int $pressingId = null): array
+    {
+        $today = self::dashboardToday();
+        $todayRange = new DateRange(CarbonImmutable::now()->startOfDay(), CarbonImmutable::now()->endOfDay());
+        $prevRange = new DateRange(
+            CarbonImmutable::now()->subDays(7)->startOfDay(),
+            CarbonImmutable::now()->subDays(7)->endOfDay(),
+        );
+        $weekRange = new DateRange(
+            CarbonImmutable::now()->subDays(6)->startOfDay(),
+            CarbonImmutable::now()->endOfDay(),
+        );
+
+        $prevCash = self::cashTotals($prevRange);
+        $prevDeposits = self::depositTotals($prevRange);
+        $piecesToday = self::piecesCount($todayRange);
+        $piecesPrev = self::piecesCount($prevRange);
+
+        $revenueToday = (int) $today['receipts_today'];
+        $depositsToday = (int) $today['deposits_today'];
+        $retrievesToday = (int) $today['retrieves_today'];
+
+        $agencyRows = self::byAgency($todayRange, $agencies, null, $pressingId)->map(function (array $row) use ($prevRange, $pressingId) {
+            $prev = self::agencyDaySnapshot((int) $row['agency_id'], $prevRange);
+
+            return [
+                'agency_id' => $row['agency_id'],
+                'name' => $row['agency'],
+                'currency' => $row['currency'],
+                'revenue' => $row['receipts'],
+                'revenue_delta_pct' => self::pctDelta($row['receipts'], $prev['receipts']),
+                'deposits' => $row['deposits'],
+                'retrieves' => $row['retrieves'],
+                'unpaid' => $prev['unpaid_open'], // replaced below with live unpaid
+                'cash_balance' => $row['balance'],
+                'cash_in' => $row['cash_in'],
+                'cash_out' => $row['cash_out'],
+            ];
+        });
+
+        // Impayés ouverts par agence (hors période)
+        $unpaidByAgency = Deposit::query()
+            ->select('agency_id', DB::raw('count(*) as cnt'), DB::raw('coalesce(sum(left_to_pay),0) as amount'))
+            ->where('status', true)
+            ->where('left_to_pay', '>', 0)
+            ->whereIn('agency_id', $agencies->pluck('id'))
+            ->groupBy('agency_id')
+            ->get()
+            ->keyBy('agency_id');
+
+        $agencyRows = $agencyRows->map(function (array $row) use ($unpaidByAgency) {
+            $u = $unpaidByAgency[$row['agency_id']] ?? null;
+            $row['unpaid_count'] = (int) ($u->cnt ?? 0);
+            $row['unpaid_amount'] = (int) ($u->amount ?? 0);
+            unset($row['unpaid']);
+
+            return $row;
+        });
+
+        $loyaltyClients = (int) Client::query()->where('loyalty_points', '>', 0)->count();
+        $newClientsMonth = (int) Client::query()
+            ->where('created_at', '>=', now()->startOfMonth())
+            ->count();
+
+        $cash = self::cashTotals($todayRange);
+        $byMethod = self::cashByPaymentMethod($todayRange);
+
+        return [
+            'currency' => config('spark.currency'),
+            'generated_at' => now()->toIso8601String(),
+            'kpis' => [
+                'revenue_today' => $revenueToday,
+                'revenue_delta_pct' => self::pctDelta($revenueToday, $prevCash['receipts_deposits']),
+                'deposits_today' => $depositsToday,
+                'deposits_delta_pct' => self::pctDelta($depositsToday, $prevDeposits['count']),
+                'pieces_today' => $piecesToday,
+                'pieces_delta_pct' => self::pctDelta($piecesToday, $piecesPrev),
+                'retrieves_today' => $retrievesToday,
+                'retrieve_rate_pct' => $depositsToday > 0
+                    ? round(($retrievesToday / $depositsToday) * 100, 1)
+                    : 0.0,
+                'loyalty_clients' => $loyaltyClients,
+                'new_clients_month' => $newClientsMonth,
+                'clients' => (int) $today['clients'],
+                'deposits_open' => (int) $today['deposits_open'],
+                'unpaid_orders' => (int) $today['unpaid_orders'],
+                'overdue_retrieves' => (int) $today['overdue_retrieves'],
+            ],
+            // Rétrocompatibilité avec l’ancien shape plat
+            'clients' => (int) $today['clients'],
+            'deposits_open' => (int) $today['deposits_open'],
+            'deposits_today' => $depositsToday,
+            'retrieves_today' => $retrievesToday,
+            'unpaid_orders' => (int) $today['unpaid_orders'],
+            'overdue_retrieves' => (int) $today['overdue_retrieves'],
+            'receipts_today' => $revenueToday,
+            'cash_in_today' => (int) $today['cash_in_today'],
+            'cash_out_today' => (int) $today['cash_out_today'],
+            'cash_balance_today' => (int) $today['cash_balance_today'],
+            'series_7d' => self::revenueSeriesDays(7),
+            'agencies' => $agencyRows->values(),
+            'workshop_pipeline' => self::workshopPipeline(),
+            'cash' => [
+                'balance' => $cash['balance'],
+                'cash_in' => $cash['cash_in'],
+                'cash_out' => $cash['cash_out'],
+                'receipts_deposits' => $cash['receipts_deposits'],
+                'by_payment_method' => $byMethod,
+            ],
+            'unpaid_aging' => self::unpaidAging(),
+            'recent_activity' => self::recentActivity(15),
+            'sync' => [
+                'online' => true,
+                'last_sync_at' => now()->toIso8601String(),
+                'pending_ops' => 0,
+                'pending' => [],
+            ],
+            'week' => [
+                'from' => $weekRange->from->toDateString(),
+                'to' => $weekRange->to->toDateString(),
+                'revenue' => (int) self::cashTotals($weekRange)['receipts_deposits'],
+            ],
+        ];
+    }
+
+    public static function cashByPaymentMethod(DateRange $range): array
+    {
+        $rows = Transaction::query()
+            ->select('payment_method', DB::raw('coalesce(sum(amount),0) as total'))
+            ->whereBetween('transaction_date', [$range->from, $range->to])
+            ->groupBy('payment_method')
+            ->pluck('total', 'payment_method');
+
+        $methods = ['cash', 'mobile_money', 'card', 'wallet', 'other'];
+        $out = [];
+        foreach ($methods as $method) {
+            $out[$method] = (int) ($rows[$method] ?? 0);
+        }
+        foreach ($rows as $method => $total) {
+            if (! array_key_exists((string) $method, $out)) {
+                $out[(string) ($method ?: 'other')] = (int) $total;
+            }
+        }
+
+        return $out;
+    }
+
+    public static function unpaidAging(): array
+    {
+        $now = CarbonImmutable::now();
+
+        $unpaid = fn () => Deposit::query()
+            ->where('status', true)
+            ->where('left_to_pay', '>', 0);
+
+        $totalAmount = (int) $unpaid()->sum('left_to_pay');
+        $totalCount = (int) $unpaid()->count();
+        $overdueCount = (int) $unpaid()
+            ->whereNotNull('retrieve_date')
+            ->where('retrieve_date', '<', $now)
+            ->count();
+
+        $bucketQuery = function (callable $dateConstraint) use ($unpaid): array {
+            $q = $unpaid()->whereNotNull('deposit_date');
+            $dateConstraint($q);
+            $row = $q->selectRaw('count(*) as cnt, coalesce(sum(left_to_pay),0) as amount')->first();
+
+            return [
+                'count' => (int) ($row->cnt ?? 0),
+                'amount' => (int) ($row->amount ?? 0),
+            ];
+        };
+
+        return [
+            'total_amount' => $totalAmount,
+            'total_count' => $totalCount,
+            'overdue_count' => $overdueCount,
+            'buckets' => [
+                '0_30' => $bucketQuery(fn ($q) => $q->where('deposit_date', '>', $now->subDays(30))),
+                '31_89' => $bucketQuery(fn ($q) => $q
+                    ->where('deposit_date', '<=', $now->subDays(30))
+                    ->where('deposit_date', '>', $now->subDays(89))),
+                '90_plus' => $bucketQuery(fn ($q) => $q->where('deposit_date', '<=', $now->subDays(90))),
+            ],
+        ];
+    }
+
+    public static function workshopPipeline(): array
+    {
+        $open = Deposit::query()->where('status', true)->whereNull('retrieved_at');
+
+        $byEtat = (clone $open)
+            ->select('etat', DB::raw('count(*) as deposits'))
+            ->groupBy('etat')
+            ->pluck('deposits', 'etat');
+
+        $piecesByEtat = Deposit::query()
+            ->where('deposits.status', true)
+            ->whereNull('deposits.retrieved_at')
+            ->join('deposit_units', 'deposit_units.deposit_id', '=', 'deposits.id')
+            ->whereNull('deposit_units.deleted_at')
+            ->select('deposits.etat', DB::raw('coalesce(sum(deposit_units.quantity),0) as pieces'))
+            ->groupBy('deposits.etat')
+            ->pluck('pieces', 'etat');
+
+        $columns = [];
+        foreach (Deposit::etatColumns() as $etat => $colonne) {
+            $columns[] = [
+                'etat' => $etat,
+                'colonne' => $colonne,
+                'label' => Deposit::etatLabel($etat),
+                'deposits' => (int) ($byEtat[$etat] ?? 0),
+                'pieces' => (int) ($piecesByEtat[$etat] ?? 0),
+            ];
+        }
+
+        $dueSoon = (clone $open)
+            ->whereNotNull('retrieve_date')
+            ->whereBetween('retrieve_date', [now(), now()->addHours(6)])
+            ->orderBy('retrieve_date')
+            ->limit(5)
+            ->get(['id', 'code', 'retrieve_date', 'etat']);
+
+        return [
+            'in_progress_deposits' => (int) (clone $open)->count(),
+            'in_progress_pieces' => (int) array_sum(array_map('intval', $piecesByEtat->all())),
+            'columns' => $columns,
+            'due_soon' => $dueSoon->map(fn (Deposit $d) => [
+                'id' => $d->id,
+                'code' => $d->code,
+                'etat' => $d->etat,
+                'etat_label' => Deposit::etatLabel($d->etat),
+                'retrieve_date' => $d->retrieve_date?->toIso8601String(),
+            ])->values(),
+        ];
+    }
+
+    public static function revenueSeriesDays(int $days = 7): array
+    {
+        $series = [];
+        for ($i = $days - 1; $i >= 0; $i--) {
+            $day = CarbonImmutable::now()->subDays($i);
+            $range = new DateRange($day->startOfDay(), $day->endOfDay());
+            $cash = self::cashTotals($range);
+            $series[] = [
+                'date' => $day->toDateString(),
+                'revenue' => $cash['receipts_deposits'],
+                'deposits' => self::depositTotals($range)['count'],
+            ];
+        }
+
+        return $series;
+    }
+
+    public static function recentActivity(int $limit = 15): array
+    {
+        $logs = AuditLog::query()
+            ->latest('id')
+            ->limit($limit)
+            ->get(['id', 'action', 'agency_id', 'payload', 'created_at', 'subject_type', 'subject_id']);
+
+        if ($logs->isNotEmpty()) {
+            return $logs->map(fn (AuditLog $log) => [
+                'id' => $log->id,
+                'type' => $log->action,
+                'agency_id' => $log->agency_id,
+                'subject_type' => $log->subject_type,
+                'subject_id' => $log->subject_id,
+                'payload' => $log->payload,
+                'at' => $log->created_at?->toIso8601String(),
+            ])->all();
+        }
+
+        // Fallback : derniers dépôts / transactions si pas encore d’audit.
+        $deposits = Deposit::query()
+            ->with(['client:id,fullname', 'agency:id,name'])
+            ->latest('deposit_date')
+            ->limit($limit)
+            ->get(['id', 'code', 'total', 'payment_method', 'client_id', 'agency_id', 'deposit_date']);
+
+        return $deposits->map(fn (Deposit $d) => [
+            'id' => $d->id,
+            'type' => 'deposit.created',
+            'agency_id' => $d->agency_id,
+            'code' => $d->code,
+            'client' => $d->client?->fullname,
+            'agency' => $d->agency?->name,
+            'amount' => (int) $d->total,
+            'payment_method' => $d->payment_method,
+            'at' => $d->deposit_date?->toIso8601String(),
+        ])->all();
+    }
+
+    public static function agenciesOverview(Collection $agencies, ?int $pressingId = null): array
+    {
+        $today = new DateRange(CarbonImmutable::now()->startOfDay(), CarbonImmutable::now()->endOfDay());
+        $week = new DateRange(CarbonImmutable::now()->subDays(6)->startOfDay(), CarbonImmutable::now()->endOfDay());
+        $todayRows = self::byAgency($today, $agencies, null, $pressingId)->keyBy('agency_id');
+        $weekRows = self::byAgency($week, $agencies, null, $pressingId)->keyBy('agency_id');
+
+        $unpaid = Deposit::query()
+            ->select('agency_id', DB::raw('count(*) as cnt'), DB::raw('coalesce(sum(left_to_pay),0) as amount'))
+            ->where('status', true)
+            ->where('left_to_pay', '>', 0)
+            ->whereIn('agency_id', $agencies->pluck('id'))
+            ->groupBy('agency_id')
+            ->get()
+            ->keyBy('agency_id');
+
+        $pieces = Deposit::query()
+            ->whereBetween('deposits.deposit_date', [$today->from, $today->to])
+            ->whereIn('deposits.agency_id', $agencies->pluck('id'))
+            ->join('deposit_units', 'deposit_units.deposit_id', '=', 'deposits.id')
+            ->whereNull('deposit_units.deleted_at')
+            ->select('deposits.agency_id', DB::raw('coalesce(sum(deposit_units.quantity),0) as pieces'))
+            ->groupBy('deposits.agency_id')
+            ->pluck('pieces', 'agency_id');
+
+        return $agencies->map(function (Agency $agency) use ($todayRows, $weekRows, $unpaid, $pieces) {
+            $t = $todayRows[$agency->id] ?? null;
+            $w = $weekRows[$agency->id] ?? null;
+            $u = $unpaid[$agency->id] ?? null;
+            $deposits = (int) ($t['deposits'] ?? 0);
+            $retrieves = (int) ($t['retrieves'] ?? 0);
+
+            return [
+                'id' => $agency->id,
+                'name' => $agency->name,
+                'address' => $agency->address,
+                'code_prefix' => $agency->code_prefix,
+                'currency' => $agency->currency,
+                'status' => (bool) $agency->status,
+                'slug' => str($agency->name)->slug()->toString(),
+                'revenue_today' => (int) ($t['receipts'] ?? 0),
+                'revenue_week' => (int) ($w['receipts'] ?? 0),
+                'deposits_today' => $deposits,
+                'retrieves_today' => $retrieves,
+                'retrieve_rate_pct' => $deposits > 0 ? round(($retrieves / $deposits) * 100, 1) : 0.0,
+                'pieces_today' => (int) ($pieces[$agency->id] ?? 0),
+                'cash_balance_today' => (int) ($t['balance'] ?? 0),
+                'unpaid_count' => (int) ($u->cnt ?? 0),
+                'unpaid_amount' => (int) ($u->amount ?? 0),
+            ];
+        })->values()->all();
+    }
+
+    public static function piecesCount(DateRange $range): int
+    {
+        return (int) Deposit::query()
+            ->whereBetween('deposits.deposit_date', [$range->from, $range->to])
+            ->join('deposit_units', 'deposit_units.deposit_id', '=', 'deposits.id')
+            ->whereNull('deposit_units.deleted_at')
+            ->sum('deposit_units.quantity');
+    }
+
+    /** @return array{receipts:int, unpaid_open:int} */
+    private static function agencyDaySnapshot(int $agencyId, DateRange $range): array
+    {
+        $receipts = (int) Transaction::query()
+            ->where('agency_id', $agencyId)
+            ->whereBetween('transaction_date', [$range->from, $range->to])
+            ->sum('amount');
+
+        $unpaid = (int) Deposit::query()
+            ->where('agency_id', $agencyId)
+            ->where('status', true)
+            ->where('left_to_pay', '>', 0)
+            ->count();
+
+        return ['receipts' => $receipts, 'unpaid_open' => $unpaid];
+    }
+
+    private static function pctDelta(int|float $current, int|float $previous): ?float
+    {
+        if ((float) $previous === 0.0) {
+            return $current > 0 ? 100.0 : null;
+        }
+
+        return round((((float) $current - (float) $previous) / (float) $previous) * 100, 1);
     }
 }

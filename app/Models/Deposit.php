@@ -20,6 +20,46 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
 
     public const ETAT_CLASSED = 'classed';
 
+    /** @return array<string, string> */
+    public static function etatLabels(): array
+    {
+        return [
+            self::ETAT_WAITING => 'À trier',
+            self::ETAT_IN_PROGRESS => 'En lavage',
+            self::ETAT_TREATED => 'Prêt',
+            self::ETAT_CLASSED => 'Classé',
+        ];
+    }
+
+    /** @return array<string, string> Colonnes kanban atelier (FE). */
+    public static function etatColumns(): array
+    {
+        return [
+            self::ETAT_WAITING => 'attente',
+            self::ETAT_IN_PROGRESS => 'cours',
+            self::ETAT_TREATED => 'traites',
+            self::ETAT_CLASSED => 'classes',
+        ];
+    }
+
+    public static function etatLabel(?string $etat): ?string
+    {
+        if ($etat === null) {
+            return null;
+        }
+
+        return self::etatLabels()[$etat] ?? $etat;
+    }
+
+    public static function etatColumn(?string $etat): ?string
+    {
+        if ($etat === null) {
+            return null;
+        }
+
+        return self::etatColumns()[$etat] ?? null;
+    }
+
     public const DELIVERY_PENDING = 'pending';
 
     public const DELIVERY_ASSIGNED = 'assigned';
@@ -99,6 +139,16 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
     public function cashier(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function laveur(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'laveur_id');
+    }
+
+    public function classeur(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'classeur_id');
     }
 
     public function units(): HasMany

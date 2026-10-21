@@ -12,7 +12,10 @@ class DepositQuery
     {
         return Deposit::query()
             ->select('deposits.*')
-            ->with(['client:id,fullname,phone_number,code'])
+            ->with([
+                'client:id,fullname,phone_number,code',
+                'agency:id,name',
+            ])
             ->withSum('units as items_count', 'quantity')
             ->when($request->filled('q'), function ($query) use ($request) {
                 $q = $request->string('q')->toString();
@@ -53,7 +56,10 @@ class DepositQuery
     {
         return Deposit::query()
             ->select('deposits.*')
-            ->with(['client:id,fullname,phone_number,code'])
+            ->with([
+                'client:id,fullname,phone_number,code',
+                'agency:id,name',
+            ])
             ->withSum('units as items_count', 'quantity')
             ->whereNotNull('retrieved_at')
             ->when($request->filled('date_from'), fn ($q) => $q->whereDate('retrieved_at', '>=', $request->date_from))

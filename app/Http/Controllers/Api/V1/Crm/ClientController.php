@@ -22,6 +22,7 @@ class ClientController extends Controller
         $days = max(1, (int) $request->get('inactive_days', 30));
 
         $clients = Client::query()
+            ->with(['agency:id,name'])
             ->withCount('deposits')
             ->when($q, function ($query) use ($q) {
                 $query->where(function ($inner) use ($q) {

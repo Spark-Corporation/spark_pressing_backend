@@ -252,6 +252,8 @@ class AuthController extends Controller
                 'fullname' => 'Super Admin SPARK',
                 'email' => 'superadmin@spark.local',
                 'type' => 'superadmin',
+                'status' => true,
+                'roles' => ['superadmin'],
             ],
         ],
         'meta' => new \stdClass,
@@ -274,12 +276,7 @@ class AuthController extends Controller
         $admin = Admin::query()->where('email', $credentials['email'])->first();
 
         return $this->issueToken($admin, $credentials['password'], 'superadmin', function (Admin $admin) {
-            return [
-                'id' => $admin->id,
-                'fullname' => $admin->fullname,
-                'email' => $admin->email,
-                'type' => 'superadmin',
-            ];
+            return $this->adminPayload($admin);
         });
     }
 
@@ -333,11 +330,7 @@ class AuthController extends Controller
         }
 
         if ($actor instanceof Admin) {
-            return $this->ok([
-                'id' => $actor->id,
-                'fullname' => $actor->fullname,
-                'email' => $actor->email,
-            ], ['actor' => 'superadmin']);
+            return $this->ok($this->adminPayload($actor), ['actor' => 'superadmin']);
         }
 
         return ApiResponse::error('Non authentifié.', 401);
@@ -476,5 +469,18 @@ class AuthController extends Controller
             'actor' => $type,
             'user' => $resolver($actor),
         ]);
+    }
+
+    /** @return array<string, mixed> */
+    private function adminPayload(Admin $admin): array
+    {
+        return [
+            'id' => $admin->id,
+            'fullname' => $admin->fullname,
+            'email' => $admin->email,
+            'type' => 'superadmin',
+            'status' => (bool) $admin->status,
+            'roles' => ['superadmin'],
+        ];
     }
 }

@@ -143,9 +143,15 @@ class DocumentApiEnvelopeResponses extends Strategy
             'payment_method' => 'cash',
             'status' => 'open',
             'etat' => 'waiting',
+            'etat_label' => 'À trier',
+            'colonne' => 'attente',
             'delivery_status' => null,
             'notes' => null,
             'items_count' => 2,
+            'articles_label' => '2 pièces',
+            'client_name' => 'Jean Client',
+            'client_phone' => '690000001',
+            'agency' => ['id' => 1, 'name' => 'Akwa'],
             'client' => $client,
             'units' => [
                 [
@@ -223,34 +229,159 @@ class DocumentApiEnvelopeResponses extends Strategy
         // —— POS / Dashboard ——
         if ($path === '/api/v1/dashboard') {
             return [$this->response(200, [
-                'agency_id' => 1,
-                'date' => '2026-10-15',
-                'deposits_count' => 12,
-                'revenue' => 185000,
-                'retrieves_count' => 8,
-                'unpaid_total' => 45000,
+                'currency' => 'XAF',
+                'generated_at' => '2026-10-20T16:00:00+00:00',
+                'kpis' => [
+                    'revenue_today' => 1845500,
+                    'revenue_delta_pct' => 12.4,
+                    'deposits_today' => 126,
+                    'pieces_today' => 418,
+                    'retrieves_today' => 94,
+                    'retrieve_rate_pct' => 74.6,
+                    'loyalty_clients' => 312,
+                    'new_clients_month' => 23,
+                    'clients' => 400,
+                    'deposits_open' => 98,
+                    'unpaid_orders' => 94,
+                    'overdue_retrieves' => 18,
+                ],
+                'clients' => 400,
+                'deposits_today' => 126,
+                'retrieves_today' => 94,
+                'receipts_today' => 1845500,
+                'cash_balance_today' => 1745500,
+                'series_7d' => [
+                    ['date' => '2026-10-14', 'revenue' => 1200000, 'deposits' => 80],
+                ],
+                'agencies' => [[
+                    'agency_id' => 1,
+                    'name' => 'Akwa',
+                    'revenue' => 983500,
+                    'revenue_delta_pct' => 8.2,
+                    'deposits' => 42,
+                    'retrieves' => 38,
+                    'unpaid_count' => 5,
+                    'unpaid_amount' => 45000,
+                    'cash_balance' => 900000,
+                ]],
+                'workshop_pipeline' => [
+                    'in_progress_deposits' => 98,
+                    'in_progress_pieces' => 320,
+                    'columns' => [
+                        ['etat' => 'waiting', 'colonne' => 'attente', 'label' => 'À trier', 'deposits' => 14, 'pieces' => 46],
+                    ],
+                    'due_soon' => [],
+                ],
+                'cash' => [
+                    'balance' => 1745500,
+                    'cash_in' => 0,
+                    'cash_out' => 100000,
+                    'receipts_deposits' => 1845500,
+                    'by_payment_method' => [
+                        'cash' => 742500,
+                        'mobile_money' => 935000,
+                        'card' => 168000,
+                        'wallet' => 0,
+                        'other' => 0,
+                    ],
+                ],
+                'unpaid_aging' => [
+                    'total_amount' => 1240000,
+                    'total_count' => 94,
+                    'overdue_count' => 18,
+                    'buckets' => [
+                        '0_30' => ['count' => 32, 'amount' => 420000],
+                        '31_89' => ['count' => 41, 'amount' => 540000],
+                        '90_plus' => ['count' => 21, 'amount' => 280000],
+                    ],
+                ],
+                'recent_activity' => [],
+                'sync' => [
+                    'online' => true,
+                    'last_sync_at' => '2026-10-20T16:00:00+00:00',
+                    'pending_ops' => 0,
+                    'pending' => [],
+                ],
+                'scope' => [
+                    'pressing_id' => 1,
+                    'agency_id' => 1,
+                    'network_wide' => true,
+                ],
             ])];
         }
 
         if ($path === '/api/v1/pos/bootstrap') {
             return [$this->response(200, [
+                'generated_at' => '2026-10-20T16:00:00+00:00',
+                'user' => $user,
                 'agency' => $agency,
+                'agency_id' => 1,
+                'agencies' => [$agency],
+                'permissions' => ['deposits.view', 'deposits.create'],
                 'pressing' => $pressing,
                 'articles' => [$article],
                 'services' => [$service],
+                'clients' => [$client],
                 'promos' => [],
-                'delivery_hours' => [],
-                'user' => $user,
+                'promo_specials' => [],
+                'delivery_hours' => null,
+                'code_suffixes' => [],
+                'laundry_statuses' => [],
+                'renders' => [],
+                'sync' => [
+                    'online' => true,
+                    'last_sync_at' => '2026-10-20T16:00:00+00:00',
+                    'pending_ops' => 0,
+                    'pending' => [],
+                ],
+            ])];
+        }
+
+        if ($path === '/api/v1/pos/sync/status') {
+            return [$this->response(200, [
+                'online' => true,
+                'last_sync_at' => '2026-10-20T16:00:00+00:00',
+                'pending_ops' => 0,
+                'pending' => [],
             ])];
         }
 
         if ($path === '/api/v1/sync') {
             return [$this->response(200, [
-                'accepted' => 3,
-                'rejected' => 0,
-                'results' => [
-                    ['client_uuid' => '550e8400-e29b-41d4-a716-446655440000', 'status' => 'ok', 'id' => 1],
+                'operations' => [
+                    ['type' => 'deposit', 'client_uuid' => '550e8400-e29b-41d4-a716-446655440000', 'id' => 1, 'code' => 'AK-0001', 'replayed' => false],
                 ],
+            ])];
+        }
+
+        if ($path === '/api/v1/deposits/workshop') {
+            return [$this->response(200, [
+                'columns' => [
+                    ['etat' => 'waiting', 'colonne' => 'attente', 'label' => 'À trier', 'count' => 2],
+                ],
+                'board' => [
+                    'attente' => [$deposit + ['etat_label' => 'À trier', 'colonne' => 'attente', 'priorite' => 'Haute']],
+                    'cours' => [],
+                    'traites' => [],
+                    'classes' => [],
+                ],
+            ])];
+        }
+
+        if ($path === '/api/v1/org/agencies/overview') {
+            return [$this->response(200, [
+                'generated_at' => '2026-10-20T16:00:00+00:00',
+                'active_count' => 2,
+                'agencies' => [[
+                    'id' => 1,
+                    'name' => 'Akwa',
+                    'slug' => 'akwa',
+                    'revenue_today' => 983500,
+                    'deposits_today' => 42,
+                    'retrieves_today' => 38,
+                    'unpaid_amount' => 45000,
+                    'status' => true,
+                ]],
             ])];
         }
 

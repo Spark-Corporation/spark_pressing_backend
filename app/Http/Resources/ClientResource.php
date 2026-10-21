@@ -25,6 +25,11 @@ class ClientResource extends JsonResource
             'referred_by_id' => $this->referred_by_id,
             'last_deposit_at' => $this->last_deposit_at,
             'status' => $this->status,
+            'agency' => $this->whenLoaded('agency', fn () => $this->agency ? [
+                'id' => $this->agency->id,
+                'name' => $this->agency->name,
+            ] : null),
+            'deposits_count' => $this->when(isset($this->deposits_count), (int) $this->deposits_count),
         ];
     }
 }

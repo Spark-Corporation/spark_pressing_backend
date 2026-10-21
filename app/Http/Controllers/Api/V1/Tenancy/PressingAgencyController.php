@@ -9,6 +9,8 @@ use App\Http\Resources\UserResource;
 use App\Models\Agency;
 use App\Models\User;
 use App\Support\Money\Currency;
+use App\Support\Reporting\Metrics;
+use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -26,6 +28,27 @@ class PressingAgencyController extends Controller
             ->paginate(50);
 
         return $this->page($items, AgencyResource::collection($items)->resolve());
+    }
+
+    public function agenciesOverview(Request $request): JsonResponse
+    {
+        $tenant = app(TenantContext::class);
+        $previous = $tenant->agencyId;
+        $tenant->agencyId = null;
+
+        $agencies = Agency::query()
+            ->where('pressing_id', $request->user()->pressing_id)
+            ->orderBy('name')
+            ->get();
+
+        $overview = Metrics::agenciesOverview($agencies, $request->user()->pressing_id);
+        $tenant->agencyId = $previous;
+
+        return $this->ok([
+            'generated_at' => now()->toIso8601String(),
+            'agencies' => $overview,
+            'active_count' => collect($overview)->where('status', true)->count(),
+        ]);
     }
 
     public function storeAgency(Request $request): JsonResponse

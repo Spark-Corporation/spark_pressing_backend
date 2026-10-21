@@ -57,7 +57,10 @@ class AuthTest extends TestCase
             'email' => 'root@spark.local',
             'password' => 'password',
         ])->assertOk()
-            ->assertJsonPath('data.actor', 'superadmin');
+            ->assertJsonPath('data.actor', 'superadmin')
+            ->assertJsonPath('data.user.type', 'superadmin')
+            ->assertJsonPath('data.user.status', true)
+            ->assertJsonPath('data.user.roles.0', 'superadmin');
     }
 
     public function test_unauthenticated_api_returns_401(): void

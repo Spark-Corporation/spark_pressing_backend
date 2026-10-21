@@ -88,10 +88,22 @@ Réponse login (shape) :
 }
 ```
 
+- Staff `user` : `fullname`, `roles`, `agency`, `agencies`, `pressing`, `permissions` (sur `/me`)
+- Superadmin `user` : `fullname`, `email`, `type`, `status`, `roles: ["superadmin"]` (pas d’accès POS `/dashboard`)
 - `GET /api/v1/auth/me` — session courante
 - `POST /api/v1/auth/logout` — invalide le token
 - `401` → rediriger vers login
 - Throttle login : 5/min → `429`
+
+Écrans réseau / POS (réponses agrégées, un appel) :
+
+| Écran | Endpoint |
+|-------|----------|
+| Dashboard | `GET /dashboard` (`kpis`, `series_7d`, `agencies`, `workshop_pipeline`, `cash.by_payment_method`, `unpaid_aging`, `recent_activity`, `sync`) |
+| Boot POS | `GET /pos/bootstrap` (`user`, `agency`, `agencies`, `permissions`, `articles`, `services`, `clients`, `sync`) |
+| Atelier | `GET /deposits/workshop` |
+| Multi-agences | `GET /org/agencies/overview` |
+| Sync | `GET /pos/sync/status` + `POST /sync` |
 
 Détail des bodies : voir `openapi.yaml` (`paths./api/v1/auth/...`).
 

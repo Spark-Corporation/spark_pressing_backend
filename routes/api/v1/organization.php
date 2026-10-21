@@ -19,6 +19,7 @@ Route::prefix('settings')->name('settings.')->group(function () {
 });
 
 Route::prefix('org')->name('org.')->middleware('permission:agencies.manage')->group(function () {
+    Route::get('agencies/overview', [PressingAgencyController::class, 'agenciesOverview'])->name('agencies.overview');
     Route::get('agencies', [PressingAgencyController::class, 'agencies'])->name('agencies');
     Route::post('agencies', [PressingAgencyController::class, 'storeAgency'])->name('agencies.store');
     Route::get('users', [PressingAgencyController::class, 'users'])->name('users');

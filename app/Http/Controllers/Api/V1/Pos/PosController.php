@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api\V1\Pos;
 use App\Actions\Deposit\AddPayment;
 use App\Actions\Deposit\CreateDeposit;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AgencyResource;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\PressingResource;
+use App\Http\Resources\UserResource;
+use App\Models\Agency;
 use App\Models\Article;
 use App\Models\Client;
 use App\Models\CodeSuffix;
@@ -17,6 +20,7 @@ use App\Models\Pressing;
 use App\Models\Promo;
 use App\Models\PromoSpecial;
 use App\Models\Render;
+use App\Models\Service;
 use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,21 +32,37 @@ class PosController extends Controller
 {
     public function bootstrap(Request $request): JsonResponse
     {
-        $user = $request->user();
+        $user = $request->user()->loadMissing(['agency', 'pressing', 'roles', 'agencies']);
         $pressing = Pressing::query()->findOrFail($user->pressing_id);
+        $agencyId = app(TenantContext::class)->agencyId ?? $user->agency_id;
+        $agency = Agency::query()->find($agencyId);
 
         return $this->ok([
             'generated_at' => now()->toIso8601String(),
+            'user' => (new UserResource($user))->resolve(),
             'pressing' => (new PressingResource($pressing))->resolve(),
-            'agency_id' => app(TenantContext::class)->agencyId ?? $user->agency_id,
+            'agency_id' => $agencyId,
+            'agency' => $agency ? (new AgencyResource($agency))->resolve() : null,
+            'agencies' => AgencyResource::collection(
+                $user->relationLoaded('agencies') && $user->agencies->isNotEmpty()
+                    ? $user->agencies
+                    : Agency::query()->where('pressing_id', $user->pressing_id)->where('status', true)->get()
+            )->resolve(),
+            'permissions' => $user->getAllPermissions()->pluck('name')->values(),
             'articles' => ArticleResource::collection(
                 Article::query()
                     ->where('status', true)
                     ->orderBy('name')
                     ->get(['id', 'name', 'classic_price', 'express_price', 'repass_price', 'classic_price_kilo', 'express_price_kilo', 'repass_price_kilo', 'status'])
             )->resolve(),
+            'services' => Service::query()
+                ->where('pressing_id', $user->pressing_id)
+                ->where('status', true)
+                ->orderBy('sort_order')
+                ->get(['id', 'name', 'code', 'legacy_type_action', 'sort_order', 'default_hours', 'status']),
             'clients' => ClientResource::collection(
                 Client::query()
+                    ->with(['agency:id,name'])
                     ->where('status', true)
                     ->latest('id')
                     ->limit(100)
@@ -54,7 +74,24 @@ class PosController extends Controller
             'code_suffixes' => CodeSuffix::query()->where('status', true)->get(['id', 'agency_id', 'title']),
             'laundry_statuses' => LaundryStatus::query()->where('status', true)->get(['id', 'title', 'status']),
             'renders' => Render::query()->where('status', true)->get(['id', 'title', 'status']),
+            'sync' => $this->syncStatusPayload(),
         ]);
+    }
+
+    public function syncStatus(): JsonResponse
+    {
+        return $this->ok($this->syncStatusPayload());
+    }
+
+    /** @return array<string, mixed> */
+    private function syncStatusPayload(): array
+    {
+        return [
+            'online' => true,
+            'last_sync_at' => now()->toIso8601String(),
+            'pending_ops' => 0,
+            'pending' => [],
+        ];
     }
 
     public function sync(Request $request, CreateDeposit $create, AddPayment $pay): JsonResponse

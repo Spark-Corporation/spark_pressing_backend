@@ -8,6 +8,7 @@ Route::controller(DepositController::class)->prefix('deposits')->name('deposits.
     Route::get('due', 'due')->middleware('permission:deposits.view')->name('due');
     Route::get('retrieved', 'retrieved')->middleware('permission:deposits.retrieve|deposits.view')->name('retrieved');
     Route::get('ready', 'ready')->middleware('permission:deposits.retrieve')->name('ready');
+    Route::get('workshop', 'workshopBoard')->middleware('permission:deposits.view|workshop.transition')->name('workshop.board');
     Route::get('qr/{token}', QrLookupController::class)->middleware('permission:deposits.view|workshop.transition')->name('qr');
     Route::get('/', 'index')->middleware('permission:deposits.view')->name('index');
     Route::post('/', 'store')->middleware(['permission:deposits.create', 'idempotent'])->name('store');

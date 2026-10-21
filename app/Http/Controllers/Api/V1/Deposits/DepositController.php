@@ -161,7 +161,7 @@ class DepositController extends Controller
     public function ready(): JsonResponse
     {
         $items = Deposit::query()
-            ->with(['client:id,fullname,phone_number,code'])
+            ->with(['client:id,fullname,phone_number,code', 'agency:id,name'])
             ->withSum('units as items_count', 'quantity')
             ->where('status', true)
             ->whereIn('etat', ['treated', 'classed'])
@@ -169,6 +169,78 @@ class DepositController extends Controller
             ->paginate(20);
 
         return $this->page($items, DepositResource::collection($items)->resolve());
+    }
+
+    public function workshopBoard(Request $request): JsonResponse
+    {
+        $etat = $request->query('etat');
+        $items = Deposit::query()
+            ->with([
+                'client:id,fullname,phone_number,code',
+                'agency:id,name',
+                'laveur:id,fullname',
+                'classeur:id,fullname',
+                'cashier:id,fullname',
+            ])
+            ->withSum('units as items_count', 'quantity')
+            ->where('status', true)
+            ->whereNull('retrieved_at')
+            ->when($etat, fn ($q) => $q->where('etat', $etat))
+            ->orderByRaw('case when retrieve_date is null then 1 else 0 end')
+            ->orderBy('retrieve_date')
+            ->limit(min(200, (int) $request->get('limit', 100)))
+            ->get();
+
+        $grouped = [];
+        foreach (Deposit::etatColumns() as $code => $colonne) {
+            $grouped[$colonne] = [];
+        }
+
+        foreach ($items as $deposit) {
+            $colonne = Deposit::etatColumn($deposit->etat) ?? 'attente';
+            $responsable = $deposit->laveur ?? $deposit->classeur ?? $deposit->cashier;
+            $grouped[$colonne][] = array_merge(
+                (new DepositResource($deposit))->resolve(),
+                [
+                    'priorite' => $this->workshopPriority($deposit),
+                    'echeance' => $deposit->retrieve_date?->toIso8601String(),
+                    'elapsed_seconds' => $deposit->deposit_date
+                        ? now()->diffInSeconds($deposit->deposit_date)
+                        : null,
+                    'responsable' => $responsable ? [
+                        'id' => $responsable->id,
+                        'fullname' => $responsable->fullname,
+                    ] : null,
+                ]
+            );
+        }
+
+        return $this->ok([
+            'columns' => collect(Deposit::etatColumns())->map(fn ($colonne, $etat) => [
+                'etat' => $etat,
+                'colonne' => $colonne,
+                'label' => Deposit::etatLabel($etat),
+                'count' => count($grouped[$colonne] ?? []),
+            ])->values(),
+            'board' => $grouped,
+        ]);
+    }
+
+    private function workshopPriority(Deposit $deposit): string
+    {
+        if (! $deposit->retrieve_date) {
+            return 'Normale';
+        }
+
+        if ($deposit->retrieve_date->isPast()) {
+            return 'Urgente';
+        }
+
+        if ($deposit->retrieve_date->lte(now()->addHours(4))) {
+            return 'Haute';
+        }
+
+        return 'Normale';
     }
 
     public function document(Request $request, Deposit $deposit, TicketDocument $tickets): JsonResponse|Response

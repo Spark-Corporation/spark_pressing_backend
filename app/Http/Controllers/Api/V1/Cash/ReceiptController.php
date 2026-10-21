@@ -18,7 +18,10 @@ class ReceiptController extends Controller
 {
     public function daily(Request $request): JsonResponse
     {
-        return $this->ok(Metrics::cashTotals(DateRange::fromRequest($request)) + [
+        $range = DateRange::fromRequest($request);
+
+        return $this->ok(Metrics::cashTotals($range) + [
+            'by_payment_method' => Metrics::cashByPaymentMethod($range),
             'scope' => 'agency',
         ]);
     }
@@ -31,8 +34,10 @@ class ReceiptController extends Controller
         $previous = $tenant->agencyId;
         $tenant->agencyId = null;
 
-        $data = Metrics::cashTotals(DateRange::fromRequest($request)) + [
-            'sales' => Metrics::depositTotals(DateRange::fromRequest($request)),
+        $range = DateRange::fromRequest($request);
+        $data = Metrics::cashTotals($range) + [
+            'sales' => Metrics::depositTotals($range),
+            'by_payment_method' => Metrics::cashByPaymentMethod($range),
             'scope' => 'pressing',
         ];
 
@@ -54,14 +59,18 @@ class ReceiptController extends Controller
     public function unpaid(): JsonResponse
     {
         $items = Deposit::query()
-            ->with(['client:id,fullname,phone_number,code'])
+            ->with(['client:id,fullname,phone_number,code', 'agency:id,name'])
             ->withSum('units as items_count', 'quantity')
             ->where('left_to_pay', '>', 0)
             ->where('status', true)
             ->latest()
             ->paginate(50);
 
-        return $this->page($items, DepositResource::collection($items)->resolve());
+        return $this->page(
+            $items,
+            DepositResource::collection($items)->resolve(),
+            ['unpaid_aging' => Metrics::unpaidAging()]
+        );
     }
 
     public function settled(Request $request): JsonResponse
