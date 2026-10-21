@@ -6257,12 +6257,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
                   nullable: true
                 notes:
                   type: string
@@ -7262,7 +7262,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
                   nullable: true
               required:
                 - amount
@@ -9756,7 +9756,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -9920,7 +9920,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -10088,7 +10088,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -10201,7 +10201,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -10299,7 +10299,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -10468,7 +10468,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -10637,7 +10637,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -11734,7 +11734,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the article.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -12065,7 +12065,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:58'
+                  example: '2026-10-21T16:19:27'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -12217,7 +12217,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:58'
+                  example: '2026-10-21T16:19:27'
                   nullable: true
               required:
                 - agency_id
@@ -16345,7 +16345,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
                   nullable: true
                 validated:
                   type: boolean
@@ -16547,7 +16547,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
                   nullable: true
     delete:
       summary: ''
@@ -19521,7 +19521,7 @@ paths:
         in: path
         name: role_id
         description: 'The ID of the role.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -20145,7 +20145,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the agency.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -20512,7 +20512,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
               required:
                 - source_currency
                 - target_currency
@@ -21705,7 +21705,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -22070,7 +22070,7 @@ paths:
         in: path
         name: role_id
         description: 'The ID of the role.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -24719,7 +24719,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the pressing.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -25524,7 +25524,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the agency.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -26074,16 +26074,463 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
+  /api/v1/superadmin/licenses/overview:
+    get:
+      summary: 'KPI, échéances à traiter et prévision de revenu du centre des licences.'
+      operationId: kPIchancesTraiterEtPrvisionDeRevenuDuCentreDesLicences
+      description: ''
+      parameters:
+        -
+          in: query
+          name: period
+          description: 'Fenêtre des KPI renouvellements / revenu : day, week ou month.'
+          example: month
+          required: false
+          schema:
+            type: string
+            description: 'Fenêtre des KPI renouvellements / revenu : day, week ou month.'
+            example: month
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    period:
+                      code: month
+                      from: '2026-10-01T00:00:00+00:00'
+                      to: '2026-10-21T10:34:00+00:00'
+                    currency: XOF
+                    network:
+                      licenses: 42
+                      countries: 7
+                      updated_at: '2026-10-21T10:34:00+00:00'
+                    kpis:
+                      active:
+                        value: 36
+                        share_percent: 85.7
+                      expiring_soon:
+                        value: 4
+                        within_days: 30
+                      suspended:
+                        value: 2
+                        critical_unpaid: 1
+                      renewals:
+                        value: 12
+                        delta_percent: 20
+                      revenue:
+                        value: 4860000
+                        currency: XOF
+                        delta_percent: 8.4
+                    deadlines:
+                      window_days: 30
+                      count: 2
+                      auto_renew_ready: 2
+                      items:
+                        -
+                          license_id: 12
+                          reference: LIC-SN-00012
+                          pressing:
+                            id: 3
+                            name: 'Luxe Press'
+                          expires_at: '2026-10-23T00:00:00+00:00'
+                          days_left: 2
+                          auto_renew: true
+                    forecast:
+                      month: 2026-10
+                      amount: 1245000
+                      currency: XOF
+                      renewals_expected: 17
+                      secured_percent: 82
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      period:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: month
+                          from:
+                            type: string
+                            example: '2026-10-01T00:00:00+00:00'
+                          to:
+                            type: string
+                            example: '2026-10-21T10:34:00+00:00'
+                      currency:
+                        type: string
+                        example: XOF
+                      network:
+                        type: object
+                        properties:
+                          licenses:
+                            type: integer
+                            example: 42
+                          countries:
+                            type: integer
+                            example: 7
+                          updated_at:
+                            type: string
+                            example: '2026-10-21T10:34:00+00:00'
+                      kpis:
+                        type: object
+                        properties:
+                          active:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 36
+                              share_percent:
+                                type: number
+                                example: 85.7
+                          expiring_soon:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 4
+                              within_days:
+                                type: integer
+                                example: 30
+                          suspended:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 2
+                              critical_unpaid:
+                                type: integer
+                                example: 1
+                          renewals:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 12
+                              delta_percent:
+                                type: integer
+                                example: 20
+                          revenue:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 4860000
+                              currency:
+                                type: string
+                                example: XOF
+                              delta_percent:
+                                type: number
+                                example: 8.4
+                      deadlines:
+                        type: object
+                        properties:
+                          window_days:
+                            type: integer
+                            example: 30
+                          count:
+                            type: integer
+                            example: 2
+                          auto_renew_ready:
+                            type: integer
+                            example: 2
+                          items:
+                            type: array
+                            example:
+                              -
+                                license_id: 12
+                                reference: LIC-SN-00012
+                                pressing:
+                                  id: 3
+                                  name: 'Luxe Press'
+                                expires_at: '2026-10-23T00:00:00+00:00'
+                                days_left: 2
+                                auto_renew: true
+                            items:
+                              type: object
+                              properties:
+                                license_id:
+                                  type: integer
+                                  example: 12
+                                reference:
+                                  type: string
+                                  example: LIC-SN-00012
+                                pressing:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 3
+                                    name:
+                                      type: string
+                                      example: 'Luxe Press'
+                                expires_at:
+                                  type: string
+                                  example: '2026-10-23T00:00:00+00:00'
+                                days_left:
+                                  type: integer
+                                  example: 2
+                                auto_renew:
+                                  type: boolean
+                                  example: true
+                      forecast:
+                        type: object
+                        properties:
+                          month:
+                            type: string
+                            example: 2026-10
+                          amount:
+                            type: integer
+                            example: 1245000
+                          currency:
+                            type: string
+                            example: XOF
+                          renewals_expected:
+                            type: integer
+                            example: 17
+                          secured_percent:
+                            type: integer
+                            example: 82
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Superadmin
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                period:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: true
+  /api/v1/superadmin/licenses/export:
+    get:
+      summary: 'Export CSV de la liste filtrée (mêmes filtres que l’index).'
+      operationId: exportCSVDeLaListeFiltremmesFiltresQueLindex
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Fichier (text/csv)'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    content_type: text/csv
+                    note: 'Réponse binaire'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      content_type:
+                        type: string
+                        example: text/csv
+                      note:
+                        type: string
+                        example: 'Réponse binaire'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Superadmin
   /api/v1/superadmin/licenses:
     get:
       summary: ''
       operationId: getApiV1SuperadminLicenses
       description: ''
       parameters:
+        -
+          in: query
+          name: q
+          description: 'Recherche pressing, référence ou plan.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'Recherche pressing, référence ou plan.'
+            example: architecto
+        -
+          in: query
+          name: plan
+          description: 'Code plan (growth, business, enterprise).'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'Code plan (growth, business, enterprise).'
+            example: architecto
+        -
+          in: query
+          name: country
+          description: 'Code pays ISO2 d’une agence du pressing.'
+          example: CI
+          required: false
+          schema:
+            type: string
+            description: 'Code pays ISO2 d’une agence du pressing.'
+            example: CI
+        -
+          in: query
+          name: pressing_id
+          description: ''
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: ''
+            example: 16
+        -
+          in: query
+          name: status
+          description: 'active, expiring, expired, suspended, inactive.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'active, expiring, expired, suspended, inactive.'
+            example: architecto
+        -
+          in: query
+          name: expires_within
+          description: 'Échéance dans les N prochains jours.'
+          example: 30
+          required: false
+          schema:
+            type: integer
+            description: 'Échéance dans les N prochains jours.'
+            example: 30
+        -
+          in: query
+          name: per_page
+          description: ''
+          example: 20
+          required: false
+          schema:
+            type: integer
+            description: ''
+            example: 20
         -
           in: header
           name: X-Agency-Id
@@ -26101,13 +26548,50 @@ paths:
                 example:
                   data:
                     -
-                      id: 1
+                      id: 184
+                      reference: LIC-CI-00184
+                      code: K3J9QF2LZ8XA
                       pressing_id: 1
-                      plan: pro
-                      seats: 10
-                      code: DEMO-LICENSE
+                      pressing:
+                        id: 1
+                        name: 'SPARK PRESSING CI'
+                        initials: SP
+                        country_code: CI
+                        country: 'Côte d’Ivoire'
+                      plan:
+                        code: business
+                        label: Business
+                      periodicity:
+                        code: annual
+                        label: Annuel
+                      seats: 100
                       is_activated: true
-                      expires_at: '2027-10-15T00:00:00+00:00'
+                      is_valid: true
+                      auto_renew: true
+                      activated_at: '2026-01-01T00:00:00+00:00'
+                      expires_at: '2026-12-31T00:00:00+00:00'
+                      days_left: 94
+                      period:
+                        start: '2026-01-01'
+                        end: '2026-12-31'
+                        days_total: 364
+                        days_left: 94
+                        consumed_percent: 74
+                      usage:
+                        agencies:
+                          used: 4
+                          limit: 6
+                        users:
+                          used: 58
+                          limit: 100
+                      status:
+                        code: active
+                        label: Active
+                      payment_status:
+                        code: paid
+                        label: Payé
+                      suspended_at: null
+                      suspension_reason: null
                   meta:
                     page: 1
                     per_page: 50
@@ -26119,37 +26603,187 @@ paths:
                     type: array
                     example:
                       -
-                        id: 1
+                        id: 184
+                        reference: LIC-CI-00184
+                        code: K3J9QF2LZ8XA
                         pressing_id: 1
-                        plan: pro
-                        seats: 10
-                        code: DEMO-LICENSE
+                        pressing:
+                          id: 1
+                          name: 'SPARK PRESSING CI'
+                          initials: SP
+                          country_code: CI
+                          country: 'Côte d’Ivoire'
+                        plan:
+                          code: business
+                          label: Business
+                        periodicity:
+                          code: annual
+                          label: Annuel
+                        seats: 100
                         is_activated: true
-                        expires_at: '2027-10-15T00:00:00+00:00'
+                        is_valid: true
+                        auto_renew: true
+                        activated_at: '2026-01-01T00:00:00+00:00'
+                        expires_at: '2026-12-31T00:00:00+00:00'
+                        days_left: 94
+                        period:
+                          start: '2026-01-01'
+                          end: '2026-12-31'
+                          days_total: 364
+                          days_left: 94
+                          consumed_percent: 74
+                        usage:
+                          agencies:
+                            used: 4
+                            limit: 6
+                          users:
+                            used: 58
+                            limit: 100
+                        status:
+                          code: active
+                          label: Active
+                        payment_status:
+                          code: paid
+                          label: Payé
+                        suspended_at: null
+                        suspension_reason: null
                     items:
                       type: object
                       properties:
                         id:
                           type: integer
-                          example: 1
+                          example: 184
+                        reference:
+                          type: string
+                          example: LIC-CI-00184
+                        code:
+                          type: string
+                          example: K3J9QF2LZ8XA
                         pressing_id:
                           type: integer
                           example: 1
+                        pressing:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: 'SPARK PRESSING CI'
+                            initials:
+                              type: string
+                              example: SP
+                            country_code:
+                              type: string
+                              example: CI
+                            country:
+                              type: string
+                              example: 'Côte d’Ivoire'
                         plan:
-                          type: string
-                          example: pro
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: business
+                            label:
+                              type: string
+                              example: Business
+                        periodicity:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: annual
+                            label:
+                              type: string
+                              example: Annuel
                         seats:
                           type: integer
-                          example: 10
-                        code:
-                          type: string
-                          example: DEMO-LICENSE
+                          example: 100
                         is_activated:
                           type: boolean
                           example: true
+                        is_valid:
+                          type: boolean
+                          example: true
+                        auto_renew:
+                          type: boolean
+                          example: true
+                        activated_at:
+                          type: string
+                          example: '2026-01-01T00:00:00+00:00'
                         expires_at:
                           type: string
-                          example: '2027-10-15T00:00:00+00:00'
+                          example: '2026-12-31T00:00:00+00:00'
+                        days_left:
+                          type: integer
+                          example: 94
+                        period:
+                          type: object
+                          properties:
+                            start:
+                              type: string
+                              example: '2026-01-01'
+                            end:
+                              type: string
+                              example: '2026-12-31'
+                            days_total:
+                              type: integer
+                              example: 364
+                            days_left:
+                              type: integer
+                              example: 94
+                            consumed_percent:
+                              type: integer
+                              example: 74
+                        usage:
+                          type: object
+                          properties:
+                            agencies:
+                              type: object
+                              properties:
+                                used:
+                                  type: integer
+                                  example: 4
+                                limit:
+                                  type: integer
+                                  example: 6
+                            users:
+                              type: object
+                              properties:
+                                used:
+                                  type: integer
+                                  example: 58
+                                limit:
+                                  type: integer
+                                  example: 100
+                        status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: active
+                            label:
+                              type: string
+                              example: Active
+                        payment_status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: paid
+                            label:
+                              type: string
+                              example: Payé
+                        suspended_at:
+                          type: string
+                          example: null
+                          nullable: true
+                        suspension_reason:
+                          type: string
+                          example: null
+                          nullable: true
                   meta:
                     type: object
                     properties:
@@ -26232,13 +26866,50 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
+                    id: 184
+                    reference: LIC-CI-00184
+                    code: K3J9QF2LZ8XA
                     pressing_id: 1
-                    plan: pro
-                    seats: 10
-                    code: DEMO-LICENSE
+                    pressing:
+                      id: 1
+                      name: 'SPARK PRESSING CI'
+                      initials: SP
+                      country_code: CI
+                      country: 'Côte d’Ivoire'
+                    plan:
+                      code: business
+                      label: Business
+                    periodicity:
+                      code: annual
+                      label: Annuel
+                    seats: 100
                     is_activated: true
-                    expires_at: '2027-10-15T00:00:00+00:00'
+                    is_valid: true
+                    auto_renew: true
+                    activated_at: '2026-01-01T00:00:00+00:00'
+                    expires_at: '2026-12-31T00:00:00+00:00'
+                    days_left: 94
+                    period:
+                      start: '2026-01-01'
+                      end: '2026-12-31'
+                      days_total: 364
+                      days_left: 94
+                      consumed_percent: 74
+                    usage:
+                      agencies:
+                        used: 4
+                        limit: 6
+                      users:
+                        used: 58
+                        limit: 100
+                    status:
+                      code: active
+                      label: Active
+                    payment_status:
+                      code: paid
+                      label: Payé
+                    suspended_at: null
+                    suspension_reason: null
                   meta: {  }
                   errors: null
                 properties:
@@ -26247,25 +26918,138 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1
+                        example: 184
+                      reference:
+                        type: string
+                        example: LIC-CI-00184
+                      code:
+                        type: string
+                        example: K3J9QF2LZ8XA
                       pressing_id:
                         type: integer
                         example: 1
+                      pressing:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'SPARK PRESSING CI'
+                          initials:
+                            type: string
+                            example: SP
+                          country_code:
+                            type: string
+                            example: CI
+                          country:
+                            type: string
+                            example: 'Côte d’Ivoire'
                       plan:
-                        type: string
-                        example: pro
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: business
+                          label:
+                            type: string
+                            example: Business
+                      periodicity:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: annual
+                          label:
+                            type: string
+                            example: Annuel
                       seats:
                         type: integer
-                        example: 10
-                      code:
-                        type: string
-                        example: DEMO-LICENSE
+                        example: 100
                       is_activated:
                         type: boolean
                         example: true
+                      is_valid:
+                        type: boolean
+                        example: true
+                      auto_renew:
+                        type: boolean
+                        example: true
+                      activated_at:
+                        type: string
+                        example: '2026-01-01T00:00:00+00:00'
                       expires_at:
                         type: string
-                        example: '2027-10-15T00:00:00+00:00'
+                        example: '2026-12-31T00:00:00+00:00'
+                      days_left:
+                        type: integer
+                        example: 94
+                      period:
+                        type: object
+                        properties:
+                          start:
+                            type: string
+                            example: '2026-01-01'
+                          end:
+                            type: string
+                            example: '2026-12-31'
+                          days_total:
+                            type: integer
+                            example: 364
+                          days_left:
+                            type: integer
+                            example: 94
+                          consumed_percent:
+                            type: integer
+                            example: 74
+                      usage:
+                        type: object
+                        properties:
+                          agencies:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 4
+                              limit:
+                                type: integer
+                                example: 6
+                          users:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 58
+                              limit:
+                                type: integer
+                                example: 100
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: active
+                          label:
+                            type: string
+                            example: Active
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: paid
+                          label:
+                            type: string
+                            example: Payé
+                      suspended_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      suspension_reason:
+                        type: string
+                        example: null
+                        nullable: true
                   meta:
                     type: object
                     properties: {  }
@@ -26376,26 +27160,45 @@ paths:
                   description: validation.max.
                   example: 'n'
                   nullable: true
-                seats:
-                  type: integer
-                  description: validation.min.
-                  example: 67
+                periodicity:
+                  type: string
+                  description: ''
+                  example: null
                   nullable: true
-                months:
+                auto_renew:
+                  type: boolean
+                  description: ''
+                  example: true
+                seats:
                   type: integer
                   description: validation.min.
                   example: 66
                   nullable: true
+                max_agencies:
+                  type: integer
+                  description: validation.min.
+                  example: 27
+                  nullable: true
+                storage_gb:
+                  type: integer
+                  description: validation.min.
+                  example: 35
+                  nullable: true
+                months:
+                  type: integer
+                  description: validation.min.
+                  example: 43
+                  nullable: true
                 activate:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
               required:
                 - pressing_id
   '/api/v1/superadmin/licenses/{id}':
-    put:
-      summary: ''
-      operationId: putApiV1SuperadminLicensesId
+    get:
+      summary: 'Page « Détail et renouvellement ».'
+      operationId: pageDtailEtRenouvellement
       description: ''
       parameters:
         -
@@ -26414,13 +27217,980 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
+                    license:
+                      id: 184
+                      reference: LIC-CI-00184
+                      code: K3J9QF2LZ8XA
+                      pressing_id: 1
+                      pressing:
+                        id: 1
+                        name: 'SPARK PRESSING CI'
+                        initials: SP
+                        country_code: CI
+                        country: 'Côte d’Ivoire'
+                      plan:
+                        code: business
+                        label: Business
+                      periodicity:
+                        code: annual
+                        label: Annuel
+                      seats: 100
+                      is_activated: true
+                      is_valid: true
+                      auto_renew: true
+                      activated_at: '2026-01-01T00:00:00+00:00'
+                      expires_at: '2026-12-31T00:00:00+00:00'
+                      days_left: 94
+                      period:
+                        start: '2026-01-01'
+                        end: '2026-12-31'
+                        days_total: 364
+                        days_left: 94
+                        consumed_percent: 74
+                      usage:
+                        agencies:
+                          used: 4
+                          limit: 6
+                        users:
+                          used: 58
+                          limit: 100
+                      status:
+                        code: active
+                        label: Active
+                      payment_status:
+                        code: paid
+                        label: Payé
+                      suspended_at: null
+                      suspension_reason: null
+                    renewal:
+                      currency: XOF
+                      tax_rate: 0
+                      plan:
+                        code: business
+                        label: Business
+                      plans:
+                        -
+                          code: business
+                          label: Business
+                          prices:
+                            monthly: 15000
+                            quarterly: 40000
+                            annual: 150000
+                          limits:
+                            agencies: 6
+                            users: 100
+                            storage_gb: 5
+                      offers:
+                        -
+                          periodicity: monthly
+                          label: Mensuel
+                          months: 1
+                          days: 30
+                          amount: 15000
+                          taxes: 0
+                          total: 15000
+                          savings_percent: 0
+                          free_months: 0
+                          recommended: false
+                          current: false
+                        -
+                          periodicity: quarterly
+                          label: Trimestriel
+                          months: 3
+                          days: 90
+                          amount: 40000
+                          taxes: 0
+                          total: 40000
+                          savings_percent: 11
+                          free_months: 0
+                          recommended: false
+                          current: false
+                        -
+                          periodicity: annual
+                          label: Annuel
+                          months: 12
+                          days: 365
+                          amount: 150000
+                          taxes: 0
+                          total: 150000
+                          savings_percent: 17
+                          free_months: 2
+                          recommended: true
+                          current: true
+                      payment_methods:
+                        -
+                          code: cash
+                          label: Espèces
+                        -
+                          code: card
+                          label: Carte
+                        -
+                          code: flooz
+                          label: Flooz
+                        -
+                          code: tmoney
+                          label: T-Money
+                        -
+                          code: mobile_money
+                          label: 'Mobile Money'
+                      defaults:
+                        periodicity: annual
+                        payment_method: cash
+                        reference: TRX-2026-09-2841
+                        effective_at: '2027-01-01'
+                        auto_renew: true
+                      proof:
+                        accepted:
+                          - pdf
+                          - jpg
+                          - jpeg
+                          - png
+                        max_size_mb: 10
+                    coverage:
+                      agencies_count: 4
+                      active_users: 58
+                      agencies:
+                        -
+                          id: 1
+                          name: Cocody
+                          users_count: 24
+                          covered: true
+                        -
+                          id: 2
+                          name: Plateau
+                          users_count: 14
+                          covered: true
+                    limits:
+                      plan:
+                        code: business
+                        label: Business
+                      items:
+                        -
+                          key: agencies
+                          label: Agences
+                          used: 4
+                          limit: 6
+                          unit: null
+                          percent: 67
+                        -
+                          key: users
+                          label: Utilisateurs
+                          used: 58
+                          limit: 100
+                          unit: null
+                          percent: 58
+                        -
+                          key: storage
+                          label: Stockage
+                          used: 2.8
+                          limit: 5
+                          unit: Go
+                          percent: 56
+                      features:
+                        - Multi-agences
+                        - 'Rapports avancés'
+                        - 'Offline 7 jours'
+                        - API
+                        - 'Support prioritaire'
+                    payments:
+                      -
+                        id: 184
+                        date: '2026-09-28T10:42:00+00:00'
+                        period:
+                          periodicity:
+                            code: annual
+                            label: Annuel
+                          label: 'Annuel · 2027'
+                          start: '2027-01-01'
+                          end: '2028-01-01'
+                        plan:
+                          code: business
+                          label: Business
+                        amount: 150000
+                        taxes: 0
+                        total: 150000
+                        currency: XOF
+                        payment_method:
+                          code: cash
+                          label: Espèces
+                        reference: TRX-2026-09-2841
+                        invoice_number: FAC-2026-184
+                        status:
+                          code: pending
+                          label: 'En attente'
+                        has_proof: true
+                        paid_at: null
+                        invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                    audit:
+                      status:
+                        code: compliant
+                        label: Conforme
+                      last_action:
+                        action: license.renewed
+                        label: 'Préparation du renouvellement'
+                        actor: 'Aïcha N.'
+                        at: '2026-09-28T10:42:00+00:00'
+                      checks:
+                        -
+                          code: reference
+                          label: 'Référence TRX-2026-09-2841 enregistrée'
+                          ok: true
+                        -
+                          code: proof
+                          label: 'Justificatif en attente de validation'
+                          ok: true
+                    actions:
+                      can_renew: true
+                      can_change_plan: true
+                      can_suspend: true
+                      can_reactivate: false
+                      invoice_payment_id: 184
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      license:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 184
+                          reference:
+                            type: string
+                            example: LIC-CI-00184
+                          code:
+                            type: string
+                            example: K3J9QF2LZ8XA
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          pressing:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: 'SPARK PRESSING CI'
+                              initials:
+                                type: string
+                                example: SP
+                              country_code:
+                                type: string
+                                example: CI
+                              country:
+                                type: string
+                                example: 'Côte d’Ivoire'
+                          plan:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: business
+                              label:
+                                type: string
+                                example: Business
+                          periodicity:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: annual
+                              label:
+                                type: string
+                                example: Annuel
+                          seats:
+                            type: integer
+                            example: 100
+                          is_activated:
+                            type: boolean
+                            example: true
+                          is_valid:
+                            type: boolean
+                            example: true
+                          auto_renew:
+                            type: boolean
+                            example: true
+                          activated_at:
+                            type: string
+                            example: '2026-01-01T00:00:00+00:00'
+                          expires_at:
+                            type: string
+                            example: '2026-12-31T00:00:00+00:00'
+                          days_left:
+                            type: integer
+                            example: 94
+                          period:
+                            type: object
+                            properties:
+                              start:
+                                type: string
+                                example: '2026-01-01'
+                              end:
+                                type: string
+                                example: '2026-12-31'
+                              days_total:
+                                type: integer
+                                example: 364
+                              days_left:
+                                type: integer
+                                example: 94
+                              consumed_percent:
+                                type: integer
+                                example: 74
+                          usage:
+                            type: object
+                            properties:
+                              agencies:
+                                type: object
+                                properties:
+                                  used:
+                                    type: integer
+                                    example: 4
+                                  limit:
+                                    type: integer
+                                    example: 6
+                              users:
+                                type: object
+                                properties:
+                                  used:
+                                    type: integer
+                                    example: 58
+                                  limit:
+                                    type: integer
+                                    example: 100
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: active
+                              label:
+                                type: string
+                                example: Active
+                          payment_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: paid
+                              label:
+                                type: string
+                                example: Payé
+                          suspended_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          suspension_reason:
+                            type: string
+                            example: null
+                            nullable: true
+                      renewal:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                            example: XOF
+                          tax_rate:
+                            type: integer
+                            example: 0
+                          plan:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: business
+                              label:
+                                type: string
+                                example: Business
+                          plans:
+                            type: array
+                            example:
+                              -
+                                code: business
+                                label: Business
+                                prices:
+                                  monthly: 15000
+                                  quarterly: 40000
+                                  annual: 150000
+                                limits:
+                                  agencies: 6
+                                  users: 100
+                                  storage_gb: 5
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: business
+                                label:
+                                  type: string
+                                  example: Business
+                                prices:
+                                  type: object
+                                  properties:
+                                    monthly:
+                                      type: integer
+                                      example: 15000
+                                    quarterly:
+                                      type: integer
+                                      example: 40000
+                                    annual:
+                                      type: integer
+                                      example: 150000
+                                limits:
+                                  type: object
+                                  properties:
+                                    agencies:
+                                      type: integer
+                                      example: 6
+                                    users:
+                                      type: integer
+                                      example: 100
+                                    storage_gb:
+                                      type: integer
+                                      example: 5
+                          offers:
+                            type: array
+                            example:
+                              -
+                                periodicity: monthly
+                                label: Mensuel
+                                months: 1
+                                days: 30
+                                amount: 15000
+                                taxes: 0
+                                total: 15000
+                                savings_percent: 0
+                                free_months: 0
+                                recommended: false
+                                current: false
+                              -
+                                periodicity: quarterly
+                                label: Trimestriel
+                                months: 3
+                                days: 90
+                                amount: 40000
+                                taxes: 0
+                                total: 40000
+                                savings_percent: 11
+                                free_months: 0
+                                recommended: false
+                                current: false
+                              -
+                                periodicity: annual
+                                label: Annuel
+                                months: 12
+                                days: 365
+                                amount: 150000
+                                taxes: 0
+                                total: 150000
+                                savings_percent: 17
+                                free_months: 2
+                                recommended: true
+                                current: true
+                            items:
+                              type: object
+                              properties:
+                                periodicity:
+                                  type: string
+                                  example: monthly
+                                label:
+                                  type: string
+                                  example: Mensuel
+                                months:
+                                  type: integer
+                                  example: 1
+                                days:
+                                  type: integer
+                                  example: 30
+                                amount:
+                                  type: integer
+                                  example: 15000
+                                taxes:
+                                  type: integer
+                                  example: 0
+                                total:
+                                  type: integer
+                                  example: 15000
+                                savings_percent:
+                                  type: integer
+                                  example: 0
+                                free_months:
+                                  type: integer
+                                  example: 0
+                                recommended:
+                                  type: boolean
+                                  example: false
+                                current:
+                                  type: boolean
+                                  example: false
+                          payment_methods:
+                            type: array
+                            example:
+                              -
+                                code: cash
+                                label: Espèces
+                              -
+                                code: card
+                                label: Carte
+                              -
+                                code: flooz
+                                label: Flooz
+                              -
+                                code: tmoney
+                                label: T-Money
+                              -
+                                code: mobile_money
+                                label: 'Mobile Money'
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: cash
+                                label:
+                                  type: string
+                                  example: Espèces
+                          defaults:
+                            type: object
+                            properties:
+                              periodicity:
+                                type: string
+                                example: annual
+                              payment_method:
+                                type: string
+                                example: cash
+                              reference:
+                                type: string
+                                example: TRX-2026-09-2841
+                              effective_at:
+                                type: string
+                                example: '2027-01-01'
+                              auto_renew:
+                                type: boolean
+                                example: true
+                          proof:
+                            type: object
+                            properties:
+                              accepted:
+                                type: array
+                                example:
+                                  - pdf
+                                  - jpg
+                                  - jpeg
+                                  - png
+                                items:
+                                  type: string
+                              max_size_mb:
+                                type: integer
+                                example: 10
+                      coverage:
+                        type: object
+                        properties:
+                          agencies_count:
+                            type: integer
+                            example: 4
+                          active_users:
+                            type: integer
+                            example: 58
+                          agencies:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                name: Cocody
+                                users_count: 24
+                                covered: true
+                              -
+                                id: 2
+                                name: Plateau
+                                users_count: 14
+                                covered: true
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                name:
+                                  type: string
+                                  example: Cocody
+                                users_count:
+                                  type: integer
+                                  example: 24
+                                covered:
+                                  type: boolean
+                                  example: true
+                      limits:
+                        type: object
+                        properties:
+                          plan:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: business
+                              label:
+                                type: string
+                                example: Business
+                          items:
+                            type: array
+                            example:
+                              -
+                                key: agencies
+                                label: Agences
+                                used: 4
+                                limit: 6
+                                unit: null
+                                percent: 67
+                              -
+                                key: users
+                                label: Utilisateurs
+                                used: 58
+                                limit: 100
+                                unit: null
+                                percent: 58
+                              -
+                                key: storage
+                                label: Stockage
+                                used: 2.8
+                                limit: 5
+                                unit: Go
+                                percent: 56
+                            items:
+                              type: object
+                              properties:
+                                key:
+                                  type: string
+                                  example: agencies
+                                label:
+                                  type: string
+                                  example: Agences
+                                used:
+                                  type: integer
+                                  example: 4
+                                limit:
+                                  type: integer
+                                  example: 6
+                                unit:
+                                  type: string
+                                  example: null
+                                  nullable: true
+                                percent:
+                                  type: integer
+                                  example: 67
+                          features:
+                            type: array
+                            example:
+                              - Multi-agences
+                              - 'Rapports avancés'
+                              - 'Offline 7 jours'
+                              - API
+                              - 'Support prioritaire'
+                            items:
+                              type: string
+                      payments:
+                        type: array
+                        example:
+                          -
+                            id: 184
+                            date: '2026-09-28T10:42:00+00:00'
+                            period:
+                              periodicity:
+                                code: annual
+                                label: Annuel
+                              label: 'Annuel · 2027'
+                              start: '2027-01-01'
+                              end: '2028-01-01'
+                            plan:
+                              code: business
+                              label: Business
+                            amount: 150000
+                            taxes: 0
+                            total: 150000
+                            currency: XOF
+                            payment_method:
+                              code: cash
+                              label: Espèces
+                            reference: TRX-2026-09-2841
+                            invoice_number: FAC-2026-184
+                            status:
+                              code: pending
+                              label: 'En attente'
+                            has_proof: true
+                            paid_at: null
+                            invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 184
+                            date:
+                              type: string
+                              example: '2026-09-28T10:42:00+00:00'
+                            period:
+                              type: object
+                              properties:
+                                periodicity:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: annual
+                                    label:
+                                      type: string
+                                      example: Annuel
+                                label:
+                                  type: string
+                                  example: 'Annuel · 2027'
+                                start:
+                                  type: string
+                                  example: '2027-01-01'
+                                end:
+                                  type: string
+                                  example: '2028-01-01'
+                            plan:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: business
+                                label:
+                                  type: string
+                                  example: Business
+                            amount:
+                              type: integer
+                              example: 150000
+                            taxes:
+                              type: integer
+                              example: 0
+                            total:
+                              type: integer
+                              example: 150000
+                            currency:
+                              type: string
+                              example: XOF
+                            payment_method:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: cash
+                                label:
+                                  type: string
+                                  example: Espèces
+                            reference:
+                              type: string
+                              example: TRX-2026-09-2841
+                            invoice_number:
+                              type: string
+                              example: FAC-2026-184
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: pending
+                                label:
+                                  type: string
+                                  example: 'En attente'
+                            has_proof:
+                              type: boolean
+                              example: true
+                            paid_at:
+                              type: string
+                              example: null
+                              nullable: true
+                            invoice_url:
+                              type: string
+                              example: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                      audit:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: compliant
+                              label:
+                                type: string
+                                example: Conforme
+                          last_action:
+                            type: object
+                            properties:
+                              action:
+                                type: string
+                                example: license.renewed
+                              label:
+                                type: string
+                                example: 'Préparation du renouvellement'
+                              actor:
+                                type: string
+                                example: 'Aïcha N.'
+                              at:
+                                type: string
+                                example: '2026-09-28T10:42:00+00:00'
+                          checks:
+                            type: array
+                            example:
+                              -
+                                code: reference
+                                label: 'Référence TRX-2026-09-2841 enregistrée'
+                                ok: true
+                              -
+                                code: proof
+                                label: 'Justificatif en attente de validation'
+                                ok: true
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: reference
+                                label:
+                                  type: string
+                                  example: 'Référence TRX-2026-09-2841 enregistrée'
+                                ok:
+                                  type: boolean
+                                  example: true
+                      actions:
+                        type: object
+                        properties:
+                          can_renew:
+                            type: boolean
+                            example: true
+                          can_change_plan:
+                            type: boolean
+                            example: true
+                          can_suspend:
+                            type: boolean
+                            example: true
+                          can_reactivate:
+                            type: boolean
+                            example: false
+                          invoice_payment_id:
+                            type: integer
+                            example: 184
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Superadmin
+    put:
+      summary: 'Modification / changement de plan.'
+      operationId: modificationChangementDePlan
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 184
+                    reference: LIC-CI-00184
+                    code: K3J9QF2LZ8XA
                     pressing_id: 1
-                    plan: pro
-                    seats: 10
-                    code: DEMO-LICENSE
+                    pressing:
+                      id: 1
+                      name: 'SPARK PRESSING CI'
+                      initials: SP
+                      country_code: CI
+                      country: 'Côte d’Ivoire'
+                    plan:
+                      code: business
+                      label: Business
+                    periodicity:
+                      code: annual
+                      label: Annuel
+                    seats: 100
                     is_activated: true
-                    expires_at: '2027-10-15T00:00:00+00:00'
+                    is_valid: true
+                    auto_renew: true
+                    activated_at: '2026-01-01T00:00:00+00:00'
+                    expires_at: '2026-12-31T00:00:00+00:00'
+                    days_left: 94
+                    period:
+                      start: '2026-01-01'
+                      end: '2026-12-31'
+                      days_total: 364
+                      days_left: 94
+                      consumed_percent: 74
+                    usage:
+                      agencies:
+                        used: 4
+                        limit: 6
+                      users:
+                        used: 58
+                        limit: 100
+                    status:
+                      code: active
+                      label: Active
+                    payment_status:
+                      code: paid
+                      label: Payé
+                    suspended_at: null
+                    suspension_reason: null
                   meta: {  }
                   errors: null
                 properties:
@@ -26429,25 +28199,138 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1
+                        example: 184
+                      reference:
+                        type: string
+                        example: LIC-CI-00184
+                      code:
+                        type: string
+                        example: K3J9QF2LZ8XA
                       pressing_id:
                         type: integer
                         example: 1
+                      pressing:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'SPARK PRESSING CI'
+                          initials:
+                            type: string
+                            example: SP
+                          country_code:
+                            type: string
+                            example: CI
+                          country:
+                            type: string
+                            example: 'Côte d’Ivoire'
                       plan:
-                        type: string
-                        example: pro
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: business
+                          label:
+                            type: string
+                            example: Business
+                      periodicity:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: annual
+                          label:
+                            type: string
+                            example: Annuel
                       seats:
                         type: integer
-                        example: 10
-                      code:
-                        type: string
-                        example: DEMO-LICENSE
+                        example: 100
                       is_activated:
                         type: boolean
                         example: true
+                      is_valid:
+                        type: boolean
+                        example: true
+                      auto_renew:
+                        type: boolean
+                        example: true
+                      activated_at:
+                        type: string
+                        example: '2026-01-01T00:00:00+00:00'
                       expires_at:
                         type: string
-                        example: '2027-10-15T00:00:00+00:00'
+                        example: '2026-12-31T00:00:00+00:00'
+                      days_left:
+                        type: integer
+                        example: 94
+                      period:
+                        type: object
+                        properties:
+                          start:
+                            type: string
+                            example: '2026-01-01'
+                          end:
+                            type: string
+                            example: '2026-12-31'
+                          days_total:
+                            type: integer
+                            example: 364
+                          days_left:
+                            type: integer
+                            example: 94
+                          consumed_percent:
+                            type: integer
+                            example: 74
+                      usage:
+                        type: object
+                        properties:
+                          agencies:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 4
+                              limit:
+                                type: integer
+                                example: 6
+                          users:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 58
+                              limit:
+                                type: integer
+                                example: 100
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: active
+                          label:
+                            type: string
+                            example: Active
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: paid
+                          label:
+                            type: string
+                            example: Payé
+                      suspended_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      suspension_reason:
+                        type: string
+                        example: null
+                        nullable: true
                   meta:
                     type: object
                     properties: {  }
@@ -26553,10 +28436,28 @@ paths:
                   type: string
                   description: validation.max.
                   example: b
+                periodicity:
+                  type: string
+                  description: ''
+                  example: null
+                auto_renew:
+                  type: boolean
+                  description: ''
+                  example: false
                 seats:
                   type: integer
                   description: validation.min.
-                  example: 22
+                  example: 67
+                max_agencies:
+                  type: integer
+                  description: validation.min.
+                  example: 66
+                  nullable: true
+                storage_gb:
+                  type: integer
+                  description: validation.min.
+                  example: 27
+                  nullable: true
                 status:
                   type: boolean
                   description: ''
@@ -26564,7 +28465,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:57'
+                  example: '2026-10-21T16:19:27'
                   nullable: true
     delete:
       summary: ''
@@ -26651,7 +28552,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the license.'
-        example: 16
+        example: 1
         required: true
         schema:
           type: integer
@@ -26669,7 +28570,7 @@ paths:
           schema:
             type: string
       responses:
-        201:
+        200:
           description: Succès
           content:
             application/json:
@@ -26677,13 +28578,50 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
+                    id: 184
+                    reference: LIC-CI-00184
+                    code: K3J9QF2LZ8XA
                     pressing_id: 1
-                    plan: pro
-                    seats: 10
-                    code: DEMO-LICENSE
+                    pressing:
+                      id: 1
+                      name: 'SPARK PRESSING CI'
+                      initials: SP
+                      country_code: CI
+                      country: 'Côte d’Ivoire'
+                    plan:
+                      code: business
+                      label: Business
+                    periodicity:
+                      code: annual
+                      label: Annuel
+                    seats: 100
                     is_activated: true
-                    expires_at: '2027-10-15T00:00:00+00:00'
+                    is_valid: true
+                    auto_renew: true
+                    activated_at: '2026-01-01T00:00:00+00:00'
+                    expires_at: '2026-12-31T00:00:00+00:00'
+                    days_left: 94
+                    period:
+                      start: '2026-01-01'
+                      end: '2026-12-31'
+                      days_total: 364
+                      days_left: 94
+                      consumed_percent: 74
+                    usage:
+                      agencies:
+                        used: 4
+                        limit: 6
+                      users:
+                        used: 58
+                        limit: 100
+                    status:
+                      code: active
+                      label: Active
+                    payment_status:
+                      code: paid
+                      label: Payé
+                    suspended_at: null
+                    suspension_reason: null
                   meta: {  }
                   errors: null
                 properties:
@@ -26692,25 +28630,138 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1
+                        example: 184
+                      reference:
+                        type: string
+                        example: LIC-CI-00184
+                      code:
+                        type: string
+                        example: K3J9QF2LZ8XA
                       pressing_id:
                         type: integer
                         example: 1
+                      pressing:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'SPARK PRESSING CI'
+                          initials:
+                            type: string
+                            example: SP
+                          country_code:
+                            type: string
+                            example: CI
+                          country:
+                            type: string
+                            example: 'Côte d’Ivoire'
                       plan:
-                        type: string
-                        example: pro
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: business
+                          label:
+                            type: string
+                            example: Business
+                      periodicity:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: annual
+                          label:
+                            type: string
+                            example: Annuel
                       seats:
                         type: integer
-                        example: 10
-                      code:
-                        type: string
-                        example: DEMO-LICENSE
+                        example: 100
                       is_activated:
                         type: boolean
                         example: true
+                      is_valid:
+                        type: boolean
+                        example: true
+                      auto_renew:
+                        type: boolean
+                        example: true
+                      activated_at:
+                        type: string
+                        example: '2026-01-01T00:00:00+00:00'
                       expires_at:
                         type: string
-                        example: '2027-10-15T00:00:00+00:00'
+                        example: '2026-12-31T00:00:00+00:00'
+                      days_left:
+                        type: integer
+                        example: 94
+                      period:
+                        type: object
+                        properties:
+                          start:
+                            type: string
+                            example: '2026-01-01'
+                          end:
+                            type: string
+                            example: '2026-12-31'
+                          days_total:
+                            type: integer
+                            example: 364
+                          days_left:
+                            type: integer
+                            example: 94
+                          consumed_percent:
+                            type: integer
+                            example: 74
+                      usage:
+                        type: object
+                        properties:
+                          agencies:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 4
+                              limit:
+                                type: integer
+                                example: 6
+                          users:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 58
+                              limit:
+                                type: integer
+                                example: 100
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: active
+                          label:
+                            type: string
+                            example: Active
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: paid
+                          label:
+                            type: string
+                            example: Payé
+                      suspended_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      suspension_reason:
+                        type: string
+                        example: null
+                        nullable: true
                   meta:
                     type: object
                     properties: {  }
@@ -26822,6 +28873,2267 @@ paths:
         in: path
         name: license_id
         description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/renew':
+    post:
+      summary: '« Valider et renouveler » — multipart si justificatif joint.'
+      operationId: ValiderEtRenouvelerMultipartSiJustificatifJoint
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    license:
+                      id: 184
+                      reference: LIC-CI-00184
+                      code: K3J9QF2LZ8XA
+                      pressing_id: 1
+                      pressing:
+                        id: 1
+                        name: 'SPARK PRESSING CI'
+                        initials: SP
+                        country_code: CI
+                        country: 'Côte d’Ivoire'
+                      plan:
+                        code: business
+                        label: Business
+                      periodicity:
+                        code: annual
+                        label: Annuel
+                      seats: 100
+                      is_activated: true
+                      is_valid: true
+                      auto_renew: true
+                      activated_at: '2026-01-01T00:00:00+00:00'
+                      expires_at: '2026-12-31T00:00:00+00:00'
+                      days_left: 94
+                      period:
+                        start: '2026-01-01'
+                        end: '2026-12-31'
+                        days_total: 364
+                        days_left: 94
+                        consumed_percent: 74
+                      usage:
+                        agencies:
+                          used: 4
+                          limit: 6
+                        users:
+                          used: 58
+                          limit: 100
+                      status:
+                        code: active
+                        label: Active
+                      payment_status:
+                        code: paid
+                        label: Payé
+                      suspended_at: null
+                      suspension_reason: null
+                    renewal:
+                      currency: XOF
+                      tax_rate: 0
+                      plan:
+                        code: business
+                        label: Business
+                      plans:
+                        -
+                          code: business
+                          label: Business
+                          prices:
+                            monthly: 15000
+                            quarterly: 40000
+                            annual: 150000
+                          limits:
+                            agencies: 6
+                            users: 100
+                            storage_gb: 5
+                      offers:
+                        -
+                          periodicity: monthly
+                          label: Mensuel
+                          months: 1
+                          days: 30
+                          amount: 15000
+                          taxes: 0
+                          total: 15000
+                          savings_percent: 0
+                          free_months: 0
+                          recommended: false
+                          current: false
+                        -
+                          periodicity: quarterly
+                          label: Trimestriel
+                          months: 3
+                          days: 90
+                          amount: 40000
+                          taxes: 0
+                          total: 40000
+                          savings_percent: 11
+                          free_months: 0
+                          recommended: false
+                          current: false
+                        -
+                          periodicity: annual
+                          label: Annuel
+                          months: 12
+                          days: 365
+                          amount: 150000
+                          taxes: 0
+                          total: 150000
+                          savings_percent: 17
+                          free_months: 2
+                          recommended: true
+                          current: true
+                      payment_methods:
+                        -
+                          code: cash
+                          label: Espèces
+                        -
+                          code: card
+                          label: Carte
+                        -
+                          code: flooz
+                          label: Flooz
+                        -
+                          code: tmoney
+                          label: T-Money
+                        -
+                          code: mobile_money
+                          label: 'Mobile Money'
+                      defaults:
+                        periodicity: annual
+                        payment_method: cash
+                        reference: TRX-2026-09-2841
+                        effective_at: '2027-01-01'
+                        auto_renew: true
+                      proof:
+                        accepted:
+                          - pdf
+                          - jpg
+                          - jpeg
+                          - png
+                        max_size_mb: 10
+                    coverage:
+                      agencies_count: 4
+                      active_users: 58
+                      agencies:
+                        -
+                          id: 1
+                          name: Cocody
+                          users_count: 24
+                          covered: true
+                        -
+                          id: 2
+                          name: Plateau
+                          users_count: 14
+                          covered: true
+                    limits:
+                      plan:
+                        code: business
+                        label: Business
+                      items:
+                        -
+                          key: agencies
+                          label: Agences
+                          used: 4
+                          limit: 6
+                          unit: null
+                          percent: 67
+                        -
+                          key: users
+                          label: Utilisateurs
+                          used: 58
+                          limit: 100
+                          unit: null
+                          percent: 58
+                        -
+                          key: storage
+                          label: Stockage
+                          used: 2.8
+                          limit: 5
+                          unit: Go
+                          percent: 56
+                      features:
+                        - Multi-agences
+                        - 'Rapports avancés'
+                        - 'Offline 7 jours'
+                        - API
+                        - 'Support prioritaire'
+                    payments:
+                      -
+                        id: 184
+                        date: '2026-09-28T10:42:00+00:00'
+                        period:
+                          periodicity:
+                            code: annual
+                            label: Annuel
+                          label: 'Annuel · 2027'
+                          start: '2027-01-01'
+                          end: '2028-01-01'
+                        plan:
+                          code: business
+                          label: Business
+                        amount: 150000
+                        taxes: 0
+                        total: 150000
+                        currency: XOF
+                        payment_method:
+                          code: cash
+                          label: Espèces
+                        reference: TRX-2026-09-2841
+                        invoice_number: FAC-2026-184
+                        status:
+                          code: pending
+                          label: 'En attente'
+                        has_proof: true
+                        paid_at: null
+                        invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                    audit:
+                      status:
+                        code: compliant
+                        label: Conforme
+                      last_action:
+                        action: license.renewed
+                        label: 'Préparation du renouvellement'
+                        actor: 'Aïcha N.'
+                        at: '2026-09-28T10:42:00+00:00'
+                      checks:
+                        -
+                          code: reference
+                          label: 'Référence TRX-2026-09-2841 enregistrée'
+                          ok: true
+                        -
+                          code: proof
+                          label: 'Justificatif en attente de validation'
+                          ok: true
+                    actions:
+                      can_renew: true
+                      can_change_plan: true
+                      can_suspend: true
+                      can_reactivate: false
+                      invoice_payment_id: 184
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      license:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 184
+                          reference:
+                            type: string
+                            example: LIC-CI-00184
+                          code:
+                            type: string
+                            example: K3J9QF2LZ8XA
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          pressing:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: 'SPARK PRESSING CI'
+                              initials:
+                                type: string
+                                example: SP
+                              country_code:
+                                type: string
+                                example: CI
+                              country:
+                                type: string
+                                example: 'Côte d’Ivoire'
+                          plan:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: business
+                              label:
+                                type: string
+                                example: Business
+                          periodicity:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: annual
+                              label:
+                                type: string
+                                example: Annuel
+                          seats:
+                            type: integer
+                            example: 100
+                          is_activated:
+                            type: boolean
+                            example: true
+                          is_valid:
+                            type: boolean
+                            example: true
+                          auto_renew:
+                            type: boolean
+                            example: true
+                          activated_at:
+                            type: string
+                            example: '2026-01-01T00:00:00+00:00'
+                          expires_at:
+                            type: string
+                            example: '2026-12-31T00:00:00+00:00'
+                          days_left:
+                            type: integer
+                            example: 94
+                          period:
+                            type: object
+                            properties:
+                              start:
+                                type: string
+                                example: '2026-01-01'
+                              end:
+                                type: string
+                                example: '2026-12-31'
+                              days_total:
+                                type: integer
+                                example: 364
+                              days_left:
+                                type: integer
+                                example: 94
+                              consumed_percent:
+                                type: integer
+                                example: 74
+                          usage:
+                            type: object
+                            properties:
+                              agencies:
+                                type: object
+                                properties:
+                                  used:
+                                    type: integer
+                                    example: 4
+                                  limit:
+                                    type: integer
+                                    example: 6
+                              users:
+                                type: object
+                                properties:
+                                  used:
+                                    type: integer
+                                    example: 58
+                                  limit:
+                                    type: integer
+                                    example: 100
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: active
+                              label:
+                                type: string
+                                example: Active
+                          payment_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: paid
+                              label:
+                                type: string
+                                example: Payé
+                          suspended_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          suspension_reason:
+                            type: string
+                            example: null
+                            nullable: true
+                      renewal:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                            example: XOF
+                          tax_rate:
+                            type: integer
+                            example: 0
+                          plan:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: business
+                              label:
+                                type: string
+                                example: Business
+                          plans:
+                            type: array
+                            example:
+                              -
+                                code: business
+                                label: Business
+                                prices:
+                                  monthly: 15000
+                                  quarterly: 40000
+                                  annual: 150000
+                                limits:
+                                  agencies: 6
+                                  users: 100
+                                  storage_gb: 5
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: business
+                                label:
+                                  type: string
+                                  example: Business
+                                prices:
+                                  type: object
+                                  properties:
+                                    monthly:
+                                      type: integer
+                                      example: 15000
+                                    quarterly:
+                                      type: integer
+                                      example: 40000
+                                    annual:
+                                      type: integer
+                                      example: 150000
+                                limits:
+                                  type: object
+                                  properties:
+                                    agencies:
+                                      type: integer
+                                      example: 6
+                                    users:
+                                      type: integer
+                                      example: 100
+                                    storage_gb:
+                                      type: integer
+                                      example: 5
+                          offers:
+                            type: array
+                            example:
+                              -
+                                periodicity: monthly
+                                label: Mensuel
+                                months: 1
+                                days: 30
+                                amount: 15000
+                                taxes: 0
+                                total: 15000
+                                savings_percent: 0
+                                free_months: 0
+                                recommended: false
+                                current: false
+                              -
+                                periodicity: quarterly
+                                label: Trimestriel
+                                months: 3
+                                days: 90
+                                amount: 40000
+                                taxes: 0
+                                total: 40000
+                                savings_percent: 11
+                                free_months: 0
+                                recommended: false
+                                current: false
+                              -
+                                periodicity: annual
+                                label: Annuel
+                                months: 12
+                                days: 365
+                                amount: 150000
+                                taxes: 0
+                                total: 150000
+                                savings_percent: 17
+                                free_months: 2
+                                recommended: true
+                                current: true
+                            items:
+                              type: object
+                              properties:
+                                periodicity:
+                                  type: string
+                                  example: monthly
+                                label:
+                                  type: string
+                                  example: Mensuel
+                                months:
+                                  type: integer
+                                  example: 1
+                                days:
+                                  type: integer
+                                  example: 30
+                                amount:
+                                  type: integer
+                                  example: 15000
+                                taxes:
+                                  type: integer
+                                  example: 0
+                                total:
+                                  type: integer
+                                  example: 15000
+                                savings_percent:
+                                  type: integer
+                                  example: 0
+                                free_months:
+                                  type: integer
+                                  example: 0
+                                recommended:
+                                  type: boolean
+                                  example: false
+                                current:
+                                  type: boolean
+                                  example: false
+                          payment_methods:
+                            type: array
+                            example:
+                              -
+                                code: cash
+                                label: Espèces
+                              -
+                                code: card
+                                label: Carte
+                              -
+                                code: flooz
+                                label: Flooz
+                              -
+                                code: tmoney
+                                label: T-Money
+                              -
+                                code: mobile_money
+                                label: 'Mobile Money'
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: cash
+                                label:
+                                  type: string
+                                  example: Espèces
+                          defaults:
+                            type: object
+                            properties:
+                              periodicity:
+                                type: string
+                                example: annual
+                              payment_method:
+                                type: string
+                                example: cash
+                              reference:
+                                type: string
+                                example: TRX-2026-09-2841
+                              effective_at:
+                                type: string
+                                example: '2027-01-01'
+                              auto_renew:
+                                type: boolean
+                                example: true
+                          proof:
+                            type: object
+                            properties:
+                              accepted:
+                                type: array
+                                example:
+                                  - pdf
+                                  - jpg
+                                  - jpeg
+                                  - png
+                                items:
+                                  type: string
+                              max_size_mb:
+                                type: integer
+                                example: 10
+                      coverage:
+                        type: object
+                        properties:
+                          agencies_count:
+                            type: integer
+                            example: 4
+                          active_users:
+                            type: integer
+                            example: 58
+                          agencies:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                name: Cocody
+                                users_count: 24
+                                covered: true
+                              -
+                                id: 2
+                                name: Plateau
+                                users_count: 14
+                                covered: true
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                name:
+                                  type: string
+                                  example: Cocody
+                                users_count:
+                                  type: integer
+                                  example: 24
+                                covered:
+                                  type: boolean
+                                  example: true
+                      limits:
+                        type: object
+                        properties:
+                          plan:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: business
+                              label:
+                                type: string
+                                example: Business
+                          items:
+                            type: array
+                            example:
+                              -
+                                key: agencies
+                                label: Agences
+                                used: 4
+                                limit: 6
+                                unit: null
+                                percent: 67
+                              -
+                                key: users
+                                label: Utilisateurs
+                                used: 58
+                                limit: 100
+                                unit: null
+                                percent: 58
+                              -
+                                key: storage
+                                label: Stockage
+                                used: 2.8
+                                limit: 5
+                                unit: Go
+                                percent: 56
+                            items:
+                              type: object
+                              properties:
+                                key:
+                                  type: string
+                                  example: agencies
+                                label:
+                                  type: string
+                                  example: Agences
+                                used:
+                                  type: integer
+                                  example: 4
+                                limit:
+                                  type: integer
+                                  example: 6
+                                unit:
+                                  type: string
+                                  example: null
+                                  nullable: true
+                                percent:
+                                  type: integer
+                                  example: 67
+                          features:
+                            type: array
+                            example:
+                              - Multi-agences
+                              - 'Rapports avancés'
+                              - 'Offline 7 jours'
+                              - API
+                              - 'Support prioritaire'
+                            items:
+                              type: string
+                      payments:
+                        type: array
+                        example:
+                          -
+                            id: 184
+                            date: '2026-09-28T10:42:00+00:00'
+                            period:
+                              periodicity:
+                                code: annual
+                                label: Annuel
+                              label: 'Annuel · 2027'
+                              start: '2027-01-01'
+                              end: '2028-01-01'
+                            plan:
+                              code: business
+                              label: Business
+                            amount: 150000
+                            taxes: 0
+                            total: 150000
+                            currency: XOF
+                            payment_method:
+                              code: cash
+                              label: Espèces
+                            reference: TRX-2026-09-2841
+                            invoice_number: FAC-2026-184
+                            status:
+                              code: pending
+                              label: 'En attente'
+                            has_proof: true
+                            paid_at: null
+                            invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 184
+                            date:
+                              type: string
+                              example: '2026-09-28T10:42:00+00:00'
+                            period:
+                              type: object
+                              properties:
+                                periodicity:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: annual
+                                    label:
+                                      type: string
+                                      example: Annuel
+                                label:
+                                  type: string
+                                  example: 'Annuel · 2027'
+                                start:
+                                  type: string
+                                  example: '2027-01-01'
+                                end:
+                                  type: string
+                                  example: '2028-01-01'
+                            plan:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: business
+                                label:
+                                  type: string
+                                  example: Business
+                            amount:
+                              type: integer
+                              example: 150000
+                            taxes:
+                              type: integer
+                              example: 0
+                            total:
+                              type: integer
+                              example: 150000
+                            currency:
+                              type: string
+                              example: XOF
+                            payment_method:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: cash
+                                label:
+                                  type: string
+                                  example: Espèces
+                            reference:
+                              type: string
+                              example: TRX-2026-09-2841
+                            invoice_number:
+                              type: string
+                              example: FAC-2026-184
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: pending
+                                label:
+                                  type: string
+                                  example: 'En attente'
+                            has_proof:
+                              type: boolean
+                              example: true
+                            paid_at:
+                              type: string
+                              example: null
+                              nullable: true
+                            invoice_url:
+                              type: string
+                              example: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                      audit:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: compliant
+                              label:
+                                type: string
+                                example: Conforme
+                          last_action:
+                            type: object
+                            properties:
+                              action:
+                                type: string
+                                example: license.renewed
+                              label:
+                                type: string
+                                example: 'Préparation du renouvellement'
+                              actor:
+                                type: string
+                                example: 'Aïcha N.'
+                              at:
+                                type: string
+                                example: '2026-09-28T10:42:00+00:00'
+                          checks:
+                            type: array
+                            example:
+                              -
+                                code: reference
+                                label: 'Référence TRX-2026-09-2841 enregistrée'
+                                ok: true
+                              -
+                                code: proof
+                                label: 'Justificatif en attente de validation'
+                                ok: true
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: reference
+                                label:
+                                  type: string
+                                  example: 'Référence TRX-2026-09-2841 enregistrée'
+                                ok:
+                                  type: boolean
+                                  example: true
+                      actions:
+                        type: object
+                        properties:
+                          can_renew:
+                            type: boolean
+                            example: true
+                          can_change_plan:
+                            type: boolean
+                            example: true
+                          can_suspend:
+                            type: boolean
+                            example: true
+                          can_reactivate:
+                            type: boolean
+                            example: false
+                          invoice_payment_id:
+                            type: integer
+                            example: 184
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Superadmin
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                periodicity:
+                  type: string
+                  description: ''
+                  example: architecto
+                plan:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: true
+                payment_method:
+                  type: string
+                  description: ''
+                  example: architecto
+                reference:
+                  type: string
+                  description: validation.max.
+                  example: 'n'
+                  nullable: true
+                effective_at:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-21T16:19:27'
+                  nullable: true
+                auto_renew:
+                  type: boolean
+                  description: ''
+                  example: true
+                mark_paid:
+                  type: boolean
+                  description: ''
+                  example: false
+                proof:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+                  nullable: true
+              required:
+                - periodicity
+                - payment_method
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/suspend':
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminLicensesLicense_idSuspend
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 184
+                    reference: LIC-CI-00184
+                    code: K3J9QF2LZ8XA
+                    pressing_id: 1
+                    pressing:
+                      id: 1
+                      name: 'SPARK PRESSING CI'
+                      initials: SP
+                      country_code: CI
+                      country: 'Côte d’Ivoire'
+                    plan:
+                      code: business
+                      label: Business
+                    periodicity:
+                      code: annual
+                      label: Annuel
+                    seats: 100
+                    is_activated: true
+                    is_valid: true
+                    auto_renew: true
+                    activated_at: '2026-01-01T00:00:00+00:00'
+                    expires_at: '2026-12-31T00:00:00+00:00'
+                    days_left: 94
+                    period:
+                      start: '2026-01-01'
+                      end: '2026-12-31'
+                      days_total: 364
+                      days_left: 94
+                      consumed_percent: 74
+                    usage:
+                      agencies:
+                        used: 4
+                        limit: 6
+                      users:
+                        used: 58
+                        limit: 100
+                    status:
+                      code: suspended
+                      label: Suspendue
+                    payment_status:
+                      code: paid
+                      label: Payé
+                    suspended_at: '2026-10-21T10:34:00+00:00'
+                    suspension_reason: Impayé
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 184
+                      reference:
+                        type: string
+                        example: LIC-CI-00184
+                      code:
+                        type: string
+                        example: K3J9QF2LZ8XA
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      pressing:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'SPARK PRESSING CI'
+                          initials:
+                            type: string
+                            example: SP
+                          country_code:
+                            type: string
+                            example: CI
+                          country:
+                            type: string
+                            example: 'Côte d’Ivoire'
+                      plan:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: business
+                          label:
+                            type: string
+                            example: Business
+                      periodicity:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: annual
+                          label:
+                            type: string
+                            example: Annuel
+                      seats:
+                        type: integer
+                        example: 100
+                      is_activated:
+                        type: boolean
+                        example: true
+                      is_valid:
+                        type: boolean
+                        example: true
+                      auto_renew:
+                        type: boolean
+                        example: true
+                      activated_at:
+                        type: string
+                        example: '2026-01-01T00:00:00+00:00'
+                      expires_at:
+                        type: string
+                        example: '2026-12-31T00:00:00+00:00'
+                      days_left:
+                        type: integer
+                        example: 94
+                      period:
+                        type: object
+                        properties:
+                          start:
+                            type: string
+                            example: '2026-01-01'
+                          end:
+                            type: string
+                            example: '2026-12-31'
+                          days_total:
+                            type: integer
+                            example: 364
+                          days_left:
+                            type: integer
+                            example: 94
+                          consumed_percent:
+                            type: integer
+                            example: 74
+                      usage:
+                        type: object
+                        properties:
+                          agencies:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 4
+                              limit:
+                                type: integer
+                                example: 6
+                          users:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 58
+                              limit:
+                                type: integer
+                                example: 100
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: suspended
+                          label:
+                            type: string
+                            example: Suspendue
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: paid
+                          label:
+                            type: string
+                            example: Payé
+                      suspended_at:
+                        type: string
+                        example: '2026-10-21T10:34:00+00:00'
+                      suspension_reason:
+                        type: string
+                        example: Impayé
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Superadmin
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/reactivate':
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminLicensesLicense_idReactivate
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 184
+                    reference: LIC-CI-00184
+                    code: K3J9QF2LZ8XA
+                    pressing_id: 1
+                    pressing:
+                      id: 1
+                      name: 'SPARK PRESSING CI'
+                      initials: SP
+                      country_code: CI
+                      country: 'Côte d’Ivoire'
+                    plan:
+                      code: business
+                      label: Business
+                    periodicity:
+                      code: annual
+                      label: Annuel
+                    seats: 100
+                    is_activated: true
+                    is_valid: true
+                    auto_renew: true
+                    activated_at: '2026-01-01T00:00:00+00:00'
+                    expires_at: '2026-12-31T00:00:00+00:00'
+                    days_left: 94
+                    period:
+                      start: '2026-01-01'
+                      end: '2026-12-31'
+                      days_total: 364
+                      days_left: 94
+                      consumed_percent: 74
+                    usage:
+                      agencies:
+                        used: 4
+                        limit: 6
+                      users:
+                        used: 58
+                        limit: 100
+                    status:
+                      code: active
+                      label: Active
+                    payment_status:
+                      code: paid
+                      label: Payé
+                    suspended_at: null
+                    suspension_reason: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 184
+                      reference:
+                        type: string
+                        example: LIC-CI-00184
+                      code:
+                        type: string
+                        example: K3J9QF2LZ8XA
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      pressing:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'SPARK PRESSING CI'
+                          initials:
+                            type: string
+                            example: SP
+                          country_code:
+                            type: string
+                            example: CI
+                          country:
+                            type: string
+                            example: 'Côte d’Ivoire'
+                      plan:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: business
+                          label:
+                            type: string
+                            example: Business
+                      periodicity:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: annual
+                          label:
+                            type: string
+                            example: Annuel
+                      seats:
+                        type: integer
+                        example: 100
+                      is_activated:
+                        type: boolean
+                        example: true
+                      is_valid:
+                        type: boolean
+                        example: true
+                      auto_renew:
+                        type: boolean
+                        example: true
+                      activated_at:
+                        type: string
+                        example: '2026-01-01T00:00:00+00:00'
+                      expires_at:
+                        type: string
+                        example: '2026-12-31T00:00:00+00:00'
+                      days_left:
+                        type: integer
+                        example: 94
+                      period:
+                        type: object
+                        properties:
+                          start:
+                            type: string
+                            example: '2026-01-01'
+                          end:
+                            type: string
+                            example: '2026-12-31'
+                          days_total:
+                            type: integer
+                            example: 364
+                          days_left:
+                            type: integer
+                            example: 94
+                          consumed_percent:
+                            type: integer
+                            example: 74
+                      usage:
+                        type: object
+                        properties:
+                          agencies:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 4
+                              limit:
+                                type: integer
+                                example: 6
+                          users:
+                            type: object
+                            properties:
+                              used:
+                                type: integer
+                                example: 58
+                              limit:
+                                type: integer
+                                example: 100
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: active
+                          label:
+                            type: string
+                            example: Active
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: paid
+                          label:
+                            type: string
+                            example: Payé
+                      suspended_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      suspension_reason:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/payments':
+    get:
+      summary: 'Historique des renouvellements et paiements (`format=csv` pour « Exporter »).'
+      operationId: historiqueDesRenouvellementsEtPaiementsformatcsvPourExporter
+      description: ''
+      parameters:
+        -
+          in: query
+          name: format
+          description: 'json (défaut) ou csv.'
+          example: architecto
+          required: false
+          schema:
+            type: string
+            description: 'json (défaut) ou csv.'
+            example: architecto
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 184
+                      date: '2026-09-28T10:42:00+00:00'
+                      period:
+                        periodicity:
+                          code: annual
+                          label: Annuel
+                        label: 'Annuel · 2027'
+                        start: '2027-01-01'
+                        end: '2028-01-01'
+                      plan:
+                        code: business
+                        label: Business
+                      amount: 150000
+                      taxes: 0
+                      total: 150000
+                      currency: XOF
+                      payment_method:
+                        code: cash
+                        label: Espèces
+                      reference: TRX-2026-09-2841
+                      invoice_number: FAC-2026-184
+                      status:
+                        code: pending
+                        label: 'En attente'
+                      has_proof: true
+                      paid_at: null
+                      invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                  meta:
+                    page: 1
+                    per_page: 20
+                    total: 1
+                    last_page: 1
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 184
+                        date: '2026-09-28T10:42:00+00:00'
+                        period:
+                          periodicity:
+                            code: annual
+                            label: Annuel
+                          label: 'Annuel · 2027'
+                          start: '2027-01-01'
+                          end: '2028-01-01'
+                        plan:
+                          code: business
+                          label: Business
+                        amount: 150000
+                        taxes: 0
+                        total: 150000
+                        currency: XOF
+                        payment_method:
+                          code: cash
+                          label: Espèces
+                        reference: TRX-2026-09-2841
+                        invoice_number: FAC-2026-184
+                        status:
+                          code: pending
+                          label: 'En attente'
+                        has_proof: true
+                        paid_at: null
+                        invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 184
+                        date:
+                          type: string
+                          example: '2026-09-28T10:42:00+00:00'
+                        period:
+                          type: object
+                          properties:
+                            periodicity:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: annual
+                                label:
+                                  type: string
+                                  example: Annuel
+                            label:
+                              type: string
+                              example: 'Annuel · 2027'
+                            start:
+                              type: string
+                              example: '2027-01-01'
+                            end:
+                              type: string
+                              example: '2028-01-01'
+                        plan:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: business
+                            label:
+                              type: string
+                              example: Business
+                        amount:
+                          type: integer
+                          example: 150000
+                        taxes:
+                          type: integer
+                          example: 0
+                        total:
+                          type: integer
+                          example: 150000
+                        currency:
+                          type: string
+                          example: XOF
+                        payment_method:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: cash
+                            label:
+                              type: string
+                              example: Espèces
+                        reference:
+                          type: string
+                          example: TRX-2026-09-2841
+                        invoice_number:
+                          type: string
+                          example: FAC-2026-184
+                        status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: pending
+                            label:
+                              type: string
+                              example: 'En attente'
+                        has_proof:
+                          type: boolean
+                          example: true
+                        paid_at:
+                          type: string
+                          example: null
+                          nullable: true
+                        invoice_url:
+                          type: string
+                          example: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                  meta:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 20
+                      total:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/validate':
+    post:
+      summary: ''
+      operationId: postApiV1SuperadminLicensesLicense_idPaymentsPayment_idValidate
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 184
+                    date: '2026-09-28T10:42:00+00:00'
+                    period:
+                      periodicity:
+                        code: annual
+                        label: Annuel
+                      label: 'Annuel · 2027'
+                      start: '2027-01-01'
+                      end: '2028-01-01'
+                    plan:
+                      code: business
+                      label: Business
+                    amount: 150000
+                    taxes: 0
+                    total: 150000
+                    currency: XOF
+                    payment_method:
+                      code: cash
+                      label: Espèces
+                    reference: TRX-2026-09-2841
+                    invoice_number: FAC-2026-184
+                    status:
+                      code: paid
+                      label: Payé
+                    has_proof: true
+                    paid_at: '2026-09-28T11:00:00+00:00'
+                    invoice_url: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 184
+                      date:
+                        type: string
+                        example: '2026-09-28T10:42:00+00:00'
+                      period:
+                        type: object
+                        properties:
+                          periodicity:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: annual
+                              label:
+                                type: string
+                                example: Annuel
+                          label:
+                            type: string
+                            example: 'Annuel · 2027'
+                          start:
+                            type: string
+                            example: '2027-01-01'
+                          end:
+                            type: string
+                            example: '2028-01-01'
+                      plan:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: business
+                          label:
+                            type: string
+                            example: Business
+                      amount:
+                        type: integer
+                        example: 150000
+                      taxes:
+                        type: integer
+                        example: 0
+                      total:
+                        type: integer
+                        example: 150000
+                      currency:
+                        type: string
+                        example: XOF
+                      payment_method:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: cash
+                          label:
+                            type: string
+                            example: Espèces
+                      reference:
+                        type: string
+                        example: TRX-2026-09-2841
+                      invoice_number:
+                        type: string
+                        example: FAC-2026-184
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: paid
+                          label:
+                            type: string
+                            example: Payé
+                      has_proof:
+                        type: boolean
+                        example: true
+                      paid_at:
+                        type: string
+                        example: '2026-09-28T11:00:00+00:00'
+                      invoice_url:
+                        type: string
+                        example: 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: payment_id
+        description: 'The ID of the payment.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/invoice':
+    get:
+      summary: 'Facture PDF d’un paiement (« Télécharger facture »).'
+      operationId: facturePDFDunPaiementTlchargerFacture
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Fichier (application/pdf)'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    content_type: application/pdf
+                    note: 'Réponse binaire'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      content_type:
+                        type: string
+                        example: application/pdf
+                      note:
+                        type: string
+                        example: 'Réponse binaire'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Superadmin
+    parameters:
+      -
+        in: path
+        name: license_id
+        description: 'The ID of the license.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: payment_id
+        description: 'The ID of the payment.'
         example: 16
         required: true
         schema:
@@ -29024,7 +33336,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T10:17:59'
+                  example: '2026-10-21T16:19:28'
                 name:
                   type: string
                   description: validation.max.

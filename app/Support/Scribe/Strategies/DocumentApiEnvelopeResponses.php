@@ -764,26 +764,7 @@ class DocumentApiEnvelopeResponses extends Strategy
                 return [$this->response(200, $user)];
             }
             if (str_contains($path, 'licenses')) {
-                $license = [
-                    'id' => 1,
-                    'pressing_id' => 1,
-                    'plan' => 'pro',
-                    'seats' => 10,
-                    'code' => 'DEMO-LICENSE',
-                    'is_activated' => true,
-                    'expires_at' => '2027-10-15T00:00:00+00:00',
-                ];
-                if ($method === 'GET') {
-                    return [$this->response(200, [$license], $pageMeta)];
-                }
-                if ($method === 'POST') {
-                    return [$this->response(201, $license)];
-                }
-                if ($method === 'DELETE') {
-                    return [$this->response(200, ['deleted' => true])];
-                }
-
-                return [$this->response(200, $license)];
+                return $this->licenseResponses($path, $method, $pageMeta);
             }
             if (str_contains($path, 'roles') || str_contains($path, 'permissions')) {
                 return [$this->response(200, [['id' => 1, 'name' => 'admin']])];
@@ -791,6 +772,151 @@ class DocumentApiEnvelopeResponses extends Strategy
         }
 
         return [];
+    }
+
+    /**
+     * Centre des licences superadmin (Figma 13C).
+     *
+     * @return list<array{status:int,description:string,content:string}>
+     */
+    private function licenseResponses(string $path, string $method, array $pageMeta): array
+    {
+        $row = [
+            'id' => 184,
+            'reference' => 'LIC-CI-00184',
+            'code' => 'K3J9QF2LZ8XA',
+            'pressing_id' => 1,
+            'pressing' => ['id' => 1, 'name' => 'SPARK PRESSING CI', 'initials' => 'SP', 'country_code' => 'CI', 'country' => 'Côte d’Ivoire'],
+            'plan' => ['code' => 'business', 'label' => 'Business'],
+            'periodicity' => ['code' => 'annual', 'label' => 'Annuel'],
+            'seats' => 100,
+            'is_activated' => true,
+            'is_valid' => true,
+            'auto_renew' => true,
+            'activated_at' => '2026-01-01T00:00:00+00:00',
+            'expires_at' => '2026-12-31T00:00:00+00:00',
+            'days_left' => 94,
+            'period' => ['start' => '2026-01-01', 'end' => '2026-12-31', 'days_total' => 364, 'days_left' => 94, 'consumed_percent' => 74],
+            'usage' => ['agencies' => ['used' => 4, 'limit' => 6], 'users' => ['used' => 58, 'limit' => 100]],
+            'status' => ['code' => 'active', 'label' => 'Active'],
+            'payment_status' => ['code' => 'paid', 'label' => 'Payé'],
+            'suspended_at' => null,
+            'suspension_reason' => null,
+        ];
+        $payment = [
+            'id' => 184,
+            'date' => '2026-09-28T10:42:00+00:00',
+            'period' => ['periodicity' => ['code' => 'annual', 'label' => 'Annuel'], 'label' => 'Annuel · 2027', 'start' => '2027-01-01', 'end' => '2028-01-01'],
+            'plan' => ['code' => 'business', 'label' => 'Business'],
+            'amount' => 150000,
+            'taxes' => 0,
+            'total' => 150000,
+            'currency' => 'XOF',
+            'payment_method' => ['code' => 'cash', 'label' => 'Espèces'],
+            'reference' => 'TRX-2026-09-2841',
+            'invoice_number' => 'FAC-2026-184',
+            'status' => ['code' => 'pending', 'label' => 'En attente'],
+            'has_proof' => true,
+            'paid_at' => null,
+            'invoice_url' => 'https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice',
+        ];
+        $offer = fn (string $code, string $label, int $months, int $days, int $amount, int $savings, int $free, bool $reco) => [
+            'periodicity' => $code, 'label' => $label, 'months' => $months, 'days' => $days, 'amount' => $amount,
+            'taxes' => 0, 'total' => $amount, 'savings_percent' => $savings, 'free_months' => $free,
+            'recommended' => $reco, 'current' => $code === 'annual',
+        ];
+        $detail = [
+            'license' => $row,
+            'renewal' => [
+                'currency' => 'XOF',
+                'tax_rate' => 0,
+                'plan' => ['code' => 'business', 'label' => 'Business'],
+                'plans' => [[
+                    'code' => 'business', 'label' => 'Business',
+                    'prices' => ['monthly' => 15000, 'quarterly' => 40000, 'annual' => 150000],
+                    'limits' => ['agencies' => 6, 'users' => 100, 'storage_gb' => 5],
+                ]],
+                'offers' => [
+                    $offer('monthly', 'Mensuel', 1, 30, 15000, 0, 0, false),
+                    $offer('quarterly', 'Trimestriel', 3, 90, 40000, 11, 0, false),
+                    $offer('annual', 'Annuel', 12, 365, 150000, 17, 2, true),
+                ],
+                'payment_methods' => [
+                    ['code' => 'cash', 'label' => 'Espèces'], ['code' => 'card', 'label' => 'Carte'],
+                    ['code' => 'flooz', 'label' => 'Flooz'], ['code' => 'tmoney', 'label' => 'T-Money'],
+                    ['code' => 'mobile_money', 'label' => 'Mobile Money'],
+                ],
+                'defaults' => ['periodicity' => 'annual', 'payment_method' => 'cash', 'reference' => 'TRX-2026-09-2841', 'effective_at' => '2027-01-01', 'auto_renew' => true],
+                'proof' => ['accepted' => ['pdf', 'jpg', 'jpeg', 'png'], 'max_size_mb' => 10],
+            ],
+            'coverage' => [
+                'agencies_count' => 4,
+                'active_users' => 58,
+                'agencies' => [
+                    ['id' => 1, 'name' => 'Cocody', 'users_count' => 24, 'covered' => true],
+                    ['id' => 2, 'name' => 'Plateau', 'users_count' => 14, 'covered' => true],
+                ],
+            ],
+            'limits' => [
+                'plan' => ['code' => 'business', 'label' => 'Business'],
+                'items' => [
+                    ['key' => 'agencies', 'label' => 'Agences', 'used' => 4, 'limit' => 6, 'unit' => null, 'percent' => 67],
+                    ['key' => 'users', 'label' => 'Utilisateurs', 'used' => 58, 'limit' => 100, 'unit' => null, 'percent' => 58],
+                    ['key' => 'storage', 'label' => 'Stockage', 'used' => 2.8, 'limit' => 5, 'unit' => 'Go', 'percent' => 56],
+                ],
+                'features' => ['Multi-agences', 'Rapports avancés', 'Offline 7 jours', 'API', 'Support prioritaire'],
+            ],
+            'payments' => [$payment],
+            'audit' => [
+                'status' => ['code' => 'compliant', 'label' => 'Conforme'],
+                'last_action' => ['action' => 'license.renewed', 'label' => 'Préparation du renouvellement', 'actor' => 'Aïcha N.', 'at' => '2026-09-28T10:42:00+00:00'],
+                'checks' => [
+                    ['code' => 'reference', 'label' => 'Référence TRX-2026-09-2841 enregistrée', 'ok' => true],
+                    ['code' => 'proof', 'label' => 'Justificatif en attente de validation', 'ok' => true],
+                ],
+            ],
+            'actions' => ['can_renew' => true, 'can_change_plan' => true, 'can_suspend' => true, 'can_reactivate' => false, 'invoice_payment_id' => 184],
+        ];
+        $binary = fn (string $type) => [[
+            'status' => 200,
+            'description' => "Fichier ({$type})",
+            'content' => json_encode([
+                'data' => ['content_type' => $type, 'note' => 'Réponse binaire'],
+                'meta' => (object) [],
+                'errors' => null,
+            ], JSON_UNESCAPED_UNICODE),
+        ]];
+
+        return match (true) {
+            str_ends_with($path, '/overview') => [$this->response(200, [
+                'period' => ['code' => 'month', 'from' => '2026-10-01T00:00:00+00:00', 'to' => '2026-10-21T10:34:00+00:00'],
+                'currency' => 'XOF',
+                'network' => ['licenses' => 42, 'countries' => 7, 'updated_at' => '2026-10-21T10:34:00+00:00'],
+                'kpis' => [
+                    'active' => ['value' => 36, 'share_percent' => 85.7],
+                    'expiring_soon' => ['value' => 4, 'within_days' => 30],
+                    'suspended' => ['value' => 2, 'critical_unpaid' => 1],
+                    'renewals' => ['value' => 12, 'delta_percent' => 20.0],
+                    'revenue' => ['value' => 4860000, 'currency' => 'XOF', 'delta_percent' => 8.4],
+                ],
+                'deadlines' => [
+                    'window_days' => 30, 'count' => 2, 'auto_renew_ready' => 2,
+                    'items' => [['license_id' => 12, 'reference' => 'LIC-SN-00012', 'pressing' => ['id' => 3, 'name' => 'Luxe Press'], 'expires_at' => '2026-10-23T00:00:00+00:00', 'days_left' => 2, 'auto_renew' => true]],
+                ],
+                'forecast' => ['month' => '2026-10', 'amount' => 1245000, 'currency' => 'XOF', 'renewals_expected' => 17, 'secured_percent' => 82],
+            ])],
+            str_ends_with($path, '/export') => $binary('text/csv'),
+            str_ends_with($path, '/invoice') => $binary('application/pdf'),
+            str_ends_with($path, '/validate') => [$this->response(200, array_merge($payment, ['status' => ['code' => 'paid', 'label' => 'Payé'], 'paid_at' => '2026-09-28T11:00:00+00:00']))],
+            str_ends_with($path, '/payments') => [$this->response(200, [$payment], array_merge($pageMeta, ['per_page' => 20]))],
+            str_ends_with($path, '/renew') => [$this->response(201, $detail)],
+            str_ends_with($path, '/suspend') => [$this->response(200, array_merge($row, ['status' => ['code' => 'suspended', 'label' => 'Suspendue'], 'suspended_at' => '2026-10-21T10:34:00+00:00', 'suspension_reason' => 'Impayé']))],
+            $method === 'DELETE' => [$this->response(200, ['deleted' => true])],
+            $method === 'POST' && str_ends_with($path, '/licenses') => [$this->response(201, $row)],
+            $method === 'GET' && str_ends_with($path, '/licenses') => [$this->response(200, [$row], $pageMeta)],
+            $method === 'GET' => [$this->response(200, $detail)],
+            default => [$this->response(200, $row)],
+        };
     }
 
     /** @return array{status:int,description:string,content:string} */

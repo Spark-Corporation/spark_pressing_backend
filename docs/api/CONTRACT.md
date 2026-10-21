@@ -146,6 +146,23 @@ Idempotency-Key: {uuid-v4}
 
 États dépôt / livraison : valeurs documentées dans OpenAPI et ressources (`etat`, `delivery_status`, etc.) — le frontend mappe via un enum aligné sur l’API, pas des labels hardcodés divergents.
 
+### 7.1 Centre des licences superadmin (Figma 13C)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| KPI, « Échéances à traiter », « Prévision de revenu » | `GET /superadmin/licenses/overview?period=day\|week\|month` | `kpis.*`, `deadlines`, `forecast`, `network` |
+| Tableau « Licences multi-pressings » | `GET /superadmin/licenses?q&plan&country&status&expires_within&per_page` | `reference`, `pressing{initials,country}`, `plan`, `periodicity`, `days_left`, `period.consumed_percent` (colonne Usage), `usage`, `auto_renew`, `status`, `payment_status` |
+| Bouton « Exporter » (liste) | `GET /superadmin/licenses/export` (CSV, mêmes filtres) | — |
+| Page « Détail et renouvellement » | `GET /superadmin/licenses/{id}` | `license`, `renewal`, `coverage`, `limits`, `payments`, `audit`, `actions` |
+| « Valider et renouveler » | `POST /superadmin/licenses/{id}/renew` (multipart si `proof`) | `periodicity`, `payment_method`, `reference`, `effective_at`, `auto_renew`, `plan?`, `mark_paid?` → renvoie le détail |
+| « Suspendre » / « Réactiver » | `POST …/{id}/suspend` (`reason?`) / `POST …/{id}/reactivate` | ligne licence |
+| « Changer de plan » | `PUT /superadmin/licenses/{id}` (`plan`, `periodicity`, `auto_renew`…) | ligne licence |
+| Historique + « Exporter » | `GET …/{id}/payments` (`format=csv`) | paiements |
+| Validation justificatif | `POST …/{id}/payments/{paymentId}/validate` | paiement |
+| « Télécharger facture » / icône action | `GET …/{id}/payments/{paymentId}/invoice` (PDF) ; `actions.invoice_payment_id` donne la dernière facture | — |
+
+Les statuts sont des objets `{code, label}` : afficher `label`, tester `code`. Licence : `active`, `expiring` (≤ 30 j, « À renouveler »), `expired`, `suspended`, `inactive`. Paiement licence : `paid`, `pending`, `upcoming`, `overdue`, `none`. Montants en `XOF` (FCFA), tarifs et limites des plans dans `config/licensing.php`.
+
 ---
 
 ## 8. Codes HTTP à gérer côté UI

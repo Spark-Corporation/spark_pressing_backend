@@ -583,17 +583,44 @@
                                                                                 <li class="tocify-item level-2" data-unique="superadmin-DELETEapi-v1-superadmin-users--id-">
                                 <a href="#superadmin-DELETEapi-v1-superadmin-users--id-">DELETE api/v1/superadmin/users/{id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-GETapi-v1-superadmin-licenses-overview">
+                                <a href="#superadmin-GETapi-v1-superadmin-licenses-overview">KPI, échéances à traiter et prévision de revenu du centre des licences.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-GETapi-v1-superadmin-licenses-export">
+                                <a href="#superadmin-GETapi-v1-superadmin-licenses-export">Export CSV de la liste filtrée (mêmes filtres que l’index).</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="superadmin-GETapi-v1-superadmin-licenses">
                                 <a href="#superadmin-GETapi-v1-superadmin-licenses">GET api/v1/superadmin/licenses</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="superadmin-POSTapi-v1-superadmin-licenses">
                                 <a href="#superadmin-POSTapi-v1-superadmin-licenses">POST api/v1/superadmin/licenses</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-GETapi-v1-superadmin-licenses--id-">
+                                <a href="#superadmin-GETapi-v1-superadmin-licenses--id-">Page « Détail et renouvellement ».</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="superadmin-PUTapi-v1-superadmin-licenses--id-">
-                                <a href="#superadmin-PUTapi-v1-superadmin-licenses--id-">PUT api/v1/superadmin/licenses/{id}</a>
+                                <a href="#superadmin-PUTapi-v1-superadmin-licenses--id-">Modification / changement de plan.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="superadmin-POSTapi-v1-superadmin-licenses--license_id--activate">
                                 <a href="#superadmin-POSTapi-v1-superadmin-licenses--license_id--activate">POST api/v1/superadmin/licenses/{license_id}/activate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-POSTapi-v1-superadmin-licenses--license_id--renew">
+                                <a href="#superadmin-POSTapi-v1-superadmin-licenses--license_id--renew">« Valider et renouveler » — multipart si justificatif joint.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-POSTapi-v1-superadmin-licenses--license_id--suspend">
+                                <a href="#superadmin-POSTapi-v1-superadmin-licenses--license_id--suspend">POST api/v1/superadmin/licenses/{license_id}/suspend</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-POSTapi-v1-superadmin-licenses--license_id--reactivate">
+                                <a href="#superadmin-POSTapi-v1-superadmin-licenses--license_id--reactivate">POST api/v1/superadmin/licenses/{license_id}/reactivate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-GETapi-v1-superadmin-licenses--license_id--payments">
+                                <a href="#superadmin-GETapi-v1-superadmin-licenses--license_id--payments">Historique des renouvellements et paiements (`format=csv` pour « Exporter »).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate">
+                                <a href="#superadmin-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate">POST api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/validate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="superadmin-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice">
+                                <a href="#superadmin-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice">Facture PDF d’un paiement (« Télécharger facture »).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="superadmin-DELETEapi-v1-superadmin-licenses--id-">
                                 <a href="#superadmin-DELETEapi-v1-superadmin-licenses--id-">DELETE api/v1/superadmin/licenses/{id}</a>
@@ -5621,8 +5648,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-21T10:17:59\",
-    \"retrieve_date\": \"2026-10-21T10:17:59\",
+    \"deposit_date\": \"2026-10-21T16:19:28\",
+    \"retrieve_date\": \"2026-10-21T16:19:28\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -5668,8 +5695,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-21T10:17:59",
-    "retrieve_date": "2026-10-21T10:17:59",
+    "deposit_date": "2026-10-21T16:19:28",
+    "retrieve_date": "2026-10-21T16:19:28",
     "notes": "architecto",
     "lines": [
         {
@@ -6126,10 +6153,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -6138,10 +6165,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -6575,7 +6602,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-21T10:17:59\"
+    \"transaction_date\": \"2026-10-21T16:19:28\"
 }"
 </code></pre></div>
 
@@ -6596,7 +6623,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-21T10:17:59"
+    "transaction_date": "2026-10-21T16:19:28"
 };
 
 fetch(url, {
@@ -6888,10 +6915,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
         </form>
 
@@ -8922,7 +8949,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/16" \
+    --get "http://localhost:8000/api/v1/clients/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8931,7 +8958,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16"
+    "http://localhost:8000/api/v1/clients/1"
 );
 
 const headers = {
@@ -9099,10 +9126,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-clients--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -9120,7 +9147,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/16/state" \
+    --get "http://localhost:8000/api/v1/clients/1/state" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9129,7 +9156,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16/state"
+    "http://localhost:8000/api/v1/clients/1/state"
 );
 
 const headers = {
@@ -9302,10 +9329,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--state"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -9323,7 +9350,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/16/referrals" \
+    --get "http://localhost:8000/api/v1/clients/1/referrals" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9332,7 +9359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16/referrals"
+    "http://localhost:8000/api/v1/clients/1/referrals"
 );
 
 const headers = {
@@ -9502,10 +9529,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--referrals"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -9523,7 +9550,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/clients/16" \
+    "http://localhost:8000/api/v1/clients/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9542,7 +9569,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16"
+    "http://localhost:8000/api/v1/clients/1"
 );
 
 const headers = {
@@ -9739,10 +9766,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-clients--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -9855,7 +9882,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/clients/16" \
+    "http://localhost:8000/api/v1/clients/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9864,7 +9891,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16"
+    "http://localhost:8000/api/v1/clients/1"
 );
 
 const headers = {
@@ -10018,10 +10045,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-clients--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -10039,7 +10066,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/16/loyalty" \
+    --get "http://localhost:8000/api/v1/clients/1/loyalty" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10048,7 +10075,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16/loyalty"
+    "http://localhost:8000/api/v1/clients/1/loyalty"
 );
 
 const headers = {
@@ -10209,10 +10236,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--loyalty"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -10230,7 +10257,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/16/wallet" \
+    --get "http://localhost:8000/api/v1/clients/1/wallet" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10239,7 +10266,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16/wallet"
+    "http://localhost:8000/api/v1/clients/1/wallet"
 );
 
 const headers = {
@@ -10395,10 +10422,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--wallet"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -10416,7 +10443,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/16/wallet/credit" \
+    "http://localhost:8000/api/v1/clients/1/wallet/credit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10430,7 +10457,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16/wallet/credit"
+    "http://localhost:8000/api/v1/clients/1/wallet/credit"
 );
 
 const headers = {
@@ -10613,10 +10640,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -10659,7 +10686,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/16/wallet/debit" \
+    "http://localhost:8000/api/v1/clients/1/wallet/debit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10673,7 +10700,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/16/wallet/debit"
+    "http://localhost:8000/api/v1/clients/1/wallet/debit"
 );
 
 const headers = {
@@ -10856,10 +10883,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>16</code></p>
+<p>The ID of the client. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -11254,7 +11281,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php3887.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php2BFB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -11439,7 +11466,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php3887.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2BFB.tmp</code></p>
         </div>
         </form>
 
@@ -11986,7 +12013,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/articles/16" \
+    --get "http://localhost:8000/api/v1/articles/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11995,7 +12022,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/16"
+    "http://localhost:8000/api/v1/articles/1"
 );
 
 const headers = {
@@ -12158,10 +12185,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-articles--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>16</code></p>
+<p>The ID of the article. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -12179,7 +12206,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/articles/16" \
+    "http://localhost:8000/api/v1/articles/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12200,7 +12227,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/16"
+    "http://localhost:8000/api/v1/articles/1"
 );
 
 const headers = {
@@ -12394,10 +12421,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-articles--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>16</code></p>
+<p>The ID of the article. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -12534,7 +12561,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/articles/16" \
+    "http://localhost:8000/api/v1/articles/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12543,7 +12570,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/16"
+    "http://localhost:8000/api/v1/articles/1"
 );
 
 const headers = {
@@ -12697,10 +12724,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-articles--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>16</code></p>
+<p>The ID of the article. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -12913,7 +12940,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-21T10:17:58\"
+    \"at\": \"2026-10-21T16:19:27\"
 }"
 </code></pre></div>
 
@@ -12935,7 +12962,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-21T10:17:58"
+    "at": "2026-10-21T16:19:27"
 };
 
 fetch(url, {
@@ -13139,10 +13166,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-21T10:17:58"
+               value="2026-10-21T16:19:27"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:58</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
         </div>
         </form>
 
@@ -13171,7 +13198,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-21T10:17:58\",
+    \"valid_from\": \"2026-10-21T16:19:27\",
     \"valid_to\": \"2052-11-13\"
 }"
 </code></pre></div>
@@ -13195,7 +13222,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-21T10:17:58",
+    "valid_from": "2026-10-21T16:19:27",
     "valid_to": "2052-11-13"
 };
 
@@ -13431,10 +13458,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-21T10:17:58"
+               value="2026-10-21T16:19:27"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:58</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -19674,7 +19701,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"g\",
     \"type\": \"out\",
     \"amount\": 27,
-    \"action_date\": \"2026-10-21T10:17:59\",
+    \"action_date\": \"2026-10-21T16:19:28\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -19697,7 +19724,7 @@ let body = {
     "label": "g",
     "type": "out",
     "amount": 27,
-    "action_date": "2026-10-21T10:17:59",
+    "action_date": "2026-10-21T16:19:28",
     "validated": true
 };
 
@@ -19935,10 +19962,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -19987,7 +20014,7 @@ Must be one of:
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-21T10:17:59\"
+    \"action_date\": \"2026-10-21T16:19:28\"
 }"
 </code></pre></div>
 
@@ -20008,7 +20035,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-21T10:17:59"
+    "action_date": "2026-10-21T16:19:28"
 };
 
 fetch(url, {
@@ -20246,10 +20273,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
         </form>
 
@@ -24110,7 +24137,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/roles/16" \
+    "http://localhost:8000/api/v1/superadmin/roles/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -24125,7 +24152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/roles/16"
+    "http://localhost:8000/api/v1/superadmin/roles/1"
 );
 
 const headers = {
@@ -24307,10 +24334,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="role_id"                data-endpoint="PUTapi-v1-superadmin-roles--role_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>16</code></p>
+<p>The ID of the role. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -25035,7 +25062,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/settings/agencies/16" \
+    "http://localhost:8000/api/v1/settings/agencies/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -25054,7 +25081,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/agencies/16"
+    "http://localhost:8000/api/v1/settings/agencies/1"
 );
 
 const headers = {
@@ -25246,10 +25273,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>16</code></p>
+<p>The ID of the agency. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -25722,7 +25749,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-21T10:17:59\"
+    \"rate_date\": \"2026-10-21T16:19:28\"
 }"
 </code></pre></div>
 
@@ -25743,7 +25770,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-21T10:17:59"
+    "rate_date": "2026-10-21T16:19:28"
 };
 
 fetch(url, {
@@ -25949,10 +25976,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
         </form>
 
@@ -27292,7 +27319,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/org/users/16" \
+    "http://localhost:8000/api/v1/org/users/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27308,7 +27335,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users/16"
+    "http://localhost:8000/api/v1/org/users/1"
 );
 
 const headers = {
@@ -27497,10 +27524,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>16</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -27601,7 +27628,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/org/users/16" \
+    "http://localhost:8000/api/v1/org/users/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -27610,7 +27637,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users/16"
+    "http://localhost:8000/api/v1/org/users/1"
 );
 
 const headers = {
@@ -27764,10 +27791,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-org-users--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>16</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -28145,7 +28172,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/roles/16" \
+    "http://localhost:8000/api/v1/roles/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -28160,7 +28187,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/roles/16"
+    "http://localhost:8000/api/v1/roles/1"
 );
 
 const headers = {
@@ -28343,10 +28370,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="role_id"                data-endpoint="PUTapi-v1-roles--role_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>16</code></p>
+<p>The ID of the role. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -30406,7 +30433,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/pressings/16" \
+    --get "http://localhost:8000/api/v1/superadmin/pressings/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -30415,7 +30442,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/16"
+    "http://localhost:8000/api/v1/superadmin/pressings/1"
 );
 
 const headers = {
@@ -30584,10 +30611,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-pressings--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>16</code></p>
+<p>The ID of the pressing. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -30605,7 +30632,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/pressings/16" \
+    "http://localhost:8000/api/v1/superadmin/pressings/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -30628,7 +30655,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/16"
+    "http://localhost:8000/api/v1/superadmin/pressings/1"
 );
 
 const headers = {
@@ -30834,10 +30861,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>16</code></p>
+<p>The ID of the pressing. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -31030,7 +31057,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/pressings/16" \
+    "http://localhost:8000/api/v1/superadmin/pressings/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -31039,7 +31066,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/16"
+    "http://localhost:8000/api/v1/superadmin/pressings/1"
 );
 
 const headers = {
@@ -31193,10 +31220,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-pressings--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>16</code></p>
+<p>The ID of the pressing. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -31719,7 +31746,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/agencies/16" \
+    --get "http://localhost:8000/api/v1/superadmin/agencies/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -31728,7 +31755,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/16"
+    "http://localhost:8000/api/v1/superadmin/agencies/1"
 );
 
 const headers = {
@@ -31891,10 +31918,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-agencies--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>16</code></p>
+<p>The ID of the agency. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -31912,7 +31939,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/agencies/16" \
+    "http://localhost:8000/api/v1/superadmin/agencies/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -31932,7 +31959,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/16"
+    "http://localhost:8000/api/v1/superadmin/agencies/1"
 );
 
 const headers = {
@@ -32129,10 +32156,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>16</code></p>
+<p>The ID of the agency. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -32257,7 +32284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/agencies/16" \
+    "http://localhost:8000/api/v1/superadmin/agencies/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -32266,7 +32293,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/16"
+    "http://localhost:8000/api/v1/superadmin/agencies/1"
 );
 
 const headers = {
@@ -32429,10 +32456,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-agencies--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>16</code></p>
+<p>The ID of the agency. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -32836,7 +32863,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/users/16" \
+    "http://localhost:8000/api/v1/superadmin/users/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -32845,7 +32872,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users/16"
+    "http://localhost:8000/api/v1/superadmin/users/1"
 );
 
 const headers = {
@@ -33027,10 +33054,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-users--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>16</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -33048,7 +33075,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/users/16" \
+    "http://localhost:8000/api/v1/superadmin/users/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -33057,7 +33084,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users/16"
+    "http://localhost:8000/api/v1/superadmin/users/1"
 );
 
 const headers = {
@@ -33211,12 +33238,446 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-users--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>16</code></p>
+<p>The ID of the user. Example: <code>1</code></p>
             </div>
                     </form>
+
+                    <h2 id="superadmin-GETapi-v1-superadmin-licenses-overview">KPI, échéances à traiter et prévision de revenu du centre des licences.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-superadmin-licenses-overview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/overview?period=month" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/overview"
+);
+
+const params = {
+    "period": "month",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-superadmin-licenses-overview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;period&quot;: {
+            &quot;code&quot;: &quot;month&quot;,
+            &quot;from&quot;: &quot;2026-10-01T00:00:00+00:00&quot;,
+            &quot;to&quot;: &quot;2026-10-21T10:34:00+00:00&quot;
+        },
+        &quot;currency&quot;: &quot;XOF&quot;,
+        &quot;network&quot;: {
+            &quot;licenses&quot;: 42,
+            &quot;countries&quot;: 7,
+            &quot;updated_at&quot;: &quot;2026-10-21T10:34:00+00:00&quot;
+        },
+        &quot;kpis&quot;: {
+            &quot;active&quot;: {
+                &quot;value&quot;: 36,
+                &quot;share_percent&quot;: 85.7
+            },
+            &quot;expiring_soon&quot;: {
+                &quot;value&quot;: 4,
+                &quot;within_days&quot;: 30
+            },
+            &quot;suspended&quot;: {
+                &quot;value&quot;: 2,
+                &quot;critical_unpaid&quot;: 1
+            },
+            &quot;renewals&quot;: {
+                &quot;value&quot;: 12,
+                &quot;delta_percent&quot;: 20
+            },
+            &quot;revenue&quot;: {
+                &quot;value&quot;: 4860000,
+                &quot;currency&quot;: &quot;XOF&quot;,
+                &quot;delta_percent&quot;: 8.4
+            }
+        },
+        &quot;deadlines&quot;: {
+            &quot;window_days&quot;: 30,
+            &quot;count&quot;: 2,
+            &quot;auto_renew_ready&quot;: 2,
+            &quot;items&quot;: [
+                {
+                    &quot;license_id&quot;: 12,
+                    &quot;reference&quot;: &quot;LIC-SN-00012&quot;,
+                    &quot;pressing&quot;: {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;Luxe Press&quot;
+                    },
+                    &quot;expires_at&quot;: &quot;2026-10-23T00:00:00+00:00&quot;,
+                    &quot;days_left&quot;: 2,
+                    &quot;auto_renew&quot;: true
+                }
+            ]
+        },
+        &quot;forecast&quot;: {
+            &quot;month&quot;: &quot;2026-10&quot;,
+            &quot;amount&quot;: 1245000,
+            &quot;currency&quot;: &quot;XOF&quot;,
+            &quot;renewals_expected&quot;: 17,
+            &quot;secured_percent&quot;: 82
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-superadmin-licenses-overview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-superadmin-licenses-overview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-superadmin-licenses-overview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-superadmin-licenses-overview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-superadmin-licenses-overview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-superadmin-licenses-overview" data-method="GET"
+      data-path="api/v1/superadmin/licenses/overview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-superadmin-licenses-overview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-superadmin-licenses-overview"
+                    onclick="tryItOut('GETapi-v1-superadmin-licenses-overview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-superadmin-licenses-overview"
+                    onclick="cancelTryOut('GETapi-v1-superadmin-licenses-overview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-superadmin-licenses-overview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/superadmin/licenses/overview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-superadmin-licenses-overview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-superadmin-licenses-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-superadmin-licenses-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-superadmin-licenses-overview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="period"                data-endpoint="GETapi-v1-superadmin-licenses-overview"
+               value="month"
+               data-component="query">
+    <br>
+<p>Fenêtre des KPI renouvellements / revenu : day, week ou month. Example: <code>month</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="period"                data-endpoint="GETapi-v1-superadmin-licenses-overview"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="superadmin-GETapi-v1-superadmin-licenses-export">Export CSV de la liste filtrée (mêmes filtres que l’index).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-superadmin-licenses-export">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/export" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/export"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-superadmin-licenses-export">
+            <blockquote>
+            <p>Example response (200, Fichier (text/csv)):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;content_type&quot;: &quot;text/csv&quot;,
+        &quot;note&quot;: &quot;R&eacute;ponse binaire&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-superadmin-licenses-export" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-superadmin-licenses-export"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-superadmin-licenses-export"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-superadmin-licenses-export" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-superadmin-licenses-export">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-superadmin-licenses-export" data-method="GET"
+      data-path="api/v1/superadmin/licenses/export"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-superadmin-licenses-export', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-superadmin-licenses-export"
+                    onclick="tryItOut('GETapi-v1-superadmin-licenses-export');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-superadmin-licenses-export"
+                    onclick="cancelTryOut('GETapi-v1-superadmin-licenses-export');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-superadmin-licenses-export"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/superadmin/licenses/export</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-superadmin-licenses-export"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-superadmin-licenses-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-superadmin-licenses-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-superadmin-licenses-export"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
 
                     <h2 id="superadmin-GETapi-v1-superadmin-licenses">GET api/v1/superadmin/licenses</h2>
 
@@ -33232,7 +33693,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/licenses" \
+    --get "http://localhost:8000/api/v1/superadmin/licenses?q=architecto&amp;plan=architecto&amp;country=CI&amp;pressing_id=16&amp;status=architecto&amp;expires_within=30&amp;per_page=20" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -33243,6 +33704,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/v1/superadmin/licenses"
 );
+
+const params = {
+    "q": "architecto",
+    "plan": "architecto",
+    "country": "CI",
+    "pressing_id": "16",
+    "status": "architecto",
+    "expires_within": "30",
+    "per_page": "20",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {VOTRE_TOKEN}",
@@ -33268,13 +33741,59 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 1,
+            &quot;id&quot;: 184,
+            &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+            &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
             &quot;pressing_id&quot;: 1,
-            &quot;plan&quot;: &quot;pro&quot;,
-            &quot;seats&quot;: 10,
-            &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+            &quot;pressing&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+                &quot;initials&quot;: &quot;SP&quot;,
+                &quot;country_code&quot;: &quot;CI&quot;,
+                &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+            },
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;periodicity&quot;: {
+                &quot;code&quot;: &quot;annual&quot;,
+                &quot;label&quot;: &quot;Annuel&quot;
+            },
+            &quot;seats&quot;: 100,
             &quot;is_activated&quot;: true,
-            &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+            &quot;is_valid&quot;: true,
+            &quot;auto_renew&quot;: true,
+            &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+            &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+            &quot;days_left&quot;: 94,
+            &quot;period&quot;: {
+                &quot;start&quot;: &quot;2026-01-01&quot;,
+                &quot;end&quot;: &quot;2026-12-31&quot;,
+                &quot;days_total&quot;: 364,
+                &quot;days_left&quot;: 94,
+                &quot;consumed_percent&quot;: 74
+            },
+            &quot;usage&quot;: {
+                &quot;agencies&quot;: {
+                    &quot;used&quot;: 4,
+                    &quot;limit&quot;: 6
+                },
+                &quot;users&quot;: {
+                    &quot;used&quot;: 58,
+                    &quot;limit&quot;: 100
+                }
+            },
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;active&quot;,
+                &quot;label&quot;: &quot;Active&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;paid&quot;,
+                &quot;label&quot;: &quot;Pay&eacute;&quot;
+            },
+            &quot;suspended_at&quot;: null,
+            &quot;suspension_reason&quot;: null
         }
     ],
     &quot;meta&quot;: {
@@ -33400,7 +33919,92 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="q"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Recherche pressing, référence ou plan. Example: <code>architecto</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>plan</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="plan"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Code plan (growth, business, enterprise). Example: <code>architecto</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>country</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="country"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="CI"
+               data-component="query">
+    <br>
+<p>Code pays ISO2 d’une agence du pressing. Example: <code>CI</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>pressing_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="pressing_id"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="16"
+               data-component="query">
+    <br>
+<p>Example: <code>16</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>active, expiring, expired, suspended, inactive. Example: <code>architecto</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>expires_within</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="expires_within"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="30"
+               data-component="query">
+    <br>
+<p>Échéance dans les N prochains jours. Example: <code>30</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v1-superadmin-licenses"
+               value="20"
+               data-component="query">
+    <br>
+<p>Example: <code>20</code></p>
+            </div>
+                </form>
 
                     <h2 id="superadmin-POSTapi-v1-superadmin-licenses">POST api/v1/superadmin/licenses</h2>
 
@@ -33424,9 +34028,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"pressing_id\": \"architecto\",
     \"plan\": \"n\",
-    \"seats\": 67,
-    \"months\": 66,
-    \"activate\": true
+    \"auto_renew\": true,
+    \"seats\": 66,
+    \"max_agencies\": 27,
+    \"storage_gb\": 35,
+    \"months\": 43,
+    \"activate\": false
 }"
 </code></pre></div>
 
@@ -33446,9 +34053,12 @@ const headers = {
 let body = {
     "pressing_id": "architecto",
     "plan": "n",
-    "seats": 67,
-    "months": 66,
-    "activate": true
+    "auto_renew": true,
+    "seats": 66,
+    "max_agencies": 27,
+    "storage_gb": 35,
+    "months": 43,
+    "activate": false
 };
 
 fetch(url, {
@@ -33467,13 +34077,59 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
+        &quot;id&quot;: 184,
+        &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+        &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
         &quot;pressing_id&quot;: 1,
-        &quot;plan&quot;: &quot;pro&quot;,
-        &quot;seats&quot;: 10,
-        &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+            &quot;initials&quot;: &quot;SP&quot;,
+            &quot;country_code&quot;: &quot;CI&quot;,
+            &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+        },
+        &quot;plan&quot;: {
+            &quot;code&quot;: &quot;business&quot;,
+            &quot;label&quot;: &quot;Business&quot;
+        },
+        &quot;periodicity&quot;: {
+            &quot;code&quot;: &quot;annual&quot;,
+            &quot;label&quot;: &quot;Annuel&quot;
+        },
+        &quot;seats&quot;: 100,
         &quot;is_activated&quot;: true,
-        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+        &quot;is_valid&quot;: true,
+        &quot;auto_renew&quot;: true,
+        &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+        &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+        &quot;days_left&quot;: 94,
+        &quot;period&quot;: {
+            &quot;start&quot;: &quot;2026-01-01&quot;,
+            &quot;end&quot;: &quot;2026-12-31&quot;,
+            &quot;days_total&quot;: 364,
+            &quot;days_left&quot;: 94,
+            &quot;consumed_percent&quot;: 74
+        },
+        &quot;usage&quot;: {
+            &quot;agencies&quot;: {
+                &quot;used&quot;: 4,
+                &quot;limit&quot;: 6
+            },
+            &quot;users&quot;: {
+                &quot;used&quot;: 58,
+                &quot;limit&quot;: 100
+            }
+        },
+        &quot;status&quot;: {
+            &quot;code&quot;: &quot;active&quot;,
+            &quot;label&quot;: &quot;Active&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;paid&quot;,
+            &quot;label&quot;: &quot;Pay&eacute;&quot;
+        },
+        &quot;suspended_at&quot;: null,
+        &quot;suspension_reason&quot;: null
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -33638,16 +34294,74 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>validation.max. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="periodicity"                data-endpoint="POSTapi-v1-superadmin-licenses"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-superadmin-licenses" style="display: none">
+            <input type="radio" name="auto_renew"
+                   value="true"
+                   data-endpoint="POSTapi-v1-superadmin-licenses"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-superadmin-licenses" style="display: none">
+            <input type="radio" name="auto_renew"
+                   value="false"
+                   data-endpoint="POSTapi-v1-superadmin-licenses"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="seats"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="67"
+               value="66"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>67</code></p>
+<p>validation.min. Example: <code>66</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_agencies</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_agencies"                data-endpoint="POSTapi-v1-superadmin-licenses"
+               value="27"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>27</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>storage_gb</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="storage_gb"                data-endpoint="POSTapi-v1-superadmin-licenses"
+               value="35"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>35</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>months</code></b>&nbsp;&nbsp;
@@ -33656,10 +34370,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="months"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="66"
+               value="43"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>66</code></p>
+<p>validation.min. Example: <code>43</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>activate</code></b>&nbsp;&nbsp;
@@ -33681,11 +34395,476 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
-                    <h2 id="superadmin-PUTapi-v1-superadmin-licenses--id-">PUT api/v1/superadmin/licenses/{id}</h2>
+                    <h2 id="superadmin-GETapi-v1-superadmin-licenses--id-">Page « Détail et renouvellement ».</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-superadmin-licenses--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/1" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-superadmin-licenses--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;license&quot;: {
+            &quot;id&quot;: 184,
+            &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+            &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;pressing&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+                &quot;initials&quot;: &quot;SP&quot;,
+                &quot;country_code&quot;: &quot;CI&quot;,
+                &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+            },
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;periodicity&quot;: {
+                &quot;code&quot;: &quot;annual&quot;,
+                &quot;label&quot;: &quot;Annuel&quot;
+            },
+            &quot;seats&quot;: 100,
+            &quot;is_activated&quot;: true,
+            &quot;is_valid&quot;: true,
+            &quot;auto_renew&quot;: true,
+            &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+            &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+            &quot;days_left&quot;: 94,
+            &quot;period&quot;: {
+                &quot;start&quot;: &quot;2026-01-01&quot;,
+                &quot;end&quot;: &quot;2026-12-31&quot;,
+                &quot;days_total&quot;: 364,
+                &quot;days_left&quot;: 94,
+                &quot;consumed_percent&quot;: 74
+            },
+            &quot;usage&quot;: {
+                &quot;agencies&quot;: {
+                    &quot;used&quot;: 4,
+                    &quot;limit&quot;: 6
+                },
+                &quot;users&quot;: {
+                    &quot;used&quot;: 58,
+                    &quot;limit&quot;: 100
+                }
+            },
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;active&quot;,
+                &quot;label&quot;: &quot;Active&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;paid&quot;,
+                &quot;label&quot;: &quot;Pay&eacute;&quot;
+            },
+            &quot;suspended_at&quot;: null,
+            &quot;suspension_reason&quot;: null
+        },
+        &quot;renewal&quot;: {
+            &quot;currency&quot;: &quot;XOF&quot;,
+            &quot;tax_rate&quot;: 0,
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;plans&quot;: [
+                {
+                    &quot;code&quot;: &quot;business&quot;,
+                    &quot;label&quot;: &quot;Business&quot;,
+                    &quot;prices&quot;: {
+                        &quot;monthly&quot;: 15000,
+                        &quot;quarterly&quot;: 40000,
+                        &quot;annual&quot;: 150000
+                    },
+                    &quot;limits&quot;: {
+                        &quot;agencies&quot;: 6,
+                        &quot;users&quot;: 100,
+                        &quot;storage_gb&quot;: 5
+                    }
+                }
+            ],
+            &quot;offers&quot;: [
+                {
+                    &quot;periodicity&quot;: &quot;monthly&quot;,
+                    &quot;label&quot;: &quot;Mensuel&quot;,
+                    &quot;months&quot;: 1,
+                    &quot;days&quot;: 30,
+                    &quot;amount&quot;: 15000,
+                    &quot;taxes&quot;: 0,
+                    &quot;total&quot;: 15000,
+                    &quot;savings_percent&quot;: 0,
+                    &quot;free_months&quot;: 0,
+                    &quot;recommended&quot;: false,
+                    &quot;current&quot;: false
+                },
+                {
+                    &quot;periodicity&quot;: &quot;quarterly&quot;,
+                    &quot;label&quot;: &quot;Trimestriel&quot;,
+                    &quot;months&quot;: 3,
+                    &quot;days&quot;: 90,
+                    &quot;amount&quot;: 40000,
+                    &quot;taxes&quot;: 0,
+                    &quot;total&quot;: 40000,
+                    &quot;savings_percent&quot;: 11,
+                    &quot;free_months&quot;: 0,
+                    &quot;recommended&quot;: false,
+                    &quot;current&quot;: false
+                },
+                {
+                    &quot;periodicity&quot;: &quot;annual&quot;,
+                    &quot;label&quot;: &quot;Annuel&quot;,
+                    &quot;months&quot;: 12,
+                    &quot;days&quot;: 365,
+                    &quot;amount&quot;: 150000,
+                    &quot;taxes&quot;: 0,
+                    &quot;total&quot;: 150000,
+                    &quot;savings_percent&quot;: 17,
+                    &quot;free_months&quot;: 2,
+                    &quot;recommended&quot;: true,
+                    &quot;current&quot;: true
+                }
+            ],
+            &quot;payment_methods&quot;: [
+                {
+                    &quot;code&quot;: &quot;cash&quot;,
+                    &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;card&quot;,
+                    &quot;label&quot;: &quot;Carte&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;flooz&quot;,
+                    &quot;label&quot;: &quot;Flooz&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;tmoney&quot;,
+                    &quot;label&quot;: &quot;T-Money&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;mobile_money&quot;,
+                    &quot;label&quot;: &quot;Mobile Money&quot;
+                }
+            ],
+            &quot;defaults&quot;: {
+                &quot;periodicity&quot;: &quot;annual&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;reference&quot;: &quot;TRX-2026-09-2841&quot;,
+                &quot;effective_at&quot;: &quot;2027-01-01&quot;,
+                &quot;auto_renew&quot;: true
+            },
+            &quot;proof&quot;: {
+                &quot;accepted&quot;: [
+                    &quot;pdf&quot;,
+                    &quot;jpg&quot;,
+                    &quot;jpeg&quot;,
+                    &quot;png&quot;
+                ],
+                &quot;max_size_mb&quot;: 10
+            }
+        },
+        &quot;coverage&quot;: {
+            &quot;agencies_count&quot;: 4,
+            &quot;active_users&quot;: 58,
+            &quot;agencies&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Cocody&quot;,
+                    &quot;users_count&quot;: 24,
+                    &quot;covered&quot;: true
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Plateau&quot;,
+                    &quot;users_count&quot;: 14,
+                    &quot;covered&quot;: true
+                }
+            ]
+        },
+        &quot;limits&quot;: {
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;items&quot;: [
+                {
+                    &quot;key&quot;: &quot;agencies&quot;,
+                    &quot;label&quot;: &quot;Agences&quot;,
+                    &quot;used&quot;: 4,
+                    &quot;limit&quot;: 6,
+                    &quot;unit&quot;: null,
+                    &quot;percent&quot;: 67
+                },
+                {
+                    &quot;key&quot;: &quot;users&quot;,
+                    &quot;label&quot;: &quot;Utilisateurs&quot;,
+                    &quot;used&quot;: 58,
+                    &quot;limit&quot;: 100,
+                    &quot;unit&quot;: null,
+                    &quot;percent&quot;: 58
+                },
+                {
+                    &quot;key&quot;: &quot;storage&quot;,
+                    &quot;label&quot;: &quot;Stockage&quot;,
+                    &quot;used&quot;: 2.8,
+                    &quot;limit&quot;: 5,
+                    &quot;unit&quot;: &quot;Go&quot;,
+                    &quot;percent&quot;: 56
+                }
+            ],
+            &quot;features&quot;: [
+                &quot;Multi-agences&quot;,
+                &quot;Rapports avanc&eacute;s&quot;,
+                &quot;Offline 7 jours&quot;,
+                &quot;API&quot;,
+                &quot;Support prioritaire&quot;
+            ]
+        },
+        &quot;payments&quot;: [
+            {
+                &quot;id&quot;: 184,
+                &quot;date&quot;: &quot;2026-09-28T10:42:00+00:00&quot;,
+                &quot;period&quot;: {
+                    &quot;periodicity&quot;: {
+                        &quot;code&quot;: &quot;annual&quot;,
+                        &quot;label&quot;: &quot;Annuel&quot;
+                    },
+                    &quot;label&quot;: &quot;Annuel &middot; 2027&quot;,
+                    &quot;start&quot;: &quot;2027-01-01&quot;,
+                    &quot;end&quot;: &quot;2028-01-01&quot;
+                },
+                &quot;plan&quot;: {
+                    &quot;code&quot;: &quot;business&quot;,
+                    &quot;label&quot;: &quot;Business&quot;
+                },
+                &quot;amount&quot;: 150000,
+                &quot;taxes&quot;: 0,
+                &quot;total&quot;: 150000,
+                &quot;currency&quot;: &quot;XOF&quot;,
+                &quot;payment_method&quot;: {
+                    &quot;code&quot;: &quot;cash&quot;,
+                    &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+                },
+                &quot;reference&quot;: &quot;TRX-2026-09-2841&quot;,
+                &quot;invoice_number&quot;: &quot;FAC-2026-184&quot;,
+                &quot;status&quot;: {
+                    &quot;code&quot;: &quot;pending&quot;,
+                    &quot;label&quot;: &quot;En attente&quot;
+                },
+                &quot;has_proof&quot;: true,
+                &quot;paid_at&quot;: null,
+                &quot;invoice_url&quot;: &quot;https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice&quot;
+            }
+        ],
+        &quot;audit&quot;: {
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;compliant&quot;,
+                &quot;label&quot;: &quot;Conforme&quot;
+            },
+            &quot;last_action&quot;: {
+                &quot;action&quot;: &quot;license.renewed&quot;,
+                &quot;label&quot;: &quot;Pr&eacute;paration du renouvellement&quot;,
+                &quot;actor&quot;: &quot;A&iuml;cha N.&quot;,
+                &quot;at&quot;: &quot;2026-09-28T10:42:00+00:00&quot;
+            },
+            &quot;checks&quot;: [
+                {
+                    &quot;code&quot;: &quot;reference&quot;,
+                    &quot;label&quot;: &quot;R&eacute;f&eacute;rence TRX-2026-09-2841 enregistr&eacute;e&quot;,
+                    &quot;ok&quot;: true
+                },
+                {
+                    &quot;code&quot;: &quot;proof&quot;,
+                    &quot;label&quot;: &quot;Justificatif en attente de validation&quot;,
+                    &quot;ok&quot;: true
+                }
+            ]
+        },
+        &quot;actions&quot;: {
+            &quot;can_renew&quot;: true,
+            &quot;can_change_plan&quot;: true,
+            &quot;can_suspend&quot;: true,
+            &quot;can_reactivate&quot;: false,
+            &quot;invoice_payment_id&quot;: 184
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-superadmin-licenses--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-superadmin-licenses--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-superadmin-licenses--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-superadmin-licenses--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-superadmin-licenses--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-superadmin-licenses--id-" data-method="GET"
+      data-path="api/v1/superadmin/licenses/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-superadmin-licenses--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-superadmin-licenses--id-"
+                    onclick="tryItOut('GETapi-v1-superadmin-licenses--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-superadmin-licenses--id-"
+                    onclick="cancelTryOut('GETapi-v1-superadmin-licenses--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-superadmin-licenses--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/superadmin/licenses/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-superadmin-licenses--id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-superadmin-licenses--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-superadmin-licenses--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-superadmin-licenses--id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-licenses--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="superadmin-PUTapi-v1-superadmin-licenses--id-">Modification / changement de plan.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -33699,23 +34878,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/licenses/16" \
+    "http://localhost:8000/api/v1/superadmin/licenses/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
     \"plan\": \"b\",
-    \"seats\": 22,
+    \"auto_renew\": false,
+    \"seats\": 67,
+    \"max_agencies\": 66,
+    \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-21T10:17:57\"
+    \"expires_at\": \"2026-10-21T16:19:27\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/16"
+    "http://localhost:8000/api/v1/superadmin/licenses/1"
 );
 
 const headers = {
@@ -33727,9 +34909,12 @@ const headers = {
 
 let body = {
     "plan": "b",
-    "seats": 22,
+    "auto_renew": false,
+    "seats": 67,
+    "max_agencies": 66,
+    "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-21T10:17:57"
+    "expires_at": "2026-10-21T16:19:27"
 };
 
 fetch(url, {
@@ -33748,13 +34933,59 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
+        &quot;id&quot;: 184,
+        &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+        &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
         &quot;pressing_id&quot;: 1,
-        &quot;plan&quot;: &quot;pro&quot;,
-        &quot;seats&quot;: 10,
-        &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+            &quot;initials&quot;: &quot;SP&quot;,
+            &quot;country_code&quot;: &quot;CI&quot;,
+            &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+        },
+        &quot;plan&quot;: {
+            &quot;code&quot;: &quot;business&quot;,
+            &quot;label&quot;: &quot;Business&quot;
+        },
+        &quot;periodicity&quot;: {
+            &quot;code&quot;: &quot;annual&quot;,
+            &quot;label&quot;: &quot;Annuel&quot;
+        },
+        &quot;seats&quot;: 100,
         &quot;is_activated&quot;: true,
-        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+        &quot;is_valid&quot;: true,
+        &quot;auto_renew&quot;: true,
+        &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+        &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+        &quot;days_left&quot;: 94,
+        &quot;period&quot;: {
+            &quot;start&quot;: &quot;2026-01-01&quot;,
+            &quot;end&quot;: &quot;2026-12-31&quot;,
+            &quot;days_total&quot;: 364,
+            &quot;days_left&quot;: 94,
+            &quot;consumed_percent&quot;: 74
+        },
+        &quot;usage&quot;: {
+            &quot;agencies&quot;: {
+                &quot;used&quot;: 4,
+                &quot;limit&quot;: 6
+            },
+            &quot;users&quot;: {
+                &quot;used&quot;: 58,
+                &quot;limit&quot;: 100
+            }
+        },
+        &quot;status&quot;: {
+            &quot;code&quot;: &quot;active&quot;,
+            &quot;label&quot;: &quot;Active&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;paid&quot;,
+            &quot;label&quot;: &quot;Pay&eacute;&quot;
+        },
+        &quot;suspended_at&quot;: null,
+        &quot;suspension_reason&quot;: null
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -33901,10 +35132,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>16</code></p>
+<p>The ID of the license. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -33920,16 +35151,74 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>validation.max. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="periodicity"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-superadmin-licenses--id-" style="display: none">
+            <input type="radio" name="auto_renew"
+                   value="true"
+                   data-endpoint="PUTapi-v1-superadmin-licenses--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-superadmin-licenses--id-" style="display: none">
+            <input type="radio" name="auto_renew"
+                   value="false"
+                   data-endpoint="PUTapi-v1-superadmin-licenses--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="seats"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="22"
+               value="67"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>22</code></p>
+<p>validation.min. Example: <code>67</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_agencies</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_agencies"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
+               value="66"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>66</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>storage_gb</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="storage_gb"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
+               value="27"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -33960,10 +35249,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-21T10:17:57"
+               value="2026-10-21T16:19:27"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:57</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
         </div>
         </form>
 
@@ -33981,7 +35270,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/16/activate" \
+    "http://localhost:8000/api/v1/superadmin/licenses/1/activate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -33994,7 +35283,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/16/activate"
+    "http://localhost:8000/api/v1/superadmin/licenses/1/activate"
 );
 
 const headers = {
@@ -34018,19 +35307,65 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-superadmin-licenses--license_id--activate">
             <blockquote>
-            <p>Example response (201, Succès):</p>
+            <p>Example response (200, Succès):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
+        &quot;id&quot;: 184,
+        &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+        &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
         &quot;pressing_id&quot;: 1,
-        &quot;plan&quot;: &quot;pro&quot;,
-        &quot;seats&quot;: 10,
-        &quot;code&quot;: &quot;DEMO-LICENSE&quot;,
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+            &quot;initials&quot;: &quot;SP&quot;,
+            &quot;country_code&quot;: &quot;CI&quot;,
+            &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+        },
+        &quot;plan&quot;: {
+            &quot;code&quot;: &quot;business&quot;,
+            &quot;label&quot;: &quot;Business&quot;
+        },
+        &quot;periodicity&quot;: {
+            &quot;code&quot;: &quot;annual&quot;,
+            &quot;label&quot;: &quot;Annuel&quot;
+        },
+        &quot;seats&quot;: 100,
         &quot;is_activated&quot;: true,
-        &quot;expires_at&quot;: &quot;2027-10-15T00:00:00+00:00&quot;
+        &quot;is_valid&quot;: true,
+        &quot;auto_renew&quot;: true,
+        &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+        &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+        &quot;days_left&quot;: 94,
+        &quot;period&quot;: {
+            &quot;start&quot;: &quot;2026-01-01&quot;,
+            &quot;end&quot;: &quot;2026-12-31&quot;,
+            &quot;days_total&quot;: 364,
+            &quot;days_left&quot;: 94,
+            &quot;consumed_percent&quot;: 74
+        },
+        &quot;usage&quot;: {
+            &quot;agencies&quot;: {
+                &quot;used&quot;: 4,
+                &quot;limit&quot;: 6
+            },
+            &quot;users&quot;: {
+                &quot;used&quot;: 58,
+                &quot;limit&quot;: 100
+            }
+        },
+        &quot;status&quot;: {
+            &quot;code&quot;: &quot;active&quot;,
+            &quot;label&quot;: &quot;Active&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;paid&quot;,
+            &quot;label&quot;: &quot;Pay&eacute;&quot;
+        },
+        &quot;suspended_at&quot;: null,
+        &quot;suspension_reason&quot;: null
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -34177,10 +35512,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--activate"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>16</code></p>
+<p>The ID of the license. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -34197,6 +35532,1838 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="superadmin-POSTapi-v1-superadmin-licenses--license_id--renew">« Valider et renouveler » — multipart si justificatif joint.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-superadmin-licenses--license_id--renew">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/superadmin/licenses/1/renew" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --form "periodicity=architecto"\
+    --form "payment_method=architecto"\
+    --form "reference=n"\
+    --form "effective_at=2026-10-21T16:19:27"\
+    --form "auto_renew=1"\
+    --form "mark_paid="\
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php2A73.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1/renew"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+const body = new FormData();
+body.append('periodicity', 'architecto');
+body.append('payment_method', 'architecto');
+body.append('reference', 'n');
+body.append('effective_at', '2026-10-21T16:19:27');
+body.append('auto_renew', '1');
+body.append('mark_paid', '');
+body.append('proof', document.querySelector('input[name="proof"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-superadmin-licenses--license_id--renew">
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;license&quot;: {
+            &quot;id&quot;: 184,
+            &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+            &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;pressing&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+                &quot;initials&quot;: &quot;SP&quot;,
+                &quot;country_code&quot;: &quot;CI&quot;,
+                &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+            },
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;periodicity&quot;: {
+                &quot;code&quot;: &quot;annual&quot;,
+                &quot;label&quot;: &quot;Annuel&quot;
+            },
+            &quot;seats&quot;: 100,
+            &quot;is_activated&quot;: true,
+            &quot;is_valid&quot;: true,
+            &quot;auto_renew&quot;: true,
+            &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+            &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+            &quot;days_left&quot;: 94,
+            &quot;period&quot;: {
+                &quot;start&quot;: &quot;2026-01-01&quot;,
+                &quot;end&quot;: &quot;2026-12-31&quot;,
+                &quot;days_total&quot;: 364,
+                &quot;days_left&quot;: 94,
+                &quot;consumed_percent&quot;: 74
+            },
+            &quot;usage&quot;: {
+                &quot;agencies&quot;: {
+                    &quot;used&quot;: 4,
+                    &quot;limit&quot;: 6
+                },
+                &quot;users&quot;: {
+                    &quot;used&quot;: 58,
+                    &quot;limit&quot;: 100
+                }
+            },
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;active&quot;,
+                &quot;label&quot;: &quot;Active&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;paid&quot;,
+                &quot;label&quot;: &quot;Pay&eacute;&quot;
+            },
+            &quot;suspended_at&quot;: null,
+            &quot;suspension_reason&quot;: null
+        },
+        &quot;renewal&quot;: {
+            &quot;currency&quot;: &quot;XOF&quot;,
+            &quot;tax_rate&quot;: 0,
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;plans&quot;: [
+                {
+                    &quot;code&quot;: &quot;business&quot;,
+                    &quot;label&quot;: &quot;Business&quot;,
+                    &quot;prices&quot;: {
+                        &quot;monthly&quot;: 15000,
+                        &quot;quarterly&quot;: 40000,
+                        &quot;annual&quot;: 150000
+                    },
+                    &quot;limits&quot;: {
+                        &quot;agencies&quot;: 6,
+                        &quot;users&quot;: 100,
+                        &quot;storage_gb&quot;: 5
+                    }
+                }
+            ],
+            &quot;offers&quot;: [
+                {
+                    &quot;periodicity&quot;: &quot;monthly&quot;,
+                    &quot;label&quot;: &quot;Mensuel&quot;,
+                    &quot;months&quot;: 1,
+                    &quot;days&quot;: 30,
+                    &quot;amount&quot;: 15000,
+                    &quot;taxes&quot;: 0,
+                    &quot;total&quot;: 15000,
+                    &quot;savings_percent&quot;: 0,
+                    &quot;free_months&quot;: 0,
+                    &quot;recommended&quot;: false,
+                    &quot;current&quot;: false
+                },
+                {
+                    &quot;periodicity&quot;: &quot;quarterly&quot;,
+                    &quot;label&quot;: &quot;Trimestriel&quot;,
+                    &quot;months&quot;: 3,
+                    &quot;days&quot;: 90,
+                    &quot;amount&quot;: 40000,
+                    &quot;taxes&quot;: 0,
+                    &quot;total&quot;: 40000,
+                    &quot;savings_percent&quot;: 11,
+                    &quot;free_months&quot;: 0,
+                    &quot;recommended&quot;: false,
+                    &quot;current&quot;: false
+                },
+                {
+                    &quot;periodicity&quot;: &quot;annual&quot;,
+                    &quot;label&quot;: &quot;Annuel&quot;,
+                    &quot;months&quot;: 12,
+                    &quot;days&quot;: 365,
+                    &quot;amount&quot;: 150000,
+                    &quot;taxes&quot;: 0,
+                    &quot;total&quot;: 150000,
+                    &quot;savings_percent&quot;: 17,
+                    &quot;free_months&quot;: 2,
+                    &quot;recommended&quot;: true,
+                    &quot;current&quot;: true
+                }
+            ],
+            &quot;payment_methods&quot;: [
+                {
+                    &quot;code&quot;: &quot;cash&quot;,
+                    &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;card&quot;,
+                    &quot;label&quot;: &quot;Carte&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;flooz&quot;,
+                    &quot;label&quot;: &quot;Flooz&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;tmoney&quot;,
+                    &quot;label&quot;: &quot;T-Money&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;mobile_money&quot;,
+                    &quot;label&quot;: &quot;Mobile Money&quot;
+                }
+            ],
+            &quot;defaults&quot;: {
+                &quot;periodicity&quot;: &quot;annual&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;reference&quot;: &quot;TRX-2026-09-2841&quot;,
+                &quot;effective_at&quot;: &quot;2027-01-01&quot;,
+                &quot;auto_renew&quot;: true
+            },
+            &quot;proof&quot;: {
+                &quot;accepted&quot;: [
+                    &quot;pdf&quot;,
+                    &quot;jpg&quot;,
+                    &quot;jpeg&quot;,
+                    &quot;png&quot;
+                ],
+                &quot;max_size_mb&quot;: 10
+            }
+        },
+        &quot;coverage&quot;: {
+            &quot;agencies_count&quot;: 4,
+            &quot;active_users&quot;: 58,
+            &quot;agencies&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Cocody&quot;,
+                    &quot;users_count&quot;: 24,
+                    &quot;covered&quot;: true
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Plateau&quot;,
+                    &quot;users_count&quot;: 14,
+                    &quot;covered&quot;: true
+                }
+            ]
+        },
+        &quot;limits&quot;: {
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;items&quot;: [
+                {
+                    &quot;key&quot;: &quot;agencies&quot;,
+                    &quot;label&quot;: &quot;Agences&quot;,
+                    &quot;used&quot;: 4,
+                    &quot;limit&quot;: 6,
+                    &quot;unit&quot;: null,
+                    &quot;percent&quot;: 67
+                },
+                {
+                    &quot;key&quot;: &quot;users&quot;,
+                    &quot;label&quot;: &quot;Utilisateurs&quot;,
+                    &quot;used&quot;: 58,
+                    &quot;limit&quot;: 100,
+                    &quot;unit&quot;: null,
+                    &quot;percent&quot;: 58
+                },
+                {
+                    &quot;key&quot;: &quot;storage&quot;,
+                    &quot;label&quot;: &quot;Stockage&quot;,
+                    &quot;used&quot;: 2.8,
+                    &quot;limit&quot;: 5,
+                    &quot;unit&quot;: &quot;Go&quot;,
+                    &quot;percent&quot;: 56
+                }
+            ],
+            &quot;features&quot;: [
+                &quot;Multi-agences&quot;,
+                &quot;Rapports avanc&eacute;s&quot;,
+                &quot;Offline 7 jours&quot;,
+                &quot;API&quot;,
+                &quot;Support prioritaire&quot;
+            ]
+        },
+        &quot;payments&quot;: [
+            {
+                &quot;id&quot;: 184,
+                &quot;date&quot;: &quot;2026-09-28T10:42:00+00:00&quot;,
+                &quot;period&quot;: {
+                    &quot;periodicity&quot;: {
+                        &quot;code&quot;: &quot;annual&quot;,
+                        &quot;label&quot;: &quot;Annuel&quot;
+                    },
+                    &quot;label&quot;: &quot;Annuel &middot; 2027&quot;,
+                    &quot;start&quot;: &quot;2027-01-01&quot;,
+                    &quot;end&quot;: &quot;2028-01-01&quot;
+                },
+                &quot;plan&quot;: {
+                    &quot;code&quot;: &quot;business&quot;,
+                    &quot;label&quot;: &quot;Business&quot;
+                },
+                &quot;amount&quot;: 150000,
+                &quot;taxes&quot;: 0,
+                &quot;total&quot;: 150000,
+                &quot;currency&quot;: &quot;XOF&quot;,
+                &quot;payment_method&quot;: {
+                    &quot;code&quot;: &quot;cash&quot;,
+                    &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+                },
+                &quot;reference&quot;: &quot;TRX-2026-09-2841&quot;,
+                &quot;invoice_number&quot;: &quot;FAC-2026-184&quot;,
+                &quot;status&quot;: {
+                    &quot;code&quot;: &quot;pending&quot;,
+                    &quot;label&quot;: &quot;En attente&quot;
+                },
+                &quot;has_proof&quot;: true,
+                &quot;paid_at&quot;: null,
+                &quot;invoice_url&quot;: &quot;https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice&quot;
+            }
+        ],
+        &quot;audit&quot;: {
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;compliant&quot;,
+                &quot;label&quot;: &quot;Conforme&quot;
+            },
+            &quot;last_action&quot;: {
+                &quot;action&quot;: &quot;license.renewed&quot;,
+                &quot;label&quot;: &quot;Pr&eacute;paration du renouvellement&quot;,
+                &quot;actor&quot;: &quot;A&iuml;cha N.&quot;,
+                &quot;at&quot;: &quot;2026-09-28T10:42:00+00:00&quot;
+            },
+            &quot;checks&quot;: [
+                {
+                    &quot;code&quot;: &quot;reference&quot;,
+                    &quot;label&quot;: &quot;R&eacute;f&eacute;rence TRX-2026-09-2841 enregistr&eacute;e&quot;,
+                    &quot;ok&quot;: true
+                },
+                {
+                    &quot;code&quot;: &quot;proof&quot;,
+                    &quot;label&quot;: &quot;Justificatif en attente de validation&quot;,
+                    &quot;ok&quot;: true
+                }
+            ]
+        },
+        &quot;actions&quot;: {
+            &quot;can_renew&quot;: true,
+            &quot;can_change_plan&quot;: true,
+            &quot;can_suspend&quot;: true,
+            &quot;can_reactivate&quot;: false,
+            &quot;invoice_payment_id&quot;: 184
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-superadmin-licenses--license_id--renew" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-superadmin-licenses--license_id--renew"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-superadmin-licenses--license_id--renew"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-superadmin-licenses--license_id--renew" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-superadmin-licenses--license_id--renew">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-superadmin-licenses--license_id--renew" data-method="POST"
+      data-path="api/v1/superadmin/licenses/{license_id}/renew"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-superadmin-licenses--license_id--renew', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-superadmin-licenses--license_id--renew"
+                    onclick="tryItOut('POSTapi-v1-superadmin-licenses--license_id--renew');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-superadmin-licenses--license_id--renew"
+                    onclick="cancelTryOut('POSTapi-v1-superadmin-licenses--license_id--renew');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-superadmin-licenses--license_id--renew"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/superadmin/licenses/{license_id}/renew</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>license_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="periodicity"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>plan</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="plan"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="payment_method"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reference"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="n"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>effective_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value="2026-10-21T16:19:27"
+               data-component="body">
+    <br>
+<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew" style="display: none">
+            <input type="radio" name="auto_renew"
+                   value="true"
+                   data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew" style="display: none">
+            <input type="radio" name="auto_renew"
+                   value="false"
+                   data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>mark_paid</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew" style="display: none">
+            <input type="radio" name="mark_paid"
+                   value="true"
+                   data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew" style="display: none">
+            <input type="radio" name="mark_paid"
+                   value="false"
+                   data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>proof</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="file" style="display: none"
+                              name="proof"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2A73.tmp</code></p>
+        </div>
+        </form>
+
+                    <h2 id="superadmin-POSTapi-v1-superadmin-licenses--license_id--suspend">POST api/v1/superadmin/licenses/{license_id}/suspend</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-superadmin-licenses--license_id--suspend">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/superadmin/licenses/1/suspend" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1/suspend"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-superadmin-licenses--license_id--suspend">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 184,
+        &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+        &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+            &quot;initials&quot;: &quot;SP&quot;,
+            &quot;country_code&quot;: &quot;CI&quot;,
+            &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+        },
+        &quot;plan&quot;: {
+            &quot;code&quot;: &quot;business&quot;,
+            &quot;label&quot;: &quot;Business&quot;
+        },
+        &quot;periodicity&quot;: {
+            &quot;code&quot;: &quot;annual&quot;,
+            &quot;label&quot;: &quot;Annuel&quot;
+        },
+        &quot;seats&quot;: 100,
+        &quot;is_activated&quot;: true,
+        &quot;is_valid&quot;: true,
+        &quot;auto_renew&quot;: true,
+        &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+        &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+        &quot;days_left&quot;: 94,
+        &quot;period&quot;: {
+            &quot;start&quot;: &quot;2026-01-01&quot;,
+            &quot;end&quot;: &quot;2026-12-31&quot;,
+            &quot;days_total&quot;: 364,
+            &quot;days_left&quot;: 94,
+            &quot;consumed_percent&quot;: 74
+        },
+        &quot;usage&quot;: {
+            &quot;agencies&quot;: {
+                &quot;used&quot;: 4,
+                &quot;limit&quot;: 6
+            },
+            &quot;users&quot;: {
+                &quot;used&quot;: 58,
+                &quot;limit&quot;: 100
+            }
+        },
+        &quot;status&quot;: {
+            &quot;code&quot;: &quot;suspended&quot;,
+            &quot;label&quot;: &quot;Suspendue&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;paid&quot;,
+            &quot;label&quot;: &quot;Pay&eacute;&quot;
+        },
+        &quot;suspended_at&quot;: &quot;2026-10-21T10:34:00+00:00&quot;,
+        &quot;suspension_reason&quot;: &quot;Impay&eacute;&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-superadmin-licenses--license_id--suspend" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-superadmin-licenses--license_id--suspend"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-superadmin-licenses--license_id--suspend"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-superadmin-licenses--license_id--suspend" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-superadmin-licenses--license_id--suspend">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-superadmin-licenses--license_id--suspend" data-method="POST"
+      data-path="api/v1/superadmin/licenses/{license_id}/suspend"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-superadmin-licenses--license_id--suspend', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-superadmin-licenses--license_id--suspend"
+                    onclick="tryItOut('POSTapi-v1-superadmin-licenses--license_id--suspend');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-superadmin-licenses--license_id--suspend"
+                    onclick="cancelTryOut('POSTapi-v1-superadmin-licenses--license_id--suspend');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-superadmin-licenses--license_id--suspend"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/superadmin/licenses/{license_id}/suspend</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>license_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="superadmin-POSTapi-v1-superadmin-licenses--license_id--reactivate">POST api/v1/superadmin/licenses/{license_id}/reactivate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-superadmin-licenses--license_id--reactivate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/superadmin/licenses/1/reactivate" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1/reactivate"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-superadmin-licenses--license_id--reactivate">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 184,
+        &quot;reference&quot;: &quot;LIC-CI-00184&quot;,
+        &quot;code&quot;: &quot;K3J9QF2LZ8XA&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;pressing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;SPARK PRESSING CI&quot;,
+            &quot;initials&quot;: &quot;SP&quot;,
+            &quot;country_code&quot;: &quot;CI&quot;,
+            &quot;country&quot;: &quot;C&ocirc;te d&rsquo;Ivoire&quot;
+        },
+        &quot;plan&quot;: {
+            &quot;code&quot;: &quot;business&quot;,
+            &quot;label&quot;: &quot;Business&quot;
+        },
+        &quot;periodicity&quot;: {
+            &quot;code&quot;: &quot;annual&quot;,
+            &quot;label&quot;: &quot;Annuel&quot;
+        },
+        &quot;seats&quot;: 100,
+        &quot;is_activated&quot;: true,
+        &quot;is_valid&quot;: true,
+        &quot;auto_renew&quot;: true,
+        &quot;activated_at&quot;: &quot;2026-01-01T00:00:00+00:00&quot;,
+        &quot;expires_at&quot;: &quot;2026-12-31T00:00:00+00:00&quot;,
+        &quot;days_left&quot;: 94,
+        &quot;period&quot;: {
+            &quot;start&quot;: &quot;2026-01-01&quot;,
+            &quot;end&quot;: &quot;2026-12-31&quot;,
+            &quot;days_total&quot;: 364,
+            &quot;days_left&quot;: 94,
+            &quot;consumed_percent&quot;: 74
+        },
+        &quot;usage&quot;: {
+            &quot;agencies&quot;: {
+                &quot;used&quot;: 4,
+                &quot;limit&quot;: 6
+            },
+            &quot;users&quot;: {
+                &quot;used&quot;: 58,
+                &quot;limit&quot;: 100
+            }
+        },
+        &quot;status&quot;: {
+            &quot;code&quot;: &quot;active&quot;,
+            &quot;label&quot;: &quot;Active&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;paid&quot;,
+            &quot;label&quot;: &quot;Pay&eacute;&quot;
+        },
+        &quot;suspended_at&quot;: null,
+        &quot;suspension_reason&quot;: null
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-superadmin-licenses--license_id--reactivate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-superadmin-licenses--license_id--reactivate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-superadmin-licenses--license_id--reactivate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-superadmin-licenses--license_id--reactivate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-superadmin-licenses--license_id--reactivate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-superadmin-licenses--license_id--reactivate" data-method="POST"
+      data-path="api/v1/superadmin/licenses/{license_id}/reactivate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-superadmin-licenses--license_id--reactivate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-superadmin-licenses--license_id--reactivate"
+                    onclick="tryItOut('POSTapi-v1-superadmin-licenses--license_id--reactivate');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-superadmin-licenses--license_id--reactivate"
+                    onclick="cancelTryOut('POSTapi-v1-superadmin-licenses--license_id--reactivate');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-superadmin-licenses--license_id--reactivate"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/superadmin/licenses/{license_id}/reactivate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-superadmin-licenses--license_id--reactivate"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--reactivate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--reactivate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--reactivate"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>license_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--reactivate"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="superadmin-GETapi-v1-superadmin-licenses--license_id--payments">Historique des renouvellements et paiements (`format=csv` pour « Exporter »).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-superadmin-licenses--license_id--payments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/1/payments?format=architecto" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1/payments"
+);
+
+const params = {
+    "format": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-superadmin-licenses--license_id--payments">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 184,
+            &quot;date&quot;: &quot;2026-09-28T10:42:00+00:00&quot;,
+            &quot;period&quot;: {
+                &quot;periodicity&quot;: {
+                    &quot;code&quot;: &quot;annual&quot;,
+                    &quot;label&quot;: &quot;Annuel&quot;
+                },
+                &quot;label&quot;: &quot;Annuel &middot; 2027&quot;,
+                &quot;start&quot;: &quot;2027-01-01&quot;,
+                &quot;end&quot;: &quot;2028-01-01&quot;
+            },
+            &quot;plan&quot;: {
+                &quot;code&quot;: &quot;business&quot;,
+                &quot;label&quot;: &quot;Business&quot;
+            },
+            &quot;amount&quot;: 150000,
+            &quot;taxes&quot;: 0,
+            &quot;total&quot;: 150000,
+            &quot;currency&quot;: &quot;XOF&quot;,
+            &quot;payment_method&quot;: {
+                &quot;code&quot;: &quot;cash&quot;,
+                &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+            },
+            &quot;reference&quot;: &quot;TRX-2026-09-2841&quot;,
+            &quot;invoice_number&quot;: &quot;FAC-2026-184&quot;,
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;pending&quot;,
+                &quot;label&quot;: &quot;En attente&quot;
+            },
+            &quot;has_proof&quot;: true,
+            &quot;paid_at&quot;: null,
+            &quot;invoice_url&quot;: &quot;https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 20,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-superadmin-licenses--license_id--payments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-superadmin-licenses--license_id--payments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-superadmin-licenses--license_id--payments"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-superadmin-licenses--license_id--payments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-superadmin-licenses--license_id--payments">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-superadmin-licenses--license_id--payments" data-method="GET"
+      data-path="api/v1/superadmin/licenses/{license_id}/payments"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-superadmin-licenses--license_id--payments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-superadmin-licenses--license_id--payments"
+                    onclick="tryItOut('GETapi-v1-superadmin-licenses--license_id--payments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-superadmin-licenses--license_id--payments"
+                    onclick="cancelTryOut('GETapi-v1-superadmin-licenses--license_id--payments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-superadmin-licenses--license_id--payments"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/superadmin/licenses/{license_id}/payments</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>license_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="license_id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>format</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="format"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>json (défaut) ou csv. Example: <code>architecto</code></p>
+            </div>
+                </form>
+
+                    <h2 id="superadmin-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate">POST api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/validate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/validate" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/validate"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 184,
+        &quot;date&quot;: &quot;2026-09-28T10:42:00+00:00&quot;,
+        &quot;period&quot;: {
+            &quot;periodicity&quot;: {
+                &quot;code&quot;: &quot;annual&quot;,
+                &quot;label&quot;: &quot;Annuel&quot;
+            },
+            &quot;label&quot;: &quot;Annuel &middot; 2027&quot;,
+            &quot;start&quot;: &quot;2027-01-01&quot;,
+            &quot;end&quot;: &quot;2028-01-01&quot;
+        },
+        &quot;plan&quot;: {
+            &quot;code&quot;: &quot;business&quot;,
+            &quot;label&quot;: &quot;Business&quot;
+        },
+        &quot;amount&quot;: 150000,
+        &quot;taxes&quot;: 0,
+        &quot;total&quot;: 150000,
+        &quot;currency&quot;: &quot;XOF&quot;,
+        &quot;payment_method&quot;: {
+            &quot;code&quot;: &quot;cash&quot;,
+            &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+        },
+        &quot;reference&quot;: &quot;TRX-2026-09-2841&quot;,
+        &quot;invoice_number&quot;: &quot;FAC-2026-184&quot;,
+        &quot;status&quot;: {
+            &quot;code&quot;: &quot;paid&quot;,
+            &quot;label&quot;: &quot;Pay&eacute;&quot;
+        },
+        &quot;has_proof&quot;: true,
+        &quot;paid_at&quot;: &quot;2026-09-28T11:00:00+00:00&quot;,
+        &quot;invoice_url&quot;: &quot;https://api.example.com/api/v1/superadmin/licenses/184/payments/184/invoice&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate" data-method="POST"
+      data-path="api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/validate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+                    onclick="tryItOut('POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+                    onclick="cancelTryOut('POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/validate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>license_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>payment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="payment_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the payment. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="superadmin-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice">Facture PDF d’un paiement (« Télécharger facture »).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/invoice" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/invoice"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice">
+            <blockquote>
+            <p>Example response (200, Fichier (application/pdf)):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;content_type&quot;: &quot;application/pdf&quot;,
+        &quot;note&quot;: &quot;R&eacute;ponse binaire&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice" data-method="GET"
+      data-path="api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/invoice"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+                    onclick="tryItOut('GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+                    onclick="cancelTryOut('GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/superadmin/licenses/{license_id}/payments/{payment_id}/invoice</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>license_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="license_id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the license. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>payment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="payment_id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the payment. Example: <code>16</code></p>
+            </div>
+                    </form>
+
                     <h2 id="superadmin-DELETEapi-v1-superadmin-licenses--id-">DELETE api/v1/superadmin/licenses/{id}</h2>
 
 <p>
@@ -34211,7 +37378,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/licenses/16" \
+    "http://localhost:8000/api/v1/superadmin/licenses/1" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -34220,7 +37387,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/16"
+    "http://localhost:8000/api/v1/superadmin/licenses/1"
 );
 
 const headers = {
@@ -34374,10 +37541,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-licenses--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>16</code></p>
+<p>The ID of the license. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -36590,7 +39757,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-21T10:17:59\",
+    \"round_date\": \"2026-10-21T16:19:28\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -36611,7 +39778,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-21T10:17:59",
+    "round_date": "2026-10-21T16:19:28",
     "name": "n"
 };
 
@@ -36818,10 +39985,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-21T10:17:59"
+               value="2026-10-21T16:19:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T10:17:59</code></p>
+<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

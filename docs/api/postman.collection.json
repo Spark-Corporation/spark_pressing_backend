@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "6126a89a-0fbd-41a6-9ddd-db2f1005071d",
+        "_postman_id": "aaad6686-82dc-4ea0-b808-58a3301ef916",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -977,7 +977,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-21T10:17:59\",\"retrieve_date\":\"2026-10-21T10:17:59\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16}]}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-21T16:19:28\",\"retrieve_date\":\"2026-10-21T16:19:28\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16}]}"
                         },
                         "description": ""
                     },
@@ -1086,7 +1086,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-21T10:17:59\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-21T16:19:28\"}"
                         },
                         "description": ""
                     },
@@ -1541,7 +1541,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1591,7 +1591,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1641,7 +1641,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1691,7 +1691,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1750,7 +1750,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1800,7 +1800,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1850,7 +1850,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1900,7 +1900,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -1959,7 +1959,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2258,7 +2258,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -2308,7 +2308,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -2367,7 +2367,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -2473,7 +2473,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-21T10:17:58\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-21T16:19:27\"}"
                         },
                         "description": ""
                     },
@@ -2518,7 +2518,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-21T10:17:58\",\"valid_to\":\"2052-11-13\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-21T16:19:27\",\"valid_to\":\"2052-11-13\"}"
                         },
                         "description": ""
                     },
@@ -4154,7 +4154,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-21T10:17:59\",\"validated\":true}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-21T16:19:28\",\"validated\":true}"
                         },
                         "description": ""
                     },
@@ -4213,7 +4213,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-21T10:17:59\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-21T16:19:28\"}"
                         },
                         "description": ""
                     },
@@ -5139,7 +5139,7 @@
                                 {
                                     "id": "role_id",
                                     "key": "role_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -5291,7 +5291,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -5448,7 +5448,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-21T10:17:59\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-21T16:19:28\"}"
                         },
                         "description": ""
                     },
@@ -5763,7 +5763,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -5822,7 +5822,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -5956,7 +5956,7 @@
                                 {
                                     "id": "role_id",
                                     "key": "role_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -6422,7 +6422,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -6472,7 +6472,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -6531,7 +6531,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -6674,7 +6674,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -6724,7 +6724,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -6783,7 +6783,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -6923,7 +6923,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -6979,7 +6979,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -7018,13 +7018,65 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/superadmin\/licenses",
+                    "name": "KPI, \u00e9ch\u00e9ances \u00e0 traiter et pr\u00e9vision de revenu du centre des licences.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/superadmin\/licenses",
+                            "path": "api\/v1\/superadmin\/licenses\/overview",
+                            "query": [
+                                {
+                                    "key": "period",
+                                    "value": "month",
+                                    "description": "Fen\u00eatre des KPI renouvellements \/ revenu : day, week ou month.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/overview?period=month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"period\": {\n            \"code\": \"month\",\n            \"from\": \"2026-10-01T00:00:00+00:00\",\n            \"to\": \"2026-10-21T10:34:00+00:00\"\n        },\n        \"currency\": \"XOF\",\n        \"network\": {\n            \"licenses\": 42,\n            \"countries\": 7,\n            \"updated_at\": \"2026-10-21T10:34:00+00:00\"\n        },\n        \"kpis\": {\n            \"active\": {\n                \"value\": 36,\n                \"share_percent\": 85.7\n            },\n            \"expiring_soon\": {\n                \"value\": 4,\n                \"within_days\": 30\n            },\n            \"suspended\": {\n                \"value\": 2,\n                \"critical_unpaid\": 1\n            },\n            \"renewals\": {\n                \"value\": 12,\n                \"delta_percent\": 20\n            },\n            \"revenue\": {\n                \"value\": 4860000,\n                \"currency\": \"XOF\",\n                \"delta_percent\": 8.4\n            }\n        },\n        \"deadlines\": {\n            \"window_days\": 30,\n            \"count\": 2,\n            \"auto_renew_ready\": 2,\n            \"items\": [\n                {\n                    \"license_id\": 12,\n                    \"reference\": \"LIC-SN-00012\",\n                    \"pressing\": {\n                        \"id\": 3,\n                        \"name\": \"Luxe Press\"\n                    },\n                    \"expires_at\": \"2026-10-23T00:00:00+00:00\",\n                    \"days_left\": 2,\n                    \"auto_renew\": true\n                }\n            ]\n        },\n        \"forecast\": {\n            \"month\": \"2026-10\",\n            \"amount\": 1245000,\n            \"currency\": \"XOF\",\n            \"renewals_expected\": 17,\n            \"secured_percent\": 82\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Export CSV de la liste filtr\u00e9e (m\u00eames filtres que l\u2019index).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/export",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses"
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/export"
                         },
                         "method": "GET",
                         "header": [
@@ -7048,7 +7100,92 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"plan\": \"pro\",\n            \"seats\": 10,\n            \"code\": \"DEMO-LICENSE\",\n            \"is_activated\": true,\n            \"expires_at\": \"2027-10-15T00:00:00+00:00\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
+                            "body": "{\"data\":{\"content_type\":\"text\\\/csv\",\"note\":\"R\u00e9ponse binaire\"},\"meta\":{},\"errors\":null}",
+                            "name": "Fichier (text\/csv)"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/superadmin\/licenses",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses",
+                            "query": [
+                                {
+                                    "key": "q",
+                                    "value": "architecto",
+                                    "description": "Recherche pressing, r\u00e9f\u00e9rence ou plan.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "plan",
+                                    "value": "architecto",
+                                    "description": "Code plan (growth, business, enterprise).",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "country",
+                                    "value": "CI",
+                                    "description": "Code pays ISO2 d\u2019une agence du pressing.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "pressing_id",
+                                    "value": "16",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "architecto",
+                                    "description": "active, expiring, expired, suspended, inactive.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "expires_within",
+                                    "value": "30",
+                                    "description": "\u00c9ch\u00e9ance dans les N prochains jours.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "20",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses?q=architecto&plan=architecto&country=CI&pressing_id=16&status=architecto&expires_within=30&per_page=20"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 184,\n            \"reference\": \"LIC-CI-00184\",\n            \"code\": \"K3J9QF2LZ8XA\",\n            \"pressing_id\": 1,\n            \"pressing\": {\n                \"id\": 1,\n                \"name\": \"SPARK PRESSING CI\",\n                \"initials\": \"SP\",\n                \"country_code\": \"CI\",\n                \"country\": \"C\u00f4te d\u2019Ivoire\"\n            },\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"periodicity\": {\n                \"code\": \"annual\",\n                \"label\": \"Annuel\"\n            },\n            \"seats\": 100,\n            \"is_activated\": true,\n            \"is_valid\": true,\n            \"auto_renew\": true,\n            \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n            \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n            \"days_left\": 94,\n            \"period\": {\n                \"start\": \"2026-01-01\",\n                \"end\": \"2026-12-31\",\n                \"days_total\": 364,\n                \"days_left\": 94,\n                \"consumed_percent\": 74\n            },\n            \"usage\": {\n                \"agencies\": {\n                    \"used\": 4,\n                    \"limit\": 6\n                },\n                \"users\": {\n                    \"used\": 58,\n                    \"limit\": 100\n                }\n            },\n            \"status\": {\n                \"code\": \"active\",\n                \"label\": \"Active\"\n            },\n            \"payment_status\": {\n                \"code\": \"paid\",\n                \"label\": \"Pay\u00e9\"\n            },\n            \"suspended_at\": null,\n            \"suspension_reason\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -7085,7 +7222,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pressing_id\":\"architecto\",\"plan\":\"n\",\"seats\":67,\"months\":66,\"activate\":true}"
+                            "raw": "{\"pressing_id\":\"architecto\",\"plan\":\"n\",\"auto_renew\":true,\"seats\":66,\"max_agencies\":27,\"storage_gb\":35,\"months\":43,\"activate\":false}"
                         },
                         "description": ""
                     },
@@ -7093,7 +7230,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"pressing_id\": 1,\n        \"plan\": \"pro\",\n        \"seats\": 10,\n        \"code\": \"DEMO-LICENSE\",\n        \"is_activated\": true,\n        \"expires_at\": \"2027-10-15T00:00:00+00:00\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 184,\n        \"reference\": \"LIC-CI-00184\",\n        \"code\": \"K3J9QF2LZ8XA\",\n        \"pressing_id\": 1,\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"SPARK PRESSING CI\",\n            \"initials\": \"SP\",\n            \"country_code\": \"CI\",\n            \"country\": \"C\u00f4te d\u2019Ivoire\"\n        },\n        \"plan\": {\n            \"code\": \"business\",\n            \"label\": \"Business\"\n        },\n        \"periodicity\": {\n            \"code\": \"annual\",\n            \"label\": \"Annuel\"\n        },\n        \"seats\": 100,\n        \"is_activated\": true,\n        \"is_valid\": true,\n        \"auto_renew\": true,\n        \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n        \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n        \"days_left\": 94,\n        \"period\": {\n            \"start\": \"2026-01-01\",\n            \"end\": \"2026-12-31\",\n            \"days_total\": 364,\n            \"days_left\": 94,\n            \"consumed_percent\": 74\n        },\n        \"usage\": {\n            \"agencies\": {\n                \"used\": 4,\n                \"limit\": 6\n            },\n            \"users\": {\n                \"used\": 58,\n                \"limit\": 100\n            }\n        },\n        \"status\": {\n            \"code\": \"active\",\n            \"label\": \"Active\"\n        },\n        \"payment_status\": {\n            \"code\": \"paid\",\n            \"label\": \"Pay\u00e9\"\n        },\n        \"suspended_at\": null,\n        \"suspension_reason\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -7111,7 +7248,7 @@
                     ]
                 },
                 {
-                    "name": "PUT api\/v1\/superadmin\/licenses\/{id}",
+                    "name": "Page \u00ab D\u00e9tail et renouvellement \u00bb.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -7122,7 +7259,57 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"license\": {\n            \"id\": 184,\n            \"reference\": \"LIC-CI-00184\",\n            \"code\": \"K3J9QF2LZ8XA\",\n            \"pressing_id\": 1,\n            \"pressing\": {\n                \"id\": 1,\n                \"name\": \"SPARK PRESSING CI\",\n                \"initials\": \"SP\",\n                \"country_code\": \"CI\",\n                \"country\": \"C\u00f4te d\u2019Ivoire\"\n            },\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"periodicity\": {\n                \"code\": \"annual\",\n                \"label\": \"Annuel\"\n            },\n            \"seats\": 100,\n            \"is_activated\": true,\n            \"is_valid\": true,\n            \"auto_renew\": true,\n            \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n            \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n            \"days_left\": 94,\n            \"period\": {\n                \"start\": \"2026-01-01\",\n                \"end\": \"2026-12-31\",\n                \"days_total\": 364,\n                \"days_left\": 94,\n                \"consumed_percent\": 74\n            },\n            \"usage\": {\n                \"agencies\": {\n                    \"used\": 4,\n                    \"limit\": 6\n                },\n                \"users\": {\n                    \"used\": 58,\n                    \"limit\": 100\n                }\n            },\n            \"status\": {\n                \"code\": \"active\",\n                \"label\": \"Active\"\n            },\n            \"payment_status\": {\n                \"code\": \"paid\",\n                \"label\": \"Pay\u00e9\"\n            },\n            \"suspended_at\": null,\n            \"suspension_reason\": null\n        },\n        \"renewal\": {\n            \"currency\": \"XOF\",\n            \"tax_rate\": 0,\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"plans\": [\n                {\n                    \"code\": \"business\",\n                    \"label\": \"Business\",\n                    \"prices\": {\n                        \"monthly\": 15000,\n                        \"quarterly\": 40000,\n                        \"annual\": 150000\n                    },\n                    \"limits\": {\n                        \"agencies\": 6,\n                        \"users\": 100,\n                        \"storage_gb\": 5\n                    }\n                }\n            ],\n            \"offers\": [\n                {\n                    \"periodicity\": \"monthly\",\n                    \"label\": \"Mensuel\",\n                    \"months\": 1,\n                    \"days\": 30,\n                    \"amount\": 15000,\n                    \"taxes\": 0,\n                    \"total\": 15000,\n                    \"savings_percent\": 0,\n                    \"free_months\": 0,\n                    \"recommended\": false,\n                    \"current\": false\n                },\n                {\n                    \"periodicity\": \"quarterly\",\n                    \"label\": \"Trimestriel\",\n                    \"months\": 3,\n                    \"days\": 90,\n                    \"amount\": 40000,\n                    \"taxes\": 0,\n                    \"total\": 40000,\n                    \"savings_percent\": 11,\n                    \"free_months\": 0,\n                    \"recommended\": false,\n                    \"current\": false\n                },\n                {\n                    \"periodicity\": \"annual\",\n                    \"label\": \"Annuel\",\n                    \"months\": 12,\n                    \"days\": 365,\n                    \"amount\": 150000,\n                    \"taxes\": 0,\n                    \"total\": 150000,\n                    \"savings_percent\": 17,\n                    \"free_months\": 2,\n                    \"recommended\": true,\n                    \"current\": true\n                }\n            ],\n            \"payment_methods\": [\n                {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\"\n                },\n                {\n                    \"code\": \"card\",\n                    \"label\": \"Carte\"\n                },\n                {\n                    \"code\": \"flooz\",\n                    \"label\": \"Flooz\"\n                },\n                {\n                    \"code\": \"tmoney\",\n                    \"label\": \"T-Money\"\n                },\n                {\n                    \"code\": \"mobile_money\",\n                    \"label\": \"Mobile Money\"\n                }\n            ],\n            \"defaults\": {\n                \"periodicity\": \"annual\",\n                \"payment_method\": \"cash\",\n                \"reference\": \"TRX-2026-09-2841\",\n                \"effective_at\": \"2027-01-01\",\n                \"auto_renew\": true\n            },\n            \"proof\": {\n                \"accepted\": [\n                    \"pdf\",\n                    \"jpg\",\n                    \"jpeg\",\n                    \"png\"\n                ],\n                \"max_size_mb\": 10\n            }\n        },\n        \"coverage\": {\n            \"agencies_count\": 4,\n            \"active_users\": 58,\n            \"agencies\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cocody\",\n                    \"users_count\": 24,\n                    \"covered\": true\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Plateau\",\n                    \"users_count\": 14,\n                    \"covered\": true\n                }\n            ]\n        },\n        \"limits\": {\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"items\": [\n                {\n                    \"key\": \"agencies\",\n                    \"label\": \"Agences\",\n                    \"used\": 4,\n                    \"limit\": 6,\n                    \"unit\": null,\n                    \"percent\": 67\n                },\n                {\n                    \"key\": \"users\",\n                    \"label\": \"Utilisateurs\",\n                    \"used\": 58,\n                    \"limit\": 100,\n                    \"unit\": null,\n                    \"percent\": 58\n                },\n                {\n                    \"key\": \"storage\",\n                    \"label\": \"Stockage\",\n                    \"used\": 2.8,\n                    \"limit\": 5,\n                    \"unit\": \"Go\",\n                    \"percent\": 56\n                }\n            ],\n            \"features\": [\n                \"Multi-agences\",\n                \"Rapports avanc\u00e9s\",\n                \"Offline 7 jours\",\n                \"API\",\n                \"Support prioritaire\"\n            ]\n        },\n        \"payments\": [\n            {\n                \"id\": 184,\n                \"date\": \"2026-09-28T10:42:00+00:00\",\n                \"period\": {\n                    \"periodicity\": {\n                        \"code\": \"annual\",\n                        \"label\": \"Annuel\"\n                    },\n                    \"label\": \"Annuel \u00b7 2027\",\n                    \"start\": \"2027-01-01\",\n                    \"end\": \"2028-01-01\"\n                },\n                \"plan\": {\n                    \"code\": \"business\",\n                    \"label\": \"Business\"\n                },\n                \"amount\": 150000,\n                \"taxes\": 0,\n                \"total\": 150000,\n                \"currency\": \"XOF\",\n                \"payment_method\": {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\"\n                },\n                \"reference\": \"TRX-2026-09-2841\",\n                \"invoice_number\": \"FAC-2026-184\",\n                \"status\": {\n                    \"code\": \"pending\",\n                    \"label\": \"En attente\"\n                },\n                \"has_proof\": true,\n                \"paid_at\": null,\n                \"invoice_url\": \"https:\/\/api.example.com\/api\/v1\/superadmin\/licenses\/184\/payments\/184\/invoice\"\n            }\n        ],\n        \"audit\": {\n            \"status\": {\n                \"code\": \"compliant\",\n                \"label\": \"Conforme\"\n            },\n            \"last_action\": {\n                \"action\": \"license.renewed\",\n                \"label\": \"Pr\u00e9paration du renouvellement\",\n                \"actor\": \"A\u00efcha N.\",\n                \"at\": \"2026-09-28T10:42:00+00:00\"\n            },\n            \"checks\": [\n                {\n                    \"code\": \"reference\",\n                    \"label\": \"R\u00e9f\u00e9rence TRX-2026-09-2841 enregistr\u00e9e\",\n                    \"ok\": true\n                },\n                {\n                    \"code\": \"proof\",\n                    \"label\": \"Justificatif en attente de validation\",\n                    \"ok\": true\n                }\n            ]\n        },\n        \"actions\": {\n            \"can_renew\": true,\n            \"can_change_plan\": true,\n            \"can_suspend\": true,\n            \"can_reactivate\": false,\n            \"invoice_payment_id\": 184\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Modification \/ changement de plan.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -7144,7 +7331,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"seats\":22,\"status\":true,\"expires_at\":\"2026-10-21T10:17:57\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-21T16:19:27\"}"
                         },
                         "description": ""
                     },
@@ -7152,7 +7339,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"pressing_id\": 1,\n        \"plan\": \"pro\",\n        \"seats\": 10,\n        \"code\": \"DEMO-LICENSE\",\n        \"is_activated\": true,\n        \"expires_at\": \"2027-10-15T00:00:00+00:00\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 184,\n        \"reference\": \"LIC-CI-00184\",\n        \"code\": \"K3J9QF2LZ8XA\",\n        \"pressing_id\": 1,\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"SPARK PRESSING CI\",\n            \"initials\": \"SP\",\n            \"country_code\": \"CI\",\n            \"country\": \"C\u00f4te d\u2019Ivoire\"\n        },\n        \"plan\": {\n            \"code\": \"business\",\n            \"label\": \"Business\"\n        },\n        \"periodicity\": {\n            \"code\": \"annual\",\n            \"label\": \"Annuel\"\n        },\n        \"seats\": 100,\n        \"is_activated\": true,\n        \"is_valid\": true,\n        \"auto_renew\": true,\n        \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n        \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n        \"days_left\": 94,\n        \"period\": {\n            \"start\": \"2026-01-01\",\n            \"end\": \"2026-12-31\",\n            \"days_total\": 364,\n            \"days_left\": 94,\n            \"consumed_percent\": 74\n        },\n        \"usage\": {\n            \"agencies\": {\n                \"used\": 4,\n                \"limit\": 6\n            },\n            \"users\": {\n                \"used\": 58,\n                \"limit\": 100\n            }\n        },\n        \"status\": {\n            \"code\": \"active\",\n            \"label\": \"Active\"\n        },\n        \"payment_status\": {\n            \"code\": \"paid\",\n            \"label\": \"Pay\u00e9\"\n        },\n        \"suspended_at\": null,\n        \"suspension_reason\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -7181,7 +7368,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -7210,8 +7397,8 @@
                     "response": [
                         {
                             "header": [],
-                            "code": 201,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"pressing_id\": 1,\n        \"plan\": \"pro\",\n        \"seats\": 10,\n        \"code\": \"DEMO-LICENSE\",\n        \"is_activated\": true,\n        \"expires_at\": \"2027-10-15T00:00:00+00:00\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 184,\n        \"reference\": \"LIC-CI-00184\",\n        \"code\": \"K3J9QF2LZ8XA\",\n        \"pressing_id\": 1,\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"SPARK PRESSING CI\",\n            \"initials\": \"SP\",\n            \"country_code\": \"CI\",\n            \"country\": \"C\u00f4te d\u2019Ivoire\"\n        },\n        \"plan\": {\n            \"code\": \"business\",\n            \"label\": \"Business\"\n        },\n        \"periodicity\": {\n            \"code\": \"annual\",\n            \"label\": \"Annuel\"\n        },\n        \"seats\": 100,\n        \"is_activated\": true,\n        \"is_valid\": true,\n        \"auto_renew\": true,\n        \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n        \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n        \"days_left\": 94,\n        \"period\": {\n            \"start\": \"2026-01-01\",\n            \"end\": \"2026-12-31\",\n            \"days_total\": 364,\n            \"days_left\": 94,\n            \"consumed_percent\": 74\n        },\n        \"usage\": {\n            \"agencies\": {\n                \"used\": 4,\n                \"limit\": 6\n            },\n            \"users\": {\n                \"used\": 58,\n                \"limit\": 100\n            }\n        },\n        \"status\": {\n            \"code\": \"active\",\n            \"label\": \"Active\"\n        },\n        \"payment_status\": {\n            \"code\": \"paid\",\n            \"label\": \"Pay\u00e9\"\n        },\n        \"suspended_at\": null,\n        \"suspension_reason\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -7229,6 +7416,397 @@
                     ]
                 },
                 {
+                    "name": "\u00ab Valider et renouveler \u00bb \u2014 multipart si justificatif joint.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:license_id\/renew",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:license_id\/renew",
+                            "variable": [
+                                {
+                                    "id": "license_id",
+                                    "key": "license_id",
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "periodicity",
+                                    "value": "architecto",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "payment_method",
+                                    "value": "architecto",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "reference",
+                                    "value": "n",
+                                    "type": "text",
+                                    "description": "validation.max."
+                                },
+                                {
+                                    "key": "effective_at",
+                                    "value": "2026-10-21T16:19:27",
+                                    "type": "text",
+                                    "description": "validation.date."
+                                },
+                                {
+                                    "key": "auto_renew",
+                                    "value": "1",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "mark_paid",
+                                    "value": "",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "proof",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"license\": {\n            \"id\": 184,\n            \"reference\": \"LIC-CI-00184\",\n            \"code\": \"K3J9QF2LZ8XA\",\n            \"pressing_id\": 1,\n            \"pressing\": {\n                \"id\": 1,\n                \"name\": \"SPARK PRESSING CI\",\n                \"initials\": \"SP\",\n                \"country_code\": \"CI\",\n                \"country\": \"C\u00f4te d\u2019Ivoire\"\n            },\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"periodicity\": {\n                \"code\": \"annual\",\n                \"label\": \"Annuel\"\n            },\n            \"seats\": 100,\n            \"is_activated\": true,\n            \"is_valid\": true,\n            \"auto_renew\": true,\n            \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n            \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n            \"days_left\": 94,\n            \"period\": {\n                \"start\": \"2026-01-01\",\n                \"end\": \"2026-12-31\",\n                \"days_total\": 364,\n                \"days_left\": 94,\n                \"consumed_percent\": 74\n            },\n            \"usage\": {\n                \"agencies\": {\n                    \"used\": 4,\n                    \"limit\": 6\n                },\n                \"users\": {\n                    \"used\": 58,\n                    \"limit\": 100\n                }\n            },\n            \"status\": {\n                \"code\": \"active\",\n                \"label\": \"Active\"\n            },\n            \"payment_status\": {\n                \"code\": \"paid\",\n                \"label\": \"Pay\u00e9\"\n            },\n            \"suspended_at\": null,\n            \"suspension_reason\": null\n        },\n        \"renewal\": {\n            \"currency\": \"XOF\",\n            \"tax_rate\": 0,\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"plans\": [\n                {\n                    \"code\": \"business\",\n                    \"label\": \"Business\",\n                    \"prices\": {\n                        \"monthly\": 15000,\n                        \"quarterly\": 40000,\n                        \"annual\": 150000\n                    },\n                    \"limits\": {\n                        \"agencies\": 6,\n                        \"users\": 100,\n                        \"storage_gb\": 5\n                    }\n                }\n            ],\n            \"offers\": [\n                {\n                    \"periodicity\": \"monthly\",\n                    \"label\": \"Mensuel\",\n                    \"months\": 1,\n                    \"days\": 30,\n                    \"amount\": 15000,\n                    \"taxes\": 0,\n                    \"total\": 15000,\n                    \"savings_percent\": 0,\n                    \"free_months\": 0,\n                    \"recommended\": false,\n                    \"current\": false\n                },\n                {\n                    \"periodicity\": \"quarterly\",\n                    \"label\": \"Trimestriel\",\n                    \"months\": 3,\n                    \"days\": 90,\n                    \"amount\": 40000,\n                    \"taxes\": 0,\n                    \"total\": 40000,\n                    \"savings_percent\": 11,\n                    \"free_months\": 0,\n                    \"recommended\": false,\n                    \"current\": false\n                },\n                {\n                    \"periodicity\": \"annual\",\n                    \"label\": \"Annuel\",\n                    \"months\": 12,\n                    \"days\": 365,\n                    \"amount\": 150000,\n                    \"taxes\": 0,\n                    \"total\": 150000,\n                    \"savings_percent\": 17,\n                    \"free_months\": 2,\n                    \"recommended\": true,\n                    \"current\": true\n                }\n            ],\n            \"payment_methods\": [\n                {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\"\n                },\n                {\n                    \"code\": \"card\",\n                    \"label\": \"Carte\"\n                },\n                {\n                    \"code\": \"flooz\",\n                    \"label\": \"Flooz\"\n                },\n                {\n                    \"code\": \"tmoney\",\n                    \"label\": \"T-Money\"\n                },\n                {\n                    \"code\": \"mobile_money\",\n                    \"label\": \"Mobile Money\"\n                }\n            ],\n            \"defaults\": {\n                \"periodicity\": \"annual\",\n                \"payment_method\": \"cash\",\n                \"reference\": \"TRX-2026-09-2841\",\n                \"effective_at\": \"2027-01-01\",\n                \"auto_renew\": true\n            },\n            \"proof\": {\n                \"accepted\": [\n                    \"pdf\",\n                    \"jpg\",\n                    \"jpeg\",\n                    \"png\"\n                ],\n                \"max_size_mb\": 10\n            }\n        },\n        \"coverage\": {\n            \"agencies_count\": 4,\n            \"active_users\": 58,\n            \"agencies\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Cocody\",\n                    \"users_count\": 24,\n                    \"covered\": true\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Plateau\",\n                    \"users_count\": 14,\n                    \"covered\": true\n                }\n            ]\n        },\n        \"limits\": {\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"items\": [\n                {\n                    \"key\": \"agencies\",\n                    \"label\": \"Agences\",\n                    \"used\": 4,\n                    \"limit\": 6,\n                    \"unit\": null,\n                    \"percent\": 67\n                },\n                {\n                    \"key\": \"users\",\n                    \"label\": \"Utilisateurs\",\n                    \"used\": 58,\n                    \"limit\": 100,\n                    \"unit\": null,\n                    \"percent\": 58\n                },\n                {\n                    \"key\": \"storage\",\n                    \"label\": \"Stockage\",\n                    \"used\": 2.8,\n                    \"limit\": 5,\n                    \"unit\": \"Go\",\n                    \"percent\": 56\n                }\n            ],\n            \"features\": [\n                \"Multi-agences\",\n                \"Rapports avanc\u00e9s\",\n                \"Offline 7 jours\",\n                \"API\",\n                \"Support prioritaire\"\n            ]\n        },\n        \"payments\": [\n            {\n                \"id\": 184,\n                \"date\": \"2026-09-28T10:42:00+00:00\",\n                \"period\": {\n                    \"periodicity\": {\n                        \"code\": \"annual\",\n                        \"label\": \"Annuel\"\n                    },\n                    \"label\": \"Annuel \u00b7 2027\",\n                    \"start\": \"2027-01-01\",\n                    \"end\": \"2028-01-01\"\n                },\n                \"plan\": {\n                    \"code\": \"business\",\n                    \"label\": \"Business\"\n                },\n                \"amount\": 150000,\n                \"taxes\": 0,\n                \"total\": 150000,\n                \"currency\": \"XOF\",\n                \"payment_method\": {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\"\n                },\n                \"reference\": \"TRX-2026-09-2841\",\n                \"invoice_number\": \"FAC-2026-184\",\n                \"status\": {\n                    \"code\": \"pending\",\n                    \"label\": \"En attente\"\n                },\n                \"has_proof\": true,\n                \"paid_at\": null,\n                \"invoice_url\": \"https:\/\/api.example.com\/api\/v1\/superadmin\/licenses\/184\/payments\/184\/invoice\"\n            }\n        ],\n        \"audit\": {\n            \"status\": {\n                \"code\": \"compliant\",\n                \"label\": \"Conforme\"\n            },\n            \"last_action\": {\n                \"action\": \"license.renewed\",\n                \"label\": \"Pr\u00e9paration du renouvellement\",\n                \"actor\": \"A\u00efcha N.\",\n                \"at\": \"2026-09-28T10:42:00+00:00\"\n            },\n            \"checks\": [\n                {\n                    \"code\": \"reference\",\n                    \"label\": \"R\u00e9f\u00e9rence TRX-2026-09-2841 enregistr\u00e9e\",\n                    \"ok\": true\n                },\n                {\n                    \"code\": \"proof\",\n                    \"label\": \"Justificatif en attente de validation\",\n                    \"ok\": true\n                }\n            ]\n        },\n        \"actions\": {\n            \"can_renew\": true,\n            \"can_change_plan\": true,\n            \"can_suspend\": true,\n            \"can_reactivate\": false,\n            \"invoice_payment_id\": 184\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/superadmin\/licenses\/{license_id}\/suspend",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:license_id\/suspend",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:license_id\/suspend",
+                            "variable": [
+                                {
+                                    "id": "license_id",
+                                    "key": "license_id",
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"reason\":\"b\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 184,\n        \"reference\": \"LIC-CI-00184\",\n        \"code\": \"K3J9QF2LZ8XA\",\n        \"pressing_id\": 1,\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"SPARK PRESSING CI\",\n            \"initials\": \"SP\",\n            \"country_code\": \"CI\",\n            \"country\": \"C\u00f4te d\u2019Ivoire\"\n        },\n        \"plan\": {\n            \"code\": \"business\",\n            \"label\": \"Business\"\n        },\n        \"periodicity\": {\n            \"code\": \"annual\",\n            \"label\": \"Annuel\"\n        },\n        \"seats\": 100,\n        \"is_activated\": true,\n        \"is_valid\": true,\n        \"auto_renew\": true,\n        \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n        \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n        \"days_left\": 94,\n        \"period\": {\n            \"start\": \"2026-01-01\",\n            \"end\": \"2026-12-31\",\n            \"days_total\": 364,\n            \"days_left\": 94,\n            \"consumed_percent\": 74\n        },\n        \"usage\": {\n            \"agencies\": {\n                \"used\": 4,\n                \"limit\": 6\n            },\n            \"users\": {\n                \"used\": 58,\n                \"limit\": 100\n            }\n        },\n        \"status\": {\n            \"code\": \"suspended\",\n            \"label\": \"Suspendue\"\n        },\n        \"payment_status\": {\n            \"code\": \"paid\",\n            \"label\": \"Pay\u00e9\"\n        },\n        \"suspended_at\": \"2026-10-21T10:34:00+00:00\",\n        \"suspension_reason\": \"Impay\u00e9\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/superadmin\/licenses\/{license_id}\/reactivate",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:license_id\/reactivate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:license_id\/reactivate",
+                            "variable": [
+                                {
+                                    "id": "license_id",
+                                    "key": "license_id",
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 184,\n        \"reference\": \"LIC-CI-00184\",\n        \"code\": \"K3J9QF2LZ8XA\",\n        \"pressing_id\": 1,\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"SPARK PRESSING CI\",\n            \"initials\": \"SP\",\n            \"country_code\": \"CI\",\n            \"country\": \"C\u00f4te d\u2019Ivoire\"\n        },\n        \"plan\": {\n            \"code\": \"business\",\n            \"label\": \"Business\"\n        },\n        \"periodicity\": {\n            \"code\": \"annual\",\n            \"label\": \"Annuel\"\n        },\n        \"seats\": 100,\n        \"is_activated\": true,\n        \"is_valid\": true,\n        \"auto_renew\": true,\n        \"activated_at\": \"2026-01-01T00:00:00+00:00\",\n        \"expires_at\": \"2026-12-31T00:00:00+00:00\",\n        \"days_left\": 94,\n        \"period\": {\n            \"start\": \"2026-01-01\",\n            \"end\": \"2026-12-31\",\n            \"days_total\": 364,\n            \"days_left\": 94,\n            \"consumed_percent\": 74\n        },\n        \"usage\": {\n            \"agencies\": {\n                \"used\": 4,\n                \"limit\": 6\n            },\n            \"users\": {\n                \"used\": 58,\n                \"limit\": 100\n            }\n        },\n        \"status\": {\n            \"code\": \"active\",\n            \"label\": \"Active\"\n        },\n        \"payment_status\": {\n            \"code\": \"paid\",\n            \"label\": \"Pay\u00e9\"\n        },\n        \"suspended_at\": null,\n        \"suspension_reason\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Historique des renouvellements et paiements (`format=csv` pour \u00ab Exporter \u00bb).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:license_id\/payments",
+                            "query": [
+                                {
+                                    "key": "format",
+                                    "value": "architecto",
+                                    "description": "json (d\u00e9faut) ou csv.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:license_id\/payments?format=architecto",
+                            "variable": [
+                                {
+                                    "id": "license_id",
+                                    "key": "license_id",
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 184,\n            \"date\": \"2026-09-28T10:42:00+00:00\",\n            \"period\": {\n                \"periodicity\": {\n                    \"code\": \"annual\",\n                    \"label\": \"Annuel\"\n                },\n                \"label\": \"Annuel \u00b7 2027\",\n                \"start\": \"2027-01-01\",\n                \"end\": \"2028-01-01\"\n            },\n            \"plan\": {\n                \"code\": \"business\",\n                \"label\": \"Business\"\n            },\n            \"amount\": 150000,\n            \"taxes\": 0,\n            \"total\": 150000,\n            \"currency\": \"XOF\",\n            \"payment_method\": {\n                \"code\": \"cash\",\n                \"label\": \"Esp\u00e8ces\"\n            },\n            \"reference\": \"TRX-2026-09-2841\",\n            \"invoice_number\": \"FAC-2026-184\",\n            \"status\": {\n                \"code\": \"pending\",\n                \"label\": \"En attente\"\n            },\n            \"has_proof\": true,\n            \"paid_at\": null,\n            \"invoice_url\": \"https:\/\/api.example.com\/api\/v1\/superadmin\/licenses\/184\/payments\/184\/invoice\"\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 20,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/superadmin\/licenses\/{license_id}\/payments\/{payment_id}\/validate",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:license_id\/payments\/:payment_id\/validate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:license_id\/payments\/:payment_id\/validate",
+                            "variable": [
+                                {
+                                    "id": "license_id",
+                                    "key": "license_id",
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                },
+                                {
+                                    "id": "payment_id",
+                                    "key": "payment_id",
+                                    "value": 16,
+                                    "description": "The ID of the payment."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 184,\n        \"date\": \"2026-09-28T10:42:00+00:00\",\n        \"period\": {\n            \"periodicity\": {\n                \"code\": \"annual\",\n                \"label\": \"Annuel\"\n            },\n            \"label\": \"Annuel \u00b7 2027\",\n            \"start\": \"2027-01-01\",\n            \"end\": \"2028-01-01\"\n        },\n        \"plan\": {\n            \"code\": \"business\",\n            \"label\": \"Business\"\n        },\n        \"amount\": 150000,\n        \"taxes\": 0,\n        \"total\": 150000,\n        \"currency\": \"XOF\",\n        \"payment_method\": {\n            \"code\": \"cash\",\n            \"label\": \"Esp\u00e8ces\"\n        },\n        \"reference\": \"TRX-2026-09-2841\",\n        \"invoice_number\": \"FAC-2026-184\",\n        \"status\": {\n            \"code\": \"paid\",\n            \"label\": \"Pay\u00e9\"\n        },\n        \"has_proof\": true,\n        \"paid_at\": \"2026-09-28T11:00:00+00:00\",\n        \"invoice_url\": \"https:\/\/api.example.com\/api\/v1\/superadmin\/licenses\/184\/payments\/184\/invoice\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Facture PDF d\u2019un paiement (\u00ab T\u00e9l\u00e9charger facture \u00bb).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/licenses\/:license_id\/payments\/:payment_id\/invoice",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/licenses\/:license_id\/payments\/:payment_id\/invoice",
+                            "variable": [
+                                {
+                                    "id": "license_id",
+                                    "key": "license_id",
+                                    "value": 1,
+                                    "description": "The ID of the license."
+                                },
+                                {
+                                    "id": "payment_id",
+                                    "key": "payment_id",
+                                    "value": 16,
+                                    "description": "The ID of the payment."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"content_type\":\"application\\\/pdf\",\"note\":\"R\u00e9ponse binaire\"},\"meta\":{},\"errors\":null}",
+                            "name": "Fichier (application\/pdf)"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
                     "name": "DELETE api\/v1\/superadmin\/licenses\/{id}",
                     "request": {
                         "url": {
@@ -7240,7 +7818,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 16,
+                                    "value": 1,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -7790,7 +8368,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-21T10:17:59\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-21T16:19:28\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },
