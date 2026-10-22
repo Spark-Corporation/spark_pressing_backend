@@ -22,11 +22,14 @@ use App\Models\Promo;
 use App\Models\PromoSpecial;
 use App\Models\Render;
 use App\Models\Service;
+use App\Models\SyncBatch;
 use App\Support\Deposits\DepositPresenter;
+use App\Support\Sync\SyncPresenter;
 use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Knuckles\Scribe\Attributes\Group;
 
 #[Group('POS')]
@@ -150,62 +153,106 @@ class PosController extends Controller
         ];
     }
 
-    public function syncStatus(): JsonResponse
+    public function syncStatus(Request $request, SyncPresenter $presenter): JsonResponse
     {
-        return $this->ok($this->syncStatusPayload());
+        $tenant = app(TenantContext::class);
+
+        return $this->ok($presenter->status(
+            (int) $request->user()->pressing_id,
+            $tenant->agencyId,
+            $request->query('device_code'),
+        ));
     }
 
     /** @return array<string, mixed> */
     private function syncStatusPayload(): array
     {
-        return [
-            'online' => true,
-            'last_sync_at' => now()->toIso8601String(),
-            'pending_ops' => 0,
-            'pending' => [],
-        ];
+        return app(SyncPresenter::class)->status(
+            (int) (auth()->user()?->pressing_id ?? 0),
+            app(TenantContext::class)->agencyId,
+        );
     }
 
-    public function sync(Request $request, CreateDeposit $create, AddPayment $pay): JsonResponse
+    public function sync(Request $request, CreateDeposit $create, AddPayment $pay, SyncPresenter $presenter): JsonResponse
     {
         $payload = $request->validate([
             'operations' => ['required', 'array', 'min:1'],
             'operations.*.type' => ['required', 'in:deposit,payment'],
             'operations.*.payload' => ['required', 'array'],
             'operations.*.client_uuid' => ['required', 'uuid'],
+            'device_code' => ['nullable', 'string', 'max:40'],
+            'reference' => ['nullable', 'string', 'max:40'],
         ]);
 
         $results = [];
+        $succeeded = 0;
+        $failed = 0;
+        $conflicts = 0;
 
-        DB::transaction(function () use ($payload, $request, $create, $pay, &$results) {
-            foreach ($payload['operations'] as $operation) {
-                $opPayload = $operation['payload'] + ['client_uuid' => $operation['client_uuid']];
+        foreach ($payload['operations'] as $operation) {
+            try {
+                $results[] = DB::transaction(function () use ($operation, $request, $create, $pay) {
+                    $opPayload = $operation['payload'] + ['client_uuid' => $operation['client_uuid']];
 
-                if ($operation['type'] === 'deposit') {
-                    $deposit = $create->handle($request->user(), $opPayload);
-                    $results[] = [
-                        'type' => 'deposit',
+                    if ($operation['type'] === 'deposit') {
+                        $deposit = $create->handle($request->user(), $opPayload);
+
+                        return [
+                            'type' => 'deposit',
+                            'client_uuid' => $operation['client_uuid'],
+                            'id' => $deposit->id,
+                            'code' => $deposit->code,
+                            'status' => 'succeeded',
+                            'replayed' => false,
+                        ];
+                    }
+
+                    $deposit = Deposit::query()->findOrFail($opPayload['deposit_id'] ?? null);
+                    $deposit = $pay->handle($request->user(), $deposit, $opPayload);
+
+                    return [
+                        'type' => 'payment',
                         'client_uuid' => $operation['client_uuid'],
                         'id' => $deposit->id,
-                        'code' => $deposit->code,
+                        'status' => 'succeeded',
                         'replayed' => false,
                     ];
-
-                    continue;
-                }
-
-                $depositId = $opPayload['deposit_id'] ?? null;
-                $deposit = \App\Models\Deposit::query()->findOrFail($depositId);
-                $deposit = $pay->handle($request->user(), $deposit, $opPayload);
+                });
+                $succeeded++;
+            } catch (\Throwable $e) {
+                $failed++;
                 $results[] = [
-                    'type' => 'payment',
+                    'type' => $operation['type'],
                     'client_uuid' => $operation['client_uuid'],
-                    'id' => $deposit->id,
-                    'replayed' => false,
+                    'status' => 'failed',
+                    'error' => $e->getMessage(),
                 ];
             }
-        });
+        }
 
-        return $this->ok(['operations' => $results]);
+        $status = match (true) {
+            $failed === 0 => 'completed',
+            $succeeded === 0 => 'failed',
+            default => 'partial',
+        };
+        $tenant = app(TenantContext::class);
+        $batch = SyncBatch::query()->create([
+            'pressing_id' => $request->user()->pressing_id,
+            'agency_id' => $tenant->agencyId,
+            'user_id' => $request->user()->id,
+            'reference' => $payload['reference'] ?? ('SYNC-'.now()->format('ymdHis').'-'.Str::upper(Str::random(4))),
+            'device_code' => $payload['device_code'] ?? null,
+            'operations' => count($payload['operations']),
+            'succeeded' => $succeeded,
+            'conflicts' => $conflicts,
+            'failed' => $failed,
+            'status' => $status,
+            'results' => $results,
+        ]);
+
+        return $this->ok([
+            'batch' => $presenter->batch($batch->load(['agency:id,name', 'user:id,fullname'])),
+            'operations' => $results,
+        ]);
     }
 }

@@ -625,10 +625,17 @@ class AuthController extends Controller
 
         $sessionHours = $type === 'staff' && $pressingId ? (int) $settings->value($pressingId, 'security', 'sessions.max_hours', 12) : 12;
         $expiresAt = $remember ? now()->addDays(30) : now()->addHours($sessionHours);
-        $token = $actor->createToken($type, ['*'], $expiresAt)->plainTextToken;
+        $newToken = $actor->createToken($type, ['*'], $expiresAt);
+        $newToken->accessToken->forceFill([
+            'ip_address' => request()?->ip(),
+            'user_agent' => Str::limit((string) request()?->userAgent(), 255, ''),
+        ])->save();
+        if ($actor instanceof User) {
+            $actor->forceFill(['last_login_at' => now()])->save();
+        }
 
         return $this->ok([
-            'token' => $token,
+            'token' => $newToken->plainTextToken,
             'token_type' => 'Bearer',
             'expires_at' => $expiresAt->toIso8601String(),
             'actor' => $type,

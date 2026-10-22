@@ -468,14 +468,60 @@ class DocumentApiEnvelopeResponses extends Strategy
                 'last_sync_at' => '2026-10-20T16:00:00+00:00',
                 'pending_ops' => 0,
                 'pending' => [],
+                'last_batch' => ['id' => 12, 'reference' => 'SYNC-261022-AB12', 'status' => 'completed', 'device_code' => 'CAISSE-01'],
+            ])];
+        }
+
+        if ($path === '/api/v1/sync/center') {
+            return [$this->response(200, [
+                'period' => ['days' => 30],
+                'kpis' => [
+                    'availability' => ['percent' => 99.2, 'batches' => 48],
+                    'online_agencies' => ['value' => 3, 'total' => 4],
+                    'pending_operations' => ['value' => 2],
+                    'failed_batches' => ['value' => 1],
+                ],
+                'agencies' => [['agency_id' => 1, 'name' => 'Akwa', 'online' => true, 'status_label' => 'En ligne · synchronisée']],
+                'batches' => [['id' => 12, 'reference' => 'SYNC-261022-AB12', 'status' => 'completed', 'operations' => 3, 'succeeded' => 3]],
+                'devices' => [],
+                'alerts' => [],
             ])];
         }
 
         if ($path === '/api/v1/sync') {
             return [$this->response(200, [
+                'batch' => ['id' => 12, 'reference' => 'SYNC-261022-AB12', 'status' => 'completed', 'operations' => 1, 'succeeded' => 1, 'failed' => 0],
                 'operations' => [
-                    ['type' => 'deposit', 'client_uuid' => '550e8400-e29b-41d4-a716-446655440000', 'id' => 1, 'code' => 'AK-0001', 'replayed' => false],
+                    ['type' => 'deposit', 'client_uuid' => '550e8400-e29b-41d4-a716-446655440000', 'id' => 1, 'code' => 'AK-0001', 'status' => 'succeeded', 'replayed' => false],
                 ],
+            ])];
+        }
+
+        if ($path === '/api/v1/team/overview') {
+            return [$this->response(200, [
+                'kpis' => [
+                    'active_users' => ['value' => 12, 'new_this_month' => 2],
+                    'managers' => ['value' => 3, 'multi_agency' => 1],
+                    'invitations' => ['value' => 1, 'expiring_soon' => 0],
+                    'connections_today' => ['value' => 8, 'team_percent' => 67],
+                ],
+                'mfa' => ['enrolled' => 5, 'percent' => 42, 'required' => 3],
+                'tabs' => [['code' => 'users', 'label' => 'Utilisateurs', 'count' => 12]],
+                'filters' => ['agencies' => [], 'roles' => [], 'statuses' => []],
+                'recent_activity' => [],
+            ])];
+        }
+
+        if ($path === '/api/v1/superadmin/overview') {
+            return [$this->response(200, [
+                'kpis' => [
+                    'pressings' => ['value' => 18, 'total' => 20],
+                    'agencies' => ['value' => 54],
+                    'users' => ['value' => 320],
+                    'licenses' => ['active' => 16, 'expiring' => 3, 'suspended' => 1],
+                ],
+                'attention' => ['licenses_expiring' => [], 'inactive_pressings' => []],
+                'shortcuts' => [['code' => 'licenses', 'label' => 'Licences', 'endpoint' => '/api/v1/superadmin/licenses']],
             ])];
         }
 
@@ -1198,7 +1244,7 @@ class DocumentApiEnvelopeResponses extends Strategy
         }
 
         // —— Organisation / settings / roles ——
-        if (str_starts_with($path, '/api/v1/org/') || str_starts_with($path, '/api/v1/settings') || str_starts_with($path, '/api/v1/roles') || str_starts_with($path, '/api/v1/permissions')) {
+        if (str_starts_with($path, '/api/v1/org/') || str_starts_with($path, '/api/v1/settings') || str_starts_with($path, '/api/v1/roles') || str_starts_with($path, '/api/v1/permissions') || str_starts_with($path, '/api/v1/team')) {
             if (str_contains($path, 'exchange-rates')) {
                 $rate = [
                     'id' => 1,
@@ -1258,14 +1304,27 @@ class DocumentApiEnvelopeResponses extends Strategy
                 return [$this->response(200, ['deposits.view', 'deposits.create', 'cash.manage', 'reports.view'])];
             }
             if (str_contains($path, 'roles')) {
-                if ($method === 'GET') {
+                if ($method === 'GET' && str_ends_with($path, '/catalog')) {
                     return [$this->response(200, [
-                        ['id' => 1, 'name' => 'caissier', 'permissions' => ['deposits.view', 'cash.manage']],
-                        ['id' => 2, 'name' => 'manager', 'permissions' => ['reports.view', 'settings.manage']],
+                        'columns' => ['view' => 'Consultation', 'create' => 'Création'],
+                        'catalog' => [['domain' => 'clients', 'label' => 'Clients', 'actions' => []]],
+                        'summary' => ['permissions' => 0, 'total' => 40, 'domains' => 0, 'sensitive' => []],
+                    ])];
+                }
+                if ($method === 'GET' && ! str_contains($path, '{')) {
+                    return [$this->response(200, [
+                        'columns' => [['code' => 'view', 'label' => 'Consultation']],
+                        'domains' => [['code' => 'clients', 'label' => 'Clients']],
+                        'roles' => [[
+                            'id' => 1, 'name' => 'admin', 'label' => 'Admin', 'system' => true,
+                            'cells' => ['clients' => 'all'], 'summary' => ['permissions' => 40, 'domains' => 10],
+                        ]],
                     ])];
                 }
 
-                return [$this->response(200, ['id' => 1, 'name' => 'caissier', 'permissions' => ['deposits.view']])];
+                return [$this->response($method === 'POST' ? 201 : 200, [
+                    'id' => 10, 'name' => 'custom_1_superviseur', 'label' => 'Superviseur', 'system' => false, 'permissions' => ['cash.view'],
+                ])];
             }
         }
 

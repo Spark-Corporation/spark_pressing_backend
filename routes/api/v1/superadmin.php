@@ -5,9 +5,11 @@ use App\Http\Controllers\Api\V1\Tenancy\LicenseController;
 use App\Http\Controllers\Api\V1\Tenancy\PressingController;
 use App\Http\Controllers\Api\V1\Tenancy\RoleController;
 use App\Http\Controllers\Api\V1\Tenancy\StaffUserController;
+use App\Http\Controllers\Api\V1\Tenancy\SuperadminController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('admin')->prefix('superadmin')->name('superadmin.')->group(function () {
+    Route::get('overview', [SuperadminController::class, 'overview'])->name('overview');
     Route::apiResource('pressings', PressingController::class);
     Route::apiResource('agencies', AgencyController::class);
 

@@ -26,17 +26,37 @@ class User extends Authenticatable
         'pressing_id',
         'agency_id',
         'status',
+        'first_name',
+        'last_name',
+        'job_title',
+        'employee_number',
+        'preferences',
+        'mfa_secret',
+        'mfa_recovery_codes',
+        'mfa_enabled_at',
+        'mfa_required',
+        'password_changed_at',
+        'last_login_at',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'mfa_secret',
+        'mfa_recovery_codes',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'status' => 'boolean',
+        'preferences' => 'array',
+        'mfa_secret' => 'encrypted',
+        'mfa_recovery_codes' => 'encrypted:array',
+        'mfa_enabled_at' => 'datetime',
+        'mfa_required' => 'boolean',
+        'password_changed_at' => 'datetime',
+        'last_login_at' => 'datetime',
     ];
 
     public function pressing(): BelongsTo

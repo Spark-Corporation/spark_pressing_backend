@@ -6,6 +6,7 @@ use App\Actions\Staff\PersistStaffUser;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Support\Superadmin\SuperadminHub;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -14,17 +15,19 @@ use Knuckles\Scribe\Attributes\Group;
 #[Group('Superadmin')]
 class StaffUserController extends Controller
 {
-    public function index(Request $request): JsonResponse
+    /** Utilisateurs multi-pressings (Figma 13B). */
+    public function index(Request $request, SuperadminHub $hub): JsonResponse
     {
         $users = User::query()
-            ->with(['roles:id,name', 'agency:id,name'])
+            ->with(['roles:id,name', 'agency:id,name', 'pressing:id,name'])
             ->when($request->pressing_id, fn ($q, $id) => $q->where('pressing_id', $id))
             ->when($request->agency_id, fn ($q, $id) => $q->where('agency_id', $id))
             ->when($request->filled('role'), fn ($q) => $q->role($request->string('role')->toString()))
+            ->when($request->filled('q'), fn ($q) => $q->where(fn ($w) => $w->where('fullname', 'like', '%'.$request->q.'%')->orWhere('email', 'like', '%'.$request->q.'%')))
             ->latest()
             ->paginate(min(100, (int) $request->get('per_page', 20)));
 
-        return $this->page($users, UserResource::collection($users)->resolve());
+        return $this->page($users, collect($users->items())->map(fn (User $u) => $hub->userRow($u))->all());
     }
 
     public function store(Request $request, PersistStaffUser $persist): JsonResponse

@@ -24,7 +24,8 @@ class PersistStaffUser
         ]);
 
         $user->assignRole($data['role']);
-        $user->agencies()->syncWithoutDetaching([$data['agency_id'] => ['is_home' => true]]);
+        $agencyIds = collect($data['agency_ids'] ?? [$data['agency_id']])->filter()->unique()->values();
+        $user->agencies()->sync($agencyIds->mapWithKeys(fn ($id) => [$id => ['is_home' => (int) $id === (int) $data['agency_id']]])->all());
 
         return $user->load('roles');
     }
@@ -44,7 +45,8 @@ class PersistStaffUser
         }
 
         $role = $data['role'] ?? null;
-        unset($data['role']);
+        $agencyIds = $data['agency_ids'] ?? null;
+        unset($data['role'], $data['agency_ids']);
 
         $user->update($data);
 
@@ -52,7 +54,10 @@ class PersistStaffUser
             $user->syncRoles([$role]);
         }
 
-        if (! empty($data['agency_id'])) {
+        if (is_array($agencyIds)) {
+            $home = $data['agency_id'] ?? $user->agency_id ?? ($agencyIds[0] ?? null);
+            $user->agencies()->sync(collect($agencyIds)->mapWithKeys(fn ($id) => [$id => ['is_home' => (int) $id === (int) $home]])->all());
+        } elseif (! empty($data['agency_id'])) {
             $user->agencies()->syncWithoutDetaching([$data['agency_id'] => ['is_home' => true]]);
         }
 

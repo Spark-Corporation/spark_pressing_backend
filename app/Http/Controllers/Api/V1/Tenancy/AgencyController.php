@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AgencyResource;
 use App\Models\Agency;
 use App\Support\Money\Currency;
+use App\Support\Superadmin\SuperadminHub;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -14,14 +15,16 @@ use Knuckles\Scribe\Attributes\Group;
 #[Group('Superadmin')]
 class AgencyController extends Controller
 {
-    public function index(Request $request): JsonResponse
+    /** Agences multi-pressings (Figma 13B). */
+    public function index(Request $request, SuperadminHub $hub): JsonResponse
     {
         $agencies = Agency::query()
+            ->with('pressing:id,name')
             ->when($request->pressing_id, fn ($q, $id) => $q->where('pressing_id', $id))
             ->latest()
             ->paginate(min(100, (int) $request->get('per_page', 20)));
 
-        return $this->page($agencies, AgencyResource::collection($agencies)->resolve());
+        return $this->page($agencies, collect($agencies->items())->map(fn (Agency $a) => $hub->agencyRow($a))->all());
     }
 
     public function store(Request $request): JsonResponse

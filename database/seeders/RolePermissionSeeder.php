@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Support\Access\PermissionMatrix;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -61,8 +62,16 @@ class RolePermissionSeeder extends Seeder
             ],
         ];
 
+        // Droits fins de la matrice « Rôles et permissions » (Figma 11).
+        $fine = array_keys(PermissionMatrix::actions());
+        foreach ($fine as $name) {
+            Permission::findOrCreate($name, 'web');
+        }
+        $grants = config('permission_matrix.system_grants');
+
         foreach ($matrix as $role => $perms) {
-            Role::findOrCreate($role, 'web')->syncPermissions($perms);
+            $actions = $role === 'admin' ? $fine : PermissionMatrix::resolve($grants[$role] ?? []);
+            Role::findOrCreate($role, 'web')->syncPermissions(array_values(array_unique([...$perms, ...$actions])));
         }
     }
 }

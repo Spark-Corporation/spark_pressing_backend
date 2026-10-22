@@ -102,8 +102,10 @@ Réponse login (shape) :
 | Dashboard | `GET /dashboard` (`kpis`, `series_7d`, `agencies`, `workshop_pipeline`, `cash.by_payment_method`, `unpaid_aging`, `recent_activity`, `sync`) |
 | Boot POS | `GET /pos/bootstrap` (`user`, `agency`, `agencies`, `permissions`, `articles`, `services`, `clients`, `sync`) |
 | Atelier | `GET /deposits/workshop` |
-| Multi-agences | `GET /org/agencies/overview` |
-| Sync | `GET /pos/sync/status` + `POST /sync` |
+| Multi-agences | `GET /network/overview` (+ détail `GET /network/agencies/{id}`) |
+| Équipe & rôles | `GET /team/overview`, `GET /roles` |
+| Sync | `GET /sync/center`, `GET /pos/sync/status` + `POST /sync` |
+| Hub superadmin | `GET /superadmin/overview` |
 
 Détail des bodies : voir `openapi.yaml` (`paths./api/v1/auth/...`).
 
@@ -280,6 +282,42 @@ Effets appliqués : `security.lockout` (échecs / durée) et `security.sessions.
 | « Archiver le client » | `POST /clients/{id}/archive`, `/restore` | historique conservé |
 
 Paliers dans `config/spark.php` (`loyalty_tiers`, `vip_tier`) : Essentiel 0, Argent 1 000, Or 2 500, Platine 4 000 points (valeurs par défaut à confirmer).
+
+### 7.0j Équipe, profils & permissions (Figma 11)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| « Utilisateurs et équipe » | `GET /team/overview` | `kpis`, `mfa`, `tabs`, `filters`, `recent_activity` |
+| Annuaire | `GET /team/users?q&agency_id&role&status&period` | ligne : `initials`, `role_label`, `agencies_label`, `mfa_enabled`, `last_login_label` |
+| Fiche membre | `GET/PUT /team/users/{id}` | profil, `agency_ids`, `mfa_required`, `sessions` |
+| Désactiver / réactiver | `POST /team/users/{id}/disable\|enable` | — |
+| Sessions | `GET /team/users/{id}/sessions`, `DELETE …/sessions/{tokenId}` | ip, user_agent, expires |
+| Invitations (72 h) | `GET/POST /team/invitations`, `POST …/resend\|revoke` | `require_mfa`, `status` |
+| Accepter l’invitation | `GET/POST /invitations/{token}` (+ `/accept`) | public ; `password` confirmé |
+| Activité sensible 24 h | `GET /team/activity?hours` | messages FR |
+| MFA (compte courant) | `POST /team/mfa/setup\|confirm\|disable` | TOTP + codes de secours |
+| Matrice des rôles | `GET /roles` | `columns`, `domains`, `roles[].cells` (`all\|partial\|none`), `summary` |
+| « Créer un rôle » | `GET /roles/catalog`, `POST /roles` | droits fins ; `confirm_sensitive` si droit sensible |
+| Détail / édition rôle custom | `GET/PUT /roles/{id}` | rôles système non éditables |
+
+Permissions fines : `config/permission_matrix.php` (domaines × colonnes). Les permissions techniques des routes sont dérivées via `grants`.
+
+### 7.0k Synchronisation (Figma 12)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Centre de sync | `GET /sync/center?agency_id&days` | `kpis` (disponibilité, agences en ligne, ops en attente), `agencies[]`, `batches[]`, `devices[]`, `alerts[]` |
+| Détail lot | `GET /sync/batches/{id}` | `reference`, compteurs, `status` |
+| Statut POS | `GET /pos/sync/status?device_code` | `online`, `pending_ops`, `last_batch` |
+| Envoi retour en ligne | `POST /sync` (`operations[]`, `device_code?`, `reference?`) | crée un `SyncBatch` ; `data.batch` + `data.operations` |
+
+### 7.0l Hub superadmin (Figma 13–13B)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Hub (13) | `GET /superadmin/overview` | `kpis` (pressings, agences, users, licences), `attention`, `shortcuts` |
+| Pressings (13A) | `GET /superadmin/pressings` | `initials`, compteurs, `license` |
+| Agences / utilisateurs (13B) | `GET /superadmin/agencies`, `GET /superadmin/users?q` | rattachement pressing, statut, MFA |
 
 ### 7.1 Centre des licences superadmin (Figma 13C)
 

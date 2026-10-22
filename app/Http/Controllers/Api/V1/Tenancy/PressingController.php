@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Tenancy;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PressingResource;
 use App\Models\Pressing;
+use App\Support\Superadmin\SuperadminHub;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Knuckles\Scribe\Attributes\Group;
@@ -12,11 +13,12 @@ use Knuckles\Scribe\Attributes\Group;
 #[Group('Superadmin')]
 class PressingController extends Controller
 {
-    public function index(): JsonResponse
+    /** Liste pressings (Figma 13A) enrichie licence / compteurs. */
+    public function index(SuperadminHub $hub): JsonResponse
     {
-        $pressings = Pressing::query()->with('agencies')->latest()->paginate($this->perPage());
+        $pressings = Pressing::query()->withCount(['agencies', 'users'])->latest()->paginate($this->perPage());
 
-        return $this->page($pressings, PressingResource::collection($pressings)->resolve());
+        return $this->page($pressings, collect($pressings->items())->map(fn (Pressing $p) => $hub->pressingRow($p))->all());
     }
 
     public function store(Request $request): JsonResponse
