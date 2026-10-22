@@ -10276,12 +10276,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 notes:
                   type: string
@@ -12009,7 +12009,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
               required:
                 - amount
@@ -28511,7 +28511,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -28746,7 +28746,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
               required:
                 - agency_id
@@ -31697,6 +31697,852 @@ paths:
         required: true
         schema:
           type: string
+  /api/v1/retrieval-rules:
+    get:
+      summary: '« Règles de disponibilité » (`q`, `agency_id`, `service`, `received_at` pour l’exemple de calcul).'
+      operationId: RglesDeDisponibilitqagencyIdservicereceivedAtPourLexempleDeCalcul
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 2
+                      agency_id: 1
+                      agency: Bingerville
+                      service: express
+                      service_label: Express
+                      hours: 8
+                      hours_label: '8 h'
+                      example:
+                        received_at: '2026-10-15T10:00:00+00:00'
+                        ready_at: '2026-10-15T18:00:00+00:00'
+                        label: '15 oct. 10:00 → 15 oct. 18:00'
+                        received_label: 'Réception · jeu. 15 oct. à 10:00'
+                        ready_label: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                        method: elapsed_hours
+                      status: active
+                      status_label: Actif
+                      label: 'Bingerville · Express · 8 heures'
+                  meta:
+                    active_rules: 6
+                    agencies: 4
+                    services:
+                      -
+                        code: classic
+                        label: Classique
+                    reference_received_at: '2026-10-15T10:00:00+00:00'
+                    results_label: '6 résultats'
+                    notice: 'Ces règles calculent l’heure de retrait prévue. Elles ne configurent ni les tournées ni les créneaux de collecte/livraison. Les changements concernent les futurs dépôts.'
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        agency_id: 1
+                        agency: Bingerville
+                        service: express
+                        service_label: Express
+                        hours: 8
+                        hours_label: '8 h'
+                        example:
+                          received_at: '2026-10-15T10:00:00+00:00'
+                          ready_at: '2026-10-15T18:00:00+00:00'
+                          label: '15 oct. 10:00 → 15 oct. 18:00'
+                          received_label: 'Réception · jeu. 15 oct. à 10:00'
+                          ready_label: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                          method: elapsed_hours
+                        status: active
+                        status_label: Actif
+                        label: 'Bingerville · Express · 8 heures'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        agency_id:
+                          type: integer
+                          example: 1
+                        agency:
+                          type: string
+                          example: Bingerville
+                        service:
+                          type: string
+                          example: express
+                        service_label:
+                          type: string
+                          example: Express
+                        hours:
+                          type: integer
+                          example: 8
+                        hours_label:
+                          type: string
+                          example: '8 h'
+                        example:
+                          type: object
+                          properties:
+                            received_at:
+                              type: string
+                              example: '2026-10-15T10:00:00+00:00'
+                            ready_at:
+                              type: string
+                              example: '2026-10-15T18:00:00+00:00'
+                            label:
+                              type: string
+                              example: '15 oct. 10:00 → 15 oct. 18:00'
+                            received_label:
+                              type: string
+                              example: 'Réception · jeu. 15 oct. à 10:00'
+                            ready_label:
+                              type: string
+                              example: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                            method:
+                              type: string
+                              example: elapsed_hours
+                        status:
+                          type: string
+                          example: active
+                        status_label:
+                          type: string
+                          example: Actif
+                        label:
+                          type: string
+                          example: 'Bingerville · Express · 8 heures'
+                  meta:
+                    type: object
+                    properties:
+                      active_rules:
+                        type: integer
+                        example: 6
+                      agencies:
+                        type: integer
+                        example: 4
+                      services:
+                        type: array
+                        example:
+                          -
+                            code: classic
+                            label: Classique
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: classic
+                            label:
+                              type: string
+                              example: Classique
+                      reference_received_at:
+                        type: string
+                        example: '2026-10-15T10:00:00+00:00'
+                      results_label:
+                        type: string
+                        example: '6 résultats'
+                      notice:
+                        type: string
+                        example: 'Ces règles calculent l’heure de retrait prévue. Elles ne configurent ni les tournées ni les créneaux de collecte/livraison. Les changements concernent les futurs dépôts.'
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                service:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: true
+                received_at:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-22T21:57:50'
+                  nullable: true
+    post:
+      summary: ''
+      operationId: postApiV1RetrievalRules
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 2
+                    agency_id: 1
+                    agency: Bingerville
+                    service: express
+                    service_label: Express
+                    hours: 8
+                    hours_label: '8 h'
+                    example:
+                      received_at: '2026-10-15T10:00:00+00:00'
+                      ready_at: '2026-10-15T18:00:00+00:00'
+                      label: '15 oct. 10:00 → 15 oct. 18:00'
+                      received_label: 'Réception · jeu. 15 oct. à 10:00'
+                      ready_label: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                      method: elapsed_hours
+                    status: active
+                    status_label: Actif
+                    label: 'Bingerville · Express · 8 heures'
+                  meta:
+                    notice: 'Ces règles calculent l’heure de retrait prévue. Elles ne configurent ni les tournées ni les créneaux de collecte/livraison. Les changements concernent les futurs dépôts.'
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      agency_id:
+                        type: integer
+                        example: 1
+                      agency:
+                        type: string
+                        example: Bingerville
+                      service:
+                        type: string
+                        example: express
+                      service_label:
+                        type: string
+                        example: Express
+                      hours:
+                        type: integer
+                        example: 8
+                      hours_label:
+                        type: string
+                        example: '8 h'
+                      example:
+                        type: object
+                        properties:
+                          received_at:
+                            type: string
+                            example: '2026-10-15T10:00:00+00:00'
+                          ready_at:
+                            type: string
+                            example: '2026-10-15T18:00:00+00:00'
+                          label:
+                            type: string
+                            example: '15 oct. 10:00 → 15 oct. 18:00'
+                          received_label:
+                            type: string
+                            example: 'Réception · jeu. 15 oct. à 10:00'
+                          ready_label:
+                            type: string
+                            example: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                          method:
+                            type: string
+                            example: elapsed_hours
+                      status:
+                        type: string
+                        example: active
+                      status_label:
+                        type: string
+                        example: Actif
+                      label:
+                        type: string
+                        example: 'Bingerville · Express · 8 heures'
+                  meta:
+                    type: object
+                    properties:
+                      notice:
+                        type: string
+                        example: 'Ces règles calculent l’heure de retrait prévue. Elles ne configurent ni les tournées ni les créneaux de collecte/livraison. Les changements concernent les futurs dépôts.'
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Catalogue
+  /api/v1/retrieval-rules/preview:
+    get:
+      summary: '« Aperçu du délai » et vérifications (`agency_id`, `service`, `hours`, `received_at`, `ignore_id`).'
+      operationId: AperuDuDlaiEtVrificationsagencyIdservicehoursreceivedAtignoreId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    example:
+                      received_at: '2026-10-15T10:00:00+00:00'
+                      ready_at: '2026-10-15T18:00:00+00:00'
+                      label: '15 oct. 10:00 → 15 oct. 18:00'
+                      received_label: 'Réception · jeu. 15 oct. à 10:00'
+                      ready_label: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                      method: elapsed_hours
+                    checks:
+                      -
+                        code: hours
+                        ok: true
+                        label: 'Délai entre 1 h et 720 h'
+                    valid: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      example:
+                        type: object
+                        properties:
+                          received_at:
+                            type: string
+                            example: '2026-10-15T10:00:00+00:00'
+                          ready_at:
+                            type: string
+                            example: '2026-10-15T18:00:00+00:00'
+                          label:
+                            type: string
+                            example: '15 oct. 10:00 → 15 oct. 18:00'
+                          received_label:
+                            type: string
+                            example: 'Réception · jeu. 15 oct. à 10:00'
+                          ready_label:
+                            type: string
+                            example: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                          method:
+                            type: string
+                            example: elapsed_hours
+                      checks:
+                        type: array
+                        example:
+                          -
+                            code: hours
+                            ok: true
+                            label: 'Délai entre 1 h et 720 h'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: hours
+                            ok:
+                              type: boolean
+                              example: true
+                            label:
+                              type: string
+                              example: 'Délai entre 1 h et 720 h'
+                      valid:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+  '/api/v1/retrieval-rules/{retrievalRule_id}':
+    put:
+      summary: ''
+      operationId: putApiV1RetrievalRulesRetrievalRule_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 2
+                    agency_id: 1
+                    agency: Bingerville
+                    service: express
+                    service_label: Express
+                    hours: 8
+                    hours_label: '8 h'
+                    example:
+                      received_at: '2026-10-15T10:00:00+00:00'
+                      ready_at: '2026-10-15T18:00:00+00:00'
+                      label: '15 oct. 10:00 → 15 oct. 18:00'
+                      received_label: 'Réception · jeu. 15 oct. à 10:00'
+                      ready_label: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                      method: elapsed_hours
+                    status: active
+                    status_label: Actif
+                    label: 'Bingerville · Express · 8 heures'
+                  meta:
+                    notice: 'Ces règles calculent l’heure de retrait prévue. Elles ne configurent ni les tournées ni les créneaux de collecte/livraison. Les changements concernent les futurs dépôts.'
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      agency_id:
+                        type: integer
+                        example: 1
+                      agency:
+                        type: string
+                        example: Bingerville
+                      service:
+                        type: string
+                        example: express
+                      service_label:
+                        type: string
+                        example: Express
+                      hours:
+                        type: integer
+                        example: 8
+                      hours_label:
+                        type: string
+                        example: '8 h'
+                      example:
+                        type: object
+                        properties:
+                          received_at:
+                            type: string
+                            example: '2026-10-15T10:00:00+00:00'
+                          ready_at:
+                            type: string
+                            example: '2026-10-15T18:00:00+00:00'
+                          label:
+                            type: string
+                            example: '15 oct. 10:00 → 15 oct. 18:00'
+                          received_label:
+                            type: string
+                            example: 'Réception · jeu. 15 oct. à 10:00'
+                          ready_label:
+                            type: string
+                            example: 'Retrait prévu · jeu. 15 oct. à 18:00'
+                          method:
+                            type: string
+                            example: elapsed_hours
+                      status:
+                        type: string
+                        example: active
+                      status_label:
+                        type: string
+                        example: Actif
+                      label:
+                        type: string
+                        example: 'Bingerville · Express · 8 heures'
+                  meta:
+                    type: object
+                    properties:
+                      notice:
+                        type: string
+                        example: 'Ces règles calculent l’heure de retrait prévue. Elles ne configurent ni les tournées ni les créneaux de collecte/livraison. Les changements concernent les futurs dépôts.'
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Catalogue
+    delete:
+      summary: '« Supprimer cette règle ? » — les dates de retrait déjà prévues sont conservées.'
+      operationId: SupprimerCetteRgleLesDatesDeRetraitDjPrvuesSontConserves
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    deleted: true
+                    message: 'Bingerville · Express · 8 heures. Cette règle ne sera plus proposée pour les futurs dépôts. Les dates de retrait déjà prévues sur les dépôts existants sont conservées.'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deleted:
+                        type: boolean
+                        example: true
+                      message:
+                        type: string
+                        example: 'Bingerville · Express · 8 heures. Cette règle ne sera plus proposée pour les futurs dépôts. Les dates de retrait déjà prévues sur les dépôts existants sont conservées.'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: retrievalRule_id
+        description: 'The ID of the retrievalRule.'
+        example: 16
+        required: true
+        schema:
+          type: integer
   /api/v1/code-suffixes:
     get:
       summary: '« Suffixes configurés » : une ligne par agence (préfixe, suffixe, exemple de code complet), `q`, `agency_id`.'
@@ -33728,7 +34574,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 validated:
                   type: boolean
@@ -34386,7 +35232,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
     delete:
       summary: ''
@@ -35172,7 +36018,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -35393,7 +36239,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 period:
                   type: string
@@ -40532,7 +41378,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 date_to:
                   type: string
@@ -40938,7 +41784,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 agency_id:
                   type: integer
@@ -43595,12 +44441,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:54'
+                  example: '21:57'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:54'
+                  example: '21:57'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -43983,7 +44829,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
               required:
                 - source_currency
                 - target_currency
@@ -44566,12 +45412,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:54'
+                  example: '21:57'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:54'
+                  example: '21:57'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -57463,7 +58309,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
     delete:
       summary: ''
@@ -58879,7 +59725,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -63094,7 +63940,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:54:28'
+                  example: '2026-10-22T21:57:50'
                 name:
                   type: string
                   description: validation.max.

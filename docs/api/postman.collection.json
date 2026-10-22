@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "b141dd75-2293-48ba-bf00-b38b149eb495",
+        "_postman_id": "d5c3e783-dd73-4772-90fc-fc819fde33f2",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:54:28\",\"retrieve_date\":\"2026-10-22T21:54:28\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:57:50\",\"retrieve_date\":\"2026-10-22T21:57:50\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:54:28\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:57:50\"}"
                         },
                         "description": ""
                     },
@@ -3969,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:54:28\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:57:50\"}"
                         },
                         "description": ""
                     },
@@ -4014,7 +4014,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:54:28\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:57:50\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5110,6 +5110,247 @@
                     ]
                 },
                 {
+                    "name": "\u00ab R\u00e8gles de disponibilit\u00e9 \u00bb (`q`, `agency_id`, `service`, `received_at` pour l\u2019exemple de calcul).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrieval-rules",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrieval-rules"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-10-22T21:57:50\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 2,\n            \"agency_id\": 1,\n            \"agency\": \"Bingerville\",\n            \"service\": \"express\",\n            \"service_label\": \"Express\",\n            \"hours\": 8,\n            \"hours_label\": \"8 h\",\n            \"example\": {\n                \"received_at\": \"2026-10-15T10:00:00+00:00\",\n                \"ready_at\": \"2026-10-15T18:00:00+00:00\",\n                \"label\": \"15 oct. 10:00 \u2192 15 oct. 18:00\",\n                \"received_label\": \"R\u00e9ception \u00b7 jeu. 15 oct. \u00e0 10:00\",\n                \"ready_label\": \"Retrait pr\u00e9vu \u00b7 jeu. 15 oct. \u00e0 18:00\",\n                \"method\": \"elapsed_hours\"\n            },\n            \"status\": \"active\",\n            \"status_label\": \"Actif\",\n            \"label\": \"Bingerville \u00b7 Express \u00b7 8 heures\"\n        }\n    ],\n    \"meta\": {\n        \"active_rules\": 6,\n        \"agencies\": 4,\n        \"services\": [\n            {\n                \"code\": \"classic\",\n                \"label\": \"Classique\"\n            }\n        ],\n        \"reference_received_at\": \"2026-10-15T10:00:00+00:00\",\n        \"results_label\": \"6 r\u00e9sultats\",\n        \"notice\": \"Ces r\u00e8gles calculent l\u2019heure de retrait pr\u00e9vue. Elles ne configurent ni les tourn\u00e9es ni les cr\u00e9neaux de collecte\/livraison. Les changements concernent les futurs d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Aper\u00e7u du d\u00e9lai \u00bb et v\u00e9rifications (`agency_id`, `service`, `hours`, `received_at`, `ignore_id`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrieval-rules\/preview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrieval-rules\/preview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"example\": {\n            \"received_at\": \"2026-10-15T10:00:00+00:00\",\n            \"ready_at\": \"2026-10-15T18:00:00+00:00\",\n            \"label\": \"15 oct. 10:00 \u2192 15 oct. 18:00\",\n            \"received_label\": \"R\u00e9ception \u00b7 jeu. 15 oct. \u00e0 10:00\",\n            \"ready_label\": \"Retrait pr\u00e9vu \u00b7 jeu. 15 oct. \u00e0 18:00\",\n            \"method\": \"elapsed_hours\"\n        },\n        \"checks\": [\n            {\n                \"code\": \"hours\",\n                \"ok\": true,\n                \"label\": \"D\u00e9lai entre 1 h et 720 h\"\n            }\n        ],\n        \"valid\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/retrieval-rules",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrieval-rules",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrieval-rules"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 2,\n        \"agency_id\": 1,\n        \"agency\": \"Bingerville\",\n        \"service\": \"express\",\n        \"service_label\": \"Express\",\n        \"hours\": 8,\n        \"hours_label\": \"8 h\",\n        \"example\": {\n            \"received_at\": \"2026-10-15T10:00:00+00:00\",\n            \"ready_at\": \"2026-10-15T18:00:00+00:00\",\n            \"label\": \"15 oct. 10:00 \u2192 15 oct. 18:00\",\n            \"received_label\": \"R\u00e9ception \u00b7 jeu. 15 oct. \u00e0 10:00\",\n            \"ready_label\": \"Retrait pr\u00e9vu \u00b7 jeu. 15 oct. \u00e0 18:00\",\n            \"method\": \"elapsed_hours\"\n        },\n        \"status\": \"active\",\n        \"status_label\": \"Actif\",\n        \"label\": \"Bingerville \u00b7 Express \u00b7 8 heures\"\n    },\n    \"meta\": {\n        \"notice\": \"Ces r\u00e8gles calculent l\u2019heure de retrait pr\u00e9vue. Elles ne configurent ni les tourn\u00e9es ni les cr\u00e9neaux de collecte\/livraison. Les changements concernent les futurs d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/retrieval-rules\/{retrievalRule_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrieval-rules\/:retrievalRule_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrieval-rules\/:retrievalRule_id",
+                            "variable": [
+                                {
+                                    "id": "retrievalRule_id",
+                                    "key": "retrievalRule_id",
+                                    "value": 16,
+                                    "description": "The ID of the retrievalRule."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 2,\n        \"agency_id\": 1,\n        \"agency\": \"Bingerville\",\n        \"service\": \"express\",\n        \"service_label\": \"Express\",\n        \"hours\": 8,\n        \"hours_label\": \"8 h\",\n        \"example\": {\n            \"received_at\": \"2026-10-15T10:00:00+00:00\",\n            \"ready_at\": \"2026-10-15T18:00:00+00:00\",\n            \"label\": \"15 oct. 10:00 \u2192 15 oct. 18:00\",\n            \"received_label\": \"R\u00e9ception \u00b7 jeu. 15 oct. \u00e0 10:00\",\n            \"ready_label\": \"Retrait pr\u00e9vu \u00b7 jeu. 15 oct. \u00e0 18:00\",\n            \"method\": \"elapsed_hours\"\n        },\n        \"status\": \"active\",\n        \"status_label\": \"Actif\",\n        \"label\": \"Bingerville \u00b7 Express \u00b7 8 heures\"\n    },\n    \"meta\": {\n        \"notice\": \"Ces r\u00e8gles calculent l\u2019heure de retrait pr\u00e9vue. Elles ne configurent ni les tourn\u00e9es ni les cr\u00e9neaux de collecte\/livraison. Les changements concernent les futurs d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Supprimer cette r\u00e8gle ? \u00bb \u2014 les dates de retrait d\u00e9j\u00e0 pr\u00e9vues sont conserv\u00e9es.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrieval-rules\/:retrievalRule_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrieval-rules\/:retrievalRule_id",
+                            "variable": [
+                                {
+                                    "id": "retrievalRule_id",
+                                    "key": "retrievalRule_id",
+                                    "value": 16,
+                                    "description": "The ID of the retrievalRule."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"deleted\": true,\n        \"message\": \"Bingerville \u00b7 Express \u00b7 8 heures. Cette r\u00e8gle ne sera plus propos\u00e9e pour les futurs d\u00e9p\u00f4ts. Les dates de retrait d\u00e9j\u00e0 pr\u00e9vues sur les d\u00e9p\u00f4ts existants sont conserv\u00e9es.\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
                     "name": "\u00ab Suffixes configur\u00e9s \u00bb : une ligne par agence (pr\u00e9fixe, suffixe, exemple de code complet), `q`, `agency_id`.",
                     "request": {
                         "url": {
@@ -5815,7 +6056,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T21:54:28",
+                                    "value": "2026-10-22T21:57:50",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5963,7 +6204,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:54:28\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:57:50\"}"
                         },
                         "description": ""
                     },
@@ -6120,7 +6361,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:54:28\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:57:50\"}"
                         },
                         "description": ""
                     },
@@ -6165,7 +6406,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:54:28\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:57:50\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7267,7 +7508,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T21:54:28\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T21:57:50\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7312,7 +7553,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:54:28\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:57:50\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7951,7 +8192,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:54\",\"closes_at\":\"21:54\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:57\",\"closes_at\":\"21:57\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8086,7 +8327,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:54:28\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:57:50\"}"
                         },
                         "description": ""
                     },
@@ -8271,7 +8512,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:54\",\"closes_at\":\"21:54\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:57\",\"closes_at\":\"21:57\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -11429,7 +11670,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:54:28\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:57:50\"}"
                         },
                         "description": ""
                     },
@@ -11568,7 +11809,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T21:54:28",
+                                    "value": "2026-10-22T21:57:50",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -12517,7 +12758,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:54:28\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:57:50\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

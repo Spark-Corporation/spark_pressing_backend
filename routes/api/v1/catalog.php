@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\Catalog\PromoController;
 use App\Http\Controllers\Api\V1\Catalog\PromoSpecialController;
 use App\Http\Controllers\Api\V1\Catalog\PromotionOverviewController;
 use App\Http\Controllers\Api\V1\Catalog\RenderController;
+use App\Http\Controllers\Api\V1\Catalog\RetrievalRuleController;
 use App\Http\Controllers\Api\V1\Catalog\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +83,17 @@ Route::prefix('delivery-hours')->name('delivery-hours.')->group(function () {
     Route::post('/', [DeliveryHourController::class, 'store'])->middleware('permission:settings.manage')->name('store');
     Route::put('{id}', [DeliveryHourController::class, 'update'])->middleware('permission:settings.manage')->name('update');
     Route::delete('{id}', [DeliveryHourController::class, 'destroy'])->middleware('permission:settings.manage')->name('destroy');
+});
+
+// « Heures de retrait » (Figma 17.02).
+Route::prefix('retrieval-rules')->name('retrieval-rules.')->controller(RetrievalRuleController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('preview', 'preview')->name('preview');
+    Route::middleware('permission:settings.manage')->group(function () {
+        Route::post('/', 'store')->name('store');
+        Route::put('{retrievalRule}', 'update')->name('update');
+        Route::delete('{retrievalRule}', 'destroy')->name('destroy');
+    });
 });
 
 Route::prefix('code-suffixes')->name('code-suffixes.')->group(function () {

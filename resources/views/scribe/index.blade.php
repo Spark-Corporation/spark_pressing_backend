@@ -423,6 +423,21 @@ groupes automatiques, tableau des campagnes (`agency_id`, `status`).</a>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-delivery-hours--id-">
                                 <a href="#catalogue-DELETEapi-v1-delivery-hours--id-">DELETE api/v1/delivery-hours/{id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-retrieval-rules">
+                                <a href="#catalogue-GETapi-v1-retrieval-rules">« Règles de disponibilité » (`q`, `agency_id`, `service`, `received_at` pour l’exemple de calcul).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-retrieval-rules-preview">
+                                <a href="#catalogue-GETapi-v1-retrieval-rules-preview">« Aperçu du délai » et vérifications (`agency_id`, `service`, `hours`, `received_at`, `ignore_id`).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-retrieval-rules">
+                                <a href="#catalogue-POSTapi-v1-retrieval-rules">POST api/v1/retrieval-rules</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-PUTapi-v1-retrieval-rules--retrievalRule_id-">
+                                <a href="#catalogue-PUTapi-v1-retrieval-rules--retrievalRule_id-">PUT api/v1/retrieval-rules/{retrievalRule_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-retrieval-rules--retrievalRule_id-">
+                                <a href="#catalogue-DELETEapi-v1-retrieval-rules--retrievalRule_id-">« Supprimer cette règle ? » — les dates de retrait déjà prévues sont conservées.</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-code-suffixes">
                                 <a href="#catalogue-GETapi-v1-code-suffixes">« Suffixes configurés » : une ligne par agence (préfixe, suffixe, exemple de code complet), `q`, `agency_id`.</a>
                             </li>
@@ -8718,8 +8733,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T21:54:28\",
-    \"retrieve_date\": \"2026-10-22T21:54:28\",
+    \"deposit_date\": \"2026-10-22T21:57:50\",
+    \"retrieve_date\": \"2026-10-22T21:57:50\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -8774,8 +8789,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T21:54:28",
-    "retrieve_date": "2026-10-22T21:54:28",
+    "deposit_date": "2026-10-22T21:57:50",
+    "retrieve_date": "2026-10-22T21:57:50",
     "notes": "architecto",
     "lines": [
         {
@@ -9288,10 +9303,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -9300,10 +9315,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -9980,7 +9995,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T21:54:28\"
+    \"transaction_date\": \"2026-10-22T21:57:50\"
 }"
 </code></pre></div>
 
@@ -10001,7 +10016,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T21:54:28"
+    "transaction_date": "2026-10-22T21:57:50"
 };
 
 fetch(url, {
@@ -10340,10 +10355,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
         </form>
 
@@ -20137,7 +20152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php53E6.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php68E6.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -20322,7 +20337,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php53E6.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php68E6.tmp</code></p>
         </div>
         </form>
 
@@ -22947,7 +22962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T21:54:28\"
+    \"at\": \"2026-10-22T21:57:50\"
 }"
 </code></pre></div>
 
@@ -22969,7 +22984,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T21:54:28"
+    "at": "2026-10-22T21:57:50"
 };
 
 fetch(url, {
@@ -23198,10 +23213,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
         </form>
 
@@ -23230,7 +23245,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T21:54:28\",
+    \"valid_from\": \"2026-10-22T21:57:50\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -23254,7 +23269,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T21:54:28",
+    "valid_from": "2026-10-22T21:57:50",
     "valid_to": "2052-11-14"
 };
 
@@ -23490,10 +23505,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -27836,6 +27851,1071 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="catalogue-GETapi-v1-retrieval-rules">« Règles de disponibilité » (`q`, `agency_id`, `service`, `received_at` pour l’exemple de calcul).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-retrieval-rules">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/retrieval-rules" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"q\": \"b\",
+    \"agency_id\": 16,
+    \"received_at\": \"2026-10-22T21:57:50\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrieval-rules"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "q": "b",
+    "agency_id": 16,
+    "received_at": "2026-10-22T21:57:50"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-retrieval-rules">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 2,
+            &quot;agency_id&quot;: 1,
+            &quot;agency&quot;: &quot;Bingerville&quot;,
+            &quot;service&quot;: &quot;express&quot;,
+            &quot;service_label&quot;: &quot;Express&quot;,
+            &quot;hours&quot;: 8,
+            &quot;hours_label&quot;: &quot;8 h&quot;,
+            &quot;example&quot;: {
+                &quot;received_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;,
+                &quot;ready_at&quot;: &quot;2026-10-15T18:00:00+00:00&quot;,
+                &quot;label&quot;: &quot;15 oct. 10:00 &rarr; 15 oct. 18:00&quot;,
+                &quot;received_label&quot;: &quot;R&eacute;ception &middot; jeu. 15 oct. &agrave; 10:00&quot;,
+                &quot;ready_label&quot;: &quot;Retrait pr&eacute;vu &middot; jeu. 15 oct. &agrave; 18:00&quot;,
+                &quot;method&quot;: &quot;elapsed_hours&quot;
+            },
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;status_label&quot;: &quot;Actif&quot;,
+            &quot;label&quot;: &quot;Bingerville &middot; Express &middot; 8 heures&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;active_rules&quot;: 6,
+        &quot;agencies&quot;: 4,
+        &quot;services&quot;: [
+            {
+                &quot;code&quot;: &quot;classic&quot;,
+                &quot;label&quot;: &quot;Classique&quot;
+            }
+        ],
+        &quot;reference_received_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;,
+        &quot;results_label&quot;: &quot;6 r&eacute;sultats&quot;,
+        &quot;notice&quot;: &quot;Ces r&egrave;gles calculent l&rsquo;heure de retrait pr&eacute;vue. Elles ne configurent ni les tourn&eacute;es ni les cr&eacute;neaux de collecte/livraison. Les changements concernent les futurs d&eacute;p&ocirc;ts.&quot;
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-retrieval-rules" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-retrieval-rules"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-retrieval-rules"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-retrieval-rules" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-retrieval-rules">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-retrieval-rules" data-method="GET"
+      data-path="api/v1/retrieval-rules"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-retrieval-rules', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-retrieval-rules"
+                    onclick="tryItOut('GETapi-v1-retrieval-rules');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-retrieval-rules"
+                    onclick="cancelTryOut('GETapi-v1-retrieval-rules');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-retrieval-rules"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/retrieval-rules</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-retrieval-rules"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-retrieval-rules"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-retrieval-rules"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-retrieval-rules"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="q"                data-endpoint="GETapi-v1-retrieval-rules"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="GETapi-v1-retrieval-rules"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>service</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="service"                data-endpoint="GETapi-v1-retrieval-rules"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>received_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="received_at"                data-endpoint="GETapi-v1-retrieval-rules"
+               value="2026-10-22T21:57:50"
+               data-component="body">
+    <br>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+        </div>
+        </form>
+
+                    <h2 id="catalogue-GETapi-v1-retrieval-rules-preview">« Aperçu du délai » et vérifications (`agency_id`, `service`, `hours`, `received_at`, `ignore_id`).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-retrieval-rules-preview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/retrieval-rules/preview" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrieval-rules/preview"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-retrieval-rules-preview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;example&quot;: {
+            &quot;received_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;,
+            &quot;ready_at&quot;: &quot;2026-10-15T18:00:00+00:00&quot;,
+            &quot;label&quot;: &quot;15 oct. 10:00 &rarr; 15 oct. 18:00&quot;,
+            &quot;received_label&quot;: &quot;R&eacute;ception &middot; jeu. 15 oct. &agrave; 10:00&quot;,
+            &quot;ready_label&quot;: &quot;Retrait pr&eacute;vu &middot; jeu. 15 oct. &agrave; 18:00&quot;,
+            &quot;method&quot;: &quot;elapsed_hours&quot;
+        },
+        &quot;checks&quot;: [
+            {
+                &quot;code&quot;: &quot;hours&quot;,
+                &quot;ok&quot;: true,
+                &quot;label&quot;: &quot;D&eacute;lai entre 1 h et 720 h&quot;
+            }
+        ],
+        &quot;valid&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-retrieval-rules-preview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-retrieval-rules-preview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-retrieval-rules-preview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-retrieval-rules-preview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-retrieval-rules-preview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-retrieval-rules-preview" data-method="GET"
+      data-path="api/v1/retrieval-rules/preview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-retrieval-rules-preview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-retrieval-rules-preview"
+                    onclick="tryItOut('GETapi-v1-retrieval-rules-preview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-retrieval-rules-preview"
+                    onclick="cancelTryOut('GETapi-v1-retrieval-rules-preview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-retrieval-rules-preview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/retrieval-rules/preview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-retrieval-rules-preview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-retrieval-rules-preview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-retrieval-rules-preview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-retrieval-rules-preview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-POSTapi-v1-retrieval-rules">POST api/v1/retrieval-rules</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-retrieval-rules">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/retrieval-rules" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrieval-rules"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-retrieval-rules">
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 2,
+        &quot;agency_id&quot;: 1,
+        &quot;agency&quot;: &quot;Bingerville&quot;,
+        &quot;service&quot;: &quot;express&quot;,
+        &quot;service_label&quot;: &quot;Express&quot;,
+        &quot;hours&quot;: 8,
+        &quot;hours_label&quot;: &quot;8 h&quot;,
+        &quot;example&quot;: {
+            &quot;received_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;,
+            &quot;ready_at&quot;: &quot;2026-10-15T18:00:00+00:00&quot;,
+            &quot;label&quot;: &quot;15 oct. 10:00 &rarr; 15 oct. 18:00&quot;,
+            &quot;received_label&quot;: &quot;R&eacute;ception &middot; jeu. 15 oct. &agrave; 10:00&quot;,
+            &quot;ready_label&quot;: &quot;Retrait pr&eacute;vu &middot; jeu. 15 oct. &agrave; 18:00&quot;,
+            &quot;method&quot;: &quot;elapsed_hours&quot;
+        },
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;status_label&quot;: &quot;Actif&quot;,
+        &quot;label&quot;: &quot;Bingerville &middot; Express &middot; 8 heures&quot;
+    },
+    &quot;meta&quot;: {
+        &quot;notice&quot;: &quot;Ces r&egrave;gles calculent l&rsquo;heure de retrait pr&eacute;vue. Elles ne configurent ni les tourn&eacute;es ni les cr&eacute;neaux de collecte/livraison. Les changements concernent les futurs d&eacute;p&ocirc;ts.&quot;
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-retrieval-rules" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-retrieval-rules"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-retrieval-rules"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-retrieval-rules" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-retrieval-rules">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-retrieval-rules" data-method="POST"
+      data-path="api/v1/retrieval-rules"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-retrieval-rules', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-retrieval-rules"
+                    onclick="tryItOut('POSTapi-v1-retrieval-rules');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-retrieval-rules"
+                    onclick="cancelTryOut('POSTapi-v1-retrieval-rules');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-retrieval-rules"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/retrieval-rules</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-retrieval-rules"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-retrieval-rules"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-retrieval-rules"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-retrieval-rules"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-PUTapi-v1-retrieval-rules--retrievalRule_id-">PUT api/v1/retrieval-rules/{retrievalRule_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-retrieval-rules--retrievalRule_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v1/retrieval-rules/16" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrieval-rules/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-retrieval-rules--retrievalRule_id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 2,
+        &quot;agency_id&quot;: 1,
+        &quot;agency&quot;: &quot;Bingerville&quot;,
+        &quot;service&quot;: &quot;express&quot;,
+        &quot;service_label&quot;: &quot;Express&quot;,
+        &quot;hours&quot;: 8,
+        &quot;hours_label&quot;: &quot;8 h&quot;,
+        &quot;example&quot;: {
+            &quot;received_at&quot;: &quot;2026-10-15T10:00:00+00:00&quot;,
+            &quot;ready_at&quot;: &quot;2026-10-15T18:00:00+00:00&quot;,
+            &quot;label&quot;: &quot;15 oct. 10:00 &rarr; 15 oct. 18:00&quot;,
+            &quot;received_label&quot;: &quot;R&eacute;ception &middot; jeu. 15 oct. &agrave; 10:00&quot;,
+            &quot;ready_label&quot;: &quot;Retrait pr&eacute;vu &middot; jeu. 15 oct. &agrave; 18:00&quot;,
+            &quot;method&quot;: &quot;elapsed_hours&quot;
+        },
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;status_label&quot;: &quot;Actif&quot;,
+        &quot;label&quot;: &quot;Bingerville &middot; Express &middot; 8 heures&quot;
+    },
+    &quot;meta&quot;: {
+        &quot;notice&quot;: &quot;Ces r&egrave;gles calculent l&rsquo;heure de retrait pr&eacute;vue. Elles ne configurent ni les tourn&eacute;es ni les cr&eacute;neaux de collecte/livraison. Les changements concernent les futurs d&eacute;p&ocirc;ts.&quot;
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-retrieval-rules--retrievalRule_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-retrieval-rules--retrievalRule_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-retrieval-rules--retrievalRule_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-retrieval-rules--retrievalRule_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-retrieval-rules--retrievalRule_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-retrieval-rules--retrievalRule_id-" data-method="PUT"
+      data-path="api/v1/retrieval-rules/{retrievalRule_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-retrieval-rules--retrievalRule_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-retrieval-rules--retrievalRule_id-"
+                    onclick="tryItOut('PUTapi-v1-retrieval-rules--retrievalRule_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-retrieval-rules--retrievalRule_id-"
+                    onclick="cancelTryOut('PUTapi-v1-retrieval-rules--retrievalRule_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-retrieval-rules--retrievalRule_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/retrieval-rules/{retrievalRule_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-retrieval-rules--retrievalRule_id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-retrieval-rules--retrievalRule_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-retrieval-rules--retrievalRule_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="PUTapi-v1-retrieval-rules--retrievalRule_id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>retrievalRule_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="retrievalRule_id"                data-endpoint="PUTapi-v1-retrieval-rules--retrievalRule_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the retrievalRule. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="catalogue-DELETEapi-v1-retrieval-rules--retrievalRule_id-">« Supprimer cette règle ? » — les dates de retrait déjà prévues sont conservées.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-retrieval-rules--retrievalRule_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/v1/retrieval-rules/16" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrieval-rules/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-retrieval-rules--retrievalRule_id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true,
+        &quot;message&quot;: &quot;Bingerville &middot; Express &middot; 8 heures. Cette r&egrave;gle ne sera plus propos&eacute;e pour les futurs d&eacute;p&ocirc;ts. Les dates de retrait d&eacute;j&agrave; pr&eacute;vues sur les d&eacute;p&ocirc;ts existants sont conserv&eacute;es.&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-retrieval-rules--retrievalRule_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-retrieval-rules--retrievalRule_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-retrieval-rules--retrievalRule_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-retrieval-rules--retrievalRule_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-retrieval-rules--retrievalRule_id-" data-method="DELETE"
+      data-path="api/v1/retrieval-rules/{retrievalRule_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-retrieval-rules--retrievalRule_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+                    onclick="tryItOut('DELETEapi-v1-retrieval-rules--retrievalRule_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+                    onclick="cancelTryOut('DELETEapi-v1-retrieval-rules--retrievalRule_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/retrieval-rules/{retrievalRule_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>retrievalRule_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="retrievalRule_id"                data-endpoint="DELETEapi-v1-retrieval-rules--retrievalRule_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the retrievalRule. Example: <code>16</code></p>
+            </div>
+                    </form>
+
                     <h2 id="catalogue-GETapi-v1-code-suffixes">« Suffixes configurés » : une ligne par agence (préfixe, suffixe, exemple de code complet), `q`, `agency_id`.</h2>
 
 <p>
@@ -30544,13 +31624,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T21:54:28"\
+    --form "action_date=2026-10-22T21:57:50"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php54E2.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php69D3.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -30570,7 +31650,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T21:54:28');
+body.append('action_date', '2026-10-22T21:57:50');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -30812,10 +31892,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -30899,7 +31979,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php54E2.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php69D3.tmp</code></p>
         </div>
         </form>
 
@@ -31171,7 +32251,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T21:54:28\"
+    \"action_date\": \"2026-10-22T21:57:50\"
 }"
 </code></pre></div>
 
@@ -31192,7 +32272,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T21:54:28"
+    "action_date": "2026-10-22T21:57:50"
 };
 
 fetch(url, {
@@ -31482,10 +32562,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
         </form>
 
@@ -31957,7 +33037,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:54:28\"
+    \"date\": \"2026-10-22T21:57:50\"
 }"
 </code></pre></div>
 
@@ -31975,7 +33055,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:54:28"
+    "date": "2026-10-22T21:57:50"
 };
 
 fetch(url, {
@@ -32211,10 +33291,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
         </form>
 
@@ -32239,7 +33319,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T21:54:28\",
+    \"date\": \"2026-10-22T21:57:50\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -32263,7 +33343,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T21:54:28",
+    "date": "2026-10-22T21:57:50",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -32459,10 +33539,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -37546,7 +38626,7 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T21:54:28\",
+    \"date_from\": \"2026-10-22T21:57:50\",
     \"date_to\": \"2052-11-14\",
     \"preset\": \"month\",
     \"agency_id\": 16,
@@ -37568,7 +38648,7 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T21:54:28",
+    "date_from": "2026-10-22T21:57:50",
     "date_to": "2052-11-14",
     "preset": "month",
     "agency_id": 16,
@@ -37803,10 +38883,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -37882,7 +38962,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:54:28\",
+    \"date\": \"2026-10-22T21:57:50\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -37902,7 +38982,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:54:28",
+    "date": "2026-10-22T21:57:50",
     "agency_id": 16,
     "format": "json"
 };
@@ -38139,10 +39219,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -41164,8 +42244,8 @@ Must be one of:
     \"currency\": \"ngz\",
     \"code_prefix\": \"miyvdljn\",
     \"code_suffix\": \"ikhwaykc\",
-    \"opens_at\": \"21:54\",
-    \"closes_at\": \"21:54\",
+    \"opens_at\": \"21:57\",
+    \"closes_at\": \"21:57\",
     \"monthly_revenue_target\": 38,
     \"status\": true
 }"
@@ -41191,8 +42271,8 @@ let body = {
     "currency": "ngz",
     "code_prefix": "miyvdljn",
     "code_suffix": "ikhwaykc",
-    "opens_at": "21:54",
-    "closes_at": "21:54",
+    "opens_at": "21:57",
+    "closes_at": "21:57",
     "monthly_revenue_target": 38,
     "status": true
 };
@@ -41454,10 +42534,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:54"
+               value="21:57"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -41466,10 +42546,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:54"
+               value="21:57"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -41881,7 +42961,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T21:54:28\"
+    \"rate_date\": \"2026-10-22T21:57:50\"
 }"
 </code></pre></div>
 
@@ -41902,7 +42982,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T21:54:28"
+    "rate_date": "2026-10-22T21:57:50"
 };
 
 fetch(url, {
@@ -42108,10 +43188,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
         </form>
 
@@ -42697,8 +43777,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"currency\": \"zmi\",
     \"code_prefix\": \"yvdljnik\",
     \"code_suffix\": \"hwaykcmy\",
-    \"opens_at\": \"21:54\",
-    \"closes_at\": \"21:54\",
+    \"opens_at\": \"21:57\",
+    \"closes_at\": \"21:57\",
     \"monthly_revenue_target\": 72
 }"
 </code></pre></div>
@@ -42724,8 +43804,8 @@ let body = {
     "currency": "zmi",
     "code_prefix": "yvdljnik",
     "code_suffix": "hwaykcmy",
-    "opens_at": "21:54",
-    "closes_at": "21:54",
+    "opens_at": "21:57",
+    "closes_at": "21:57",
     "monthly_revenue_target": 72
 };
 
@@ -42985,10 +44065,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:54"
+               value="21:57"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -42997,10 +44077,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:54"
+               value="21:57"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -58095,7 +59175,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T21:54:28\"
+    \"expires_at\": \"2026-10-22T21:57:50\"
 }"
 </code></pre></div>
 
@@ -58119,7 +59199,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T21:54:28"
+    "expires_at": "2026-10-22T21:57:50"
 };
 
 fetch(url, {
@@ -58454,10 +59534,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
         </form>
 
@@ -58759,10 +59839,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T21:54:28"\
+    --form "effective_at=2026-10-22T21:57:50"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php531A.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php6839.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -58781,7 +59861,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T21:54:28');
+body.append('effective_at', '2026-10-22T21:57:50');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -59291,10 +60371,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -59350,7 +60430,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php531A.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php6839.tmp</code></p>
         </div>
         </form>
 
@@ -63563,7 +64643,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T21:54:28\",
+    \"round_date\": \"2026-10-22T21:57:50\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -63584,7 +64664,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T21:54:28",
+    "round_date": "2026-10-22T21:57:50",
     "name": "n"
 };
 
@@ -63791,10 +64871,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T21:54:28"
+               value="2026-10-22T21:57:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

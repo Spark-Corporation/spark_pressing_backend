@@ -347,6 +347,16 @@ Jeton client (`POST /auth/client/login`). Toutes les routes sont sous `/client/a
 | Enregistrer | `POST /code-suffixes` (`agency_id`, `title`), `PUT /code-suffixes/{id}` | le « - » initial est retiré ; le suffixe actif est appliqué aux futurs dépôts uniquement |
 | Supprimer le suffixe | `DELETE /code-suffixes/{id}` | `message` de confirmation ; les codes existants ne changent pas |
 
+### 7.0o Heures de retrait (Figma 17.02)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Règles de disponibilité | `GET /retrieval-rules?q&agency_id&service=classic\|express\|repass&received_at` | `agency` (ou « Toutes les agences »), `service_label`, `hours_label`, `example` (« 15 oct. 10:00 → 17 oct. 10:00 », calcul en heures écoulées), `status_label` ; `meta` (`active_rules`, `agencies`, `services`, `notice`) |
+| Ajouter / modifier : aperçu et vérifications | `GET /retrieval-rules/preview?agency_id&service&hours&received_at&ignore_id` | `example` (réception → retrait prévu), `checks[]` (1–720 h, pas de doublon actif, futurs dépôts seulement), `valid` |
+| Enregistrer / supprimer | `POST /retrieval-rules`, `PUT/DELETE /retrieval-rules/{id}` | message de confirmation ; dates déjà prévues conservées |
+
+À la création d’un dépôt, la règle de l’agence (sinon « toutes agences ») pour la prestation (express, repassage seul, sinon classique) fixe `retrieve_date` ; à défaut, l’ancien calcul s’applique.
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |

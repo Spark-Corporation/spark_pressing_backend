@@ -17,6 +17,7 @@ use App\Models\LoyalGroup;
 use App\Models\Pressing;
 use App\Models\Promo;
 use App\Models\PromoSpecial;
+use App\Models\RetrievalRule;
 use App\Models\Service;
 use App\Models\Transaction;
 use App\Models\User;
@@ -96,6 +97,9 @@ class CreateDeposit
                 if ($express && $pressing->hours_express) {
                     $hours = min($hours, (int) $pressing->hours_express);
                 }
+                // Règle « Heures de retrait » de l’agence (Figma 17.02), prioritaire si elle existe.
+                $service = $express ? 'express' : (collect($lines)->every(fn ($l) => (int) ($l['type_action'] ?? 0) === 2) ? 'repass' : 'classic');
+                $hours = RetrievalRule::hoursFor((int) $pressing->id, (int) $agency->id, $service) ?? $hours;
 
                 $agency->increment('last_deposit_sequence');
                 $agency->refresh();

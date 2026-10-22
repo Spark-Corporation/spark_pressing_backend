@@ -573,6 +573,21 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Heures de retrait (Figma 17.02) ——
+        if (str_starts_with($path, '/api/v1/retrieval-rules')) {
+            $example = ['received_at' => '2026-10-15T10:00:00+00:00', 'ready_at' => '2026-10-15T18:00:00+00:00', 'label' => '15 oct. 10:00 → 15 oct. 18:00', 'received_label' => 'Réception · jeu. 15 oct. à 10:00', 'ready_label' => 'Retrait prévu · jeu. 15 oct. à 18:00', 'method' => 'elapsed_hours'];
+            $row = ['id' => 2, 'agency_id' => 1, 'agency' => 'Bingerville', 'service' => 'express', 'service_label' => 'Express', 'hours' => 8, 'hours_label' => '8 h', 'example' => $example, 'status' => 'active', 'status_label' => 'Actif', 'label' => 'Bingerville · Express · 8 heures'];
+            $notice = \App\Http\Controllers\Api\V1\Catalog\RetrievalRuleController::NOTICE;
+
+            return [match (true) {
+                str_ends_with($path, '/preview') => $this->response(200, ['example' => $example, 'checks' => [['code' => 'hours', 'ok' => true, 'label' => 'Délai entre 1 h et 720 h']], 'valid' => true]),
+                $method === 'GET' => $this->response(200, [$row], ['active_rules' => 6, 'agencies' => 4, 'services' => [['code' => 'classic', 'label' => 'Classique']], 'reference_received_at' => '2026-10-15T10:00:00+00:00', 'results_label' => '6 résultats', 'notice' => $notice]),
+                $method === 'POST' => $this->response(201, $row, ['notice' => $notice]),
+                $method === 'DELETE' => $this->response(200, ['deleted' => true, 'message' => 'Bingerville · Express · 8 heures. Cette règle ne sera plus proposée pour les futurs dépôts. Les dates de retrait déjà prévues sur les dépôts existants sont conservées.']),
+                default => $this->response(200, $row, ['notice' => $notice]),
+            }];
+        }
+
         // —— Suffixes des codes dépôt (Figma 17.01) ——
         if (str_starts_with($path, '/api/v1/code-suffixes')) {
             $row = ['agency_id' => 2, 'agency' => 'Plateau', 'prefix' => 'PL', 'suffix_id' => 4, 'suffix' => '26', 'suffix_label' => '-26', 'example_code' => 'PL-002684-26', 'next_code' => 'PL-000387-26'];
