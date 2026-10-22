@@ -751,6 +751,36 @@ alertes opérationnelles et état des agences (`date_from`/`date_to`, mois en co
                                                                                 <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-loyalty">
                                 <a href="#espace-client-GETapi-v1-client-loyalty">GET api/v1/client/loyalty</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-app-home">
+                                <a href="#espace-client-GETapi-v1-client-app-home">Accueil : dépôt actif et étapes, prochain retrait, reste à payer, points, actions rapides, dernière notification.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-app-deposits">
+                                <a href="#espace-client-GETapi-v1-client-app-deposits">« Mes dépôts » : `q` (code), `status=in_progress|ready|retrieved`, compteurs des filtres.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-app-deposits--id-">
+                                <a href="#espace-client-GETapi-v1-client-app-deposits--id-">« Suivi du dépôt ».</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-app-loyalty">
+                                <a href="#espace-client-GETapi-v1-client-app-loyalty">« Ma fidélité ».</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-app-profile">
+                                <a href="#espace-client-GETapi-v1-client-app-profile">« Profil et sécurité ».</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-PUTapi-v1-client-app-profile">
+                                <a href="#espace-client-PUTapi-v1-client-app-profile">« Enregistrer les modifications » et préférences de communication.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-PUTapi-v1-client-app-password">
+                                <a href="#espace-client-PUTapi-v1-client-app-password">« Changer le mot de passe » : 8 caractères minimum, une majuscule et un chiffre.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-POSTapi-v1-client-app-sessions-revoke-others">
+                                <a href="#espace-client-POSTapi-v1-client-app-sessions-revoke-others">« Déconnecter les autres appareils ».</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-GETapi-v1-client-app-data-export">
+                                <a href="#espace-client-GETapi-v1-client-app-data-export">« Télécharger mes données » (JSON).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="espace-client-POSTapi-v1-client-app-account-delete">
+                                <a href="#espace-client-POSTapi-v1-client-app-account-delete">« Supprimer mon compte » : archive le compte, coupe les consentements et toutes les sessions.</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-superadmin" class="tocify-header">
@@ -8685,8 +8715,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T21:44:03\",
-    \"retrieve_date\": \"2026-10-22T21:44:03\",
+    \"deposit_date\": \"2026-10-22T21:50:58\",
+    \"retrieve_date\": \"2026-10-22T21:50:58\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -8741,8 +8771,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T21:44:03",
-    "retrieve_date": "2026-10-22T21:44:03",
+    "deposit_date": "2026-10-22T21:50:58",
+    "retrieve_date": "2026-10-22T21:50:58",
     "notes": "architecto",
     "lines": [
         {
@@ -9255,10 +9285,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -9267,10 +9297,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -9947,7 +9977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T21:44:03\"
+    \"transaction_date\": \"2026-10-22T21:50:58\"
 }"
 </code></pre></div>
 
@@ -9968,7 +9998,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T21:44:03"
+    "transaction_date": "2026-10-22T21:50:58"
 };
 
 fetch(url, {
@@ -10307,10 +10337,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
         </form>
 
@@ -20104,7 +20134,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpCC72.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php1EBB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -20289,7 +20319,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpCC72.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php1EBB.tmp</code></p>
         </div>
         </form>
 
@@ -22914,7 +22944,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T21:44:03\"
+    \"at\": \"2026-10-22T21:50:58\"
 }"
 </code></pre></div>
 
@@ -22936,7 +22966,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T21:44:03"
+    "at": "2026-10-22T21:50:58"
 };
 
 fetch(url, {
@@ -23165,10 +23195,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
         </form>
 
@@ -23197,7 +23227,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T21:44:03\",
+    \"valid_from\": \"2026-10-22T21:50:58\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -23221,7 +23251,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T21:44:03",
+    "valid_from": "2026-10-22T21:50:58",
     "valid_to": "2052-11-14"
 };
 
@@ -23457,10 +23487,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -30220,13 +30250,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T21:44:04"\
+    --form "action_date=2026-10-22T21:50:58"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\phpCD2F.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php1F88.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -30246,7 +30276,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T21:44:04');
+body.append('action_date', '2026-10-22T21:50:58');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -30488,10 +30518,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -30575,7 +30605,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpCD2F.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php1F88.tmp</code></p>
         </div>
         </form>
 
@@ -30847,7 +30877,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T21:44:04\"
+    \"action_date\": \"2026-10-22T21:50:58\"
 }"
 </code></pre></div>
 
@@ -30868,7 +30898,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T21:44:04"
+    "action_date": "2026-10-22T21:50:58"
 };
 
 fetch(url, {
@@ -31158,10 +31188,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
         </form>
 
@@ -31633,7 +31663,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:44:04\"
+    \"date\": \"2026-10-22T21:50:58\"
 }"
 </code></pre></div>
 
@@ -31651,7 +31681,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:44:04"
+    "date": "2026-10-22T21:50:58"
 };
 
 fetch(url, {
@@ -31887,10 +31917,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
         </form>
 
@@ -31915,7 +31945,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T21:44:04\",
+    \"date\": \"2026-10-22T21:50:58\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -31939,7 +31969,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T21:44:04",
+    "date": "2026-10-22T21:50:58",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -32135,10 +32165,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -37222,7 +37252,7 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T21:44:04\",
+    \"date_from\": \"2026-10-22T21:50:58\",
     \"date_to\": \"2052-11-14\",
     \"preset\": \"month\",
     \"agency_id\": 16,
@@ -37244,7 +37274,7 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T21:44:04",
+    "date_from": "2026-10-22T21:50:58",
     "date_to": "2052-11-14",
     "preset": "month",
     "agency_id": 16,
@@ -37479,10 +37509,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -37558,7 +37588,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:44:04\",
+    \"date\": \"2026-10-22T21:50:58\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -37578,7 +37608,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:44:04",
+    "date": "2026-10-22T21:50:58",
     "agency_id": 16,
     "format": "json"
 };
@@ -37815,10 +37845,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -40840,8 +40870,8 @@ Must be one of:
     \"currency\": \"ngz\",
     \"code_prefix\": \"miyvdljn\",
     \"code_suffix\": \"ikhwaykc\",
-    \"opens_at\": \"21:44\",
-    \"closes_at\": \"21:44\",
+    \"opens_at\": \"21:50\",
+    \"closes_at\": \"21:50\",
     \"monthly_revenue_target\": 38,
     \"status\": true
 }"
@@ -40867,8 +40897,8 @@ let body = {
     "currency": "ngz",
     "code_prefix": "miyvdljn",
     "code_suffix": "ikhwaykc",
-    "opens_at": "21:44",
-    "closes_at": "21:44",
+    "opens_at": "21:50",
+    "closes_at": "21:50",
     "monthly_revenue_target": 38,
     "status": true
 };
@@ -41130,10 +41160,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:44"
+               value="21:50"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:44</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -41142,10 +41172,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:44"
+               value="21:50"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:44</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -41557,7 +41587,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T21:44:04\"
+    \"rate_date\": \"2026-10-22T21:50:58\"
 }"
 </code></pre></div>
 
@@ -41578,7 +41608,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T21:44:04"
+    "rate_date": "2026-10-22T21:50:58"
 };
 
 fetch(url, {
@@ -41784,10 +41814,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
         </form>
 
@@ -42373,8 +42403,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"currency\": \"zmi\",
     \"code_prefix\": \"yvdljnik\",
     \"code_suffix\": \"hwaykcmy\",
-    \"opens_at\": \"21:44\",
-    \"closes_at\": \"21:44\",
+    \"opens_at\": \"21:50\",
+    \"closes_at\": \"21:50\",
     \"monthly_revenue_target\": 72
 }"
 </code></pre></div>
@@ -42400,8 +42430,8 @@ let body = {
     "currency": "zmi",
     "code_prefix": "yvdljnik",
     "code_suffix": "hwaykcmy",
-    "opens_at": "21:44",
-    "closes_at": "21:44",
+    "opens_at": "21:50",
+    "closes_at": "21:50",
     "monthly_revenue_target": 72
 };
 
@@ -42661,10 +42691,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:44"
+               value="21:50"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:44</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -42673,10 +42703,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:44"
+               value="21:50"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:44</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -50273,6 +50303,2310 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="espace-client-GETapi-v1-client-app-home">Accueil : dépôt actif et étapes, prochain retrait, reste à payer, points, actions rapides, dernière notification.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-client-app-home">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/client/app/home" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/home"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-client-app-home">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;greeting&quot;: &quot;Bonjour Aminata&quot;,
+        &quot;subtitle&quot;: &quot;Votre linge avance bien.&quot;,
+        &quot;initials&quot;: &quot;AK&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Bingerville&quot;
+        },
+        &quot;active_deposit&quot;: {
+            &quot;id&quot;: 2684,
+            &quot;code&quot;: &quot;BG-02684&quot;,
+            &quot;express&quot;: true,
+            &quot;summary&quot;: &quot;7 pi&egrave;ces &middot; confi&eacute;es le 28 septembre&quot;,
+            &quot;steps&quot;: [
+                {
+                    &quot;etat&quot;: &quot;waiting&quot;,
+                    &quot;label&quot;: &quot;Re&ccedil;u&quot;,
+                    &quot;state&quot;: &quot;done&quot;,
+                    &quot;at&quot;: &quot;2026-09-28T09:42:00+00:00&quot;
+                },
+                {
+                    &quot;etat&quot;: &quot;in_progress&quot;,
+                    &quot;label&quot;: &quot;En cours&quot;,
+                    &quot;state&quot;: &quot;current&quot;,
+                    &quot;at&quot;: &quot;2026-09-28T10:16:00+00:00&quot;
+                },
+                {
+                    &quot;etat&quot;: &quot;treated&quot;,
+                    &quot;label&quot;: &quot;Trait&eacute;&quot;,
+                    &quot;state&quot;: &quot;upcoming&quot;
+                },
+                {
+                    &quot;etat&quot;: &quot;classed&quot;,
+                    &quot;label&quot;: &quot;Class&eacute;&quot;,
+                    &quot;state&quot;: &quot;upcoming&quot;
+                }
+            ],
+            &quot;status_line&quot;: &quot;Lavage en cours &middot; pr&ecirc;t demain &middot; 17:00&quot;
+        },
+        &quot;tiles&quot;: {
+            &quot;next_retrieval&quot;: {
+                &quot;at&quot;: &quot;2026-09-29T17:00:00+00:00&quot;,
+                &quot;label&quot;: &quot;Demain &middot; 17:00&quot;
+            },
+            &quot;left_to_pay&quot;: 4000,
+            &quot;loyalty_points&quot;: 1240
+        },
+        &quot;quick_actions&quot;: {
+            &quot;track&quot;: &quot;/api/v1/client/app/deposits/2684&quot;,
+            &quot;ticket_url&quot;: &quot;https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&amp;signature=&hellip;&quot;,
+            &quot;call&quot;: &quot;+225 27 20 65 18 20&quot;,
+            &quot;directions&quot;: &quot;Carrefour Feh Kess&eacute;, Bingerville&quot;
+        },
+        &quot;latest_notification&quot;: {
+            &quot;title&quot;: &quot;Votre d&eacute;p&ocirc;t est pass&eacute; au lavage&quot;,
+            &quot;deposit_code&quot;: &quot;BG-02684&quot;,
+            &quot;at&quot;: &quot;2026-09-28T10:16:00+00:00&quot;,
+            &quot;ago&quot;: &quot;il y a 18 minutes&quot;
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-client-app-home" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-client-app-home"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-client-app-home"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-client-app-home" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-client-app-home">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-client-app-home" data-method="GET"
+      data-path="api/v1/client/app/home"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-client-app-home', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-client-app-home"
+                    onclick="tryItOut('GETapi-v1-client-app-home');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-client-app-home"
+                    onclick="cancelTryOut('GETapi-v1-client-app-home');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-client-app-home"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/client/app/home</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-client-app-home"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-client-app-home"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-client-app-home"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-client-app-home"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="espace-client-GETapi-v1-client-app-deposits">« Mes dépôts » : `q` (code), `status=in_progress|ready|retrieved`, compteurs des filtres.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-client-app-deposits">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/client/app/deposits" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"q\": \"b\",
+    \"status\": \"in_progress\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/deposits"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "q": "b",
+    "status": "in_progress"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-client-app-deposits">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 2684,
+            &quot;code&quot;: &quot;BG-02684&quot;,
+            &quot;status&quot;: &quot;in_progress&quot;,
+            &quot;status_label&quot;: &quot;En cours&quot;,
+            &quot;deposited_at&quot;: &quot;2026-09-28T09:42:00+00:00&quot;,
+            &quot;total&quot;: 14000,
+            &quot;payment_label&quot;: &quot;Acompte&quot;,
+            &quot;retrieval_label&quot;: &quot;30 sept. &middot; 17:00&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;filters&quot;: [
+            {
+                &quot;code&quot;: &quot;all&quot;,
+                &quot;label&quot;: &quot;Tous&quot;,
+                &quot;count&quot;: 12
+            },
+            {
+                &quot;code&quot;: &quot;in_progress&quot;,
+                &quot;label&quot;: &quot;En cours&quot;,
+                &quot;count&quot;: 1
+            },
+            {
+                &quot;code&quot;: &quot;ready&quot;,
+                &quot;label&quot;: &quot;Pr&ecirc;ts&quot;,
+                &quot;count&quot;: 2
+            },
+            {
+                &quot;code&quot;: &quot;retrieved&quot;,
+                &quot;label&quot;: &quot;Retir&eacute;s&quot;,
+                &quot;count&quot;: 9
+            }
+        ]
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-client-app-deposits" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-client-app-deposits"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-client-app-deposits"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-client-app-deposits" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-client-app-deposits">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-client-app-deposits" data-method="GET"
+      data-path="api/v1/client/app/deposits"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-client-app-deposits', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-client-app-deposits"
+                    onclick="tryItOut('GETapi-v1-client-app-deposits');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-client-app-deposits"
+                    onclick="cancelTryOut('GETapi-v1-client-app-deposits');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-client-app-deposits"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/client/app/deposits</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-client-app-deposits"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-client-app-deposits"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-client-app-deposits"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-client-app-deposits"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="q"                data-endpoint="GETapi-v1-client-app-deposits"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-client-app-deposits"
+               value="in_progress"
+               data-component="body">
+    <br>
+<p>Example: <code>in_progress</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>in_progress</code></li> <li><code>ready</code></li> <li><code>retrieved</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="espace-client-GETapi-v1-client-app-deposits--id-">« Suivi du dépôt ».</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-client-app-deposits--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/client/app/deposits/16" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/deposits/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-client-app-deposits--id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 2684,
+        &quot;code&quot;: &quot;BG-02684&quot;,
+        &quot;express&quot;: true,
+        &quot;deposited_label&quot;: &quot;D&eacute;pos&eacute; le 28 septembre &agrave; 09:42&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-09-30T17:00:00+00:00&quot;,
+        &quot;retrieve_label&quot;: &quot;Mercredi 30 sept. &middot; 17:00&quot;,
+        &quot;progress&quot;: [
+            {
+                &quot;etat&quot;: &quot;in_progress&quot;,
+                &quot;label&quot;: &quot;En cours&quot;,
+                &quot;state&quot;: &quot;current&quot;,
+                &quot;at&quot;: &quot;2026-09-28T10:16:00+00:00&quot;,
+                &quot;detail&quot;: &quot;Lavage en cours &middot; depuis 10:16&quot;
+            }
+        ],
+        &quot;articles&quot;: {
+            &quot;pieces&quot;: 7,
+            &quot;lines&quot;: [
+                {
+                    &quot;quantity&quot;: 3,
+                    &quot;label&quot;: &quot;Chemises blanches&quot;,
+                    &quot;amount&quot;: 4500
+                }
+            ]
+        },
+        &quot;payment&quot;: {
+            &quot;label&quot;: &quot;Acompte&quot;,
+            &quot;total&quot;: 14000,
+            &quot;paid&quot;: 10000,
+            &quot;left_to_pay&quot;: 4000,
+            &quot;ticket_url&quot;: &quot;https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&amp;signature=&hellip;&quot;
+        },
+        &quot;agency&quot;: {
+            &quot;name&quot;: &quot;Agence Bingerville&quot;,
+            &quot;phone&quot;: &quot;+225 27 20 65 18 20&quot;,
+            &quot;address&quot;: &quot;Carrefour Feh Kess&eacute;&quot;
+        },
+        &quot;loyalty_points&quot;: 1240
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-client-app-deposits--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-client-app-deposits--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-client-app-deposits--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-client-app-deposits--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-client-app-deposits--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-client-app-deposits--id-" data-method="GET"
+      data-path="api/v1/client/app/deposits/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-client-app-deposits--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-client-app-deposits--id-"
+                    onclick="tryItOut('GETapi-v1-client-app-deposits--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-client-app-deposits--id-"
+                    onclick="cancelTryOut('GETapi-v1-client-app-deposits--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-client-app-deposits--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/client/app/deposits/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-client-app-deposits--id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-client-app-deposits--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-client-app-deposits--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-client-app-deposits--id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v1-client-app-deposits--id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="espace-client-GETapi-v1-client-app-loyalty">« Ma fidélité ».</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-client-app-loyalty">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/client/app/loyalty" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/loyalty"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-client-app-loyalty">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;points&quot;: 2840,
+        &quot;tier&quot;: {
+            &quot;code&quot;: &quot;or&quot;,
+            &quot;label&quot;: &quot;Or&quot;,
+            &quot;multiplier&quot;: 1.25
+        },
+        &quot;convertible_value&quot;: 14000,
+        &quot;progress&quot;: {
+            &quot;basis&quot;: &quot;spend_12m&quot;,
+            &quot;current&quot;: 426000,
+            &quot;current_label&quot;: &quot;Or&quot;,
+            &quot;next&quot;: {
+                &quot;code&quot;: &quot;platine&quot;,
+                &quot;label&quot;: &quot;Platine&quot;,
+                &quot;min&quot;: 700000
+            },
+            &quot;remaining&quot;: 274000,
+            &quot;percent&quot;: 61,
+            &quot;label&quot;: &quot;Encore 274 000 FCFA de d&eacute;penses sur 12 mois pour le niveau Platine&quot;
+        },
+        &quot;benefits&quot;: [
+            &quot;+25 % de points sur chaque d&eacute;p&ocirc;t&quot;,
+            &quot;Priorit&eacute; &amp; retouches&quot;
+        ],
+        &quot;next_reward&quot;: {
+            &quot;points&quot;: 3000,
+            &quot;value&quot;: 15000,
+            &quot;missing_points&quot;: 160,
+            &quot;percent&quot;: 95,
+            &quot;estimated_spend&quot;: 16000
+        },
+        &quot;history&quot;: [
+            {
+                &quot;label&quot;: &quot;Paiement d&eacute;p&ocirc;t DP-2841&quot;,
+                &quot;type&quot;: &quot;earn&quot;,
+                &quot;points&quot;: 460,
+                &quot;at&quot;: &quot;2026-09-28T10:00:00+00:00&quot;
+            }
+        ],
+        &quot;rules&quot;: [
+            &quot;10 points gagn&eacute;s par tranche de 1 000 FCFA pay&eacute;s.&quot;,
+            &quot;Conversion d&egrave;s 1 000 points : 200 points valent 1 000 FCFA.&quot;
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-client-app-loyalty" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-client-app-loyalty"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-client-app-loyalty"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-client-app-loyalty" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-client-app-loyalty">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-client-app-loyalty" data-method="GET"
+      data-path="api/v1/client/app/loyalty"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-client-app-loyalty', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-client-app-loyalty"
+                    onclick="tryItOut('GETapi-v1-client-app-loyalty');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-client-app-loyalty"
+                    onclick="cancelTryOut('GETapi-v1-client-app-loyalty');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-client-app-loyalty"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/client/app/loyalty</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-client-app-loyalty"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-client-app-loyalty"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-client-app-loyalty"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-client-app-loyalty"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="espace-client-GETapi-v1-client-app-profile">« Profil et sécurité ».</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-client-app-profile">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/client/app/profile" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/profile"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-client-app-profile">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;identity&quot;: {
+            &quot;fullname&quot;: &quot;Aminata Kon&eacute;&quot;,
+            &quot;initials&quot;: &quot;AK&quot;,
+            &quot;client_since&quot;: &quot;2024-03-12T00:00:00+00:00&quot;,
+            &quot;client_since_label&quot;: &quot;Client depuis mars 2024&quot;,
+            &quot;verified&quot;: true,
+            &quot;phone_number&quot;: &quot;+225 07 08 42 16 90&quot;,
+            &quot;phone_verified&quot;: true,
+            &quot;email&quot;: &quot;aminata.kone@email.ci&quot;,
+            &quot;address&quot;: &quot;Cocody Riviera 3, Abidjan&quot;,
+            &quot;preferred_agency&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Cocody&quot;,
+                &quot;address&quot;: &quot;Boulevard Latrille&quot;
+            }
+        },
+        &quot;communication&quot;: {
+            &quot;sms&quot;: true,
+            &quot;email&quot;: true,
+            &quot;personalized_offers&quot;: false
+        },
+        &quot;password&quot;: {
+            &quot;changed_at&quot;: &quot;2026-06-26T10:00:00+00:00&quot;,
+            &quot;changed_label&quot;: &quot;derni&egrave;re modification il y a 3 mois&quot;,
+            &quot;rules&quot;: {
+                &quot;min_length&quot;: 8,
+                &quot;uppercase&quot;: true,
+                &quot;digit&quot;: true
+            }
+        },
+        &quot;sessions&quot;: [
+            {
+                &quot;id&quot;: 31,
+                &quot;device&quot;: &quot;iPhone&quot;,
+                &quot;ip_address&quot;: &quot;102.244.0.12&quot;,
+                &quot;last_used_at&quot;: &quot;2026-09-28T10:42:00+00:00&quot;,
+                &quot;current&quot;: true
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-client-app-profile" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-client-app-profile"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-client-app-profile"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-client-app-profile" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-client-app-profile">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-client-app-profile" data-method="GET"
+      data-path="api/v1/client/app/profile"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-client-app-profile', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-client-app-profile"
+                    onclick="tryItOut('GETapi-v1-client-app-profile');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-client-app-profile"
+                    onclick="cancelTryOut('GETapi-v1-client-app-profile');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-client-app-profile"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/client/app/profile</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-client-app-profile"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-client-app-profile"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-client-app-profile"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-client-app-profile"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="espace-client-PUTapi-v1-client-app-profile">« Enregistrer les modifications » et préférences de communication.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-client-app-profile">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v1/client/app/profile" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"fullname\": \"b\",
+    \"phone_number\": \"n\",
+    \"email\": \"ashly64@example.com\",
+    \"address\": \"v\",
+    \"agency_id\": 16,
+    \"communication\": {
+        \"sms\": false,
+        \"email\": true,
+        \"personalized_offers\": false
+    }
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/profile"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "fullname": "b",
+    "phone_number": "n",
+    "email": "ashly64@example.com",
+    "address": "v",
+    "agency_id": 16,
+    "communication": {
+        "sms": false,
+        "email": true,
+        "personalized_offers": false
+    }
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-client-app-profile">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;identity&quot;: {
+            &quot;fullname&quot;: &quot;Aminata Kon&eacute;&quot;,
+            &quot;initials&quot;: &quot;AK&quot;,
+            &quot;client_since&quot;: &quot;2024-03-12T00:00:00+00:00&quot;,
+            &quot;client_since_label&quot;: &quot;Client depuis mars 2024&quot;,
+            &quot;verified&quot;: true,
+            &quot;phone_number&quot;: &quot;+225 07 08 42 16 90&quot;,
+            &quot;phone_verified&quot;: true,
+            &quot;email&quot;: &quot;aminata.kone@email.ci&quot;,
+            &quot;address&quot;: &quot;Cocody Riviera 3, Abidjan&quot;,
+            &quot;preferred_agency&quot;: {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Cocody&quot;,
+                &quot;address&quot;: &quot;Boulevard Latrille&quot;
+            }
+        },
+        &quot;communication&quot;: {
+            &quot;sms&quot;: true,
+            &quot;email&quot;: true,
+            &quot;personalized_offers&quot;: false
+        },
+        &quot;password&quot;: {
+            &quot;changed_at&quot;: &quot;2026-06-26T10:00:00+00:00&quot;,
+            &quot;changed_label&quot;: &quot;derni&egrave;re modification il y a 3 mois&quot;,
+            &quot;rules&quot;: {
+                &quot;min_length&quot;: 8,
+                &quot;uppercase&quot;: true,
+                &quot;digit&quot;: true
+            }
+        },
+        &quot;sessions&quot;: [
+            {
+                &quot;id&quot;: 31,
+                &quot;device&quot;: &quot;iPhone&quot;,
+                &quot;ip_address&quot;: &quot;102.244.0.12&quot;,
+                &quot;last_used_at&quot;: &quot;2026-09-28T10:42:00+00:00&quot;,
+                &quot;current&quot;: true
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-client-app-profile" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-client-app-profile"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-client-app-profile"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-client-app-profile" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-client-app-profile">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-client-app-profile" data-method="PUT"
+      data-path="api/v1/client/app/profile"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-client-app-profile', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-client-app-profile"
+                    onclick="tryItOut('PUTapi-v1-client-app-profile');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-client-app-profile"
+                    onclick="cancelTryOut('PUTapi-v1-client-app-profile');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-client-app-profile"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/client/app/profile</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-client-app-profile"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="fullname"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="n"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="ashly64@example.com"
+               data-component="body">
+    <br>
+<p>validation.email validation.max. Example: <code>ashly64@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="v"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>v</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="PUTapi-v1-client-app-profile"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>communication</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>sms</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-client-app-profile" style="display: none">
+            <input type="radio" name="communication.sms"
+                   value="true"
+                   data-endpoint="PUTapi-v1-client-app-profile"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-client-app-profile" style="display: none">
+            <input type="radio" name="communication.sms"
+                   value="false"
+                   data-endpoint="PUTapi-v1-client-app-profile"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-client-app-profile" style="display: none">
+            <input type="radio" name="communication.email"
+                   value="true"
+                   data-endpoint="PUTapi-v1-client-app-profile"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-client-app-profile" style="display: none">
+            <input type="radio" name="communication.email"
+                   value="false"
+                   data-endpoint="PUTapi-v1-client-app-profile"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>personalized_offers</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-client-app-profile" style="display: none">
+            <input type="radio" name="communication.personalized_offers"
+                   value="true"
+                   data-endpoint="PUTapi-v1-client-app-profile"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-client-app-profile" style="display: none">
+            <input type="radio" name="communication.personalized_offers"
+                   value="false"
+                   data-endpoint="PUTapi-v1-client-app-profile"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+                    </div>
+                                    </details>
+        </div>
+        </form>
+
+                    <h2 id="espace-client-PUTapi-v1-client-app-password">« Changer le mot de passe » : 8 caractères minimum, une majuscule et un chiffre.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-client-app-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v1/client/app/password" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"current_password\": \"architecto\",
+    \"password\": \"]|{+-0pBNvYg\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/password"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "current_password": "architecto",
+    "password": "]|{+-0pBNvYg"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-client-app-password">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;updated&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-client-app-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-client-app-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-client-app-password"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-client-app-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-client-app-password">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-client-app-password" data-method="PUT"
+      data-path="api/v1/client/app/password"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-client-app-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-client-app-password"
+                    onclick="tryItOut('PUTapi-v1-client-app-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-client-app-password"
+                    onclick="cancelTryOut('PUTapi-v1-client-app-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-client-app-password"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/client/app/password</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-client-app-password"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-client-app-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-client-app-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="PUTapi-v1-client-app-password"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>current_password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="current_password"                data-endpoint="PUTapi-v1-client-app-password"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="PUTapi-v1-client-app-password"
+               value="]|{+-0pBNvYg"
+               data-component="body">
+    <br>
+<p>Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>]|{+-0pBNvYg</code></p>
+        </div>
+        </form>
+
+                    <h2 id="espace-client-POSTapi-v1-client-app-sessions-revoke-others">« Déconnecter les autres appareils ».</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-client-app-sessions-revoke-others">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/client/app/sessions/revoke-others" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/sessions/revoke-others"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-client-app-sessions-revoke-others">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;revoked&quot;: 1
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-client-app-sessions-revoke-others" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-client-app-sessions-revoke-others"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-client-app-sessions-revoke-others"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-client-app-sessions-revoke-others" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-client-app-sessions-revoke-others">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-client-app-sessions-revoke-others" data-method="POST"
+      data-path="api/v1/client/app/sessions/revoke-others"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-client-app-sessions-revoke-others', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-client-app-sessions-revoke-others"
+                    onclick="tryItOut('POSTapi-v1-client-app-sessions-revoke-others');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-client-app-sessions-revoke-others"
+                    onclick="cancelTryOut('POSTapi-v1-client-app-sessions-revoke-others');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-client-app-sessions-revoke-others"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/client/app/sessions/revoke-others</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-client-app-sessions-revoke-others"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-client-app-sessions-revoke-others"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-client-app-sessions-revoke-others"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-client-app-sessions-revoke-others"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="espace-client-GETapi-v1-client-app-data-export">« Télécharger mes données » (JSON).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-client-app-data-export">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/client/app/data-export" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/data-export"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-client-app-data-export">
+            <blockquote>
+            <p>Example response (200, Fichier JSON téléchargé):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;exported_at&quot;: &quot;2026-09-28T10:45:00+00:00&quot;,
+        &quot;profile&quot;: [],
+        &quot;deposits&quot;: [],
+        &quot;loyalty&quot;: []
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-client-app-data-export" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-client-app-data-export"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-client-app-data-export"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-client-app-data-export" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-client-app-data-export">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-client-app-data-export" data-method="GET"
+      data-path="api/v1/client/app/data-export"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-client-app-data-export', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-client-app-data-export"
+                    onclick="tryItOut('GETapi-v1-client-app-data-export');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-client-app-data-export"
+                    onclick="cancelTryOut('GETapi-v1-client-app-data-export');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-client-app-data-export"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/client/app/data-export</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-client-app-data-export"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-client-app-data-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-client-app-data-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-client-app-data-export"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="espace-client-POSTapi-v1-client-app-account-delete">« Supprimer mon compte » : archive le compte, coupe les consentements et toutes les sessions.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-client-app-account-delete">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/client/app/account/delete" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"password\": \"|]|{+-\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/client/app/account/delete"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "password": "|]|{+-"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-client-app-account-delete">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-client-app-account-delete" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-client-app-account-delete"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-client-app-account-delete"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-client-app-account-delete" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-client-app-account-delete">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-client-app-account-delete" data-method="POST"
+      data-path="api/v1/client/app/account/delete"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-client-app-account-delete', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-client-app-account-delete"
+                    onclick="tryItOut('POSTapi-v1-client-app-account-delete');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-client-app-account-delete"
+                    onclick="cancelTryOut('POSTapi-v1-client-app-account-delete');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-client-app-account-delete"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/client/app/account/delete</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-client-app-account-delete"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-client-app-account-delete"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-client-app-account-delete"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-client-app-account-delete"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-v1-client-app-account-delete"
+               value="|]|{+-"
+               data-component="body">
+    <br>
+<p>Example: <code>|]|{+-</code></p>
+        </div>
+        </form>
+
                 <h1 id="superadmin">Superadmin</h1>
 
     
@@ -55467,7 +57801,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T21:44:03\"
+    \"expires_at\": \"2026-10-22T21:50:57\"
 }"
 </code></pre></div>
 
@@ -55491,7 +57825,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T21:44:03"
+    "expires_at": "2026-10-22T21:50:57"
 };
 
 fetch(url, {
@@ -55826,10 +58160,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:57"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:57</code></p>
         </div>
         </form>
 
@@ -56131,10 +58465,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T21:44:03"\
+    --form "effective_at=2026-10-22T21:50:57"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\phpCBF4.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php1DC0.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -56153,7 +58487,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T21:44:03');
+body.append('effective_at', '2026-10-22T21:50:57');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -56663,10 +58997,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T21:44:03"
+               value="2026-10-22T21:50:57"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:03</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -56722,7 +59056,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpCBF4.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php1DC0.tmp</code></p>
         </div>
         </form>
 
@@ -60935,7 +63269,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T21:44:04\",
+    \"round_date\": \"2026-10-22T21:50:58\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -60956,7 +63290,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T21:44:04",
+    "round_date": "2026-10-22T21:50:58",
     "name": "n"
 };
 
@@ -61163,10 +63497,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T21:44:04"
+               value="2026-10-22T21:50:58"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:44:04</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

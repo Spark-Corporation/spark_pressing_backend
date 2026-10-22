@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "73b4e673-94b2-45c8-8e79-b786a6de0ee4",
+        "_postman_id": "70d159e3-4a7d-4c90-87f0-089093281ed4",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:44:03\",\"retrieve_date\":\"2026-10-22T21:44:03\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:50:58\",\"retrieve_date\":\"2026-10-22T21:50:58\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:44:03\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:50:58\"}"
                         },
                         "description": ""
                     },
@@ -3969,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:44:03\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:50:58\"}"
                         },
                         "description": ""
                     },
@@ -4014,7 +4014,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:44:03\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:50:58\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5767,7 +5767,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T21:44:04",
+                                    "value": "2026-10-22T21:50:58",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5915,7 +5915,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:44:04\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:50:58\"}"
                         },
                         "description": ""
                     },
@@ -6072,7 +6072,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:44:04\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:50:58\"}"
                         },
                         "description": ""
                     },
@@ -6117,7 +6117,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:44:04\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:50:58\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7219,7 +7219,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T21:44:04\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T21:50:58\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7264,7 +7264,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:44:04\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:50:58\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7903,7 +7903,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:44\",\"closes_at\":\"21:44\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:50\",\"closes_at\":\"21:50\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8038,7 +8038,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:44:04\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:50:58\"}"
                         },
                         "description": ""
                     },
@@ -8223,7 +8223,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:44\",\"closes_at\":\"21:44\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:50\",\"closes_at\":\"21:50\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -9854,6 +9854,470 @@
                             "name": "Non authentifi\u00e9"
                         }
                     ]
+                },
+                {
+                    "name": "Accueil : d\u00e9p\u00f4t actif et \u00e9tapes, prochain retrait, reste \u00e0 payer, points, actions rapides, derni\u00e8re notification.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/home",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/home"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"greeting\": \"Bonjour Aminata\",\n        \"subtitle\": \"Votre linge avance bien.\",\n        \"initials\": \"AK\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Bingerville\"\n        },\n        \"active_deposit\": {\n            \"id\": 2684,\n            \"code\": \"BG-02684\",\n            \"express\": true,\n            \"summary\": \"7 pi\u00e8ces \u00b7 confi\u00e9es le 28 septembre\",\n            \"steps\": [\n                {\n                    \"etat\": \"waiting\",\n                    \"label\": \"Re\u00e7u\",\n                    \"state\": \"done\",\n                    \"at\": \"2026-09-28T09:42:00+00:00\"\n                },\n                {\n                    \"etat\": \"in_progress\",\n                    \"label\": \"En cours\",\n                    \"state\": \"current\",\n                    \"at\": \"2026-09-28T10:16:00+00:00\"\n                },\n                {\n                    \"etat\": \"treated\",\n                    \"label\": \"Trait\u00e9\",\n                    \"state\": \"upcoming\"\n                },\n                {\n                    \"etat\": \"classed\",\n                    \"label\": \"Class\u00e9\",\n                    \"state\": \"upcoming\"\n                }\n            ],\n            \"status_line\": \"Lavage en cours \u00b7 pr\u00eat demain \u00b7 17:00\"\n        },\n        \"tiles\": {\n            \"next_retrieval\": {\n                \"at\": \"2026-09-29T17:00:00+00:00\",\n                \"label\": \"Demain \u00b7 17:00\"\n            },\n            \"left_to_pay\": 4000,\n            \"loyalty_points\": 1240\n        },\n        \"quick_actions\": {\n            \"track\": \"\/api\/v1\/client\/app\/deposits\/2684\",\n            \"ticket_url\": \"https:\/\/api.example.com\/api\/v1\/public\/deposits\/2684\/document?type=ticket&signature=\u2026\",\n            \"call\": \"+225 27 20 65 18 20\",\n            \"directions\": \"Carrefour Feh Kess\u00e9, Bingerville\"\n        },\n        \"latest_notification\": {\n            \"title\": \"Votre d\u00e9p\u00f4t est pass\u00e9 au lavage\",\n            \"deposit_code\": \"BG-02684\",\n            \"at\": \"2026-09-28T10:16:00+00:00\",\n            \"ago\": \"il y a 18 minutes\"\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Mes d\u00e9p\u00f4ts \u00bb : `q` (code), `status=in_progress|ready|retrieved`, compteurs des filtres.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/deposits",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/deposits"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"b\",\"status\":\"in_progress\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 2684,\n            \"code\": \"BG-02684\",\n            \"status\": \"in_progress\",\n            \"status_label\": \"En cours\",\n            \"deposited_at\": \"2026-09-28T09:42:00+00:00\",\n            \"total\": 14000,\n            \"payment_label\": \"Acompte\",\n            \"retrieval_label\": \"30 sept. \u00b7 17:00\"\n        }\n    ],\n    \"meta\": {\n        \"filters\": [\n            {\n                \"code\": \"all\",\n                \"label\": \"Tous\",\n                \"count\": 12\n            },\n            {\n                \"code\": \"in_progress\",\n                \"label\": \"En cours\",\n                \"count\": 1\n            },\n            {\n                \"code\": \"ready\",\n                \"label\": \"Pr\u00eats\",\n                \"count\": 2\n            },\n            {\n                \"code\": \"retrieved\",\n                \"label\": \"Retir\u00e9s\",\n                \"count\": 9\n            }\n        ]\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Suivi du d\u00e9p\u00f4t \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/deposits\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/deposits\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 16,
+                                    "description": "The ID of the deposit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 2684,\n        \"code\": \"BG-02684\",\n        \"express\": true,\n        \"deposited_label\": \"D\u00e9pos\u00e9 le 28 septembre \u00e0 09:42\",\n        \"retrieve_date\": \"2026-09-30T17:00:00+00:00\",\n        \"retrieve_label\": \"Mercredi 30 sept. \u00b7 17:00\",\n        \"progress\": [\n            {\n                \"etat\": \"in_progress\",\n                \"label\": \"En cours\",\n                \"state\": \"current\",\n                \"at\": \"2026-09-28T10:16:00+00:00\",\n                \"detail\": \"Lavage en cours \u00b7 depuis 10:16\"\n            }\n        ],\n        \"articles\": {\n            \"pieces\": 7,\n            \"lines\": [\n                {\n                    \"quantity\": 3,\n                    \"label\": \"Chemises blanches\",\n                    \"amount\": 4500\n                }\n            ]\n        },\n        \"payment\": {\n            \"label\": \"Acompte\",\n            \"total\": 14000,\n            \"paid\": 10000,\n            \"left_to_pay\": 4000,\n            \"ticket_url\": \"https:\/\/api.example.com\/api\/v1\/public\/deposits\/2684\/document?type=ticket&signature=\u2026\"\n        },\n        \"agency\": {\n            \"name\": \"Agence Bingerville\",\n            \"phone\": \"+225 27 20 65 18 20\",\n            \"address\": \"Carrefour Feh Kess\u00e9\"\n        },\n        \"loyalty_points\": 1240\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Ma fid\u00e9lit\u00e9 \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/loyalty",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/loyalty"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"points\": 2840,\n        \"tier\": {\n            \"code\": \"or\",\n            \"label\": \"Or\",\n            \"multiplier\": 1.25\n        },\n        \"convertible_value\": 14000,\n        \"progress\": {\n            \"basis\": \"spend_12m\",\n            \"current\": 426000,\n            \"current_label\": \"Or\",\n            \"next\": {\n                \"code\": \"platine\",\n                \"label\": \"Platine\",\n                \"min\": 700000\n            },\n            \"remaining\": 274000,\n            \"percent\": 61,\n            \"label\": \"Encore 274 000 FCFA de d\u00e9penses sur 12 mois pour le niveau Platine\"\n        },\n        \"benefits\": [\n            \"+25 % de points sur chaque d\u00e9p\u00f4t\",\n            \"Priorit\u00e9 & retouches\"\n        ],\n        \"next_reward\": {\n            \"points\": 3000,\n            \"value\": 15000,\n            \"missing_points\": 160,\n            \"percent\": 95,\n            \"estimated_spend\": 16000\n        },\n        \"history\": [\n            {\n                \"label\": \"Paiement d\u00e9p\u00f4t DP-2841\",\n                \"type\": \"earn\",\n                \"points\": 460,\n                \"at\": \"2026-09-28T10:00:00+00:00\"\n            }\n        ],\n        \"rules\": [\n            \"10 points gagn\u00e9s par tranche de 1 000 FCFA pay\u00e9s.\",\n            \"Conversion d\u00e8s 1 000 points : 200 points valent 1 000 FCFA.\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Profil et s\u00e9curit\u00e9 \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"identity\": {\n            \"fullname\": \"Aminata Kon\u00e9\",\n            \"initials\": \"AK\",\n            \"client_since\": \"2024-03-12T00:00:00+00:00\",\n            \"client_since_label\": \"Client depuis mars 2024\",\n            \"verified\": true,\n            \"phone_number\": \"+225 07 08 42 16 90\",\n            \"phone_verified\": true,\n            \"email\": \"aminata.kone@email.ci\",\n            \"address\": \"Cocody Riviera 3, Abidjan\",\n            \"preferred_agency\": {\n                \"id\": 2,\n                \"name\": \"Cocody\",\n                \"address\": \"Boulevard Latrille\"\n            }\n        },\n        \"communication\": {\n            \"sms\": true,\n            \"email\": true,\n            \"personalized_offers\": false\n        },\n        \"password\": {\n            \"changed_at\": \"2026-06-26T10:00:00+00:00\",\n            \"changed_label\": \"derni\u00e8re modification il y a 3 mois\",\n            \"rules\": {\n                \"min_length\": 8,\n                \"uppercase\": true,\n                \"digit\": true\n            }\n        },\n        \"sessions\": [\n            {\n                \"id\": 31,\n                \"device\": \"iPhone\",\n                \"ip_address\": \"102.244.0.12\",\n                \"last_used_at\": \"2026-09-28T10:42:00+00:00\",\n                \"current\": true\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Enregistrer les modifications \u00bb et pr\u00e9f\u00e9rences de communication.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/profile"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"b\",\"phone_number\":\"n\",\"email\":\"ashly64@example.com\",\"address\":\"v\",\"agency_id\":16,\"communication\":{\"sms\":false,\"email\":true,\"personalized_offers\":false}}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"identity\": {\n            \"fullname\": \"Aminata Kon\u00e9\",\n            \"initials\": \"AK\",\n            \"client_since\": \"2024-03-12T00:00:00+00:00\",\n            \"client_since_label\": \"Client depuis mars 2024\",\n            \"verified\": true,\n            \"phone_number\": \"+225 07 08 42 16 90\",\n            \"phone_verified\": true,\n            \"email\": \"aminata.kone@email.ci\",\n            \"address\": \"Cocody Riviera 3, Abidjan\",\n            \"preferred_agency\": {\n                \"id\": 2,\n                \"name\": \"Cocody\",\n                \"address\": \"Boulevard Latrille\"\n            }\n        },\n        \"communication\": {\n            \"sms\": true,\n            \"email\": true,\n            \"personalized_offers\": false\n        },\n        \"password\": {\n            \"changed_at\": \"2026-06-26T10:00:00+00:00\",\n            \"changed_label\": \"derni\u00e8re modification il y a 3 mois\",\n            \"rules\": {\n                \"min_length\": 8,\n                \"uppercase\": true,\n                \"digit\": true\n            }\n        },\n        \"sessions\": [\n            {\n                \"id\": 31,\n                \"device\": \"iPhone\",\n                \"ip_address\": \"102.244.0.12\",\n                \"last_used_at\": \"2026-09-28T10:42:00+00:00\",\n                \"current\": true\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Changer le mot de passe \u00bb : 8 caract\u00e8res minimum, une majuscule et un chiffre.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/password"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"current_password\":\"architecto\",\"password\":\"]|{+-0pBNvYg\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"updated\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab D\u00e9connecter les autres appareils \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/sessions\/revoke-others",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/sessions\/revoke-others"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"revoked\": 1\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab T\u00e9l\u00e9charger mes donn\u00e9es \u00bb (JSON).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/data-export",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/data-export"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"exported_at\": \"2026-09-28T10:45:00+00:00\",\n        \"profile\": [],\n        \"deposits\": [],\n        \"loyalty\": []\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Fichier JSON t\u00e9l\u00e9charg\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Supprimer mon compte \u00bb : archive le compte, coupe les consentements et toutes les sessions.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/client\/app\/account\/delete",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/client\/app\/account\/delete"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"|]|{+-\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
                 }
             ]
         },
@@ -10917,7 +11381,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:44:03\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:50:57\"}"
                         },
                         "description": ""
                     },
@@ -11056,7 +11520,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T21:44:03",
+                                    "value": "2026-10-22T21:50:57",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -12005,7 +12469,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:44:04\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:50:58\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

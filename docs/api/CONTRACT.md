@@ -324,6 +324,20 @@ Permissions fines : `config/permission_matrix.php` (domaines × colonnes). Les p
 | Pressings (13A) | `GET /superadmin/pressings` | `initials`, compteurs, `license` |
 | Agences / utilisateurs (13B) | `GET /superadmin/agencies`, `GET /superadmin/users?q` | rattachement pressing, statut, MFA |
 
+### 7.0m Application mobile client (Figma 14)
+
+Jeton client (`POST /auth/client/login`). Toutes les routes sont sous `/client/app`.
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Accueil | `GET /client/app/home` | `greeting`, `subtitle`, `initials`, `agency`, `active_deposit` (code, express, résumé « 7 pièces · confiées le … », `steps[]` Reçu/En cours/Traité/Classé avec `state` done\|current\|upcoming, `status_line`), `tiles` (prochain retrait « Demain · 17:00 », reste à payer, points), `quick_actions` (suivi, ticket PDF signé, téléphone, adresse), `latest_notification` |
+| Mes dépôts | `GET /client/app/deposits?q&status=in_progress\|ready\|retrieved` | cartes (`status_label`, total, `payment_label` Payé/Acompte, `retrieval_label`) ; `meta.filters[]` avec compteurs |
+| Suivi du dépôt | `GET /client/app/deposits/{id}` | `deposited_label`, `retrieve_label`, `progress[]` (détail + heure), `articles`, `payment` (total, payé, reste, `ticket_url`), `agency` (nom, téléphone), `loyalty_points` |
+| Ma fidélité | `GET /client/app/loyalty` | `points`, `tier`, `convertible_value`, `progress` (base `points` ou `spend_12m` selon `settings/loyalty`, reste avant niveau suivant), `benefits[]`, `next_reward` (seuil, points manquants, dépense estimée), `history[]` (90 j), `rules[]` |
+| Profil et sécurité | `GET/PUT /client/app/profile` | `identity` (client depuis, téléphone vérifié, agence préférée), `communication` (sms, email, `personalized_offers`), `password.changed_label`, `sessions[]` |
+| Mot de passe, sessions | `PUT /client/app/password` (8 car., majuscule, chiffre), `POST /client/app/sessions/revoke-others` | — |
+| Confidentialité | `GET /client/app/data-export` (JSON téléchargeable), `POST /client/app/account/delete` (`password`) | suppression refusée tant qu’un dépôt est en cours ; compte archivé, consentements coupés, sessions révoquées |
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |

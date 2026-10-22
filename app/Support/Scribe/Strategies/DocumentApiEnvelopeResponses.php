@@ -573,6 +573,48 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Application mobile client (Figma 14) ——
+        if (str_starts_with($path, '/api/v1/client/app/')) {
+            $steps = [['etat' => 'waiting', 'label' => 'Reçu', 'state' => 'done', 'at' => '2026-09-28T09:42:00+00:00'], ['etat' => 'in_progress', 'label' => 'En cours', 'state' => 'current', 'at' => '2026-09-28T10:16:00+00:00'], ['etat' => 'treated', 'label' => 'Traité', 'state' => 'upcoming'], ['etat' => 'classed', 'label' => 'Classé', 'state' => 'upcoming']];
+            $card = ['id' => 2684, 'code' => 'BG-02684', 'status' => 'in_progress', 'status_label' => 'En cours', 'deposited_at' => '2026-09-28T09:42:00+00:00', 'total' => 14000, 'payment_label' => 'Acompte', 'retrieval_label' => '30 sept. · 17:00'];
+
+            return [match (true) {
+                str_ends_with($path, '/home') => $this->response(200, [
+                    'greeting' => 'Bonjour Aminata', 'subtitle' => 'Votre linge avance bien.', 'initials' => 'AK', 'agency' => ['id' => 1, 'name' => 'Bingerville'],
+                    'active_deposit' => ['id' => 2684, 'code' => 'BG-02684', 'express' => true, 'summary' => '7 pièces · confiées le 28 septembre', 'steps' => $steps, 'status_line' => 'Lavage en cours · prêt demain · 17:00'],
+                    'tiles' => ['next_retrieval' => ['at' => '2026-09-29T17:00:00+00:00', 'label' => 'Demain · 17:00'], 'left_to_pay' => 4000, 'loyalty_points' => 1240],
+                    'quick_actions' => ['track' => '/api/v1/client/app/deposits/2684', 'ticket_url' => 'https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&signature=…', 'call' => '+225 27 20 65 18 20', 'directions' => 'Carrefour Feh Kessé, Bingerville'],
+                    'latest_notification' => ['title' => 'Votre dépôt est passé au lavage', 'deposit_code' => 'BG-02684', 'at' => '2026-09-28T10:16:00+00:00', 'ago' => 'il y a 18 minutes'],
+                ]),
+                str_ends_with($path, '/deposits') => $this->response(200, [$card], ['filters' => [['code' => 'all', 'label' => 'Tous', 'count' => 12], ['code' => 'in_progress', 'label' => 'En cours', 'count' => 1], ['code' => 'ready', 'label' => 'Prêts', 'count' => 2], ['code' => 'retrieved', 'label' => 'Retirés', 'count' => 9]]]),
+                str_contains($path, '/deposits/') => $this->response(200, [
+                    'id' => 2684, 'code' => 'BG-02684', 'express' => true, 'deposited_label' => 'Déposé le 28 septembre à 09:42', 'retrieve_date' => '2026-09-30T17:00:00+00:00', 'retrieve_label' => 'Mercredi 30 sept. · 17:00',
+                    'progress' => [['etat' => 'in_progress', 'label' => 'En cours', 'state' => 'current', 'at' => '2026-09-28T10:16:00+00:00', 'detail' => 'Lavage en cours · depuis 10:16']],
+                    'articles' => ['pieces' => 7, 'lines' => [['quantity' => 3, 'label' => 'Chemises blanches', 'amount' => 4500]]],
+                    'payment' => ['label' => 'Acompte', 'total' => 14000, 'paid' => 10000, 'left_to_pay' => 4000, 'ticket_url' => 'https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&signature=…'],
+                    'agency' => ['name' => 'Agence Bingerville', 'phone' => '+225 27 20 65 18 20', 'address' => 'Carrefour Feh Kessé'], 'loyalty_points' => 1240,
+                ]),
+                str_ends_with($path, '/loyalty') => $this->response(200, [
+                    'points' => 2840, 'tier' => ['code' => 'or', 'label' => 'Or', 'multiplier' => 1.25], 'convertible_value' => 14000,
+                    'progress' => ['basis' => 'spend_12m', 'current' => 426000, 'current_label' => 'Or', 'next' => ['code' => 'platine', 'label' => 'Platine', 'min' => 700000], 'remaining' => 274000, 'percent' => 61, 'label' => 'Encore 274 000 FCFA de dépenses sur 12 mois pour le niveau Platine'],
+                    'benefits' => ['+25 % de points sur chaque dépôt', 'Priorité & retouches'],
+                    'next_reward' => ['points' => 3000, 'value' => 15000, 'missing_points' => 160, 'percent' => 95, 'estimated_spend' => 16000],
+                    'history' => [['label' => 'Paiement dépôt DP-2841', 'type' => 'earn', 'points' => 460, 'at' => '2026-09-28T10:00:00+00:00']],
+                    'rules' => ['10 points gagnés par tranche de 1 000 FCFA payés.', 'Conversion dès 1 000 points : 200 points valent 1 000 FCFA.'],
+                ]),
+                str_ends_with($path, '/profile') => $this->response(200, [
+                    'identity' => ['fullname' => 'Aminata Koné', 'initials' => 'AK', 'client_since' => '2024-03-12T00:00:00+00:00', 'client_since_label' => 'Client depuis mars 2024', 'verified' => true, 'phone_number' => '+225 07 08 42 16 90', 'phone_verified' => true, 'email' => 'aminata.kone@email.ci', 'address' => 'Cocody Riviera 3, Abidjan', 'preferred_agency' => ['id' => 2, 'name' => 'Cocody', 'address' => 'Boulevard Latrille']],
+                    'communication' => ['sms' => true, 'email' => true, 'personalized_offers' => false],
+                    'password' => ['changed_at' => '2026-06-26T10:00:00+00:00', 'changed_label' => 'dernière modification il y a 3 mois', 'rules' => ['min_length' => 8, 'uppercase' => true, 'digit' => true]],
+                    'sessions' => [['id' => 31, 'device' => 'iPhone', 'ip_address' => '102.244.0.12', 'last_used_at' => '2026-09-28T10:42:00+00:00', 'current' => true]],
+                ]),
+                str_ends_with($path, '/password') => $this->response(200, ['updated' => true]),
+                str_ends_with($path, '/revoke-others') => $this->response(200, ['revoked' => 1]),
+                str_ends_with($path, '/delete') => $this->response(200, ['deleted' => true]),
+                default => $this->response(200, ['exported_at' => '2026-09-28T10:45:00+00:00', 'profile' => [], 'deposits' => [], 'loyalty' => []], description: 'Fichier JSON téléchargé'),
+            }];
+        }
+
         // —— Retour en ligne et conflits (Figma 02e / 12) ——
         if ($path === '/api/v1/sync' || str_ends_with($path, '/resolve')) {
             $batch = ['id' => 16, 'reference' => 'SYNC-0928-16H32', 'agency' => ['id' => 1, 'name' => 'Bingerville'], 'user' => 'Awa N.', 'device_code' => 'POS-01', 'operations' => 5, 'succeeded' => 3, 'conflicts' => 1, 'failed' => 0, 'status' => 'partial', 'status_label' => 'Partiel', 'created_at' => '2026-09-28T16:32:00+00:00', 'ago' => 'il y a 1 minute', 'progress' => ['done' => 3, 'total' => 5, 'percent' => 60]];

@@ -10276,12 +10276,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
                 notes:
                   type: string
@@ -12009,7 +12009,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
               required:
                 - amount
@@ -28511,7 +28511,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:58'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -28746,7 +28746,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
               required:
                 - agency_id
@@ -33474,7 +33474,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
                 validated:
                   type: boolean
@@ -34132,7 +34132,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
     delete:
       summary: ''
@@ -34918,7 +34918,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -35139,7 +35139,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
                 period:
                   type: string
@@ -40278,7 +40278,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
                 date_to:
                   type: string
@@ -40684,7 +40684,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                   nullable: true
                 agency_id:
                   type: integer
@@ -43341,12 +43341,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:44'
+                  example: '21:50'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:44'
+                  example: '21:50'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -43729,7 +43729,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
               required:
                 - source_currency
                 - target_currency
@@ -44312,12 +44312,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:44'
+                  example: '21:50'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:44'
+                  example: '21:50'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -50546,6 +50546,1893 @@ paths:
                           example: 'Non authentifié.'
       tags:
         - 'Espace client'
+  /api/v1/client/app/home:
+    get:
+      summary: 'Accueil : dépôt actif et étapes, prochain retrait, reste à payer, points, actions rapides, dernière notification.'
+      operationId: accueilDptActifEttapesProchainRetraitRestePayerPointsActionsRapidesDernireNotification
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    greeting: 'Bonjour Aminata'
+                    subtitle: 'Votre linge avance bien.'
+                    initials: AK
+                    agency:
+                      id: 1
+                      name: Bingerville
+                    active_deposit:
+                      id: 2684
+                      code: BG-02684
+                      express: true
+                      summary: '7 pièces · confiées le 28 septembre'
+                      steps:
+                        -
+                          etat: waiting
+                          label: Reçu
+                          state: done
+                          at: '2026-09-28T09:42:00+00:00'
+                        -
+                          etat: in_progress
+                          label: 'En cours'
+                          state: current
+                          at: '2026-09-28T10:16:00+00:00'
+                        -
+                          etat: treated
+                          label: Traité
+                          state: upcoming
+                        -
+                          etat: classed
+                          label: Classé
+                          state: upcoming
+                      status_line: 'Lavage en cours · prêt demain · 17:00'
+                    tiles:
+                      next_retrieval:
+                        at: '2026-09-29T17:00:00+00:00'
+                        label: 'Demain · 17:00'
+                      left_to_pay: 4000
+                      loyalty_points: 1240
+                    quick_actions:
+                      track: /api/v1/client/app/deposits/2684
+                      ticket_url: 'https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&signature=…'
+                      call: '+225 27 20 65 18 20'
+                      directions: 'Carrefour Feh Kessé, Bingerville'
+                    latest_notification:
+                      title: 'Votre dépôt est passé au lavage'
+                      deposit_code: BG-02684
+                      at: '2026-09-28T10:16:00+00:00'
+                      ago: 'il y a 18 minutes'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      greeting:
+                        type: string
+                        example: 'Bonjour Aminata'
+                      subtitle:
+                        type: string
+                        example: 'Votre linge avance bien.'
+                      initials:
+                        type: string
+                        example: AK
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Bingerville
+                      active_deposit:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2684
+                          code:
+                            type: string
+                            example: BG-02684
+                          express:
+                            type: boolean
+                            example: true
+                          summary:
+                            type: string
+                            example: '7 pièces · confiées le 28 septembre'
+                          steps:
+                            type: array
+                            example:
+                              -
+                                etat: waiting
+                                label: Reçu
+                                state: done
+                                at: '2026-09-28T09:42:00+00:00'
+                              -
+                                etat: in_progress
+                                label: 'En cours'
+                                state: current
+                                at: '2026-09-28T10:16:00+00:00'
+                              -
+                                etat: treated
+                                label: Traité
+                                state: upcoming
+                              -
+                                etat: classed
+                                label: Classé
+                                state: upcoming
+                            items:
+                              type: object
+                              properties:
+                                etat:
+                                  type: string
+                                  example: waiting
+                                label:
+                                  type: string
+                                  example: Reçu
+                                state:
+                                  type: string
+                                  example: done
+                                at:
+                                  type: string
+                                  example: '2026-09-28T09:42:00+00:00'
+                          status_line:
+                            type: string
+                            example: 'Lavage en cours · prêt demain · 17:00'
+                      tiles:
+                        type: object
+                        properties:
+                          next_retrieval:
+                            type: object
+                            properties:
+                              at:
+                                type: string
+                                example: '2026-09-29T17:00:00+00:00'
+                              label:
+                                type: string
+                                example: 'Demain · 17:00'
+                          left_to_pay:
+                            type: integer
+                            example: 4000
+                          loyalty_points:
+                            type: integer
+                            example: 1240
+                      quick_actions:
+                        type: object
+                        properties:
+                          track:
+                            type: string
+                            example: /api/v1/client/app/deposits/2684
+                          ticket_url:
+                            type: string
+                            example: 'https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&signature=…'
+                          call:
+                            type: string
+                            example: '+225 27 20 65 18 20'
+                          directions:
+                            type: string
+                            example: 'Carrefour Feh Kessé, Bingerville'
+                      latest_notification:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: 'Votre dépôt est passé au lavage'
+                          deposit_code:
+                            type: string
+                            example: BG-02684
+                          at:
+                            type: string
+                            example: '2026-09-28T10:16:00+00:00'
+                          ago:
+                            type: string
+                            example: 'il y a 18 minutes'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - 'Espace client'
+  /api/v1/client/app/deposits:
+    get:
+      summary: '« Mes dépôts » : `q` (code), `status=in_progress|ready|retrieved`, compteurs des filtres.'
+      operationId: MesDptsqcodestatusinProgressreadyretrievedCompteursDesFiltres
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 2684
+                      code: BG-02684
+                      status: in_progress
+                      status_label: 'En cours'
+                      deposited_at: '2026-09-28T09:42:00+00:00'
+                      total: 14000
+                      payment_label: Acompte
+                      retrieval_label: '30 sept. · 17:00'
+                  meta:
+                    filters:
+                      -
+                        code: all
+                        label: Tous
+                        count: 12
+                      -
+                        code: in_progress
+                        label: 'En cours'
+                        count: 1
+                      -
+                        code: ready
+                        label: Prêts
+                        count: 2
+                      -
+                        code: retrieved
+                        label: Retirés
+                        count: 9
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2684
+                        code: BG-02684
+                        status: in_progress
+                        status_label: 'En cours'
+                        deposited_at: '2026-09-28T09:42:00+00:00'
+                        total: 14000
+                        payment_label: Acompte
+                        retrieval_label: '30 sept. · 17:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2684
+                        code:
+                          type: string
+                          example: BG-02684
+                        status:
+                          type: string
+                          example: in_progress
+                        status_label:
+                          type: string
+                          example: 'En cours'
+                        deposited_at:
+                          type: string
+                          example: '2026-09-28T09:42:00+00:00'
+                        total:
+                          type: integer
+                          example: 14000
+                        payment_label:
+                          type: string
+                          example: Acompte
+                        retrieval_label:
+                          type: string
+                          example: '30 sept. · 17:00'
+                  meta:
+                    type: object
+                    properties:
+                      filters:
+                        type: array
+                        example:
+                          -
+                            code: all
+                            label: Tous
+                            count: 12
+                          -
+                            code: in_progress
+                            label: 'En cours'
+                            count: 1
+                          -
+                            code: ready
+                            label: Prêts
+                            count: 2
+                          -
+                            code: retrieved
+                            label: Retirés
+                            count: 9
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: all
+                            label:
+                              type: string
+                              example: Tous
+                            count:
+                              type: integer
+                              example: 12
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - 'Espace client'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: in_progress
+                  enum:
+                    - in_progress
+                    - ready
+                    - retrieved
+                  nullable: true
+  '/api/v1/client/app/deposits/{id}':
+    get:
+      summary: '« Suivi du dépôt ».'
+      operationId: SuiviDuDpt
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 2684
+                    code: BG-02684
+                    express: true
+                    deposited_label: 'Déposé le 28 septembre à 09:42'
+                    retrieve_date: '2026-09-30T17:00:00+00:00'
+                    retrieve_label: 'Mercredi 30 sept. · 17:00'
+                    progress:
+                      -
+                        etat: in_progress
+                        label: 'En cours'
+                        state: current
+                        at: '2026-09-28T10:16:00+00:00'
+                        detail: 'Lavage en cours · depuis 10:16'
+                    articles:
+                      pieces: 7
+                      lines:
+                        -
+                          quantity: 3
+                          label: 'Chemises blanches'
+                          amount: 4500
+                    payment:
+                      label: Acompte
+                      total: 14000
+                      paid: 10000
+                      left_to_pay: 4000
+                      ticket_url: 'https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&signature=…'
+                    agency:
+                      name: 'Agence Bingerville'
+                      phone: '+225 27 20 65 18 20'
+                      address: 'Carrefour Feh Kessé'
+                    loyalty_points: 1240
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2684
+                      code:
+                        type: string
+                        example: BG-02684
+                      express:
+                        type: boolean
+                        example: true
+                      deposited_label:
+                        type: string
+                        example: 'Déposé le 28 septembre à 09:42'
+                      retrieve_date:
+                        type: string
+                        example: '2026-09-30T17:00:00+00:00'
+                      retrieve_label:
+                        type: string
+                        example: 'Mercredi 30 sept. · 17:00'
+                      progress:
+                        type: array
+                        example:
+                          -
+                            etat: in_progress
+                            label: 'En cours'
+                            state: current
+                            at: '2026-09-28T10:16:00+00:00'
+                            detail: 'Lavage en cours · depuis 10:16'
+                        items:
+                          type: object
+                          properties:
+                            etat:
+                              type: string
+                              example: in_progress
+                            label:
+                              type: string
+                              example: 'En cours'
+                            state:
+                              type: string
+                              example: current
+                            at:
+                              type: string
+                              example: '2026-09-28T10:16:00+00:00'
+                            detail:
+                              type: string
+                              example: 'Lavage en cours · depuis 10:16'
+                      articles:
+                        type: object
+                        properties:
+                          pieces:
+                            type: integer
+                            example: 7
+                          lines:
+                            type: array
+                            example:
+                              -
+                                quantity: 3
+                                label: 'Chemises blanches'
+                                amount: 4500
+                            items:
+                              type: object
+                              properties:
+                                quantity:
+                                  type: integer
+                                  example: 3
+                                label:
+                                  type: string
+                                  example: 'Chemises blanches'
+                                amount:
+                                  type: integer
+                                  example: 4500
+                      payment:
+                        type: object
+                        properties:
+                          label:
+                            type: string
+                            example: Acompte
+                          total:
+                            type: integer
+                            example: 14000
+                          paid:
+                            type: integer
+                            example: 10000
+                          left_to_pay:
+                            type: integer
+                            example: 4000
+                          ticket_url:
+                            type: string
+                            example: 'https://api.example.com/api/v1/public/deposits/2684/document?type=ticket&signature=…'
+                      agency:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: 'Agence Bingerville'
+                          phone:
+                            type: string
+                            example: '+225 27 20 65 18 20'
+                          address:
+                            type: string
+                            example: 'Carrefour Feh Kessé'
+                      loyalty_points:
+                        type: integer
+                        example: 1240
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - 'Espace client'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the deposit.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/v1/client/app/loyalty:
+    get:
+      summary: '« Ma fidélité ».'
+      operationId: MaFidlit
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    points: 2840
+                    tier:
+                      code: or
+                      label: Or
+                      multiplier: 1.25
+                    convertible_value: 14000
+                    progress:
+                      basis: spend_12m
+                      current: 426000
+                      current_label: Or
+                      next:
+                        code: platine
+                        label: Platine
+                        min: 700000
+                      remaining: 274000
+                      percent: 61
+                      label: 'Encore 274 000 FCFA de dépenses sur 12 mois pour le niveau Platine'
+                    benefits:
+                      - '+25 % de points sur chaque dépôt'
+                      - 'Priorité & retouches'
+                    next_reward:
+                      points: 3000
+                      value: 15000
+                      missing_points: 160
+                      percent: 95
+                      estimated_spend: 16000
+                    history:
+                      -
+                        label: 'Paiement dépôt DP-2841'
+                        type: earn
+                        points: 460
+                        at: '2026-09-28T10:00:00+00:00'
+                    rules:
+                      - '10 points gagnés par tranche de 1 000 FCFA payés.'
+                      - 'Conversion dès 1 000 points : 200 points valent 1 000 FCFA.'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      points:
+                        type: integer
+                        example: 2840
+                      tier:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: or
+                          label:
+                            type: string
+                            example: Or
+                          multiplier:
+                            type: number
+                            example: 1.25
+                      convertible_value:
+                        type: integer
+                        example: 14000
+                      progress:
+                        type: object
+                        properties:
+                          basis:
+                            type: string
+                            example: spend_12m
+                          current:
+                            type: integer
+                            example: 426000
+                          current_label:
+                            type: string
+                            example: Or
+                          next:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: platine
+                              label:
+                                type: string
+                                example: Platine
+                              min:
+                                type: integer
+                                example: 700000
+                          remaining:
+                            type: integer
+                            example: 274000
+                          percent:
+                            type: integer
+                            example: 61
+                          label:
+                            type: string
+                            example: 'Encore 274 000 FCFA de dépenses sur 12 mois pour le niveau Platine'
+                      benefits:
+                        type: array
+                        example:
+                          - '+25 % de points sur chaque dépôt'
+                          - 'Priorité & retouches'
+                        items:
+                          type: string
+                      next_reward:
+                        type: object
+                        properties:
+                          points:
+                            type: integer
+                            example: 3000
+                          value:
+                            type: integer
+                            example: 15000
+                          missing_points:
+                            type: integer
+                            example: 160
+                          percent:
+                            type: integer
+                            example: 95
+                          estimated_spend:
+                            type: integer
+                            example: 16000
+                      history:
+                        type: array
+                        example:
+                          -
+                            label: 'Paiement dépôt DP-2841'
+                            type: earn
+                            points: 460
+                            at: '2026-09-28T10:00:00+00:00'
+                        items:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                              example: 'Paiement dépôt DP-2841'
+                            type:
+                              type: string
+                              example: earn
+                            points:
+                              type: integer
+                              example: 460
+                            at:
+                              type: string
+                              example: '2026-09-28T10:00:00+00:00'
+                      rules:
+                        type: array
+                        example:
+                          - '10 points gagnés par tranche de 1 000 FCFA payés.'
+                          - 'Conversion dès 1 000 points : 200 points valent 1 000 FCFA.'
+                        items:
+                          type: string
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - 'Espace client'
+  /api/v1/client/app/profile:
+    get:
+      summary: '« Profil et sécurité ».'
+      operationId: ProfilEtScurit
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    identity:
+                      fullname: 'Aminata Koné'
+                      initials: AK
+                      client_since: '2024-03-12T00:00:00+00:00'
+                      client_since_label: 'Client depuis mars 2024'
+                      verified: true
+                      phone_number: '+225 07 08 42 16 90'
+                      phone_verified: true
+                      email: aminata.kone@email.ci
+                      address: 'Cocody Riviera 3, Abidjan'
+                      preferred_agency:
+                        id: 2
+                        name: Cocody
+                        address: 'Boulevard Latrille'
+                    communication:
+                      sms: true
+                      email: true
+                      personalized_offers: false
+                    password:
+                      changed_at: '2026-06-26T10:00:00+00:00'
+                      changed_label: 'dernière modification il y a 3 mois'
+                      rules:
+                        min_length: 8
+                        uppercase: true
+                        digit: true
+                    sessions:
+                      -
+                        id: 31
+                        device: iPhone
+                        ip_address: 102.244.0.12
+                        last_used_at: '2026-09-28T10:42:00+00:00'
+                        current: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      identity:
+                        type: object
+                        properties:
+                          fullname:
+                            type: string
+                            example: 'Aminata Koné'
+                          initials:
+                            type: string
+                            example: AK
+                          client_since:
+                            type: string
+                            example: '2024-03-12T00:00:00+00:00'
+                          client_since_label:
+                            type: string
+                            example: 'Client depuis mars 2024'
+                          verified:
+                            type: boolean
+                            example: true
+                          phone_number:
+                            type: string
+                            example: '+225 07 08 42 16 90'
+                          phone_verified:
+                            type: boolean
+                            example: true
+                          email:
+                            type: string
+                            example: aminata.kone@email.ci
+                          address:
+                            type: string
+                            example: 'Cocody Riviera 3, Abidjan'
+                          preferred_agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 2
+                              name:
+                                type: string
+                                example: Cocody
+                              address:
+                                type: string
+                                example: 'Boulevard Latrille'
+                      communication:
+                        type: object
+                        properties:
+                          sms:
+                            type: boolean
+                            example: true
+                          email:
+                            type: boolean
+                            example: true
+                          personalized_offers:
+                            type: boolean
+                            example: false
+                      password:
+                        type: object
+                        properties:
+                          changed_at:
+                            type: string
+                            example: '2026-06-26T10:00:00+00:00'
+                          changed_label:
+                            type: string
+                            example: 'dernière modification il y a 3 mois'
+                          rules:
+                            type: object
+                            properties:
+                              min_length:
+                                type: integer
+                                example: 8
+                              uppercase:
+                                type: boolean
+                                example: true
+                              digit:
+                                type: boolean
+                                example: true
+                      sessions:
+                        type: array
+                        example:
+                          -
+                            id: 31
+                            device: iPhone
+                            ip_address: 102.244.0.12
+                            last_used_at: '2026-09-28T10:42:00+00:00'
+                            current: true
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 31
+                            device:
+                              type: string
+                              example: iPhone
+                            ip_address:
+                              type: string
+                              example: 102.244.0.12
+                            last_used_at:
+                              type: string
+                              example: '2026-09-28T10:42:00+00:00'
+                            current:
+                              type: boolean
+                              example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - 'Espace client'
+    put:
+      summary: '« Enregistrer les modifications » et préférences de communication.'
+      operationId: EnregistrerLesModificationsEtPrfrencesDeCommunication
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    identity:
+                      fullname: 'Aminata Koné'
+                      initials: AK
+                      client_since: '2024-03-12T00:00:00+00:00'
+                      client_since_label: 'Client depuis mars 2024'
+                      verified: true
+                      phone_number: '+225 07 08 42 16 90'
+                      phone_verified: true
+                      email: aminata.kone@email.ci
+                      address: 'Cocody Riviera 3, Abidjan'
+                      preferred_agency:
+                        id: 2
+                        name: Cocody
+                        address: 'Boulevard Latrille'
+                    communication:
+                      sms: true
+                      email: true
+                      personalized_offers: false
+                    password:
+                      changed_at: '2026-06-26T10:00:00+00:00'
+                      changed_label: 'dernière modification il y a 3 mois'
+                      rules:
+                        min_length: 8
+                        uppercase: true
+                        digit: true
+                    sessions:
+                      -
+                        id: 31
+                        device: iPhone
+                        ip_address: 102.244.0.12
+                        last_used_at: '2026-09-28T10:42:00+00:00'
+                        current: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      identity:
+                        type: object
+                        properties:
+                          fullname:
+                            type: string
+                            example: 'Aminata Koné'
+                          initials:
+                            type: string
+                            example: AK
+                          client_since:
+                            type: string
+                            example: '2024-03-12T00:00:00+00:00'
+                          client_since_label:
+                            type: string
+                            example: 'Client depuis mars 2024'
+                          verified:
+                            type: boolean
+                            example: true
+                          phone_number:
+                            type: string
+                            example: '+225 07 08 42 16 90'
+                          phone_verified:
+                            type: boolean
+                            example: true
+                          email:
+                            type: string
+                            example: aminata.kone@email.ci
+                          address:
+                            type: string
+                            example: 'Cocody Riviera 3, Abidjan'
+                          preferred_agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 2
+                              name:
+                                type: string
+                                example: Cocody
+                              address:
+                                type: string
+                                example: 'Boulevard Latrille'
+                      communication:
+                        type: object
+                        properties:
+                          sms:
+                            type: boolean
+                            example: true
+                          email:
+                            type: boolean
+                            example: true
+                          personalized_offers:
+                            type: boolean
+                            example: false
+                      password:
+                        type: object
+                        properties:
+                          changed_at:
+                            type: string
+                            example: '2026-06-26T10:00:00+00:00'
+                          changed_label:
+                            type: string
+                            example: 'dernière modification il y a 3 mois'
+                          rules:
+                            type: object
+                            properties:
+                              min_length:
+                                type: integer
+                                example: 8
+                              uppercase:
+                                type: boolean
+                                example: true
+                              digit:
+                                type: boolean
+                                example: true
+                      sessions:
+                        type: array
+                        example:
+                          -
+                            id: 31
+                            device: iPhone
+                            ip_address: 102.244.0.12
+                            last_used_at: '2026-09-28T10:42:00+00:00'
+                            current: true
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 31
+                            device:
+                              type: string
+                              example: iPhone
+                            ip_address:
+                              type: string
+                              example: 102.244.0.12
+                            last_used_at:
+                              type: string
+                              example: '2026-09-28T10:42:00+00:00'
+                            current:
+                              type: boolean
+                              example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - 'Espace client'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: validation.max.
+                  example: b
+                phone_number:
+                  type: string
+                  description: validation.max.
+                  example: 'n'
+                email:
+                  type: string
+                  description: 'validation.email validation.max.'
+                  example: ashly64@example.com
+                  nullable: true
+                address:
+                  type: string
+                  description: validation.max.
+                  example: v
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                communication:
+                  type: object
+                  description: ''
+                  example: null
+                  properties:
+                    sms:
+                      type: boolean
+                      description: ''
+                      example: false
+                    email:
+                      type: boolean
+                      description: ''
+                      example: true
+                    personalized_offers:
+                      type: boolean
+                      description: ''
+                      example: false
+  /api/v1/client/app/password:
+    put:
+      summary: '« Changer le mot de passe » : 8 caractères minimum, une majuscule et un chiffre.'
+      operationId: ChangerLeMotDePasse8CaractresMinimumUneMajusculeEtUnChiffre
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    updated: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      updated:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - 'Espace client'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  description: ''
+                  example: architecto
+                password:
+                  type: string
+                  description: 'Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  example: ']|{+-0pBNvYg'
+              required:
+                - current_password
+                - password
+  /api/v1/client/app/sessions/revoke-others:
+    post:
+      summary: '« Déconnecter les autres appareils ».'
+      operationId: DconnecterLesAutresAppareils
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    revoked: 1
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      revoked:
+                        type: integer
+                        example: 1
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - 'Espace client'
+  /api/v1/client/app/data-export:
+    get:
+      summary: '« Télécharger mes données » (JSON).'
+      operationId: TlchargerMesDonnesJSON
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Fichier JSON téléchargé'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    exported_at: '2026-09-28T10:45:00+00:00'
+                    profile: []
+                    deposits: []
+                    loyalty: []
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      exported_at:
+                        type: string
+                        example: '2026-09-28T10:45:00+00:00'
+                      profile:
+                        type: array
+                        example: []
+                      deposits:
+                        type: array
+                        example: []
+                      loyalty:
+                        type: array
+                        example: []
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - 'Espace client'
+  /api/v1/client/app/account/delete:
+    post:
+      summary: '« Supprimer mon compte » : archive le compte, coupe les consentements et toutes les sessions.'
+      operationId: SupprimerMonCompteArchiveLeCompteCoupeLesConsentementsEtToutesLesSessions
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    deleted: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deleted:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - 'Espace client'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: ''
+                  example: '|]|{+-'
+              required:
+                - password
   /api/v1/superadmin/overview:
     get:
       summary: 'Hub superadmin (Figma 13) : KPIs réseau, alertes, raccourcis.'
@@ -55322,7 +57209,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:57'
                   nullable: true
     delete:
       summary: ''
@@ -56738,7 +58625,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:03'
+                  example: '2026-10-22T21:50:57'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -60953,7 +62840,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:44:04'
+                  example: '2026-10-22T21:50:58'
                 name:
                   type: string
                   description: validation.max.

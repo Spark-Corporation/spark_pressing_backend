@@ -45,6 +45,9 @@ class Client extends Authenticatable
         'favorite_treatment',
         'instructions',
         'archived_at',
+        'consent_marketing',
+        'phone_verified_at',
+        'password_changed_at',
     ];
 
     protected $hidden = [
@@ -59,6 +62,9 @@ class Client extends Authenticatable
         'last_deposit_at' => 'datetime',
         'consent_sms' => 'boolean',
         'consent_email' => 'boolean',
+        'consent_marketing' => 'boolean',
+        'phone_verified_at' => 'datetime',
+        'password_changed_at' => 'datetime',
         'consent_updated_at' => 'datetime',
         'archived_at' => 'datetime',
     ];
