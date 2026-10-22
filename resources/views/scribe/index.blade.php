@@ -300,8 +300,11 @@ réceptionnaire et journal enregistrés ensemble.</a>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-articles-import">
                                 <a href="#catalogue-POSTapi-v1-articles-import">POST api/v1/articles/import</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-articles-history">
+                                <a href="#catalogue-GETapi-v1-articles-history">Onglet « Historique » du catalogue.</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-articles">
-                                <a href="#catalogue-GETapi-v1-articles">GET api/v1/articles</a>
+                                <a href="#catalogue-GETapi-v1-articles">« Catalogue articles et tarifs » (q, category_id, billing_mode, agency_id, tab=all|kilo|unavailable, active_only).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-articles">
                                 <a href="#catalogue-POSTapi-v1-articles">POST api/v1/articles</a>
@@ -314,6 +317,18 @@ réceptionnaire et journal enregistrés ensemble.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-articles--id-">
                                 <a href="#catalogue-DELETEapi-v1-articles--id-">DELETE api/v1/articles/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-article-categories">
+                                <a href="#catalogue-GETapi-v1-article-categories">GET api/v1/article-categories</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-article-categories">
+                                <a href="#catalogue-POSTapi-v1-article-categories">POST api/v1/article-categories</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-PUTapi-v1-article-categories--articleCategory_id-">
+                                <a href="#catalogue-PUTapi-v1-article-categories--articleCategory_id-">PUT api/v1/article-categories/{articleCategory_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-article-categories--articleCategory_id-">
+                                <a href="#catalogue-DELETEapi-v1-article-categories--articleCategory_id-">DELETE api/v1/article-categories/{articleCategory_id}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-agency-prices">
                                 <a href="#catalogue-GETapi-v1-agency-prices">GET api/v1/agency-prices</a>
@@ -4092,7 +4107,38 @@ fetch(url, {
                 &quot;classic_price_kilo&quot;: null,
                 &quot;express_price_kilo&quot;: null,
                 &quot;repass_price_kilo&quot;: null,
-                &quot;status&quot;: true
+                &quot;status&quot;: true,
+                &quot;code&quot;: &quot;CHE-001&quot;,
+                &quot;icon&quot;: &quot;shirt&quot;,
+                &quot;category_id&quot;: 1,
+                &quot;category&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Hauts&quot;
+                },
+                &quot;billing_mode&quot;: &quot;piece&quot;,
+                &quot;allow_discount&quot;: true,
+                &quot;round_to&quot;: 100,
+                &quot;price_editable&quot;: false,
+                &quot;delays&quot;: {
+                    &quot;classic&quot;: 72,
+                    &quot;express&quot;: 24,
+                    &quot;repass&quot;: 12
+                },
+                &quot;priority&quot;: &quot;standard&quot;,
+                &quot;accepted_defects&quot;: [
+                    &quot;stain&quot;,
+                    &quot;torn&quot;,
+                    &quot;broken_button&quot;
+                ],
+                &quot;compatible_renders&quot;: [
+                    1,
+                    2
+                ],
+                &quot;services&quot;: [
+                    &quot;collection&quot;,
+                    &quot;delivery&quot;
+                ],
+                &quot;price_updated_at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;
             }
         ],
         &quot;services&quot;: [
@@ -7035,8 +7081,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T11:44:08\",
-    \"retrieve_date\": \"2026-10-22T11:44:08\",
+    \"deposit_date\": \"2026-10-22T11:49:20\",
+    \"retrieve_date\": \"2026-10-22T11:49:20\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -7091,8 +7137,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T11:44:08",
-    "retrieve_date": "2026-10-22T11:44:08",
+    "deposit_date": "2026-10-22T11:49:20",
+    "retrieve_date": "2026-10-22T11:49:20",
     "notes": "architecto",
     "lines": [
         {
@@ -7605,10 +7651,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -7617,10 +7663,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -8297,7 +8343,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T11:44:08\"
+    \"transaction_date\": \"2026-10-22T11:49:20\"
 }"
 </code></pre></div>
 
@@ -8318,7 +8364,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T11:44:08"
+    "transaction_date": "2026-10-22T11:49:20"
 };
 
 fetch(url, {
@@ -8657,10 +8703,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
         </form>
 
@@ -18454,7 +18500,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php8C89.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php515C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -18639,11 +18685,192 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php8C89.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php515C.tmp</code></p>
         </div>
         </form>
 
-                    <h2 id="catalogue-GETapi-v1-articles">GET api/v1/articles</h2>
+                    <h2 id="catalogue-GETapi-v1-articles-history">Onglet « Historique » du catalogue.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-articles-history">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/articles/history" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/articles/history"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-articles-history">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;,
+            &quot;article_id&quot;: 1,
+            &quot;article&quot;: &quot;Chemise&quot;,
+            &quot;action&quot;: &quot;article.updated&quot;,
+            &quot;label&quot;: &quot;Article modifi&eacute;&quot;,
+            &quot;changes&quot;: [
+                &quot;express_price&quot;
+            ],
+            &quot;by&quot;: &quot;Nadia Assi&quot;
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-articles-history" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-articles-history"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-articles-history"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-articles-history" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-articles-history">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-articles-history" data-method="GET"
+      data-path="api/v1/articles/history"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-articles-history', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-articles-history"
+                    onclick="tryItOut('GETapi-v1-articles-history');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-articles-history"
+                    onclick="cancelTryOut('GETapi-v1-articles-history');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-articles-history"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/articles/history</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-articles-history"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-articles-history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-articles-history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-articles-history"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-GETapi-v1-articles">« Catalogue articles et tarifs » (q, category_id, billing_mode, agency_id, tab=all|kilo|unavailable, active_only).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -18702,14 +18929,73 @@ fetch(url, {
             &quot;classic_price_kilo&quot;: null,
             &quot;express_price_kilo&quot;: null,
             &quot;repass_price_kilo&quot;: null,
-            &quot;status&quot;: true
+            &quot;status&quot;: true,
+            &quot;code&quot;: &quot;CHE-001&quot;,
+            &quot;icon&quot;: &quot;shirt&quot;,
+            &quot;category_id&quot;: 1,
+            &quot;category&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Hauts&quot;
+            },
+            &quot;billing_mode&quot;: &quot;piece&quot;,
+            &quot;allow_discount&quot;: true,
+            &quot;round_to&quot;: 100,
+            &quot;price_editable&quot;: false,
+            &quot;delays&quot;: {
+                &quot;classic&quot;: 72,
+                &quot;express&quot;: 24,
+                &quot;repass&quot;: 12
+            },
+            &quot;priority&quot;: &quot;standard&quot;,
+            &quot;accepted_defects&quot;: [
+                &quot;stain&quot;,
+                &quot;torn&quot;,
+                &quot;broken_button&quot;
+            ],
+            &quot;compatible_renders&quot;: [
+                1,
+                2
+            ],
+            &quot;services&quot;: [
+                &quot;collection&quot;,
+                &quot;delivery&quot;
+            ],
+            &quot;price_updated_at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;,
+            &quot;billing_mode_label&quot;: &quot;Pi&egrave;ce&quot;,
+            &quot;scope&quot;: {
+                &quot;status&quot;: {
+                    &quot;code&quot;: &quot;active&quot;,
+                    &quot;label&quot;: &quot;Actif&quot;
+                },
+                &quot;label&quot;: &quot;Partag&eacute;&quot;,
+                &quot;agencies&quot;: 4
+            }
         }
     ],
     &quot;meta&quot;: {
         &quot;page&quot;: 1,
         &quot;per_page&quot;: 50,
         &quot;total&quot;: 1,
-        &quot;last_page&quot;: 1
+        &quot;last_page&quot;: 1,
+        &quot;kpis&quot;: {
+            &quot;active_articles&quot;: {
+                &quot;value&quot;: 84,
+                &quot;new_this_month&quot;: 6
+            },
+            &quot;categories&quot;: {
+                &quot;value&quot;: 12,
+                &quot;shared&quot;: 2
+            },
+            &quot;average_price&quot;: {
+                &quot;value&quot;: 3280,
+                &quot;delta_percent&quot;: 4.2
+            },
+            &quot;to_review&quot;: {
+                &quot;value&quot;: 7,
+                &quot;rule&quot;: &quot;Tarifs &gt; 12 mois&quot;
+            },
+            &quot;updated_at&quot;: &quot;2026-09-28T09:42:00+00:00&quot;
+        }
     },
     &quot;errors&quot;: null
 }</code>
@@ -18848,19 +19134,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1" \
-    --data "{
-    \"name\": \"b\",
-    \"description\": \"Eius et animi quos velit et.\",
-    \"classic_price\": 60,
-    \"express_price\": 42,
-    \"repass_price\": 37,
-    \"classic_price_kilo\": 9,
-    \"express_price_kilo\": 52,
-    \"repass_price_kilo\": 8,
-    \"status\": true
-}"
-</code></pre></div>
+    --header "X-Agency-Id: 1"</code></pre></div>
 
 
 <div class="javascript-example">
@@ -18875,22 +19149,10 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
-let body = {
-    "name": "b",
-    "description": "Eius et animi quos velit et.",
-    "classic_price": 60,
-    "express_price": 42,
-    "repass_price": 37,
-    "classic_price_kilo": 9,
-    "express_price_kilo": 52,
-    "repass_price_kilo": 8,
-    "status": true
-};
 
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -18912,7 +19174,150 @@ fetch(url, {
         &quot;classic_price_kilo&quot;: null,
         &quot;express_price_kilo&quot;: null,
         &quot;repass_price_kilo&quot;: null,
-        &quot;status&quot;: true
+        &quot;status&quot;: true,
+        &quot;code&quot;: &quot;CHE-001&quot;,
+        &quot;icon&quot;: &quot;shirt&quot;,
+        &quot;category_id&quot;: 1,
+        &quot;category&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Hauts&quot;
+        },
+        &quot;billing_mode&quot;: &quot;piece&quot;,
+        &quot;allow_discount&quot;: true,
+        &quot;round_to&quot;: 100,
+        &quot;price_editable&quot;: false,
+        &quot;delays&quot;: {
+            &quot;classic&quot;: 72,
+            &quot;express&quot;: 24,
+            &quot;repass&quot;: 12
+        },
+        &quot;priority&quot;: &quot;standard&quot;,
+        &quot;accepted_defects&quot;: [
+            &quot;stain&quot;,
+            &quot;torn&quot;,
+            &quot;broken_button&quot;
+        ],
+        &quot;compatible_renders&quot;: [
+            1,
+            2
+        ],
+        &quot;services&quot;: [
+            &quot;collection&quot;,
+            &quot;delivery&quot;
+        ],
+        &quot;price_updated_at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;,
+        &quot;billing_mode_label&quot;: &quot;Pi&egrave;ce&quot;,
+        &quot;scope&quot;: {
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;active&quot;,
+                &quot;label&quot;: &quot;Actif&quot;
+            },
+            &quot;label&quot;: &quot;Partag&eacute;&quot;,
+            &quot;agencies&quot;: 4
+        },
+        &quot;kilo_tiers&quot;: [
+            {
+                &quot;min_kg&quot;: 0,
+                &quot;max_kg&quot;: 3,
+                &quot;classic&quot;: 2800,
+                &quot;express&quot;: 4100
+            }
+        ],
+        &quot;availability&quot;: {
+            &quot;active&quot;: 3,
+            &quot;total&quot;: 4,
+            &quot;agencies&quot;: [
+                {
+                    &quot;agency_id&quot;: 1,
+                    &quot;agency&quot;: &quot;Cocody Angr&eacute;&quot;,
+                    &quot;available&quot;: true,
+                    &quot;status&quot;: {
+                        &quot;code&quot;: &quot;available&quot;,
+                        &quot;label&quot;: &quot;Disponible&quot;
+                    },
+                    &quot;price_adjust_percent&quot;: 0,
+                    &quot;note&quot;: &quot;Catalogue principal&quot;
+                },
+                {
+                    &quot;agency_id&quot;: 2,
+                    &quot;agency&quot;: &quot;Plateau Centre&quot;,
+                    &quot;available&quot;: true,
+                    &quot;status&quot;: {
+                        &quot;code&quot;: &quot;available&quot;,
+                        &quot;label&quot;: &quot;Disponible&quot;
+                    },
+                    &quot;price_adjust_percent&quot;: 5,
+                    &quot;note&quot;: &quot;Prix local +5%&quot;
+                }
+            ]
+        },
+        &quot;preview&quot;: {
+            &quot;title&quot;: &quot;Chemise&quot;,
+            &quot;subtitle&quot;: &quot;CHE-001 &middot; D&eacute;lai 72 h&quot;,
+            &quot;badge&quot;: &quot;Hauts &middot; Pi&egrave;ce&quot;,
+            &quot;prices&quot;: [
+                {
+                    &quot;label&quot;: &quot;Classique&quot;,
+                    &quot;amount&quot;: 1000
+                },
+                {
+                    &quot;label&quot;: &quot;Express&quot;,
+                    &quot;amount&quot;: 1500
+                },
+                {
+                    &quot;label&quot;: &quot;Repassage&quot;,
+                    &quot;amount&quot;: 700
+                }
+            ]
+        },
+        &quot;checks&quot;: [
+            {
+                &quot;code&quot;: &quot;required&quot;,
+                &quot;label&quot;: &quot;Informations obligatoires&quot;,
+                &quot;ok&quot;: true
+            },
+            {
+                &quot;code&quot;: &quot;prices&quot;,
+                &quot;label&quot;: &quot;Tarifs coh&eacute;rents&quot;,
+                &quot;ok&quot;: true
+            }
+        ],
+        &quot;recommendations&quot;: [
+            {
+                &quot;code&quot;: &quot;express_gap&quot;,
+                &quot;label&quot;: &quot;Le tarif Express est sup&eacute;rieur de 46%. V&eacute;rifiez le catalogue partag&eacute;.&quot;
+            }
+        ],
+        &quot;last_modification&quot;: {
+            &quot;by&quot;: &quot;Nadia Assi&quot;,
+            &quot;at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;
+        },
+        &quot;options&quot;: {
+            &quot;defects&quot;: [
+                {
+                    &quot;code&quot;: &quot;stain&quot;,
+                    &quot;label&quot;: &quot;Tach&eacute;&quot;
+                }
+            ],
+            &quot;renders&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;title&quot;: &quot;Sur cintre&quot;
+                }
+            ],
+            &quot;services&quot;: [
+                {
+                    &quot;code&quot;: &quot;collection&quot;,
+                    &quot;label&quot;: &quot;Collecte&quot;
+                }
+            ],
+            &quot;priorities&quot;: [
+                {
+                    &quot;code&quot;: &quot;standard&quot;,
+                    &quot;label&quot;: &quot;Standard&quot;
+                }
+            ]
+        }
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -19051,126 +19456,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="POSTapi-v1-articles"
-               value="b"
-               data-component="body">
-    <br>
-<p>validation.max. Example: <code>b</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi-v1-articles"
-               value="Eius et animi quos velit et."
-               data-component="body">
-    <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>classic_price</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="classic_price"                data-endpoint="POSTapi-v1-articles"
-               value="60"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>60</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="express_price"                data-endpoint="POSTapi-v1-articles"
-               value="42"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>42</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="repass_price"                data-endpoint="POSTapi-v1-articles"
-               value="37"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>37</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="classic_price_kilo"                data-endpoint="POSTapi-v1-articles"
-               value="9"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>9</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="express_price_kilo"                data-endpoint="POSTapi-v1-articles"
-               value="52"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>52</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="repass_price_kilo"                data-endpoint="POSTapi-v1-articles"
-               value="8"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>8</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <label data-endpoint="POSTapi-v1-articles" style="display: none">
-            <input type="radio" name="status"
-                   value="true"
-                   data-endpoint="POSTapi-v1-articles"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTapi-v1-articles" style="display: none">
-            <input type="radio" name="status"
-                   value="false"
-                   data-endpoint="POSTapi-v1-articles"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>true</code></p>
-        </div>
-        </form>
+                        </form>
 
                     <h2 id="catalogue-GETapi-v1-articles--id-">GET api/v1/articles/{id}</h2>
 
@@ -19230,7 +19516,150 @@ fetch(url, {
         &quot;classic_price_kilo&quot;: null,
         &quot;express_price_kilo&quot;: null,
         &quot;repass_price_kilo&quot;: null,
-        &quot;status&quot;: true
+        &quot;status&quot;: true,
+        &quot;code&quot;: &quot;CHE-001&quot;,
+        &quot;icon&quot;: &quot;shirt&quot;,
+        &quot;category_id&quot;: 1,
+        &quot;category&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Hauts&quot;
+        },
+        &quot;billing_mode&quot;: &quot;piece&quot;,
+        &quot;allow_discount&quot;: true,
+        &quot;round_to&quot;: 100,
+        &quot;price_editable&quot;: false,
+        &quot;delays&quot;: {
+            &quot;classic&quot;: 72,
+            &quot;express&quot;: 24,
+            &quot;repass&quot;: 12
+        },
+        &quot;priority&quot;: &quot;standard&quot;,
+        &quot;accepted_defects&quot;: [
+            &quot;stain&quot;,
+            &quot;torn&quot;,
+            &quot;broken_button&quot;
+        ],
+        &quot;compatible_renders&quot;: [
+            1,
+            2
+        ],
+        &quot;services&quot;: [
+            &quot;collection&quot;,
+            &quot;delivery&quot;
+        ],
+        &quot;price_updated_at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;,
+        &quot;billing_mode_label&quot;: &quot;Pi&egrave;ce&quot;,
+        &quot;scope&quot;: {
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;active&quot;,
+                &quot;label&quot;: &quot;Actif&quot;
+            },
+            &quot;label&quot;: &quot;Partag&eacute;&quot;,
+            &quot;agencies&quot;: 4
+        },
+        &quot;kilo_tiers&quot;: [
+            {
+                &quot;min_kg&quot;: 0,
+                &quot;max_kg&quot;: 3,
+                &quot;classic&quot;: 2800,
+                &quot;express&quot;: 4100
+            }
+        ],
+        &quot;availability&quot;: {
+            &quot;active&quot;: 3,
+            &quot;total&quot;: 4,
+            &quot;agencies&quot;: [
+                {
+                    &quot;agency_id&quot;: 1,
+                    &quot;agency&quot;: &quot;Cocody Angr&eacute;&quot;,
+                    &quot;available&quot;: true,
+                    &quot;status&quot;: {
+                        &quot;code&quot;: &quot;available&quot;,
+                        &quot;label&quot;: &quot;Disponible&quot;
+                    },
+                    &quot;price_adjust_percent&quot;: 0,
+                    &quot;note&quot;: &quot;Catalogue principal&quot;
+                },
+                {
+                    &quot;agency_id&quot;: 2,
+                    &quot;agency&quot;: &quot;Plateau Centre&quot;,
+                    &quot;available&quot;: true,
+                    &quot;status&quot;: {
+                        &quot;code&quot;: &quot;available&quot;,
+                        &quot;label&quot;: &quot;Disponible&quot;
+                    },
+                    &quot;price_adjust_percent&quot;: 5,
+                    &quot;note&quot;: &quot;Prix local +5%&quot;
+                }
+            ]
+        },
+        &quot;preview&quot;: {
+            &quot;title&quot;: &quot;Chemise&quot;,
+            &quot;subtitle&quot;: &quot;CHE-001 &middot; D&eacute;lai 72 h&quot;,
+            &quot;badge&quot;: &quot;Hauts &middot; Pi&egrave;ce&quot;,
+            &quot;prices&quot;: [
+                {
+                    &quot;label&quot;: &quot;Classique&quot;,
+                    &quot;amount&quot;: 1000
+                },
+                {
+                    &quot;label&quot;: &quot;Express&quot;,
+                    &quot;amount&quot;: 1500
+                },
+                {
+                    &quot;label&quot;: &quot;Repassage&quot;,
+                    &quot;amount&quot;: 700
+                }
+            ]
+        },
+        &quot;checks&quot;: [
+            {
+                &quot;code&quot;: &quot;required&quot;,
+                &quot;label&quot;: &quot;Informations obligatoires&quot;,
+                &quot;ok&quot;: true
+            },
+            {
+                &quot;code&quot;: &quot;prices&quot;,
+                &quot;label&quot;: &quot;Tarifs coh&eacute;rents&quot;,
+                &quot;ok&quot;: true
+            }
+        ],
+        &quot;recommendations&quot;: [
+            {
+                &quot;code&quot;: &quot;express_gap&quot;,
+                &quot;label&quot;: &quot;Le tarif Express est sup&eacute;rieur de 46%. V&eacute;rifiez le catalogue partag&eacute;.&quot;
+            }
+        ],
+        &quot;last_modification&quot;: {
+            &quot;by&quot;: &quot;Nadia Assi&quot;,
+            &quot;at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;
+        },
+        &quot;options&quot;: {
+            &quot;defects&quot;: [
+                {
+                    &quot;code&quot;: &quot;stain&quot;,
+                    &quot;label&quot;: &quot;Tach&eacute;&quot;
+                }
+            ],
+            &quot;renders&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;title&quot;: &quot;Sur cintre&quot;
+                }
+            ],
+            &quot;services&quot;: [
+                {
+                    &quot;code&quot;: &quot;collection&quot;,
+                    &quot;label&quot;: &quot;Collecte&quot;
+                }
+            ],
+            &quot;priorities&quot;: [
+                {
+                    &quot;code&quot;: &quot;standard&quot;,
+                    &quot;label&quot;: &quot;Standard&quot;
+                }
+            ]
+        }
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -19383,19 +19812,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1" \
-    --data "{
-    \"name\": \"b\",
-    \"description\": \"Eius et animi quos velit et.\",
-    \"classic_price\": 60,
-    \"express_price\": 42,
-    \"repass_price\": 37,
-    \"classic_price_kilo\": 9,
-    \"express_price_kilo\": 52,
-    \"repass_price_kilo\": 8,
-    \"status\": true
-}"
-</code></pre></div>
+    --header "X-Agency-Id: 1"</code></pre></div>
 
 
 <div class="javascript-example">
@@ -19410,22 +19827,10 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
-let body = {
-    "name": "b",
-    "description": "Eius et animi quos velit et.",
-    "classic_price": 60,
-    "express_price": 42,
-    "repass_price": 37,
-    "classic_price_kilo": 9,
-    "express_price_kilo": 52,
-    "repass_price_kilo": 8,
-    "status": true
-};
 
 fetch(url, {
     method: "PUT",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -19447,7 +19852,150 @@ fetch(url, {
         &quot;classic_price_kilo&quot;: null,
         &quot;express_price_kilo&quot;: null,
         &quot;repass_price_kilo&quot;: null,
-        &quot;status&quot;: true
+        &quot;status&quot;: true,
+        &quot;code&quot;: &quot;CHE-001&quot;,
+        &quot;icon&quot;: &quot;shirt&quot;,
+        &quot;category_id&quot;: 1,
+        &quot;category&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Hauts&quot;
+        },
+        &quot;billing_mode&quot;: &quot;piece&quot;,
+        &quot;allow_discount&quot;: true,
+        &quot;round_to&quot;: 100,
+        &quot;price_editable&quot;: false,
+        &quot;delays&quot;: {
+            &quot;classic&quot;: 72,
+            &quot;express&quot;: 24,
+            &quot;repass&quot;: 12
+        },
+        &quot;priority&quot;: &quot;standard&quot;,
+        &quot;accepted_defects&quot;: [
+            &quot;stain&quot;,
+            &quot;torn&quot;,
+            &quot;broken_button&quot;
+        ],
+        &quot;compatible_renders&quot;: [
+            1,
+            2
+        ],
+        &quot;services&quot;: [
+            &quot;collection&quot;,
+            &quot;delivery&quot;
+        ],
+        &quot;price_updated_at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;,
+        &quot;billing_mode_label&quot;: &quot;Pi&egrave;ce&quot;,
+        &quot;scope&quot;: {
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;active&quot;,
+                &quot;label&quot;: &quot;Actif&quot;
+            },
+            &quot;label&quot;: &quot;Partag&eacute;&quot;,
+            &quot;agencies&quot;: 4
+        },
+        &quot;kilo_tiers&quot;: [
+            {
+                &quot;min_kg&quot;: 0,
+                &quot;max_kg&quot;: 3,
+                &quot;classic&quot;: 2800,
+                &quot;express&quot;: 4100
+            }
+        ],
+        &quot;availability&quot;: {
+            &quot;active&quot;: 3,
+            &quot;total&quot;: 4,
+            &quot;agencies&quot;: [
+                {
+                    &quot;agency_id&quot;: 1,
+                    &quot;agency&quot;: &quot;Cocody Angr&eacute;&quot;,
+                    &quot;available&quot;: true,
+                    &quot;status&quot;: {
+                        &quot;code&quot;: &quot;available&quot;,
+                        &quot;label&quot;: &quot;Disponible&quot;
+                    },
+                    &quot;price_adjust_percent&quot;: 0,
+                    &quot;note&quot;: &quot;Catalogue principal&quot;
+                },
+                {
+                    &quot;agency_id&quot;: 2,
+                    &quot;agency&quot;: &quot;Plateau Centre&quot;,
+                    &quot;available&quot;: true,
+                    &quot;status&quot;: {
+                        &quot;code&quot;: &quot;available&quot;,
+                        &quot;label&quot;: &quot;Disponible&quot;
+                    },
+                    &quot;price_adjust_percent&quot;: 5,
+                    &quot;note&quot;: &quot;Prix local +5%&quot;
+                }
+            ]
+        },
+        &quot;preview&quot;: {
+            &quot;title&quot;: &quot;Chemise&quot;,
+            &quot;subtitle&quot;: &quot;CHE-001 &middot; D&eacute;lai 72 h&quot;,
+            &quot;badge&quot;: &quot;Hauts &middot; Pi&egrave;ce&quot;,
+            &quot;prices&quot;: [
+                {
+                    &quot;label&quot;: &quot;Classique&quot;,
+                    &quot;amount&quot;: 1000
+                },
+                {
+                    &quot;label&quot;: &quot;Express&quot;,
+                    &quot;amount&quot;: 1500
+                },
+                {
+                    &quot;label&quot;: &quot;Repassage&quot;,
+                    &quot;amount&quot;: 700
+                }
+            ]
+        },
+        &quot;checks&quot;: [
+            {
+                &quot;code&quot;: &quot;required&quot;,
+                &quot;label&quot;: &quot;Informations obligatoires&quot;,
+                &quot;ok&quot;: true
+            },
+            {
+                &quot;code&quot;: &quot;prices&quot;,
+                &quot;label&quot;: &quot;Tarifs coh&eacute;rents&quot;,
+                &quot;ok&quot;: true
+            }
+        ],
+        &quot;recommendations&quot;: [
+            {
+                &quot;code&quot;: &quot;express_gap&quot;,
+                &quot;label&quot;: &quot;Le tarif Express est sup&eacute;rieur de 46%. V&eacute;rifiez le catalogue partag&eacute;.&quot;
+            }
+        ],
+        &quot;last_modification&quot;: {
+            &quot;by&quot;: &quot;Nadia Assi&quot;,
+            &quot;at&quot;: &quot;2026-09-18T16:24:00+00:00&quot;
+        },
+        &quot;options&quot;: {
+            &quot;defects&quot;: [
+                {
+                    &quot;code&quot;: &quot;stain&quot;,
+                    &quot;label&quot;: &quot;Tach&eacute;&quot;
+                }
+            ],
+            &quot;renders&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;title&quot;: &quot;Sur cintre&quot;
+                }
+            ],
+            &quot;services&quot;: [
+                {
+                    &quot;code&quot;: &quot;collection&quot;,
+                    &quot;label&quot;: &quot;Collecte&quot;
+                }
+            ],
+            &quot;priorities&quot;: [
+                {
+                    &quot;code&quot;: &quot;standard&quot;,
+                    &quot;label&quot;: &quot;Standard&quot;
+                }
+            ]
+        }
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -19599,126 +20147,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the article. Example: <code>1</code></p>
             </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="PUTapi-v1-articles--id-"
-               value="b"
-               data-component="body">
-    <br>
-<p>validation.max. Example: <code>b</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-v1-articles--id-"
-               value="Eius et animi quos velit et."
-               data-component="body">
-    <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>classic_price</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="classic_price"                data-endpoint="PUTapi-v1-articles--id-"
-               value="60"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>60</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="express_price"                data-endpoint="PUTapi-v1-articles--id-"
-               value="42"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>42</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="repass_price"                data-endpoint="PUTapi-v1-articles--id-"
-               value="37"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>37</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="classic_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
-               value="9"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>9</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="express_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
-               value="52"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>52</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="repass_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
-               value="8"
-               data-component="body">
-    <br>
-<p>validation.min. Example: <code>8</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
-            <input type="radio" name="status"
-                   value="true"
-                   data-endpoint="PUTapi-v1-articles--id-"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
-            <input type="radio" name="status"
-                   value="false"
-                   data-endpoint="PUTapi-v1-articles--id-"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>true</code></p>
-        </div>
-        </form>
+                    </form>
 
                     <h2 id="catalogue-DELETEapi-v1-articles--id-">DELETE api/v1/articles/{id}</h2>
 
@@ -19901,6 +20330,774 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="url">
     <br>
 <p>The ID of the article. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="catalogue-GETapi-v1-article-categories">GET api/v1/article-categories</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-article-categories">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/article-categories" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/article-categories"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-article-categories">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;C&eacute;r&eacute;monie&quot;,
+            &quot;icon&quot;: &quot;suit&quot;,
+            &quot;shared&quot;: true,
+            &quot;sort_order&quot;: 0,
+            &quot;articles_count&quot;: 6,
+            &quot;active_articles_count&quot;: 5
+        }
+    ],
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-article-categories" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-article-categories"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-article-categories"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-article-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-article-categories">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-article-categories" data-method="GET"
+      data-path="api/v1/article-categories"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-article-categories', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-article-categories"
+                    onclick="tryItOut('GETapi-v1-article-categories');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-article-categories"
+                    onclick="cancelTryOut('GETapi-v1-article-categories');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-article-categories"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/article-categories</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-article-categories"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-article-categories"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-article-categories"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-article-categories"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-POSTapi-v1-article-categories">POST api/v1/article-categories</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-article-categories">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/article-categories" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/article-categories"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-article-categories">
+            <blockquote>
+            <p>Example response (201, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;C&eacute;r&eacute;monie&quot;,
+        &quot;icon&quot;: &quot;suit&quot;,
+        &quot;shared&quot;: true,
+        &quot;sort_order&quot;: 0,
+        &quot;articles_count&quot;: 6,
+        &quot;active_articles_count&quot;: 5
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-article-categories" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-article-categories"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-article-categories"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-article-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-article-categories">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-article-categories" data-method="POST"
+      data-path="api/v1/article-categories"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-article-categories', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-article-categories"
+                    onclick="tryItOut('POSTapi-v1-article-categories');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-article-categories"
+                    onclick="cancelTryOut('POSTapi-v1-article-categories');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-article-categories"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/article-categories</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-article-categories"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-article-categories"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-article-categories"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-article-categories"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-PUTapi-v1-article-categories--articleCategory_id-">PUT api/v1/article-categories/{articleCategory_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-article-categories--articleCategory_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8000/api/v1/article-categories/16" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/article-categories/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-article-categories--articleCategory_id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;C&eacute;r&eacute;monie&quot;,
+        &quot;icon&quot;: &quot;suit&quot;,
+        &quot;shared&quot;: true,
+        &quot;sort_order&quot;: 0,
+        &quot;articles_count&quot;: 6,
+        &quot;active_articles_count&quot;: 5
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-article-categories--articleCategory_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-article-categories--articleCategory_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-article-categories--articleCategory_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-article-categories--articleCategory_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-article-categories--articleCategory_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-article-categories--articleCategory_id-" data-method="PUT"
+      data-path="api/v1/article-categories/{articleCategory_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-article-categories--articleCategory_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-article-categories--articleCategory_id-"
+                    onclick="tryItOut('PUTapi-v1-article-categories--articleCategory_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-article-categories--articleCategory_id-"
+                    onclick="cancelTryOut('PUTapi-v1-article-categories--articleCategory_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-article-categories--articleCategory_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/article-categories/{articleCategory_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>articleCategory_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="articleCategory_id"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the articleCategory. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="catalogue-DELETEapi-v1-article-categories--articleCategory_id-">DELETE api/v1/article-categories/{articleCategory_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-article-categories--articleCategory_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/v1/article-categories/16" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/article-categories/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-article-categories--articleCategory_id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deleted&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-article-categories--articleCategory_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-article-categories--articleCategory_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-article-categories--articleCategory_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-article-categories--articleCategory_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-article-categories--articleCategory_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-article-categories--articleCategory_id-" data-method="DELETE"
+      data-path="api/v1/article-categories/{articleCategory_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-article-categories--articleCategory_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-article-categories--articleCategory_id-"
+                    onclick="tryItOut('DELETEapi-v1-article-categories--articleCategory_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-article-categories--articleCategory_id-"
+                    onclick="cancelTryOut('DELETEapi-v1-article-categories--articleCategory_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-article-categories--articleCategory_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/article-categories/{articleCategory_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-article-categories--articleCategory_id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-article-categories--articleCategory_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-article-categories--articleCategory_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="DELETEapi-v1-article-categories--articleCategory_id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>articleCategory_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="articleCategory_id"                data-endpoint="DELETEapi-v1-article-categories--articleCategory_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the articleCategory. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -20113,7 +21310,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T11:44:08\"
+    \"at\": \"2026-10-22T11:49:20\"
 }"
 </code></pre></div>
 
@@ -20135,7 +21332,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T11:44:08"
+    "at": "2026-10-22T11:49:20"
 };
 
 fetch(url, {
@@ -20339,10 +21536,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
         </form>
 
@@ -20371,7 +21568,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T11:44:08\",
+    \"valid_from\": \"2026-10-22T11:49:20\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -20395,7 +21592,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T11:44:08",
+    "valid_from": "2026-10-22T11:49:20",
     "valid_to": "2052-11-14"
 };
 
@@ -20631,10 +21828,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -26884,13 +28081,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T11:44:08"\
+    --form "action_date=2026-10-22T11:49:20"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php8D17.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php520A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -26910,7 +28107,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T11:44:08');
+body.append('action_date', '2026-10-22T11:49:20');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -27152,10 +28349,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -27239,7 +28436,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php8D17.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php520A.tmp</code></p>
         </div>
         </form>
 
@@ -27511,7 +28708,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T11:44:08\"
+    \"action_date\": \"2026-10-22T11:49:20\"
 }"
 </code></pre></div>
 
@@ -27532,7 +28729,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T11:44:08"
+    "action_date": "2026-10-22T11:49:20"
 };
 
 fetch(url, {
@@ -27822,10 +29019,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
         </form>
 
@@ -28297,7 +29494,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T11:44:08\"
+    \"date\": \"2026-10-22T11:49:20\"
 }"
 </code></pre></div>
 
@@ -28315,7 +29512,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T11:44:08"
+    "date": "2026-10-22T11:49:20"
 };
 
 fetch(url, {
@@ -28551,10 +29748,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
         </form>
 
@@ -28579,7 +29776,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T11:44:08\",
+    \"date\": \"2026-10-22T11:49:20\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -28603,7 +29800,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T11:44:08",
+    "date": "2026-10-22T11:49:20",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -28799,10 +29996,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -35843,7 +37040,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T11:44:08\"
+    \"rate_date\": \"2026-10-22T11:49:21\"
 }"
 </code></pre></div>
 
@@ -35864,7 +37061,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T11:44:08"
+    "rate_date": "2026-10-22T11:49:21"
 };
 
 fetch(url, {
@@ -36070,10 +37267,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:21"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:21</code></p>
         </div>
         </form>
 
@@ -45136,7 +46333,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T11:44:08\"
+    \"expires_at\": \"2026-10-22T11:49:20\"
 }"
 </code></pre></div>
 
@@ -45160,7 +46357,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T11:44:08"
+    "expires_at": "2026-10-22T11:49:20"
 };
 
 fetch(url, {
@@ -45495,10 +46692,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
         </form>
 
@@ -45800,10 +46997,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T11:44:08"\
+    --form "effective_at=2026-10-22T11:49:20"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php8C2A.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php50DE.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -45822,7 +47019,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T11:44:08');
+body.append('effective_at', '2026-10-22T11:49:20');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -46332,10 +47529,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -46391,7 +47588,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php8C2A.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php50DE.tmp</code></p>
         </div>
         </form>
 
@@ -50097,7 +51294,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T11:44:08\",
+    \"round_date\": \"2026-10-22T11:49:20\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -50118,7 +51315,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T11:44:08",
+    "round_date": "2026-10-22T11:49:20",
     "name": "n"
 };
 
@@ -50325,10 +51522,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T11:44:08"
+               value="2026-10-22T11:49:20"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:44:08</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:49:20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

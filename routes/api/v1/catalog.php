@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Catalog\AgencyPriceController;
+use App\Http\Controllers\Api\V1\Catalog\ArticleCategoryController;
 use App\Http\Controllers\Api\V1\Catalog\ArticleController;
 use App\Http\Controllers\Api\V1\Catalog\ArticleImportController;
 use App\Http\Controllers\Api\V1\Catalog\CodeSuffixController;
@@ -17,11 +18,19 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('export', [ArticleImportController::class, 'export'])->middleware('permission:articles.manage')->name('export');
     Route::get('template', [ArticleImportController::class, 'template'])->middleware('permission:articles.manage')->name('template');
     Route::post('import', [ArticleImportController::class, 'import'])->middleware('permission:articles.manage')->name('import');
+    Route::get('history', [ArticleController::class, 'history'])->middleware('permission:articles.manage')->name('history');
     Route::get('/', [ArticleController::class, 'index'])->name('index');
     Route::post('/', [ArticleController::class, 'store'])->middleware('permission:articles.manage')->name('store');
     Route::get('{article}', [ArticleController::class, 'show'])->name('show');
     Route::put('{article}', [ArticleController::class, 'update'])->middleware('permission:articles.manage')->name('update');
     Route::delete('{article}', [ArticleController::class, 'destroy'])->middleware('permission:articles.manage')->name('destroy');
+});
+
+Route::prefix('article-categories')->name('article-categories.')->group(function () {
+    Route::get('/', [ArticleCategoryController::class, 'index'])->name('index');
+    Route::post('/', [ArticleCategoryController::class, 'store'])->middleware('permission:articles.manage')->name('store');
+    Route::put('{articleCategory}', [ArticleCategoryController::class, 'update'])->middleware('permission:articles.manage')->name('update');
+    Route::delete('{articleCategory}', [ArticleCategoryController::class, 'destroy'])->middleware('permission:articles.manage')->name('destroy');
 });
 
 Route::prefix('services')->name('services.')->group(function () {

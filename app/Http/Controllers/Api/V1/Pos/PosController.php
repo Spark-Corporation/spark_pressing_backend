@@ -76,9 +76,52 @@ class PosController extends Controller
             'code_suffixes' => CodeSuffix::query()->where('status', true)->get(['id', 'agency_id', 'title']),
             'laundry_statuses' => LaundryStatus::query()->where('status', true)->get(['id', 'title', 'status']),
             'renders' => Render::query()->where('status', true)->get(['id', 'title', 'status']),
+            'catalog' => $this->catalog($agencyId),
             'deposit_options' => $this->depositOptions($pressing),
             'sync' => $this->syncStatusPayload(),
         ]);
+    }
+
+    /** « Catalogue local » : articles disponibles dans l’agence, prix ajustés de l’agence. */
+    private function catalog(?int $agencyId): array
+    {
+        $items = Article::query()
+            ->with(['category:id,name,icon', 'agencySettings' => fn ($q) => $q->where('agency_id', $agencyId)])
+            ->where('status', true)
+            ->orderBy('name')
+            ->get()
+            ->reject(fn (Article $a) => $a->agencySettings->first()?->available === false)
+            ->map(function (Article $a) {
+                $adjust = (int) ($a->agencySettings->first()?->price_adjust_percent ?? 0);
+                $price = fn ($v) => $v === null ? null : (int) round($v * (100 + $adjust) / 100);
+
+                return [
+                    'id' => $a->id,
+                    'name' => $a->name,
+                    'code' => $a->code,
+                    'icon' => $a->icon ?? $a->category?->icon,
+                    'category' => $a->category?->name,
+                    'billing_mode' => $a->billing_mode ?? 'piece',
+                    'prices' => [
+                        'piece' => ['classic' => $price($a->classic_price), 'express' => $price($a->express_price), 'repass' => $price($a->repass_price)],
+                        'kilo' => ['classic' => $price($a->classic_price_kilo), 'express' => $price($a->express_price_kilo), 'repass' => $price($a->repass_price_kilo)],
+                    ],
+                    'kilo_tiers' => $a->kilo_tiers ?? [],
+                    'express_available' => (int) $a->express_price > 0 || (int) $a->express_price_kilo > 0,
+                    'delays' => ['classic' => $a->classic_hours, 'express' => $a->express_hours, 'repass' => $a->repass_hours],
+                    'accepted_defects' => $a->accepted_defects ?? [],
+                    'allow_discount' => (bool) ($a->allow_discount ?? true),
+                    'price_editable' => (bool) $a->price_editable,
+                ];
+            })
+            ->values();
+
+        return [
+            'agency_id' => $agencyId,
+            'count' => $items->count(),
+            'validated_at' => Article::query()->max('price_updated_at'),
+            'items' => $items->all(),
+        ];
     }
 
     /** Options de l’écran « Nouveau dépôt » : express, délais, état du vêtement, paiement. */

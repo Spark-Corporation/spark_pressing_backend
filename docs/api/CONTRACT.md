@@ -217,6 +217,17 @@ La dérogation « solde impayé » exige la permission `deposits.override` (mana
 | Comptage / contrôle / clôture | `POST /cash/sessions/{id}/count` (`counted{cash,mobile_money,card}`, `difference_reason`), `/control`, `/close` | clôture refusée tant que la checklist n’est pas complète |
 | Rapport de clôture | `GET /cash/sessions/{id}/report` | PDF |
 
+### 7.0f Articles & tarifs (Figma 07)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Catalogue — KPI | `GET /articles` | `meta.kpis` (articles actifs + nouveaux, catégories + partagées, tarif moyen + évolution, à réviser > 12 mois) |
+| Onglets / filtres | `GET /articles?q&category_id&billing_mode=piece\|kilo\|mixed&agency_id&tab=kilo\|unavailable&active_only` | lignes : `code`, `icon`, `category`, `billing_mode_label`, prix classique/express/repassage (pièce et kilo), `scope` (Actif · Partagé / N agences / agence) |
+| Onglet Catégories | `GET/POST/PUT/DELETE /article-categories` | `articles_count`, `shared` |
+| Onglet Historique | `GET /articles/history` | qui, quand, champs modifiés |
+| Création / édition d’article | `POST /articles`, `PUT /articles/{id}`, `GET /articles/{id}` | `code`, `category_id`, `billing_mode`, `allow_discount`, `round_to`, `price_editable`, `classic_hours`/`express_hours`/`repass_hours`, `priority`, `accepted_defects[]`, `compatible_renders[]`, `services[]`, `kilo_tiers[]`, `availability[]` (agence, disponible, `price_adjust_percent`) ; réponse : `preview`, `checks[]`, `recommendations[]`, `last_modification`, `options` |
+| Catalogue local du POS | `GET /pos/bootstrap` | `catalog.items[]` (prix ajustés de l’agence, mode, délais, défauts acceptés), `catalog.count` |
+
 ### 7.0c Clients & fidélité (Figma 03)
 
 | Écran / bloc | Endpoint | Champs |

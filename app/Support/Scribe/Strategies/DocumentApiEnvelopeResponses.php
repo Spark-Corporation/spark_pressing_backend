@@ -167,6 +167,36 @@ class DocumentApiEnvelopeResponses extends Strategy
             'express_price_kilo' => null,
             'repass_price_kilo' => null,
             'status' => true,
+            'code' => 'CHE-001',
+            'icon' => 'shirt',
+            'category_id' => 1,
+            'category' => ['id' => 1, 'name' => 'Hauts'],
+            'billing_mode' => 'piece',
+            'allow_discount' => true,
+            'round_to' => 100,
+            'price_editable' => false,
+            'delays' => ['classic' => 72, 'express' => 24, 'repass' => 12],
+            'priority' => 'standard',
+            'accepted_defects' => ['stain', 'torn', 'broken_button'],
+            'compatible_renders' => [1, 2],
+            'services' => ['collection', 'delivery'],
+            'price_updated_at' => '2026-09-18T16:24:00+00:00',
+        ];
+        $articleRow = $article + [
+            'billing_mode_label' => 'Pièce',
+            'scope' => ['status' => ['code' => 'active', 'label' => 'Actif'], 'label' => 'Partagé', 'agencies' => 4],
+        ];
+        $articleDetail = $articleRow + [
+            'kilo_tiers' => [['min_kg' => 0, 'max_kg' => 3, 'classic' => 2800, 'express' => 4100]],
+            'availability' => ['active' => 3, 'total' => 4, 'agencies' => [
+                ['agency_id' => 1, 'agency' => 'Cocody Angré', 'available' => true, 'status' => ['code' => 'available', 'label' => 'Disponible'], 'price_adjust_percent' => 0, 'note' => 'Catalogue principal'],
+                ['agency_id' => 2, 'agency' => 'Plateau Centre', 'available' => true, 'status' => ['code' => 'available', 'label' => 'Disponible'], 'price_adjust_percent' => 5, 'note' => 'Prix local +5%'],
+            ]],
+            'preview' => ['title' => 'Chemise', 'subtitle' => 'CHE-001 · Délai 72 h', 'badge' => 'Hauts · Pièce', 'prices' => [['label' => 'Classique', 'amount' => 1000], ['label' => 'Express', 'amount' => 1500], ['label' => 'Repassage', 'amount' => 700]]],
+            'checks' => [['code' => 'required', 'label' => 'Informations obligatoires', 'ok' => true], ['code' => 'prices', 'label' => 'Tarifs cohérents', 'ok' => true]],
+            'recommendations' => [['code' => 'express_gap', 'label' => 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.']],
+            'last_modification' => ['by' => 'Nadia Assi', 'at' => '2026-09-18T16:24:00+00:00'],
+            'options' => ['defects' => [['code' => 'stain', 'label' => 'Taché']], 'renders' => [['id' => 1, 'title' => 'Sur cintre']], 'services' => [['code' => 'collection', 'label' => 'Collecte']], 'priorities' => [['code' => 'standard', 'label' => 'Standard']]],
         ];
 
         $deposit = [
@@ -829,7 +859,16 @@ class DocumentApiEnvelopeResponses extends Strategy
         // —— Catalogue ——
         if (str_starts_with($path, '/api/v1/articles')) {
             if ($method === 'GET' && $path === '/api/v1/articles') {
-                return [$this->response(200, [$article], $pageMeta)];
+                return [$this->response(200, [$articleRow], array_merge($pageMeta, ['kpis' => [
+                    'active_articles' => ['value' => 84, 'new_this_month' => 6],
+                    'categories' => ['value' => 12, 'shared' => 2],
+                    'average_price' => ['value' => 3280, 'delta_percent' => 4.2],
+                    'to_review' => ['value' => 7, 'rule' => 'Tarifs > 12 mois'],
+                    'updated_at' => '2026-09-28T09:42:00+00:00',
+                ]]))];
+            }
+            if ($method === 'GET' && $path === '/api/v1/articles/history') {
+                return [$this->response(200, [['at' => '2026-09-18T16:24:00+00:00', 'article_id' => 1, 'article' => 'Chemise', 'action' => 'article.updated', 'label' => 'Article modifié', 'changes' => ['express_price'], 'by' => 'Nadia Assi']])];
             }
             if ($method === 'GET' && $path === '/api/v1/articles/export') {
                 return [$this->response(200, ['url' => '/storage/exports/articles.csv', 'rows' => 3])];
@@ -841,17 +880,28 @@ class DocumentApiEnvelopeResponses extends Strategy
                 return [$this->response(200, ['imported' => 3, 'failed' => 0])];
             }
             if ($method === 'POST') {
-                return [$this->response(201, $article)];
+                return [$this->response(201, $articleDetail)];
             }
             if ($method === 'GET') {
-                return [$this->response(200, $article)];
+                return [$this->response(200, $articleDetail)];
             }
             if (in_array($method, ['PUT', 'PATCH'], true)) {
-                return [$this->response(200, $article)];
+                return [$this->response(200, $articleDetail)];
             }
             if ($method === 'DELETE') {
                 return [$this->response(200, ['deleted' => true])];
             }
+        }
+
+        if (str_starts_with($path, '/api/v1/article-categories')) {
+            $category = ['id' => 1, 'name' => 'Cérémonie', 'icon' => 'suit', 'shared' => true, 'sort_order' => 0, 'articles_count' => 6, 'active_articles_count' => 5];
+
+            return [match ($method) {
+                'GET' => $this->response(200, [$category]),
+                'POST' => $this->response(201, $category),
+                'DELETE' => $this->response(200, ['deleted' => true]),
+                default => $this->response(200, $category),
+            }];
         }
 
         if (preg_match('#^/api/v1/(services|laundry-statuses|renders|promos|promo-specials|delivery-hours|code-suffixes|loyal-groups|agency-prices|cash-categories)#', $path)) {

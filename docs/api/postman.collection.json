@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "4ab8b888-32c1-4f26-99f3-184e09c089ba",
+        "_postman_id": "e1ccfcc8-a9a8-4e3f-a0d1-d589c3d4064e",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -671,7 +671,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"generated_at\": \"2026-10-20T16:00:00+00:00\",\n        \"user\": {\n            \"id\": 1,\n            \"fullname\": \"Claire Caissier\",\n            \"email\": \"caissier@elegance.local\",\n            \"phone_number\": null,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"status\": true,\n            \"roles\": [\n                \"caissier\"\n            ]\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"name\": \"Akwa\",\n            \"address\": \"Douala, Akwa\",\n            \"contact\": \"+237600000001\",\n            \"country_code\": \"CM\",\n            \"currency\": \"XAF\",\n            \"code_prefix\": \"AK\",\n            \"code_suffix\": \"EL\",\n            \"status\": true\n        },\n        \"agency_id\": 1,\n        \"agencies\": [\n            {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"name\": \"Akwa\",\n                \"address\": \"Douala, Akwa\",\n                \"contact\": \"+237600000001\",\n                \"country_code\": \"CM\",\n                \"currency\": \"XAF\",\n                \"code_prefix\": \"AK\",\n                \"code_suffix\": \"EL\",\n                \"status\": true\n            }\n        ],\n        \"permissions\": [\n            \"deposits.view\",\n            \"deposits.create\"\n        ],\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"\u00c9l\u00e9gance Pressing\",\n            \"details\": \"Enseigne de d\u00e9monstration\",\n            \"status\": true,\n            \"pricing_mode\": \"piece\",\n            \"workflow_laveur_enabled\": true,\n            \"workflow_classeur_enabled\": true,\n            \"qr_labels_enabled\": false,\n            \"block_retrieve_if_unpaid\": true,\n            \"reporting_currency\": \"XAF\",\n            \"collection_fee\": 0,\n            \"delivery_fee\": 0,\n            \"loyalty_points_rate\": 1,\n            \"hours_classic\": 48,\n            \"hours_express\": 24,\n            \"hours_repass\": 12\n        },\n        \"articles\": [\n            {\n                \"id\": 1,\n                \"name\": \"Chemise\",\n                \"description\": null,\n                \"classic_price\": 1000,\n                \"express_price\": 1500,\n                \"repass_price\": 700,\n                \"classic_price_kilo\": null,\n                \"express_price_kilo\": null,\n                \"repass_price_kilo\": null,\n                \"status\": true\n            }\n        ],\n        \"services\": [\n            {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"name\": \"Classique\",\n                \"code\": \"classic\",\n                \"legacy_type_action\": 0,\n                \"sort_order\": 1,\n                \"default_hours\": 48,\n                \"status\": true\n            }\n        ],\n        \"clients\": [\n            {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"agency_id\": 1,\n                \"code\": \"CLI-00001\",\n                \"fullname\": \"Jean Client\",\n                \"email\": \"jean.client@example.com\",\n                \"phone_number\": \"690000001\",\n                \"address\": null,\n                \"city\": \"Douala\",\n                \"loyalty_points\": 120,\n                \"wallet_balance\": 5000,\n                \"sponsor_code\": \"JEAN01\",\n                \"referred_by_id\": null,\n                \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n                \"status\": true,\n                \"first_name\": \"Jean\",\n                \"last_name\": \"Client\",\n                \"phone_secondary\": null,\n                \"contact_preference\": \"whatsapp\",\n                \"consent_sms\": true,\n                \"consent_email\": false,\n                \"archived_at\": null,\n                \"tier\": {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\"\n                }\n            }\n        ],\n        \"promos\": [],\n        \"promo_specials\": [],\n        \"delivery_hours\": null,\n        \"code_suffixes\": [],\n        \"laundry_statuses\": [],\n        \"renders\": [],\n        \"deposit_options\": {\n            \"express\": {\n                \"surcharge_percent\": 100,\n                \"multiplier\": 2,\n                \"hours\": 24,\n                \"label\": \"Tarif \u00d72 \u00b7 D\u00e9lai express 24 h\"\n            },\n            \"delays\": [\n                {\n                    \"code\": \"standard\",\n                    \"label\": \"Standard \u00b7 72 h\",\n                    \"hours\": 72\n                }\n            ],\n            \"defects\": [\n                {\n                    \"code\": \"stain\",\n                    \"label\": \"Tach\u00e9\"\n                },\n                {\n                    \"code\": \"torn\",\n                    \"label\": \"D\u00e9chir\u00e9\"\n                }\n            ],\n            \"payment_methods\": [\n                {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\"\n                },\n                {\n                    \"code\": \"card\",\n                    \"label\": \"Carte\"\n                },\n                {\n                    \"code\": \"mobile_money\",\n                    \"label\": \"Mobile Money\"\n                }\n            ],\n            \"discount_modes\": [\n                \"amount\",\n                \"percent\"\n            ],\n            \"pricing_modes\": [\n                \"piece\",\n                \"kilo\"\n            ]\n        },\n        \"sync\": {\n            \"online\": true,\n            \"last_sync_at\": \"2026-10-20T16:00:00+00:00\",\n            \"pending_ops\": 0,\n            \"pending\": []\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"generated_at\": \"2026-10-20T16:00:00+00:00\",\n        \"user\": {\n            \"id\": 1,\n            \"fullname\": \"Claire Caissier\",\n            \"email\": \"caissier@elegance.local\",\n            \"phone_number\": null,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"status\": true,\n            \"roles\": [\n                \"caissier\"\n            ]\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"name\": \"Akwa\",\n            \"address\": \"Douala, Akwa\",\n            \"contact\": \"+237600000001\",\n            \"country_code\": \"CM\",\n            \"currency\": \"XAF\",\n            \"code_prefix\": \"AK\",\n            \"code_suffix\": \"EL\",\n            \"status\": true\n        },\n        \"agency_id\": 1,\n        \"agencies\": [\n            {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"name\": \"Akwa\",\n                \"address\": \"Douala, Akwa\",\n                \"contact\": \"+237600000001\",\n                \"country_code\": \"CM\",\n                \"currency\": \"XAF\",\n                \"code_prefix\": \"AK\",\n                \"code_suffix\": \"EL\",\n                \"status\": true\n            }\n        ],\n        \"permissions\": [\n            \"deposits.view\",\n            \"deposits.create\"\n        ],\n        \"pressing\": {\n            \"id\": 1,\n            \"name\": \"\u00c9l\u00e9gance Pressing\",\n            \"details\": \"Enseigne de d\u00e9monstration\",\n            \"status\": true,\n            \"pricing_mode\": \"piece\",\n            \"workflow_laveur_enabled\": true,\n            \"workflow_classeur_enabled\": true,\n            \"qr_labels_enabled\": false,\n            \"block_retrieve_if_unpaid\": true,\n            \"reporting_currency\": \"XAF\",\n            \"collection_fee\": 0,\n            \"delivery_fee\": 0,\n            \"loyalty_points_rate\": 1,\n            \"hours_classic\": 48,\n            \"hours_express\": 24,\n            \"hours_repass\": 12\n        },\n        \"articles\": [\n            {\n                \"id\": 1,\n                \"name\": \"Chemise\",\n                \"description\": null,\n                \"classic_price\": 1000,\n                \"express_price\": 1500,\n                \"repass_price\": 700,\n                \"classic_price_kilo\": null,\n                \"express_price_kilo\": null,\n                \"repass_price_kilo\": null,\n                \"status\": true,\n                \"code\": \"CHE-001\",\n                \"icon\": \"shirt\",\n                \"category_id\": 1,\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"Hauts\"\n                },\n                \"billing_mode\": \"piece\",\n                \"allow_discount\": true,\n                \"round_to\": 100,\n                \"price_editable\": false,\n                \"delays\": {\n                    \"classic\": 72,\n                    \"express\": 24,\n                    \"repass\": 12\n                },\n                \"priority\": \"standard\",\n                \"accepted_defects\": [\n                    \"stain\",\n                    \"torn\",\n                    \"broken_button\"\n                ],\n                \"compatible_renders\": [\n                    1,\n                    2\n                ],\n                \"services\": [\n                    \"collection\",\n                    \"delivery\"\n                ],\n                \"price_updated_at\": \"2026-09-18T16:24:00+00:00\"\n            }\n        ],\n        \"services\": [\n            {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"name\": \"Classique\",\n                \"code\": \"classic\",\n                \"legacy_type_action\": 0,\n                \"sort_order\": 1,\n                \"default_hours\": 48,\n                \"status\": true\n            }\n        ],\n        \"clients\": [\n            {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"agency_id\": 1,\n                \"code\": \"CLI-00001\",\n                \"fullname\": \"Jean Client\",\n                \"email\": \"jean.client@example.com\",\n                \"phone_number\": \"690000001\",\n                \"address\": null,\n                \"city\": \"Douala\",\n                \"loyalty_points\": 120,\n                \"wallet_balance\": 5000,\n                \"sponsor_code\": \"JEAN01\",\n                \"referred_by_id\": null,\n                \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n                \"status\": true,\n                \"first_name\": \"Jean\",\n                \"last_name\": \"Client\",\n                \"phone_secondary\": null,\n                \"contact_preference\": \"whatsapp\",\n                \"consent_sms\": true,\n                \"consent_email\": false,\n                \"archived_at\": null,\n                \"tier\": {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\"\n                }\n            }\n        ],\n        \"promos\": [],\n        \"promo_specials\": [],\n        \"delivery_hours\": null,\n        \"code_suffixes\": [],\n        \"laundry_statuses\": [],\n        \"renders\": [],\n        \"deposit_options\": {\n            \"express\": {\n                \"surcharge_percent\": 100,\n                \"multiplier\": 2,\n                \"hours\": 24,\n                \"label\": \"Tarif \u00d72 \u00b7 D\u00e9lai express 24 h\"\n            },\n            \"delays\": [\n                {\n                    \"code\": \"standard\",\n                    \"label\": \"Standard \u00b7 72 h\",\n                    \"hours\": 72\n                }\n            ],\n            \"defects\": [\n                {\n                    \"code\": \"stain\",\n                    \"label\": \"Tach\u00e9\"\n                },\n                {\n                    \"code\": \"torn\",\n                    \"label\": \"D\u00e9chir\u00e9\"\n                }\n            ],\n            \"payment_methods\": [\n                {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\"\n                },\n                {\n                    \"code\": \"card\",\n                    \"label\": \"Carte\"\n                },\n                {\n                    \"code\": \"mobile_money\",\n                    \"label\": \"Mobile Money\"\n                }\n            ],\n            \"discount_modes\": [\n                \"amount\",\n                \"percent\"\n            ],\n            \"pricing_modes\": [\n                \"piece\",\n                \"kilo\"\n            ]\n        },\n        \"sync\": {\n            \"online\": true,\n            \"last_sync_at\": \"2026-10-20T16:00:00+00:00\",\n            \"pending_ops\": 0,\n            \"pending\": []\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:44:08\",\"retrieve_date\":\"2026-10-22T11:44:08\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:49:20\",\"retrieve_date\":\"2026-10-22T11:49:20\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:44:08\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:49:20\"}"
                         },
                         "description": ""
                     },
@@ -3176,7 +3176,49 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/articles",
+                    "name": "Onglet \u00ab Historique \u00bb du catalogue.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/articles\/history",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/articles\/history"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"at\": \"2026-09-18T16:24:00+00:00\",\n            \"article_id\": 1,\n            \"article\": \"Chemise\",\n            \"action\": \"article.updated\",\n            \"label\": \"Article modifi\u00e9\",\n            \"changes\": [\n                \"express_price\"\n            ],\n            \"by\": \"Nadia Assi\"\n        }\n    ],\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Catalogue articles et tarifs \u00bb (q, category_id, billing_mode, agency_id, tab=all|kilo|unavailable, active_only).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -3206,7 +3248,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Chemise\",\n            \"description\": null,\n            \"classic_price\": 1000,\n            \"express_price\": 1500,\n            \"repass_price\": 700,\n            \"classic_price_kilo\": null,\n            \"express_price_kilo\": null,\n            \"repass_price_kilo\": null,\n            \"status\": true\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Chemise\",\n            \"description\": null,\n            \"classic_price\": 1000,\n            \"express_price\": 1500,\n            \"repass_price\": 700,\n            \"classic_price_kilo\": null,\n            \"express_price_kilo\": null,\n            \"repass_price_kilo\": null,\n            \"status\": true,\n            \"code\": \"CHE-001\",\n            \"icon\": \"shirt\",\n            \"category_id\": 1,\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Hauts\"\n            },\n            \"billing_mode\": \"piece\",\n            \"allow_discount\": true,\n            \"round_to\": 100,\n            \"price_editable\": false,\n            \"delays\": {\n                \"classic\": 72,\n                \"express\": 24,\n                \"repass\": 12\n            },\n            \"priority\": \"standard\",\n            \"accepted_defects\": [\n                \"stain\",\n                \"torn\",\n                \"broken_button\"\n            ],\n            \"compatible_renders\": [\n                1,\n                2\n            ],\n            \"services\": [\n                \"collection\",\n                \"delivery\"\n            ],\n            \"price_updated_at\": \"2026-09-18T16:24:00+00:00\",\n            \"billing_mode_label\": \"Pi\u00e8ce\",\n            \"scope\": {\n                \"status\": {\n                    \"code\": \"active\",\n                    \"label\": \"Actif\"\n                },\n                \"label\": \"Partag\u00e9\",\n                \"agencies\": 4\n            }\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1,\n        \"kpis\": {\n            \"active_articles\": {\n                \"value\": 84,\n                \"new_this_month\": 6\n            },\n            \"categories\": {\n                \"value\": 12,\n                \"shared\": 2\n            },\n            \"average_price\": {\n                \"value\": 3280,\n                \"delta_percent\": 4.2\n            },\n            \"to_review\": {\n                \"value\": 7,\n                \"rule\": \"Tarifs > 12 mois\"\n            },\n            \"updated_at\": \"2026-09-28T09:42:00+00:00\"\n        }\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -3241,17 +3283,14 @@
                                 "value": "1"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"description\":\"Eius et animi quos velit et.\",\"classic_price\":60,\"express_price\":42,\"repass_price\":37,\"classic_price_kilo\":9,\"express_price_kilo\":52,\"repass_price_kilo\":8,\"status\":true}"
-                        },
+                        "body": null,
                         "description": ""
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Chemise\",\n        \"description\": null,\n        \"classic_price\": 1000,\n        \"express_price\": 1500,\n        \"repass_price\": 700,\n        \"classic_price_kilo\": null,\n        \"express_price_kilo\": null,\n        \"repass_price_kilo\": null,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Chemise\",\n        \"description\": null,\n        \"classic_price\": 1000,\n        \"express_price\": 1500,\n        \"repass_price\": 700,\n        \"classic_price_kilo\": null,\n        \"express_price_kilo\": null,\n        \"repass_price_kilo\": null,\n        \"status\": true,\n        \"code\": \"CHE-001\",\n        \"icon\": \"shirt\",\n        \"category_id\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Hauts\"\n        },\n        \"billing_mode\": \"piece\",\n        \"allow_discount\": true,\n        \"round_to\": 100,\n        \"price_editable\": false,\n        \"delays\": {\n            \"classic\": 72,\n            \"express\": 24,\n            \"repass\": 12\n        },\n        \"priority\": \"standard\",\n        \"accepted_defects\": [\n            \"stain\",\n            \"torn\",\n            \"broken_button\"\n        ],\n        \"compatible_renders\": [\n            1,\n            2\n        ],\n        \"services\": [\n            \"collection\",\n            \"delivery\"\n        ],\n        \"price_updated_at\": \"2026-09-18T16:24:00+00:00\",\n        \"billing_mode_label\": \"Pi\u00e8ce\",\n        \"scope\": {\n            \"status\": {\n                \"code\": \"active\",\n                \"label\": \"Actif\"\n            },\n            \"label\": \"Partag\u00e9\",\n            \"agencies\": 4\n        },\n        \"kilo_tiers\": [\n            {\n                \"min_kg\": 0,\n                \"max_kg\": 3,\n                \"classic\": 2800,\n                \"express\": 4100\n            }\n        ],\n        \"availability\": {\n            \"active\": 3,\n            \"total\": 4,\n            \"agencies\": [\n                {\n                    \"agency_id\": 1,\n                    \"agency\": \"Cocody Angr\u00e9\",\n                    \"available\": true,\n                    \"status\": {\n                        \"code\": \"available\",\n                        \"label\": \"Disponible\"\n                    },\n                    \"price_adjust_percent\": 0,\n                    \"note\": \"Catalogue principal\"\n                },\n                {\n                    \"agency_id\": 2,\n                    \"agency\": \"Plateau Centre\",\n                    \"available\": true,\n                    \"status\": {\n                        \"code\": \"available\",\n                        \"label\": \"Disponible\"\n                    },\n                    \"price_adjust_percent\": 5,\n                    \"note\": \"Prix local +5%\"\n                }\n            ]\n        },\n        \"preview\": {\n            \"title\": \"Chemise\",\n            \"subtitle\": \"CHE-001 \u00b7 D\u00e9lai 72 h\",\n            \"badge\": \"Hauts \u00b7 Pi\u00e8ce\",\n            \"prices\": [\n                {\n                    \"label\": \"Classique\",\n                    \"amount\": 1000\n                },\n                {\n                    \"label\": \"Express\",\n                    \"amount\": 1500\n                },\n                {\n                    \"label\": \"Repassage\",\n                    \"amount\": 700\n                }\n            ]\n        },\n        \"checks\": [\n            {\n                \"code\": \"required\",\n                \"label\": \"Informations obligatoires\",\n                \"ok\": true\n            },\n            {\n                \"code\": \"prices\",\n                \"label\": \"Tarifs coh\u00e9rents\",\n                \"ok\": true\n            }\n        ],\n        \"recommendations\": [\n            {\n                \"code\": \"express_gap\",\n                \"label\": \"Le tarif Express est sup\u00e9rieur de 46%. V\u00e9rifiez le catalogue partag\u00e9.\"\n            }\n        ],\n        \"last_modification\": {\n            \"by\": \"Nadia Assi\",\n            \"at\": \"2026-09-18T16:24:00+00:00\"\n        },\n        \"options\": {\n            \"defects\": [\n                {\n                    \"code\": \"stain\",\n                    \"label\": \"Tach\u00e9\"\n                }\n            ],\n            \"renders\": [\n                {\n                    \"id\": 1,\n                    \"title\": \"Sur cintre\"\n                }\n            ],\n            \"services\": [\n                {\n                    \"code\": \"collection\",\n                    \"label\": \"Collecte\"\n                }\n            ],\n            \"priorities\": [\n                {\n                    \"code\": \"standard\",\n                    \"label\": \"Standard\"\n                }\n            ]\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -3307,7 +3346,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Chemise\",\n        \"description\": null,\n        \"classic_price\": 1000,\n        \"express_price\": 1500,\n        \"repass_price\": 700,\n        \"classic_price_kilo\": null,\n        \"express_price_kilo\": null,\n        \"repass_price_kilo\": null,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Chemise\",\n        \"description\": null,\n        \"classic_price\": 1000,\n        \"express_price\": 1500,\n        \"repass_price\": 700,\n        \"classic_price_kilo\": null,\n        \"express_price_kilo\": null,\n        \"repass_price_kilo\": null,\n        \"status\": true,\n        \"code\": \"CHE-001\",\n        \"icon\": \"shirt\",\n        \"category_id\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Hauts\"\n        },\n        \"billing_mode\": \"piece\",\n        \"allow_discount\": true,\n        \"round_to\": 100,\n        \"price_editable\": false,\n        \"delays\": {\n            \"classic\": 72,\n            \"express\": 24,\n            \"repass\": 12\n        },\n        \"priority\": \"standard\",\n        \"accepted_defects\": [\n            \"stain\",\n            \"torn\",\n            \"broken_button\"\n        ],\n        \"compatible_renders\": [\n            1,\n            2\n        ],\n        \"services\": [\n            \"collection\",\n            \"delivery\"\n        ],\n        \"price_updated_at\": \"2026-09-18T16:24:00+00:00\",\n        \"billing_mode_label\": \"Pi\u00e8ce\",\n        \"scope\": {\n            \"status\": {\n                \"code\": \"active\",\n                \"label\": \"Actif\"\n            },\n            \"label\": \"Partag\u00e9\",\n            \"agencies\": 4\n        },\n        \"kilo_tiers\": [\n            {\n                \"min_kg\": 0,\n                \"max_kg\": 3,\n                \"classic\": 2800,\n                \"express\": 4100\n            }\n        ],\n        \"availability\": {\n            \"active\": 3,\n            \"total\": 4,\n            \"agencies\": [\n                {\n                    \"agency_id\": 1,\n                    \"agency\": \"Cocody Angr\u00e9\",\n                    \"available\": true,\n                    \"status\": {\n                        \"code\": \"available\",\n                        \"label\": \"Disponible\"\n                    },\n                    \"price_adjust_percent\": 0,\n                    \"note\": \"Catalogue principal\"\n                },\n                {\n                    \"agency_id\": 2,\n                    \"agency\": \"Plateau Centre\",\n                    \"available\": true,\n                    \"status\": {\n                        \"code\": \"available\",\n                        \"label\": \"Disponible\"\n                    },\n                    \"price_adjust_percent\": 5,\n                    \"note\": \"Prix local +5%\"\n                }\n            ]\n        },\n        \"preview\": {\n            \"title\": \"Chemise\",\n            \"subtitle\": \"CHE-001 \u00b7 D\u00e9lai 72 h\",\n            \"badge\": \"Hauts \u00b7 Pi\u00e8ce\",\n            \"prices\": [\n                {\n                    \"label\": \"Classique\",\n                    \"amount\": 1000\n                },\n                {\n                    \"label\": \"Express\",\n                    \"amount\": 1500\n                },\n                {\n                    \"label\": \"Repassage\",\n                    \"amount\": 700\n                }\n            ]\n        },\n        \"checks\": [\n            {\n                \"code\": \"required\",\n                \"label\": \"Informations obligatoires\",\n                \"ok\": true\n            },\n            {\n                \"code\": \"prices\",\n                \"label\": \"Tarifs coh\u00e9rents\",\n                \"ok\": true\n            }\n        ],\n        \"recommendations\": [\n            {\n                \"code\": \"express_gap\",\n                \"label\": \"Le tarif Express est sup\u00e9rieur de 46%. V\u00e9rifiez le catalogue partag\u00e9.\"\n            }\n        ],\n        \"last_modification\": {\n            \"by\": \"Nadia Assi\",\n            \"at\": \"2026-09-18T16:24:00+00:00\"\n        },\n        \"options\": {\n            \"defects\": [\n                {\n                    \"code\": \"stain\",\n                    \"label\": \"Tach\u00e9\"\n                }\n            ],\n            \"renders\": [\n                {\n                    \"id\": 1,\n                    \"title\": \"Sur cintre\"\n                }\n            ],\n            \"services\": [\n                {\n                    \"code\": \"collection\",\n                    \"label\": \"Collecte\"\n                }\n            ],\n            \"priorities\": [\n                {\n                    \"code\": \"standard\",\n                    \"label\": \"Standard\"\n                }\n            ]\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -3350,17 +3389,14 @@
                                 "value": "1"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"description\":\"Eius et animi quos velit et.\",\"classic_price\":60,\"express_price\":42,\"repass_price\":37,\"classic_price_kilo\":9,\"express_price_kilo\":52,\"repass_price_kilo\":8,\"status\":true}"
-                        },
+                        "body": null,
                         "description": ""
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Chemise\",\n        \"description\": null,\n        \"classic_price\": 1000,\n        \"express_price\": 1500,\n        \"repass_price\": 700,\n        \"classic_price_kilo\": null,\n        \"express_price_kilo\": null,\n        \"repass_price_kilo\": null,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Chemise\",\n        \"description\": null,\n        \"classic_price\": 1000,\n        \"express_price\": 1500,\n        \"repass_price\": 700,\n        \"classic_price_kilo\": null,\n        \"express_price_kilo\": null,\n        \"repass_price_kilo\": null,\n        \"status\": true,\n        \"code\": \"CHE-001\",\n        \"icon\": \"shirt\",\n        \"category_id\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Hauts\"\n        },\n        \"billing_mode\": \"piece\",\n        \"allow_discount\": true,\n        \"round_to\": 100,\n        \"price_editable\": false,\n        \"delays\": {\n            \"classic\": 72,\n            \"express\": 24,\n            \"repass\": 12\n        },\n        \"priority\": \"standard\",\n        \"accepted_defects\": [\n            \"stain\",\n            \"torn\",\n            \"broken_button\"\n        ],\n        \"compatible_renders\": [\n            1,\n            2\n        ],\n        \"services\": [\n            \"collection\",\n            \"delivery\"\n        ],\n        \"price_updated_at\": \"2026-09-18T16:24:00+00:00\",\n        \"billing_mode_label\": \"Pi\u00e8ce\",\n        \"scope\": {\n            \"status\": {\n                \"code\": \"active\",\n                \"label\": \"Actif\"\n            },\n            \"label\": \"Partag\u00e9\",\n            \"agencies\": 4\n        },\n        \"kilo_tiers\": [\n            {\n                \"min_kg\": 0,\n                \"max_kg\": 3,\n                \"classic\": 2800,\n                \"express\": 4100\n            }\n        ],\n        \"availability\": {\n            \"active\": 3,\n            \"total\": 4,\n            \"agencies\": [\n                {\n                    \"agency_id\": 1,\n                    \"agency\": \"Cocody Angr\u00e9\",\n                    \"available\": true,\n                    \"status\": {\n                        \"code\": \"available\",\n                        \"label\": \"Disponible\"\n                    },\n                    \"price_adjust_percent\": 0,\n                    \"note\": \"Catalogue principal\"\n                },\n                {\n                    \"agency_id\": 2,\n                    \"agency\": \"Plateau Centre\",\n                    \"available\": true,\n                    \"status\": {\n                        \"code\": \"available\",\n                        \"label\": \"Disponible\"\n                    },\n                    \"price_adjust_percent\": 5,\n                    \"note\": \"Prix local +5%\"\n                }\n            ]\n        },\n        \"preview\": {\n            \"title\": \"Chemise\",\n            \"subtitle\": \"CHE-001 \u00b7 D\u00e9lai 72 h\",\n            \"badge\": \"Hauts \u00b7 Pi\u00e8ce\",\n            \"prices\": [\n                {\n                    \"label\": \"Classique\",\n                    \"amount\": 1000\n                },\n                {\n                    \"label\": \"Express\",\n                    \"amount\": 1500\n                },\n                {\n                    \"label\": \"Repassage\",\n                    \"amount\": 700\n                }\n            ]\n        },\n        \"checks\": [\n            {\n                \"code\": \"required\",\n                \"label\": \"Informations obligatoires\",\n                \"ok\": true\n            },\n            {\n                \"code\": \"prices\",\n                \"label\": \"Tarifs coh\u00e9rents\",\n                \"ok\": true\n            }\n        ],\n        \"recommendations\": [\n            {\n                \"code\": \"express_gap\",\n                \"label\": \"Le tarif Express est sup\u00e9rieur de 46%. V\u00e9rifiez le catalogue partag\u00e9.\"\n            }\n        ],\n        \"last_modification\": {\n            \"by\": \"Nadia Assi\",\n            \"at\": \"2026-09-18T16:24:00+00:00\"\n        },\n        \"options\": {\n            \"defects\": [\n                {\n                    \"code\": \"stain\",\n                    \"label\": \"Tach\u00e9\"\n                }\n            ],\n            \"renders\": [\n                {\n                    \"id\": 1,\n                    \"title\": \"Sur cintre\"\n                }\n            ],\n            \"services\": [\n                {\n                    \"code\": \"collection\",\n                    \"label\": \"Collecte\"\n                }\n            ],\n            \"priorities\": [\n                {\n                    \"code\": \"standard\",\n                    \"label\": \"Standard\"\n                }\n            ]\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -3391,6 +3427,202 @@
                                     "key": "id",
                                     "value": 1,
                                     "description": "The ID of the article."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/article-categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/article-categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/article-categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"C\u00e9r\u00e9monie\",\n            \"icon\": \"suit\",\n            \"shared\": true,\n            \"sort_order\": 0,\n            \"articles_count\": 6,\n            \"active_articles_count\": 5\n        }\n    ],\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/article-categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/article-categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/article-categories"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"C\u00e9r\u00e9monie\",\n        \"icon\": \"suit\",\n        \"shared\": true,\n        \"sort_order\": 0,\n        \"articles_count\": 6,\n        \"active_articles_count\": 5\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/article-categories\/{articleCategory_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/article-categories\/:articleCategory_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/article-categories\/:articleCategory_id",
+                            "variable": [
+                                {
+                                    "id": "articleCategory_id",
+                                    "key": "articleCategory_id",
+                                    "value": 16,
+                                    "description": "The ID of the articleCategory."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"C\u00e9r\u00e9monie\",\n        \"icon\": \"suit\",\n        \"shared\": true,\n        \"sort_order\": 0,\n        \"articles_count\": 6,\n        \"active_articles_count\": 5\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE api\/v1\/article-categories\/{articleCategory_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/article-categories\/:articleCategory_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/article-categories\/:articleCategory_id",
+                            "variable": [
+                                {
+                                    "id": "articleCategory_id",
+                                    "key": "articleCategory_id",
+                                    "value": 16,
+                                    "description": "The ID of the articleCategory."
                                 }
                             ]
                         },
@@ -3495,7 +3727,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:44:08\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:49:20\"}"
                         },
                         "description": ""
                     },
@@ -3540,7 +3772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:44:08\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:49:20\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5203,7 +5435,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T11:44:08",
+                                    "value": "2026-10-22T11:49:20",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5351,7 +5583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:44:08\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:49:20\"}"
                         },
                         "description": ""
                     },
@@ -5508,7 +5740,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T11:44:08\"}"
+                            "raw": "{\"date\":\"2026-10-22T11:49:20\"}"
                         },
                         "description": ""
                     },
@@ -5553,7 +5785,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T11:44:08\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T11:49:20\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7040,7 +7272,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:44:08\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:49:21\"}"
                         },
                         "description": ""
                     },
@@ -8923,7 +9155,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:44:08\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:49:20\"}"
                         },
                         "description": ""
                     },
@@ -9062,7 +9294,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T11:44:08",
+                                    "value": "2026-10-22T11:49:20",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -9960,7 +10192,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:44:08\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:49:20\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

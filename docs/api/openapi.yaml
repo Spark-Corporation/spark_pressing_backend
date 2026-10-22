@@ -2804,6 +2804,32 @@ paths:
                         express_price_kilo: null
                         repass_price_kilo: null
                         status: true
+                        code: CHE-001
+                        icon: shirt
+                        category_id: 1
+                        category:
+                          id: 1
+                          name: Hauts
+                        billing_mode: piece
+                        allow_discount: true
+                        round_to: 100
+                        price_editable: false
+                        delays:
+                          classic: 72
+                          express: 24
+                          repass: 12
+                        priority: standard
+                        accepted_defects:
+                          - stain
+                          - torn
+                          - broken_button
+                        compatible_renders:
+                          - 1
+                          - 2
+                        services:
+                          - collection
+                          - delivery
+                        price_updated_at: '2026-09-18T16:24:00+00:00'
                     services:
                       -
                         id: 1
@@ -3081,6 +3107,32 @@ paths:
                             express_price_kilo: null
                             repass_price_kilo: null
                             status: true
+                            code: CHE-001
+                            icon: shirt
+                            category_id: 1
+                            category:
+                              id: 1
+                              name: Hauts
+                            billing_mode: piece
+                            allow_discount: true
+                            round_to: 100
+                            price_editable: false
+                            delays:
+                              classic: 72
+                              express: 24
+                              repass: 12
+                            priority: standard
+                            accepted_defects:
+                              - stain
+                              - torn
+                              - broken_button
+                            compatible_renders:
+                              - 1
+                              - 2
+                            services:
+                              - collection
+                              - delivery
+                            price_updated_at: '2026-09-18T16:24:00+00:00'
                         items:
                           type: object
                           properties:
@@ -3118,6 +3170,76 @@ paths:
                             status:
                               type: boolean
                               example: true
+                            code:
+                              type: string
+                              example: CHE-001
+                            icon:
+                              type: string
+                              example: shirt
+                            category_id:
+                              type: integer
+                              example: 1
+                            category:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                name:
+                                  type: string
+                                  example: Hauts
+                            billing_mode:
+                              type: string
+                              example: piece
+                            allow_discount:
+                              type: boolean
+                              example: true
+                            round_to:
+                              type: integer
+                              example: 100
+                            price_editable:
+                              type: boolean
+                              example: false
+                            delays:
+                              type: object
+                              properties:
+                                classic:
+                                  type: integer
+                                  example: 72
+                                express:
+                                  type: integer
+                                  example: 24
+                                repass:
+                                  type: integer
+                                  example: 12
+                            priority:
+                              type: string
+                              example: standard
+                            accepted_defects:
+                              type: array
+                              example:
+                                - stain
+                                - torn
+                                - broken_button
+                              items:
+                                type: string
+                            compatible_renders:
+                              type: array
+                              example:
+                                - 1
+                                - 2
+                              items:
+                                type: integer
+                            services:
+                              type: array
+                              example:
+                                - collection
+                                - delivery
+                              items:
+                                type: string
+                            price_updated_at:
+                              type: string
+                              example: '2026-09-18T16:24:00+00:00'
                       services:
                         type: array
                         example:
@@ -8791,12 +8913,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
                 notes:
                   type: string
@@ -10524,7 +10646,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
               required:
                 - amount
@@ -23901,10 +24023,132 @@ paths:
                   description: 'Must be a file. validation.max.'
               required:
                 - file
+  /api/v1/articles/history:
+    get:
+      summary: 'Onglet « Historique » du catalogue.'
+      operationId: ongletHistoriqueDuCatalogue
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      at: '2026-09-18T16:24:00+00:00'
+                      article_id: 1
+                      article: Chemise
+                      action: article.updated
+                      label: 'Article modifié'
+                      changes:
+                        - express_price
+                      by: 'Nadia Assi'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        at: '2026-09-18T16:24:00+00:00'
+                        article_id: 1
+                        article: Chemise
+                        action: article.updated
+                        label: 'Article modifié'
+                        changes:
+                          - express_price
+                        by: 'Nadia Assi'
+                    items:
+                      type: object
+                      properties:
+                        at:
+                          type: string
+                          example: '2026-09-18T16:24:00+00:00'
+                        article_id:
+                          type: integer
+                          example: 1
+                        article:
+                          type: string
+                          example: Chemise
+                        action:
+                          type: string
+                          example: article.updated
+                        label:
+                          type: string
+                          example: 'Article modifié'
+                        changes:
+                          type: array
+                          example:
+                            - express_price
+                          items:
+                            type: string
+                        by:
+                          type: string
+                          example: 'Nadia Assi'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
   /api/v1/articles:
     get:
-      summary: ''
-      operationId: getApiV1Articles
+      summary: '« Catalogue articles et tarifs » (q, category_id, billing_mode, agency_id, tab=all|kilo|unavailable, active_only).'
+      operationId: CatalogueArticlesEtTarifsqCategoryIdBillingModeAgencyIdTaballkilounavailableActiveOnly
       description: ''
       parameters:
         -
@@ -23934,11 +24178,58 @@ paths:
                       express_price_kilo: null
                       repass_price_kilo: null
                       status: true
+                      code: CHE-001
+                      icon: shirt
+                      category_id: 1
+                      category:
+                        id: 1
+                        name: Hauts
+                      billing_mode: piece
+                      allow_discount: true
+                      round_to: 100
+                      price_editable: false
+                      delays:
+                        classic: 72
+                        express: 24
+                        repass: 12
+                      priority: standard
+                      accepted_defects:
+                        - stain
+                        - torn
+                        - broken_button
+                      compatible_renders:
+                        - 1
+                        - 2
+                      services:
+                        - collection
+                        - delivery
+                      price_updated_at: '2026-09-18T16:24:00+00:00'
+                      billing_mode_label: Pièce
+                      scope:
+                        status:
+                          code: active
+                          label: Actif
+                        label: Partagé
+                        agencies: 4
                   meta:
                     page: 1
                     per_page: 50
                     total: 1
                     last_page: 1
+                    kpis:
+                      active_articles:
+                        value: 84
+                        new_this_month: 6
+                      categories:
+                        value: 12
+                        shared: 2
+                      average_price:
+                        value: 3280
+                        delta_percent: 4.2
+                      to_review:
+                        value: 7
+                        rule: 'Tarifs > 12 mois'
+                      updated_at: '2026-09-28T09:42:00+00:00'
                   errors: null
                 properties:
                   data:
@@ -23955,6 +24246,39 @@ paths:
                         express_price_kilo: null
                         repass_price_kilo: null
                         status: true
+                        code: CHE-001
+                        icon: shirt
+                        category_id: 1
+                        category:
+                          id: 1
+                          name: Hauts
+                        billing_mode: piece
+                        allow_discount: true
+                        round_to: 100
+                        price_editable: false
+                        delays:
+                          classic: 72
+                          express: 24
+                          repass: 12
+                        priority: standard
+                        accepted_defects:
+                          - stain
+                          - torn
+                          - broken_button
+                        compatible_renders:
+                          - 1
+                          - 2
+                        services:
+                          - collection
+                          - delivery
+                        price_updated_at: '2026-09-18T16:24:00+00:00'
+                        billing_mode_label: Pièce
+                        scope:
+                          status:
+                            code: active
+                            label: Actif
+                          label: Partagé
+                          agencies: 4
                     items:
                       type: object
                       properties:
@@ -23992,6 +24316,97 @@ paths:
                         status:
                           type: boolean
                           example: true
+                        code:
+                          type: string
+                          example: CHE-001
+                        icon:
+                          type: string
+                          example: shirt
+                        category_id:
+                          type: integer
+                          example: 1
+                        category:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Hauts
+                        billing_mode:
+                          type: string
+                          example: piece
+                        allow_discount:
+                          type: boolean
+                          example: true
+                        round_to:
+                          type: integer
+                          example: 100
+                        price_editable:
+                          type: boolean
+                          example: false
+                        delays:
+                          type: object
+                          properties:
+                            classic:
+                              type: integer
+                              example: 72
+                            express:
+                              type: integer
+                              example: 24
+                            repass:
+                              type: integer
+                              example: 12
+                        priority:
+                          type: string
+                          example: standard
+                        accepted_defects:
+                          type: array
+                          example:
+                            - stain
+                            - torn
+                            - broken_button
+                          items:
+                            type: string
+                        compatible_renders:
+                          type: array
+                          example:
+                            - 1
+                            - 2
+                          items:
+                            type: integer
+                        services:
+                          type: array
+                          example:
+                            - collection
+                            - delivery
+                          items:
+                            type: string
+                        price_updated_at:
+                          type: string
+                          example: '2026-09-18T16:24:00+00:00'
+                        billing_mode_label:
+                          type: string
+                          example: Pièce
+                        scope:
+                          type: object
+                          properties:
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: active
+                                label:
+                                  type: string
+                                  example: Actif
+                            label:
+                              type: string
+                              example: Partagé
+                            agencies:
+                              type: integer
+                              example: 4
                   meta:
                     type: object
                     properties:
@@ -24007,6 +24422,48 @@ paths:
                       last_page:
                         type: integer
                         example: 1
+                      kpis:
+                        type: object
+                        properties:
+                          active_articles:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 84
+                              new_this_month:
+                                type: integer
+                                example: 6
+                          categories:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 12
+                              shared:
+                                type: integer
+                                example: 2
+                          average_price:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 3280
+                              delta_percent:
+                                type: number
+                                example: 4.2
+                          to_review:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 7
+                              rule:
+                                type: string
+                                example: 'Tarifs > 12 mois'
+                          updated_at:
+                            type: string
+                            example: '2026-09-28T09:42:00+00:00'
                   errors:
                     type: string
                     example: null
@@ -24084,6 +24541,114 @@ paths:
                     express_price_kilo: null
                     repass_price_kilo: null
                     status: true
+                    code: CHE-001
+                    icon: shirt
+                    category_id: 1
+                    category:
+                      id: 1
+                      name: Hauts
+                    billing_mode: piece
+                    allow_discount: true
+                    round_to: 100
+                    price_editable: false
+                    delays:
+                      classic: 72
+                      express: 24
+                      repass: 12
+                    priority: standard
+                    accepted_defects:
+                      - stain
+                      - torn
+                      - broken_button
+                    compatible_renders:
+                      - 1
+                      - 2
+                    services:
+                      - collection
+                      - delivery
+                    price_updated_at: '2026-09-18T16:24:00+00:00'
+                    billing_mode_label: Pièce
+                    scope:
+                      status:
+                        code: active
+                        label: Actif
+                      label: Partagé
+                      agencies: 4
+                    kilo_tiers:
+                      -
+                        min_kg: 0
+                        max_kg: 3
+                        classic: 2800
+                        express: 4100
+                    availability:
+                      active: 3
+                      total: 4
+                      agencies:
+                        -
+                          agency_id: 1
+                          agency: 'Cocody Angré'
+                          available: true
+                          status:
+                            code: available
+                            label: Disponible
+                          price_adjust_percent: 0
+                          note: 'Catalogue principal'
+                        -
+                          agency_id: 2
+                          agency: 'Plateau Centre'
+                          available: true
+                          status:
+                            code: available
+                            label: Disponible
+                          price_adjust_percent: 5
+                          note: 'Prix local +5%'
+                    preview:
+                      title: Chemise
+                      subtitle: 'CHE-001 · Délai 72 h'
+                      badge: 'Hauts · Pièce'
+                      prices:
+                        -
+                          label: Classique
+                          amount: 1000
+                        -
+                          label: Express
+                          amount: 1500
+                        -
+                          label: Repassage
+                          amount: 700
+                    checks:
+                      -
+                        code: required
+                        label: 'Informations obligatoires'
+                        ok: true
+                      -
+                        code: prices
+                        label: 'Tarifs cohérents'
+                        ok: true
+                    recommendations:
+                      -
+                        code: express_gap
+                        label: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                    last_modification:
+                      by: 'Nadia Assi'
+                      at: '2026-09-18T16:24:00+00:00'
+                    options:
+                      defects:
+                        -
+                          code: stain
+                          label: Taché
+                      renders:
+                        -
+                          id: 1
+                          title: 'Sur cintre'
+                      services:
+                        -
+                          code: collection
+                          label: Collecte
+                      priorities:
+                        -
+                          code: standard
+                          label: Standard
                   meta: {  }
                   errors: null
                 properties:
@@ -24124,6 +24689,320 @@ paths:
                       status:
                         type: boolean
                         example: true
+                      code:
+                        type: string
+                        example: CHE-001
+                      icon:
+                        type: string
+                        example: shirt
+                      category_id:
+                        type: integer
+                        example: 1
+                      category:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Hauts
+                      billing_mode:
+                        type: string
+                        example: piece
+                      allow_discount:
+                        type: boolean
+                        example: true
+                      round_to:
+                        type: integer
+                        example: 100
+                      price_editable:
+                        type: boolean
+                        example: false
+                      delays:
+                        type: object
+                        properties:
+                          classic:
+                            type: integer
+                            example: 72
+                          express:
+                            type: integer
+                            example: 24
+                          repass:
+                            type: integer
+                            example: 12
+                      priority:
+                        type: string
+                        example: standard
+                      accepted_defects:
+                        type: array
+                        example:
+                          - stain
+                          - torn
+                          - broken_button
+                        items:
+                          type: string
+                      compatible_renders:
+                        type: array
+                        example:
+                          - 1
+                          - 2
+                        items:
+                          type: integer
+                      services:
+                        type: array
+                        example:
+                          - collection
+                          - delivery
+                        items:
+                          type: string
+                      price_updated_at:
+                        type: string
+                        example: '2026-09-18T16:24:00+00:00'
+                      billing_mode_label:
+                        type: string
+                        example: Pièce
+                      scope:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: active
+                              label:
+                                type: string
+                                example: Actif
+                          label:
+                            type: string
+                            example: Partagé
+                          agencies:
+                            type: integer
+                            example: 4
+                      kilo_tiers:
+                        type: array
+                        example:
+                          -
+                            min_kg: 0
+                            max_kg: 3
+                            classic: 2800
+                            express: 4100
+                        items:
+                          type: object
+                          properties:
+                            min_kg:
+                              type: integer
+                              example: 0
+                            max_kg:
+                              type: integer
+                              example: 3
+                            classic:
+                              type: integer
+                              example: 2800
+                            express:
+                              type: integer
+                              example: 4100
+                      availability:
+                        type: object
+                        properties:
+                          active:
+                            type: integer
+                            example: 3
+                          total:
+                            type: integer
+                            example: 4
+                          agencies:
+                            type: array
+                            example:
+                              -
+                                agency_id: 1
+                                agency: 'Cocody Angré'
+                                available: true
+                                status:
+                                  code: available
+                                  label: Disponible
+                                price_adjust_percent: 0
+                                note: 'Catalogue principal'
+                              -
+                                agency_id: 2
+                                agency: 'Plateau Centre'
+                                available: true
+                                status:
+                                  code: available
+                                  label: Disponible
+                                price_adjust_percent: 5
+                                note: 'Prix local +5%'
+                            items:
+                              type: object
+                              properties:
+                                agency_id:
+                                  type: integer
+                                  example: 1
+                                agency:
+                                  type: string
+                                  example: 'Cocody Angré'
+                                available:
+                                  type: boolean
+                                  example: true
+                                status:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: available
+                                    label:
+                                      type: string
+                                      example: Disponible
+                                price_adjust_percent:
+                                  type: integer
+                                  example: 0
+                                note:
+                                  type: string
+                                  example: 'Catalogue principal'
+                      preview:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: Chemise
+                          subtitle:
+                            type: string
+                            example: 'CHE-001 · Délai 72 h'
+                          badge:
+                            type: string
+                            example: 'Hauts · Pièce'
+                          prices:
+                            type: array
+                            example:
+                              -
+                                label: Classique
+                                amount: 1000
+                              -
+                                label: Express
+                                amount: 1500
+                              -
+                                label: Repassage
+                                amount: 700
+                            items:
+                              type: object
+                              properties:
+                                label:
+                                  type: string
+                                  example: Classique
+                                amount:
+                                  type: integer
+                                  example: 1000
+                      checks:
+                        type: array
+                        example:
+                          -
+                            code: required
+                            label: 'Informations obligatoires'
+                            ok: true
+                          -
+                            code: prices
+                            label: 'Tarifs cohérents'
+                            ok: true
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: required
+                            label:
+                              type: string
+                              example: 'Informations obligatoires'
+                            ok:
+                              type: boolean
+                              example: true
+                      recommendations:
+                        type: array
+                        example:
+                          -
+                            code: express_gap
+                            label: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: express_gap
+                            label:
+                              type: string
+                              example: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                      last_modification:
+                        type: object
+                        properties:
+                          by:
+                            type: string
+                            example: 'Nadia Assi'
+                          at:
+                            type: string
+                            example: '2026-09-18T16:24:00+00:00'
+                      options:
+                        type: object
+                        properties:
+                          defects:
+                            type: array
+                            example:
+                              -
+                                code: stain
+                                label: Taché
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: stain
+                                label:
+                                  type: string
+                                  example: Taché
+                          renders:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                title: 'Sur cintre'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                title:
+                                  type: string
+                                  example: 'Sur cintre'
+                          services:
+                            type: array
+                            example:
+                              -
+                                code: collection
+                                label: Collecte
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: collection
+                                label:
+                                  type: string
+                                  example: Collecte
+                          priorities:
+                            type: array
+                            example:
+                              -
+                                code: standard
+                                label: Standard
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: standard
+                                label:
+                                  type: string
+                                  example: Standard
                   meta:
                     type: object
                     properties: {  }
@@ -24218,58 +25097,6 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: validation.max.
-                  example: b
-                description:
-                  type: string
-                  description: ''
-                  example: 'Eius et animi quos velit et.'
-                  nullable: true
-                classic_price:
-                  type: integer
-                  description: validation.min.
-                  example: 60
-                express_price:
-                  type: integer
-                  description: validation.min.
-                  example: 42
-                repass_price:
-                  type: integer
-                  description: validation.min.
-                  example: 37
-                classic_price_kilo:
-                  type: integer
-                  description: validation.min.
-                  example: 9
-                  nullable: true
-                express_price_kilo:
-                  type: integer
-                  description: validation.min.
-                  example: 52
-                  nullable: true
-                repass_price_kilo:
-                  type: integer
-                  description: validation.min.
-                  example: 8
-                  nullable: true
-                status:
-                  type: boolean
-                  description: ''
-                  example: true
-              required:
-                - name
-                - classic_price
-                - express_price
-                - repass_price
   '/api/v1/articles/{id}':
     get:
       summary: ''
@@ -24302,6 +25129,114 @@ paths:
                     express_price_kilo: null
                     repass_price_kilo: null
                     status: true
+                    code: CHE-001
+                    icon: shirt
+                    category_id: 1
+                    category:
+                      id: 1
+                      name: Hauts
+                    billing_mode: piece
+                    allow_discount: true
+                    round_to: 100
+                    price_editable: false
+                    delays:
+                      classic: 72
+                      express: 24
+                      repass: 12
+                    priority: standard
+                    accepted_defects:
+                      - stain
+                      - torn
+                      - broken_button
+                    compatible_renders:
+                      - 1
+                      - 2
+                    services:
+                      - collection
+                      - delivery
+                    price_updated_at: '2026-09-18T16:24:00+00:00'
+                    billing_mode_label: Pièce
+                    scope:
+                      status:
+                        code: active
+                        label: Actif
+                      label: Partagé
+                      agencies: 4
+                    kilo_tiers:
+                      -
+                        min_kg: 0
+                        max_kg: 3
+                        classic: 2800
+                        express: 4100
+                    availability:
+                      active: 3
+                      total: 4
+                      agencies:
+                        -
+                          agency_id: 1
+                          agency: 'Cocody Angré'
+                          available: true
+                          status:
+                            code: available
+                            label: Disponible
+                          price_adjust_percent: 0
+                          note: 'Catalogue principal'
+                        -
+                          agency_id: 2
+                          agency: 'Plateau Centre'
+                          available: true
+                          status:
+                            code: available
+                            label: Disponible
+                          price_adjust_percent: 5
+                          note: 'Prix local +5%'
+                    preview:
+                      title: Chemise
+                      subtitle: 'CHE-001 · Délai 72 h'
+                      badge: 'Hauts · Pièce'
+                      prices:
+                        -
+                          label: Classique
+                          amount: 1000
+                        -
+                          label: Express
+                          amount: 1500
+                        -
+                          label: Repassage
+                          amount: 700
+                    checks:
+                      -
+                        code: required
+                        label: 'Informations obligatoires'
+                        ok: true
+                      -
+                        code: prices
+                        label: 'Tarifs cohérents'
+                        ok: true
+                    recommendations:
+                      -
+                        code: express_gap
+                        label: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                    last_modification:
+                      by: 'Nadia Assi'
+                      at: '2026-09-18T16:24:00+00:00'
+                    options:
+                      defects:
+                        -
+                          code: stain
+                          label: Taché
+                      renders:
+                        -
+                          id: 1
+                          title: 'Sur cintre'
+                      services:
+                        -
+                          code: collection
+                          label: Collecte
+                      priorities:
+                        -
+                          code: standard
+                          label: Standard
                   meta: {  }
                   errors: null
                 properties:
@@ -24342,6 +25277,320 @@ paths:
                       status:
                         type: boolean
                         example: true
+                      code:
+                        type: string
+                        example: CHE-001
+                      icon:
+                        type: string
+                        example: shirt
+                      category_id:
+                        type: integer
+                        example: 1
+                      category:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Hauts
+                      billing_mode:
+                        type: string
+                        example: piece
+                      allow_discount:
+                        type: boolean
+                        example: true
+                      round_to:
+                        type: integer
+                        example: 100
+                      price_editable:
+                        type: boolean
+                        example: false
+                      delays:
+                        type: object
+                        properties:
+                          classic:
+                            type: integer
+                            example: 72
+                          express:
+                            type: integer
+                            example: 24
+                          repass:
+                            type: integer
+                            example: 12
+                      priority:
+                        type: string
+                        example: standard
+                      accepted_defects:
+                        type: array
+                        example:
+                          - stain
+                          - torn
+                          - broken_button
+                        items:
+                          type: string
+                      compatible_renders:
+                        type: array
+                        example:
+                          - 1
+                          - 2
+                        items:
+                          type: integer
+                      services:
+                        type: array
+                        example:
+                          - collection
+                          - delivery
+                        items:
+                          type: string
+                      price_updated_at:
+                        type: string
+                        example: '2026-09-18T16:24:00+00:00'
+                      billing_mode_label:
+                        type: string
+                        example: Pièce
+                      scope:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: active
+                              label:
+                                type: string
+                                example: Actif
+                          label:
+                            type: string
+                            example: Partagé
+                          agencies:
+                            type: integer
+                            example: 4
+                      kilo_tiers:
+                        type: array
+                        example:
+                          -
+                            min_kg: 0
+                            max_kg: 3
+                            classic: 2800
+                            express: 4100
+                        items:
+                          type: object
+                          properties:
+                            min_kg:
+                              type: integer
+                              example: 0
+                            max_kg:
+                              type: integer
+                              example: 3
+                            classic:
+                              type: integer
+                              example: 2800
+                            express:
+                              type: integer
+                              example: 4100
+                      availability:
+                        type: object
+                        properties:
+                          active:
+                            type: integer
+                            example: 3
+                          total:
+                            type: integer
+                            example: 4
+                          agencies:
+                            type: array
+                            example:
+                              -
+                                agency_id: 1
+                                agency: 'Cocody Angré'
+                                available: true
+                                status:
+                                  code: available
+                                  label: Disponible
+                                price_adjust_percent: 0
+                                note: 'Catalogue principal'
+                              -
+                                agency_id: 2
+                                agency: 'Plateau Centre'
+                                available: true
+                                status:
+                                  code: available
+                                  label: Disponible
+                                price_adjust_percent: 5
+                                note: 'Prix local +5%'
+                            items:
+                              type: object
+                              properties:
+                                agency_id:
+                                  type: integer
+                                  example: 1
+                                agency:
+                                  type: string
+                                  example: 'Cocody Angré'
+                                available:
+                                  type: boolean
+                                  example: true
+                                status:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: available
+                                    label:
+                                      type: string
+                                      example: Disponible
+                                price_adjust_percent:
+                                  type: integer
+                                  example: 0
+                                note:
+                                  type: string
+                                  example: 'Catalogue principal'
+                      preview:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: Chemise
+                          subtitle:
+                            type: string
+                            example: 'CHE-001 · Délai 72 h'
+                          badge:
+                            type: string
+                            example: 'Hauts · Pièce'
+                          prices:
+                            type: array
+                            example:
+                              -
+                                label: Classique
+                                amount: 1000
+                              -
+                                label: Express
+                                amount: 1500
+                              -
+                                label: Repassage
+                                amount: 700
+                            items:
+                              type: object
+                              properties:
+                                label:
+                                  type: string
+                                  example: Classique
+                                amount:
+                                  type: integer
+                                  example: 1000
+                      checks:
+                        type: array
+                        example:
+                          -
+                            code: required
+                            label: 'Informations obligatoires'
+                            ok: true
+                          -
+                            code: prices
+                            label: 'Tarifs cohérents'
+                            ok: true
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: required
+                            label:
+                              type: string
+                              example: 'Informations obligatoires'
+                            ok:
+                              type: boolean
+                              example: true
+                      recommendations:
+                        type: array
+                        example:
+                          -
+                            code: express_gap
+                            label: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: express_gap
+                            label:
+                              type: string
+                              example: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                      last_modification:
+                        type: object
+                        properties:
+                          by:
+                            type: string
+                            example: 'Nadia Assi'
+                          at:
+                            type: string
+                            example: '2026-09-18T16:24:00+00:00'
+                      options:
+                        type: object
+                        properties:
+                          defects:
+                            type: array
+                            example:
+                              -
+                                code: stain
+                                label: Taché
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: stain
+                                label:
+                                  type: string
+                                  example: Taché
+                          renders:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                title: 'Sur cintre'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                title:
+                                  type: string
+                                  example: 'Sur cintre'
+                          services:
+                            type: array
+                            example:
+                              -
+                                code: collection
+                                label: Collecte
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: collection
+                                label:
+                                  type: string
+                                  example: Collecte
+                          priorities:
+                            type: array
+                            example:
+                              -
+                                code: standard
+                                label: Standard
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: standard
+                                label:
+                                  type: string
+                                  example: Standard
                   meta:
                     type: object
                     properties: {  }
@@ -24422,6 +25671,114 @@ paths:
                     express_price_kilo: null
                     repass_price_kilo: null
                     status: true
+                    code: CHE-001
+                    icon: shirt
+                    category_id: 1
+                    category:
+                      id: 1
+                      name: Hauts
+                    billing_mode: piece
+                    allow_discount: true
+                    round_to: 100
+                    price_editable: false
+                    delays:
+                      classic: 72
+                      express: 24
+                      repass: 12
+                    priority: standard
+                    accepted_defects:
+                      - stain
+                      - torn
+                      - broken_button
+                    compatible_renders:
+                      - 1
+                      - 2
+                    services:
+                      - collection
+                      - delivery
+                    price_updated_at: '2026-09-18T16:24:00+00:00'
+                    billing_mode_label: Pièce
+                    scope:
+                      status:
+                        code: active
+                        label: Actif
+                      label: Partagé
+                      agencies: 4
+                    kilo_tiers:
+                      -
+                        min_kg: 0
+                        max_kg: 3
+                        classic: 2800
+                        express: 4100
+                    availability:
+                      active: 3
+                      total: 4
+                      agencies:
+                        -
+                          agency_id: 1
+                          agency: 'Cocody Angré'
+                          available: true
+                          status:
+                            code: available
+                            label: Disponible
+                          price_adjust_percent: 0
+                          note: 'Catalogue principal'
+                        -
+                          agency_id: 2
+                          agency: 'Plateau Centre'
+                          available: true
+                          status:
+                            code: available
+                            label: Disponible
+                          price_adjust_percent: 5
+                          note: 'Prix local +5%'
+                    preview:
+                      title: Chemise
+                      subtitle: 'CHE-001 · Délai 72 h'
+                      badge: 'Hauts · Pièce'
+                      prices:
+                        -
+                          label: Classique
+                          amount: 1000
+                        -
+                          label: Express
+                          amount: 1500
+                        -
+                          label: Repassage
+                          amount: 700
+                    checks:
+                      -
+                        code: required
+                        label: 'Informations obligatoires'
+                        ok: true
+                      -
+                        code: prices
+                        label: 'Tarifs cohérents'
+                        ok: true
+                    recommendations:
+                      -
+                        code: express_gap
+                        label: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                    last_modification:
+                      by: 'Nadia Assi'
+                      at: '2026-09-18T16:24:00+00:00'
+                    options:
+                      defects:
+                        -
+                          code: stain
+                          label: Taché
+                      renders:
+                        -
+                          id: 1
+                          title: 'Sur cintre'
+                      services:
+                        -
+                          code: collection
+                          label: Collecte
+                      priorities:
+                        -
+                          code: standard
+                          label: Standard
                   meta: {  }
                   errors: null
                 properties:
@@ -24462,6 +25819,320 @@ paths:
                       status:
                         type: boolean
                         example: true
+                      code:
+                        type: string
+                        example: CHE-001
+                      icon:
+                        type: string
+                        example: shirt
+                      category_id:
+                        type: integer
+                        example: 1
+                      category:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Hauts
+                      billing_mode:
+                        type: string
+                        example: piece
+                      allow_discount:
+                        type: boolean
+                        example: true
+                      round_to:
+                        type: integer
+                        example: 100
+                      price_editable:
+                        type: boolean
+                        example: false
+                      delays:
+                        type: object
+                        properties:
+                          classic:
+                            type: integer
+                            example: 72
+                          express:
+                            type: integer
+                            example: 24
+                          repass:
+                            type: integer
+                            example: 12
+                      priority:
+                        type: string
+                        example: standard
+                      accepted_defects:
+                        type: array
+                        example:
+                          - stain
+                          - torn
+                          - broken_button
+                        items:
+                          type: string
+                      compatible_renders:
+                        type: array
+                        example:
+                          - 1
+                          - 2
+                        items:
+                          type: integer
+                      services:
+                        type: array
+                        example:
+                          - collection
+                          - delivery
+                        items:
+                          type: string
+                      price_updated_at:
+                        type: string
+                        example: '2026-09-18T16:24:00+00:00'
+                      billing_mode_label:
+                        type: string
+                        example: Pièce
+                      scope:
+                        type: object
+                        properties:
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: active
+                              label:
+                                type: string
+                                example: Actif
+                          label:
+                            type: string
+                            example: Partagé
+                          agencies:
+                            type: integer
+                            example: 4
+                      kilo_tiers:
+                        type: array
+                        example:
+                          -
+                            min_kg: 0
+                            max_kg: 3
+                            classic: 2800
+                            express: 4100
+                        items:
+                          type: object
+                          properties:
+                            min_kg:
+                              type: integer
+                              example: 0
+                            max_kg:
+                              type: integer
+                              example: 3
+                            classic:
+                              type: integer
+                              example: 2800
+                            express:
+                              type: integer
+                              example: 4100
+                      availability:
+                        type: object
+                        properties:
+                          active:
+                            type: integer
+                            example: 3
+                          total:
+                            type: integer
+                            example: 4
+                          agencies:
+                            type: array
+                            example:
+                              -
+                                agency_id: 1
+                                agency: 'Cocody Angré'
+                                available: true
+                                status:
+                                  code: available
+                                  label: Disponible
+                                price_adjust_percent: 0
+                                note: 'Catalogue principal'
+                              -
+                                agency_id: 2
+                                agency: 'Plateau Centre'
+                                available: true
+                                status:
+                                  code: available
+                                  label: Disponible
+                                price_adjust_percent: 5
+                                note: 'Prix local +5%'
+                            items:
+                              type: object
+                              properties:
+                                agency_id:
+                                  type: integer
+                                  example: 1
+                                agency:
+                                  type: string
+                                  example: 'Cocody Angré'
+                                available:
+                                  type: boolean
+                                  example: true
+                                status:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: available
+                                    label:
+                                      type: string
+                                      example: Disponible
+                                price_adjust_percent:
+                                  type: integer
+                                  example: 0
+                                note:
+                                  type: string
+                                  example: 'Catalogue principal'
+                      preview:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            example: Chemise
+                          subtitle:
+                            type: string
+                            example: 'CHE-001 · Délai 72 h'
+                          badge:
+                            type: string
+                            example: 'Hauts · Pièce'
+                          prices:
+                            type: array
+                            example:
+                              -
+                                label: Classique
+                                amount: 1000
+                              -
+                                label: Express
+                                amount: 1500
+                              -
+                                label: Repassage
+                                amount: 700
+                            items:
+                              type: object
+                              properties:
+                                label:
+                                  type: string
+                                  example: Classique
+                                amount:
+                                  type: integer
+                                  example: 1000
+                      checks:
+                        type: array
+                        example:
+                          -
+                            code: required
+                            label: 'Informations obligatoires'
+                            ok: true
+                          -
+                            code: prices
+                            label: 'Tarifs cohérents'
+                            ok: true
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: required
+                            label:
+                              type: string
+                              example: 'Informations obligatoires'
+                            ok:
+                              type: boolean
+                              example: true
+                      recommendations:
+                        type: array
+                        example:
+                          -
+                            code: express_gap
+                            label: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: express_gap
+                            label:
+                              type: string
+                              example: 'Le tarif Express est supérieur de 46%. Vérifiez le catalogue partagé.'
+                      last_modification:
+                        type: object
+                        properties:
+                          by:
+                            type: string
+                            example: 'Nadia Assi'
+                          at:
+                            type: string
+                            example: '2026-09-18T16:24:00+00:00'
+                      options:
+                        type: object
+                        properties:
+                          defects:
+                            type: array
+                            example:
+                              -
+                                code: stain
+                                label: Taché
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: stain
+                                label:
+                                  type: string
+                                  example: Taché
+                          renders:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                title: 'Sur cintre'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                title:
+                                  type: string
+                                  example: 'Sur cintre'
+                          services:
+                            type: array
+                            example:
+                              -
+                                code: collection
+                                label: Collecte
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: collection
+                                label:
+                                  type: string
+                                  example: Collecte
+                          priorities:
+                            type: array
+                            example:
+                              -
+                                code: standard
+                                label: Standard
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: standard
+                                label:
+                                  type: string
+                                  example: Standard
                   meta:
                     type: object
                     properties: {  }
@@ -24556,50 +26227,6 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: validation.max.
-                  example: b
-                description:
-                  type: string
-                  description: ''
-                  example: 'Eius et animi quos velit et.'
-                  nullable: true
-                classic_price:
-                  type: integer
-                  description: validation.min.
-                  example: 60
-                express_price:
-                  type: integer
-                  description: validation.min.
-                  example: 42
-                repass_price:
-                  type: integer
-                  description: validation.min.
-                  example: 37
-                classic_price_kilo:
-                  type: integer
-                  description: validation.min.
-                  example: 9
-                express_price_kilo:
-                  type: integer
-                  description: validation.min.
-                  example: 52
-                repass_price_kilo:
-                  type: integer
-                  description: validation.min.
-                  example: 8
-                status:
-                  type: boolean
-                  description: ''
-                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1ArticlesId
@@ -24686,6 +26313,511 @@ paths:
         name: id
         description: 'The ID of the article.'
         example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/article-categories:
+    get:
+      summary: ''
+      operationId: getApiV1ArticleCategories
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: Cérémonie
+                      icon: suit
+                      shared: true
+                      sort_order: 0
+                      articles_count: 6
+                      active_articles_count: 5
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Cérémonie
+                        icon: suit
+                        shared: true
+                        sort_order: 0
+                        articles_count: 6
+                        active_articles_count: 5
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Cérémonie
+                        icon:
+                          type: string
+                          example: suit
+                        shared:
+                          type: boolean
+                          example: true
+                        sort_order:
+                          type: integer
+                          example: 0
+                        articles_count:
+                          type: integer
+                          example: 6
+                        active_articles_count:
+                          type: integer
+                          example: 5
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+    post:
+      summary: ''
+      operationId: postApiV1ArticleCategories
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: Cérémonie
+                    icon: suit
+                    shared: true
+                    sort_order: 0
+                    articles_count: 6
+                    active_articles_count: 5
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: Cérémonie
+                      icon:
+                        type: string
+                        example: suit
+                      shared:
+                        type: boolean
+                        example: true
+                      sort_order:
+                        type: integer
+                        example: 0
+                      articles_count:
+                        type: integer
+                        example: 6
+                      active_articles_count:
+                        type: integer
+                        example: 5
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Catalogue
+  '/api/v1/article-categories/{articleCategory_id}':
+    put:
+      summary: ''
+      operationId: putApiV1ArticleCategoriesArticleCategory_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: Cérémonie
+                    icon: suit
+                    shared: true
+                    sort_order: 0
+                    articles_count: 6
+                    active_articles_count: 5
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: Cérémonie
+                      icon:
+                        type: string
+                        example: suit
+                      shared:
+                        type: boolean
+                        example: true
+                      sort_order:
+                        type: integer
+                        example: 0
+                      articles_count:
+                        type: integer
+                        example: 6
+                      active_articles_count:
+                        type: integer
+                        example: 5
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Catalogue
+    delete:
+      summary: ''
+      operationId: deleteApiV1ArticleCategoriesArticleCategory_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    deleted: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deleted:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+    parameters:
+      -
+        in: path
+        name: articleCategory_id
+        description: 'The ID of the articleCategory.'
+        example: 16
         required: true
         schema:
           type: integer
@@ -25016,7 +27148,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -25168,7 +27300,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
               required:
                 - agency_id
@@ -29348,7 +31480,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
                 validated:
                   type: boolean
@@ -30006,7 +32138,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
     delete:
       summary: ''
@@ -30792,7 +32924,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -31013,7 +33145,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
                 period:
                   type: string
@@ -37113,7 +39245,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:21'
               required:
                 - source_currency
                 - target_currency
@@ -45714,7 +47846,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
     delete:
       summary: ''
@@ -47130,7 +49262,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -51017,7 +53149,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:44:08'
+                  example: '2026-10-22T11:49:20'
                 name:
                   type: string
                   description: validation.max.

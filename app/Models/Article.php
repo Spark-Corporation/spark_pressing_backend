@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends \Illuminate\Database\Eloquent\Model
@@ -23,11 +24,54 @@ class Article extends \Illuminate\Database\Eloquent\Model
         'express_price_kilo',
         'repass_price_kilo',
         'status',
+        'code',
+        'category_id',
+        'billing_mode',
+        'icon',
+        'allow_discount',
+        'round_to',
+        'price_editable',
+        'classic_hours',
+        'express_hours',
+        'repass_hours',
+        'priority',
+        'accepted_defects',
+        'compatible_renders',
+        'services',
+        'kilo_tiers',
+        'price_updated_at',
+        'updated_by',
     ];
 
     protected $casts = [
         'status' => 'boolean',
+        'allow_discount' => 'boolean',
+        'price_editable' => 'boolean',
+        'accepted_defects' => 'array',
+        'compatible_renders' => 'array',
+        'services' => 'array',
+        'kilo_tiers' => 'array',
+        'price_updated_at' => 'datetime',
     ];
+
+    public const BILLING_MODES = ['piece' => 'Pièce', 'kilo' => 'Kilo', 'mixed' => 'Mixte'];
+
+    public const SERVICES = ['collection' => 'Collecte', 'delivery' => 'Livraison', 'anti_odor' => 'Traitement anti-odeur'];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ArticleCategory::class, 'category_id');
+    }
+
+    public function agencySettings(): HasMany
+    {
+        return $this->hasMany(ArticleAgencySetting::class);
+    }
+
+    public function editor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
 
     public function tenantScopesToAgency(): bool
     {
