@@ -8,6 +8,7 @@ use App\Models\ClientNote;
 use App\Models\Deposit;
 use App\Models\LoyaltyLedger;
 use App\Models\Pressing;
+use App\Support\Settings\SettingsRegistry;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -236,7 +237,7 @@ class ClientPresenter
             'conversion' => [
                 'points' => $threshold,
                 'value' => $value,
-                'minimum_points' => (int) config('spark.loyalty_min_conversion_points', $threshold),
+                'minimum_points' => (int) app(SettingsRegistry::class)->value($client->pressing_id, 'loyalty', 'program.minimum_points', $threshold),
             ],
         ];
     }

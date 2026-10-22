@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Ops\AuditLogController;
 use App\Http\Controllers\Api\V1\Settings\ExchangeRateController;
+use App\Http\Controllers\Api\V1\Settings\PressingSettingsController;
 use App\Http\Controllers\Api\V1\Settings\SettingsController;
 use App\Http\Controllers\Api\V1\Tenancy\PressingAgencyController;
 use App\Http\Controllers\Api\V1\Tenancy\RoleController;
@@ -16,6 +17,26 @@ Route::prefix('settings')->name('settings.')->group(function () {
     Route::get('exchange-rates', [ExchangeRateController::class, 'index'])->middleware('permission:fx.manage|reports.consolidated')->name('fx.index');
     Route::post('exchange-rates', [ExchangeRateController::class, 'store'])->middleware('permission:fx.manage')->name('fx.store');
     Route::delete('exchange-rates/{exchangeRate}', [ExchangeRateController::class, 'destroy'])->middleware('permission:fx.manage')->name('fx.destroy');
+
+    // Écrans « 09 — Paramètres » : hub, catégories (config/settings_schema.php), journal, appareils de caisse.
+    Route::controller(PressingSettingsController::class)->group(function () {
+        $categories = array_keys(config('settings_schema.categories'));
+        Route::get('/', 'index')->name('hub');
+        Route::get('journal', 'journal')->name('journal');
+        Route::get('devices', 'devices')->name('devices.index');
+        Route::middleware('permission:settings.manage')->group(function () {
+            Route::post('devices', 'storeDevice')->name('devices.store');
+            Route::put('devices/{device}', 'updateDevice')->name('devices.update');
+            Route::post('devices/{device}/approve', 'approveDevice')->name('devices.approve');
+            Route::post('devices/{device}/revoke', 'revokeDevice')->name('devices.revoke');
+        });
+        Route::get('{category}', 'show')->whereIn('category', $categories)->name('show');
+        Route::middleware('permission:settings.manage')->group(function () use ($categories) {
+            Route::put('{category}', 'update')->whereIn('category', $categories)->name('update');
+            Route::post('{category}/publish', 'publish')->whereIn('category', ['branding', 'receipts'])->name('publish');
+            Route::post('{category}/restore', 'restore')->whereIn('category', ['branding', 'receipts'])->name('restore');
+        });
+    });
 });
 
 Route::prefix('org')->name('org.')->middleware('permission:agencies.manage')->group(function () {

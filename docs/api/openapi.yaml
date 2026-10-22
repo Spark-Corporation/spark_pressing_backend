@@ -49,6 +49,9 @@ tags:
   -
     name: Livraison
     description: 'Module Livreur v3.0 — tournées, marquage livré, encaissement mobile.'
+  -
+    name: Paramètres
+    description: ''
 components:
   securitySchemes:
     default:
@@ -8913,12 +8916,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
                 notes:
                   type: string
@@ -10646,7 +10649,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
               required:
                 - amount
@@ -27148,7 +27151,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -27300,7 +27303,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
               required:
                 - agency_id
@@ -31480,7 +31483,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
                 validated:
                   type: boolean
@@ -32138,7 +32141,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
     delete:
       summary: ''
@@ -32924,7 +32927,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -33145,7 +33148,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
                 period:
                   type: string
@@ -38284,7 +38287,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
                 date_to:
                   type: string
@@ -38690,7 +38693,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                   nullable: true
                 agency_id:
                   type: integer
@@ -40469,7 +40472,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
               required:
                 - source_currency
                 - target_currency
@@ -49070,7 +49073,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:18'
+                  example: '2026-10-22T12:15:29'
                   nullable: true
     delete:
       summary: ''
@@ -50486,7 +50489,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:18'
+                  example: '2026-10-22T12:15:29'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -54373,7 +54376,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:54:19'
+                  example: '2026-10-22T12:15:30'
                 name:
                   type: string
                   description: validation.max.
@@ -55836,3 +55839,2010 @@ paths:
         required: true
         schema:
           type: integer
+  /api/v1/settings:
+    get:
+      summary: 'Hub « Paramètres » : 16 cartes groupées, état global, dernières modifications (`group`, `q`).'
+      operationId: hubParamtres16CartesGroupestatGlobalDerniresModificationsgroupq
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    summary:
+                      categories: 16
+                      up_to_date: 14
+                      to_check: 2
+                      action_required: 1
+                      label: '16 catégories contrôlées · 14 à jour · 2 à vérifier'
+                    filters:
+                      -
+                        code: structure
+                        label: Structure
+                        count: 4
+                    groups:
+                      -
+                        code: structure
+                        label: Structure
+                        cards:
+                          -
+                            key: organisation
+                            group: structure
+                            label: 'Organisation & agences'
+                            summary: '4 agences actives'
+                            status: up_to_date
+                            status_label: 'À jour'
+                            updated_at: '2026-09-28T08:00:00+00:00'
+                            updated_relative: 'Modifié il y a 2 heures'
+                            endpoint: /api/v1/org/agencies/overview
+                    recent_changes:
+                      -
+                        at: '2026-09-28T10:31:00+00:00'
+                        description: 'Paramètres opérationnels — pricing.delivery_fee : 1 500 → 2 000'
+                        by: 'Awa N.'
+                        scope: 'Toutes agences'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      summary:
+                        type: object
+                        properties:
+                          categories:
+                            type: integer
+                            example: 16
+                          up_to_date:
+                            type: integer
+                            example: 14
+                          to_check:
+                            type: integer
+                            example: 2
+                          action_required:
+                            type: integer
+                            example: 1
+                          label:
+                            type: string
+                            example: '16 catégories contrôlées · 14 à jour · 2 à vérifier'
+                      filters:
+                        type: array
+                        example:
+                          -
+                            code: structure
+                            label: Structure
+                            count: 4
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: structure
+                            label:
+                              type: string
+                              example: Structure
+                            count:
+                              type: integer
+                              example: 4
+                      groups:
+                        type: array
+                        example:
+                          -
+                            code: structure
+                            label: Structure
+                            cards:
+                              -
+                                key: organisation
+                                group: structure
+                                label: 'Organisation & agences'
+                                summary: '4 agences actives'
+                                status: up_to_date
+                                status_label: 'À jour'
+                                updated_at: '2026-09-28T08:00:00+00:00'
+                                updated_relative: 'Modifié il y a 2 heures'
+                                endpoint: /api/v1/org/agencies/overview
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: structure
+                            label:
+                              type: string
+                              example: Structure
+                            cards:
+                              type: array
+                              example:
+                                -
+                                  key: organisation
+                                  group: structure
+                                  label: 'Organisation & agences'
+                                  summary: '4 agences actives'
+                                  status: up_to_date
+                                  status_label: 'À jour'
+                                  updated_at: '2026-09-28T08:00:00+00:00'
+                                  updated_relative: 'Modifié il y a 2 heures'
+                                  endpoint: /api/v1/org/agencies/overview
+                              items:
+                                type: object
+                                properties:
+                                  key:
+                                    type: string
+                                    example: organisation
+                                  group:
+                                    type: string
+                                    example: structure
+                                  label:
+                                    type: string
+                                    example: 'Organisation & agences'
+                                  summary:
+                                    type: string
+                                    example: '4 agences actives'
+                                  status:
+                                    type: string
+                                    example: up_to_date
+                                  status_label:
+                                    type: string
+                                    example: 'À jour'
+                                  updated_at:
+                                    type: string
+                                    example: '2026-09-28T08:00:00+00:00'
+                                  updated_relative:
+                                    type: string
+                                    example: 'Modifié il y a 2 heures'
+                                  endpoint:
+                                    type: string
+                                    example: /api/v1/org/agencies/overview
+                      recent_changes:
+                        type: array
+                        example:
+                          -
+                            at: '2026-09-28T10:31:00+00:00'
+                            description: 'Paramètres opérationnels — pricing.delivery_fee : 1 500 → 2 000'
+                            by: 'Awa N.'
+                            scope: 'Toutes agences'
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-09-28T10:31:00+00:00'
+                            description:
+                              type: string
+                              example: 'Paramètres opérationnels — pricing.delivery_fee : 1 500 → 2 000'
+                            by:
+                              type: string
+                              example: 'Awa N.'
+                            scope:
+                              type: string
+                              example: 'Toutes agences'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group:
+                  type: string
+                  description: ''
+                  example: platform
+                  enum:
+                    - structure
+                    - operations
+                    - finance
+                    - platform
+                  nullable: true
+                q:
+                  type: string
+                  description: validation.max.
+                  example: 'n'
+                  nullable: true
+  /api/v1/settings/journal:
+    get:
+      summary: '« Journal des modifications » (toutes catégories ou `category`).'
+      operationId: JournalDesModificationstoutesCatgoriesOucategory
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 41
+                      at: '2026-09-28T10:31:00+00:00'
+                      action: settings.updated
+                      category: operations
+                      label: 'Paramètres opérationnels'
+                      summary: 'pricing.delivery_fee : 1 500 → 2 000'
+                      changes:
+                        -
+                          key: pricing.delivery_fee
+                          from: 1500
+                          to: 2000
+                      by: 'Awa N.'
+                      scope: network
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 41
+                        at: '2026-09-28T10:31:00+00:00'
+                        action: settings.updated
+                        category: operations
+                        label: 'Paramètres opérationnels'
+                        summary: 'pricing.delivery_fee : 1 500 → 2 000'
+                        changes:
+                          -
+                            key: pricing.delivery_fee
+                            from: 1500
+                            to: 2000
+                        by: 'Awa N.'
+                        scope: network
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 41
+                        at:
+                          type: string
+                          example: '2026-09-28T10:31:00+00:00'
+                        action:
+                          type: string
+                          example: settings.updated
+                        category:
+                          type: string
+                          example: operations
+                        label:
+                          type: string
+                          example: 'Paramètres opérationnels'
+                        summary:
+                          type: string
+                          example: 'pricing.delivery_fee : 1 500 → 2 000'
+                        changes:
+                          type: array
+                          example:
+                            -
+                              key: pricing.delivery_fee
+                              from: 1500
+                              to: 2000
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                                example: pricing.delivery_fee
+                              from:
+                                type: integer
+                                example: 1500
+                              to:
+                                type: integer
+                                example: 2000
+                        by:
+                          type: string
+                          example: 'Awa N.'
+                        scope:
+                          type: string
+                          example: network
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                limit:
+                  type: integer
+                  description: 'validation.min validation.max.'
+                  example: 22
+                  nullable: true
+  /api/v1/settings/devices:
+    get:
+      summary: 'Appareils de caisse autorisés (Sécurité, Mode hors ligne).'
+      operationId: appareilsDeCaisseAutorissScuritModeHorsLigne
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      code: CAISSE-BG-01
+                      type: pos
+                      label: 'Caisse principale'
+                      agency:
+                        id: 1
+                        name: Bingerville
+                      responsible:
+                        id: 3
+                        fullname: 'Awa N.'
+                      status: authorized
+                      status_label: Autorisé
+                      offline_enabled: true
+                      authorized_at: '2026-09-28T10:00:00+00:00'
+                      expires_at: '2026-12-27T10:00:00+00:00'
+                      last_seen_at: null
+                  meta:
+                    summary:
+                      authorized: 1
+                      pending: 0
+                      revoked: 0
+                      expired: 0
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        code: CAISSE-BG-01
+                        type: pos
+                        label: 'Caisse principale'
+                        agency:
+                          id: 1
+                          name: Bingerville
+                        responsible:
+                          id: 3
+                          fullname: 'Awa N.'
+                        status: authorized
+                        status_label: Autorisé
+                        offline_enabled: true
+                        authorized_at: '2026-09-28T10:00:00+00:00'
+                        expires_at: '2026-12-27T10:00:00+00:00'
+                        last_seen_at: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        code:
+                          type: string
+                          example: CAISSE-BG-01
+                        type:
+                          type: string
+                          example: pos
+                        label:
+                          type: string
+                          example: 'Caisse principale'
+                        agency:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Bingerville
+                        responsible:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            fullname:
+                              type: string
+                              example: 'Awa N.'
+                        status:
+                          type: string
+                          example: authorized
+                        status_label:
+                          type: string
+                          example: Autorisé
+                        offline_enabled:
+                          type: boolean
+                          example: true
+                        authorized_at:
+                          type: string
+                          example: '2026-09-28T10:00:00+00:00'
+                        expires_at:
+                          type: string
+                          example: '2026-12-27T10:00:00+00:00'
+                        last_seen_at:
+                          type: string
+                          example: null
+                          nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      summary:
+                        type: object
+                        properties:
+                          authorized:
+                            type: integer
+                            example: 1
+                          pending:
+                            type: integer
+                            example: 0
+                          revoked:
+                            type: integer
+                            example: 0
+                          expired:
+                            type: integer
+                            example: 0
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: expired
+                  enum:
+                    - authorized
+                    - pending
+                    - revoked
+                    - expired
+                  nullable: true
+    post:
+      summary: '« Autoriser l’appareil » : créé autorisé pour `security.devices.validity_days` (ou en attente si `pending`).'
+      operationId: AutoriserLappareilCrAutorisPoursecuritydevicesvalidityDaysouEnAttenteSipending
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    code: CAISSE-BG-01
+                    type: pos
+                    label: 'Caisse principale'
+                    agency:
+                      id: 1
+                      name: Bingerville
+                    responsible:
+                      id: 3
+                      fullname: 'Awa N.'
+                    status: authorized
+                    status_label: Autorisé
+                    offline_enabled: true
+                    authorized_at: '2026-09-28T10:00:00+00:00'
+                    expires_at: '2026-12-27T10:00:00+00:00'
+                    last_seen_at: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      code:
+                        type: string
+                        example: CAISSE-BG-01
+                      type:
+                        type: string
+                        example: pos
+                      label:
+                        type: string
+                        example: 'Caisse principale'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Bingerville
+                      responsible:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          fullname:
+                            type: string
+                            example: 'Awa N.'
+                      status:
+                        type: string
+                        example: authorized
+                      status_label:
+                        type: string
+                        example: Autorisé
+                      offline_enabled:
+                        type: boolean
+                        example: true
+                      authorized_at:
+                        type: string
+                        example: '2026-09-28T10:00:00+00:00'
+                      expires_at:
+                        type: string
+                        example: '2026-12-27T10:00:00+00:00'
+                      last_seen_at:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: integer
+                  description: 'Must match an existing stored value.'
+                  example: 16
+                code:
+                  type: string
+                  description: validation.max.
+                  example: 'n'
+                type:
+                  type: string
+                  description: ''
+                  example: pos
+                  enum:
+                    - pos
+                    - tablet
+                    - workshop
+                  nullable: true
+                label:
+                  type: string
+                  description: validation.max.
+                  example: z
+                  nullable: true
+                responsible_id:
+                  type: integer
+                  description: 'Must match an existing stored value.'
+                  example: 16
+                  nullable: true
+                offline_enabled:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
+                validity_days:
+                  type: integer
+                  description: 'validation.min validation.max.'
+                  example: 7
+                  nullable: true
+                pending:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
+              required:
+                - agency_id
+                - code
+  '/api/v1/settings/devices/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1SettingsDevicesId
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    code: CAISSE-BG-01
+                    type: pos
+                    label: 'Caisse principale'
+                    agency:
+                      id: 1
+                      name: Bingerville
+                    responsible:
+                      id: 3
+                      fullname: 'Awa N.'
+                    status: authorized
+                    status_label: Autorisé
+                    offline_enabled: true
+                    authorized_at: '2026-09-28T10:00:00+00:00'
+                    expires_at: '2026-12-27T10:00:00+00:00'
+                    last_seen_at: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      code:
+                        type: string
+                        example: CAISSE-BG-01
+                      type:
+                        type: string
+                        example: pos
+                      label:
+                        type: string
+                        example: 'Caisse principale'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Bingerville
+                      responsible:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          fullname:
+                            type: string
+                            example: 'Awa N.'
+                      status:
+                        type: string
+                        example: authorized
+                      status_label:
+                        type: string
+                        example: Autorisé
+                      offline_enabled:
+                        type: boolean
+                        example: true
+                      authorized_at:
+                        type: string
+                        example: '2026-09-28T10:00:00+00:00'
+                      expires_at:
+                        type: string
+                        example: '2026-12-27T10:00:00+00:00'
+                      last_seen_at:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the device.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/settings/devices/{device_id}/approve':
+    post:
+      summary: ''
+      operationId: postApiV1SettingsDevicesDevice_idApprove
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    code: CAISSE-BG-01
+                    type: pos
+                    label: 'Caisse principale'
+                    agency:
+                      id: 1
+                      name: Bingerville
+                    responsible:
+                      id: 3
+                      fullname: 'Awa N.'
+                    status: authorized
+                    status_label: Autorisé
+                    offline_enabled: true
+                    authorized_at: '2026-09-28T10:00:00+00:00'
+                    expires_at: '2026-12-27T10:00:00+00:00'
+                    last_seen_at: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      code:
+                        type: string
+                        example: CAISSE-BG-01
+                      type:
+                        type: string
+                        example: pos
+                      label:
+                        type: string
+                        example: 'Caisse principale'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Bingerville
+                      responsible:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          fullname:
+                            type: string
+                            example: 'Awa N.'
+                      status:
+                        type: string
+                        example: authorized
+                      status_label:
+                        type: string
+                        example: Autorisé
+                      offline_enabled:
+                        type: boolean
+                        example: true
+                      authorized_at:
+                        type: string
+                        example: '2026-09-28T10:00:00+00:00'
+                      expires_at:
+                        type: string
+                        example: '2026-12-27T10:00:00+00:00'
+                      last_seen_at:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                validity_days:
+                  type: integer
+                  description: 'validation.min validation.max.'
+                  example: 1
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: device_id
+        description: 'The ID of the device.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/settings/devices/{device_id}/revoke':
+    post:
+      summary: ''
+      operationId: postApiV1SettingsDevicesDevice_idRevoke
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    code: CAISSE-BG-01
+                    type: pos
+                    label: 'Caisse principale'
+                    agency:
+                      id: 1
+                      name: Bingerville
+                    responsible:
+                      id: 3
+                      fullname: 'Awa N.'
+                    status: authorized
+                    status_label: Autorisé
+                    offline_enabled: true
+                    authorized_at: '2026-09-28T10:00:00+00:00'
+                    expires_at: '2026-12-27T10:00:00+00:00'
+                    last_seen_at: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      code:
+                        type: string
+                        example: CAISSE-BG-01
+                      type:
+                        type: string
+                        example: pos
+                      label:
+                        type: string
+                        example: 'Caisse principale'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Bingerville
+                      responsible:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          fullname:
+                            type: string
+                            example: 'Awa N.'
+                      status:
+                        type: string
+                        example: authorized
+                      status_label:
+                        type: string
+                        example: Autorisé
+                      offline_enabled:
+                        type: boolean
+                        example: true
+                      authorized_at:
+                        type: string
+                        example: '2026-09-28T10:00:00+00:00'
+                      expires_at:
+                        type: string
+                        example: '2026-12-27T10:00:00+00:00'
+                      last_seen_at:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: device_id
+        description: 'The ID of the device.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/settings/{category}':
+    get:
+      summary: 'Valeurs d’une catégorie (brouillon inclus pour branding/reçus) + contexte d’écran.'
+      operationId: valeursDuneCatgoriebrouillonInclusPourBrandingreus+ContexteDcran
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    ok: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      ok:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Paramètres
+    put:
+      summary: 'Enregistre une catégorie (fusion partielle, clés inconnues ignorées, types contrôlés).'
+      operationId: enregistreUneCatgoriefusionPartielleClsInconnuesIgnoresTypesContrls
+      description: 'Pour branding/reçus, les changements restent en brouillon jusqu’à `publish` (`draft=false` pour forcer).'
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    ok: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      ok:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                values:
+                  type: object
+                  description: ''
+                  example: []
+                  properties: {  }
+                draft:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
+              required:
+                - values
+    parameters:
+      -
+        in: path
+        name: category
+        description: ''
+        example: operations|loyalty|delivery|payments|notifications|branding|receipts|security|offline|audit
+        required: true
+        schema:
+          type: string
+  '/api/v1/settings/{category}/publish':
+    post:
+      summary: ''
+      operationId: postApiV1SettingsCategoryPublish
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Créé
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    status: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+    parameters:
+      -
+        in: path
+        name: category
+        description: ''
+        example: branding|receipts
+        required: true
+        schema:
+          type: string
+  '/api/v1/settings/{category}/restore':
+    post:
+      summary: '« Restaurer par défaut » (sans `version_id`) ou une version publiée : charge le brouillon.'
+      operationId: RestaurerParDfautsansversionIdOuUneVersionPublieChargeLeBrouillon
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Créé
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    status: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                version_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: category
+        description: ''
+        example: branding|receipts
+        required: true
+        schema:
+          type: string

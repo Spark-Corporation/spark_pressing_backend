@@ -8,6 +8,7 @@ use App\Models\AuditLog;
 use App\Models\Deposit;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Support\Settings\SettingsRegistry;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 
@@ -243,7 +244,7 @@ class DepositPresenter
             'qr' => $deposit->qr_token ?: $deposit->code,
             'footer' => $format === 'a4'
                 ? 'Merci pour votre confiance. Document généré par SPARK Cloud. Pour suivre votre dépôt, scannez le QR code.'
-                : 'Merci pour votre confiance. Conservez ce ticket pour le retrait.',
+                : app(SettingsRegistry::class)->value($deposit->pressing_id, 'receipts', 'footer_message'),
         ];
     }
 

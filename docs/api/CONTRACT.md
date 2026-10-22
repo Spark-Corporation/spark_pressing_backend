@@ -237,6 +237,20 @@ La dérogation « solde impayé » exige la permission `deposits.override` (mana
 | « Exporter CSV / Excel / PDF » | mêmes routes avec `format=csv\|pdf` | CSV `;` + BOM (ouvrable dans Excel) |
 | « Programmer » | `GET/POST /reports/schedules`, `DELETE /reports/schedules/{id}` | envoi e-mail par `php artisan reports:send-scheduled` (planifié toutes les heures) |
 
+### 7.0h Paramètres (Figma 09)
+
+Chaque catégorie est décrite dans `config/settings_schema.php` (valeurs par défaut = maquette). `PUT` fusionne partiellement `values`, ignore les clés inconnues et refuse un type incorrect (422). Certaines clés restent stockées dans `pressings` (délais, frais, express, fidélité, seuils caisse) : le reste de l’API les lit donc directement.
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Hub « Paramètres » (recherche, filtres, état global) | `GET /settings?group=structure\|operations\|finance\|platform&q` | `summary` (16 catégories, à jour / à vérifier), `filters[]`, `groups[].cards[]` (`key`, `label`, `summary`, `status` up_to_date\|modified\|action_required, `updated_relative`, `endpoint`), `recent_changes[]` |
+| Opérationnels, Fidélité, Collecte & livraison, Paiements, Notifications, Sécurité, Mode hors ligne, Audit & conservation | `GET/PUT /settings/{operations\|loyalty\|delivery\|payments\|notifications\|security\|offline\|audit}` | `values`, `updated_at/by`, `context` (aperçu codes dépôt et workflow atelier, impact sécurité par rôle, appareils et cache hors ligne, volume d’audit…), `journal` (5 dernières) ; réponse PUT : `changes[]` (« Frais livraison : 1 500 → 2 000 ») |
+| Branding, Configuration des reçus (brouillon / publication) | `GET/PUT /settings/{branding\|receipts}`, `POST …/publish`, `POST …/restore` (`version_id` facultatif = défaut) | `values` (brouillon), `published`, `has_draft`, `unsaved_changes`, `versions[]`, `impact.agencies` |
+| Journal des modifications | `GET /settings/journal?category&limit` | `summary`, `changes[]`, `by`, `scope` |
+| Appareils de caisse autorisés | `GET /settings/devices?agency_id&status`, `POST /settings/devices` (`pending=true` = à approuver), `PUT /settings/devices/{id}`, `POST …/approve`, `POST …/revoke` | `code`, `agency`, `responsible`, `status` + libellé (Autorisé, À approuver, Révoqué, Expiré), `offline_enabled`, `expires_at` (validité `security.devices.validity_days`) ; `meta.summary` |
+
+Effets appliqués : `security.lockout` (échecs / durée) et `security.sessions.max_hours` à la connexion staff, `receipts.footer_message` sur le ticket, `loyalty.program.minimum_points` pour « Convertir en remise ».
+
 ### 7.0c Clients & fidélité (Figma 03)
 
 | Écran / bloc | Endpoint | Champs |

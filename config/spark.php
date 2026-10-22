@@ -33,7 +33,6 @@ return [
         'platine' => ['label' => 'Platine', 'min_points' => 4000],
     ],
     'vip_tier' => 'platine',
-    'loyalty_min_conversion_points' => 500,
 
     'referral_bonus_xaf' => (int) env('SPARK_REFERRAL_BONUS', 0),
     'enforce_licenses' => (bool) env('SPARK_ENFORCE_LICENSES', false),

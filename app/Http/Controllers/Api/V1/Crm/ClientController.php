@@ -14,6 +14,7 @@ use App\Models\ClientNote;
 use App\Models\Deposit;
 use App\Models\Pressing;
 use App\Support\Crm\ClientPresenter;
+use App\Support\Settings\SettingsRegistry;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -207,7 +208,7 @@ class ClientController extends Controller
     /** « Convertir en remise » — points → crédit portefeuille utilisable au prochain dépôt. */
     public function convertPoints(Request $request, Client $client, RecordLoyalty $loyalty, RecordWallet $wallet): JsonResponse
     {
-        $minimum = (int) config('spark.loyalty_min_conversion_points', 0);
+        $minimum = (int) app(SettingsRegistry::class)->value($client->pressing_id, 'loyalty', 'program.minimum_points', 0);
         $data = $request->validate(['points' => ['required', 'integer', 'min:'.max(1, $minimum)]]);
         $pressing = Pressing::query()->findOrFail($client->pressing_id);
 

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "be09eb47-7d8e-4c90-bf40-1d4cf03ea5cd",
+        "_postman_id": "e022dde7-491f-45a7-88bf-6b23d1f9f945",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:54:19\",\"retrieve_date\":\"2026-10-22T11:54:19\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T12:15:30\",\"retrieve_date\":\"2026-10-22T12:15:30\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:54:19\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T12:15:30\"}"
                         },
                         "description": ""
                     },
@@ -3727,7 +3727,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:54:19\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T12:15:30\"}"
                         },
                         "description": ""
                     },
@@ -3772,7 +3772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:54:19\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T12:15:30\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5435,7 +5435,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T11:54:19",
+                                    "value": "2026-10-22T12:15:30",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5583,7 +5583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:54:19\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T12:15:30\"}"
                         },
                         "description": ""
                     },
@@ -5740,7 +5740,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T11:54:19\"}"
+                            "raw": "{\"date\":\"2026-10-22T12:15:30\"}"
                         },
                         "description": ""
                     },
@@ -5785,7 +5785,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T11:54:19\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T12:15:30\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -6887,7 +6887,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T11:54:19\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T12:15:30\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -6932,7 +6932,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T11:54:19\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T12:15:30\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7505,7 +7505,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:54:19\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T12:15:30\"}"
                         },
                         "description": ""
                     },
@@ -9388,7 +9388,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:54:18\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T12:15:29\"}"
                         },
                         "description": ""
                     },
@@ -9527,7 +9527,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T11:54:18",
+                                    "value": "2026-10-22T12:15:29",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -10425,7 +10425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:54:19\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T12:15:30\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -10612,6 +10612,596 @@
                             "code": 200,
                             "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"code\": \"AK-0001-EL\",\n        \"qr_token\": \"qr-demo-token\",\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"currency\": \"XAF\",\n        \"client_id\": 1,\n        \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n        \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n        \"retrieved_at\": null,\n        \"subtotal\": 3500,\n        \"collection_fee\": 0,\n        \"delivery_fee\": 0,\n        \"discount\": 0,\n        \"discount_percent\": 0,\n        \"promo_code\": null,\n        \"points_earned\": 35,\n        \"points_redeemed\": 0,\n        \"total\": 3500,\n        \"advanced\": 1000,\n        \"left_to_pay\": 2500,\n        \"payment_method\": \"cash\",\n        \"status\": \"open\",\n        \"etat\": \"waiting\",\n        \"etat_label\": \"\u00c0 trier\",\n        \"colonne\": \"attente\",\n        \"workshop_status\": {\n            \"code\": \"waiting\",\n            \"label\": \"\u00c0 trier\"\n        },\n        \"payment_status\": {\n            \"code\": \"partial\",\n            \"label\": \"Partiellement pay\u00e9\"\n        },\n        \"service\": {\n            \"code\": \"express\",\n            \"label\": \"Express\"\n        },\n        \"is_express\": true,\n        \"express_supplement\": 1000,\n        \"pieces_count\": 2,\n        \"weight_kg_total\": 0,\n        \"quantity_label\": \"2 pi\u00e8ces\",\n        \"terminal\": \"POS-01\",\n        \"local_ref\": null,\n        \"storage_location\": null,\n        \"discount_reason\": null,\n        \"sync_status\": {\n            \"code\": \"synced\",\n            \"label\": \"\u00c0 jour\",\n            \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n        },\n        \"delivery_status\": \"delivered\",\n        \"notes\": null,\n        \"items_count\": 2,\n        \"articles_label\": \"2 pi\u00e8ces\",\n        \"client_name\": \"Jean Client\",\n        \"client_phone\": \"690000001\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Akwa\"\n        },\n        \"client\": {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"code\": \"CLI-00001\",\n            \"fullname\": \"Jean Client\",\n            \"email\": \"jean.client@example.com\",\n            \"phone_number\": \"690000001\",\n            \"address\": null,\n            \"city\": \"Douala\",\n            \"loyalty_points\": 120,\n            \"wallet_balance\": 5000,\n            \"sponsor_code\": \"JEAN01\",\n            \"referred_by_id\": null,\n            \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n            \"status\": true,\n            \"first_name\": \"Jean\",\n            \"last_name\": \"Client\",\n            \"phone_secondary\": null,\n            \"contact_preference\": \"whatsapp\",\n            \"consent_sms\": true,\n            \"consent_email\": false,\n            \"archived_at\": null,\n            \"tier\": {\n                \"code\": \"essentiel\",\n                \"label\": \"Essentiel\"\n            }\n        },\n        \"units\": [\n            {\n                \"id\": 1,\n                \"article_id\": 1,\n                \"service_id\": 1,\n                \"designation\": \"Chemise\",\n                \"pricing_type\": \"piece\",\n                \"quantity\": 2,\n                \"unit_price\": 1000,\n                \"line_total\": 2000,\n                \"state\": null,\n                \"is_express\": true,\n                \"express_supplement\": 1000,\n                \"color\": \"Blanches\",\n                \"defects\": [\n                    {\n                        \"code\": \"stain\",\n                        \"label\": \"Tach\u00e9\"\n                    }\n                ],\n                \"internal_notes\": \"Tache au col\"\n            }\n        ],\n        \"transactions\": [\n            {\n                \"id\": 1,\n                \"amount\": 1000,\n                \"type\": \"in\",\n                \"payment_method\": \"cash\",\n                \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Param\u00e8tres",
+            "description": "",
+            "item": [
+                {
+                    "name": "Hub \u00ab Param\u00e8tres \u00bb : 16 cartes group\u00e9es, \u00e9tat global, derni\u00e8res modifications (`group`, `q`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"group\":\"platform\",\"q\":\"n\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"summary\": {\n            \"categories\": 16,\n            \"up_to_date\": 14,\n            \"to_check\": 2,\n            \"action_required\": 1,\n            \"label\": \"16 cat\u00e9gories contr\u00f4l\u00e9es \u00b7 14 \u00e0 jour \u00b7 2 \u00e0 v\u00e9rifier\"\n        },\n        \"filters\": [\n            {\n                \"code\": \"structure\",\n                \"label\": \"Structure\",\n                \"count\": 4\n            }\n        ],\n        \"groups\": [\n            {\n                \"code\": \"structure\",\n                \"label\": \"Structure\",\n                \"cards\": [\n                    {\n                        \"key\": \"organisation\",\n                        \"group\": \"structure\",\n                        \"label\": \"Organisation & agences\",\n                        \"summary\": \"4 agences actives\",\n                        \"status\": \"up_to_date\",\n                        \"status_label\": \"\u00c0 jour\",\n                        \"updated_at\": \"2026-09-28T08:00:00+00:00\",\n                        \"updated_relative\": \"Modifi\u00e9 il y a 2 heures\",\n                        \"endpoint\": \"\/api\/v1\/org\/agencies\/overview\"\n                    }\n                ]\n            }\n        ],\n        \"recent_changes\": [\n            {\n                \"at\": \"2026-09-28T10:31:00+00:00\",\n                \"description\": \"Param\u00e8tres op\u00e9rationnels \u2014 pricing.delivery_fee : 1 500 \u2192 2 000\",\n                \"by\": \"Awa N.\",\n                \"scope\": \"Toutes agences\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Journal des modifications \u00bb (toutes cat\u00e9gories ou `category`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/journal",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/journal"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category\":\"architecto\",\"limit\":22}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 41,\n            \"at\": \"2026-09-28T10:31:00+00:00\",\n            \"action\": \"settings.updated\",\n            \"category\": \"operations\",\n            \"label\": \"Param\u00e8tres op\u00e9rationnels\",\n            \"summary\": \"pricing.delivery_fee : 1 500 \u2192 2 000\",\n            \"changes\": [\n                {\n                    \"key\": \"pricing.delivery_fee\",\n                    \"from\": 1500,\n                    \"to\": 2000\n                }\n            ],\n            \"by\": \"Awa N.\",\n            \"scope\": \"network\"\n        }\n    ],\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Appareils de caisse autoris\u00e9s (S\u00e9curit\u00e9, Mode hors ligne).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/devices",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/devices"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"agency_id\":16,\"status\":\"expired\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"code\": \"CAISSE-BG-01\",\n            \"type\": \"pos\",\n            \"label\": \"Caisse principale\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Bingerville\"\n            },\n            \"responsible\": {\n                \"id\": 3,\n                \"fullname\": \"Awa N.\"\n            },\n            \"status\": \"authorized\",\n            \"status_label\": \"Autoris\u00e9\",\n            \"offline_enabled\": true,\n            \"authorized_at\": \"2026-09-28T10:00:00+00:00\",\n            \"expires_at\": \"2026-12-27T10:00:00+00:00\",\n            \"last_seen_at\": null\n        }\n    ],\n    \"meta\": {\n        \"summary\": {\n            \"authorized\": 1,\n            \"pending\": 0,\n            \"revoked\": 0,\n            \"expired\": 0\n        }\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Autoriser l\u2019appareil \u00bb : cr\u00e9\u00e9 autoris\u00e9 pour `security.devices.validity_days` (ou en attente si `pending`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/devices",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/devices"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"agency_id\":16,\"code\":\"n\",\"type\":\"pos\",\"label\":\"z\",\"responsible_id\":16,\"offline_enabled\":false,\"validity_days\":7,\"pending\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"CAISSE-BG-01\",\n        \"type\": \"pos\",\n        \"label\": \"Caisse principale\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Bingerville\"\n        },\n        \"responsible\": {\n            \"id\": 3,\n            \"fullname\": \"Awa N.\"\n        },\n        \"status\": \"authorized\",\n        \"status_label\": \"Autoris\u00e9\",\n        \"offline_enabled\": true,\n        \"authorized_at\": \"2026-09-28T10:00:00+00:00\",\n        \"expires_at\": \"2026-12-27T10:00:00+00:00\",\n        \"last_seen_at\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/settings\/devices\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/devices\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/devices\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 16,
+                                    "description": "The ID of the device."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"CAISSE-BG-01\",\n        \"type\": \"pos\",\n        \"label\": \"Caisse principale\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Bingerville\"\n        },\n        \"responsible\": {\n            \"id\": 3,\n            \"fullname\": \"Awa N.\"\n        },\n        \"status\": \"authorized\",\n        \"status_label\": \"Autoris\u00e9\",\n        \"offline_enabled\": true,\n        \"authorized_at\": \"2026-09-28T10:00:00+00:00\",\n        \"expires_at\": \"2026-12-27T10:00:00+00:00\",\n        \"last_seen_at\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/settings\/devices\/{device_id}\/approve",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/devices\/:device_id\/approve",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/devices\/:device_id\/approve",
+                            "variable": [
+                                {
+                                    "id": "device_id",
+                                    "key": "device_id",
+                                    "value": 16,
+                                    "description": "The ID of the device."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"validity_days\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"CAISSE-BG-01\",\n        \"type\": \"pos\",\n        \"label\": \"Caisse principale\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Bingerville\"\n        },\n        \"responsible\": {\n            \"id\": 3,\n            \"fullname\": \"Awa N.\"\n        },\n        \"status\": \"authorized\",\n        \"status_label\": \"Autoris\u00e9\",\n        \"offline_enabled\": true,\n        \"authorized_at\": \"2026-09-28T10:00:00+00:00\",\n        \"expires_at\": \"2026-12-27T10:00:00+00:00\",\n        \"last_seen_at\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/settings\/devices\/{device_id}\/revoke",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/devices\/:device_id\/revoke",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/devices\/:device_id\/revoke",
+                            "variable": [
+                                {
+                                    "id": "device_id",
+                                    "key": "device_id",
+                                    "value": 16,
+                                    "description": "The ID of the device."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"reason\":\"b\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"CAISSE-BG-01\",\n        \"type\": \"pos\",\n        \"label\": \"Caisse principale\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Bingerville\"\n        },\n        \"responsible\": {\n            \"id\": 3,\n            \"fullname\": \"Awa N.\"\n        },\n        \"status\": \"authorized\",\n        \"status_label\": \"Autoris\u00e9\",\n        \"offline_enabled\": true,\n        \"authorized_at\": \"2026-09-28T10:00:00+00:00\",\n        \"expires_at\": \"2026-12-27T10:00:00+00:00\",\n        \"last_seen_at\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Valeurs d\u2019une cat\u00e9gorie (brouillon inclus pour branding\/re\u00e7us) + contexte d\u2019\u00e9cran.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/:category",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/:category",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "operations|loyalty|delivery|payments|notifications|branding|receipts|security|offline|audit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"ok\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Enregistre une cat\u00e9gorie (fusion partielle, cl\u00e9s inconnues ignor\u00e9es, types contr\u00f4l\u00e9s).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/:category",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/:category",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "operations|loyalty|delivery|payments|notifications|branding|receipts|security|offline|audit",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"values\":[],\"draft\":false}"
+                        },
+                        "description": "Pour branding\/re\u00e7us, les changements restent en brouillon jusqu\u2019\u00e0 `publish` (`draft=false` pour forcer)."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"ok\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/settings\/{category}\/publish",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/:category\/publish",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/:category\/publish",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "branding|receipts",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Restaurer par d\u00e9faut \u00bb (sans `version_id`) ou une version publi\u00e9e : charge le brouillon.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/:category\/restore",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/:category\/restore",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "branding|receipts",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"version_id\":16}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
                         },
                         {
                             "header": [],

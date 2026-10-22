@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Support\ApiResponse;
 use App\Support\Auth\LoginThrottle;
 use App\Support\Auth\PasswordResetCodes;
+use App\Support\Settings\SettingsRegistry;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -588,12 +589,17 @@ class AuthController extends Controller
         string $field = 'email',
     ): JsonResponse {
         $throttleKey = LoginThrottle::key($type, $identifier);
+        // Politique « Sécurité » du pressing (09) : échecs avant verrouillage, durée, durée de session.
+        $settings = app(SettingsRegistry::class);
+        $pressingId = $actor->pressing_id ?? null;
+        $maxAttempts = (int) $settings->value($pressingId, 'security', 'lockout.max_attempts', LoginThrottle::MAX_ATTEMPTS);
+        $lockMinutes = (int) $settings->value($pressingId, 'security', 'lockout.lock_minutes', LoginThrottle::LOCK_SECONDS / 60);
 
-        if (LoginThrottle::locked($throttleKey)) {
+        if (LoginThrottle::locked($throttleKey, $maxAttempts)) {
             $retry = LoginThrottle::retryAfter($throttleKey);
 
             return ApiResponse::error(
-                'Trop de tentatives. Accès limité pendant 15 minutes.',
+                "Trop de tentatives. Accès limité pendant {$lockMinutes} minutes.",
                 429,
                 [['code' => 'locked', 'detail' => "Réessayez dans {$retry} secondes."]],
                 ['retry_after' => $retry, 'attempts_remaining' => 0],
@@ -601,13 +607,13 @@ class AuthController extends Controller
         }
 
         if (! $actor || ! Hash::check($password, $actor->password)) {
-            $remaining = LoginThrottle::fail($throttleKey);
+            $remaining = LoginThrottle::fail($throttleKey, $maxAttempts, $lockMinutes * 60);
 
             return ApiResponse::error(
                 'Les données sont invalides.',
                 422,
                 [['code' => 'validation', 'field' => $field, 'detail' => 'Identifiants invalides.']],
-                ['attempts_remaining' => $remaining, 'max_attempts' => LoginThrottle::MAX_ATTEMPTS],
+                ['attempts_remaining' => $remaining, 'max_attempts' => $maxAttempts],
             );
         }
 
@@ -617,7 +623,8 @@ class AuthController extends Controller
 
         LoginThrottle::clear($throttleKey);
 
-        $expiresAt = $remember ? now()->addDays(30) : now()->addHours(12);
+        $sessionHours = $type === 'staff' && $pressingId ? (int) $settings->value($pressingId, 'security', 'sessions.max_hours', 12) : 12;
+        $expiresAt = $remember ? now()->addDays(30) : now()->addHours($sessionHours);
         $token = $actor->createToken($type, ['*'], $expiresAt)->plainTextToken;
 
         return $this->ok([

@@ -18,9 +18,9 @@ class LoginThrottle
         return 'login-fail:'.$actor.':'.sha1(mb_strtolower(trim($identifier)));
     }
 
-    public static function locked(string $key): bool
+    public static function locked(string $key, int $max = self::MAX_ATTEMPTS): bool
     {
-        return RateLimiter::tooManyAttempts($key, self::MAX_ATTEMPTS);
+        return RateLimiter::tooManyAttempts($key, $max);
     }
 
     public static function retryAfter(string $key): int
@@ -28,11 +28,11 @@ class LoginThrottle
         return RateLimiter::availableIn($key);
     }
 
-    public static function fail(string $key): int
+    public static function fail(string $key, int $max = self::MAX_ATTEMPTS, int $lockSeconds = self::LOCK_SECONDS): int
     {
-        RateLimiter::hit($key, self::LOCK_SECONDS);
+        RateLimiter::hit($key, $lockSeconds);
 
-        return max(0, self::MAX_ATTEMPTS - RateLimiter::attempts($key));
+        return max(0, $max - RateLimiter::attempts($key));
     }
 
     public static function clear(string $key): void

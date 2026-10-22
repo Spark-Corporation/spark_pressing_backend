@@ -536,6 +536,38 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Paramètres (Figma 09) ——
+        $device = ['id' => 1, 'code' => 'CAISSE-BG-01', 'type' => 'pos', 'label' => 'Caisse principale', 'agency' => ['id' => 1, 'name' => 'Bingerville'], 'responsible' => ['id' => 3, 'fullname' => 'Awa N.'], 'status' => 'authorized', 'status_label' => 'Autorisé', 'offline_enabled' => true, 'authorized_at' => '2026-09-28T10:00:00+00:00', 'expires_at' => '2026-12-27T10:00:00+00:00', 'last_seen_at' => null];
+        if ($path === '/api/v1/settings') {
+            return [$this->response(200, [
+                'summary' => ['categories' => 16, 'up_to_date' => 14, 'to_check' => 2, 'action_required' => 1, 'label' => '16 catégories contrôlées · 14 à jour · 2 à vérifier'],
+                'filters' => [['code' => 'structure', 'label' => 'Structure', 'count' => 4]],
+                'groups' => [['code' => 'structure', 'label' => 'Structure', 'cards' => [
+                    ['key' => 'organisation', 'group' => 'structure', 'label' => 'Organisation & agences', 'summary' => '4 agences actives', 'status' => 'up_to_date', 'status_label' => 'À jour', 'updated_at' => '2026-09-28T08:00:00+00:00', 'updated_relative' => 'Modifié il y a 2 heures', 'endpoint' => '/api/v1/org/agencies/overview'],
+                ]]],
+                'recent_changes' => [['at' => '2026-09-28T10:31:00+00:00', 'description' => 'Paramètres opérationnels — pricing.delivery_fee : 1 500 → 2 000', 'by' => 'Awa N.', 'scope' => 'Toutes agences']],
+            ])];
+        }
+        if ($path === '/api/v1/settings/journal') {
+            return [$this->response(200, [['id' => 41, 'at' => '2026-09-28T10:31:00+00:00', 'action' => 'settings.updated', 'category' => 'operations', 'label' => 'Paramètres opérationnels', 'summary' => 'pricing.delivery_fee : 1 500 → 2 000', 'changes' => [['key' => 'pricing.delivery_fee', 'from' => 1500, 'to' => 2000]], 'by' => 'Awa N.', 'scope' => 'network']])];
+        }
+        if (str_starts_with($path, '/api/v1/settings/devices')) {
+            return [$method === 'GET'
+                ? $this->response(200, [$device], ['summary' => ['authorized' => 1, 'pending' => 0, 'revoked' => 0, 'expired' => 0]])
+                : $this->response($method === 'POST' && ! str_contains($path, '{') ? 201 : 200, $device)];
+        }
+        if (str_starts_with($path, '/api/v1/settings/{category}')) {
+            $meta = ['category' => 'branding', 'label' => 'Branding du pressing', 'versioned' => true, 'updated_at' => '2026-09-28T16:28:00+00:00', 'updated_by' => 'Awa N.', 'published_at' => '2026-09-20T09:00:00+00:00', 'has_draft' => true, 'unsaved_changes' => 1, 'versions' => [['id' => 3, 'published_at' => '2026-09-20T09:00:00+00:00', 'published_by' => 'Awa N.']]];
+            $values = config('settings_schema.categories.branding.defaults');
+
+            return [match (true) {
+                $method === 'GET' => $this->response(200, [...$meta, 'values' => $values, 'published' => $values, 'context' => ['impact' => ['agencies' => 4, 'surfaces' => ['navigation', 'tickets', 'emails_sms', 'domain']], 'protected_rules' => []], 'journal' => []], description: 'Branding ; la forme de `values` suit `config/settings_schema.php`'),
+                $method === 'PUT' => $this->response(200, [...$meta, 'values' => $values, 'changes' => [['key' => 'primary_color', 'from' => '#24483F', 'to' => '#112233']]]),
+                str_ends_with($path, 'publish') => $this->response(200, [...$meta, 'has_draft' => false, 'values' => $values, 'impact' => ['agencies' => 4]]),
+                default => $this->response(200, [...$meta, 'values' => $values]),
+            }];
+        }
+
         // —— Rapports (Figma 08) ——
         if ($path === '/api/v1/reports/overview') {
             return [$this->response(200, [
