@@ -573,6 +573,20 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Suffixes des codes dépôt (Figma 17.01) ——
+        if (str_starts_with($path, '/api/v1/code-suffixes')) {
+            $row = ['agency_id' => 2, 'agency' => 'Plateau', 'prefix' => 'PL', 'suffix_id' => 4, 'suffix' => '26', 'suffix_label' => '-26', 'example_code' => 'PL-002684-26', 'next_code' => 'PL-000387-26'];
+            $notice = \App\Http\Controllers\Api\V1\Catalog\CodeSuffixController::NOTICE;
+
+            return [match (true) {
+                str_ends_with($path, '/preview') => $this->response(200, ['suffix' => '27', 'preview' => 'BG-002684-27', 'checks' => [['code' => 'format', 'ok' => true, 'label' => '1 à 6 caractères, lettres majuscules et chiffres']], 'valid' => true]),
+                $method === 'GET' => $this->response(200, [$row], ['agencies' => 4, 'configured' => 4, 'results_label' => '4 résultats', 'notice' => $notice]),
+                $method === 'POST' => $this->response(201, $row, ['notice' => $notice]),
+                $method === 'DELETE' => $this->response(200, ['deleted' => true, 'agency' => ['suffix' => null, 'example_code' => 'PL-002684'] + $row, 'message' => 'Les prochains dépôts de Plateau utiliseront le préfixe PL et leur numéro, sans suffixe. Les dépôts existants gardent leur code et leur historique.']),
+                default => $this->response(200, $row, ['notice' => $notice]),
+            }];
+        }
+
         // —— Application mobile client (Figma 14) ——
         if (str_starts_with($path, '/api/v1/client/app/')) {
             $steps = [['etat' => 'waiting', 'label' => 'Reçu', 'state' => 'done', 'at' => '2026-09-28T09:42:00+00:00'], ['etat' => 'in_progress', 'label' => 'En cours', 'state' => 'current', 'at' => '2026-09-28T10:16:00+00:00'], ['etat' => 'treated', 'label' => 'Traité', 'state' => 'upcoming'], ['etat' => 'classed', 'label' => 'Classé', 'state' => 'upcoming']];

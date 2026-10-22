@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "70d159e3-4a7d-4c90-87f0-089093281ed4",
+        "_postman_id": "b141dd75-2293-48ba-bf00-b38b149eb495",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:50:58\",\"retrieve_date\":\"2026-10-22T21:50:58\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:54:28\",\"retrieve_date\":\"2026-10-22T21:54:28\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:50:58\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:54:28\"}"
                         },
                         "description": ""
                     },
@@ -3969,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:50:58\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:54:28\"}"
                         },
                         "description": ""
                     },
@@ -4014,7 +4014,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:50:58\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:54:28\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5110,7 +5110,7 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/code-suffixes",
+                    "name": "\u00ab Suffixes configur\u00e9s \u00bb : une ligne par agence (pr\u00e9fixe, suffixe, exemple de code complet), `q`, `agency_id`.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5133,14 +5133,62 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"b\",\"agency_id\":16}"
+                        },
                         "description": ""
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"agency_id\": 1,\n            \"suffix\": \"EL\",\n            \"status\": true\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": [\n        {\n            \"agency_id\": 2,\n            \"agency\": \"Plateau\",\n            \"prefix\": \"PL\",\n            \"suffix_id\": 4,\n            \"suffix\": \"26\",\n            \"suffix_label\": \"-26\",\n            \"example_code\": \"PL-002684-26\",\n            \"next_code\": \"PL-000387-26\"\n        }\n    ],\n    \"meta\": {\n        \"agencies\": 4,\n        \"configured\": 4,\n        \"results_label\": \"4 r\u00e9sultats\",\n        \"notice\": \"Aucune renum\u00e9rotation des d\u00e9p\u00f4ts existants : le nouveau format concerne uniquement les futurs d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Aper\u00e7u du code \u00bb et \u00ab V\u00e9rifications \u00bb avant enregistrement (`agency_id`, `suffix`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/code-suffixes\/preview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/code-suffixes\/preview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"agency_id\":16,\"suffix\":\"ngzm\",\"ignore_id\":16}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"suffix\": \"27\",\n        \"preview\": \"BG-002684-27\",\n        \"checks\": [\n            {\n                \"code\": \"format\",\n                \"ok\": true,\n                \"label\": \"1 \u00e0 6 caract\u00e8res, lettres majuscules et chiffres\"\n            }\n        ],\n        \"valid\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5182,7 +5230,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"agency_id\": 1,\n        \"suffix\": \"EL\",\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"agency_id\": 2,\n        \"agency\": \"Plateau\",\n        \"prefix\": \"PL\",\n        \"suffix_id\": 4,\n        \"suffix\": \"26\",\n        \"suffix_label\": \"-26\",\n        \"example_code\": \"PL-002684-26\",\n        \"next_code\": \"PL-000387-26\"\n    },\n    \"meta\": {\n        \"notice\": \"Aucune renum\u00e9rotation des d\u00e9p\u00f4ts existants : le nouveau format concerne uniquement les futurs d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5238,7 +5286,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"agency_id\": 1,\n        \"suffix\": \"EL\",\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"agency_id\": 2,\n        \"agency\": \"Plateau\",\n        \"prefix\": \"PL\",\n        \"suffix_id\": 4,\n        \"suffix\": \"26\",\n        \"suffix_label\": \"-26\",\n        \"example_code\": \"PL-002684-26\",\n        \"next_code\": \"PL-000387-26\"\n    },\n    \"meta\": {\n        \"notice\": \"Aucune renum\u00e9rotation des d\u00e9p\u00f4ts existants : le nouveau format concerne uniquement les futurs d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5256,7 +5304,7 @@
                     ]
                 },
                 {
-                    "name": "DELETE api\/v1\/code-suffixes\/{id}",
+                    "name": "\u00ab Supprimer le suffixe \u00bb : les futurs d\u00e9p\u00f4ts utiliseront le pr\u00e9fixe seul ; les codes existants ne changent pas.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5294,7 +5342,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"deleted\": true,\n        \"agency\": {\n            \"suffix\": null,\n            \"example_code\": \"PL-002684\",\n            \"agency_id\": 2,\n            \"agency\": \"Plateau\",\n            \"prefix\": \"PL\",\n            \"suffix_id\": 4,\n            \"suffix_label\": \"-26\",\n            \"next_code\": \"PL-000387-26\"\n        },\n        \"message\": \"Les prochains d\u00e9p\u00f4ts de Plateau utiliseront le pr\u00e9fixe PL et leur num\u00e9ro, sans suffixe. Les d\u00e9p\u00f4ts existants gardent leur code et leur historique.\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5767,7 +5815,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T21:50:58",
+                                    "value": "2026-10-22T21:54:28",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5915,7 +5963,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:50:58\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:54:28\"}"
                         },
                         "description": ""
                     },
@@ -6072,7 +6120,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:50:58\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:54:28\"}"
                         },
                         "description": ""
                     },
@@ -6117,7 +6165,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:50:58\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:54:28\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7219,7 +7267,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T21:50:58\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T21:54:28\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7264,7 +7312,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:50:58\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:54:28\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7903,7 +7951,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:50\",\"closes_at\":\"21:50\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:54\",\"closes_at\":\"21:54\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8038,7 +8086,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:50:58\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:54:28\"}"
                         },
                         "description": ""
                     },
@@ -8223,7 +8271,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:50\",\"closes_at\":\"21:50\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:54\",\"closes_at\":\"21:54\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -11381,7 +11429,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:50:57\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:54:28\"}"
                         },
                         "description": ""
                     },
@@ -11520,7 +11568,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T21:50:57",
+                                    "value": "2026-10-22T21:54:28",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -12469,7 +12517,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:50:58\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:54:28\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

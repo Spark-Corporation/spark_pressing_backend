@@ -10276,12 +10276,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 notes:
                   type: string
@@ -12009,7 +12009,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
               required:
                 - amount
@@ -28511,7 +28511,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -28746,7 +28746,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
               required:
                 - agency_id
@@ -31699,8 +31699,8 @@ paths:
           type: string
   /api/v1/code-suffixes:
     get:
-      summary: ''
-      operationId: getApiV1CodeSuffixes
+      summary: '« Suffixes configurés » : une ligne par agence (préfixe, suffixe, exemple de code complet), `q`, `agency_id`.'
+      operationId: SuffixesConfigursUneLigneParAgenceprfixeSuffixeExempleDeCodeCompletqagencyId
       description: ''
       parameters:
         -
@@ -31720,55 +31720,75 @@ paths:
                 example:
                   data:
                     -
-                      id: 1
-                      agency_id: 1
-                      suffix: EL
-                      status: true
+                      agency_id: 2
+                      agency: Plateau
+                      prefix: PL
+                      suffix_id: 4
+                      suffix: '26'
+                      suffix_label: '-26'
+                      example_code: PL-002684-26
+                      next_code: PL-000387-26
                   meta:
-                    page: 1
-                    per_page: 50
-                    total: 1
-                    last_page: 1
+                    agencies: 4
+                    configured: 4
+                    results_label: '4 résultats'
+                    notice: 'Aucune renumérotation des dépôts existants : le nouveau format concerne uniquement les futurs dépôts.'
                   errors: null
                 properties:
                   data:
                     type: array
                     example:
                       -
-                        id: 1
-                        agency_id: 1
-                        suffix: EL
-                        status: true
+                        agency_id: 2
+                        agency: Plateau
+                        prefix: PL
+                        suffix_id: 4
+                        suffix: '26'
+                        suffix_label: '-26'
+                        example_code: PL-002684-26
+                        next_code: PL-000387-26
                     items:
                       type: object
                       properties:
-                        id:
-                          type: integer
-                          example: 1
                         agency_id:
                           type: integer
-                          example: 1
+                          example: 2
+                        agency:
+                          type: string
+                          example: Plateau
+                        prefix:
+                          type: string
+                          example: PL
+                        suffix_id:
+                          type: integer
+                          example: 4
                         suffix:
                           type: string
-                          example: EL
-                        status:
-                          type: boolean
-                          example: true
+                          example: '26'
+                        suffix_label:
+                          type: string
+                          example: '-26'
+                        example_code:
+                          type: string
+                          example: PL-002684-26
+                        next_code:
+                          type: string
+                          example: PL-000387-26
                   meta:
                     type: object
                     properties:
-                      page:
+                      agencies:
                         type: integer
-                        example: 1
-                      per_page:
+                        example: 4
+                      configured:
                         type: integer
-                        example: 50
-                      total:
-                        type: integer
-                        example: 1
-                      last_page:
-                        type: integer
-                        example: 1
+                        example: 4
+                      results_label:
+                        type: string
+                        example: '4 résultats'
+                      notice:
+                        type: string
+                        example: 'Aucune renumérotation des dépôts existants : le nouveau format concerne uniquement les futurs dépôts.'
                   errors:
                     type: string
                     example: null
@@ -31815,6 +31835,23 @@ paths:
                           example: 'Non authentifié.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
     post:
       summary: ''
       operationId: postApiV1CodeSuffixes
@@ -31836,31 +31873,51 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    agency_id: 1
-                    suffix: EL
-                    status: true
-                  meta: {  }
+                    agency_id: 2
+                    agency: Plateau
+                    prefix: PL
+                    suffix_id: 4
+                    suffix: '26'
+                    suffix_label: '-26'
+                    example_code: PL-002684-26
+                    next_code: PL-000387-26
+                  meta:
+                    notice: 'Aucune renumérotation des dépôts existants : le nouveau format concerne uniquement les futurs dépôts.'
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
-                      id:
-                        type: integer
-                        example: 1
                       agency_id:
                         type: integer
-                        example: 1
+                        example: 2
+                      agency:
+                        type: string
+                        example: Plateau
+                      prefix:
+                        type: string
+                        example: PL
+                      suffix_id:
+                        type: integer
+                        example: 4
                       suffix:
                         type: string
-                        example: EL
-                      status:
-                        type: boolean
-                        example: true
+                        example: '26'
+                      suffix_label:
+                        type: string
+                        example: '-26'
+                      example_code:
+                        type: string
+                        example: PL-002684-26
+                      next_code:
+                        type: string
+                        example: PL-000387-26
                   meta:
                     type: object
-                    properties: {  }
+                    properties:
+                      notice:
+                        type: string
+                        example: 'Aucune renumérotation des dépôts existants : le nouveau format concerne uniquement les futurs dépôts.'
                   errors:
                     type: string
                     example: null
@@ -31952,6 +32009,142 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+  /api/v1/code-suffixes/preview:
+    get:
+      summary: '« Aperçu du code » et « Vérifications » avant enregistrement (`agency_id`, `suffix`).'
+      operationId: AperuDuCodeEtVrificationsAvantEnregistrementagencyIdsuffix
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    suffix: '27'
+                    preview: BG-002684-27
+                    checks:
+                      -
+                        code: format
+                        ok: true
+                        label: '1 à 6 caractères, lettres majuscules et chiffres'
+                    valid: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      suffix:
+                        type: string
+                        example: '27'
+                      preview:
+                        type: string
+                        example: BG-002684-27
+                      checks:
+                        type: array
+                        example:
+                          -
+                            code: format
+                            ok: true
+                            label: '1 à 6 caractères, lettres majuscules et chiffres'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: format
+                            ok:
+                              type: boolean
+                              example: true
+                            label:
+                              type: string
+                              example: '1 à 6 caractères, lettres majuscules et chiffres'
+                      valid:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                suffix:
+                  type: string
+                  description: validation.max.
+                  example: ngzm
+                  nullable: true
+                ignore_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+              required:
+                - agency_id
   '/api/v1/code-suffixes/{id}':
     put:
       summary: ''
@@ -31974,31 +32167,51 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    agency_id: 1
-                    suffix: EL
-                    status: true
-                  meta: {  }
+                    agency_id: 2
+                    agency: Plateau
+                    prefix: PL
+                    suffix_id: 4
+                    suffix: '26'
+                    suffix_label: '-26'
+                    example_code: PL-002684-26
+                    next_code: PL-000387-26
+                  meta:
+                    notice: 'Aucune renumérotation des dépôts existants : le nouveau format concerne uniquement les futurs dépôts.'
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
-                      id:
-                        type: integer
-                        example: 1
                       agency_id:
                         type: integer
-                        example: 1
+                        example: 2
+                      agency:
+                        type: string
+                        example: Plateau
+                      prefix:
+                        type: string
+                        example: PL
+                      suffix_id:
+                        type: integer
+                        example: 4
                       suffix:
                         type: string
-                        example: EL
-                      status:
-                        type: boolean
-                        example: true
+                        example: '26'
+                      suffix_label:
+                        type: string
+                        example: '-26'
+                      example_code:
+                        type: string
+                        example: PL-002684-26
+                      next_code:
+                        type: string
+                        example: PL-000387-26
                   meta:
                     type: object
-                    properties: {  }
+                    properties:
+                      notice:
+                        type: string
+                        example: 'Aucune renumérotation des dépôts existants : le nouveau format concerne uniquement les futurs dépôts.'
                   errors:
                     type: string
                     example: null
@@ -32091,8 +32304,8 @@ paths:
       tags:
         - Catalogue
     delete:
-      summary: ''
-      operationId: deleteApiV1CodeSuffixesId
+      summary: '« Supprimer le suffixe » : les futurs dépôts utiliseront le préfixe seul ; les codes existants ne changent pas.'
+      operationId: SupprimerLeSuffixeLesFutursDptsUtiliserontLePrfixeSeulLesCodesExistantsNeChangentPas
       description: ''
       parameters:
         -
@@ -32112,6 +32325,16 @@ paths:
                 example:
                   data:
                     deleted: true
+                    agency:
+                      suffix: null
+                      example_code: PL-002684
+                      agency_id: 2
+                      agency: Plateau
+                      prefix: PL
+                      suffix_id: 4
+                      suffix_label: '-26'
+                      next_code: PL-000387-26
+                    message: 'Les prochains dépôts de Plateau utiliseront le préfixe PL et leur numéro, sans suffixe. Les dépôts existants gardent leur code et leur historique.'
                   meta: {  }
                   errors: null
                 properties:
@@ -32121,6 +32344,37 @@ paths:
                       deleted:
                         type: boolean
                         example: true
+                      agency:
+                        type: object
+                        properties:
+                          suffix:
+                            type: string
+                            example: null
+                            nullable: true
+                          example_code:
+                            type: string
+                            example: PL-002684
+                          agency_id:
+                            type: integer
+                            example: 2
+                          agency:
+                            type: string
+                            example: Plateau
+                          prefix:
+                            type: string
+                            example: PL
+                          suffix_id:
+                            type: integer
+                            example: 4
+                          suffix_label:
+                            type: string
+                            example: '-26'
+                          next_code:
+                            type: string
+                            example: PL-000387-26
+                      message:
+                        type: string
+                        example: 'Les prochains dépôts de Plateau utiliseront le préfixe PL et leur numéro, sans suffixe. Les dépôts existants gardent leur code et leur historique.'
                   meta:
                     type: object
                     properties: {  }
@@ -33474,7 +33728,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 validated:
                   type: boolean
@@ -34132,7 +34386,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
     delete:
       summary: ''
@@ -34918,7 +35172,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -35139,7 +35393,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 period:
                   type: string
@@ -40278,7 +40532,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 date_to:
                   type: string
@@ -40684,7 +40938,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 agency_id:
                   type: integer
@@ -43341,12 +43595,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:50'
+                  example: '21:54'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:50'
+                  example: '21:54'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -43729,7 +43983,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
               required:
                 - source_currency
                 - target_currency
@@ -44312,12 +44566,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:50'
+                  example: '21:54'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:50'
+                  example: '21:54'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -57209,7 +57463,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:57'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
     delete:
       summary: ''
@@ -58625,7 +58879,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:57'
+                  example: '2026-10-22T21:54:28'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -62840,7 +63094,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:50:58'
+                  example: '2026-10-22T21:54:28'
                 name:
                   type: string
                   description: validation.max.

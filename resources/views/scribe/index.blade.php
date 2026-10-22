@@ -424,7 +424,10 @@ groupes automatiques, tableau des campagnes (`agency_id`, `status`).</a>
                                 <a href="#catalogue-DELETEapi-v1-delivery-hours--id-">DELETE api/v1/delivery-hours/{id}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-code-suffixes">
-                                <a href="#catalogue-GETapi-v1-code-suffixes">GET api/v1/code-suffixes</a>
+                                <a href="#catalogue-GETapi-v1-code-suffixes">« Suffixes configurés » : une ligne par agence (préfixe, suffixe, exemple de code complet), `q`, `agency_id`.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-code-suffixes-preview">
+                                <a href="#catalogue-GETapi-v1-code-suffixes-preview">« Aperçu du code » et « Vérifications » avant enregistrement (`agency_id`, `suffix`).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-code-suffixes">
                                 <a href="#catalogue-POSTapi-v1-code-suffixes">POST api/v1/code-suffixes</a>
@@ -433,7 +436,7 @@ groupes automatiques, tableau des campagnes (`agency_id`, `status`).</a>
                                 <a href="#catalogue-PUTapi-v1-code-suffixes--id-">PUT api/v1/code-suffixes/{id}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-code-suffixes--id-">
-                                <a href="#catalogue-DELETEapi-v1-code-suffixes--id-">DELETE api/v1/code-suffixes/{id}</a>
+                                <a href="#catalogue-DELETEapi-v1-code-suffixes--id-">« Supprimer le suffixe » : les futurs dépôts utiliseront le préfixe seul ; les codes existants ne changent pas.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-loyal-groups">
                                 <a href="#catalogue-GETapi-v1-loyal-groups">GET api/v1/loyal-groups</a>
@@ -8715,8 +8718,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T21:50:58\",
-    \"retrieve_date\": \"2026-10-22T21:50:58\",
+    \"deposit_date\": \"2026-10-22T21:54:28\",
+    \"retrieve_date\": \"2026-10-22T21:54:28\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -8771,8 +8774,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T21:50:58",
-    "retrieve_date": "2026-10-22T21:50:58",
+    "deposit_date": "2026-10-22T21:54:28",
+    "retrieve_date": "2026-10-22T21:54:28",
     "notes": "architecto",
     "lines": [
         {
@@ -9285,10 +9288,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -9297,10 +9300,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -9977,7 +9980,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T21:50:58\"
+    \"transaction_date\": \"2026-10-22T21:54:28\"
 }"
 </code></pre></div>
 
@@ -9998,7 +10001,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T21:50:58"
+    "transaction_date": "2026-10-22T21:54:28"
 };
 
 fetch(url, {
@@ -10337,10 +10340,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
         </form>
 
@@ -20134,7 +20137,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php1EBB.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php53E6.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -20319,7 +20322,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php1EBB.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php53E6.tmp</code></p>
         </div>
         </form>
 
@@ -22944,7 +22947,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T21:50:58\"
+    \"at\": \"2026-10-22T21:54:28\"
 }"
 </code></pre></div>
 
@@ -22966,7 +22969,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T21:50:58"
+    "at": "2026-10-22T21:54:28"
 };
 
 fetch(url, {
@@ -23195,10 +23198,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
         </form>
 
@@ -23227,7 +23230,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T21:50:58\",
+    \"valid_from\": \"2026-10-22T21:54:28\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -23251,7 +23254,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T21:50:58",
+    "valid_from": "2026-10-22T21:54:28",
     "valid_to": "2052-11-14"
 };
 
@@ -23487,10 +23490,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -27833,7 +27836,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="catalogue-GETapi-v1-code-suffixes">GET api/v1/code-suffixes</h2>
+                    <h2 id="catalogue-GETapi-v1-code-suffixes">« Suffixes configurés » : une ligne par agence (préfixe, suffixe, exemple de code complet), `q`, `agency_id`.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -27851,7 +27854,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"q\": \"b\",
+    \"agency_id\": 16
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -27866,10 +27874,15 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "q": "b",
+    "agency_id": 16
+};
 
 fetch(url, {
     method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -27883,17 +27896,21 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 1,
-            &quot;agency_id&quot;: 1,
-            &quot;suffix&quot;: &quot;EL&quot;,
-            &quot;status&quot;: true
+            &quot;agency_id&quot;: 2,
+            &quot;agency&quot;: &quot;Plateau&quot;,
+            &quot;prefix&quot;: &quot;PL&quot;,
+            &quot;suffix_id&quot;: 4,
+            &quot;suffix&quot;: &quot;26&quot;,
+            &quot;suffix_label&quot;: &quot;-26&quot;,
+            &quot;example_code&quot;: &quot;PL-002684-26&quot;,
+            &quot;next_code&quot;: &quot;PL-000387-26&quot;
         }
     ],
     &quot;meta&quot;: {
-        &quot;page&quot;: 1,
-        &quot;per_page&quot;: 50,
-        &quot;total&quot;: 1,
-        &quot;last_page&quot;: 1
+        &quot;agencies&quot;: 4,
+        &quot;configured&quot;: 4,
+        &quot;results_label&quot;: &quot;4 r&eacute;sultats&quot;,
+        &quot;notice&quot;: &quot;Aucune renum&eacute;rotation des d&eacute;p&ocirc;ts existants : le nouveau format concerne uniquement les futurs d&eacute;p&ocirc;ts.&quot;
     },
     &quot;errors&quot;: null
 }</code>
@@ -28012,7 +28029,261 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="q"                data-endpoint="GETapi-v1-code-suffixes"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="GETapi-v1-code-suffixes"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+        </form>
+
+                    <h2 id="catalogue-GETapi-v1-code-suffixes-preview">« Aperçu du code » et « Vérifications » avant enregistrement (`agency_id`, `suffix`).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-code-suffixes-preview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/code-suffixes/preview" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"agency_id\": 16,
+    \"suffix\": \"ngzm\",
+    \"ignore_id\": 16
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/code-suffixes/preview"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "agency_id": 16,
+    "suffix": "ngzm",
+    "ignore_id": 16
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-code-suffixes-preview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;suffix&quot;: &quot;27&quot;,
+        &quot;preview&quot;: &quot;BG-002684-27&quot;,
+        &quot;checks&quot;: [
+            {
+                &quot;code&quot;: &quot;format&quot;,
+                &quot;ok&quot;: true,
+                &quot;label&quot;: &quot;1 &agrave; 6 caract&egrave;res, lettres majuscules et chiffres&quot;
+            }
+        ],
+        &quot;valid&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-code-suffixes-preview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-code-suffixes-preview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-code-suffixes-preview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-code-suffixes-preview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-code-suffixes-preview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-code-suffixes-preview" data-method="GET"
+      data-path="api/v1/code-suffixes/preview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-code-suffixes-preview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-code-suffixes-preview"
+                    onclick="tryItOut('GETapi-v1-code-suffixes-preview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-code-suffixes-preview"
+                    onclick="cancelTryOut('GETapi-v1-code-suffixes-preview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-code-suffixes-preview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/code-suffixes/preview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>suffix</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="suffix"                data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="ngzm"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>ngzm</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>ignore_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="ignore_id"                data-endpoint="GETapi-v1-code-suffixes-preview"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-POSTapi-v1-code-suffixes">POST api/v1/code-suffixes</h2>
 
@@ -28063,12 +28334,18 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;agency_id&quot;: 1,
-        &quot;suffix&quot;: &quot;EL&quot;,
-        &quot;status&quot;: true
+        &quot;agency_id&quot;: 2,
+        &quot;agency&quot;: &quot;Plateau&quot;,
+        &quot;prefix&quot;: &quot;PL&quot;,
+        &quot;suffix_id&quot;: 4,
+        &quot;suffix&quot;: &quot;26&quot;,
+        &quot;suffix_label&quot;: &quot;-26&quot;,
+        &quot;example_code&quot;: &quot;PL-002684-26&quot;,
+        &quot;next_code&quot;: &quot;PL-000387-26&quot;
     },
-    &quot;meta&quot;: {},
+    &quot;meta&quot;: {
+        &quot;notice&quot;: &quot;Aucune renum&eacute;rotation des d&eacute;p&ocirc;ts existants : le nouveau format concerne uniquement les futurs d&eacute;p&ocirc;ts.&quot;
+    },
     &quot;errors&quot;: null
 }</code>
  </pre>
@@ -28256,12 +28533,18 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;agency_id&quot;: 1,
-        &quot;suffix&quot;: &quot;EL&quot;,
-        &quot;status&quot;: true
+        &quot;agency_id&quot;: 2,
+        &quot;agency&quot;: &quot;Plateau&quot;,
+        &quot;prefix&quot;: &quot;PL&quot;,
+        &quot;suffix_id&quot;: 4,
+        &quot;suffix&quot;: &quot;26&quot;,
+        &quot;suffix_label&quot;: &quot;-26&quot;,
+        &quot;example_code&quot;: &quot;PL-002684-26&quot;,
+        &quot;next_code&quot;: &quot;PL-000387-26&quot;
     },
-    &quot;meta&quot;: {},
+    &quot;meta&quot;: {
+        &quot;notice&quot;: &quot;Aucune renum&eacute;rotation des d&eacute;p&ocirc;ts existants : le nouveau format concerne uniquement les futurs d&eacute;p&ocirc;ts.&quot;
+    },
     &quot;errors&quot;: null
 }</code>
  </pre>
@@ -28413,7 +28696,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="catalogue-DELETEapi-v1-code-suffixes--id-">DELETE api/v1/code-suffixes/{id}</h2>
+                    <h2 id="catalogue-DELETEapi-v1-code-suffixes--id-">« Supprimer le suffixe » : les futurs dépôts utiliseront le préfixe seul ; les codes existants ne changent pas.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -28462,7 +28745,18 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;deleted&quot;: true
+        &quot;deleted&quot;: true,
+        &quot;agency&quot;: {
+            &quot;suffix&quot;: null,
+            &quot;example_code&quot;: &quot;PL-002684&quot;,
+            &quot;agency_id&quot;: 2,
+            &quot;agency&quot;: &quot;Plateau&quot;,
+            &quot;prefix&quot;: &quot;PL&quot;,
+            &quot;suffix_id&quot;: 4,
+            &quot;suffix_label&quot;: &quot;-26&quot;,
+            &quot;next_code&quot;: &quot;PL-000387-26&quot;
+        },
+        &quot;message&quot;: &quot;Les prochains d&eacute;p&ocirc;ts de Plateau utiliseront le pr&eacute;fixe PL et leur num&eacute;ro, sans suffixe. Les d&eacute;p&ocirc;ts existants gardent leur code et leur historique.&quot;
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -30250,13 +30544,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T21:50:58"\
+    --form "action_date=2026-10-22T21:54:28"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php1F88.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php54E2.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -30276,7 +30570,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T21:50:58');
+body.append('action_date', '2026-10-22T21:54:28');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -30518,10 +30812,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -30605,7 +30899,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php1F88.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php54E2.tmp</code></p>
         </div>
         </form>
 
@@ -30877,7 +31171,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T21:50:58\"
+    \"action_date\": \"2026-10-22T21:54:28\"
 }"
 </code></pre></div>
 
@@ -30898,7 +31192,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T21:50:58"
+    "action_date": "2026-10-22T21:54:28"
 };
 
 fetch(url, {
@@ -31188,10 +31482,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
         </form>
 
@@ -31663,7 +31957,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:50:58\"
+    \"date\": \"2026-10-22T21:54:28\"
 }"
 </code></pre></div>
 
@@ -31681,7 +31975,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:50:58"
+    "date": "2026-10-22T21:54:28"
 };
 
 fetch(url, {
@@ -31917,10 +32211,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
         </form>
 
@@ -31945,7 +32239,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T21:50:58\",
+    \"date\": \"2026-10-22T21:54:28\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -31969,7 +32263,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T21:50:58",
+    "date": "2026-10-22T21:54:28",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -32165,10 +32459,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -37252,7 +37546,7 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T21:50:58\",
+    \"date_from\": \"2026-10-22T21:54:28\",
     \"date_to\": \"2052-11-14\",
     \"preset\": \"month\",
     \"agency_id\": 16,
@@ -37274,7 +37568,7 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T21:50:58",
+    "date_from": "2026-10-22T21:54:28",
     "date_to": "2052-11-14",
     "preset": "month",
     "agency_id": 16,
@@ -37509,10 +37803,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -37588,7 +37882,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:50:58\",
+    \"date\": \"2026-10-22T21:54:28\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -37608,7 +37902,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:50:58",
+    "date": "2026-10-22T21:54:28",
     "agency_id": 16,
     "format": "json"
 };
@@ -37845,10 +38139,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -40870,8 +41164,8 @@ Must be one of:
     \"currency\": \"ngz\",
     \"code_prefix\": \"miyvdljn\",
     \"code_suffix\": \"ikhwaykc\",
-    \"opens_at\": \"21:50\",
-    \"closes_at\": \"21:50\",
+    \"opens_at\": \"21:54\",
+    \"closes_at\": \"21:54\",
     \"monthly_revenue_target\": 38,
     \"status\": true
 }"
@@ -40897,8 +41191,8 @@ let body = {
     "currency": "ngz",
     "code_prefix": "miyvdljn",
     "code_suffix": "ikhwaykc",
-    "opens_at": "21:50",
-    "closes_at": "21:50",
+    "opens_at": "21:54",
+    "closes_at": "21:54",
     "monthly_revenue_target": 38,
     "status": true
 };
@@ -41160,10 +41454,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:50"
+               value="21:54"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -41172,10 +41466,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:50"
+               value="21:54"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -41587,7 +41881,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T21:50:58\"
+    \"rate_date\": \"2026-10-22T21:54:28\"
 }"
 </code></pre></div>
 
@@ -41608,7 +41902,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T21:50:58"
+    "rate_date": "2026-10-22T21:54:28"
 };
 
 fetch(url, {
@@ -41814,10 +42108,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
         </form>
 
@@ -42403,8 +42697,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"currency\": \"zmi\",
     \"code_prefix\": \"yvdljnik\",
     \"code_suffix\": \"hwaykcmy\",
-    \"opens_at\": \"21:50\",
-    \"closes_at\": \"21:50\",
+    \"opens_at\": \"21:54\",
+    \"closes_at\": \"21:54\",
     \"monthly_revenue_target\": 72
 }"
 </code></pre></div>
@@ -42430,8 +42724,8 @@ let body = {
     "currency": "zmi",
     "code_prefix": "yvdljnik",
     "code_suffix": "hwaykcmy",
-    "opens_at": "21:50",
-    "closes_at": "21:50",
+    "opens_at": "21:54",
+    "closes_at": "21:54",
     "monthly_revenue_target": 72
 };
 
@@ -42691,10 +42985,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:50"
+               value="21:54"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -42703,10 +42997,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:50"
+               value="21:54"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:50</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -57801,7 +58095,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T21:50:57\"
+    \"expires_at\": \"2026-10-22T21:54:28\"
 }"
 </code></pre></div>
 
@@ -57825,7 +58119,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T21:50:57"
+    "expires_at": "2026-10-22T21:54:28"
 };
 
 fetch(url, {
@@ -58160,10 +58454,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T21:50:57"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:57</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
         </form>
 
@@ -58465,10 +58759,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T21:50:57"\
+    --form "effective_at=2026-10-22T21:54:28"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php1DC0.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php531A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -58487,7 +58781,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T21:50:57');
+body.append('effective_at', '2026-10-22T21:54:28');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -58997,10 +59291,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T21:50:57"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:57</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -59056,7 +59350,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php1DC0.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php531A.tmp</code></p>
         </div>
         </form>
 
@@ -63269,7 +63563,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T21:50:58\",
+    \"round_date\": \"2026-10-22T21:54:28\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -63290,7 +63584,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T21:50:58",
+    "round_date": "2026-10-22T21:54:28",
     "name": "n"
 };
 
@@ -63497,10 +63791,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T21:50:58"
+               value="2026-10-22T21:54:28"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:50:58</code></p>
+<p>validation.date. Example: <code>2026-10-22T21:54:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

@@ -338,6 +338,15 @@ Jeton client (`POST /auth/client/login`). Toutes les routes sont sous `/client/a
 | Mot de passe, sessions | `PUT /client/app/password` (8 car., majuscule, chiffre), `POST /client/app/sessions/revoke-others` | — |
 | Confidentialité | `GET /client/app/data-export` (JSON téléchargeable), `POST /client/app/account/delete` (`password`) | suppression refusée tant qu’un dépôt est en cours ; compte archivé, consentements coupés, sessions révoquées |
 
+### 7.0n Suffixes des codes dépôt (Figma 17.01)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Suffixes configurés (recherche, filtre agence) | `GET /code-suffixes?q&agency_id` | une ligne par agence : `prefix`, `suffix` (+ `suffix_id`), `suffix_label` (« -26 »), `example_code`, `next_code` ; `meta` (`agencies`, `configured`, `results_label`, `notice` « aucune renumérotation ») |
+| Ajouter / modifier un suffixe : aperçu et vérifications | `GET /code-suffixes/preview?agency_id&suffix&ignore_id` | `preview` (code complet), `checks[]` (format 1–6 majuscules/chiffres, un seul suffixe actif par agence, différent du préfixe, pas de renumérotation), `valid` |
+| Enregistrer | `POST /code-suffixes` (`agency_id`, `title`), `PUT /code-suffixes/{id}` | le « - » initial est retiré ; le suffixe actif est appliqué aux futurs dépôts uniquement |
+| Supprimer le suffixe | `DELETE /code-suffixes/{id}` | `message` de confirmation ; les codes existants ne changent pas |
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |

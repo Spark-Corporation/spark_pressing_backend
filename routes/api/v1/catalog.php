@@ -86,6 +86,7 @@ Route::prefix('delivery-hours')->name('delivery-hours.')->group(function () {
 
 Route::prefix('code-suffixes')->name('code-suffixes.')->group(function () {
     Route::get('/', [CodeSuffixController::class, 'index'])->name('index');
+    Route::get('preview', [CodeSuffixController::class, 'preview'])->name('preview');
     Route::post('/', [CodeSuffixController::class, 'store'])->middleware('permission:settings.manage')->name('store');
     Route::put('{id}', [CodeSuffixController::class, 'update'])->middleware('permission:settings.manage')->name('update');
     Route::delete('{id}', [CodeSuffixController::class, 'destroy'])->middleware('permission:settings.manage')->name('destroy');
