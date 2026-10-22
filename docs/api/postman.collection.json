@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "4df27d48-19b4-428f-b282-48fdf1b6f4d6",
+        "_postman_id": "4ab8b888-32c1-4f26-99f3-184e09c089ba",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:36:51\",\"retrieve_date\":\"2026-10-22T11:36:51\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:44:08\",\"retrieve_date\":\"2026-10-22T11:44:08\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:36:51\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:44:08\"}"
                         },
                         "description": ""
                     },
@@ -3495,7 +3495,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:36:51\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:44:08\"}"
                         },
                         "description": ""
                     },
@@ -3540,7 +3540,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:36:51\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:44:08\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5163,7 +5163,7 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "multipart\/form-data"
                             },
                             {
                                 "key": "Accept",
@@ -5175,8 +5175,74 @@
                             }
                         ],
                         "body": {
-                            "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-22T11:36:51\",\"validated\":true}"
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "client_uuid",
+                                    "value": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+                                    "type": "text",
+                                    "description": "validation.uuid."
+                                },
+                                {
+                                    "key": "label",
+                                    "value": "g",
+                                    "type": "text",
+                                    "description": "validation.max."
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "out",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "amount",
+                                    "value": "27",
+                                    "type": "text",
+                                    "description": "validation.min."
+                                },
+                                {
+                                    "key": "action_date",
+                                    "value": "2026-10-22T11:44:08",
+                                    "type": "text",
+                                    "description": "validation.date."
+                                },
+                                {
+                                    "key": "validated",
+                                    "value": "1",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "payment_method",
+                                    "value": "cash",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "beneficiary",
+                                    "value": "v",
+                                    "type": "text",
+                                    "description": "validation.max."
+                                },
+                                {
+                                    "key": "reference",
+                                    "value": "d",
+                                    "type": "text",
+                                    "description": "validation.max."
+                                },
+                                {
+                                    "key": "comment",
+                                    "value": "l",
+                                    "type": "text",
+                                    "description": "validation.max."
+                                },
+                                {
+                                    "key": "proof",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
                         },
                         "description": ""
                     },
@@ -5198,6 +5264,56 @@
                             "code": 422,
                             "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
                             "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "D\u00e9tail du mouvement : tra\u00e7abilit\u00e9 horodat\u00e9e, double contr\u00f4le, caisse concern\u00e9e.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash-movements\/:cashMovement_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash-movements\/:cashMovement_id",
+                            "variable": [
+                                {
+                                    "id": "cashMovement_id",
+                                    "key": "cashMovement_id",
+                                    "value": 16,
+                                    "description": "The ID of the cashMovement."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 419,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440001\",\n        \"label\": \"Achat urgent de produits\",\n        \"type\": \"out\",\n        \"amount\": 350000,\n        \"action_date\": \"2026-09-28T16:44:00+00:00\",\n        \"validated\": false,\n        \"category_id\": 2,\n        \"category\": {\n            \"id\": 2,\n            \"name\": \"Fournitures\"\n        },\n        \"reference_code\": \"MVT-00419\",\n        \"payment_method\": \"cash\",\n        \"beneficiary\": \"CleanPro C\u00f4te d\u2019Ivoire\",\n        \"reference\": \"BC-2026-0928-18\",\n        \"comment\": \"Commande exceptionnelle\",\n        \"has_proof\": true,\n        \"requires_approval\": true,\n        \"approved_at\": null,\n        \"status\": {\n            \"code\": \"pending_approval\",\n            \"label\": \"En attente\"\n        },\n        \"operator\": \"A\u00efcha Kon\u00e9\",\n        \"double_control\": {\n            \"required\": true,\n            \"initiator\": {\n                \"fullname\": \"A\u00efcha Kon\u00e9\",\n                \"state\": \"Sign\u00e9\"\n            },\n            \"approver\": {\n                \"fullname\": null,\n                \"state\": \"\u00c0 notifier\"\n            }\n        },\n        \"traceability\": [\n            {\n                \"at\": \"2026-09-28T16:44:00+00:00\",\n                \"title\": \"Brouillon cr\u00e9\u00e9\",\n                \"detail\": \"A\u00efcha Kon\u00e9\",\n                \"done\": true\n            },\n            {\n                \"at\": \"2026-09-28T16:44:00+00:00\",\n                \"title\": \"Montant sensible d\u00e9tect\u00e9\",\n                \"detail\": \"Double contr\u00f4le requis au-del\u00e0 du seuil du pressing\",\n                \"done\": true\n            },\n            {\n                \"at\": null,\n                \"title\": \"Seconde validation\",\n                \"detail\": \"En attente d\u2019un manager habilit\u00e9\",\n                \"done\": false\n            }\n        ],\n        \"cash_session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"status\": \"open\",\n            \"available_cash\": 983500\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
                         }
                     ]
                 },
@@ -5235,7 +5351,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:36:51\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:44:08\"}"
                         },
                         "description": ""
                     },
@@ -5243,7 +5359,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440001\",\n        \"label\": \"Achat fournitures\",\n        \"type\": \"out\",\n        \"amount\": 5000,\n        \"category_id\": 1,\n        \"validated\": true,\n        \"action_date\": \"2026-10-14\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 419,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440001\",\n        \"label\": \"Achat urgent de produits\",\n        \"type\": \"out\",\n        \"amount\": 350000,\n        \"action_date\": \"2026-09-28T16:44:00+00:00\",\n        \"validated\": false,\n        \"category_id\": 2,\n        \"category\": {\n            \"id\": 2,\n            \"name\": \"Fournitures\"\n        },\n        \"reference_code\": \"MVT-00419\",\n        \"payment_method\": \"cash\",\n        \"beneficiary\": \"CleanPro C\u00f4te d\u2019Ivoire\",\n        \"reference\": \"BC-2026-0928-18\",\n        \"comment\": \"Commande exceptionnelle\",\n        \"has_proof\": true,\n        \"requires_approval\": true,\n        \"approved_at\": null,\n        \"status\": {\n            \"code\": \"pending_approval\",\n            \"label\": \"En attente\"\n        },\n        \"operator\": \"A\u00efcha Kon\u00e9\",\n        \"double_control\": {\n            \"required\": true,\n            \"initiator\": {\n                \"fullname\": \"A\u00efcha Kon\u00e9\",\n                \"state\": \"Sign\u00e9\"\n            },\n            \"approver\": {\n                \"fullname\": null,\n                \"state\": \"\u00c0 notifier\"\n            }\n        },\n        \"traceability\": [\n            {\n                \"at\": \"2026-09-28T16:44:00+00:00\",\n                \"title\": \"Brouillon cr\u00e9\u00e9\",\n                \"detail\": \"A\u00efcha Kon\u00e9\",\n                \"done\": true\n            },\n            {\n                \"at\": \"2026-09-28T16:44:00+00:00\",\n                \"title\": \"Montant sensible d\u00e9tect\u00e9\",\n                \"detail\": \"Double contr\u00f4le requis au-del\u00e0 du seuil du pressing\",\n                \"done\": true\n            },\n            {\n                \"at\": null,\n                \"title\": \"Seconde validation\",\n                \"detail\": \"En attente d\u2019un manager habilit\u00e9\",\n                \"done\": false\n            }\n        ],\n        \"cash_session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"status\": \"open\",\n            \"available_cash\": 983500\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5261,7 +5377,7 @@
                     ]
                 },
                 {
-                    "name": "POST api\/v1\/cash-movements\/{cashMovement_id}\/validate",
+                    "name": "Validation (seconde validation par un manager habilit\u00e9 au-del\u00e0 du seuil).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5299,7 +5415,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440001\",\n        \"label\": \"Achat fournitures\",\n        \"type\": \"out\",\n        \"amount\": 5000,\n        \"category_id\": 1,\n        \"validated\": true,\n        \"action_date\": \"2026-10-14\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 419,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440001\",\n        \"label\": \"Achat urgent de produits\",\n        \"type\": \"out\",\n        \"amount\": 350000,\n        \"action_date\": \"2026-09-28T16:44:00+00:00\",\n        \"validated\": false,\n        \"category_id\": 2,\n        \"category\": {\n            \"id\": 2,\n            \"name\": \"Fournitures\"\n        },\n        \"reference_code\": \"MVT-00419\",\n        \"payment_method\": \"cash\",\n        \"beneficiary\": \"CleanPro C\u00f4te d\u2019Ivoire\",\n        \"reference\": \"BC-2026-0928-18\",\n        \"comment\": \"Commande exceptionnelle\",\n        \"has_proof\": true,\n        \"requires_approval\": true,\n        \"approved_at\": null,\n        \"status\": {\n            \"code\": \"pending_approval\",\n            \"label\": \"En attente\"\n        },\n        \"operator\": \"A\u00efcha Kon\u00e9\",\n        \"double_control\": {\n            \"required\": true,\n            \"initiator\": {\n                \"fullname\": \"A\u00efcha Kon\u00e9\",\n                \"state\": \"Sign\u00e9\"\n            },\n            \"approver\": {\n                \"fullname\": null,\n                \"state\": \"\u00c0 notifier\"\n            }\n        },\n        \"traceability\": [\n            {\n                \"at\": \"2026-09-28T16:44:00+00:00\",\n                \"title\": \"Brouillon cr\u00e9\u00e9\",\n                \"detail\": \"A\u00efcha Kon\u00e9\",\n                \"done\": true\n            },\n            {\n                \"at\": \"2026-09-28T16:44:00+00:00\",\n                \"title\": \"Montant sensible d\u00e9tect\u00e9\",\n                \"detail\": \"Double contr\u00f4le requis au-del\u00e0 du seuil du pressing\",\n                \"done\": true\n            },\n            {\n                \"at\": null,\n                \"title\": \"Seconde validation\",\n                \"detail\": \"En attente d\u2019un manager habilit\u00e9\",\n                \"done\": false\n            }\n        ],\n        \"cash_session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"status\": \"open\",\n            \"available_cash\": 983500\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5357,6 +5473,460 @@
                             "code": 200,
                             "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Centre de caisse \u00bb : KPI, situation, solde th\u00e9orique\/compt\u00e9, ventilation, flux horaire.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/center",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/center"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"date\":\"2026-10-22T11:44:08\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"date\": \"2026-09-28\",\n        \"agency\": \"Bingerville\",\n        \"session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"business_date\": \"2026-09-28\",\n            \"status\": {\n                \"code\": \"open\",\n                \"label\": \"Caisse ouverte\"\n            },\n            \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n            \"opened_by\": \"Gr\u00e2ce A.\",\n            \"opening_balance\": 180000,\n            \"closed_at\": null\n        },\n        \"kpis\": {\n            \"receipts\": {\n                \"value\": 895500,\n                \"delta_percent\": 12.4\n            },\n            \"expenses\": {\n                \"value\": 92000,\n                \"count\": 4\n            },\n            \"unpaid\": {\n                \"value\": 186750,\n                \"deposits\": 14\n            },\n            \"difference\": {\n                \"value\": 0,\n                \"label\": \"Comptage conforme\"\n            }\n        },\n        \"situation\": {\n            \"opening\": {\n                \"amount\": 180000,\n                \"at\": \"2026-09-28T08:02:00+00:00\",\n                \"by\": \"Gr\u00e2ce A.\"\n            },\n            \"deposit_receipts\": {\n                \"amount\": 612500,\n                \"count\": 31\n            },\n            \"balance_payments\": {\n                \"amount\": 248000,\n                \"count\": 18\n            },\n            \"cash_in\": {\n                \"amount\": 35000,\n                \"count\": 2\n            },\n            \"cash_out\": {\n                \"amount\": 92000,\n                \"count\": 4\n            }\n        },\n        \"theoretical\": {\n            \"amount\": 983500,\n            \"computed_at\": \"2026-09-28T16:42:00+00:00\"\n        },\n        \"counted\": {\n            \"amount\": 983500,\n            \"difference\": 0\n        },\n        \"breakdown\": {\n            \"total\": 895500,\n            \"methods\": [\n                {\n                    \"code\": \"cash\",\n                    \"label\": \"Esp\u00e8ces\",\n                    \"amount\": 420000,\n                    \"percent\": 46.9\n                }\n            ]\n        },\n        \"hourly\": {\n            \"series\": [\n                {\n                    \"hour\": \"07h\",\n                    \"in\": 85000,\n                    \"out\": 0\n                }\n            ],\n            \"net\": 803500\n        },\n        \"journal_totals\": {\n            \"operations\": 57,\n            \"total_in\": 895500,\n            \"total_out\": 92000\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Journal de caisse \u00bb : encaissements et mouvements (q, date, period, category_id, payment_method, status, flow ; `format=csv`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/journal",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/journal"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T11:44:08\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": \"mvt-418\",\n            \"source\": \"movement\",\n            \"source_id\": 418,\n            \"at\": \"2026-09-28T15:42:00+00:00\",\n            \"reference\": \"MVT-00418\",\n            \"category\": \"Fournitures\",\n            \"label\": \"Produits d\u00e9tachants\",\n            \"operator\": \"A\u00efcha K.\",\n            \"payment_method\": {\n                \"code\": \"cash\",\n                \"label\": \"Esp\u00e8ces\"\n            },\n            \"flow\": {\n                \"code\": \"out\",\n                \"label\": \"Sortie\"\n            },\n            \"amount\": 45000,\n            \"status\": {\n                \"code\": \"validated\",\n                \"label\": \"Valid\u00e9\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1,\n        \"totals\": {\n            \"operations\": 57,\n            \"total_in\": 895500,\n            \"total_out\": 92000\n        }\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/cash\/sessions\/current",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions\/current",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions\/current"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"business_date\": \"2026-09-28\",\n            \"status\": {\n                \"code\": \"open\",\n                \"label\": \"Caisse ouverte\"\n            },\n            \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n            \"opened_by\": \"Gr\u00e2ce A.\",\n            \"opening_balance\": 180000,\n            \"closed_at\": null\n        },\n        \"available_cash\": 508000,\n        \"double_control_threshold\": 250000\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Ouverture de caisse (solde d\u2019ouverture).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"opening_balance\":27}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"code\": \"CAI-BG-0928\",\n        \"business_date\": \"2026-09-28\",\n        \"status\": {\n            \"code\": \"open\",\n            \"label\": \"Caisse ouverte\"\n        },\n        \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n        \"opened_by\": \"Gr\u00e2ce A.\",\n        \"opening_balance\": 180000,\n        \"closed_at\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00c9cran \u00ab Cl\u00f4ture et rapprochement journalier \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions\/:cashSession_id\/closing",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions\/:cashSession_id\/closing",
+                            "variable": [
+                                {
+                                    "id": "cashSession_id",
+                                    "key": "cashSession_id",
+                                    "value": 16,
+                                    "description": "The ID of the cashSession."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"business_date\": \"2026-09-28\",\n            \"status\": {\n                \"code\": \"open\",\n                \"label\": \"Caisse ouverte\"\n            },\n            \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n            \"opened_by\": \"Gr\u00e2ce A.\",\n            \"opening_balance\": 180000,\n            \"closed_at\": null\n        },\n        \"status\": {\n            \"code\": \"ready\",\n            \"label\": \"Pr\u00eate \u00e0 cl\u00f4turer\"\n        },\n        \"kpis\": {\n            \"receipts\": {\n                \"value\": 895500,\n                \"count\": 51\n            },\n            \"expenses\": {\n                \"value\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": {\n                \"value\": 983500\n            },\n            \"difference\": {\n                \"value\": 0\n            }\n        },\n        \"summary\": {\n            \"from\": \"2026-09-28T08:02:00+00:00\",\n            \"opening\": 180000,\n            \"deposit_receipts\": {\n                \"amount\": 612500,\n                \"count\": 31\n            },\n            \"balance_payments\": {\n                \"amount\": 248000,\n                \"count\": 18\n            },\n            \"cash_in\": {\n                \"amount\": 35000,\n                \"count\": 2\n            },\n            \"cash_out\": {\n                \"amount\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": 983500\n        },\n        \"reconciliation\": [\n            {\n                \"code\": \"cash\",\n                \"label\": \"Esp\u00e8ces\",\n                \"theoretical\": 508000,\n                \"counted\": 508000,\n                \"difference\": 0,\n                \"status\": {\n                    \"code\": \"compliant\",\n                    \"label\": \"Conforme\"\n                }\n            }\n        ],\n        \"result\": {\n            \"compliant\": true,\n            \"label\": \"Caisse conforme \u00b7 \u00e9cart z\u00e9ro\",\n            \"theoretical\": 983500,\n            \"counted\": 983500,\n            \"difference\": 0,\n            \"reason\": null,\n            \"counted_by\": \"Gr\u00e2ce Adjoua\",\n            \"counted_at\": \"2026-09-28T17:56:00+00:00\",\n            \"controlled_by\": \"A\u00efcha Kon\u00e9\",\n            \"controlled_at\": \"2026-09-28T17:58:00+00:00\"\n        },\n        \"checklist\": {\n            \"total\": 6,\n            \"done\": 6,\n            \"items\": [\n                {\n                    \"code\": \"journal\",\n                    \"label\": \"Journal v\u00e9rifi\u00e9\",\n                    \"detail\": \"57 op\u00e9rations contr\u00f4l\u00e9es\",\n                    \"done\": true\n                }\n            ]\n        },\n        \"operators\": [\n            {\n                \"id\": 1,\n                \"fullname\": \"Gr\u00e2ce Adjoua\",\n                \"roles\": [\n                    \"Ouverture\"\n                ],\n                \"operations\": 29\n            }\n        ],\n        \"anomalies\": {\n            \"unsynced_operations\": 0,\n            \"unresolved\": 0,\n            \"pending_approvals\": 0\n        },\n        \"report\": {\n            \"filename\": \"Cloture_BG_2026-09-28.pdf\",\n            \"url\": \"https:\/\/api.example.com\/api\/v1\/cash\/sessions\/1\/report\"\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Comptage r\u00e9el par moyen de paiement (+ justification si \u00e9cart).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions\/:cashSession_id\/count",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions\/:cashSession_id\/count",
+                            "variable": [
+                                {
+                                    "id": "cashSession_id",
+                                    "key": "cashSession_id",
+                                    "value": 16,
+                                    "description": "The ID of the cashSession."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"counted\":{\"cash\":27,\"mobile_money\":39,\"card\":84},\"difference_reason\":\"z\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"business_date\": \"2026-09-28\",\n            \"status\": {\n                \"code\": \"open\",\n                \"label\": \"Caisse ouverte\"\n            },\n            \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n            \"opened_by\": \"Gr\u00e2ce A.\",\n            \"opening_balance\": 180000,\n            \"closed_at\": null\n        },\n        \"status\": {\n            \"code\": \"ready\",\n            \"label\": \"Pr\u00eate \u00e0 cl\u00f4turer\"\n        },\n        \"kpis\": {\n            \"receipts\": {\n                \"value\": 895500,\n                \"count\": 51\n            },\n            \"expenses\": {\n                \"value\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": {\n                \"value\": 983500\n            },\n            \"difference\": {\n                \"value\": 0\n            }\n        },\n        \"summary\": {\n            \"from\": \"2026-09-28T08:02:00+00:00\",\n            \"opening\": 180000,\n            \"deposit_receipts\": {\n                \"amount\": 612500,\n                \"count\": 31\n            },\n            \"balance_payments\": {\n                \"amount\": 248000,\n                \"count\": 18\n            },\n            \"cash_in\": {\n                \"amount\": 35000,\n                \"count\": 2\n            },\n            \"cash_out\": {\n                \"amount\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": 983500\n        },\n        \"reconciliation\": [\n            {\n                \"code\": \"cash\",\n                \"label\": \"Esp\u00e8ces\",\n                \"theoretical\": 508000,\n                \"counted\": 508000,\n                \"difference\": 0,\n                \"status\": {\n                    \"code\": \"compliant\",\n                    \"label\": \"Conforme\"\n                }\n            }\n        ],\n        \"result\": {\n            \"compliant\": true,\n            \"label\": \"Caisse conforme \u00b7 \u00e9cart z\u00e9ro\",\n            \"theoretical\": 983500,\n            \"counted\": 983500,\n            \"difference\": 0,\n            \"reason\": null,\n            \"counted_by\": \"Gr\u00e2ce Adjoua\",\n            \"counted_at\": \"2026-09-28T17:56:00+00:00\",\n            \"controlled_by\": \"A\u00efcha Kon\u00e9\",\n            \"controlled_at\": \"2026-09-28T17:58:00+00:00\"\n        },\n        \"checklist\": {\n            \"total\": 6,\n            \"done\": 6,\n            \"items\": [\n                {\n                    \"code\": \"journal\",\n                    \"label\": \"Journal v\u00e9rifi\u00e9\",\n                    \"detail\": \"57 op\u00e9rations contr\u00f4l\u00e9es\",\n                    \"done\": true\n                }\n            ]\n        },\n        \"operators\": [\n            {\n                \"id\": 1,\n                \"fullname\": \"Gr\u00e2ce Adjoua\",\n                \"roles\": [\n                    \"Ouverture\"\n                ],\n                \"operations\": 29\n            }\n        ],\n        \"anomalies\": {\n            \"unsynced_operations\": 0,\n            \"unresolved\": 0,\n            \"pending_approvals\": 0\n        },\n        \"report\": {\n            \"filename\": \"Cloture_BG_2026-09-28.pdf\",\n            \"url\": \"https:\/\/api.example.com\/api\/v1\/cash\/sessions\/1\/report\"\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Double contr\u00f4le : validation du comptage par une seconde personne habilit\u00e9e.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions\/:cashSession_id\/control",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions\/:cashSession_id\/control",
+                            "variable": [
+                                {
+                                    "id": "cashSession_id",
+                                    "key": "cashSession_id",
+                                    "value": 16,
+                                    "description": "The ID of the cashSession."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"business_date\": \"2026-09-28\",\n            \"status\": {\n                \"code\": \"open\",\n                \"label\": \"Caisse ouverte\"\n            },\n            \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n            \"opened_by\": \"Gr\u00e2ce A.\",\n            \"opening_balance\": 180000,\n            \"closed_at\": null\n        },\n        \"status\": {\n            \"code\": \"ready\",\n            \"label\": \"Pr\u00eate \u00e0 cl\u00f4turer\"\n        },\n        \"kpis\": {\n            \"receipts\": {\n                \"value\": 895500,\n                \"count\": 51\n            },\n            \"expenses\": {\n                \"value\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": {\n                \"value\": 983500\n            },\n            \"difference\": {\n                \"value\": 0\n            }\n        },\n        \"summary\": {\n            \"from\": \"2026-09-28T08:02:00+00:00\",\n            \"opening\": 180000,\n            \"deposit_receipts\": {\n                \"amount\": 612500,\n                \"count\": 31\n            },\n            \"balance_payments\": {\n                \"amount\": 248000,\n                \"count\": 18\n            },\n            \"cash_in\": {\n                \"amount\": 35000,\n                \"count\": 2\n            },\n            \"cash_out\": {\n                \"amount\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": 983500\n        },\n        \"reconciliation\": [\n            {\n                \"code\": \"cash\",\n                \"label\": \"Esp\u00e8ces\",\n                \"theoretical\": 508000,\n                \"counted\": 508000,\n                \"difference\": 0,\n                \"status\": {\n                    \"code\": \"compliant\",\n                    \"label\": \"Conforme\"\n                }\n            }\n        ],\n        \"result\": {\n            \"compliant\": true,\n            \"label\": \"Caisse conforme \u00b7 \u00e9cart z\u00e9ro\",\n            \"theoretical\": 983500,\n            \"counted\": 983500,\n            \"difference\": 0,\n            \"reason\": null,\n            \"counted_by\": \"Gr\u00e2ce Adjoua\",\n            \"counted_at\": \"2026-09-28T17:56:00+00:00\",\n            \"controlled_by\": \"A\u00efcha Kon\u00e9\",\n            \"controlled_at\": \"2026-09-28T17:58:00+00:00\"\n        },\n        \"checklist\": {\n            \"total\": 6,\n            \"done\": 6,\n            \"items\": [\n                {\n                    \"code\": \"journal\",\n                    \"label\": \"Journal v\u00e9rifi\u00e9\",\n                    \"detail\": \"57 op\u00e9rations contr\u00f4l\u00e9es\",\n                    \"done\": true\n                }\n            ]\n        },\n        \"operators\": [\n            {\n                \"id\": 1,\n                \"fullname\": \"Gr\u00e2ce Adjoua\",\n                \"roles\": [\n                    \"Ouverture\"\n                ],\n                \"operations\": 29\n            }\n        ],\n        \"anomalies\": {\n            \"unsynced_operations\": 0,\n            \"unresolved\": 0,\n            \"pending_approvals\": 0\n        },\n        \"report\": {\n            \"filename\": \"Cloture_BG_2026-09-28.pdf\",\n            \"url\": \"https:\/\/api.example.com\/api\/v1\/cash\/sessions\/1\/report\"\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Cl\u00f4turer \u00bb : verrouille le journal de la journ\u00e9e.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions\/:cashSession_id\/close",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions\/:cashSession_id\/close",
+                            "variable": [
+                                {
+                                    "id": "cashSession_id",
+                                    "key": "cashSession_id",
+                                    "value": 16,
+                                    "description": "The ID of the cashSession."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"session\": {\n            \"id\": 1,\n            \"code\": \"CAI-BG-0928\",\n            \"business_date\": \"2026-09-28\",\n            \"status\": {\n                \"code\": \"open\",\n                \"label\": \"Caisse ouverte\"\n            },\n            \"opened_at\": \"2026-09-28T08:02:00+00:00\",\n            \"opened_by\": \"Gr\u00e2ce A.\",\n            \"opening_balance\": 180000,\n            \"closed_at\": null\n        },\n        \"status\": {\n            \"code\": \"ready\",\n            \"label\": \"Pr\u00eate \u00e0 cl\u00f4turer\"\n        },\n        \"kpis\": {\n            \"receipts\": {\n                \"value\": 895500,\n                \"count\": 51\n            },\n            \"expenses\": {\n                \"value\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": {\n                \"value\": 983500\n            },\n            \"difference\": {\n                \"value\": 0\n            }\n        },\n        \"summary\": {\n            \"from\": \"2026-09-28T08:02:00+00:00\",\n            \"opening\": 180000,\n            \"deposit_receipts\": {\n                \"amount\": 612500,\n                \"count\": 31\n            },\n            \"balance_payments\": {\n                \"amount\": 248000,\n                \"count\": 18\n            },\n            \"cash_in\": {\n                \"amount\": 35000,\n                \"count\": 2\n            },\n            \"cash_out\": {\n                \"amount\": 92000,\n                \"count\": 4\n            },\n            \"theoretical\": 983500\n        },\n        \"reconciliation\": [\n            {\n                \"code\": \"cash\",\n                \"label\": \"Esp\u00e8ces\",\n                \"theoretical\": 508000,\n                \"counted\": 508000,\n                \"difference\": 0,\n                \"status\": {\n                    \"code\": \"compliant\",\n                    \"label\": \"Conforme\"\n                }\n            }\n        ],\n        \"result\": {\n            \"compliant\": true,\n            \"label\": \"Caisse conforme \u00b7 \u00e9cart z\u00e9ro\",\n            \"theoretical\": 983500,\n            \"counted\": 983500,\n            \"difference\": 0,\n            \"reason\": null,\n            \"counted_by\": \"Gr\u00e2ce Adjoua\",\n            \"counted_at\": \"2026-09-28T17:56:00+00:00\",\n            \"controlled_by\": \"A\u00efcha Kon\u00e9\",\n            \"controlled_at\": \"2026-09-28T17:58:00+00:00\"\n        },\n        \"checklist\": {\n            \"total\": 6,\n            \"done\": 6,\n            \"items\": [\n                {\n                    \"code\": \"journal\",\n                    \"label\": \"Journal v\u00e9rifi\u00e9\",\n                    \"detail\": \"57 op\u00e9rations contr\u00f4l\u00e9es\",\n                    \"done\": true\n                }\n            ]\n        },\n        \"operators\": [\n            {\n                \"id\": 1,\n                \"fullname\": \"Gr\u00e2ce Adjoua\",\n                \"roles\": [\n                    \"Ouverture\"\n                ],\n                \"operations\": 29\n            }\n        ],\n        \"anomalies\": {\n            \"unsynced_operations\": 0,\n            \"unresolved\": 0,\n            \"pending_approvals\": 0\n        },\n        \"report\": {\n            \"filename\": \"Cloture_BG_2026-09-28.pdf\",\n            \"url\": \"https:\/\/api.example.com\/api\/v1\/cash\/sessions\/1\/report\"\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Rapport de cl\u00f4ture \u00bb (PDF).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/cash\/sessions\/:cashSession_id\/report",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/cash\/sessions\/:cashSession_id\/report",
+                            "variable": [
+                                {
+                                    "id": "cashSession_id",
+                                    "key": "cashSession_id",
+                                    "value": 16,
+                                    "description": "The ID of the cashSession."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"content_type\":\"application\\\/pdf\"},\"meta\":{},\"errors\":null}",
+                            "name": "Rapport de cl\u00f4ture (application\/pdf)"
                         },
                         {
                             "header": [],
@@ -6470,7 +7040,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:36:52\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:44:08\"}"
                         },
                         "description": ""
                     },
@@ -8353,7 +8923,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:36:51\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:44:08\"}"
                         },
                         "description": ""
                     },
@@ -8492,7 +9062,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T11:36:51",
+                                    "value": "2026-10-22T11:44:08",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -9390,7 +9960,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:36:51\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:44:08\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

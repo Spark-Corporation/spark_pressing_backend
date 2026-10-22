@@ -8791,12 +8791,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
                 notes:
                   type: string
@@ -10524,7 +10524,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
               required:
                 - amount
@@ -25016,7 +25016,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -25168,7 +25168,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
               required:
                 - agency_id
@@ -29316,7 +29316,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
               properties:
@@ -29348,17 +29348,318 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
                 validated:
                   type: boolean
                   description: ''
                   example: true
+                payment_method:
+                  type: string
+                  description: ''
+                  example: cash
+                  enum:
+                    - cash
+                    - mobile_money
+                    - card
+                    - other
+                  nullable: true
+                beneficiary:
+                  type: string
+                  description: validation.max.
+                  example: v
+                  nullable: true
+                reference:
+                  type: string
+                  description: validation.max.
+                  example: d
+                  nullable: true
+                comment:
+                  type: string
+                  description: validation.max.
+                  example: l
+                  nullable: true
+                proof:
+                  type: string
+                  format: binary
+                  description: 'Must be a file. validation.max.'
+                  nullable: true
               required:
                 - label
                 - type
                 - amount
   '/api/v1/cash-movements/{cashMovement_id}':
+    get:
+      summary: 'Détail du mouvement : traçabilité horodatée, double contrôle, caisse concernée.'
+      operationId: dtailDuMouvementTraabilitHorodateDoubleContrleCaisseConcerne
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 419
+                    client_uuid: 550e8400-e29b-41d4-a716-446655440001
+                    label: 'Achat urgent de produits'
+                    type: out
+                    amount: 350000
+                    action_date: '2026-09-28T16:44:00+00:00'
+                    validated: false
+                    category_id: 2
+                    category:
+                      id: 2
+                      name: Fournitures
+                    reference_code: MVT-00419
+                    payment_method: cash
+                    beneficiary: 'CleanPro Côte d’Ivoire'
+                    reference: BC-2026-0928-18
+                    comment: 'Commande exceptionnelle'
+                    has_proof: true
+                    requires_approval: true
+                    approved_at: null
+                    status:
+                      code: pending_approval
+                      label: 'En attente'
+                    operator: 'Aïcha Koné'
+                    double_control:
+                      required: true
+                      initiator:
+                        fullname: 'Aïcha Koné'
+                        state: Signé
+                      approver:
+                        fullname: null
+                        state: 'À notifier'
+                    traceability:
+                      -
+                        at: '2026-09-28T16:44:00+00:00'
+                        title: 'Brouillon créé'
+                        detail: 'Aïcha Koné'
+                        done: true
+                      -
+                        at: '2026-09-28T16:44:00+00:00'
+                        title: 'Montant sensible détecté'
+                        detail: 'Double contrôle requis au-delà du seuil du pressing'
+                        done: true
+                      -
+                        at: null
+                        title: 'Seconde validation'
+                        detail: 'En attente d’un manager habilité'
+                        done: false
+                    cash_session:
+                      id: 1
+                      code: CAI-BG-0928
+                      status: open
+                      available_cash: 983500
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 419
+                      client_uuid:
+                        type: string
+                        example: 550e8400-e29b-41d4-a716-446655440001
+                      label:
+                        type: string
+                        example: 'Achat urgent de produits'
+                      type:
+                        type: string
+                        example: out
+                      amount:
+                        type: integer
+                        example: 350000
+                      action_date:
+                        type: string
+                        example: '2026-09-28T16:44:00+00:00'
+                      validated:
+                        type: boolean
+                        example: false
+                      category_id:
+                        type: integer
+                        example: 2
+                      category:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          name:
+                            type: string
+                            example: Fournitures
+                      reference_code:
+                        type: string
+                        example: MVT-00419
+                      payment_method:
+                        type: string
+                        example: cash
+                      beneficiary:
+                        type: string
+                        example: 'CleanPro Côte d’Ivoire'
+                      reference:
+                        type: string
+                        example: BC-2026-0928-18
+                      comment:
+                        type: string
+                        example: 'Commande exceptionnelle'
+                      has_proof:
+                        type: boolean
+                        example: true
+                      requires_approval:
+                        type: boolean
+                        example: true
+                      approved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: pending_approval
+                          label:
+                            type: string
+                            example: 'En attente'
+                      operator:
+                        type: string
+                        example: 'Aïcha Koné'
+                      double_control:
+                        type: object
+                        properties:
+                          required:
+                            type: boolean
+                            example: true
+                          initiator:
+                            type: object
+                            properties:
+                              fullname:
+                                type: string
+                                example: 'Aïcha Koné'
+                              state:
+                                type: string
+                                example: Signé
+                          approver:
+                            type: object
+                            properties:
+                              fullname:
+                                type: string
+                                example: null
+                                nullable: true
+                              state:
+                                type: string
+                                example: 'À notifier'
+                      traceability:
+                        type: array
+                        example:
+                          -
+                            at: '2026-09-28T16:44:00+00:00'
+                            title: 'Brouillon créé'
+                            detail: 'Aïcha Koné'
+                            done: true
+                          -
+                            at: '2026-09-28T16:44:00+00:00'
+                            title: 'Montant sensible détecté'
+                            detail: 'Double contrôle requis au-delà du seuil du pressing'
+                            done: true
+                          -
+                            at: null
+                            title: 'Seconde validation'
+                            detail: 'En attente d’un manager habilité'
+                            done: false
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-09-28T16:44:00+00:00'
+                            title:
+                              type: string
+                              example: 'Brouillon créé'
+                            detail:
+                              type: string
+                              example: 'Aïcha Koné'
+                            done:
+                              type: boolean
+                              example: true
+                      cash_session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          status:
+                            type: string
+                            example: open
+                          available_cash:
+                            type: integer
+                            example: 983500
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Caisse
     put:
       summary: ''
       operationId: putApiV1CashMovementsCashMovement_id
@@ -29380,16 +29681,58 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    pressing_id: 1
-                    agency_id: 1
+                    id: 419
                     client_uuid: 550e8400-e29b-41d4-a716-446655440001
-                    label: 'Achat fournitures'
+                    label: 'Achat urgent de produits'
                     type: out
-                    amount: 5000
-                    category_id: 1
-                    validated: true
-                    action_date: '2026-10-14'
+                    amount: 350000
+                    action_date: '2026-09-28T16:44:00+00:00'
+                    validated: false
+                    category_id: 2
+                    category:
+                      id: 2
+                      name: Fournitures
+                    reference_code: MVT-00419
+                    payment_method: cash
+                    beneficiary: 'CleanPro Côte d’Ivoire'
+                    reference: BC-2026-0928-18
+                    comment: 'Commande exceptionnelle'
+                    has_proof: true
+                    requires_approval: true
+                    approved_at: null
+                    status:
+                      code: pending_approval
+                      label: 'En attente'
+                    operator: 'Aïcha Koné'
+                    double_control:
+                      required: true
+                      initiator:
+                        fullname: 'Aïcha Koné'
+                        state: Signé
+                      approver:
+                        fullname: null
+                        state: 'À notifier'
+                    traceability:
+                      -
+                        at: '2026-09-28T16:44:00+00:00'
+                        title: 'Brouillon créé'
+                        detail: 'Aïcha Koné'
+                        done: true
+                      -
+                        at: '2026-09-28T16:44:00+00:00'
+                        title: 'Montant sensible détecté'
+                        detail: 'Double contrôle requis au-delà du seuil du pressing'
+                        done: true
+                      -
+                        at: null
+                        title: 'Seconde validation'
+                        detail: 'En attente d’un manager habilité'
+                        done: false
+                    cash_session:
+                      id: 1
+                      code: CAI-BG-0928
+                      status: open
+                      available_cash: 983500
                   meta: {  }
                   errors: null
                 properties:
@@ -29398,34 +29741,147 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1
-                      pressing_id:
-                        type: integer
-                        example: 1
-                      agency_id:
-                        type: integer
-                        example: 1
+                        example: 419
                       client_uuid:
                         type: string
                         example: 550e8400-e29b-41d4-a716-446655440001
                       label:
                         type: string
-                        example: 'Achat fournitures'
+                        example: 'Achat urgent de produits'
                       type:
                         type: string
                         example: out
                       amount:
                         type: integer
-                        example: 5000
-                      category_id:
-                        type: integer
-                        example: 1
-                      validated:
-                        type: boolean
-                        example: true
+                        example: 350000
                       action_date:
                         type: string
-                        example: '2026-10-14'
+                        example: '2026-09-28T16:44:00+00:00'
+                      validated:
+                        type: boolean
+                        example: false
+                      category_id:
+                        type: integer
+                        example: 2
+                      category:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          name:
+                            type: string
+                            example: Fournitures
+                      reference_code:
+                        type: string
+                        example: MVT-00419
+                      payment_method:
+                        type: string
+                        example: cash
+                      beneficiary:
+                        type: string
+                        example: 'CleanPro Côte d’Ivoire'
+                      reference:
+                        type: string
+                        example: BC-2026-0928-18
+                      comment:
+                        type: string
+                        example: 'Commande exceptionnelle'
+                      has_proof:
+                        type: boolean
+                        example: true
+                      requires_approval:
+                        type: boolean
+                        example: true
+                      approved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: pending_approval
+                          label:
+                            type: string
+                            example: 'En attente'
+                      operator:
+                        type: string
+                        example: 'Aïcha Koné'
+                      double_control:
+                        type: object
+                        properties:
+                          required:
+                            type: boolean
+                            example: true
+                          initiator:
+                            type: object
+                            properties:
+                              fullname:
+                                type: string
+                                example: 'Aïcha Koné'
+                              state:
+                                type: string
+                                example: Signé
+                          approver:
+                            type: object
+                            properties:
+                              fullname:
+                                type: string
+                                example: null
+                                nullable: true
+                              state:
+                                type: string
+                                example: 'À notifier'
+                      traceability:
+                        type: array
+                        example:
+                          -
+                            at: '2026-09-28T16:44:00+00:00'
+                            title: 'Brouillon créé'
+                            detail: 'Aïcha Koné'
+                            done: true
+                          -
+                            at: '2026-09-28T16:44:00+00:00'
+                            title: 'Montant sensible détecté'
+                            detail: 'Double contrôle requis au-delà du seuil du pressing'
+                            done: true
+                          -
+                            at: null
+                            title: 'Seconde validation'
+                            detail: 'En attente d’un manager habilité'
+                            done: false
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-09-28T16:44:00+00:00'
+                            title:
+                              type: string
+                              example: 'Brouillon créé'
+                            detail:
+                              type: string
+                              example: 'Aïcha Koné'
+                            done:
+                              type: boolean
+                              example: true
+                      cash_session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          status:
+                            type: string
+                            example: open
+                          available_cash:
+                            type: integer
+                            example: 983500
                   meta:
                     type: object
                     properties: {  }
@@ -29550,7 +30006,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
     delete:
       summary: ''
@@ -29643,8 +30099,8 @@ paths:
           type: integer
   '/api/v1/cash-movements/{cashMovement_id}/validate':
     post:
-      summary: ''
-      operationId: postApiV1CashMovementsCashMovement_idValidate
+      summary: 'Validation (seconde validation par un manager habilité au-delà du seuil).'
+      operationId: validationsecondeValidationParUnManagerHabilitAuDelDuSeuil
       description: ''
       parameters:
         -
@@ -29663,16 +30119,58 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    pressing_id: 1
-                    agency_id: 1
+                    id: 419
                     client_uuid: 550e8400-e29b-41d4-a716-446655440001
-                    label: 'Achat fournitures'
+                    label: 'Achat urgent de produits'
                     type: out
-                    amount: 5000
-                    category_id: 1
-                    validated: true
-                    action_date: '2026-10-14'
+                    amount: 350000
+                    action_date: '2026-09-28T16:44:00+00:00'
+                    validated: false
+                    category_id: 2
+                    category:
+                      id: 2
+                      name: Fournitures
+                    reference_code: MVT-00419
+                    payment_method: cash
+                    beneficiary: 'CleanPro Côte d’Ivoire'
+                    reference: BC-2026-0928-18
+                    comment: 'Commande exceptionnelle'
+                    has_proof: true
+                    requires_approval: true
+                    approved_at: null
+                    status:
+                      code: pending_approval
+                      label: 'En attente'
+                    operator: 'Aïcha Koné'
+                    double_control:
+                      required: true
+                      initiator:
+                        fullname: 'Aïcha Koné'
+                        state: Signé
+                      approver:
+                        fullname: null
+                        state: 'À notifier'
+                    traceability:
+                      -
+                        at: '2026-09-28T16:44:00+00:00'
+                        title: 'Brouillon créé'
+                        detail: 'Aïcha Koné'
+                        done: true
+                      -
+                        at: '2026-09-28T16:44:00+00:00'
+                        title: 'Montant sensible détecté'
+                        detail: 'Double contrôle requis au-delà du seuil du pressing'
+                        done: true
+                      -
+                        at: null
+                        title: 'Seconde validation'
+                        detail: 'En attente d’un manager habilité'
+                        done: false
+                    cash_session:
+                      id: 1
+                      code: CAI-BG-0928
+                      status: open
+                      available_cash: 983500
                   meta: {  }
                   errors: null
                 properties:
@@ -29681,34 +30179,147 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1
-                      pressing_id:
-                        type: integer
-                        example: 1
-                      agency_id:
-                        type: integer
-                        example: 1
+                        example: 419
                       client_uuid:
                         type: string
                         example: 550e8400-e29b-41d4-a716-446655440001
                       label:
                         type: string
-                        example: 'Achat fournitures'
+                        example: 'Achat urgent de produits'
                       type:
                         type: string
                         example: out
                       amount:
                         type: integer
-                        example: 5000
-                      category_id:
-                        type: integer
-                        example: 1
-                      validated:
-                        type: boolean
-                        example: true
+                        example: 350000
                       action_date:
                         type: string
-                        example: '2026-10-14'
+                        example: '2026-09-28T16:44:00+00:00'
+                      validated:
+                        type: boolean
+                        example: false
+                      category_id:
+                        type: integer
+                        example: 2
+                      category:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          name:
+                            type: string
+                            example: Fournitures
+                      reference_code:
+                        type: string
+                        example: MVT-00419
+                      payment_method:
+                        type: string
+                        example: cash
+                      beneficiary:
+                        type: string
+                        example: 'CleanPro Côte d’Ivoire'
+                      reference:
+                        type: string
+                        example: BC-2026-0928-18
+                      comment:
+                        type: string
+                        example: 'Commande exceptionnelle'
+                      has_proof:
+                        type: boolean
+                        example: true
+                      requires_approval:
+                        type: boolean
+                        example: true
+                      approved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: pending_approval
+                          label:
+                            type: string
+                            example: 'En attente'
+                      operator:
+                        type: string
+                        example: 'Aïcha Koné'
+                      double_control:
+                        type: object
+                        properties:
+                          required:
+                            type: boolean
+                            example: true
+                          initiator:
+                            type: object
+                            properties:
+                              fullname:
+                                type: string
+                                example: 'Aïcha Koné'
+                              state:
+                                type: string
+                                example: Signé
+                          approver:
+                            type: object
+                            properties:
+                              fullname:
+                                type: string
+                                example: null
+                                nullable: true
+                              state:
+                                type: string
+                                example: 'À notifier'
+                      traceability:
+                        type: array
+                        example:
+                          -
+                            at: '2026-09-28T16:44:00+00:00'
+                            title: 'Brouillon créé'
+                            detail: 'Aïcha Koné'
+                            done: true
+                          -
+                            at: '2026-09-28T16:44:00+00:00'
+                            title: 'Montant sensible détecté'
+                            detail: 'Double contrôle requis au-delà du seuil du pressing'
+                            done: true
+                          -
+                            at: null
+                            title: 'Seconde validation'
+                            detail: 'En attente d’un manager habilité'
+                            done: false
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-09-28T16:44:00+00:00'
+                            title:
+                              type: string
+                              example: 'Brouillon créé'
+                            detail:
+                              type: string
+                              example: 'Aïcha Koné'
+                            done:
+                              type: boolean
+                              example: true
+                      cash_session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          status:
+                            type: string
+                            example: open
+                          available_cash:
+                            type: integer
+                            example: 983500
                   meta:
                     type: object
                     properties: {  }
@@ -29808,6 +30419,2993 @@ paths:
         in: path
         name: cashMovement_id
         description: 'The ID of the cashMovement.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/v1/cash/center:
+    get:
+      summary: '« Centre de caisse » : KPI, situation, solde théorique/compté, ventilation, flux horaire.'
+      operationId: CentreDeCaisseKPISituationSoldeThoriquecomptVentilationFluxHoraire
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    date: '2026-09-28'
+                    agency: Bingerville
+                    session:
+                      id: 1
+                      code: CAI-BG-0928
+                      business_date: '2026-09-28'
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      opened_at: '2026-09-28T08:02:00+00:00'
+                      opened_by: 'Grâce A.'
+                      opening_balance: 180000
+                      closed_at: null
+                    kpis:
+                      receipts:
+                        value: 895500
+                        delta_percent: 12.4
+                      expenses:
+                        value: 92000
+                        count: 4
+                      unpaid:
+                        value: 186750
+                        deposits: 14
+                      difference:
+                        value: 0
+                        label: 'Comptage conforme'
+                    situation:
+                      opening:
+                        amount: 180000
+                        at: '2026-09-28T08:02:00+00:00'
+                        by: 'Grâce A.'
+                      deposit_receipts:
+                        amount: 612500
+                        count: 31
+                      balance_payments:
+                        amount: 248000
+                        count: 18
+                      cash_in:
+                        amount: 35000
+                        count: 2
+                      cash_out:
+                        amount: 92000
+                        count: 4
+                    theoretical:
+                      amount: 983500
+                      computed_at: '2026-09-28T16:42:00+00:00'
+                    counted:
+                      amount: 983500
+                      difference: 0
+                    breakdown:
+                      total: 895500
+                      methods:
+                        -
+                          code: cash
+                          label: Espèces
+                          amount: 420000
+                          percent: 46.9
+                    hourly:
+                      series:
+                        -
+                          hour: 07h
+                          in: 85000
+                          out: 0
+                      net: 803500
+                    journal_totals:
+                      operations: 57
+                      total_in: 895500
+                      total_out: 92000
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                        example: '2026-09-28'
+                      agency:
+                        type: string
+                        example: Bingerville
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          business_date:
+                            type: string
+                            example: '2026-09-28'
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          opened_at:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opened_by:
+                            type: string
+                            example: 'Grâce A.'
+                          opening_balance:
+                            type: integer
+                            example: 180000
+                          closed_at:
+                            type: string
+                            example: null
+                            nullable: true
+                      kpis:
+                        type: object
+                        properties:
+                          receipts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 895500
+                              delta_percent:
+                                type: number
+                                example: 12.4
+                          expenses:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          unpaid:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 186750
+                              deposits:
+                                type: integer
+                                example: 14
+                          difference:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 0
+                              label:
+                                type: string
+                                example: 'Comptage conforme'
+                      situation:
+                        type: object
+                        properties:
+                          opening:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 180000
+                              at:
+                                type: string
+                                example: '2026-09-28T08:02:00+00:00'
+                              by:
+                                type: string
+                                example: 'Grâce A.'
+                          deposit_receipts:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 612500
+                              count:
+                                type: integer
+                                example: 31
+                          balance_payments:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 248000
+                              count:
+                                type: integer
+                                example: 18
+                          cash_in:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 35000
+                              count:
+                                type: integer
+                                example: 2
+                          cash_out:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                      theoretical:
+                        type: object
+                        properties:
+                          amount:
+                            type: integer
+                            example: 983500
+                          computed_at:
+                            type: string
+                            example: '2026-09-28T16:42:00+00:00'
+                      counted:
+                        type: object
+                        properties:
+                          amount:
+                            type: integer
+                            example: 983500
+                          difference:
+                            type: integer
+                            example: 0
+                      breakdown:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 895500
+                          methods:
+                            type: array
+                            example:
+                              -
+                                code: cash
+                                label: Espèces
+                                amount: 420000
+                                percent: 46.9
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: cash
+                                label:
+                                  type: string
+                                  example: Espèces
+                                amount:
+                                  type: integer
+                                  example: 420000
+                                percent:
+                                  type: number
+                                  example: 46.9
+                      hourly:
+                        type: object
+                        properties:
+                          series:
+                            type: array
+                            example:
+                              -
+                                hour: 07h
+                                in: 85000
+                                out: 0
+                            items:
+                              type: object
+                              properties:
+                                hour:
+                                  type: string
+                                  example: 07h
+                                in:
+                                  type: integer
+                                  example: 85000
+                                out:
+                                  type: integer
+                                  example: 0
+                          net:
+                            type: integer
+                            example: 803500
+                      journal_totals:
+                        type: object
+                        properties:
+                          operations:
+                            type: integer
+                            example: 57
+                          total_in:
+                            type: integer
+                            example: 895500
+                          total_out:
+                            type: integer
+                            example: 92000
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Caisse
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-22T11:44:08'
+                  nullable: true
+  /api/v1/cash/journal:
+    get:
+      summary: '« Journal de caisse » : encaissements et mouvements (q, date, period, category_id, payment_method, status, flow ; `format=csv`).'
+      operationId: JournalDeCaisseEncaissementsEtMouvementsqDatePeriodCategoryIdPaymentMethodStatusFlowformatcsv
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: mvt-418
+                      source: movement
+                      source_id: 418
+                      at: '2026-09-28T15:42:00+00:00'
+                      reference: MVT-00418
+                      category: Fournitures
+                      label: 'Produits détachants'
+                      operator: 'Aïcha K.'
+                      payment_method:
+                        code: cash
+                        label: Espèces
+                      flow:
+                        code: out
+                        label: Sortie
+                      amount: 45000
+                      status:
+                        code: validated
+                        label: Validé
+                  meta:
+                    page: 1
+                    per_page: 50
+                    total: 1
+                    last_page: 1
+                    totals:
+                      operations: 57
+                      total_in: 895500
+                      total_out: 92000
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: mvt-418
+                        source: movement
+                        source_id: 418
+                        at: '2026-09-28T15:42:00+00:00'
+                        reference: MVT-00418
+                        category: Fournitures
+                        label: 'Produits détachants'
+                        operator: 'Aïcha K.'
+                        payment_method:
+                          code: cash
+                          label: Espèces
+                        flow:
+                          code: out
+                          label: Sortie
+                        amount: 45000
+                        status:
+                          code: validated
+                          label: Validé
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: mvt-418
+                        source:
+                          type: string
+                          example: movement
+                        source_id:
+                          type: integer
+                          example: 418
+                        at:
+                          type: string
+                          example: '2026-09-28T15:42:00+00:00'
+                        reference:
+                          type: string
+                          example: MVT-00418
+                        category:
+                          type: string
+                          example: Fournitures
+                        label:
+                          type: string
+                          example: 'Produits détachants'
+                        operator:
+                          type: string
+                          example: 'Aïcha K.'
+                        payment_method:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: cash
+                            label:
+                              type: string
+                              example: Espèces
+                        flow:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: out
+                            label:
+                              type: string
+                              example: Sortie
+                        amount:
+                          type: integer
+                          example: 45000
+                        status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: validated
+                            label:
+                              type: string
+                              example: Validé
+                  meta:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 50
+                      total:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      totals:
+                        type: object
+                        properties:
+                          operations:
+                            type: integer
+                            example: 57
+                          total_in:
+                            type: integer
+                            example: 895500
+                          total_out:
+                            type: integer
+                            example: 92000
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Caisse
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-22T11:44:08'
+                  nullable: true
+                period:
+                  type: string
+                  description: ''
+                  example: day
+                  enum:
+                    - day
+                    - week
+                    - month
+                  nullable: true
+                category_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                payment_method:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: to_validate
+                  enum:
+                    - synced
+                    - validated
+                    - pending_approval
+                    - to_validate
+                  nullable: true
+                flow:
+                  type: string
+                  description: ''
+                  example: in
+                  enum:
+                    - in
+                    - out
+                  nullable: true
+  /api/v1/cash/sessions/current:
+    get:
+      summary: ''
+      operationId: getApiV1CashSessionsCurrent
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    session:
+                      id: 1
+                      code: CAI-BG-0928
+                      business_date: '2026-09-28'
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      opened_at: '2026-09-28T08:02:00+00:00'
+                      opened_by: 'Grâce A.'
+                      opening_balance: 180000
+                      closed_at: null
+                    available_cash: 508000
+                    double_control_threshold: 250000
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          business_date:
+                            type: string
+                            example: '2026-09-28'
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          opened_at:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opened_by:
+                            type: string
+                            example: 'Grâce A.'
+                          opening_balance:
+                            type: integer
+                            example: 180000
+                          closed_at:
+                            type: string
+                            example: null
+                            nullable: true
+                      available_cash:
+                        type: integer
+                        example: 508000
+                      double_control_threshold:
+                        type: integer
+                        example: 250000
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Caisse
+  /api/v1/cash/sessions:
+    post:
+      summary: 'Ouverture de caisse (solde d’ouverture).'
+      operationId: ouvertureDeCaissesoldeDouverture
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    code: CAI-BG-0928
+                    business_date: '2026-09-28'
+                    status:
+                      code: open
+                      label: 'Caisse ouverte'
+                    opened_at: '2026-09-28T08:02:00+00:00'
+                    opened_by: 'Grâce A.'
+                    opening_balance: 180000
+                    closed_at: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      code:
+                        type: string
+                        example: CAI-BG-0928
+                      business_date:
+                        type: string
+                        example: '2026-09-28'
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: open
+                          label:
+                            type: string
+                            example: 'Caisse ouverte'
+                      opened_at:
+                        type: string
+                        example: '2026-09-28T08:02:00+00:00'
+                      opened_by:
+                        type: string
+                        example: 'Grâce A.'
+                      opening_balance:
+                        type: integer
+                        example: 180000
+                      closed_at:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Caisse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                opening_balance:
+                  type: integer
+                  description: validation.min.
+                  example: 27
+              required:
+                - opening_balance
+  '/api/v1/cash/sessions/{cashSession_id}/closing':
+    get:
+      summary: 'Écran « Clôture et rapprochement journalier ».'
+      operationId: cranCltureEtRapprochementJournalier
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    session:
+                      id: 1
+                      code: CAI-BG-0928
+                      business_date: '2026-09-28'
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      opened_at: '2026-09-28T08:02:00+00:00'
+                      opened_by: 'Grâce A.'
+                      opening_balance: 180000
+                      closed_at: null
+                    status:
+                      code: ready
+                      label: 'Prête à clôturer'
+                    kpis:
+                      receipts:
+                        value: 895500
+                        count: 51
+                      expenses:
+                        value: 92000
+                        count: 4
+                      theoretical:
+                        value: 983500
+                      difference:
+                        value: 0
+                    summary:
+                      from: '2026-09-28T08:02:00+00:00'
+                      opening: 180000
+                      deposit_receipts:
+                        amount: 612500
+                        count: 31
+                      balance_payments:
+                        amount: 248000
+                        count: 18
+                      cash_in:
+                        amount: 35000
+                        count: 2
+                      cash_out:
+                        amount: 92000
+                        count: 4
+                      theoretical: 983500
+                    reconciliation:
+                      -
+                        code: cash
+                        label: Espèces
+                        theoretical: 508000
+                        counted: 508000
+                        difference: 0
+                        status:
+                          code: compliant
+                          label: Conforme
+                    result:
+                      compliant: true
+                      label: 'Caisse conforme · écart zéro'
+                      theoretical: 983500
+                      counted: 983500
+                      difference: 0
+                      reason: null
+                      counted_by: 'Grâce Adjoua'
+                      counted_at: '2026-09-28T17:56:00+00:00'
+                      controlled_by: 'Aïcha Koné'
+                      controlled_at: '2026-09-28T17:58:00+00:00'
+                    checklist:
+                      total: 6
+                      done: 6
+                      items:
+                        -
+                          code: journal
+                          label: 'Journal vérifié'
+                          detail: '57 opérations contrôlées'
+                          done: true
+                    operators:
+                      -
+                        id: 1
+                        fullname: 'Grâce Adjoua'
+                        roles:
+                          - Ouverture
+                        operations: 29
+                    anomalies:
+                      unsynced_operations: 0
+                      unresolved: 0
+                      pending_approvals: 0
+                    report:
+                      filename: Cloture_BG_2026-09-28.pdf
+                      url: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          business_date:
+                            type: string
+                            example: '2026-09-28'
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          opened_at:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opened_by:
+                            type: string
+                            example: 'Grâce A.'
+                          opening_balance:
+                            type: integer
+                            example: 180000
+                          closed_at:
+                            type: string
+                            example: null
+                            nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: ready
+                          label:
+                            type: string
+                            example: 'Prête à clôturer'
+                      kpis:
+                        type: object
+                        properties:
+                          receipts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 895500
+                              count:
+                                type: integer
+                                example: 51
+                          expenses:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 983500
+                          difference:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 0
+                      summary:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opening:
+                            type: integer
+                            example: 180000
+                          deposit_receipts:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 612500
+                              count:
+                                type: integer
+                                example: 31
+                          balance_payments:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 248000
+                              count:
+                                type: integer
+                                example: 18
+                          cash_in:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 35000
+                              count:
+                                type: integer
+                                example: 2
+                          cash_out:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: integer
+                            example: 983500
+                      reconciliation:
+                        type: array
+                        example:
+                          -
+                            code: cash
+                            label: Espèces
+                            theoretical: 508000
+                            counted: 508000
+                            difference: 0
+                            status:
+                              code: compliant
+                              label: Conforme
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: cash
+                            label:
+                              type: string
+                              example: Espèces
+                            theoretical:
+                              type: integer
+                              example: 508000
+                            counted:
+                              type: integer
+                              example: 508000
+                            difference:
+                              type: integer
+                              example: 0
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: compliant
+                                label:
+                                  type: string
+                                  example: Conforme
+                      result:
+                        type: object
+                        properties:
+                          compliant:
+                            type: boolean
+                            example: true
+                          label:
+                            type: string
+                            example: 'Caisse conforme · écart zéro'
+                          theoretical:
+                            type: integer
+                            example: 983500
+                          counted:
+                            type: integer
+                            example: 983500
+                          difference:
+                            type: integer
+                            example: 0
+                          reason:
+                            type: string
+                            example: null
+                            nullable: true
+                          counted_by:
+                            type: string
+                            example: 'Grâce Adjoua'
+                          counted_at:
+                            type: string
+                            example: '2026-09-28T17:56:00+00:00'
+                          controlled_by:
+                            type: string
+                            example: 'Aïcha Koné'
+                          controlled_at:
+                            type: string
+                            example: '2026-09-28T17:58:00+00:00'
+                      checklist:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 6
+                          done:
+                            type: integer
+                            example: 6
+                          items:
+                            type: array
+                            example:
+                              -
+                                code: journal
+                                label: 'Journal vérifié'
+                                detail: '57 opérations contrôlées'
+                                done: true
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: journal
+                                label:
+                                  type: string
+                                  example: 'Journal vérifié'
+                                detail:
+                                  type: string
+                                  example: '57 opérations contrôlées'
+                                done:
+                                  type: boolean
+                                  example: true
+                      operators:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            fullname: 'Grâce Adjoua'
+                            roles:
+                              - Ouverture
+                            operations: 29
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            fullname:
+                              type: string
+                              example: 'Grâce Adjoua'
+                            roles:
+                              type: array
+                              example:
+                                - Ouverture
+                              items:
+                                type: string
+                            operations:
+                              type: integer
+                              example: 29
+                      anomalies:
+                        type: object
+                        properties:
+                          unsynced_operations:
+                            type: integer
+                            example: 0
+                          unresolved:
+                            type: integer
+                            example: 0
+                          pending_approvals:
+                            type: integer
+                            example: 0
+                      report:
+                        type: object
+                        properties:
+                          filename:
+                            type: string
+                            example: Cloture_BG_2026-09-28.pdf
+                          url:
+                            type: string
+                            example: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Caisse
+    parameters:
+      -
+        in: path
+        name: cashSession_id
+        description: 'The ID of the cashSession.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/cash/sessions/{cashSession_id}/count':
+    post:
+      summary: 'Comptage réel par moyen de paiement (+ justification si écart).'
+      operationId: comptageRelParMoyenDePaiement+JustificationSicart
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    session:
+                      id: 1
+                      code: CAI-BG-0928
+                      business_date: '2026-09-28'
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      opened_at: '2026-09-28T08:02:00+00:00'
+                      opened_by: 'Grâce A.'
+                      opening_balance: 180000
+                      closed_at: null
+                    status:
+                      code: ready
+                      label: 'Prête à clôturer'
+                    kpis:
+                      receipts:
+                        value: 895500
+                        count: 51
+                      expenses:
+                        value: 92000
+                        count: 4
+                      theoretical:
+                        value: 983500
+                      difference:
+                        value: 0
+                    summary:
+                      from: '2026-09-28T08:02:00+00:00'
+                      opening: 180000
+                      deposit_receipts:
+                        amount: 612500
+                        count: 31
+                      balance_payments:
+                        amount: 248000
+                        count: 18
+                      cash_in:
+                        amount: 35000
+                        count: 2
+                      cash_out:
+                        amount: 92000
+                        count: 4
+                      theoretical: 983500
+                    reconciliation:
+                      -
+                        code: cash
+                        label: Espèces
+                        theoretical: 508000
+                        counted: 508000
+                        difference: 0
+                        status:
+                          code: compliant
+                          label: Conforme
+                    result:
+                      compliant: true
+                      label: 'Caisse conforme · écart zéro'
+                      theoretical: 983500
+                      counted: 983500
+                      difference: 0
+                      reason: null
+                      counted_by: 'Grâce Adjoua'
+                      counted_at: '2026-09-28T17:56:00+00:00'
+                      controlled_by: 'Aïcha Koné'
+                      controlled_at: '2026-09-28T17:58:00+00:00'
+                    checklist:
+                      total: 6
+                      done: 6
+                      items:
+                        -
+                          code: journal
+                          label: 'Journal vérifié'
+                          detail: '57 opérations contrôlées'
+                          done: true
+                    operators:
+                      -
+                        id: 1
+                        fullname: 'Grâce Adjoua'
+                        roles:
+                          - Ouverture
+                        operations: 29
+                    anomalies:
+                      unsynced_operations: 0
+                      unresolved: 0
+                      pending_approvals: 0
+                    report:
+                      filename: Cloture_BG_2026-09-28.pdf
+                      url: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          business_date:
+                            type: string
+                            example: '2026-09-28'
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          opened_at:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opened_by:
+                            type: string
+                            example: 'Grâce A.'
+                          opening_balance:
+                            type: integer
+                            example: 180000
+                          closed_at:
+                            type: string
+                            example: null
+                            nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: ready
+                          label:
+                            type: string
+                            example: 'Prête à clôturer'
+                      kpis:
+                        type: object
+                        properties:
+                          receipts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 895500
+                              count:
+                                type: integer
+                                example: 51
+                          expenses:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 983500
+                          difference:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 0
+                      summary:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opening:
+                            type: integer
+                            example: 180000
+                          deposit_receipts:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 612500
+                              count:
+                                type: integer
+                                example: 31
+                          balance_payments:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 248000
+                              count:
+                                type: integer
+                                example: 18
+                          cash_in:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 35000
+                              count:
+                                type: integer
+                                example: 2
+                          cash_out:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: integer
+                            example: 983500
+                      reconciliation:
+                        type: array
+                        example:
+                          -
+                            code: cash
+                            label: Espèces
+                            theoretical: 508000
+                            counted: 508000
+                            difference: 0
+                            status:
+                              code: compliant
+                              label: Conforme
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: cash
+                            label:
+                              type: string
+                              example: Espèces
+                            theoretical:
+                              type: integer
+                              example: 508000
+                            counted:
+                              type: integer
+                              example: 508000
+                            difference:
+                              type: integer
+                              example: 0
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: compliant
+                                label:
+                                  type: string
+                                  example: Conforme
+                      result:
+                        type: object
+                        properties:
+                          compliant:
+                            type: boolean
+                            example: true
+                          label:
+                            type: string
+                            example: 'Caisse conforme · écart zéro'
+                          theoretical:
+                            type: integer
+                            example: 983500
+                          counted:
+                            type: integer
+                            example: 983500
+                          difference:
+                            type: integer
+                            example: 0
+                          reason:
+                            type: string
+                            example: null
+                            nullable: true
+                          counted_by:
+                            type: string
+                            example: 'Grâce Adjoua'
+                          counted_at:
+                            type: string
+                            example: '2026-09-28T17:56:00+00:00'
+                          controlled_by:
+                            type: string
+                            example: 'Aïcha Koné'
+                          controlled_at:
+                            type: string
+                            example: '2026-09-28T17:58:00+00:00'
+                      checklist:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 6
+                          done:
+                            type: integer
+                            example: 6
+                          items:
+                            type: array
+                            example:
+                              -
+                                code: journal
+                                label: 'Journal vérifié'
+                                detail: '57 opérations contrôlées'
+                                done: true
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: journal
+                                label:
+                                  type: string
+                                  example: 'Journal vérifié'
+                                detail:
+                                  type: string
+                                  example: '57 opérations contrôlées'
+                                done:
+                                  type: boolean
+                                  example: true
+                      operators:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            fullname: 'Grâce Adjoua'
+                            roles:
+                              - Ouverture
+                            operations: 29
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            fullname:
+                              type: string
+                              example: 'Grâce Adjoua'
+                            roles:
+                              type: array
+                              example:
+                                - Ouverture
+                              items:
+                                type: string
+                            operations:
+                              type: integer
+                              example: 29
+                      anomalies:
+                        type: object
+                        properties:
+                          unsynced_operations:
+                            type: integer
+                            example: 0
+                          unresolved:
+                            type: integer
+                            example: 0
+                          pending_approvals:
+                            type: integer
+                            example: 0
+                      report:
+                        type: object
+                        properties:
+                          filename:
+                            type: string
+                            example: Cloture_BG_2026-09-28.pdf
+                          url:
+                            type: string
+                            example: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Caisse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                counted:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    cash:
+                      type: integer
+                      description: validation.min.
+                      example: 27
+                    mobile_money:
+                      type: integer
+                      description: validation.min.
+                      example: 39
+                      nullable: true
+                    card:
+                      type: integer
+                      description: validation.min.
+                      example: 84
+                      nullable: true
+                  required:
+                    - cash
+                difference_reason:
+                  type: string
+                  description: validation.max.
+                  example: z
+                  nullable: true
+              required:
+                - counted
+    parameters:
+      -
+        in: path
+        name: cashSession_id
+        description: 'The ID of the cashSession.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/cash/sessions/{cashSession_id}/control':
+    post:
+      summary: 'Double contrôle : validation du comptage par une seconde personne habilitée.'
+      operationId: doubleContrleValidationDuComptageParUneSecondePersonneHabilite
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    session:
+                      id: 1
+                      code: CAI-BG-0928
+                      business_date: '2026-09-28'
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      opened_at: '2026-09-28T08:02:00+00:00'
+                      opened_by: 'Grâce A.'
+                      opening_balance: 180000
+                      closed_at: null
+                    status:
+                      code: ready
+                      label: 'Prête à clôturer'
+                    kpis:
+                      receipts:
+                        value: 895500
+                        count: 51
+                      expenses:
+                        value: 92000
+                        count: 4
+                      theoretical:
+                        value: 983500
+                      difference:
+                        value: 0
+                    summary:
+                      from: '2026-09-28T08:02:00+00:00'
+                      opening: 180000
+                      deposit_receipts:
+                        amount: 612500
+                        count: 31
+                      balance_payments:
+                        amount: 248000
+                        count: 18
+                      cash_in:
+                        amount: 35000
+                        count: 2
+                      cash_out:
+                        amount: 92000
+                        count: 4
+                      theoretical: 983500
+                    reconciliation:
+                      -
+                        code: cash
+                        label: Espèces
+                        theoretical: 508000
+                        counted: 508000
+                        difference: 0
+                        status:
+                          code: compliant
+                          label: Conforme
+                    result:
+                      compliant: true
+                      label: 'Caisse conforme · écart zéro'
+                      theoretical: 983500
+                      counted: 983500
+                      difference: 0
+                      reason: null
+                      counted_by: 'Grâce Adjoua'
+                      counted_at: '2026-09-28T17:56:00+00:00'
+                      controlled_by: 'Aïcha Koné'
+                      controlled_at: '2026-09-28T17:58:00+00:00'
+                    checklist:
+                      total: 6
+                      done: 6
+                      items:
+                        -
+                          code: journal
+                          label: 'Journal vérifié'
+                          detail: '57 opérations contrôlées'
+                          done: true
+                    operators:
+                      -
+                        id: 1
+                        fullname: 'Grâce Adjoua'
+                        roles:
+                          - Ouverture
+                        operations: 29
+                    anomalies:
+                      unsynced_operations: 0
+                      unresolved: 0
+                      pending_approvals: 0
+                    report:
+                      filename: Cloture_BG_2026-09-28.pdf
+                      url: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          business_date:
+                            type: string
+                            example: '2026-09-28'
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          opened_at:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opened_by:
+                            type: string
+                            example: 'Grâce A.'
+                          opening_balance:
+                            type: integer
+                            example: 180000
+                          closed_at:
+                            type: string
+                            example: null
+                            nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: ready
+                          label:
+                            type: string
+                            example: 'Prête à clôturer'
+                      kpis:
+                        type: object
+                        properties:
+                          receipts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 895500
+                              count:
+                                type: integer
+                                example: 51
+                          expenses:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 983500
+                          difference:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 0
+                      summary:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opening:
+                            type: integer
+                            example: 180000
+                          deposit_receipts:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 612500
+                              count:
+                                type: integer
+                                example: 31
+                          balance_payments:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 248000
+                              count:
+                                type: integer
+                                example: 18
+                          cash_in:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 35000
+                              count:
+                                type: integer
+                                example: 2
+                          cash_out:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: integer
+                            example: 983500
+                      reconciliation:
+                        type: array
+                        example:
+                          -
+                            code: cash
+                            label: Espèces
+                            theoretical: 508000
+                            counted: 508000
+                            difference: 0
+                            status:
+                              code: compliant
+                              label: Conforme
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: cash
+                            label:
+                              type: string
+                              example: Espèces
+                            theoretical:
+                              type: integer
+                              example: 508000
+                            counted:
+                              type: integer
+                              example: 508000
+                            difference:
+                              type: integer
+                              example: 0
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: compliant
+                                label:
+                                  type: string
+                                  example: Conforme
+                      result:
+                        type: object
+                        properties:
+                          compliant:
+                            type: boolean
+                            example: true
+                          label:
+                            type: string
+                            example: 'Caisse conforme · écart zéro'
+                          theoretical:
+                            type: integer
+                            example: 983500
+                          counted:
+                            type: integer
+                            example: 983500
+                          difference:
+                            type: integer
+                            example: 0
+                          reason:
+                            type: string
+                            example: null
+                            nullable: true
+                          counted_by:
+                            type: string
+                            example: 'Grâce Adjoua'
+                          counted_at:
+                            type: string
+                            example: '2026-09-28T17:56:00+00:00'
+                          controlled_by:
+                            type: string
+                            example: 'Aïcha Koné'
+                          controlled_at:
+                            type: string
+                            example: '2026-09-28T17:58:00+00:00'
+                      checklist:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 6
+                          done:
+                            type: integer
+                            example: 6
+                          items:
+                            type: array
+                            example:
+                              -
+                                code: journal
+                                label: 'Journal vérifié'
+                                detail: '57 opérations contrôlées'
+                                done: true
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: journal
+                                label:
+                                  type: string
+                                  example: 'Journal vérifié'
+                                detail:
+                                  type: string
+                                  example: '57 opérations contrôlées'
+                                done:
+                                  type: boolean
+                                  example: true
+                      operators:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            fullname: 'Grâce Adjoua'
+                            roles:
+                              - Ouverture
+                            operations: 29
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            fullname:
+                              type: string
+                              example: 'Grâce Adjoua'
+                            roles:
+                              type: array
+                              example:
+                                - Ouverture
+                              items:
+                                type: string
+                            operations:
+                              type: integer
+                              example: 29
+                      anomalies:
+                        type: object
+                        properties:
+                          unsynced_operations:
+                            type: integer
+                            example: 0
+                          unresolved:
+                            type: integer
+                            example: 0
+                          pending_approvals:
+                            type: integer
+                            example: 0
+                      report:
+                        type: object
+                        properties:
+                          filename:
+                            type: string
+                            example: Cloture_BG_2026-09-28.pdf
+                          url:
+                            type: string
+                            example: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Caisse
+    parameters:
+      -
+        in: path
+        name: cashSession_id
+        description: 'The ID of the cashSession.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/cash/sessions/{cashSession_id}/close':
+    post:
+      summary: '« Clôturer » : verrouille le journal de la journée.'
+      operationId: ClturerVerrouilleLeJournalDeLaJourne
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    session:
+                      id: 1
+                      code: CAI-BG-0928
+                      business_date: '2026-09-28'
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      opened_at: '2026-09-28T08:02:00+00:00'
+                      opened_by: 'Grâce A.'
+                      opening_balance: 180000
+                      closed_at: null
+                    status:
+                      code: ready
+                      label: 'Prête à clôturer'
+                    kpis:
+                      receipts:
+                        value: 895500
+                        count: 51
+                      expenses:
+                        value: 92000
+                        count: 4
+                      theoretical:
+                        value: 983500
+                      difference:
+                        value: 0
+                    summary:
+                      from: '2026-09-28T08:02:00+00:00'
+                      opening: 180000
+                      deposit_receipts:
+                        amount: 612500
+                        count: 31
+                      balance_payments:
+                        amount: 248000
+                        count: 18
+                      cash_in:
+                        amount: 35000
+                        count: 2
+                      cash_out:
+                        amount: 92000
+                        count: 4
+                      theoretical: 983500
+                    reconciliation:
+                      -
+                        code: cash
+                        label: Espèces
+                        theoretical: 508000
+                        counted: 508000
+                        difference: 0
+                        status:
+                          code: compliant
+                          label: Conforme
+                    result:
+                      compliant: true
+                      label: 'Caisse conforme · écart zéro'
+                      theoretical: 983500
+                      counted: 983500
+                      difference: 0
+                      reason: null
+                      counted_by: 'Grâce Adjoua'
+                      counted_at: '2026-09-28T17:56:00+00:00'
+                      controlled_by: 'Aïcha Koné'
+                      controlled_at: '2026-09-28T17:58:00+00:00'
+                    checklist:
+                      total: 6
+                      done: 6
+                      items:
+                        -
+                          code: journal
+                          label: 'Journal vérifié'
+                          detail: '57 opérations contrôlées'
+                          done: true
+                    operators:
+                      -
+                        id: 1
+                        fullname: 'Grâce Adjoua'
+                        roles:
+                          - Ouverture
+                        operations: 29
+                    anomalies:
+                      unsynced_operations: 0
+                      unresolved: 0
+                      pending_approvals: 0
+                    report:
+                      filename: Cloture_BG_2026-09-28.pdf
+                      url: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CAI-BG-0928
+                          business_date:
+                            type: string
+                            example: '2026-09-28'
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          opened_at:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opened_by:
+                            type: string
+                            example: 'Grâce A.'
+                          opening_balance:
+                            type: integer
+                            example: 180000
+                          closed_at:
+                            type: string
+                            example: null
+                            nullable: true
+                      status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: ready
+                          label:
+                            type: string
+                            example: 'Prête à clôturer'
+                      kpis:
+                        type: object
+                        properties:
+                          receipts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 895500
+                              count:
+                                type: integer
+                                example: 51
+                          expenses:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 983500
+                          difference:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 0
+                      summary:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-09-28T08:02:00+00:00'
+                          opening:
+                            type: integer
+                            example: 180000
+                          deposit_receipts:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 612500
+                              count:
+                                type: integer
+                                example: 31
+                          balance_payments:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 248000
+                              count:
+                                type: integer
+                                example: 18
+                          cash_in:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 35000
+                              count:
+                                type: integer
+                                example: 2
+                          cash_out:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 92000
+                              count:
+                                type: integer
+                                example: 4
+                          theoretical:
+                            type: integer
+                            example: 983500
+                      reconciliation:
+                        type: array
+                        example:
+                          -
+                            code: cash
+                            label: Espèces
+                            theoretical: 508000
+                            counted: 508000
+                            difference: 0
+                            status:
+                              code: compliant
+                              label: Conforme
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: cash
+                            label:
+                              type: string
+                              example: Espèces
+                            theoretical:
+                              type: integer
+                              example: 508000
+                            counted:
+                              type: integer
+                              example: 508000
+                            difference:
+                              type: integer
+                              example: 0
+                            status:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: compliant
+                                label:
+                                  type: string
+                                  example: Conforme
+                      result:
+                        type: object
+                        properties:
+                          compliant:
+                            type: boolean
+                            example: true
+                          label:
+                            type: string
+                            example: 'Caisse conforme · écart zéro'
+                          theoretical:
+                            type: integer
+                            example: 983500
+                          counted:
+                            type: integer
+                            example: 983500
+                          difference:
+                            type: integer
+                            example: 0
+                          reason:
+                            type: string
+                            example: null
+                            nullable: true
+                          counted_by:
+                            type: string
+                            example: 'Grâce Adjoua'
+                          counted_at:
+                            type: string
+                            example: '2026-09-28T17:56:00+00:00'
+                          controlled_by:
+                            type: string
+                            example: 'Aïcha Koné'
+                          controlled_at:
+                            type: string
+                            example: '2026-09-28T17:58:00+00:00'
+                      checklist:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 6
+                          done:
+                            type: integer
+                            example: 6
+                          items:
+                            type: array
+                            example:
+                              -
+                                code: journal
+                                label: 'Journal vérifié'
+                                detail: '57 opérations contrôlées'
+                                done: true
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: journal
+                                label:
+                                  type: string
+                                  example: 'Journal vérifié'
+                                detail:
+                                  type: string
+                                  example: '57 opérations contrôlées'
+                                done:
+                                  type: boolean
+                                  example: true
+                      operators:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            fullname: 'Grâce Adjoua'
+                            roles:
+                              - Ouverture
+                            operations: 29
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            fullname:
+                              type: string
+                              example: 'Grâce Adjoua'
+                            roles:
+                              type: array
+                              example:
+                                - Ouverture
+                              items:
+                                type: string
+                            operations:
+                              type: integer
+                              example: 29
+                      anomalies:
+                        type: object
+                        properties:
+                          unsynced_operations:
+                            type: integer
+                            example: 0
+                          unresolved:
+                            type: integer
+                            example: 0
+                          pending_approvals:
+                            type: integer
+                            example: 0
+                      report:
+                        type: object
+                        properties:
+                          filename:
+                            type: string
+                            example: Cloture_BG_2026-09-28.pdf
+                          url:
+                            type: string
+                            example: 'https://api.example.com/api/v1/cash/sessions/1/report'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Caisse
+    parameters:
+      -
+        in: path
+        name: cashSession_id
+        description: 'The ID of the cashSession.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/cash/sessions/{cashSession_id}/report':
+    get:
+      summary: '« Rapport de clôture » (PDF).'
+      operationId: RapportDeClturePDF
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Rapport de clôture (application/pdf)'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    content_type: application/pdf
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      content_type:
+                        type: string
+                        example: application/pdf
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Caisse
+    parameters:
+      -
+        in: path
+        name: cashSession_id
+        description: 'The ID of the cashSession.'
         example: 16
         required: true
         schema:
@@ -33515,7 +37113,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:52'
+                  example: '2026-10-22T11:44:08'
               required:
                 - source_currency
                 - target_currency
@@ -42116,7 +45714,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
     delete:
       summary: ''
@@ -43532,7 +47130,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -47419,7 +51017,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:36:51'
+                  example: '2026-10-22T11:44:08'
                 name:
                   type: string
                   description: validation.max.

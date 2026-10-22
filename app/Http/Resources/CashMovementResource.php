@@ -19,6 +19,16 @@ class CashMovementResource extends JsonResource
             'validated' => $this->validated,
             'category_id' => $this->category_id,
             'category' => $this->whenLoaded('category'),
+            'reference_code' => sprintf('MVT-%05d', $this->id),
+            'payment_method' => $this->payment_method,
+            'beneficiary' => $this->beneficiary,
+            'reference' => $this->reference,
+            'comment' => $this->comment,
+            'has_proof' => (bool) $this->proof_path,
+            'requires_approval' => (bool) $this->requires_approval,
+            'approved_at' => $this->approved_at?->toIso8601String(),
+            'status' => $this->resource->workflowStatus(),
+            'operator' => $this->whenLoaded('operator', fn () => $this->operator?->fullname),
         ];
     }
 }

@@ -36,6 +36,7 @@ class Pressing extends Model
         'slogan',
         'invoice_terms',
         'workshop_capacity',
+        'cash_double_control_threshold',
     ];
 
     protected $casts = [

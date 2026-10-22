@@ -204,6 +204,19 @@ Le pipeline du dashboard et le kanban utilisent les 4 états serveur (`waiting`,
 
 La dérogation « solde impayé » exige la permission `deposits.override` (manager, admin) : relancer `RolePermissionSeeder` après déploiement.
 
+### 7.0e Caisse (Figma 06)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Centre de caisse — KPI, situation, solde théorique / compté, ventilation, flux horaire | `GET /cash/center?date` | `session`, `kpis` (recettes + évolution, dépenses, impayés, écart), `situation` (ouverture, encaissements dépôts, paiements de soldes, entrées/sorties hors dépôt), `theoretical`, `counted`, `breakdown.methods[]`, `hourly.series[]` (7 h–18 h) |
+| Journal de caisse | `GET /cash/journal?q&date&period&category_id&payment_method&status&flow` (`format=csv` pour « Exporter ») | lignes `reference` (code dépôt, SOL-…, MVT-…), `category`, `operator`, `payment_method`, `flow`, `amount`, `status` ; `meta.totals` |
+| Ouverture de caisse | `POST /cash/sessions` (`opening_balance`), `GET /cash/sessions/current` | `code` CAI-…, `available_cash`, `double_control_threshold` |
+| Nouveau mouvement | `POST /cash-movements` (+ `payment_method`, `beneficiary`, `reference`, `comment`, `proof` multipart) | au-delà du seuil (250 000 par défaut) : catégorie + justificatif requis, statut `pending_approval` ; sortie espèces refusée si solde insuffisant |
+| Détail / traçabilité / double contrôle | `GET /cash-movements/{id}`, `POST /cash-movements/{id}/validate` (manager ≠ initiateur, permission `cash.approve`) | `double_control`, `traceability[]`, `cash_session` |
+| Clôture et rapprochement | `GET /cash/sessions/{id}/closing` | `status` (En cours / Prête à clôturer / Clôturée), `summary`, `reconciliation[]` par moyen, `result`, `checklist` (6 étapes), `operators[]`, `anomalies`, `report` |
+| Comptage / contrôle / clôture | `POST /cash/sessions/{id}/count` (`counted{cash,mobile_money,card}`, `difference_reason`), `/control`, `/close` | clôture refusée tant que la checklist n’est pas complète |
+| Rapport de clôture | `GET /cash/sessions/{id}/report` | PDF |
+
 ### 7.0c Clients & fidélité (Figma 03)
 
 | Écran / bloc | Endpoint | Champs |

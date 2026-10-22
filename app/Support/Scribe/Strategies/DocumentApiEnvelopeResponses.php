@@ -506,6 +506,76 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Caisse (Figma 06) ——
+        $cashSession = ['id' => 1, 'code' => 'CAI-BG-0928', 'business_date' => '2026-09-28', 'status' => ['code' => 'open', 'label' => 'Caisse ouverte'], 'opened_at' => '2026-09-28T08:02:00+00:00', 'opened_by' => 'Grâce A.', 'opening_balance' => 180000, 'closed_at' => null];
+        $cashClosing = [
+            'session' => $cashSession,
+            'status' => ['code' => 'ready', 'label' => 'Prête à clôturer'],
+            'kpis' => ['receipts' => ['value' => 895500, 'count' => 51], 'expenses' => ['value' => 92000, 'count' => 4], 'theoretical' => ['value' => 983500], 'difference' => ['value' => 0]],
+            'summary' => ['from' => '2026-09-28T08:02:00+00:00', 'opening' => 180000, 'deposit_receipts' => ['amount' => 612500, 'count' => 31], 'balance_payments' => ['amount' => 248000, 'count' => 18], 'cash_in' => ['amount' => 35000, 'count' => 2], 'cash_out' => ['amount' => 92000, 'count' => 4], 'theoretical' => 983500],
+            'reconciliation' => [['code' => 'cash', 'label' => 'Espèces', 'theoretical' => 508000, 'counted' => 508000, 'difference' => 0, 'status' => ['code' => 'compliant', 'label' => 'Conforme']]],
+            'result' => ['compliant' => true, 'label' => 'Caisse conforme · écart zéro', 'theoretical' => 983500, 'counted' => 983500, 'difference' => 0, 'reason' => null, 'counted_by' => 'Grâce Adjoua', 'counted_at' => '2026-09-28T17:56:00+00:00', 'controlled_by' => 'Aïcha Koné', 'controlled_at' => '2026-09-28T17:58:00+00:00'],
+            'checklist' => ['total' => 6, 'done' => 6, 'items' => [['code' => 'journal', 'label' => 'Journal vérifié', 'detail' => '57 opérations contrôlées', 'done' => true]]],
+            'operators' => [['id' => 1, 'fullname' => 'Grâce Adjoua', 'roles' => ['Ouverture'], 'operations' => 29]],
+            'anomalies' => ['unsynced_operations' => 0, 'unresolved' => 0, 'pending_approvals' => 0],
+            'report' => ['filename' => 'Cloture_BG_2026-09-28.pdf', 'url' => 'https://api.example.com/api/v1/cash/sessions/1/report'],
+        ];
+        $journalRow = ['id' => 'mvt-418', 'source' => 'movement', 'source_id' => 418, 'at' => '2026-09-28T15:42:00+00:00', 'reference' => 'MVT-00418', 'category' => 'Fournitures', 'label' => 'Produits détachants', 'operator' => 'Aïcha K.', 'payment_method' => ['code' => 'cash', 'label' => 'Espèces'], 'flow' => ['code' => 'out', 'label' => 'Sortie'], 'amount' => 45000, 'status' => ['code' => 'validated', 'label' => 'Validé']];
+        if ($path === '/api/v1/cash/center') {
+            return [$this->response(200, [
+                'date' => '2026-09-28',
+                'agency' => 'Bingerville',
+                'session' => $cashSession,
+                'kpis' => [
+                    'receipts' => ['value' => 895500, 'delta_percent' => 12.4],
+                    'expenses' => ['value' => 92000, 'count' => 4],
+                    'unpaid' => ['value' => 186750, 'deposits' => 14],
+                    'difference' => ['value' => 0, 'label' => 'Comptage conforme'],
+                ],
+                'situation' => ['opening' => ['amount' => 180000, 'at' => '2026-09-28T08:02:00+00:00', 'by' => 'Grâce A.'], 'deposit_receipts' => ['amount' => 612500, 'count' => 31], 'balance_payments' => ['amount' => 248000, 'count' => 18], 'cash_in' => ['amount' => 35000, 'count' => 2], 'cash_out' => ['amount' => 92000, 'count' => 4]],
+                'theoretical' => ['amount' => 983500, 'computed_at' => '2026-09-28T16:42:00+00:00'],
+                'counted' => ['amount' => 983500, 'difference' => 0],
+                'breakdown' => ['total' => 895500, 'methods' => [['code' => 'cash', 'label' => 'Espèces', 'amount' => 420000, 'percent' => 46.9]]],
+                'hourly' => ['series' => [['hour' => '07h', 'in' => 85000, 'out' => 0]], 'net' => 803500],
+                'journal_totals' => ['operations' => 57, 'total_in' => 895500, 'total_out' => 92000],
+            ])];
+        }
+        if ($path === '/api/v1/cash/journal') {
+            return [$this->response(200, [$journalRow], array_merge($pageMeta, ['totals' => ['operations' => 57, 'total_in' => 895500, 'total_out' => 92000]]))];
+        }
+        if ($path === '/api/v1/cash/sessions/current') {
+            return [$this->response(200, ['session' => $cashSession, 'available_cash' => 508000, 'double_control_threshold' => 250000])];
+        }
+        if ($path === '/api/v1/cash/sessions' && $method === 'POST') {
+            return [$this->response(201, $cashSession)];
+        }
+        if (str_starts_with($path, '/api/v1/cash/sessions/{') && str_ends_with($path, '/report')) {
+            return [[
+                'status' => 200,
+                'description' => 'Rapport de clôture (application/pdf)',
+                'content' => json_encode(['data' => ['content_type' => 'application/pdf'], 'meta' => (object) [], 'errors' => null], JSON_UNESCAPED_UNICODE),
+            ]];
+        }
+        if (str_starts_with($path, '/api/v1/cash/sessions/{')) {
+            return [$this->response(200, $cashClosing)];
+        }
+        if (str_starts_with($path, '/api/v1/cash-movements/{') && $method !== 'DELETE') {
+            return [$this->response(200, [
+                'id' => 419, 'client_uuid' => '550e8400-e29b-41d4-a716-446655440001', 'label' => 'Achat urgent de produits', 'type' => 'out', 'amount' => 350000,
+                'action_date' => '2026-09-28T16:44:00+00:00', 'validated' => false, 'category_id' => 2, 'category' => ['id' => 2, 'name' => 'Fournitures'],
+                'reference_code' => 'MVT-00419', 'payment_method' => 'cash', 'beneficiary' => 'CleanPro Côte d’Ivoire', 'reference' => 'BC-2026-0928-18',
+                'comment' => 'Commande exceptionnelle', 'has_proof' => true, 'requires_approval' => true, 'approved_at' => null,
+                'status' => ['code' => 'pending_approval', 'label' => 'En attente'], 'operator' => 'Aïcha Koné',
+                'double_control' => ['required' => true, 'initiator' => ['fullname' => 'Aïcha Koné', 'state' => 'Signé'], 'approver' => ['fullname' => null, 'state' => 'À notifier']],
+                'traceability' => [
+                    ['at' => '2026-09-28T16:44:00+00:00', 'title' => 'Brouillon créé', 'detail' => 'Aïcha Koné', 'done' => true],
+                    ['at' => '2026-09-28T16:44:00+00:00', 'title' => 'Montant sensible détecté', 'detail' => 'Double contrôle requis au-delà du seuil du pressing', 'done' => true],
+                    ['at' => null, 'title' => 'Seconde validation', 'detail' => 'En attente d’un manager habilité', 'done' => false],
+                ],
+                'cash_session' => ['id' => 1, 'code' => 'CAI-BG-0928', 'status' => 'open', 'available_cash' => 983500],
+            ])];
+        }
+
         // —— Retraits (Figma 05) ——
         $notification = ['code' => 'sent', 'label' => 'SMS envoyé', 'channel' => 'sms', 'at' => '2026-10-20T09:42:00+00:00'];
         if ($path === '/api/v1/retrievals/center') {
