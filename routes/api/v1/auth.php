@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\AuthController;
+use App\Http\Controllers\Api\V1\Auth\StaffProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->name('auth.')->controller(AuthController::class)->group(function () {
@@ -18,4 +19,13 @@ Route::prefix('auth')->name('auth.')->controller(AuthController::class)->group(f
         Route::put('profile', 'updateProfile')->name('profile');
         Route::post('logout', 'logout')->name('logout');
     });
+});
+
+// « Profil et sécurité staff » (Figma 11) — compte courant.
+Route::prefix('auth/staff')->name('auth.staff.')->middleware('auth:sanctum')->controller(StaffProfileController::class)->group(function () {
+    Route::get('profile', 'show')->name('profile.show');
+    Route::put('profile', 'update')->name('profile.update');
+    Route::put('password', 'password')->name('password');
+    Route::delete('sessions/{tokenId}', 'revokeSession')->whereNumber('tokenId')->name('sessions.revoke');
+    Route::post('sessions/revoke-others', 'revokeOthers')->name('sessions.revoke-others');
 });

@@ -582,6 +582,25 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Profil et sécurité staff (Figma 11) ——
+        if ($path === '/api/v1/auth/staff/profile') {
+            return [$this->response(200, [
+                'identity' => ['id' => 7, 'first_name' => 'Nadine', 'last_name' => 'Essomba', 'fullname' => 'Nadine Essomba', 'initials' => 'NE', 'email' => 'nadine.essomba@spark-pressing.cm', 'phone_number' => '+237 6 99 24 18 07', 'job_title' => 'Responsable d’agence', 'employee_number' => 'STF-0284', 'picture' => null, 'status' => 'active', 'status_label' => 'Compte actif'],
+                'role' => ['code' => 'manager', 'label' => 'Manager', 'managed_by_admin' => true, 'home_agency' => ['id' => 1, 'name' => 'Akwa'], 'other_agencies' => [['id' => 2, 'name' => 'Bonapriso']]],
+                'password' => ['changed_at' => '2026-08-12T09:00:00+00:00', 'rules' => ['min_length' => 12, 'uppercase' => true, 'digit' => true]],
+                'mfa' => ['enabled' => true, 'required' => true, 'method' => 'totp', 'configured_at' => '2026-06-04T10:00:00+00:00', 'recovery_codes_left' => 8],
+                'sessions' => [['id' => 41, 'device' => 'Mac · Chrome', 'ip_address' => '102.244.0.12', 'last_used_at' => '2026-09-28T10:42:00+00:00', 'current' => true, 'expires_at' => '2026-09-28T18:42:00+00:00']],
+                'authorized_devices' => [['id' => 3, 'code' => 'CAISSE-AKW-01', 'label' => 'Poste de caisse Akwa', 'status' => 'authorized', 'expires_at' => '2026-12-04T00:00:00+00:00', 'managed_by_organization' => true]],
+                'preferences' => ['language' => 'fr-CM', 'timezone' => 'Africa/Douala', 'daily_summary' => true, 'workshop_sound_alerts' => false, 'whatsapp_notifications' => true],
+            ])];
+        }
+        if ($path === '/api/v1/auth/staff/password') {
+            return [$this->response(200, ['updated' => true, 'password_changed_at' => '2026-09-28T10:45:00+00:00'])];
+        }
+        if (str_starts_with($path, '/api/v1/auth/staff/sessions')) {
+            return [$this->response(200, str_ends_with($path, 'revoke-others') ? ['revoked' => 2] : ['revoked' => true])];
+        }
+
         // —— Multi-agences (Figma 10) ——
         $objective = ['target' => 5641500, 'percent' => 88, 'remaining' => 676000, 'level' => 'good'];
         if ($path === '/api/v1/network/overview') {

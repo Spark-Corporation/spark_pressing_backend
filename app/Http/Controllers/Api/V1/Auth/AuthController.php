@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Support\ApiResponse;
 use App\Support\Auth\LoginThrottle;
 use App\Support\Auth\PasswordResetCodes;
+use App\Support\Auth\Totp;
 use App\Support\Settings\SettingsRegistry;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
@@ -621,6 +622,23 @@ class AuthController extends Controller
             return ApiResponse::error('Compte désactivé.', 403);
         }
 
+        // Authentification renforcée (Profil et sécurité) : code TOTP ou code de secours.
+        if ($actor instanceof User && $actor->mfa_enabled_at) {
+            $otp = (string) request()?->input('otp', '');
+            if ($otp === '') {
+                return ApiResponse::error('Code d’authentification requis.', 422,
+                    [['code' => 'mfa_required', 'field' => 'otp', 'detail' => 'Saisissez le code de votre application d’authentification.']],
+                    ['mfa_required' => true]);
+            }
+            if (! $this->checkSecondFactor($actor, $otp)) {
+                $remaining = LoginThrottle::fail($throttleKey, $maxAttempts, $lockMinutes * 60);
+
+                return ApiResponse::error('Les données sont invalides.', 422,
+                    [['code' => 'validation', 'field' => 'otp', 'detail' => 'Code d’authentification invalide.']],
+                    ['mfa_required' => true, 'attempts_remaining' => $remaining, 'max_attempts' => $maxAttempts]);
+            }
+        }
+
         LoginThrottle::clear($throttleKey);
 
         $sessionHours = $type === 'staff' && $pressingId ? (int) $settings->value($pressingId, 'security', 'sessions.max_hours', 12) : 12;
@@ -641,6 +659,22 @@ class AuthController extends Controller
             'actor' => $type,
             'user' => $resolver($actor),
         ]);
+    }
+
+    private function checkSecondFactor(User $user, string $otp): bool
+    {
+        if ($user->mfa_secret && Totp::verify($user->mfa_secret, $otp)) {
+            return true;
+        }
+        $codes = $user->mfa_recovery_codes ?? [];
+        $index = array_search(strtoupper(trim($otp)), $codes, true);
+        if ($index === false) {
+            return false;
+        }
+        unset($codes[$index]);
+        $user->forceFill(['mfa_recovery_codes' => array_values($codes)])->save();
+
+        return true;
     }
 
     /**

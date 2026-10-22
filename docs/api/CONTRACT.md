@@ -296,6 +296,10 @@ Paliers dans `config/spark.php` (`loyalty_tiers`, `vip_tier`) : Essentiel 0, Arg
 | Accepter l’invitation | `GET/POST /invitations/{token}` (+ `/accept`) | public ; `password` confirmé |
 | Activité sensible 24 h | `GET /team/activity?hours` | messages FR |
 | MFA (compte courant) | `POST /team/mfa/setup\|confirm\|disable` | TOTP + codes de secours |
+| Profil et sécurité staff (compte courant) | `GET/PUT /auth/staff/profile` | `identity` (prénom, nom, e-mail, téléphone, fonction, matricule), `role` (lecture seule : rôle, agence principale, agences complémentaires), `password.changed_at`, `mfa` (activée, configurée le, codes de secours restants), `sessions[]` (appareil, IP, dernière activité, `current`), `authorized_devices[]`, `preferences` (langue, fuseau, résumé quotidien, alertes sonores atelier, WhatsApp) |
+| Changer le mot de passe | `PUT /auth/staff/password` (`current_password`, `password` + confirmation) | 12 caractères min., une majuscule, un chiffre |
+| Sessions actives | `DELETE /auth/staff/sessions/{id}`, `POST /auth/staff/sessions/revoke-others` | « Déconnecter » / « Déconnecter les autres » |
+| Connexion avec MFA | `POST /auth/staff/login` + `otp` | sans `otp` : 422 `mfa_required` (`meta.mfa_required=true`) ; code TOTP ou code de secours (usage unique) ; échecs comptés dans le verrouillage |
 | Matrice des rôles | `GET /roles` | `columns`, `domains`, `roles[].cells` (`all\|partial\|none`), `summary` |
 | « Créer un rôle » | `GET /roles/catalog`, `POST /roles` | droits fins ; `confirm_sensitive` si droit sensible |
 | Détail / édition rôle custom | `GET/PUT /roles/{id}` | rôles système non éditables |

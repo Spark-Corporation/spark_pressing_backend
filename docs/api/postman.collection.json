@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "83427f55-35cc-4d78-81e2-ca02529b910f",
+        "_postman_id": "62e43a3c-4fb8-4c89-8bf0-4676616015b8",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -554,6 +554,248 @@
                     ]
                 },
                 {
+                    "name": "Identit\u00e9, r\u00f4le et affectations (lecture seule), mot de passe, MFA, sessions, appareils, pr\u00e9f\u00e9rences.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"identity\": {\n            \"id\": 7,\n            \"first_name\": \"Nadine\",\n            \"last_name\": \"Essomba\",\n            \"fullname\": \"Nadine Essomba\",\n            \"initials\": \"NE\",\n            \"email\": \"nadine.essomba@spark-pressing.cm\",\n            \"phone_number\": \"+237 6 99 24 18 07\",\n            \"job_title\": \"Responsable d\u2019agence\",\n            \"employee_number\": \"STF-0284\",\n            \"picture\": null,\n            \"status\": \"active\",\n            \"status_label\": \"Compte actif\"\n        },\n        \"role\": {\n            \"code\": \"manager\",\n            \"label\": \"Manager\",\n            \"managed_by_admin\": true,\n            \"home_agency\": {\n                \"id\": 1,\n                \"name\": \"Akwa\"\n            },\n            \"other_agencies\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Bonapriso\"\n                }\n            ]\n        },\n        \"password\": {\n            \"changed_at\": \"2026-08-12T09:00:00+00:00\",\n            \"rules\": {\n                \"min_length\": 12,\n                \"uppercase\": true,\n                \"digit\": true\n            }\n        },\n        \"mfa\": {\n            \"enabled\": true,\n            \"required\": true,\n            \"method\": \"totp\",\n            \"configured_at\": \"2026-06-04T10:00:00+00:00\",\n            \"recovery_codes_left\": 8\n        },\n        \"sessions\": [\n            {\n                \"id\": 41,\n                \"device\": \"Mac \u00b7 Chrome\",\n                \"ip_address\": \"102.244.0.12\",\n                \"last_used_at\": \"2026-09-28T10:42:00+00:00\",\n                \"current\": true,\n                \"expires_at\": \"2026-09-28T18:42:00+00:00\"\n            }\n        ],\n        \"authorized_devices\": [\n            {\n                \"id\": 3,\n                \"code\": \"CAISSE-AKW-01\",\n                \"label\": \"Poste de caisse Akwa\",\n                \"status\": \"authorized\",\n                \"expires_at\": \"2026-12-04T00:00:00+00:00\",\n                \"managed_by_organization\": true\n            }\n        ],\n        \"preferences\": {\n            \"language\": \"fr-CM\",\n            \"timezone\": \"Africa\/Douala\",\n            \"daily_summary\": true,\n            \"workshop_sound_alerts\": false,\n            \"whatsapp_notifications\": true\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Identit\u00e9 et coordonn\u00e9es \u00bb et \u00ab Pr\u00e9f\u00e9rences \u00bb (le r\u00f4le et les affectations restent g\u00e9r\u00e9s par l\u2019administrateur).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/profile"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"b\",\"last_name\":\"n\",\"email\":\"ashly64@example.com\",\"phone_number\":\"v\",\"job_title\":\"d\",\"preferences\":{\"language\":\"ljnikh\",\"timezone\":\"Europe\\\/Oslo\",\"daily_summary\":true,\"workshop_sound_alerts\":true,\"whatsapp_notifications\":true}}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"identity\": {\n            \"id\": 7,\n            \"first_name\": \"Nadine\",\n            \"last_name\": \"Essomba\",\n            \"fullname\": \"Nadine Essomba\",\n            \"initials\": \"NE\",\n            \"email\": \"nadine.essomba@spark-pressing.cm\",\n            \"phone_number\": \"+237 6 99 24 18 07\",\n            \"job_title\": \"Responsable d\u2019agence\",\n            \"employee_number\": \"STF-0284\",\n            \"picture\": null,\n            \"status\": \"active\",\n            \"status_label\": \"Compte actif\"\n        },\n        \"role\": {\n            \"code\": \"manager\",\n            \"label\": \"Manager\",\n            \"managed_by_admin\": true,\n            \"home_agency\": {\n                \"id\": 1,\n                \"name\": \"Akwa\"\n            },\n            \"other_agencies\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Bonapriso\"\n                }\n            ]\n        },\n        \"password\": {\n            \"changed_at\": \"2026-08-12T09:00:00+00:00\",\n            \"rules\": {\n                \"min_length\": 12,\n                \"uppercase\": true,\n                \"digit\": true\n            }\n        },\n        \"mfa\": {\n            \"enabled\": true,\n            \"required\": true,\n            \"method\": \"totp\",\n            \"configured_at\": \"2026-06-04T10:00:00+00:00\",\n            \"recovery_codes_left\": 8\n        },\n        \"sessions\": [\n            {\n                \"id\": 41,\n                \"device\": \"Mac \u00b7 Chrome\",\n                \"ip_address\": \"102.244.0.12\",\n                \"last_used_at\": \"2026-09-28T10:42:00+00:00\",\n                \"current\": true,\n                \"expires_at\": \"2026-09-28T18:42:00+00:00\"\n            }\n        ],\n        \"authorized_devices\": [\n            {\n                \"id\": 3,\n                \"code\": \"CAISSE-AKW-01\",\n                \"label\": \"Poste de caisse Akwa\",\n                \"status\": \"authorized\",\n                \"expires_at\": \"2026-12-04T00:00:00+00:00\",\n                \"managed_by_organization\": true\n            }\n        ],\n        \"preferences\": {\n            \"language\": \"fr-CM\",\n            \"timezone\": \"Africa\/Douala\",\n            \"daily_summary\": true,\n            \"workshop_sound_alerts\": false,\n            \"whatsapp_notifications\": true\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Changer le mot de passe \u00bb : 12 caract\u00e8res minimum, une majuscule et un chiffre.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/password"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"current_password\":\"architecto\",\"password\":\"]|{+-0pBNvYg\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"updated\": true,\n        \"password_changed_at\": \"2026-09-28T10:45:00+00:00\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab D\u00e9connecter \u00bb une session (jeton Sanctum) du compte courant.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/sessions\/:tokenId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/sessions\/:tokenId",
+                            "variable": [
+                                {
+                                    "id": "tokenId",
+                                    "key": "tokenId",
+                                    "value": "564",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"revoked\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab D\u00e9connecter les autres \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/sessions\/revoke-others",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/sessions\/revoke-others"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"revoked\": 2\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
                     "name": "Mettre \u00e0 jour le profil",
                     "request": {
                         "url": {
@@ -713,7 +955,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"online\": true,\n        \"last_sync_at\": \"2026-10-20T16:00:00+00:00\",\n        \"pending_ops\": 0,\n        \"pending\": []\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"online\": true,\n        \"last_sync_at\": \"2026-10-20T16:00:00+00:00\",\n        \"pending_ops\": 0,\n        \"pending\": [],\n        \"last_batch\": {\n            \"id\": 12,\n            \"reference\": \"SYNC-261022-AB12\",\n            \"status\": \"completed\",\n            \"device_code\": \"CAISSE-01\"\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -750,7 +992,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"operations\":[{\"type\":\"payment\",\"payload\":[],\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\"}]}"
+                            "raw": "{\"operations\":[{\"type\":\"deposit\",\"payload\":[],\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\"}],\"device_code\":\"b\",\"reference\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -758,7 +1000,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"operations\": [\n            {\n                \"type\": \"deposit\",\n                \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n                \"id\": 1,\n                \"code\": \"AK-0001\",\n                \"replayed\": false\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"batch\": {\n            \"id\": 12,\n            \"reference\": \"SYNC-261022-AB12\",\n            \"status\": \"completed\",\n            \"operations\": 1,\n            \"succeeded\": 1,\n            \"failed\": 0\n        },\n        \"operations\": [\n            {\n                \"type\": \"deposit\",\n                \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n                \"id\": 1,\n                \"code\": \"AK-0001\",\n                \"status\": \"succeeded\",\n                \"replayed\": false\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -1159,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"78f3d895-a847-35bd-af01-d47228544ce2\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T12:31:51\",\"retrieve_date\":\"2026-10-22T12:31:51\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:40:48\",\"retrieve_date\":\"2026-10-22T21:40:48\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T12:31:51\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:40:48\"}"
                         },
                         "description": ""
                     },
@@ -3727,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T12:31:50\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:40:48\"}"
                         },
                         "description": ""
                     },
@@ -3772,7 +4014,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T12:31:50\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:40:48\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5525,7 +5767,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T12:31:51",
+                                    "value": "2026-10-22T21:40:49",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5673,7 +5915,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T12:31:51\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:40:49\"}"
                         },
                         "description": ""
                     },
@@ -5830,7 +6072,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T12:31:51\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:40:49\"}"
                         },
                         "description": ""
                     },
@@ -5875,7 +6117,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T12:31:51\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:40:49\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -6977,7 +7219,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T12:31:51\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T21:40:49\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7022,7 +7264,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T12:31:51\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:40:49\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7283,7 +7525,7 @@
             "description": "Taux de change (consolidation multi-devise).",
             "item": [
                 {
-                    "name": "GET api\/v1\/superadmin\/roles",
+                    "name": "Matrice \u00ab R\u00f4les et permissions \u00bb (Figma 11) : colonnes, domaines, cellules all|partial|none.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -7325,7 +7567,7 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/superadmin\/permissions",
+                    "name": "Liste plate des permissions techniques (compatibilit\u00e9).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -7367,7 +7609,7 @@
                     ]
                 },
                 {
-                    "name": "PUT api\/v1\/superadmin\/roles\/{role_id}",
+                    "name": "Sync plat de permissions techniques (compatibilit\u00e9 \/ superadmin).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -7410,6 +7652,115 @@
                             "code": 200,
                             "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"admin\"\n        }\n    ],\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Lien d\u2019invitation (public) : `GET` pour afficher, `POST` avec `password` pour cr\u00e9er le compte.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/invitations\/:token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/invitations\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "architecto",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"ok\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/invitations\/{token}\/accept",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/invitations\/:token\/accept",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/invitations\/:token\/accept",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "architecto",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"b\",\"password\":\"]|{+-0pBNvYg\",\"phone_number\":\"h\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
                         },
                         {
                             "header": [],
@@ -7552,7 +7903,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"12:31\",\"closes_at\":\"12:31\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:40\",\"closes_at\":\"21:40\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -7687,7 +8038,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T12:31:51\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:40:49\"}"
                         },
                         "description": ""
                     },
@@ -7872,7 +8223,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"12:31\",\"closes_at\":\"12:31\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:40\",\"closes_at\":\"21:40\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -8100,7 +8451,818 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/roles",
+                    "name": "\u00ab Utilisateurs et \u00e9quipe \u00bb : KPIs, compteurs d\u2019onglets, taux MFA, activit\u00e9 sensible 24 h.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/overview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/overview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"kpis\": {\n            \"active_users\": {\n                \"value\": 12,\n                \"new_this_month\": 2\n            },\n            \"managers\": {\n                \"value\": 3,\n                \"multi_agency\": 1\n            },\n            \"invitations\": {\n                \"value\": 1,\n                \"expiring_soon\": 0\n            },\n            \"connections_today\": {\n                \"value\": 8,\n                \"team_percent\": 67\n            }\n        },\n        \"mfa\": {\n            \"enrolled\": 5,\n            \"percent\": 42,\n            \"required\": 3\n        },\n        \"tabs\": [\n            {\n                \"code\": \"users\",\n                \"label\": \"Utilisateurs\",\n                \"count\": 12\n            }\n        ],\n        \"filters\": {\n            \"agencies\": [],\n            \"roles\": [],\n            \"statuses\": []\n        },\n        \"recent_activity\": []\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Annuaire pagin\u00e9 (`q`, `agency_id`, `role`, `status=active|inactive`, `period=day|week|month` sur la derni\u00e8re connexion).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"role\":\"architecto\",\"status\":\"inactive\",\"period\":\"day\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"fullname\": \"Claire Caissier\",\n            \"email\": \"caissier@elegance.local\",\n            \"phone_number\": null,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"status\": true,\n            \"roles\": [\n                \"caissier\"\n            ]\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Fiche membre : profil, agences, MFA, sessions.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"fullname\": \"Claire Caissier\",\n        \"email\": \"caissier@elegance.local\",\n        \"phone_number\": null,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"status\": true,\n        \"roles\": [\n            \"caissier\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/team\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"b\",\"first_name\":\"n\",\"last_name\":\"g\",\"job_title\":\"z\",\"employee_number\":\"m\",\"phone_number\":\"i\",\"email\":\"okon.justina@example.com\",\"role\":\"architecto\",\"agency_id\":16,\"agency_ids\":[16],\"mfa_required\":false,\"status\":true}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"fullname\": \"Claire Caissier\",\n        \"email\": \"caissier@elegance.local\",\n        \"phone_number\": null,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"status\": true,\n        \"roles\": [\n            \"caissier\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/team\/users\/{user_id}\/disable",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users\/:user_id\/disable",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users\/:user_id\/disable",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"fullname\": \"Claire Caissier\",\n        \"email\": \"caissier@elegance.local\",\n        \"phone_number\": null,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"status\": true,\n        \"roles\": [\n            \"caissier\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/team\/users\/{user_id}\/enable",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users\/:user_id\/enable",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users\/:user_id\/enable",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"fullname\": \"Claire Caissier\",\n        \"email\": \"caissier@elegance.local\",\n        \"phone_number\": null,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"status\": true,\n        \"roles\": [\n            \"caissier\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/team\/users\/{user_id}\/sessions",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users\/:user_id\/sessions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users\/:user_id\/sessions",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"fullname\": \"Claire Caissier\",\n        \"email\": \"caissier@elegance.local\",\n        \"phone_number\": null,\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"status\": true,\n        \"roles\": [\n            \"caissier\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE api\/v1\/team\/users\/{user_id}\/sessions\/{tokenId}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/users\/:user_id\/sessions\/:tokenId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/users\/:user_id\/sessions\/:tokenId",
+                            "variable": [
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                },
+                                {
+                                    "id": "tokenId",
+                                    "key": "tokenId",
+                                    "value": "architecto",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Activit\u00e9 r\u00e9cente \u00bb de l\u2019annuaire (\u00e9v\u00e9nements sensibles, 24 h par d\u00e9faut).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/activity",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/activity"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"ok\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/team\/invitations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/invitations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/invitations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"ok\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Inviter un membre \u00bb : r\u00f4le, agences (multi-affectation), MFA exig\u00e9e ; lien valable 72 h envoy\u00e9 par e-mail.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/invitations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/invitations"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"gbailey@example.net\",\"fullname\":\"m\",\"role\":\"architecto\",\"agency_ids\":[16],\"require_mfa\":false}"
+                        },
+                        "description": "`meta.sensitive_permissions` liste les droits sensibles du r\u00f4le choisi."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/team\/invitations\/{invitation_id}\/resend",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/invitations\/:invitation_id\/resend",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/invitations\/:invitation_id\/resend",
+                            "variable": [
+                                {
+                                    "id": "invitation_id",
+                                    "key": "invitation_id",
+                                    "value": 16,
+                                    "description": "The ID of the invitation."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/team\/invitations\/{invitation_id}\/revoke",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/invitations\/:invitation_id\/revoke",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/invitations\/:invitation_id\/revoke",
+                            "variable": [
+                                {
+                                    "id": "invitation_id",
+                                    "key": "invitation_id",
+                                    "value": 16,
+                                    "description": "The ID of the invitation."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "D\u00e9marre l\u2019enr\u00f4lement MFA (TOTP) pour l\u2019utilisateur courant.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/mfa\/setup",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/mfa\/setup"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/team\/mfa\/confirm",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/mfa\/confirm",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/mfa\/confirm"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"architecto\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/team\/mfa\/disable",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/team\/mfa\/disable",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/team\/mfa\/disable"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"|]|{+-\",\"code\":\"architecto\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Cr\u00e9\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Matrice \u00ab R\u00f4les et permissions \u00bb (Figma 11) : colonnes, domaines, cellules all|partial|none.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -8130,7 +9292,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"caissier\",\n            \"permissions\": [\n                \"deposits.view\",\n                \"cash.manage\"\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"manager\",\n            \"permissions\": [\n                \"reports.view\",\n                \"settings.manage\"\n            ]\n        }\n    ],\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"columns\": [\n            {\n                \"code\": \"view\",\n                \"label\": \"Consultation\"\n            }\n        ],\n        \"domains\": [\n            {\n                \"code\": \"clients\",\n                \"label\": \"Clients\"\n            }\n        ],\n        \"roles\": [\n            {\n                \"id\": 1,\n                \"name\": \"admin\",\n                \"label\": \"Admin\",\n                \"system\": true,\n                \"cells\": {\n                    \"clients\": \"all\"\n                },\n                \"summary\": {\n                    \"permissions\": 40,\n                    \"domains\": 10\n                }\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -8142,7 +9304,209 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/permissions",
+                    "name": "Formulaire \u00ab Cr\u00e9er un r\u00f4le \u00bb : catalogue coch\u00e9 \/ verrouill\u00e9 selon les droits du demandeur.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/roles\/catalog",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/roles\/catalog"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"columns\": {\n            \"view\": \"Consultation\",\n            \"create\": \"Cr\u00e9ation\"\n        },\n        \"catalog\": [\n            {\n                \"domain\": \"clients\",\n                \"label\": \"Clients\",\n                \"actions\": []\n            }\n        ],\n        \"summary\": {\n            \"permissions\": 0,\n            \"total\": 40,\n            \"domains\": 0,\n            \"sensitive\": []\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Cr\u00e9er un r\u00f4le \u00bb personnalis\u00e9 (non syst\u00e8me).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/roles",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/roles"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"label\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"scope\":\"architecto\",\"data_level\":\"architecto\",\"agency_ids\":[16],\"permissions\":[\"architecto\"],\"confirm_sensitive\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"custom_1_superviseur\",\n        \"label\": \"Superviseur\",\n        \"system\": false,\n        \"permissions\": [\n            \"cash.view\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/roles\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/roles\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/roles\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the role."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"custom_1_superviseur\",\n        \"label\": \"Superviseur\",\n        \"system\": false,\n        \"permissions\": [\n            \"cash.view\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Mise \u00e0 jour Figma (libell\u00e9 \/ droits fins) ou sync plat historique si seul `permissions` technique est envoy\u00e9.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/roles\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/roles\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the role."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"label\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"agency_ids\":[16],\"permissions\":[\"architecto\"],\"confirm_sensitive\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"custom_1_superviseur\",\n        \"label\": \"Superviseur\",\n        \"system\": false,\n        \"permissions\": [\n            \"cash.view\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Liste plate des permissions techniques (compatibilit\u00e9).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -8180,65 +9544,6 @@
                             "code": 401,
                             "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
                             "name": "Non authentifi\u00e9"
-                        }
-                    ]
-                },
-                {
-                    "name": "PUT api\/v1\/roles\/{role_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/roles\/:role_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/roles\/:role_id",
-                            "variable": [
-                                {
-                                    "id": "role_id",
-                                    "key": "role_id",
-                                    "value": 1,
-                                    "description": "The ID of the role."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "X-Agency-Id",
-                                "value": "1"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"permissions\":[\"architecto\"]}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"caissier\",\n        \"permissions\": [\n            \"deposits.view\"\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
-                            "name": "Succ\u00e8s"
-                        },
-                        {
-                            "header": [],
-                            "code": 401,
-                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
-                            "name": "Non authentifi\u00e9"
-                        },
-                        {
-                            "header": [],
-                            "code": 422,
-                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
-                            "name": "Validation"
                         }
                     ]
                 },
@@ -8557,7 +9862,49 @@
             "description": "",
             "item": [
                 {
-                    "name": "GET api\/v1\/superadmin\/pressings",
+                    "name": "Hub superadmin (Figma 13) : KPIs r\u00e9seau, alertes, raccourcis.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/superadmin\/overview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/superadmin\/overview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"kpis\": {\n            \"pressings\": {\n                \"value\": 18,\n                \"total\": 20\n            },\n            \"agencies\": {\n                \"value\": 54\n            },\n            \"users\": {\n                \"value\": 320\n            },\n            \"licenses\": {\n                \"active\": 16,\n                \"expiring\": 3,\n                \"suspended\": 1\n            }\n        },\n        \"attention\": {\n            \"licenses_expiring\": [],\n            \"inactive_pressings\": []\n        },\n        \"shortcuts\": [\n            {\n                \"code\": \"licenses\",\n                \"label\": \"Licences\",\n                \"endpoint\": \"\/api\/v1\/superadmin\/licenses\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Liste pressings (Figma 13A) enrichie licence \/ compteurs.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -8809,7 +10156,7 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/superadmin\/agencies",
+                    "name": "Agences multi-pressings (Figma 13B).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -9061,7 +10408,7 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/superadmin\/users",
+                    "name": "Utilisateurs multi-pressings (Figma 13B).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -9570,7 +10917,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T12:31:50\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:40:48\"}"
                         },
                         "description": ""
                     },
@@ -9709,7 +11056,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T12:31:50",
+                                    "value": "2026-10-22T21:40:48",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -10658,7 +12005,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T12:31:51\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:40:49\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -11543,6 +12890,107 @@
                             "code": 422,
                             "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
                             "name": "Validation"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Synchronisation",
+            "description": "",
+            "item": [
+                {
+                    "name": "Centre de synchronisation (Figma 12) : KPIs r\u00e9seau, lots, appareils, alertes.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/sync\/center",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/sync\/center"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"agency_id\":16,\"days\":22}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"period\": {\n            \"days\": 30\n        },\n        \"kpis\": {\n            \"availability\": {\n                \"percent\": 99.2,\n                \"batches\": 48\n            },\n            \"online_agencies\": {\n                \"value\": 3,\n                \"total\": 4\n            },\n            \"pending_operations\": {\n                \"value\": 2\n            },\n            \"failed_batches\": {\n                \"value\": 1\n            }\n        },\n        \"agencies\": [\n            {\n                \"agency_id\": 1,\n                \"name\": \"Akwa\",\n                \"online\": true,\n                \"status_label\": \"En ligne \u00b7 synchronis\u00e9e\"\n            }\n        ],\n        \"batches\": [\n            {\n                \"id\": 12,\n                \"reference\": \"SYNC-261022-AB12\",\n                \"status\": \"completed\",\n                \"operations\": 3,\n                \"succeeded\": 3\n            }\n        ],\n        \"devices\": [],\n        \"alerts\": []\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/sync\/batches\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/sync\/batches\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/sync\/batches\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 16,
+                                    "description": "The ID of the batch."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"ok\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
                         }
                     ]
                 }
