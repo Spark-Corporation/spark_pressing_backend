@@ -191,6 +191,19 @@ Le pipeline du dashboard et le kanban utilisent les 4 états serveur (`waiting`,
 | « Envoyer au client » | `POST /deposits/{id}/document/send` (`channel=whatsapp\|sms\|email`) | `share_url` signé 7 j, `open_url` (wa.me) |
 | « Annuler le dépôt » | `DELETE /deposits/{id}` (`reason`) | journalisé |
 
+### 7.0d Retraits (Figma 05)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Centre de retrait — KPI, retraits du jour, dépôts prêts | `GET /retrievals/center?q&date&agency_id&payment_status=paid\|unpaid&etat` | `meta.kpis` (prêts + pièces, à notifier SMS/WhatsApp, retraits + évolution, soldes impayés), `meta.today_schedule[]`, lignes + `notification` (À notifier / SMS envoyé / SMS lu / Relance requise) |
+| « Notifier le client » | `POST /deposits/{id}/notify` (`channel=sms\|whatsapp`), `POST /deposits/{id}/notification-read` | `open_url` wa.me pour WhatsApp |
+| Vêtements classés depuis 30+ jours | `GET /retrievals/aged` | `buckets` 30–60 / 61–90 / 90+, `items[]` (`waiting_days`, `decision`) |
+| Relancer / Frais / Escalade / Traité | `POST /deposits/{id}/aged-action` (`action`, `amount` pour les frais de garde) | — |
+| Traiter le retrait — écran | `GET /deposits/{id}/checkout` | `header`, `steps[]`, `units[]` (restant, vérification), `balance` (`blocked`, `can_override`), `receiver`, `conditions`, `after_confirm` |
+| « Confirmer le retrait » | `POST /deposits/{id}/checkout` (`units[]`, `payment{amount,method,received}`, `condition`, `remarks`, `receiver_type`, `receiver_name`, `identity_confirmed`, `override_reason`, `notify_sms`) | `partial`, `change_due`, `deposit`, `slip_url` |
+
+La dérogation « solde impayé » exige la permission `deposits.override` (manager, admin) : relancer `RolePermissionSeeder` après déploiement.
+
 ### 7.0c Clients & fidélité (Figma 03)
 
 | Écran / bloc | Endpoint | Champs |

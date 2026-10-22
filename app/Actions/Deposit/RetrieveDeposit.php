@@ -10,9 +10,9 @@ use Illuminate\Validation\ValidationException;
 
 class RetrieveDeposit
 {
-    public function handle(User $cashier, Deposit $deposit, array $payload = []): Deposit
+    public function handle(User $cashier, Deposit $deposit, array $payload = [], bool $override = false): Deposit
     {
-        return DB::transaction(function () use ($cashier, $deposit, $payload) {
+        return DB::transaction(function () use ($cashier, $deposit, $payload, $override) {
             /** @var Deposit $locked */
             $locked = Deposit::query()->whereKey($deposit->id)->lockForUpdate()->firstOrFail();
 
@@ -23,7 +23,7 @@ class RetrieveDeposit
 
             $pressing = $locked->pressing;
 
-            if ($pressing->block_retrieve_if_unpaid && ! $locked->isSettled()) {
+            if ($pressing->block_retrieve_if_unpaid && ! $locked->isSettled() && ! $override) {
                 throw ValidationException::withMessages([
                     'deposit' => 'Retrait bloqué : solde impayé.',
                 ]);

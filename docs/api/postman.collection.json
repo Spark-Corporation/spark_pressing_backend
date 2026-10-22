@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "872b0071-8ea1-4738-b143-d37a0d10a4bc",
+        "_postman_id": "4df27d48-19b4-428f-b282-48fdf1b6f4d6",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:29:13\",\"retrieve_date\":\"2026-10-22T11:29:13\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:36:51\",\"retrieve_date\":\"2026-10-22T11:36:51\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:29:13\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:36:51\"}"
                         },
                         "description": ""
                     },
@@ -1679,6 +1679,373 @@
                             "code": 401,
                             "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
                             "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Centre de retrait \u00bb : KPI, retraits du jour, d\u00e9p\u00f4ts pr\u00eats (filtres q, date, agency_id, payment_status, etat).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrievals\/center",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrievals\/center"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n            \"code\": \"AK-0001-EL\",\n            \"qr_token\": \"qr-demo-token\",\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"currency\": \"XAF\",\n            \"client_id\": 1,\n            \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n            \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n            \"retrieved_at\": null,\n            \"subtotal\": 3500,\n            \"collection_fee\": 0,\n            \"delivery_fee\": 0,\n            \"discount\": 0,\n            \"discount_percent\": 0,\n            \"promo_code\": null,\n            \"points_earned\": 35,\n            \"points_redeemed\": 0,\n            \"total\": 3500,\n            \"advanced\": 1000,\n            \"left_to_pay\": 2500,\n            \"payment_method\": \"cash\",\n            \"status\": \"open\",\n            \"etat\": \"waiting\",\n            \"etat_label\": \"\u00c0 trier\",\n            \"colonne\": \"attente\",\n            \"workshop_status\": {\n                \"code\": \"waiting\",\n                \"label\": \"\u00c0 trier\"\n            },\n            \"payment_status\": {\n                \"code\": \"partial\",\n                \"label\": \"Partiellement pay\u00e9\"\n            },\n            \"service\": {\n                \"code\": \"express\",\n                \"label\": \"Express\"\n            },\n            \"is_express\": true,\n            \"express_supplement\": 1000,\n            \"pieces_count\": 2,\n            \"weight_kg_total\": 0,\n            \"quantity_label\": \"2 pi\u00e8ces\",\n            \"terminal\": \"POS-01\",\n            \"local_ref\": null,\n            \"storage_location\": null,\n            \"discount_reason\": null,\n            \"sync_status\": {\n                \"code\": \"synced\",\n                \"label\": \"\u00c0 jour\",\n                \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n            },\n            \"delivery_status\": null,\n            \"notes\": null,\n            \"items_count\": 2,\n            \"articles_label\": \"2 pi\u00e8ces\",\n            \"client_name\": \"Jean Client\",\n            \"client_phone\": \"690000001\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Akwa\"\n            },\n            \"client\": {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"agency_id\": 1,\n                \"code\": \"CLI-00001\",\n                \"fullname\": \"Jean Client\",\n                \"email\": \"jean.client@example.com\",\n                \"phone_number\": \"690000001\",\n                \"address\": null,\n                \"city\": \"Douala\",\n                \"loyalty_points\": 120,\n                \"wallet_balance\": 5000,\n                \"sponsor_code\": \"JEAN01\",\n                \"referred_by_id\": null,\n                \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n                \"status\": true,\n                \"first_name\": \"Jean\",\n                \"last_name\": \"Client\",\n                \"phone_secondary\": null,\n                \"contact_preference\": \"whatsapp\",\n                \"consent_sms\": true,\n                \"consent_email\": false,\n                \"archived_at\": null,\n                \"tier\": {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\"\n                }\n            },\n            \"units\": [\n                {\n                    \"id\": 1,\n                    \"article_id\": 1,\n                    \"service_id\": 1,\n                    \"designation\": \"Chemise\",\n                    \"pricing_type\": \"piece\",\n                    \"quantity\": 2,\n                    \"unit_price\": 1000,\n                    \"line_total\": 2000,\n                    \"state\": null,\n                    \"is_express\": true,\n                    \"express_supplement\": 1000,\n                    \"color\": \"Blanches\",\n                    \"defects\": [\n                        {\n                            \"code\": \"stain\",\n                            \"label\": \"Tach\u00e9\"\n                        }\n                    ],\n                    \"internal_notes\": \"Tache au col\"\n                }\n            ],\n            \"transactions\": [\n                {\n                    \"id\": 1,\n                    \"amount\": 1000,\n                    \"type\": \"in\",\n                    \"payment_method\": \"cash\",\n                    \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n                }\n            ],\n            \"notification\": {\n                \"code\": \"sent\",\n                \"label\": \"SMS envoy\u00e9\",\n                \"channel\": \"sms\",\n                \"at\": \"2026-10-20T09:42:00+00:00\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1,\n        \"kpis\": {\n            \"ready_today\": {\n                \"value\": 18,\n                \"pieces\": 47\n            },\n            \"awaiting_notification\": {\n                \"value\": 5,\n                \"by_channel\": {\n                    \"sms\": 3,\n                    \"whatsapp\": 2\n                }\n            },\n            \"retrieved_today\": {\n                \"value\": 27,\n                \"delta_percent\": 12,\n                \"compared_to\": \"2026-10-13\"\n            },\n            \"unpaid_balances\": {\n                \"value\": 86500,\n                \"deposits\": 7\n            }\n        },\n        \"today_schedule\": [\n            {\n                \"id\": 1,\n                \"code\": \"BG-02641\",\n                \"time\": \"2026-10-20T10:30:00+00:00\",\n                \"client\": \"Aminata Diarra\",\n                \"pieces\": 7,\n                \"payment\": {\n                    \"code\": \"to_collect\",\n                    \"label\": \"\u00c0 encaisser\"\n                }\n            }\n        ]\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab V\u00eatements class\u00e9s depuis 30+ jours \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/retrievals\/aged",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/retrievals\/aged"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"to_handle\": 12,\n        \"buckets\": {\n            \"30_60\": {\n                \"count\": 4,\n                \"pieces\": 18,\n                \"value\": 64500\n            },\n            \"61_90\": {\n                \"count\": 5,\n                \"pieces\": 27,\n                \"value\": 93000\n            },\n            \"90_plus\": {\n                \"count\": 3,\n                \"pieces\": 12,\n                \"value\": 41000\n            }\n        },\n        \"items\": [\n            {\n                \"id\": 1,\n                \"code\": \"BG-02588\",\n                \"client\": \"Aminata Diarra\",\n                \"phone_number\": \"0748221903\",\n                \"ready_at\": \"2026-09-19T10:00:00+00:00\",\n                \"retrieve_date\": \"2026-09-20T10:00:00+00:00\",\n                \"waiting_days\": 31,\n                \"pieces\": 7,\n                \"value\": 18500,\n                \"storage_fee\": 0,\n                \"decision\": {\n                    \"code\": \"remind\",\n                    \"label\": \"Relancer\"\n                }\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Relancer \/ frais de garde \/ escalade \/ trait\u00e9 sur un d\u00e9p\u00f4t ancien.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/deposits\/:deposit_id\/aged-action",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/deposits\/:deposit_id\/aged-action",
+                            "variable": [
+                                {
+                                    "id": "deposit_id",
+                                    "key": "deposit_id",
+                                    "value": 16,
+                                    "description": "The ID of the deposit."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"action\":\"handled\",\"amount\":22}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"code\": \"AK-0001-EL\",\n        \"qr_token\": \"qr-demo-token\",\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"currency\": \"XAF\",\n        \"client_id\": 1,\n        \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n        \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n        \"retrieved_at\": null,\n        \"subtotal\": 3500,\n        \"collection_fee\": 0,\n        \"delivery_fee\": 0,\n        \"discount\": 0,\n        \"discount_percent\": 0,\n        \"promo_code\": null,\n        \"points_earned\": 35,\n        \"points_redeemed\": 0,\n        \"total\": 3500,\n        \"advanced\": 1000,\n        \"left_to_pay\": 2500,\n        \"payment_method\": \"cash\",\n        \"status\": \"open\",\n        \"etat\": \"waiting\",\n        \"etat_label\": \"\u00c0 trier\",\n        \"colonne\": \"attente\",\n        \"workshop_status\": {\n            \"code\": \"waiting\",\n            \"label\": \"\u00c0 trier\"\n        },\n        \"payment_status\": {\n            \"code\": \"partial\",\n            \"label\": \"Partiellement pay\u00e9\"\n        },\n        \"service\": {\n            \"code\": \"express\",\n            \"label\": \"Express\"\n        },\n        \"is_express\": true,\n        \"express_supplement\": 1000,\n        \"pieces_count\": 2,\n        \"weight_kg_total\": 0,\n        \"quantity_label\": \"2 pi\u00e8ces\",\n        \"terminal\": \"POS-01\",\n        \"local_ref\": null,\n        \"storage_location\": null,\n        \"discount_reason\": null,\n        \"sync_status\": {\n            \"code\": \"synced\",\n            \"label\": \"\u00c0 jour\",\n            \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n        },\n        \"delivery_status\": null,\n        \"notes\": null,\n        \"items_count\": 2,\n        \"articles_label\": \"2 pi\u00e8ces\",\n        \"client_name\": \"Jean Client\",\n        \"client_phone\": \"690000001\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Akwa\"\n        },\n        \"client\": {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"code\": \"CLI-00001\",\n            \"fullname\": \"Jean Client\",\n            \"email\": \"jean.client@example.com\",\n            \"phone_number\": \"690000001\",\n            \"address\": null,\n            \"city\": \"Douala\",\n            \"loyalty_points\": 120,\n            \"wallet_balance\": 5000,\n            \"sponsor_code\": \"JEAN01\",\n            \"referred_by_id\": null,\n            \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n            \"status\": true,\n            \"first_name\": \"Jean\",\n            \"last_name\": \"Client\",\n            \"phone_secondary\": null,\n            \"contact_preference\": \"whatsapp\",\n            \"consent_sms\": true,\n            \"consent_email\": false,\n            \"archived_at\": null,\n            \"tier\": {\n                \"code\": \"essentiel\",\n                \"label\": \"Essentiel\"\n            }\n        },\n        \"units\": [\n            {\n                \"id\": 1,\n                \"article_id\": 1,\n                \"service_id\": 1,\n                \"designation\": \"Chemise\",\n                \"pricing_type\": \"piece\",\n                \"quantity\": 2,\n                \"unit_price\": 1000,\n                \"line_total\": 2000,\n                \"state\": null,\n                \"is_express\": true,\n                \"express_supplement\": 1000,\n                \"color\": \"Blanches\",\n                \"defects\": [\n                    {\n                        \"code\": \"stain\",\n                        \"label\": \"Tach\u00e9\"\n                    }\n                ],\n                \"internal_notes\": \"Tache au col\"\n            }\n        ],\n        \"transactions\": [\n            {\n                \"id\": 1,\n                \"amount\": 1000,\n                \"type\": \"in\",\n                \"payment_method\": \"cash\",\n                \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n            }\n        ],\n        \"notification\": {\n            \"code\": \"sent\",\n            \"label\": \"SMS envoy\u00e9\",\n            \"channel\": \"sms\",\n            \"at\": \"2026-10-20T09:42:00+00:00\"\n        },\n        \"open_url\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Notifier le client \u00bb (SMS ou WhatsApp).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/deposits\/:deposit_id\/notify",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/deposits\/:deposit_id\/notify",
+                            "variable": [
+                                {
+                                    "id": "deposit_id",
+                                    "key": "deposit_id",
+                                    "value": 16,
+                                    "description": "The ID of the deposit."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"channel\":\"sms\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"code\": \"AK-0001-EL\",\n        \"qr_token\": \"qr-demo-token\",\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"currency\": \"XAF\",\n        \"client_id\": 1,\n        \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n        \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n        \"retrieved_at\": null,\n        \"subtotal\": 3500,\n        \"collection_fee\": 0,\n        \"delivery_fee\": 0,\n        \"discount\": 0,\n        \"discount_percent\": 0,\n        \"promo_code\": null,\n        \"points_earned\": 35,\n        \"points_redeemed\": 0,\n        \"total\": 3500,\n        \"advanced\": 1000,\n        \"left_to_pay\": 2500,\n        \"payment_method\": \"cash\",\n        \"status\": \"open\",\n        \"etat\": \"waiting\",\n        \"etat_label\": \"\u00c0 trier\",\n        \"colonne\": \"attente\",\n        \"workshop_status\": {\n            \"code\": \"waiting\",\n            \"label\": \"\u00c0 trier\"\n        },\n        \"payment_status\": {\n            \"code\": \"partial\",\n            \"label\": \"Partiellement pay\u00e9\"\n        },\n        \"service\": {\n            \"code\": \"express\",\n            \"label\": \"Express\"\n        },\n        \"is_express\": true,\n        \"express_supplement\": 1000,\n        \"pieces_count\": 2,\n        \"weight_kg_total\": 0,\n        \"quantity_label\": \"2 pi\u00e8ces\",\n        \"terminal\": \"POS-01\",\n        \"local_ref\": null,\n        \"storage_location\": null,\n        \"discount_reason\": null,\n        \"sync_status\": {\n            \"code\": \"synced\",\n            \"label\": \"\u00c0 jour\",\n            \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n        },\n        \"delivery_status\": null,\n        \"notes\": null,\n        \"items_count\": 2,\n        \"articles_label\": \"2 pi\u00e8ces\",\n        \"client_name\": \"Jean Client\",\n        \"client_phone\": \"690000001\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Akwa\"\n        },\n        \"client\": {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"code\": \"CLI-00001\",\n            \"fullname\": \"Jean Client\",\n            \"email\": \"jean.client@example.com\",\n            \"phone_number\": \"690000001\",\n            \"address\": null,\n            \"city\": \"Douala\",\n            \"loyalty_points\": 120,\n            \"wallet_balance\": 5000,\n            \"sponsor_code\": \"JEAN01\",\n            \"referred_by_id\": null,\n            \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n            \"status\": true,\n            \"first_name\": \"Jean\",\n            \"last_name\": \"Client\",\n            \"phone_secondary\": null,\n            \"contact_preference\": \"whatsapp\",\n            \"consent_sms\": true,\n            \"consent_email\": false,\n            \"archived_at\": null,\n            \"tier\": {\n                \"code\": \"essentiel\",\n                \"label\": \"Essentiel\"\n            }\n        },\n        \"units\": [\n            {\n                \"id\": 1,\n                \"article_id\": 1,\n                \"service_id\": 1,\n                \"designation\": \"Chemise\",\n                \"pricing_type\": \"piece\",\n                \"quantity\": 2,\n                \"unit_price\": 1000,\n                \"line_total\": 2000,\n                \"state\": null,\n                \"is_express\": true,\n                \"express_supplement\": 1000,\n                \"color\": \"Blanches\",\n                \"defects\": [\n                    {\n                        \"code\": \"stain\",\n                        \"label\": \"Tach\u00e9\"\n                    }\n                ],\n                \"internal_notes\": \"Tache au col\"\n            }\n        ],\n        \"transactions\": [\n            {\n                \"id\": 1,\n                \"amount\": 1000,\n                \"type\": \"in\",\n                \"payment_method\": \"cash\",\n                \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n            }\n        ],\n        \"notification\": {\n            \"code\": \"sent\",\n            \"label\": \"SMS envoy\u00e9\",\n            \"channel\": \"sms\",\n            \"at\": \"2026-10-20T09:42:00+00:00\"\n        },\n        \"open_url\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Marquer la notification comme lue (accus\u00e9 op\u00e9rateur ou saisie manuelle).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/deposits\/:deposit_id\/notification-read",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/deposits\/:deposit_id\/notification-read",
+                            "variable": [
+                                {
+                                    "id": "deposit_id",
+                                    "key": "deposit_id",
+                                    "value": 16,
+                                    "description": "The ID of the deposit."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n        \"code\": \"AK-0001-EL\",\n        \"qr_token\": \"qr-demo-token\",\n        \"pressing_id\": 1,\n        \"agency_id\": 1,\n        \"currency\": \"XAF\",\n        \"client_id\": 1,\n        \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n        \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n        \"retrieved_at\": null,\n        \"subtotal\": 3500,\n        \"collection_fee\": 0,\n        \"delivery_fee\": 0,\n        \"discount\": 0,\n        \"discount_percent\": 0,\n        \"promo_code\": null,\n        \"points_earned\": 35,\n        \"points_redeemed\": 0,\n        \"total\": 3500,\n        \"advanced\": 1000,\n        \"left_to_pay\": 2500,\n        \"payment_method\": \"cash\",\n        \"status\": \"open\",\n        \"etat\": \"waiting\",\n        \"etat_label\": \"\u00c0 trier\",\n        \"colonne\": \"attente\",\n        \"workshop_status\": {\n            \"code\": \"waiting\",\n            \"label\": \"\u00c0 trier\"\n        },\n        \"payment_status\": {\n            \"code\": \"partial\",\n            \"label\": \"Partiellement pay\u00e9\"\n        },\n        \"service\": {\n            \"code\": \"express\",\n            \"label\": \"Express\"\n        },\n        \"is_express\": true,\n        \"express_supplement\": 1000,\n        \"pieces_count\": 2,\n        \"weight_kg_total\": 0,\n        \"quantity_label\": \"2 pi\u00e8ces\",\n        \"terminal\": \"POS-01\",\n        \"local_ref\": null,\n        \"storage_location\": null,\n        \"discount_reason\": null,\n        \"sync_status\": {\n            \"code\": \"synced\",\n            \"label\": \"\u00c0 jour\",\n            \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n        },\n        \"delivery_status\": null,\n        \"notes\": null,\n        \"items_count\": 2,\n        \"articles_label\": \"2 pi\u00e8ces\",\n        \"client_name\": \"Jean Client\",\n        \"client_phone\": \"690000001\",\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Akwa\"\n        },\n        \"client\": {\n            \"id\": 1,\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"code\": \"CLI-00001\",\n            \"fullname\": \"Jean Client\",\n            \"email\": \"jean.client@example.com\",\n            \"phone_number\": \"690000001\",\n            \"address\": null,\n            \"city\": \"Douala\",\n            \"loyalty_points\": 120,\n            \"wallet_balance\": 5000,\n            \"sponsor_code\": \"JEAN01\",\n            \"referred_by_id\": null,\n            \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n            \"status\": true,\n            \"first_name\": \"Jean\",\n            \"last_name\": \"Client\",\n            \"phone_secondary\": null,\n            \"contact_preference\": \"whatsapp\",\n            \"consent_sms\": true,\n            \"consent_email\": false,\n            \"archived_at\": null,\n            \"tier\": {\n                \"code\": \"essentiel\",\n                \"label\": \"Essentiel\"\n            }\n        },\n        \"units\": [\n            {\n                \"id\": 1,\n                \"article_id\": 1,\n                \"service_id\": 1,\n                \"designation\": \"Chemise\",\n                \"pricing_type\": \"piece\",\n                \"quantity\": 2,\n                \"unit_price\": 1000,\n                \"line_total\": 2000,\n                \"state\": null,\n                \"is_express\": true,\n                \"express_supplement\": 1000,\n                \"color\": \"Blanches\",\n                \"defects\": [\n                    {\n                        \"code\": \"stain\",\n                        \"label\": \"Tach\u00e9\"\n                    }\n                ],\n                \"internal_notes\": \"Tache au col\"\n            }\n        ],\n        \"transactions\": [\n            {\n                \"id\": 1,\n                \"amount\": 1000,\n                \"type\": \"in\",\n                \"payment_method\": \"cash\",\n                \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n            }\n        ],\n        \"notification\": {\n            \"code\": \"sent\",\n            \"label\": \"SMS envoy\u00e9\",\n            \"channel\": \"sms\",\n            \"at\": \"2026-10-20T09:42:00+00:00\"\n        },\n        \"open_url\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Traiter le retrait \u00bb \u2014 donn\u00e9es de l\u2019\u00e9cran.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/deposits\/:deposit_id\/checkout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/deposits\/:deposit_id\/checkout",
+                            "variable": [
+                                {
+                                    "id": "deposit_id",
+                                    "key": "deposit_id",
+                                    "value": 16,
+                                    "description": "The ID of the deposit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"deposit\": {\n            \"id\": 1,\n            \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n            \"code\": \"AK-0001-EL\",\n            \"qr_token\": \"qr-demo-token\",\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"currency\": \"XAF\",\n            \"client_id\": 1,\n            \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n            \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n            \"retrieved_at\": null,\n            \"subtotal\": 3500,\n            \"collection_fee\": 0,\n            \"delivery_fee\": 0,\n            \"discount\": 0,\n            \"discount_percent\": 0,\n            \"promo_code\": null,\n            \"points_earned\": 35,\n            \"points_redeemed\": 0,\n            \"total\": 3500,\n            \"advanced\": 1000,\n            \"left_to_pay\": 2500,\n            \"payment_method\": \"cash\",\n            \"status\": \"open\",\n            \"etat\": \"waiting\",\n            \"etat_label\": \"\u00c0 trier\",\n            \"colonne\": \"attente\",\n            \"workshop_status\": {\n                \"code\": \"waiting\",\n                \"label\": \"\u00c0 trier\"\n            },\n            \"payment_status\": {\n                \"code\": \"partial\",\n                \"label\": \"Partiellement pay\u00e9\"\n            },\n            \"service\": {\n                \"code\": \"express\",\n                \"label\": \"Express\"\n            },\n            \"is_express\": true,\n            \"express_supplement\": 1000,\n            \"pieces_count\": 2,\n            \"weight_kg_total\": 0,\n            \"quantity_label\": \"2 pi\u00e8ces\",\n            \"terminal\": \"POS-01\",\n            \"local_ref\": null,\n            \"storage_location\": null,\n            \"discount_reason\": null,\n            \"sync_status\": {\n                \"code\": \"synced\",\n                \"label\": \"\u00c0 jour\",\n                \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n            },\n            \"delivery_status\": null,\n            \"notes\": null,\n            \"items_count\": 2,\n            \"articles_label\": \"2 pi\u00e8ces\",\n            \"client_name\": \"Jean Client\",\n            \"client_phone\": \"690000001\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Akwa\"\n            },\n            \"client\": {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"agency_id\": 1,\n                \"code\": \"CLI-00001\",\n                \"fullname\": \"Jean Client\",\n                \"email\": \"jean.client@example.com\",\n                \"phone_number\": \"690000001\",\n                \"address\": null,\n                \"city\": \"Douala\",\n                \"loyalty_points\": 120,\n                \"wallet_balance\": 5000,\n                \"sponsor_code\": \"JEAN01\",\n                \"referred_by_id\": null,\n                \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n                \"status\": true,\n                \"first_name\": \"Jean\",\n                \"last_name\": \"Client\",\n                \"phone_secondary\": null,\n                \"contact_preference\": \"whatsapp\",\n                \"consent_sms\": true,\n                \"consent_email\": false,\n                \"archived_at\": null,\n                \"tier\": {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\"\n                }\n            },\n            \"units\": [\n                {\n                    \"id\": 1,\n                    \"article_id\": 1,\n                    \"service_id\": 1,\n                    \"designation\": \"Chemise\",\n                    \"pricing_type\": \"piece\",\n                    \"quantity\": 2,\n                    \"unit_price\": 1000,\n                    \"line_total\": 2000,\n                    \"state\": null,\n                    \"is_express\": true,\n                    \"express_supplement\": 1000,\n                    \"color\": \"Blanches\",\n                    \"defects\": [\n                        {\n                            \"code\": \"stain\",\n                            \"label\": \"Tach\u00e9\"\n                        }\n                    ],\n                    \"internal_notes\": \"Tache au col\"\n                }\n            ],\n            \"transactions\": [\n                {\n                    \"id\": 1,\n                    \"amount\": 1000,\n                    \"type\": \"in\",\n                    \"payment_method\": \"cash\",\n                    \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n                }\n            ]\n        },\n        \"header\": {\n            \"client\": {\n                \"id\": 1,\n                \"fullname\": \"Aminata Diarra\",\n                \"phone_number\": \"0748221903\",\n                \"client_since\": \"2025-03-02\",\n                \"loyalty_points\": 740,\n                \"previous_unpaid_count\": 0,\n                \"previous_unpaid_amount\": 0\n            },\n            \"received_by\": \"Gr\u00e2ce A.\",\n            \"order_label\": \"7 pi\u00e8ces \u00b7 Classique\",\n            \"badges\": [\n                {\n                    \"code\": \"workshop_done\",\n                    \"label\": \"Atelier termin\u00e9\"\n                },\n                {\n                    \"code\": \"due\",\n                    \"label\": \"4 000 FCFA dus\"\n                }\n            ]\n        },\n        \"steps\": [\n            {\n                \"code\": \"in_progress\",\n                \"label\": \"Pris en charge\",\n                \"state\": \"done\",\n                \"at\": \"2026-09-27T09:00:00+00:00\",\n                \"by\": \"Yao\"\n            },\n            {\n                \"code\": \"classed\",\n                \"label\": \"Pr\u00eat\",\n                \"state\": \"done\",\n                \"at\": \"2026-09-28T08:46:00+00:00\",\n                \"by\": \"Gr\u00e2ce\"\n            },\n            {\n                \"code\": \"deposit.retrieved\",\n                \"label\": \"Remis\",\n                \"state\": \"current\",\n                \"at\": null,\n                \"by\": null\n            }\n        ],\n        \"units\": [\n            {\n                \"id\": 1,\n                \"designation\": \"Chemise homme\",\n                \"note\": \"Blanche \u00b7 Tach\u00e9\",\n                \"quantity\": 3,\n                \"retrieved\": 0,\n                \"remaining\": 3,\n                \"verification\": {\n                    \"code\": \"compliant\",\n                    \"label\": \"Conforme\"\n                }\n            }\n        ],\n        \"balance\": {\n            \"total\": 18500,\n            \"paid\": 14500,\n            \"left_to_pay\": 4000,\n            \"blocked\": true,\n            \"block_reason\": \"Retrait bloqu\u00e9 : solde impay\u00e9\",\n            \"can_override\": false\n        },\n        \"receiver\": {\n            \"types\": [\n                {\n                    \"code\": \"client\",\n                    \"label\": \"Client lui-m\u00eame\"\n                },\n                {\n                    \"code\": \"third_party\",\n                    \"label\": \"Tiers autoris\u00e9\"\n                }\n            ],\n            \"default_name\": \"Aminata Diarra\"\n        },\n        \"conditions\": [\n            {\n                \"code\": \"compliant\",\n                \"label\": \"Conforme\"\n            },\n            {\n                \"code\": \"client_reserve\",\n                \"label\": \"R\u00e9serve client\"\n            },\n            {\n                \"code\": \"anomaly\",\n                \"label\": \"Anomalie constat\u00e9e\"\n            }\n        ],\n        \"after_confirm\": {\n            \"print_slip\": {\n                \"enabled\": true,\n                \"terminal\": \"POS-02\"\n            },\n            \"notify_sms\": {\n                \"enabled\": true,\n                \"destination\": \"\u2022\u2022\u2022\u2022 03\"\n            }\n        },\n        \"audit\": [\n            {\n                \"at\": \"2026-10-20T10:37:00+00:00\",\n                \"actor\": \"Gr\u00e2ce A.\",\n                \"action\": \"deposit.workshop\",\n                \"message\": \"\u00c9tat atelier pass\u00e9 \u00e0 \u00ab Class\u00e9 \u00bb\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Confirmer le retrait \u00bb : encaissement, remise (totale ou partielle), \u00e9tat des pi\u00e8ces,\nr\u00e9ceptionnaire et journal enregistr\u00e9s ensemble.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/deposits\/:deposit_id\/checkout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/deposits\/:deposit_id\/checkout",
+                            "variable": [
+                                {
+                                    "id": "deposit_id",
+                                    "key": "deposit_id",
+                                    "value": 16,
+                                    "description": "The ID of the deposit."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"condition\":\"compliant\",\"remarks\":\"n\",\"receiver_type\":\"client\",\"receiver_name\":\"z\",\"identity_confirmed\":true,\"payment\":{\"amount\":8,\"method\":\"mobile_money\",\"received\":60},\"override_reason\":\"d\",\"notify_sms\":false,\"units\":[{\"id\":16,\"quantity\":39,\"verification\":\"compliant\"}]}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"partial\": true,\n        \"change_due\": 0,\n        \"deposit\": {\n            \"id\": 1,\n            \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n            \"code\": \"AK-0001-EL\",\n            \"qr_token\": \"qr-demo-token\",\n            \"pressing_id\": 1,\n            \"agency_id\": 1,\n            \"currency\": \"XAF\",\n            \"client_id\": 1,\n            \"deposit_date\": \"2026-10-14T09:00:00+00:00\",\n            \"retrieve_date\": \"2026-10-16T09:00:00+00:00\",\n            \"retrieved_at\": null,\n            \"subtotal\": 3500,\n            \"collection_fee\": 0,\n            \"delivery_fee\": 0,\n            \"discount\": 0,\n            \"discount_percent\": 0,\n            \"promo_code\": null,\n            \"points_earned\": 35,\n            \"points_redeemed\": 0,\n            \"total\": 3500,\n            \"advanced\": 1000,\n            \"left_to_pay\": 2500,\n            \"payment_method\": \"cash\",\n            \"status\": \"open\",\n            \"etat\": \"waiting\",\n            \"etat_label\": \"\u00c0 trier\",\n            \"colonne\": \"attente\",\n            \"workshop_status\": {\n                \"code\": \"waiting\",\n                \"label\": \"\u00c0 trier\"\n            },\n            \"payment_status\": {\n                \"code\": \"partial\",\n                \"label\": \"Partiellement pay\u00e9\"\n            },\n            \"service\": {\n                \"code\": \"express\",\n                \"label\": \"Express\"\n            },\n            \"is_express\": true,\n            \"express_supplement\": 1000,\n            \"pieces_count\": 2,\n            \"weight_kg_total\": 0,\n            \"quantity_label\": \"2 pi\u00e8ces\",\n            \"terminal\": \"POS-01\",\n            \"local_ref\": null,\n            \"storage_location\": null,\n            \"discount_reason\": null,\n            \"sync_status\": {\n                \"code\": \"synced\",\n                \"label\": \"\u00c0 jour\",\n                \"synced_at\": \"2026-10-14T09:05:00+00:00\"\n            },\n            \"delivery_status\": null,\n            \"notes\": null,\n            \"items_count\": 2,\n            \"articles_label\": \"2 pi\u00e8ces\",\n            \"client_name\": \"Jean Client\",\n            \"client_phone\": \"690000001\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Akwa\"\n            },\n            \"client\": {\n                \"id\": 1,\n                \"pressing_id\": 1,\n                \"agency_id\": 1,\n                \"code\": \"CLI-00001\",\n                \"fullname\": \"Jean Client\",\n                \"email\": \"jean.client@example.com\",\n                \"phone_number\": \"690000001\",\n                \"address\": null,\n                \"city\": \"Douala\",\n                \"loyalty_points\": 120,\n                \"wallet_balance\": 5000,\n                \"sponsor_code\": \"JEAN01\",\n                \"referred_by_id\": null,\n                \"last_deposit_at\": \"2026-10-14T10:00:00+00:00\",\n                \"status\": true,\n                \"first_name\": \"Jean\",\n                \"last_name\": \"Client\",\n                \"phone_secondary\": null,\n                \"contact_preference\": \"whatsapp\",\n                \"consent_sms\": true,\n                \"consent_email\": false,\n                \"archived_at\": null,\n                \"tier\": {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\"\n                }\n            },\n            \"units\": [\n                {\n                    \"id\": 1,\n                    \"article_id\": 1,\n                    \"service_id\": 1,\n                    \"designation\": \"Chemise\",\n                    \"pricing_type\": \"piece\",\n                    \"quantity\": 2,\n                    \"unit_price\": 1000,\n                    \"line_total\": 2000,\n                    \"state\": null,\n                    \"is_express\": true,\n                    \"express_supplement\": 1000,\n                    \"color\": \"Blanches\",\n                    \"defects\": [\n                        {\n                            \"code\": \"stain\",\n                            \"label\": \"Tach\u00e9\"\n                        }\n                    ],\n                    \"internal_notes\": \"Tache au col\"\n                }\n            ],\n            \"transactions\": [\n                {\n                    \"id\": 1,\n                    \"amount\": 1000,\n                    \"type\": \"in\",\n                    \"payment_method\": \"cash\",\n                    \"transaction_date\": \"2026-10-14T09:05:00+00:00\"\n                }\n            ]\n        },\n        \"slip_url\": \"https:\/\/api.example.com\/api\/v1\/deposits\/1\/document?type=bon&format=pdf\"\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
                         }
                     ]
                 }
@@ -3128,7 +3495,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:29:13\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:36:51\"}"
                         },
                         "description": ""
                     },
@@ -3173,7 +3540,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:29:13\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:36:51\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -4809,7 +5176,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-22T11:29:13\",\"validated\":true}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-22T11:36:51\",\"validated\":true}"
                         },
                         "description": ""
                     },
@@ -4868,7 +5235,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:29:13\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:36:51\"}"
                         },
                         "description": ""
                     },
@@ -6103,7 +6470,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:29:13\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:36:52\"}"
                         },
                         "description": ""
                     },
@@ -7986,7 +8353,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:29:13\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:36:51\"}"
                         },
                         "description": ""
                     },
@@ -8125,7 +8492,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T11:29:13",
+                                    "value": "2026-10-22T11:36:51",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -9023,7 +9390,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:29:13\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:36:51\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

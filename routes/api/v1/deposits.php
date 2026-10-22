@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Deposits\DepositController;
 use App\Http\Controllers\Api\V1\Deposits\QrLookupController;
+use App\Http\Controllers\Api\V1\Deposits\RetrievalController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(DepositController::class)->prefix('deposits')->name('deposits.')->group(function () {
@@ -22,4 +23,14 @@ Route::controller(DepositController::class)->prefix('deposits')->name('deposits.
     Route::get('{deposit}/document', 'document')->middleware('permission:deposits.view')->name('document');
     Route::post('{deposit}/document/send', 'sendDocument')->middleware('permission:deposits.view')->name('document.send');
     Route::delete('{deposit}', 'destroy')->middleware('permission:deposits.create')->name('destroy');
+});
+
+Route::controller(RetrievalController::class)->name('retrievals.')->group(function () {
+    Route::get('retrievals/center', 'center')->middleware('permission:deposits.retrieve|deposits.view')->name('center');
+    Route::get('retrievals/aged', 'aged')->middleware('permission:deposits.retrieve|deposits.view')->name('aged');
+    Route::post('deposits/{deposit}/aged-action', 'agedAction')->middleware('permission:deposits.retrieve')->name('aged-action');
+    Route::post('deposits/{deposit}/notify', 'notify')->middleware('permission:deposits.retrieve|deposits.view')->name('notify');
+    Route::post('deposits/{deposit}/notification-read', 'notificationRead')->middleware('permission:deposits.retrieve|deposits.view')->name('notification-read');
+    Route::get('deposits/{deposit}/checkout', 'showCheckout')->middleware('permission:deposits.retrieve')->name('checkout.show');
+    Route::post('deposits/{deposit}/checkout', 'checkout')->middleware(['permission:deposits.retrieve', 'idempotent'])->name('checkout');
 });

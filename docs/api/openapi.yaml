@@ -8791,12 +8791,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
                 notes:
                   type: string
@@ -10524,7 +10524,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
               required:
                 - amount
@@ -14117,6 +14117,4589 @@ paths:
                   nullable: true
               required:
                 - channel
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/v1/retrievals/center:
+    get:
+      summary: '« Centre de retrait » : KPI, retraits du jour, dépôts prêts (filtres q, date, agency_id, payment_status, etat).'
+      operationId: CentreDeRetraitKPIRetraitsDuJourDptsPrtsfiltresQDateAgencyIdPaymentStatusEtat
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                      code: AK-0001-EL
+                      qr_token: qr-demo-token
+                      pressing_id: 1
+                      agency_id: 1
+                      currency: XAF
+                      client_id: 1
+                      deposit_date: '2026-10-14T09:00:00+00:00'
+                      retrieve_date: '2026-10-16T09:00:00+00:00'
+                      retrieved_at: null
+                      subtotal: 3500
+                      collection_fee: 0
+                      delivery_fee: 0
+                      discount: 0
+                      discount_percent: 0
+                      promo_code: null
+                      points_earned: 35
+                      points_redeemed: 0
+                      total: 3500
+                      advanced: 1000
+                      left_to_pay: 2500
+                      payment_method: cash
+                      status: open
+                      etat: waiting
+                      etat_label: 'À trier'
+                      colonne: attente
+                      workshop_status:
+                        code: waiting
+                        label: 'À trier'
+                      payment_status:
+                        code: partial
+                        label: 'Partiellement payé'
+                      service:
+                        code: express
+                        label: Express
+                      is_express: true
+                      express_supplement: 1000
+                      pieces_count: 2
+                      weight_kg_total: 0
+                      quantity_label: '2 pièces'
+                      terminal: POS-01
+                      local_ref: null
+                      storage_location: null
+                      discount_reason: null
+                      sync_status:
+                        code: synced
+                        label: 'À jour'
+                        synced_at: '2026-10-14T09:05:00+00:00'
+                      delivery_status: null
+                      notes: null
+                      items_count: 2
+                      articles_label: '2 pièces'
+                      client_name: 'Jean Client'
+                      client_phone: '690000001'
+                      agency:
+                        id: 1
+                        name: Akwa
+                      client:
+                        id: 1
+                        pressing_id: 1
+                        agency_id: 1
+                        code: CLI-00001
+                        fullname: 'Jean Client'
+                        email: jean.client@example.com
+                        phone_number: '690000001'
+                        address: null
+                        city: Douala
+                        loyalty_points: 120
+                        wallet_balance: 5000
+                        sponsor_code: JEAN01
+                        referred_by_id: null
+                        last_deposit_at: '2026-10-14T10:00:00+00:00'
+                        status: true
+                        first_name: Jean
+                        last_name: Client
+                        phone_secondary: null
+                        contact_preference: whatsapp
+                        consent_sms: true
+                        consent_email: false
+                        archived_at: null
+                        tier:
+                          code: essentiel
+                          label: Essentiel
+                      units:
+                        -
+                          id: 1
+                          article_id: 1
+                          service_id: 1
+                          designation: Chemise
+                          pricing_type: piece
+                          quantity: 2
+                          unit_price: 1000
+                          line_total: 2000
+                          state: null
+                          is_express: true
+                          express_supplement: 1000
+                          color: Blanches
+                          defects:
+                            -
+                              code: stain
+                              label: Taché
+                          internal_notes: 'Tache au col'
+                      transactions:
+                        -
+                          id: 1
+                          amount: 1000
+                          type: in
+                          payment_method: cash
+                          transaction_date: '2026-10-14T09:05:00+00:00'
+                      notification:
+                        code: sent
+                        label: 'SMS envoyé'
+                        channel: sms
+                        at: '2026-10-20T09:42:00+00:00'
+                  meta:
+                    page: 1
+                    per_page: 50
+                    total: 1
+                    last_page: 1
+                    kpis:
+                      ready_today:
+                        value: 18
+                        pieces: 47
+                      awaiting_notification:
+                        value: 5
+                        by_channel:
+                          sms: 3
+                          whatsapp: 2
+                      retrieved_today:
+                        value: 27
+                        delta_percent: 12
+                        compared_to: '2026-10-13'
+                      unpaid_balances:
+                        value: 86500
+                        deposits: 7
+                    today_schedule:
+                      -
+                        id: 1
+                        code: BG-02641
+                        time: '2026-10-20T10:30:00+00:00'
+                        client: 'Aminata Diarra'
+                        pieces: 7
+                        payment:
+                          code: to_collect
+                          label: 'À encaisser'
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                        code: AK-0001-EL
+                        qr_token: qr-demo-token
+                        pressing_id: 1
+                        agency_id: 1
+                        currency: XAF
+                        client_id: 1
+                        deposit_date: '2026-10-14T09:00:00+00:00'
+                        retrieve_date: '2026-10-16T09:00:00+00:00'
+                        retrieved_at: null
+                        subtotal: 3500
+                        collection_fee: 0
+                        delivery_fee: 0
+                        discount: 0
+                        discount_percent: 0
+                        promo_code: null
+                        points_earned: 35
+                        points_redeemed: 0
+                        total: 3500
+                        advanced: 1000
+                        left_to_pay: 2500
+                        payment_method: cash
+                        status: open
+                        etat: waiting
+                        etat_label: 'À trier'
+                        colonne: attente
+                        workshop_status:
+                          code: waiting
+                          label: 'À trier'
+                        payment_status:
+                          code: partial
+                          label: 'Partiellement payé'
+                        service:
+                          code: express
+                          label: Express
+                        is_express: true
+                        express_supplement: 1000
+                        pieces_count: 2
+                        weight_kg_total: 0
+                        quantity_label: '2 pièces'
+                        terminal: POS-01
+                        local_ref: null
+                        storage_location: null
+                        discount_reason: null
+                        sync_status:
+                          code: synced
+                          label: 'À jour'
+                          synced_at: '2026-10-14T09:05:00+00:00'
+                        delivery_status: null
+                        notes: null
+                        items_count: 2
+                        articles_label: '2 pièces'
+                        client_name: 'Jean Client'
+                        client_phone: '690000001'
+                        agency:
+                          id: 1
+                          name: Akwa
+                        client:
+                          id: 1
+                          pressing_id: 1
+                          agency_id: 1
+                          code: CLI-00001
+                          fullname: 'Jean Client'
+                          email: jean.client@example.com
+                          phone_number: '690000001'
+                          address: null
+                          city: Douala
+                          loyalty_points: 120
+                          wallet_balance: 5000
+                          sponsor_code: JEAN01
+                          referred_by_id: null
+                          last_deposit_at: '2026-10-14T10:00:00+00:00'
+                          status: true
+                          first_name: Jean
+                          last_name: Client
+                          phone_secondary: null
+                          contact_preference: whatsapp
+                          consent_sms: true
+                          consent_email: false
+                          archived_at: null
+                          tier:
+                            code: essentiel
+                            label: Essentiel
+                        units:
+                          -
+                            id: 1
+                            article_id: 1
+                            service_id: 1
+                            designation: Chemise
+                            pricing_type: piece
+                            quantity: 2
+                            unit_price: 1000
+                            line_total: 2000
+                            state: null
+                            is_express: true
+                            express_supplement: 1000
+                            color: Blanches
+                            defects:
+                              -
+                                code: stain
+                                label: Taché
+                            internal_notes: 'Tache au col'
+                        transactions:
+                          -
+                            id: 1
+                            amount: 1000
+                            type: in
+                            payment_method: cash
+                            transaction_date: '2026-10-14T09:05:00+00:00'
+                        notification:
+                          code: sent
+                          label: 'SMS envoyé'
+                          channel: sms
+                          at: '2026-10-20T09:42:00+00:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        client_uuid:
+                          type: string
+                          example: 550e8400-e29b-41d4-a716-446655440000
+                        code:
+                          type: string
+                          example: AK-0001-EL
+                        qr_token:
+                          type: string
+                          example: qr-demo-token
+                        pressing_id:
+                          type: integer
+                          example: 1
+                        agency_id:
+                          type: integer
+                          example: 1
+                        currency:
+                          type: string
+                          example: XAF
+                        client_id:
+                          type: integer
+                          example: 1
+                        deposit_date:
+                          type: string
+                          example: '2026-10-14T09:00:00+00:00'
+                        retrieve_date:
+                          type: string
+                          example: '2026-10-16T09:00:00+00:00'
+                        retrieved_at:
+                          type: string
+                          example: null
+                          nullable: true
+                        subtotal:
+                          type: integer
+                          example: 3500
+                        collection_fee:
+                          type: integer
+                          example: 0
+                        delivery_fee:
+                          type: integer
+                          example: 0
+                        discount:
+                          type: integer
+                          example: 0
+                        discount_percent:
+                          type: integer
+                          example: 0
+                        promo_code:
+                          type: string
+                          example: null
+                          nullable: true
+                        points_earned:
+                          type: integer
+                          example: 35
+                        points_redeemed:
+                          type: integer
+                          example: 0
+                        total:
+                          type: integer
+                          example: 3500
+                        advanced:
+                          type: integer
+                          example: 1000
+                        left_to_pay:
+                          type: integer
+                          example: 2500
+                        payment_method:
+                          type: string
+                          example: cash
+                        status:
+                          type: string
+                          example: open
+                        etat:
+                          type: string
+                          example: waiting
+                        etat_label:
+                          type: string
+                          example: 'À trier'
+                        colonne:
+                          type: string
+                          example: attente
+                        workshop_status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: waiting
+                            label:
+                              type: string
+                              example: 'À trier'
+                        payment_status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: partial
+                            label:
+                              type: string
+                              example: 'Partiellement payé'
+                        service:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: express
+                            label:
+                              type: string
+                              example: Express
+                        is_express:
+                          type: boolean
+                          example: true
+                        express_supplement:
+                          type: integer
+                          example: 1000
+                        pieces_count:
+                          type: integer
+                          example: 2
+                        weight_kg_total:
+                          type: integer
+                          example: 0
+                        quantity_label:
+                          type: string
+                          example: '2 pièces'
+                        terminal:
+                          type: string
+                          example: POS-01
+                        local_ref:
+                          type: string
+                          example: null
+                          nullable: true
+                        storage_location:
+                          type: string
+                          example: null
+                          nullable: true
+                        discount_reason:
+                          type: string
+                          example: null
+                          nullable: true
+                        sync_status:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: synced
+                            label:
+                              type: string
+                              example: 'À jour'
+                            synced_at:
+                              type: string
+                              example: '2026-10-14T09:05:00+00:00'
+                        delivery_status:
+                          type: string
+                          example: null
+                          nullable: true
+                        notes:
+                          type: string
+                          example: null
+                          nullable: true
+                        items_count:
+                          type: integer
+                          example: 2
+                        articles_label:
+                          type: string
+                          example: '2 pièces'
+                        client_name:
+                          type: string
+                          example: 'Jean Client'
+                        client_phone:
+                          type: string
+                          example: '690000001'
+                        agency:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Akwa
+                        client:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            pressing_id:
+                              type: integer
+                              example: 1
+                            agency_id:
+                              type: integer
+                              example: 1
+                            code:
+                              type: string
+                              example: CLI-00001
+                            fullname:
+                              type: string
+                              example: 'Jean Client'
+                            email:
+                              type: string
+                              example: jean.client@example.com
+                            phone_number:
+                              type: string
+                              example: '690000001'
+                            address:
+                              type: string
+                              example: null
+                              nullable: true
+                            city:
+                              type: string
+                              example: Douala
+                            loyalty_points:
+                              type: integer
+                              example: 120
+                            wallet_balance:
+                              type: integer
+                              example: 5000
+                            sponsor_code:
+                              type: string
+                              example: JEAN01
+                            referred_by_id:
+                              type: string
+                              example: null
+                              nullable: true
+                            last_deposit_at:
+                              type: string
+                              example: '2026-10-14T10:00:00+00:00'
+                            status:
+                              type: boolean
+                              example: true
+                            first_name:
+                              type: string
+                              example: Jean
+                            last_name:
+                              type: string
+                              example: Client
+                            phone_secondary:
+                              type: string
+                              example: null
+                              nullable: true
+                            contact_preference:
+                              type: string
+                              example: whatsapp
+                            consent_sms:
+                              type: boolean
+                              example: true
+                            consent_email:
+                              type: boolean
+                              example: false
+                            archived_at:
+                              type: string
+                              example: null
+                              nullable: true
+                            tier:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: essentiel
+                                label:
+                                  type: string
+                                  example: Essentiel
+                        units:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              article_id: 1
+                              service_id: 1
+                              designation: Chemise
+                              pricing_type: piece
+                              quantity: 2
+                              unit_price: 1000
+                              line_total: 2000
+                              state: null
+                              is_express: true
+                              express_supplement: 1000
+                              color: Blanches
+                              defects:
+                                -
+                                  code: stain
+                                  label: Taché
+                              internal_notes: 'Tache au col'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              article_id:
+                                type: integer
+                                example: 1
+                              service_id:
+                                type: integer
+                                example: 1
+                              designation:
+                                type: string
+                                example: Chemise
+                              pricing_type:
+                                type: string
+                                example: piece
+                              quantity:
+                                type: integer
+                                example: 2
+                              unit_price:
+                                type: integer
+                                example: 1000
+                              line_total:
+                                type: integer
+                                example: 2000
+                              state:
+                                type: string
+                                example: null
+                                nullable: true
+                              is_express:
+                                type: boolean
+                                example: true
+                              express_supplement:
+                                type: integer
+                                example: 1000
+                              color:
+                                type: string
+                                example: Blanches
+                              defects:
+                                type: array
+                                example:
+                                  -
+                                    code: stain
+                                    label: Taché
+                                items:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: stain
+                                    label:
+                                      type: string
+                                      example: Taché
+                              internal_notes:
+                                type: string
+                                example: 'Tache au col'
+                        transactions:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              amount: 1000
+                              type: in
+                              payment_method: cash
+                              transaction_date: '2026-10-14T09:05:00+00:00'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              amount:
+                                type: integer
+                                example: 1000
+                              type:
+                                type: string
+                                example: in
+                              payment_method:
+                                type: string
+                                example: cash
+                              transaction_date:
+                                type: string
+                                example: '2026-10-14T09:05:00+00:00'
+                        notification:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: sent
+                            label:
+                              type: string
+                              example: 'SMS envoyé'
+                            channel:
+                              type: string
+                              example: sms
+                            at:
+                              type: string
+                              example: '2026-10-20T09:42:00+00:00'
+                  meta:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 50
+                      total:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      kpis:
+                        type: object
+                        properties:
+                          ready_today:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 18
+                              pieces:
+                                type: integer
+                                example: 47
+                          awaiting_notification:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 5
+                              by_channel:
+                                type: object
+                                properties:
+                                  sms:
+                                    type: integer
+                                    example: 3
+                                  whatsapp:
+                                    type: integer
+                                    example: 2
+                          retrieved_today:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 27
+                              delta_percent:
+                                type: integer
+                                example: 12
+                              compared_to:
+                                type: string
+                                example: '2026-10-13'
+                          unpaid_balances:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 86500
+                              deposits:
+                                type: integer
+                                example: 7
+                      today_schedule:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            code: BG-02641
+                            time: '2026-10-20T10:30:00+00:00'
+                            client: 'Aminata Diarra'
+                            pieces: 7
+                            payment:
+                              code: to_collect
+                              label: 'À encaisser'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            code:
+                              type: string
+                              example: BG-02641
+                            time:
+                              type: string
+                              example: '2026-10-20T10:30:00+00:00'
+                            client:
+                              type: string
+                              example: 'Aminata Diarra'
+                            pieces:
+                              type: integer
+                              example: 7
+                            payment:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: to_collect
+                                label:
+                                  type: string
+                                  example: 'À encaisser'
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Dépôts
+  /api/v1/retrievals/aged:
+    get:
+      summary: '« Vêtements classés depuis 30+ jours ».'
+      operationId: VtementsClasssDepuis30+Jours
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    to_handle: 12
+                    buckets:
+                      '30_60':
+                        count: 4
+                        pieces: 18
+                        value: 64500
+                      '61_90':
+                        count: 5
+                        pieces: 27
+                        value: 93000
+                      90_plus:
+                        count: 3
+                        pieces: 12
+                        value: 41000
+                    items:
+                      -
+                        id: 1
+                        code: BG-02588
+                        client: 'Aminata Diarra'
+                        phone_number: '0748221903'
+                        ready_at: '2026-09-19T10:00:00+00:00'
+                        retrieve_date: '2026-09-20T10:00:00+00:00'
+                        waiting_days: 31
+                        pieces: 7
+                        value: 18500
+                        storage_fee: 0
+                        decision:
+                          code: remind
+                          label: Relancer
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      to_handle:
+                        type: integer
+                        example: 12
+                      buckets:
+                        type: object
+                        properties:
+                          '30_60':
+                            type: object
+                            properties:
+                              count:
+                                type: integer
+                                example: 4
+                              pieces:
+                                type: integer
+                                example: 18
+                              value:
+                                type: integer
+                                example: 64500
+                          '61_90':
+                            type: object
+                            properties:
+                              count:
+                                type: integer
+                                example: 5
+                              pieces:
+                                type: integer
+                                example: 27
+                              value:
+                                type: integer
+                                example: 93000
+                          90_plus:
+                            type: object
+                            properties:
+                              count:
+                                type: integer
+                                example: 3
+                              pieces:
+                                type: integer
+                                example: 12
+                              value:
+                                type: integer
+                                example: 41000
+                      items:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            code: BG-02588
+                            client: 'Aminata Diarra'
+                            phone_number: '0748221903'
+                            ready_at: '2026-09-19T10:00:00+00:00'
+                            retrieve_date: '2026-09-20T10:00:00+00:00'
+                            waiting_days: 31
+                            pieces: 7
+                            value: 18500
+                            storage_fee: 0
+                            decision:
+                              code: remind
+                              label: Relancer
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            code:
+                              type: string
+                              example: BG-02588
+                            client:
+                              type: string
+                              example: 'Aminata Diarra'
+                            phone_number:
+                              type: string
+                              example: '0748221903'
+                            ready_at:
+                              type: string
+                              example: '2026-09-19T10:00:00+00:00'
+                            retrieve_date:
+                              type: string
+                              example: '2026-09-20T10:00:00+00:00'
+                            waiting_days:
+                              type: integer
+                              example: 31
+                            pieces:
+                              type: integer
+                              example: 7
+                            value:
+                              type: integer
+                              example: 18500
+                            storage_fee:
+                              type: integer
+                              example: 0
+                            decision:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: remind
+                                label:
+                                  type: string
+                                  example: Relancer
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Dépôts
+  '/api/v1/deposits/{deposit_id}/aged-action':
+    post:
+      summary: 'Relancer / frais de garde / escalade / traité sur un dépôt ancien.'
+      operationId: relancerFraisDeGardeEscaladeTraitSurUnDptAncien
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                    code: AK-0001-EL
+                    qr_token: qr-demo-token
+                    pressing_id: 1
+                    agency_id: 1
+                    currency: XAF
+                    client_id: 1
+                    deposit_date: '2026-10-14T09:00:00+00:00'
+                    retrieve_date: '2026-10-16T09:00:00+00:00'
+                    retrieved_at: null
+                    subtotal: 3500
+                    collection_fee: 0
+                    delivery_fee: 0
+                    discount: 0
+                    discount_percent: 0
+                    promo_code: null
+                    points_earned: 35
+                    points_redeemed: 0
+                    total: 3500
+                    advanced: 1000
+                    left_to_pay: 2500
+                    payment_method: cash
+                    status: open
+                    etat: waiting
+                    etat_label: 'À trier'
+                    colonne: attente
+                    workshop_status:
+                      code: waiting
+                      label: 'À trier'
+                    payment_status:
+                      code: partial
+                      label: 'Partiellement payé'
+                    service:
+                      code: express
+                      label: Express
+                    is_express: true
+                    express_supplement: 1000
+                    pieces_count: 2
+                    weight_kg_total: 0
+                    quantity_label: '2 pièces'
+                    terminal: POS-01
+                    local_ref: null
+                    storage_location: null
+                    discount_reason: null
+                    sync_status:
+                      code: synced
+                      label: 'À jour'
+                      synced_at: '2026-10-14T09:05:00+00:00'
+                    delivery_status: null
+                    notes: null
+                    items_count: 2
+                    articles_label: '2 pièces'
+                    client_name: 'Jean Client'
+                    client_phone: '690000001'
+                    agency:
+                      id: 1
+                      name: Akwa
+                    client:
+                      id: 1
+                      pressing_id: 1
+                      agency_id: 1
+                      code: CLI-00001
+                      fullname: 'Jean Client'
+                      email: jean.client@example.com
+                      phone_number: '690000001'
+                      address: null
+                      city: Douala
+                      loyalty_points: 120
+                      wallet_balance: 5000
+                      sponsor_code: JEAN01
+                      referred_by_id: null
+                      last_deposit_at: '2026-10-14T10:00:00+00:00'
+                      status: true
+                      first_name: Jean
+                      last_name: Client
+                      phone_secondary: null
+                      contact_preference: whatsapp
+                      consent_sms: true
+                      consent_email: false
+                      archived_at: null
+                      tier:
+                        code: essentiel
+                        label: Essentiel
+                    units:
+                      -
+                        id: 1
+                        article_id: 1
+                        service_id: 1
+                        designation: Chemise
+                        pricing_type: piece
+                        quantity: 2
+                        unit_price: 1000
+                        line_total: 2000
+                        state: null
+                        is_express: true
+                        express_supplement: 1000
+                        color: Blanches
+                        defects:
+                          -
+                            code: stain
+                            label: Taché
+                        internal_notes: 'Tache au col'
+                    transactions:
+                      -
+                        id: 1
+                        amount: 1000
+                        type: in
+                        payment_method: cash
+                        transaction_date: '2026-10-14T09:05:00+00:00'
+                    notification:
+                      code: sent
+                      label: 'SMS envoyé'
+                      channel: sms
+                      at: '2026-10-20T09:42:00+00:00'
+                    open_url: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      client_uuid:
+                        type: string
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      code:
+                        type: string
+                        example: AK-0001-EL
+                      qr_token:
+                        type: string
+                        example: qr-demo-token
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      currency:
+                        type: string
+                        example: XAF
+                      client_id:
+                        type: integer
+                        example: 1
+                      deposit_date:
+                        type: string
+                        example: '2026-10-14T09:00:00+00:00'
+                      retrieve_date:
+                        type: string
+                        example: '2026-10-16T09:00:00+00:00'
+                      retrieved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      subtotal:
+                        type: integer
+                        example: 3500
+                      collection_fee:
+                        type: integer
+                        example: 0
+                      delivery_fee:
+                        type: integer
+                        example: 0
+                      discount:
+                        type: integer
+                        example: 0
+                      discount_percent:
+                        type: integer
+                        example: 0
+                      promo_code:
+                        type: string
+                        example: null
+                        nullable: true
+                      points_earned:
+                        type: integer
+                        example: 35
+                      points_redeemed:
+                        type: integer
+                        example: 0
+                      total:
+                        type: integer
+                        example: 3500
+                      advanced:
+                        type: integer
+                        example: 1000
+                      left_to_pay:
+                        type: integer
+                        example: 2500
+                      payment_method:
+                        type: string
+                        example: cash
+                      status:
+                        type: string
+                        example: open
+                      etat:
+                        type: string
+                        example: waiting
+                      etat_label:
+                        type: string
+                        example: 'À trier'
+                      colonne:
+                        type: string
+                        example: attente
+                      workshop_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: waiting
+                          label:
+                            type: string
+                            example: 'À trier'
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: partial
+                          label:
+                            type: string
+                            example: 'Partiellement payé'
+                      service:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: express
+                          label:
+                            type: string
+                            example: Express
+                      is_express:
+                        type: boolean
+                        example: true
+                      express_supplement:
+                        type: integer
+                        example: 1000
+                      pieces_count:
+                        type: integer
+                        example: 2
+                      weight_kg_total:
+                        type: integer
+                        example: 0
+                      quantity_label:
+                        type: string
+                        example: '2 pièces'
+                      terminal:
+                        type: string
+                        example: POS-01
+                      local_ref:
+                        type: string
+                        example: null
+                        nullable: true
+                      storage_location:
+                        type: string
+                        example: null
+                        nullable: true
+                      discount_reason:
+                        type: string
+                        example: null
+                        nullable: true
+                      sync_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: synced
+                          label:
+                            type: string
+                            example: 'À jour'
+                          synced_at:
+                            type: string
+                            example: '2026-10-14T09:05:00+00:00'
+                      delivery_status:
+                        type: string
+                        example: null
+                        nullable: true
+                      notes:
+                        type: string
+                        example: null
+                        nullable: true
+                      items_count:
+                        type: integer
+                        example: 2
+                      articles_label:
+                        type: string
+                        example: '2 pièces'
+                      client_name:
+                        type: string
+                        example: 'Jean Client'
+                      client_phone:
+                        type: string
+                        example: '690000001'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Akwa
+                      client:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CLI-00001
+                          fullname:
+                            type: string
+                            example: 'Jean Client'
+                          email:
+                            type: string
+                            example: jean.client@example.com
+                          phone_number:
+                            type: string
+                            example: '690000001'
+                          address:
+                            type: string
+                            example: null
+                            nullable: true
+                          city:
+                            type: string
+                            example: Douala
+                          loyalty_points:
+                            type: integer
+                            example: 120
+                          wallet_balance:
+                            type: integer
+                            example: 5000
+                          sponsor_code:
+                            type: string
+                            example: JEAN01
+                          referred_by_id:
+                            type: string
+                            example: null
+                            nullable: true
+                          last_deposit_at:
+                            type: string
+                            example: '2026-10-14T10:00:00+00:00'
+                          status:
+                            type: boolean
+                            example: true
+                          first_name:
+                            type: string
+                            example: Jean
+                          last_name:
+                            type: string
+                            example: Client
+                          phone_secondary:
+                            type: string
+                            example: null
+                            nullable: true
+                          contact_preference:
+                            type: string
+                            example: whatsapp
+                          consent_sms:
+                            type: boolean
+                            example: true
+                          consent_email:
+                            type: boolean
+                            example: false
+                          archived_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          tier:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: essentiel
+                              label:
+                                type: string
+                                example: Essentiel
+                      units:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            article_id: 1
+                            service_id: 1
+                            designation: Chemise
+                            pricing_type: piece
+                            quantity: 2
+                            unit_price: 1000
+                            line_total: 2000
+                            state: null
+                            is_express: true
+                            express_supplement: 1000
+                            color: Blanches
+                            defects:
+                              -
+                                code: stain
+                                label: Taché
+                            internal_notes: 'Tache au col'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            article_id:
+                              type: integer
+                              example: 1
+                            service_id:
+                              type: integer
+                              example: 1
+                            designation:
+                              type: string
+                              example: Chemise
+                            pricing_type:
+                              type: string
+                              example: piece
+                            quantity:
+                              type: integer
+                              example: 2
+                            unit_price:
+                              type: integer
+                              example: 1000
+                            line_total:
+                              type: integer
+                              example: 2000
+                            state:
+                              type: string
+                              example: null
+                              nullable: true
+                            is_express:
+                              type: boolean
+                              example: true
+                            express_supplement:
+                              type: integer
+                              example: 1000
+                            color:
+                              type: string
+                              example: Blanches
+                            defects:
+                              type: array
+                              example:
+                                -
+                                  code: stain
+                                  label: Taché
+                              items:
+                                type: object
+                                properties:
+                                  code:
+                                    type: string
+                                    example: stain
+                                  label:
+                                    type: string
+                                    example: Taché
+                            internal_notes:
+                              type: string
+                              example: 'Tache au col'
+                      transactions:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            amount: 1000
+                            type: in
+                            payment_method: cash
+                            transaction_date: '2026-10-14T09:05:00+00:00'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            amount:
+                              type: integer
+                              example: 1000
+                            type:
+                              type: string
+                              example: in
+                            payment_method:
+                              type: string
+                              example: cash
+                            transaction_date:
+                              type: string
+                              example: '2026-10-14T09:05:00+00:00'
+                      notification:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: sent
+                          label:
+                            type: string
+                            example: 'SMS envoyé'
+                          channel:
+                            type: string
+                            example: sms
+                          at:
+                            type: string
+                            example: '2026-10-20T09:42:00+00:00'
+                      open_url:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Dépôts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: ''
+                  example: handled
+                  enum:
+                    - remind
+                    - storage_fee
+                    - escalate
+                    - handled
+                amount:
+                  type: integer
+                  description: 'This field is required when <code>action</code> is <code>storage_fee</code>. validation.min.'
+                  example: 22
+                  nullable: true
+              required:
+                - action
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/notify':
+    post:
+      summary: '« Notifier le client » (SMS ou WhatsApp).'
+      operationId: NotifierLeClientSMSOuWhatsApp
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                    code: AK-0001-EL
+                    qr_token: qr-demo-token
+                    pressing_id: 1
+                    agency_id: 1
+                    currency: XAF
+                    client_id: 1
+                    deposit_date: '2026-10-14T09:00:00+00:00'
+                    retrieve_date: '2026-10-16T09:00:00+00:00'
+                    retrieved_at: null
+                    subtotal: 3500
+                    collection_fee: 0
+                    delivery_fee: 0
+                    discount: 0
+                    discount_percent: 0
+                    promo_code: null
+                    points_earned: 35
+                    points_redeemed: 0
+                    total: 3500
+                    advanced: 1000
+                    left_to_pay: 2500
+                    payment_method: cash
+                    status: open
+                    etat: waiting
+                    etat_label: 'À trier'
+                    colonne: attente
+                    workshop_status:
+                      code: waiting
+                      label: 'À trier'
+                    payment_status:
+                      code: partial
+                      label: 'Partiellement payé'
+                    service:
+                      code: express
+                      label: Express
+                    is_express: true
+                    express_supplement: 1000
+                    pieces_count: 2
+                    weight_kg_total: 0
+                    quantity_label: '2 pièces'
+                    terminal: POS-01
+                    local_ref: null
+                    storage_location: null
+                    discount_reason: null
+                    sync_status:
+                      code: synced
+                      label: 'À jour'
+                      synced_at: '2026-10-14T09:05:00+00:00'
+                    delivery_status: null
+                    notes: null
+                    items_count: 2
+                    articles_label: '2 pièces'
+                    client_name: 'Jean Client'
+                    client_phone: '690000001'
+                    agency:
+                      id: 1
+                      name: Akwa
+                    client:
+                      id: 1
+                      pressing_id: 1
+                      agency_id: 1
+                      code: CLI-00001
+                      fullname: 'Jean Client'
+                      email: jean.client@example.com
+                      phone_number: '690000001'
+                      address: null
+                      city: Douala
+                      loyalty_points: 120
+                      wallet_balance: 5000
+                      sponsor_code: JEAN01
+                      referred_by_id: null
+                      last_deposit_at: '2026-10-14T10:00:00+00:00'
+                      status: true
+                      first_name: Jean
+                      last_name: Client
+                      phone_secondary: null
+                      contact_preference: whatsapp
+                      consent_sms: true
+                      consent_email: false
+                      archived_at: null
+                      tier:
+                        code: essentiel
+                        label: Essentiel
+                    units:
+                      -
+                        id: 1
+                        article_id: 1
+                        service_id: 1
+                        designation: Chemise
+                        pricing_type: piece
+                        quantity: 2
+                        unit_price: 1000
+                        line_total: 2000
+                        state: null
+                        is_express: true
+                        express_supplement: 1000
+                        color: Blanches
+                        defects:
+                          -
+                            code: stain
+                            label: Taché
+                        internal_notes: 'Tache au col'
+                    transactions:
+                      -
+                        id: 1
+                        amount: 1000
+                        type: in
+                        payment_method: cash
+                        transaction_date: '2026-10-14T09:05:00+00:00'
+                    notification:
+                      code: sent
+                      label: 'SMS envoyé'
+                      channel: sms
+                      at: '2026-10-20T09:42:00+00:00'
+                    open_url: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      client_uuid:
+                        type: string
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      code:
+                        type: string
+                        example: AK-0001-EL
+                      qr_token:
+                        type: string
+                        example: qr-demo-token
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      currency:
+                        type: string
+                        example: XAF
+                      client_id:
+                        type: integer
+                        example: 1
+                      deposit_date:
+                        type: string
+                        example: '2026-10-14T09:00:00+00:00'
+                      retrieve_date:
+                        type: string
+                        example: '2026-10-16T09:00:00+00:00'
+                      retrieved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      subtotal:
+                        type: integer
+                        example: 3500
+                      collection_fee:
+                        type: integer
+                        example: 0
+                      delivery_fee:
+                        type: integer
+                        example: 0
+                      discount:
+                        type: integer
+                        example: 0
+                      discount_percent:
+                        type: integer
+                        example: 0
+                      promo_code:
+                        type: string
+                        example: null
+                        nullable: true
+                      points_earned:
+                        type: integer
+                        example: 35
+                      points_redeemed:
+                        type: integer
+                        example: 0
+                      total:
+                        type: integer
+                        example: 3500
+                      advanced:
+                        type: integer
+                        example: 1000
+                      left_to_pay:
+                        type: integer
+                        example: 2500
+                      payment_method:
+                        type: string
+                        example: cash
+                      status:
+                        type: string
+                        example: open
+                      etat:
+                        type: string
+                        example: waiting
+                      etat_label:
+                        type: string
+                        example: 'À trier'
+                      colonne:
+                        type: string
+                        example: attente
+                      workshop_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: waiting
+                          label:
+                            type: string
+                            example: 'À trier'
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: partial
+                          label:
+                            type: string
+                            example: 'Partiellement payé'
+                      service:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: express
+                          label:
+                            type: string
+                            example: Express
+                      is_express:
+                        type: boolean
+                        example: true
+                      express_supplement:
+                        type: integer
+                        example: 1000
+                      pieces_count:
+                        type: integer
+                        example: 2
+                      weight_kg_total:
+                        type: integer
+                        example: 0
+                      quantity_label:
+                        type: string
+                        example: '2 pièces'
+                      terminal:
+                        type: string
+                        example: POS-01
+                      local_ref:
+                        type: string
+                        example: null
+                        nullable: true
+                      storage_location:
+                        type: string
+                        example: null
+                        nullable: true
+                      discount_reason:
+                        type: string
+                        example: null
+                        nullable: true
+                      sync_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: synced
+                          label:
+                            type: string
+                            example: 'À jour'
+                          synced_at:
+                            type: string
+                            example: '2026-10-14T09:05:00+00:00'
+                      delivery_status:
+                        type: string
+                        example: null
+                        nullable: true
+                      notes:
+                        type: string
+                        example: null
+                        nullable: true
+                      items_count:
+                        type: integer
+                        example: 2
+                      articles_label:
+                        type: string
+                        example: '2 pièces'
+                      client_name:
+                        type: string
+                        example: 'Jean Client'
+                      client_phone:
+                        type: string
+                        example: '690000001'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Akwa
+                      client:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CLI-00001
+                          fullname:
+                            type: string
+                            example: 'Jean Client'
+                          email:
+                            type: string
+                            example: jean.client@example.com
+                          phone_number:
+                            type: string
+                            example: '690000001'
+                          address:
+                            type: string
+                            example: null
+                            nullable: true
+                          city:
+                            type: string
+                            example: Douala
+                          loyalty_points:
+                            type: integer
+                            example: 120
+                          wallet_balance:
+                            type: integer
+                            example: 5000
+                          sponsor_code:
+                            type: string
+                            example: JEAN01
+                          referred_by_id:
+                            type: string
+                            example: null
+                            nullable: true
+                          last_deposit_at:
+                            type: string
+                            example: '2026-10-14T10:00:00+00:00'
+                          status:
+                            type: boolean
+                            example: true
+                          first_name:
+                            type: string
+                            example: Jean
+                          last_name:
+                            type: string
+                            example: Client
+                          phone_secondary:
+                            type: string
+                            example: null
+                            nullable: true
+                          contact_preference:
+                            type: string
+                            example: whatsapp
+                          consent_sms:
+                            type: boolean
+                            example: true
+                          consent_email:
+                            type: boolean
+                            example: false
+                          archived_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          tier:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: essentiel
+                              label:
+                                type: string
+                                example: Essentiel
+                      units:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            article_id: 1
+                            service_id: 1
+                            designation: Chemise
+                            pricing_type: piece
+                            quantity: 2
+                            unit_price: 1000
+                            line_total: 2000
+                            state: null
+                            is_express: true
+                            express_supplement: 1000
+                            color: Blanches
+                            defects:
+                              -
+                                code: stain
+                                label: Taché
+                            internal_notes: 'Tache au col'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            article_id:
+                              type: integer
+                              example: 1
+                            service_id:
+                              type: integer
+                              example: 1
+                            designation:
+                              type: string
+                              example: Chemise
+                            pricing_type:
+                              type: string
+                              example: piece
+                            quantity:
+                              type: integer
+                              example: 2
+                            unit_price:
+                              type: integer
+                              example: 1000
+                            line_total:
+                              type: integer
+                              example: 2000
+                            state:
+                              type: string
+                              example: null
+                              nullable: true
+                            is_express:
+                              type: boolean
+                              example: true
+                            express_supplement:
+                              type: integer
+                              example: 1000
+                            color:
+                              type: string
+                              example: Blanches
+                            defects:
+                              type: array
+                              example:
+                                -
+                                  code: stain
+                                  label: Taché
+                              items:
+                                type: object
+                                properties:
+                                  code:
+                                    type: string
+                                    example: stain
+                                  label:
+                                    type: string
+                                    example: Taché
+                            internal_notes:
+                              type: string
+                              example: 'Tache au col'
+                      transactions:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            amount: 1000
+                            type: in
+                            payment_method: cash
+                            transaction_date: '2026-10-14T09:05:00+00:00'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            amount:
+                              type: integer
+                              example: 1000
+                            type:
+                              type: string
+                              example: in
+                            payment_method:
+                              type: string
+                              example: cash
+                            transaction_date:
+                              type: string
+                              example: '2026-10-14T09:05:00+00:00'
+                      notification:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: sent
+                          label:
+                            type: string
+                            example: 'SMS envoyé'
+                          channel:
+                            type: string
+                            example: sms
+                          at:
+                            type: string
+                            example: '2026-10-20T09:42:00+00:00'
+                      open_url:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Dépôts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                channel:
+                  type: string
+                  description: ''
+                  example: sms
+                  enum:
+                    - sms
+                    - whatsapp
+              required:
+                - channel
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/notification-read':
+    post:
+      summary: 'Marquer la notification comme lue (accusé opérateur ou saisie manuelle).'
+      operationId: marquerLaNotificationCommeLueaccusOprateurOuSaisieManuelle
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                    code: AK-0001-EL
+                    qr_token: qr-demo-token
+                    pressing_id: 1
+                    agency_id: 1
+                    currency: XAF
+                    client_id: 1
+                    deposit_date: '2026-10-14T09:00:00+00:00'
+                    retrieve_date: '2026-10-16T09:00:00+00:00'
+                    retrieved_at: null
+                    subtotal: 3500
+                    collection_fee: 0
+                    delivery_fee: 0
+                    discount: 0
+                    discount_percent: 0
+                    promo_code: null
+                    points_earned: 35
+                    points_redeemed: 0
+                    total: 3500
+                    advanced: 1000
+                    left_to_pay: 2500
+                    payment_method: cash
+                    status: open
+                    etat: waiting
+                    etat_label: 'À trier'
+                    colonne: attente
+                    workshop_status:
+                      code: waiting
+                      label: 'À trier'
+                    payment_status:
+                      code: partial
+                      label: 'Partiellement payé'
+                    service:
+                      code: express
+                      label: Express
+                    is_express: true
+                    express_supplement: 1000
+                    pieces_count: 2
+                    weight_kg_total: 0
+                    quantity_label: '2 pièces'
+                    terminal: POS-01
+                    local_ref: null
+                    storage_location: null
+                    discount_reason: null
+                    sync_status:
+                      code: synced
+                      label: 'À jour'
+                      synced_at: '2026-10-14T09:05:00+00:00'
+                    delivery_status: null
+                    notes: null
+                    items_count: 2
+                    articles_label: '2 pièces'
+                    client_name: 'Jean Client'
+                    client_phone: '690000001'
+                    agency:
+                      id: 1
+                      name: Akwa
+                    client:
+                      id: 1
+                      pressing_id: 1
+                      agency_id: 1
+                      code: CLI-00001
+                      fullname: 'Jean Client'
+                      email: jean.client@example.com
+                      phone_number: '690000001'
+                      address: null
+                      city: Douala
+                      loyalty_points: 120
+                      wallet_balance: 5000
+                      sponsor_code: JEAN01
+                      referred_by_id: null
+                      last_deposit_at: '2026-10-14T10:00:00+00:00'
+                      status: true
+                      first_name: Jean
+                      last_name: Client
+                      phone_secondary: null
+                      contact_preference: whatsapp
+                      consent_sms: true
+                      consent_email: false
+                      archived_at: null
+                      tier:
+                        code: essentiel
+                        label: Essentiel
+                    units:
+                      -
+                        id: 1
+                        article_id: 1
+                        service_id: 1
+                        designation: Chemise
+                        pricing_type: piece
+                        quantity: 2
+                        unit_price: 1000
+                        line_total: 2000
+                        state: null
+                        is_express: true
+                        express_supplement: 1000
+                        color: Blanches
+                        defects:
+                          -
+                            code: stain
+                            label: Taché
+                        internal_notes: 'Tache au col'
+                    transactions:
+                      -
+                        id: 1
+                        amount: 1000
+                        type: in
+                        payment_method: cash
+                        transaction_date: '2026-10-14T09:05:00+00:00'
+                    notification:
+                      code: sent
+                      label: 'SMS envoyé'
+                      channel: sms
+                      at: '2026-10-20T09:42:00+00:00'
+                    open_url: null
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      client_uuid:
+                        type: string
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      code:
+                        type: string
+                        example: AK-0001-EL
+                      qr_token:
+                        type: string
+                        example: qr-demo-token
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      currency:
+                        type: string
+                        example: XAF
+                      client_id:
+                        type: integer
+                        example: 1
+                      deposit_date:
+                        type: string
+                        example: '2026-10-14T09:00:00+00:00'
+                      retrieve_date:
+                        type: string
+                        example: '2026-10-16T09:00:00+00:00'
+                      retrieved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      subtotal:
+                        type: integer
+                        example: 3500
+                      collection_fee:
+                        type: integer
+                        example: 0
+                      delivery_fee:
+                        type: integer
+                        example: 0
+                      discount:
+                        type: integer
+                        example: 0
+                      discount_percent:
+                        type: integer
+                        example: 0
+                      promo_code:
+                        type: string
+                        example: null
+                        nullable: true
+                      points_earned:
+                        type: integer
+                        example: 35
+                      points_redeemed:
+                        type: integer
+                        example: 0
+                      total:
+                        type: integer
+                        example: 3500
+                      advanced:
+                        type: integer
+                        example: 1000
+                      left_to_pay:
+                        type: integer
+                        example: 2500
+                      payment_method:
+                        type: string
+                        example: cash
+                      status:
+                        type: string
+                        example: open
+                      etat:
+                        type: string
+                        example: waiting
+                      etat_label:
+                        type: string
+                        example: 'À trier'
+                      colonne:
+                        type: string
+                        example: attente
+                      workshop_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: waiting
+                          label:
+                            type: string
+                            example: 'À trier'
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: partial
+                          label:
+                            type: string
+                            example: 'Partiellement payé'
+                      service:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: express
+                          label:
+                            type: string
+                            example: Express
+                      is_express:
+                        type: boolean
+                        example: true
+                      express_supplement:
+                        type: integer
+                        example: 1000
+                      pieces_count:
+                        type: integer
+                        example: 2
+                      weight_kg_total:
+                        type: integer
+                        example: 0
+                      quantity_label:
+                        type: string
+                        example: '2 pièces'
+                      terminal:
+                        type: string
+                        example: POS-01
+                      local_ref:
+                        type: string
+                        example: null
+                        nullable: true
+                      storage_location:
+                        type: string
+                        example: null
+                        nullable: true
+                      discount_reason:
+                        type: string
+                        example: null
+                        nullable: true
+                      sync_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: synced
+                          label:
+                            type: string
+                            example: 'À jour'
+                          synced_at:
+                            type: string
+                            example: '2026-10-14T09:05:00+00:00'
+                      delivery_status:
+                        type: string
+                        example: null
+                        nullable: true
+                      notes:
+                        type: string
+                        example: null
+                        nullable: true
+                      items_count:
+                        type: integer
+                        example: 2
+                      articles_label:
+                        type: string
+                        example: '2 pièces'
+                      client_name:
+                        type: string
+                        example: 'Jean Client'
+                      client_phone:
+                        type: string
+                        example: '690000001'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Akwa
+                      client:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CLI-00001
+                          fullname:
+                            type: string
+                            example: 'Jean Client'
+                          email:
+                            type: string
+                            example: jean.client@example.com
+                          phone_number:
+                            type: string
+                            example: '690000001'
+                          address:
+                            type: string
+                            example: null
+                            nullable: true
+                          city:
+                            type: string
+                            example: Douala
+                          loyalty_points:
+                            type: integer
+                            example: 120
+                          wallet_balance:
+                            type: integer
+                            example: 5000
+                          sponsor_code:
+                            type: string
+                            example: JEAN01
+                          referred_by_id:
+                            type: string
+                            example: null
+                            nullable: true
+                          last_deposit_at:
+                            type: string
+                            example: '2026-10-14T10:00:00+00:00'
+                          status:
+                            type: boolean
+                            example: true
+                          first_name:
+                            type: string
+                            example: Jean
+                          last_name:
+                            type: string
+                            example: Client
+                          phone_secondary:
+                            type: string
+                            example: null
+                            nullable: true
+                          contact_preference:
+                            type: string
+                            example: whatsapp
+                          consent_sms:
+                            type: boolean
+                            example: true
+                          consent_email:
+                            type: boolean
+                            example: false
+                          archived_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          tier:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: essentiel
+                              label:
+                                type: string
+                                example: Essentiel
+                      units:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            article_id: 1
+                            service_id: 1
+                            designation: Chemise
+                            pricing_type: piece
+                            quantity: 2
+                            unit_price: 1000
+                            line_total: 2000
+                            state: null
+                            is_express: true
+                            express_supplement: 1000
+                            color: Blanches
+                            defects:
+                              -
+                                code: stain
+                                label: Taché
+                            internal_notes: 'Tache au col'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            article_id:
+                              type: integer
+                              example: 1
+                            service_id:
+                              type: integer
+                              example: 1
+                            designation:
+                              type: string
+                              example: Chemise
+                            pricing_type:
+                              type: string
+                              example: piece
+                            quantity:
+                              type: integer
+                              example: 2
+                            unit_price:
+                              type: integer
+                              example: 1000
+                            line_total:
+                              type: integer
+                              example: 2000
+                            state:
+                              type: string
+                              example: null
+                              nullable: true
+                            is_express:
+                              type: boolean
+                              example: true
+                            express_supplement:
+                              type: integer
+                              example: 1000
+                            color:
+                              type: string
+                              example: Blanches
+                            defects:
+                              type: array
+                              example:
+                                -
+                                  code: stain
+                                  label: Taché
+                              items:
+                                type: object
+                                properties:
+                                  code:
+                                    type: string
+                                    example: stain
+                                  label:
+                                    type: string
+                                    example: Taché
+                            internal_notes:
+                              type: string
+                              example: 'Tache au col'
+                      transactions:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            amount: 1000
+                            type: in
+                            payment_method: cash
+                            transaction_date: '2026-10-14T09:05:00+00:00'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            amount:
+                              type: integer
+                              example: 1000
+                            type:
+                              type: string
+                              example: in
+                            payment_method:
+                              type: string
+                              example: cash
+                            transaction_date:
+                              type: string
+                              example: '2026-10-14T09:05:00+00:00'
+                      notification:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: sent
+                          label:
+                            type: string
+                            example: 'SMS envoyé'
+                          channel:
+                            type: string
+                            example: sms
+                          at:
+                            type: string
+                            example: '2026-10-20T09:42:00+00:00'
+                      open_url:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Dépôts
+    parameters:
+      -
+        in: path
+        name: deposit_id
+        description: 'The ID of the deposit.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  '/api/v1/deposits/{deposit_id}/checkout':
+    get:
+      summary: '« Traiter le retrait » — données de l’écran.'
+      operationId: TraiterLeRetraitDonnesDeLcran
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    deposit:
+                      id: 1
+                      client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                      code: AK-0001-EL
+                      qr_token: qr-demo-token
+                      pressing_id: 1
+                      agency_id: 1
+                      currency: XAF
+                      client_id: 1
+                      deposit_date: '2026-10-14T09:00:00+00:00'
+                      retrieve_date: '2026-10-16T09:00:00+00:00'
+                      retrieved_at: null
+                      subtotal: 3500
+                      collection_fee: 0
+                      delivery_fee: 0
+                      discount: 0
+                      discount_percent: 0
+                      promo_code: null
+                      points_earned: 35
+                      points_redeemed: 0
+                      total: 3500
+                      advanced: 1000
+                      left_to_pay: 2500
+                      payment_method: cash
+                      status: open
+                      etat: waiting
+                      etat_label: 'À trier'
+                      colonne: attente
+                      workshop_status:
+                        code: waiting
+                        label: 'À trier'
+                      payment_status:
+                        code: partial
+                        label: 'Partiellement payé'
+                      service:
+                        code: express
+                        label: Express
+                      is_express: true
+                      express_supplement: 1000
+                      pieces_count: 2
+                      weight_kg_total: 0
+                      quantity_label: '2 pièces'
+                      terminal: POS-01
+                      local_ref: null
+                      storage_location: null
+                      discount_reason: null
+                      sync_status:
+                        code: synced
+                        label: 'À jour'
+                        synced_at: '2026-10-14T09:05:00+00:00'
+                      delivery_status: null
+                      notes: null
+                      items_count: 2
+                      articles_label: '2 pièces'
+                      client_name: 'Jean Client'
+                      client_phone: '690000001'
+                      agency:
+                        id: 1
+                        name: Akwa
+                      client:
+                        id: 1
+                        pressing_id: 1
+                        agency_id: 1
+                        code: CLI-00001
+                        fullname: 'Jean Client'
+                        email: jean.client@example.com
+                        phone_number: '690000001'
+                        address: null
+                        city: Douala
+                        loyalty_points: 120
+                        wallet_balance: 5000
+                        sponsor_code: JEAN01
+                        referred_by_id: null
+                        last_deposit_at: '2026-10-14T10:00:00+00:00'
+                        status: true
+                        first_name: Jean
+                        last_name: Client
+                        phone_secondary: null
+                        contact_preference: whatsapp
+                        consent_sms: true
+                        consent_email: false
+                        archived_at: null
+                        tier:
+                          code: essentiel
+                          label: Essentiel
+                      units:
+                        -
+                          id: 1
+                          article_id: 1
+                          service_id: 1
+                          designation: Chemise
+                          pricing_type: piece
+                          quantity: 2
+                          unit_price: 1000
+                          line_total: 2000
+                          state: null
+                          is_express: true
+                          express_supplement: 1000
+                          color: Blanches
+                          defects:
+                            -
+                              code: stain
+                              label: Taché
+                          internal_notes: 'Tache au col'
+                      transactions:
+                        -
+                          id: 1
+                          amount: 1000
+                          type: in
+                          payment_method: cash
+                          transaction_date: '2026-10-14T09:05:00+00:00'
+                    header:
+                      client:
+                        id: 1
+                        fullname: 'Aminata Diarra'
+                        phone_number: '0748221903'
+                        client_since: '2025-03-02'
+                        loyalty_points: 740
+                        previous_unpaid_count: 0
+                        previous_unpaid_amount: 0
+                      received_by: 'Grâce A.'
+                      order_label: '7 pièces · Classique'
+                      badges:
+                        -
+                          code: workshop_done
+                          label: 'Atelier terminé'
+                        -
+                          code: due
+                          label: '4 000 FCFA dus'
+                    steps:
+                      -
+                        code: in_progress
+                        label: 'Pris en charge'
+                        state: done
+                        at: '2026-09-27T09:00:00+00:00'
+                        by: Yao
+                      -
+                        code: classed
+                        label: Prêt
+                        state: done
+                        at: '2026-09-28T08:46:00+00:00'
+                        by: Grâce
+                      -
+                        code: deposit.retrieved
+                        label: Remis
+                        state: current
+                        at: null
+                        by: null
+                    units:
+                      -
+                        id: 1
+                        designation: 'Chemise homme'
+                        note: 'Blanche · Taché'
+                        quantity: 3
+                        retrieved: 0
+                        remaining: 3
+                        verification:
+                          code: compliant
+                          label: Conforme
+                    balance:
+                      total: 18500
+                      paid: 14500
+                      left_to_pay: 4000
+                      blocked: true
+                      block_reason: 'Retrait bloqué : solde impayé'
+                      can_override: false
+                    receiver:
+                      types:
+                        -
+                          code: client
+                          label: 'Client lui-même'
+                        -
+                          code: third_party
+                          label: 'Tiers autorisé'
+                      default_name: 'Aminata Diarra'
+                    conditions:
+                      -
+                        code: compliant
+                        label: Conforme
+                      -
+                        code: client_reserve
+                        label: 'Réserve client'
+                      -
+                        code: anomaly
+                        label: 'Anomalie constatée'
+                    after_confirm:
+                      print_slip:
+                        enabled: true
+                        terminal: POS-02
+                      notify_sms:
+                        enabled: true
+                        destination: '•••• 03'
+                    audit:
+                      -
+                        at: '2026-10-20T10:37:00+00:00'
+                        actor: 'Grâce A.'
+                        action: deposit.workshop
+                        message: 'État atelier passé à « Classé »'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deposit:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          client_uuid:
+                            type: string
+                            example: 550e8400-e29b-41d4-a716-446655440000
+                          code:
+                            type: string
+                            example: AK-0001-EL
+                          qr_token:
+                            type: string
+                            example: qr-demo-token
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          currency:
+                            type: string
+                            example: XAF
+                          client_id:
+                            type: integer
+                            example: 1
+                          deposit_date:
+                            type: string
+                            example: '2026-10-14T09:00:00+00:00'
+                          retrieve_date:
+                            type: string
+                            example: '2026-10-16T09:00:00+00:00'
+                          retrieved_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          subtotal:
+                            type: integer
+                            example: 3500
+                          collection_fee:
+                            type: integer
+                            example: 0
+                          delivery_fee:
+                            type: integer
+                            example: 0
+                          discount:
+                            type: integer
+                            example: 0
+                          discount_percent:
+                            type: integer
+                            example: 0
+                          promo_code:
+                            type: string
+                            example: null
+                            nullable: true
+                          points_earned:
+                            type: integer
+                            example: 35
+                          points_redeemed:
+                            type: integer
+                            example: 0
+                          total:
+                            type: integer
+                            example: 3500
+                          advanced:
+                            type: integer
+                            example: 1000
+                          left_to_pay:
+                            type: integer
+                            example: 2500
+                          payment_method:
+                            type: string
+                            example: cash
+                          status:
+                            type: string
+                            example: open
+                          etat:
+                            type: string
+                            example: waiting
+                          etat_label:
+                            type: string
+                            example: 'À trier'
+                          colonne:
+                            type: string
+                            example: attente
+                          workshop_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: waiting
+                              label:
+                                type: string
+                                example: 'À trier'
+                          payment_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: partial
+                              label:
+                                type: string
+                                example: 'Partiellement payé'
+                          service:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: express
+                              label:
+                                type: string
+                                example: Express
+                          is_express:
+                            type: boolean
+                            example: true
+                          express_supplement:
+                            type: integer
+                            example: 1000
+                          pieces_count:
+                            type: integer
+                            example: 2
+                          weight_kg_total:
+                            type: integer
+                            example: 0
+                          quantity_label:
+                            type: string
+                            example: '2 pièces'
+                          terminal:
+                            type: string
+                            example: POS-01
+                          local_ref:
+                            type: string
+                            example: null
+                            nullable: true
+                          storage_location:
+                            type: string
+                            example: null
+                            nullable: true
+                          discount_reason:
+                            type: string
+                            example: null
+                            nullable: true
+                          sync_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: synced
+                              label:
+                                type: string
+                                example: 'À jour'
+                              synced_at:
+                                type: string
+                                example: '2026-10-14T09:05:00+00:00'
+                          delivery_status:
+                            type: string
+                            example: null
+                            nullable: true
+                          notes:
+                            type: string
+                            example: null
+                            nullable: true
+                          items_count:
+                            type: integer
+                            example: 2
+                          articles_label:
+                            type: string
+                            example: '2 pièces'
+                          client_name:
+                            type: string
+                            example: 'Jean Client'
+                          client_phone:
+                            type: string
+                            example: '690000001'
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Akwa
+                          client:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              pressing_id:
+                                type: integer
+                                example: 1
+                              agency_id:
+                                type: integer
+                                example: 1
+                              code:
+                                type: string
+                                example: CLI-00001
+                              fullname:
+                                type: string
+                                example: 'Jean Client'
+                              email:
+                                type: string
+                                example: jean.client@example.com
+                              phone_number:
+                                type: string
+                                example: '690000001'
+                              address:
+                                type: string
+                                example: null
+                                nullable: true
+                              city:
+                                type: string
+                                example: Douala
+                              loyalty_points:
+                                type: integer
+                                example: 120
+                              wallet_balance:
+                                type: integer
+                                example: 5000
+                              sponsor_code:
+                                type: string
+                                example: JEAN01
+                              referred_by_id:
+                                type: string
+                                example: null
+                                nullable: true
+                              last_deposit_at:
+                                type: string
+                                example: '2026-10-14T10:00:00+00:00'
+                              status:
+                                type: boolean
+                                example: true
+                              first_name:
+                                type: string
+                                example: Jean
+                              last_name:
+                                type: string
+                                example: Client
+                              phone_secondary:
+                                type: string
+                                example: null
+                                nullable: true
+                              contact_preference:
+                                type: string
+                                example: whatsapp
+                              consent_sms:
+                                type: boolean
+                                example: true
+                              consent_email:
+                                type: boolean
+                                example: false
+                              archived_at:
+                                type: string
+                                example: null
+                                nullable: true
+                              tier:
+                                type: object
+                                properties:
+                                  code:
+                                    type: string
+                                    example: essentiel
+                                  label:
+                                    type: string
+                                    example: Essentiel
+                          units:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                article_id: 1
+                                service_id: 1
+                                designation: Chemise
+                                pricing_type: piece
+                                quantity: 2
+                                unit_price: 1000
+                                line_total: 2000
+                                state: null
+                                is_express: true
+                                express_supplement: 1000
+                                color: Blanches
+                                defects:
+                                  -
+                                    code: stain
+                                    label: Taché
+                                internal_notes: 'Tache au col'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                article_id:
+                                  type: integer
+                                  example: 1
+                                service_id:
+                                  type: integer
+                                  example: 1
+                                designation:
+                                  type: string
+                                  example: Chemise
+                                pricing_type:
+                                  type: string
+                                  example: piece
+                                quantity:
+                                  type: integer
+                                  example: 2
+                                unit_price:
+                                  type: integer
+                                  example: 1000
+                                line_total:
+                                  type: integer
+                                  example: 2000
+                                state:
+                                  type: string
+                                  example: null
+                                  nullable: true
+                                is_express:
+                                  type: boolean
+                                  example: true
+                                express_supplement:
+                                  type: integer
+                                  example: 1000
+                                color:
+                                  type: string
+                                  example: Blanches
+                                defects:
+                                  type: array
+                                  example:
+                                    -
+                                      code: stain
+                                      label: Taché
+                                  items:
+                                    type: object
+                                    properties:
+                                      code: { type: string, example: stain }
+                                      label: { type: string, example: Taché }
+                                internal_notes:
+                                  type: string
+                                  example: 'Tache au col'
+                          transactions:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                amount: 1000
+                                type: in
+                                payment_method: cash
+                                transaction_date: '2026-10-14T09:05:00+00:00'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                amount:
+                                  type: integer
+                                  example: 1000
+                                type:
+                                  type: string
+                                  example: in
+                                payment_method:
+                                  type: string
+                                  example: cash
+                                transaction_date:
+                                  type: string
+                                  example: '2026-10-14T09:05:00+00:00'
+                      header:
+                        type: object
+                        properties:
+                          client:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              fullname:
+                                type: string
+                                example: 'Aminata Diarra'
+                              phone_number:
+                                type: string
+                                example: '0748221903'
+                              client_since:
+                                type: string
+                                example: '2025-03-02'
+                              loyalty_points:
+                                type: integer
+                                example: 740
+                              previous_unpaid_count:
+                                type: integer
+                                example: 0
+                              previous_unpaid_amount:
+                                type: integer
+                                example: 0
+                          received_by:
+                            type: string
+                            example: 'Grâce A.'
+                          order_label:
+                            type: string
+                            example: '7 pièces · Classique'
+                          badges:
+                            type: array
+                            example:
+                              -
+                                code: workshop_done
+                                label: 'Atelier terminé'
+                              -
+                                code: due
+                                label: '4 000 FCFA dus'
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: workshop_done
+                                label:
+                                  type: string
+                                  example: 'Atelier terminé'
+                      steps:
+                        type: array
+                        example:
+                          -
+                            code: in_progress
+                            label: 'Pris en charge'
+                            state: done
+                            at: '2026-09-27T09:00:00+00:00'
+                            by: Yao
+                          -
+                            code: classed
+                            label: Prêt
+                            state: done
+                            at: '2026-09-28T08:46:00+00:00'
+                            by: Grâce
+                          -
+                            code: deposit.retrieved
+                            label: Remis
+                            state: current
+                            at: null
+                            by: null
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: in_progress
+                            label:
+                              type: string
+                              example: 'Pris en charge'
+                            state:
+                              type: string
+                              example: done
+                            at:
+                              type: string
+                              example: '2026-09-27T09:00:00+00:00'
+                            by:
+                              type: string
+                              example: Yao
+                      units:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            designation: 'Chemise homme'
+                            note: 'Blanche · Taché'
+                            quantity: 3
+                            retrieved: 0
+                            remaining: 3
+                            verification:
+                              code: compliant
+                              label: Conforme
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            designation:
+                              type: string
+                              example: 'Chemise homme'
+                            note:
+                              type: string
+                              example: 'Blanche · Taché'
+                            quantity:
+                              type: integer
+                              example: 3
+                            retrieved:
+                              type: integer
+                              example: 0
+                            remaining:
+                              type: integer
+                              example: 3
+                            verification:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: compliant
+                                label:
+                                  type: string
+                                  example: Conforme
+                      balance:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 18500
+                          paid:
+                            type: integer
+                            example: 14500
+                          left_to_pay:
+                            type: integer
+                            example: 4000
+                          blocked:
+                            type: boolean
+                            example: true
+                          block_reason:
+                            type: string
+                            example: 'Retrait bloqué : solde impayé'
+                          can_override:
+                            type: boolean
+                            example: false
+                      receiver:
+                        type: object
+                        properties:
+                          types:
+                            type: array
+                            example:
+                              -
+                                code: client
+                                label: 'Client lui-même'
+                              -
+                                code: third_party
+                                label: 'Tiers autorisé'
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: client
+                                label:
+                                  type: string
+                                  example: 'Client lui-même'
+                          default_name:
+                            type: string
+                            example: 'Aminata Diarra'
+                      conditions:
+                        type: array
+                        example:
+                          -
+                            code: compliant
+                            label: Conforme
+                          -
+                            code: client_reserve
+                            label: 'Réserve client'
+                          -
+                            code: anomaly
+                            label: 'Anomalie constatée'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: compliant
+                            label:
+                              type: string
+                              example: Conforme
+                      after_confirm:
+                        type: object
+                        properties:
+                          print_slip:
+                            type: object
+                            properties:
+                              enabled:
+                                type: boolean
+                                example: true
+                              terminal:
+                                type: string
+                                example: POS-02
+                          notify_sms:
+                            type: object
+                            properties:
+                              enabled:
+                                type: boolean
+                                example: true
+                              destination:
+                                type: string
+                                example: '•••• 03'
+                      audit:
+                        type: array
+                        example:
+                          -
+                            at: '2026-10-20T10:37:00+00:00'
+                            actor: 'Grâce A.'
+                            action: deposit.workshop
+                            message: 'État atelier passé à « Classé »'
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-10-20T10:37:00+00:00'
+                            actor:
+                              type: string
+                              example: 'Grâce A.'
+                            action:
+                              type: string
+                              example: deposit.workshop
+                            message:
+                              type: string
+                              example: 'État atelier passé à « Classé »'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Dépôts
+    post:
+      summary: "« Confirmer le retrait » : encaissement, remise (totale ou partielle), état des pièces,\nréceptionnaire et journal enregistrés ensemble."
+      operationId: ConfirmerLeRetraitEncaissementRemisetotaleOuPartielletatDesPicesrceptionnaireEtJournalEnregistrsEnsemble
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    partial: true
+                    change_due: 0
+                    deposit:
+                      id: 1
+                      client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                      code: AK-0001-EL
+                      qr_token: qr-demo-token
+                      pressing_id: 1
+                      agency_id: 1
+                      currency: XAF
+                      client_id: 1
+                      deposit_date: '2026-10-14T09:00:00+00:00'
+                      retrieve_date: '2026-10-16T09:00:00+00:00'
+                      retrieved_at: null
+                      subtotal: 3500
+                      collection_fee: 0
+                      delivery_fee: 0
+                      discount: 0
+                      discount_percent: 0
+                      promo_code: null
+                      points_earned: 35
+                      points_redeemed: 0
+                      total: 3500
+                      advanced: 1000
+                      left_to_pay: 2500
+                      payment_method: cash
+                      status: open
+                      etat: waiting
+                      etat_label: 'À trier'
+                      colonne: attente
+                      workshop_status:
+                        code: waiting
+                        label: 'À trier'
+                      payment_status:
+                        code: partial
+                        label: 'Partiellement payé'
+                      service:
+                        code: express
+                        label: Express
+                      is_express: true
+                      express_supplement: 1000
+                      pieces_count: 2
+                      weight_kg_total: 0
+                      quantity_label: '2 pièces'
+                      terminal: POS-01
+                      local_ref: null
+                      storage_location: null
+                      discount_reason: null
+                      sync_status:
+                        code: synced
+                        label: 'À jour'
+                        synced_at: '2026-10-14T09:05:00+00:00'
+                      delivery_status: null
+                      notes: null
+                      items_count: 2
+                      articles_label: '2 pièces'
+                      client_name: 'Jean Client'
+                      client_phone: '690000001'
+                      agency:
+                        id: 1
+                        name: Akwa
+                      client:
+                        id: 1
+                        pressing_id: 1
+                        agency_id: 1
+                        code: CLI-00001
+                        fullname: 'Jean Client'
+                        email: jean.client@example.com
+                        phone_number: '690000001'
+                        address: null
+                        city: Douala
+                        loyalty_points: 120
+                        wallet_balance: 5000
+                        sponsor_code: JEAN01
+                        referred_by_id: null
+                        last_deposit_at: '2026-10-14T10:00:00+00:00'
+                        status: true
+                        first_name: Jean
+                        last_name: Client
+                        phone_secondary: null
+                        contact_preference: whatsapp
+                        consent_sms: true
+                        consent_email: false
+                        archived_at: null
+                        tier:
+                          code: essentiel
+                          label: Essentiel
+                      units:
+                        -
+                          id: 1
+                          article_id: 1
+                          service_id: 1
+                          designation: Chemise
+                          pricing_type: piece
+                          quantity: 2
+                          unit_price: 1000
+                          line_total: 2000
+                          state: null
+                          is_express: true
+                          express_supplement: 1000
+                          color: Blanches
+                          defects:
+                            -
+                              code: stain
+                              label: Taché
+                          internal_notes: 'Tache au col'
+                      transactions:
+                        -
+                          id: 1
+                          amount: 1000
+                          type: in
+                          payment_method: cash
+                          transaction_date: '2026-10-14T09:05:00+00:00'
+                    slip_url: 'https://api.example.com/api/v1/deposits/1/document?type=bon&format=pdf'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      partial:
+                        type: boolean
+                        example: true
+                      change_due:
+                        type: integer
+                        example: 0
+                      deposit:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          client_uuid:
+                            type: string
+                            example: 550e8400-e29b-41d4-a716-446655440000
+                          code:
+                            type: string
+                            example: AK-0001-EL
+                          qr_token:
+                            type: string
+                            example: qr-demo-token
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          currency:
+                            type: string
+                            example: XAF
+                          client_id:
+                            type: integer
+                            example: 1
+                          deposit_date:
+                            type: string
+                            example: '2026-10-14T09:00:00+00:00'
+                          retrieve_date:
+                            type: string
+                            example: '2026-10-16T09:00:00+00:00'
+                          retrieved_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          subtotal:
+                            type: integer
+                            example: 3500
+                          collection_fee:
+                            type: integer
+                            example: 0
+                          delivery_fee:
+                            type: integer
+                            example: 0
+                          discount:
+                            type: integer
+                            example: 0
+                          discount_percent:
+                            type: integer
+                            example: 0
+                          promo_code:
+                            type: string
+                            example: null
+                            nullable: true
+                          points_earned:
+                            type: integer
+                            example: 35
+                          points_redeemed:
+                            type: integer
+                            example: 0
+                          total:
+                            type: integer
+                            example: 3500
+                          advanced:
+                            type: integer
+                            example: 1000
+                          left_to_pay:
+                            type: integer
+                            example: 2500
+                          payment_method:
+                            type: string
+                            example: cash
+                          status:
+                            type: string
+                            example: open
+                          etat:
+                            type: string
+                            example: waiting
+                          etat_label:
+                            type: string
+                            example: 'À trier'
+                          colonne:
+                            type: string
+                            example: attente
+                          workshop_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: waiting
+                              label:
+                                type: string
+                                example: 'À trier'
+                          payment_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: partial
+                              label:
+                                type: string
+                                example: 'Partiellement payé'
+                          service:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: express
+                              label:
+                                type: string
+                                example: Express
+                          is_express:
+                            type: boolean
+                            example: true
+                          express_supplement:
+                            type: integer
+                            example: 1000
+                          pieces_count:
+                            type: integer
+                            example: 2
+                          weight_kg_total:
+                            type: integer
+                            example: 0
+                          quantity_label:
+                            type: string
+                            example: '2 pièces'
+                          terminal:
+                            type: string
+                            example: POS-01
+                          local_ref:
+                            type: string
+                            example: null
+                            nullable: true
+                          storage_location:
+                            type: string
+                            example: null
+                            nullable: true
+                          discount_reason:
+                            type: string
+                            example: null
+                            nullable: true
+                          sync_status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: synced
+                              label:
+                                type: string
+                                example: 'À jour'
+                              synced_at:
+                                type: string
+                                example: '2026-10-14T09:05:00+00:00'
+                          delivery_status:
+                            type: string
+                            example: null
+                            nullable: true
+                          notes:
+                            type: string
+                            example: null
+                            nullable: true
+                          items_count:
+                            type: integer
+                            example: 2
+                          articles_label:
+                            type: string
+                            example: '2 pièces'
+                          client_name:
+                            type: string
+                            example: 'Jean Client'
+                          client_phone:
+                            type: string
+                            example: '690000001'
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Akwa
+                          client:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              pressing_id:
+                                type: integer
+                                example: 1
+                              agency_id:
+                                type: integer
+                                example: 1
+                              code:
+                                type: string
+                                example: CLI-00001
+                              fullname:
+                                type: string
+                                example: 'Jean Client'
+                              email:
+                                type: string
+                                example: jean.client@example.com
+                              phone_number:
+                                type: string
+                                example: '690000001'
+                              address:
+                                type: string
+                                example: null
+                                nullable: true
+                              city:
+                                type: string
+                                example: Douala
+                              loyalty_points:
+                                type: integer
+                                example: 120
+                              wallet_balance:
+                                type: integer
+                                example: 5000
+                              sponsor_code:
+                                type: string
+                                example: JEAN01
+                              referred_by_id:
+                                type: string
+                                example: null
+                                nullable: true
+                              last_deposit_at:
+                                type: string
+                                example: '2026-10-14T10:00:00+00:00'
+                              status:
+                                type: boolean
+                                example: true
+                              first_name:
+                                type: string
+                                example: Jean
+                              last_name:
+                                type: string
+                                example: Client
+                              phone_secondary:
+                                type: string
+                                example: null
+                                nullable: true
+                              contact_preference:
+                                type: string
+                                example: whatsapp
+                              consent_sms:
+                                type: boolean
+                                example: true
+                              consent_email:
+                                type: boolean
+                                example: false
+                              archived_at:
+                                type: string
+                                example: null
+                                nullable: true
+                              tier:
+                                type: object
+                                properties:
+                                  code:
+                                    type: string
+                                    example: essentiel
+                                  label:
+                                    type: string
+                                    example: Essentiel
+                          units:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                article_id: 1
+                                service_id: 1
+                                designation: Chemise
+                                pricing_type: piece
+                                quantity: 2
+                                unit_price: 1000
+                                line_total: 2000
+                                state: null
+                                is_express: true
+                                express_supplement: 1000
+                                color: Blanches
+                                defects:
+                                  -
+                                    code: stain
+                                    label: Taché
+                                internal_notes: 'Tache au col'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                article_id:
+                                  type: integer
+                                  example: 1
+                                service_id:
+                                  type: integer
+                                  example: 1
+                                designation:
+                                  type: string
+                                  example: Chemise
+                                pricing_type:
+                                  type: string
+                                  example: piece
+                                quantity:
+                                  type: integer
+                                  example: 2
+                                unit_price:
+                                  type: integer
+                                  example: 1000
+                                line_total:
+                                  type: integer
+                                  example: 2000
+                                state:
+                                  type: string
+                                  example: null
+                                  nullable: true
+                                is_express:
+                                  type: boolean
+                                  example: true
+                                express_supplement:
+                                  type: integer
+                                  example: 1000
+                                color:
+                                  type: string
+                                  example: Blanches
+                                defects:
+                                  type: array
+                                  example:
+                                    -
+                                      code: stain
+                                      label: Taché
+                                  items:
+                                    type: object
+                                    properties:
+                                      code: { type: string, example: stain }
+                                      label: { type: string, example: Taché }
+                                internal_notes:
+                                  type: string
+                                  example: 'Tache au col'
+                          transactions:
+                            type: array
+                            example:
+                              -
+                                id: 1
+                                amount: 1000
+                                type: in
+                                payment_method: cash
+                                transaction_date: '2026-10-14T09:05:00+00:00'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                amount:
+                                  type: integer
+                                  example: 1000
+                                type:
+                                  type: string
+                                  example: in
+                                payment_method:
+                                  type: string
+                                  example: cash
+                                transaction_date:
+                                  type: string
+                                  example: '2026-10-14T09:05:00+00:00'
+                      slip_url:
+                        type: string
+                        example: 'https://api.example.com/api/v1/deposits/1/document?type=bon&format=pdf'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Dépôts
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                units:
+                  type: array
+                  description: ''
+                  example: null
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      id:
+                        type: integer
+                        description: ''
+                        example: 16
+                      quantity:
+                        type: integer
+                        description: validation.min.
+                        example: 39
+                      verification:
+                        type: string
+                        description: ''
+                        example: compliant
+                        enum:
+                          - compliant
+                          - control_required
+                        nullable: true
+                    required:
+                      - id
+                      - quantity
+                condition:
+                  type: string
+                  description: ''
+                  example: compliant
+                  enum:
+                    - compliant
+                    - client_reserve
+                    - anomaly
+                  nullable: true
+                remarks:
+                  type: string
+                  description: validation.max.
+                  example: 'n'
+                  nullable: true
+                receiver_type:
+                  type: string
+                  description: ''
+                  example: client
+                  enum:
+                    - client
+                    - third_party
+                  nullable: true
+                receiver_name:
+                  type: string
+                  description: validation.max.
+                  example: z
+                  nullable: true
+                identity_confirmed:
+                  type: boolean
+                  description: ''
+                  example: true
+                payment:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    amount:
+                      type: integer
+                      description: validation.min.
+                      example: 8
+                      nullable: true
+                    method:
+                      type: string
+                      description: ''
+                      example: mobile_money
+                      enum:
+                        - cash
+                        - card
+                        - mobile_money
+                        - wallet
+                        - other
+                      nullable: true
+                    received:
+                      type: integer
+                      description: validation.min.
+                      example: 60
+                      nullable: true
+                override_reason:
+                  type: string
+                  description: validation.max.
+                  example: d
+                  nullable: true
+                notify_sms:
+                  type: boolean
+                  description: ''
+                  example: false
     parameters:
       -
         in: path
@@ -20433,7 +25016,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -20585,7 +25168,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
               required:
                 - agency_id
@@ -24765,7 +29348,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
                 validated:
                   type: boolean
@@ -24967,7 +29550,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
     delete:
       summary: ''
@@ -28932,7 +33515,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:52'
               required:
                 - source_currency
                 - target_currency
@@ -37533,7 +42116,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
     delete:
       summary: ''
@@ -38949,7 +43532,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -42836,7 +47419,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:29:13'
+                  example: '2026-10-22T11:36:51'
                 name:
                   type: string
                   description: validation.max.

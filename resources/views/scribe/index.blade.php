@@ -198,6 +198,28 @@
                                                                                 <li class="tocify-item level-2" data-unique="depots-DELETEapi-v1-deposits--id-">
                                 <a href="#depots-DELETEapi-v1-deposits--id-">« Annuler le dépôt » — journalisé avec le motif.</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-retrievals-center">
+                                <a href="#depots-GETapi-v1-retrievals-center">« Centre de retrait » : KPI, retraits du jour, dépôts prêts (filtres q, date, agency_id, payment_status, etat).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-retrievals-aged">
+                                <a href="#depots-GETapi-v1-retrievals-aged">« Vêtements classés depuis 30+ jours ».</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-POSTapi-v1-deposits--deposit_id--aged-action">
+                                <a href="#depots-POSTapi-v1-deposits--deposit_id--aged-action">Relancer / frais de garde / escalade / traité sur un dépôt ancien.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-POSTapi-v1-deposits--deposit_id--notify">
+                                <a href="#depots-POSTapi-v1-deposits--deposit_id--notify">« Notifier le client » (SMS ou WhatsApp).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-POSTapi-v1-deposits--deposit_id--notification-read">
+                                <a href="#depots-POSTapi-v1-deposits--deposit_id--notification-read">Marquer la notification comme lue (accusé opérateur ou saisie manuelle).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits--deposit_id--checkout">
+                                <a href="#depots-GETapi-v1-deposits--deposit_id--checkout">« Traiter le retrait » — données de l’écran.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-POSTapi-v1-deposits--deposit_id--checkout">
+                                <a href="#depots-POSTapi-v1-deposits--deposit_id--checkout">« Confirmer le retrait » : encaissement, remise (totale ou partielle), état des pièces,
+réceptionnaire et journal enregistrés ensemble.</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-clients" class="tocify-header">
@@ -6983,8 +7005,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T11:29:13\",
-    \"retrieve_date\": \"2026-10-22T11:29:13\",
+    \"deposit_date\": \"2026-10-22T11:36:51\",
+    \"retrieve_date\": \"2026-10-22T11:36:51\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -7039,8 +7061,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T11:29:13",
-    "retrieve_date": "2026-10-22T11:29:13",
+    "deposit_date": "2026-10-22T11:36:51",
+    "retrieve_date": "2026-10-22T11:36:51",
     "notes": "architecto",
     "lines": [
         {
@@ -7553,10 +7575,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -7565,10 +7587,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -8245,7 +8267,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T11:29:13\"
+    \"transaction_date\": \"2026-10-22T11:36:51\"
 }"
 </code></pre></div>
 
@@ -8266,7 +8288,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T11:29:13"
+    "transaction_date": "2026-10-22T11:36:51"
 };
 
 fetch(url, {
@@ -8605,10 +8627,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
         </form>
 
@@ -10894,6 +10916,2614 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>validation.max. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="depots-GETapi-v1-retrievals-center">« Centre de retrait » : KPI, retraits du jour, dépôts prêts (filtres q, date, agency_id, payment_status, etat).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-retrievals-center">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/retrievals/center" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrievals/center"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-retrievals-center">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;CLI-00001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true,
+                &quot;first_name&quot;: &quot;Jean&quot;,
+                &quot;last_name&quot;: &quot;Client&quot;,
+                &quot;phone_secondary&quot;: null,
+                &quot;contact_preference&quot;: &quot;whatsapp&quot;,
+                &quot;consent_sms&quot;: true,
+                &quot;consent_email&quot;: false,
+                &quot;archived_at&quot;: null,
+                &quot;tier&quot;: {
+                    &quot;code&quot;: &quot;essentiel&quot;,
+                    &quot;label&quot;: &quot;Essentiel&quot;
+                }
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ],
+            &quot;notification&quot;: {
+                &quot;code&quot;: &quot;sent&quot;,
+                &quot;label&quot;: &quot;SMS envoy&eacute;&quot;,
+                &quot;channel&quot;: &quot;sms&quot;,
+                &quot;at&quot;: &quot;2026-10-20T09:42:00+00:00&quot;
+            }
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;page&quot;: 1,
+        &quot;per_page&quot;: 50,
+        &quot;total&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;kpis&quot;: {
+            &quot;ready_today&quot;: {
+                &quot;value&quot;: 18,
+                &quot;pieces&quot;: 47
+            },
+            &quot;awaiting_notification&quot;: {
+                &quot;value&quot;: 5,
+                &quot;by_channel&quot;: {
+                    &quot;sms&quot;: 3,
+                    &quot;whatsapp&quot;: 2
+                }
+            },
+            &quot;retrieved_today&quot;: {
+                &quot;value&quot;: 27,
+                &quot;delta_percent&quot;: 12,
+                &quot;compared_to&quot;: &quot;2026-10-13&quot;
+            },
+            &quot;unpaid_balances&quot;: {
+                &quot;value&quot;: 86500,
+                &quot;deposits&quot;: 7
+            }
+        },
+        &quot;today_schedule&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;code&quot;: &quot;BG-02641&quot;,
+                &quot;time&quot;: &quot;2026-10-20T10:30:00+00:00&quot;,
+                &quot;client&quot;: &quot;Aminata Diarra&quot;,
+                &quot;pieces&quot;: 7,
+                &quot;payment&quot;: {
+                    &quot;code&quot;: &quot;to_collect&quot;,
+                    &quot;label&quot;: &quot;&Agrave; encaisser&quot;
+                }
+            }
+        ]
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-retrievals-center" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-retrievals-center"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-retrievals-center"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-retrievals-center" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-retrievals-center">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-retrievals-center" data-method="GET"
+      data-path="api/v1/retrievals/center"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-retrievals-center', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-retrievals-center"
+                    onclick="tryItOut('GETapi-v1-retrievals-center');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-retrievals-center"
+                    onclick="cancelTryOut('GETapi-v1-retrievals-center');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-retrievals-center"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/retrievals/center</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-retrievals-center"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-retrievals-center"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-retrievals-center"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-retrievals-center"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="depots-GETapi-v1-retrievals-aged">« Vêtements classés depuis 30+ jours ».</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-retrievals-aged">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/retrievals/aged" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/retrievals/aged"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-retrievals-aged">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;to_handle&quot;: 12,
+        &quot;buckets&quot;: {
+            &quot;30_60&quot;: {
+                &quot;count&quot;: 4,
+                &quot;pieces&quot;: 18,
+                &quot;value&quot;: 64500
+            },
+            &quot;61_90&quot;: {
+                &quot;count&quot;: 5,
+                &quot;pieces&quot;: 27,
+                &quot;value&quot;: 93000
+            },
+            &quot;90_plus&quot;: {
+                &quot;count&quot;: 3,
+                &quot;pieces&quot;: 12,
+                &quot;value&quot;: 41000
+            }
+        },
+        &quot;items&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;code&quot;: &quot;BG-02588&quot;,
+                &quot;client&quot;: &quot;Aminata Diarra&quot;,
+                &quot;phone_number&quot;: &quot;0748221903&quot;,
+                &quot;ready_at&quot;: &quot;2026-09-19T10:00:00+00:00&quot;,
+                &quot;retrieve_date&quot;: &quot;2026-09-20T10:00:00+00:00&quot;,
+                &quot;waiting_days&quot;: 31,
+                &quot;pieces&quot;: 7,
+                &quot;value&quot;: 18500,
+                &quot;storage_fee&quot;: 0,
+                &quot;decision&quot;: {
+                    &quot;code&quot;: &quot;remind&quot;,
+                    &quot;label&quot;: &quot;Relancer&quot;
+                }
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-retrievals-aged" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-retrievals-aged"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-retrievals-aged"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-retrievals-aged" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-retrievals-aged">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-retrievals-aged" data-method="GET"
+      data-path="api/v1/retrievals/aged"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-retrievals-aged', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-retrievals-aged"
+                    onclick="tryItOut('GETapi-v1-retrievals-aged');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-retrievals-aged"
+                    onclick="cancelTryOut('GETapi-v1-retrievals-aged');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-retrievals-aged"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/retrievals/aged</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-retrievals-aged"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-retrievals-aged"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-retrievals-aged"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-retrievals-aged"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="depots-POSTapi-v1-deposits--deposit_id--aged-action">Relancer / frais de garde / escalade / traité sur un dépôt ancien.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deposits--deposit_id--aged-action">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deposits/16/aged-action" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"action\": \"handled\",
+    \"amount\": 22
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/16/aged-action"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "action": "handled",
+    "amount": 22
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deposits--deposit_id--aged-action">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;CLI-00001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true,
+            &quot;first_name&quot;: &quot;Jean&quot;,
+            &quot;last_name&quot;: &quot;Client&quot;,
+            &quot;phone_secondary&quot;: null,
+            &quot;contact_preference&quot;: &quot;whatsapp&quot;,
+            &quot;consent_sms&quot;: true,
+            &quot;consent_email&quot;: false,
+            &quot;archived_at&quot;: null,
+            &quot;tier&quot;: {
+                &quot;code&quot;: &quot;essentiel&quot;,
+                &quot;label&quot;: &quot;Essentiel&quot;
+            }
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ],
+        &quot;notification&quot;: {
+            &quot;code&quot;: &quot;sent&quot;,
+            &quot;label&quot;: &quot;SMS envoy&eacute;&quot;,
+            &quot;channel&quot;: &quot;sms&quot;,
+            &quot;at&quot;: &quot;2026-10-20T09:42:00+00:00&quot;
+        },
+        &quot;open_url&quot;: null
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-deposits--deposit_id--aged-action" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deposits--deposit_id--aged-action"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deposits--deposit_id--aged-action"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deposits--deposit_id--aged-action" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deposits--deposit_id--aged-action">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deposits--deposit_id--aged-action" data-method="POST"
+      data-path="api/v1/deposits/{deposit_id}/aged-action"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deposits--deposit_id--aged-action', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deposits--deposit_id--aged-action"
+                    onclick="tryItOut('POSTapi-v1-deposits--deposit_id--aged-action');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deposits--deposit_id--aged-action"
+                    onclick="cancelTryOut('POSTapi-v1-deposits--deposit_id--aged-action');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deposits--deposit_id--aged-action"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deposits/{deposit_id}/aged-action</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>action</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="action"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="handled"
+               data-component="body">
+    <br>
+<p>Example: <code>handled</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>remind</code></li> <li><code>storage_fee</code></li> <li><code>escalate</code></li> <li><code>handled</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="amount"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
+               value="22"
+               data-component="body">
+    <br>
+<p>This field is required when <code>action</code> is <code>storage_fee</code>. validation.min. Example: <code>22</code></p>
+        </div>
+        </form>
+
+                    <h2 id="depots-POSTapi-v1-deposits--deposit_id--notify">« Notifier le client » (SMS ou WhatsApp).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deposits--deposit_id--notify">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deposits/16/notify" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"channel\": \"sms\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/16/notify"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "channel": "sms"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deposits--deposit_id--notify">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;CLI-00001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true,
+            &quot;first_name&quot;: &quot;Jean&quot;,
+            &quot;last_name&quot;: &quot;Client&quot;,
+            &quot;phone_secondary&quot;: null,
+            &quot;contact_preference&quot;: &quot;whatsapp&quot;,
+            &quot;consent_sms&quot;: true,
+            &quot;consent_email&quot;: false,
+            &quot;archived_at&quot;: null,
+            &quot;tier&quot;: {
+                &quot;code&quot;: &quot;essentiel&quot;,
+                &quot;label&quot;: &quot;Essentiel&quot;
+            }
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ],
+        &quot;notification&quot;: {
+            &quot;code&quot;: &quot;sent&quot;,
+            &quot;label&quot;: &quot;SMS envoy&eacute;&quot;,
+            &quot;channel&quot;: &quot;sms&quot;,
+            &quot;at&quot;: &quot;2026-10-20T09:42:00+00:00&quot;
+        },
+        &quot;open_url&quot;: null
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-deposits--deposit_id--notify" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deposits--deposit_id--notify"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deposits--deposit_id--notify"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deposits--deposit_id--notify" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deposits--deposit_id--notify">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deposits--deposit_id--notify" data-method="POST"
+      data-path="api/v1/deposits/{deposit_id}/notify"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deposits--deposit_id--notify', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deposits--deposit_id--notify"
+                    onclick="tryItOut('POSTapi-v1-deposits--deposit_id--notify');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deposits--deposit_id--notify"
+                    onclick="cancelTryOut('POSTapi-v1-deposits--deposit_id--notify');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deposits--deposit_id--notify"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deposits/{deposit_id}/notify</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deposits--deposit_id--notify"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deposits--deposit_id--notify"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deposits--deposit_id--notify"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deposits--deposit_id--notify"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--notify"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="channel"                data-endpoint="POSTapi-v1-deposits--deposit_id--notify"
+               value="sms"
+               data-component="body">
+    <br>
+<p>Example: <code>sms</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>sms</code></li> <li><code>whatsapp</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="depots-POSTapi-v1-deposits--deposit_id--notification-read">Marquer la notification comme lue (accusé opérateur ou saisie manuelle).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deposits--deposit_id--notification-read">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deposits/16/notification-read" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/16/notification-read"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deposits--deposit_id--notification-read">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+        &quot;code&quot;: &quot;AK-0001-EL&quot;,
+        &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+        &quot;pressing_id&quot;: 1,
+        &quot;agency_id&quot;: 1,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;client_id&quot;: 1,
+        &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+        &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+        &quot;retrieved_at&quot;: null,
+        &quot;subtotal&quot;: 3500,
+        &quot;collection_fee&quot;: 0,
+        &quot;delivery_fee&quot;: 0,
+        &quot;discount&quot;: 0,
+        &quot;discount_percent&quot;: 0,
+        &quot;promo_code&quot;: null,
+        &quot;points_earned&quot;: 35,
+        &quot;points_redeemed&quot;: 0,
+        &quot;total&quot;: 3500,
+        &quot;advanced&quot;: 1000,
+        &quot;left_to_pay&quot;: 2500,
+        &quot;payment_method&quot;: &quot;cash&quot;,
+        &quot;status&quot;: &quot;open&quot;,
+        &quot;etat&quot;: &quot;waiting&quot;,
+        &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+        &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
+        &quot;delivery_status&quot;: null,
+        &quot;notes&quot;: null,
+        &quot;items_count&quot;: 2,
+        &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;client_name&quot;: &quot;Jean Client&quot;,
+        &quot;client_phone&quot;: &quot;690000001&quot;,
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Akwa&quot;
+        },
+        &quot;client&quot;: {
+            &quot;id&quot;: 1,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;code&quot;: &quot;CLI-00001&quot;,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;email&quot;: &quot;jean.client@example.com&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;address&quot;: null,
+            &quot;city&quot;: &quot;Douala&quot;,
+            &quot;loyalty_points&quot;: 120,
+            &quot;wallet_balance&quot;: 5000,
+            &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+            &quot;referred_by_id&quot;: null,
+            &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+            &quot;status&quot;: true,
+            &quot;first_name&quot;: &quot;Jean&quot;,
+            &quot;last_name&quot;: &quot;Client&quot;,
+            &quot;phone_secondary&quot;: null,
+            &quot;contact_preference&quot;: &quot;whatsapp&quot;,
+            &quot;consent_sms&quot;: true,
+            &quot;consent_email&quot;: false,
+            &quot;archived_at&quot;: null,
+            &quot;tier&quot;: {
+                &quot;code&quot;: &quot;essentiel&quot;,
+                &quot;label&quot;: &quot;Essentiel&quot;
+            }
+        },
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;article_id&quot;: 1,
+                &quot;service_id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise&quot;,
+                &quot;pricing_type&quot;: &quot;piece&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;unit_price&quot;: 1000,
+                &quot;line_total&quot;: 2000,
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
+            }
+        ],
+        &quot;transactions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;amount&quot;: 1000,
+                &quot;type&quot;: &quot;in&quot;,
+                &quot;payment_method&quot;: &quot;cash&quot;,
+                &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            }
+        ],
+        &quot;notification&quot;: {
+            &quot;code&quot;: &quot;sent&quot;,
+            &quot;label&quot;: &quot;SMS envoy&eacute;&quot;,
+            &quot;channel&quot;: &quot;sms&quot;,
+            &quot;at&quot;: &quot;2026-10-20T09:42:00+00:00&quot;
+        },
+        &quot;open_url&quot;: null
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-deposits--deposit_id--notification-read" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deposits--deposit_id--notification-read"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deposits--deposit_id--notification-read"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deposits--deposit_id--notification-read" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deposits--deposit_id--notification-read">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deposits--deposit_id--notification-read" data-method="POST"
+      data-path="api/v1/deposits/{deposit_id}/notification-read"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deposits--deposit_id--notification-read', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deposits--deposit_id--notification-read"
+                    onclick="tryItOut('POSTapi-v1-deposits--deposit_id--notification-read');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deposits--deposit_id--notification-read"
+                    onclick="cancelTryOut('POSTapi-v1-deposits--deposit_id--notification-read');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deposits--deposit_id--notification-read"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deposits/{deposit_id}/notification-read</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deposits--deposit_id--notification-read"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deposits--deposit_id--notification-read"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deposits--deposit_id--notification-read"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deposits--deposit_id--notification-read"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--notification-read"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="depots-GETapi-v1-deposits--deposit_id--checkout">« Traiter le retrait » — données de l’écran.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deposits--deposit_id--checkout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deposits/16/checkout" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/16/checkout"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deposits--deposit_id--checkout">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;deposit&quot;: {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;CLI-00001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true,
+                &quot;first_name&quot;: &quot;Jean&quot;,
+                &quot;last_name&quot;: &quot;Client&quot;,
+                &quot;phone_secondary&quot;: null,
+                &quot;contact_preference&quot;: &quot;whatsapp&quot;,
+                &quot;consent_sms&quot;: true,
+                &quot;consent_email&quot;: false,
+                &quot;archived_at&quot;: null,
+                &quot;tier&quot;: {
+                    &quot;code&quot;: &quot;essentiel&quot;,
+                    &quot;label&quot;: &quot;Essentiel&quot;
+                }
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        },
+        &quot;header&quot;: {
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;fullname&quot;: &quot;Aminata Diarra&quot;,
+                &quot;phone_number&quot;: &quot;0748221903&quot;,
+                &quot;client_since&quot;: &quot;2025-03-02&quot;,
+                &quot;loyalty_points&quot;: 740,
+                &quot;previous_unpaid_count&quot;: 0,
+                &quot;previous_unpaid_amount&quot;: 0
+            },
+            &quot;received_by&quot;: &quot;Gr&acirc;ce A.&quot;,
+            &quot;order_label&quot;: &quot;7 pi&egrave;ces &middot; Classique&quot;,
+            &quot;badges&quot;: [
+                {
+                    &quot;code&quot;: &quot;workshop_done&quot;,
+                    &quot;label&quot;: &quot;Atelier termin&eacute;&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;due&quot;,
+                    &quot;label&quot;: &quot;4 000 FCFA dus&quot;
+                }
+            ]
+        },
+        &quot;steps&quot;: [
+            {
+                &quot;code&quot;: &quot;in_progress&quot;,
+                &quot;label&quot;: &quot;Pris en charge&quot;,
+                &quot;state&quot;: &quot;done&quot;,
+                &quot;at&quot;: &quot;2026-09-27T09:00:00+00:00&quot;,
+                &quot;by&quot;: &quot;Yao&quot;
+            },
+            {
+                &quot;code&quot;: &quot;classed&quot;,
+                &quot;label&quot;: &quot;Pr&ecirc;t&quot;,
+                &quot;state&quot;: &quot;done&quot;,
+                &quot;at&quot;: &quot;2026-09-28T08:46:00+00:00&quot;,
+                &quot;by&quot;: &quot;Gr&acirc;ce&quot;
+            },
+            {
+                &quot;code&quot;: &quot;deposit.retrieved&quot;,
+                &quot;label&quot;: &quot;Remis&quot;,
+                &quot;state&quot;: &quot;current&quot;,
+                &quot;at&quot;: null,
+                &quot;by&quot;: null
+            }
+        ],
+        &quot;units&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;designation&quot;: &quot;Chemise homme&quot;,
+                &quot;note&quot;: &quot;Blanche &middot; Tach&eacute;&quot;,
+                &quot;quantity&quot;: 3,
+                &quot;retrieved&quot;: 0,
+                &quot;remaining&quot;: 3,
+                &quot;verification&quot;: {
+                    &quot;code&quot;: &quot;compliant&quot;,
+                    &quot;label&quot;: &quot;Conforme&quot;
+                }
+            }
+        ],
+        &quot;balance&quot;: {
+            &quot;total&quot;: 18500,
+            &quot;paid&quot;: 14500,
+            &quot;left_to_pay&quot;: 4000,
+            &quot;blocked&quot;: true,
+            &quot;block_reason&quot;: &quot;Retrait bloqu&eacute; : solde impay&eacute;&quot;,
+            &quot;can_override&quot;: false
+        },
+        &quot;receiver&quot;: {
+            &quot;types&quot;: [
+                {
+                    &quot;code&quot;: &quot;client&quot;,
+                    &quot;label&quot;: &quot;Client lui-m&ecirc;me&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;third_party&quot;,
+                    &quot;label&quot;: &quot;Tiers autoris&eacute;&quot;
+                }
+            ],
+            &quot;default_name&quot;: &quot;Aminata Diarra&quot;
+        },
+        &quot;conditions&quot;: [
+            {
+                &quot;code&quot;: &quot;compliant&quot;,
+                &quot;label&quot;: &quot;Conforme&quot;
+            },
+            {
+                &quot;code&quot;: &quot;client_reserve&quot;,
+                &quot;label&quot;: &quot;R&eacute;serve client&quot;
+            },
+            {
+                &quot;code&quot;: &quot;anomaly&quot;,
+                &quot;label&quot;: &quot;Anomalie constat&eacute;e&quot;
+            }
+        ],
+        &quot;after_confirm&quot;: {
+            &quot;print_slip&quot;: {
+                &quot;enabled&quot;: true,
+                &quot;terminal&quot;: &quot;POS-02&quot;
+            },
+            &quot;notify_sms&quot;: {
+                &quot;enabled&quot;: true,
+                &quot;destination&quot;: &quot;&bull;&bull;&bull;&bull; 03&quot;
+            }
+        },
+        &quot;audit&quot;: [
+            {
+                &quot;at&quot;: &quot;2026-10-20T10:37:00+00:00&quot;,
+                &quot;actor&quot;: &quot;Gr&acirc;ce A.&quot;,
+                &quot;action&quot;: &quot;deposit.workshop&quot;,
+                &quot;message&quot;: &quot;&Eacute;tat atelier pass&eacute; &agrave; &laquo; Class&eacute; &raquo;&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-deposits--deposit_id--checkout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deposits--deposit_id--checkout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deposits--deposit_id--checkout"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deposits--deposit_id--checkout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deposits--deposit_id--checkout">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deposits--deposit_id--checkout" data-method="GET"
+      data-path="api/v1/deposits/{deposit_id}/checkout"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deposits--deposit_id--checkout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deposits--deposit_id--checkout"
+                    onclick="tryItOut('GETapi-v1-deposits--deposit_id--checkout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deposits--deposit_id--checkout"
+                    onclick="cancelTryOut('GETapi-v1-deposits--deposit_id--checkout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deposits--deposit_id--checkout"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deposits/{deposit_id}/checkout</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deposits--deposit_id--checkout"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deposits--deposit_id--checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deposits--deposit_id--checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deposits--deposit_id--checkout"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="GETapi-v1-deposits--deposit_id--checkout"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="depots-POSTapi-v1-deposits--deposit_id--checkout">« Confirmer le retrait » : encaissement, remise (totale ou partielle), état des pièces,
+réceptionnaire et journal enregistrés ensemble.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deposits--deposit_id--checkout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deposits/16/checkout" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"condition\": \"compliant\",
+    \"remarks\": \"n\",
+    \"receiver_type\": \"client\",
+    \"receiver_name\": \"z\",
+    \"identity_confirmed\": true,
+    \"payment\": {
+        \"amount\": 8,
+        \"method\": \"mobile_money\",
+        \"received\": 60
+    },
+    \"override_reason\": \"d\",
+    \"notify_sms\": false,
+    \"units\": [
+        {
+            \"id\": 16,
+            \"quantity\": 39,
+            \"verification\": \"compliant\"
+        }
+    ]
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/16/checkout"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "condition": "compliant",
+    "remarks": "n",
+    "receiver_type": "client",
+    "receiver_name": "z",
+    "identity_confirmed": true,
+    "payment": {
+        "amount": 8,
+        "method": "mobile_money",
+        "received": 60
+    },
+    "override_reason": "d",
+    "notify_sms": false,
+    "units": [
+        {
+            "id": 16,
+            "quantity": 39,
+            "verification": "compliant"
+        }
+    ]
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deposits--deposit_id--checkout">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;partial&quot;: true,
+        &quot;change_due&quot;: 0,
+        &quot;deposit&quot;: {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;CLI-00001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true,
+                &quot;first_name&quot;: &quot;Jean&quot;,
+                &quot;last_name&quot;: &quot;Client&quot;,
+                &quot;phone_secondary&quot;: null,
+                &quot;contact_preference&quot;: &quot;whatsapp&quot;,
+                &quot;consent_sms&quot;: true,
+                &quot;consent_email&quot;: false,
+                &quot;archived_at&quot;: null,
+                &quot;tier&quot;: {
+                    &quot;code&quot;: &quot;essentiel&quot;,
+                    &quot;label&quot;: &quot;Essentiel&quot;
+                }
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        },
+        &quot;slip_url&quot;: &quot;https://api.example.com/api/v1/deposits/1/document?type=bon&amp;format=pdf&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-deposits--deposit_id--checkout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deposits--deposit_id--checkout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deposits--deposit_id--checkout"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deposits--deposit_id--checkout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deposits--deposit_id--checkout">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deposits--deposit_id--checkout" data-method="POST"
+      data-path="api/v1/deposits/{deposit_id}/checkout"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deposits--deposit_id--checkout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deposits--deposit_id--checkout"
+                    onclick="tryItOut('POSTapi-v1-deposits--deposit_id--checkout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deposits--deposit_id--checkout"
+                    onclick="cancelTryOut('POSTapi-v1-deposits--deposit_id--checkout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deposits--deposit_id--checkout"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deposits/{deposit_id}/checkout</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>units</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="units.0.id"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="units.0.quantity"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="39"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>39</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>verification</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="units.0.verification"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="compliant"
+               data-component="body">
+    <br>
+<p>Example: <code>compliant</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>compliant</code></li> <li><code>control_required</code></li></ul>
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>condition</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="condition"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="compliant"
+               data-component="body">
+    <br>
+<p>Example: <code>compliant</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>compliant</code></li> <li><code>client_reserve</code></li> <li><code>anomaly</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>remarks</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="remarks"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="n"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>receiver_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="receiver_type"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="client"
+               data-component="body">
+    <br>
+<p>Example: <code>client</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>client</code></li> <li><code>third_party</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>receiver_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="receiver_name"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="z"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>z</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>identity_confirmed</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deposits--deposit_id--checkout" style="display: none">
+            <input type="radio" name="identity_confirmed"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deposits--deposit_id--checkout" style="display: none">
+            <input type="radio" name="identity_confirmed"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>payment</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="payment.amount"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="8"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>8</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>method</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="payment.method"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="mobile_money"
+               data-component="body">
+    <br>
+<p>Example: <code>mobile_money</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>received</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="payment.received"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="60"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>60</code></p>
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>override_reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="override_reason"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+               value="d"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>d</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>notify_sms</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deposits--deposit_id--checkout" style="display: none">
+            <input type="radio" name="notify_sms"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deposits--deposit_id--checkout" style="display: none">
+            <input type="radio" name="notify_sms"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -15794,7 +18424,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpE646.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpE365.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -15979,7 +18609,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpE646.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpE365.tmp</code></p>
         </div>
         </form>
 
@@ -17453,7 +20083,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T11:29:13\"
+    \"at\": \"2026-10-22T11:36:51\"
 }"
 </code></pre></div>
 
@@ -17475,7 +20105,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T11:29:13"
+    "at": "2026-10-22T11:36:51"
 };
 
 fetch(url, {
@@ -17679,10 +20309,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
         </form>
 
@@ -17711,7 +20341,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T11:29:13\",
+    \"valid_from\": \"2026-10-22T11:36:51\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -17735,7 +20365,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T11:29:13",
+    "valid_from": "2026-10-22T11:36:51",
     "valid_to": "2052-11-14"
 };
 
@@ -17971,10 +20601,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -24225,7 +26855,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"g\",
     \"type\": \"out\",
     \"amount\": 27,
-    \"action_date\": \"2026-10-22T11:29:13\",
+    \"action_date\": \"2026-10-22T11:36:51\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -24248,7 +26878,7 @@ let body = {
     "label": "g",
     "type": "out",
     "amount": 27,
-    "action_date": "2026-10-22T11:29:13",
+    "action_date": "2026-10-22T11:36:51",
     "validated": true
 };
 
@@ -24486,10 +27116,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -24538,7 +27168,7 @@ Must be one of:
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T11:29:13\"
+    \"action_date\": \"2026-10-22T11:36:51\"
 }"
 </code></pre></div>
 
@@ -24559,7 +27189,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T11:29:13"
+    "action_date": "2026-10-22T11:36:51"
 };
 
 fetch(url, {
@@ -24797,10 +27427,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
         </form>
 
@@ -30273,7 +32903,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T11:29:13\"
+    \"rate_date\": \"2026-10-22T11:36:52\"
 }"
 </code></pre></div>
 
@@ -30294,7 +32924,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T11:29:13"
+    "rate_date": "2026-10-22T11:36:52"
 };
 
 fetch(url, {
@@ -30500,10 +33130,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:52"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:52</code></p>
         </div>
         </form>
 
@@ -39566,7 +42196,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T11:29:13\"
+    \"expires_at\": \"2026-10-22T11:36:51\"
 }"
 </code></pre></div>
 
@@ -39590,7 +42220,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T11:29:13"
+    "expires_at": "2026-10-22T11:36:51"
 };
 
 fetch(url, {
@@ -39925,10 +42555,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
         </form>
 
@@ -40230,10 +42860,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T11:29:13"\
+    --form "effective_at=2026-10-22T11:36:51"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\phpE5D7.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\phpE2F7.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -40252,7 +42882,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T11:29:13');
+body.append('effective_at', '2026-10-22T11:36:51');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -40762,10 +43392,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -40821,7 +43451,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpE5D7.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpE2F7.tmp</code></p>
         </div>
         </form>
 
@@ -44527,7 +47157,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T11:29:13\",
+    \"round_date\": \"2026-10-22T11:36:51\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -44548,7 +47178,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T11:29:13",
+    "round_date": "2026-10-22T11:36:51",
     "name": "n"
 };
 
@@ -44755,10 +47385,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T11:29:13"
+               value="2026-10-22T11:36:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:29:13</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:36:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

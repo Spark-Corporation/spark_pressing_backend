@@ -33,6 +33,7 @@ class RolePermissionSeeder extends Seeder
             'deliveries.collect',
             'prices.manage',
             'fx.manage',
+            'deposits.override',
         ];
 
         foreach ($permissions as $name) {
@@ -49,6 +50,7 @@ class RolePermissionSeeder extends Seeder
                 'clients.manage', 'articles.manage', 'reports.view', 'reports.consolidated',
                 'cash.manage', 'settings.manage', 'roles.manage',
                 'deliveries.view', 'deliveries.manage', 'prices.manage', 'fx.manage',
+                'deposits.override',
             ],
             'admin' => $permissions,
             'laveur' => ['deposits.view', 'workshop.transition'],

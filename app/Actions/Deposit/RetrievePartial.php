@@ -10,14 +10,14 @@ use Illuminate\Validation\ValidationException;
 
 class RetrievePartial
 {
-    public function handle(User $cashier, Deposit $deposit, array $units): Deposit
+    public function handle(User $cashier, Deposit $deposit, array $units, bool $override = false): Deposit
     {
         if (! $deposit->isOpen()) {
             throw ValidationException::withMessages(['deposit' => 'Ce dépôt est déjà retiré.']);
         }
 
         $pressing = $deposit->pressing;
-        if ($pressing->block_retrieve_if_unpaid && ! $deposit->isSettled()) {
+        if ($pressing->block_retrieve_if_unpaid && ! $deposit->isSettled() && ! $override) {
             throw ValidationException::withMessages(['deposit' => 'Retrait bloqué : solde impayé.']);
         }
 

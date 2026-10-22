@@ -506,6 +506,72 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Retraits (Figma 05) ——
+        $notification = ['code' => 'sent', 'label' => 'SMS envoyé', 'channel' => 'sms', 'at' => '2026-10-20T09:42:00+00:00'];
+        if ($path === '/api/v1/retrievals/center') {
+            return [$this->response(200, [$deposit + ['notification' => $notification]], array_merge($pageMeta, [
+                'kpis' => [
+                    'ready_today' => ['value' => 18, 'pieces' => 47],
+                    'awaiting_notification' => ['value' => 5, 'by_channel' => ['sms' => 3, 'whatsapp' => 2]],
+                    'retrieved_today' => ['value' => 27, 'delta_percent' => 12.0, 'compared_to' => '2026-10-13'],
+                    'unpaid_balances' => ['value' => 86500, 'deposits' => 7],
+                ],
+                'today_schedule' => [
+                    ['id' => 1, 'code' => 'BG-02641', 'time' => '2026-10-20T10:30:00+00:00', 'client' => 'Aminata Diarra', 'pieces' => 7, 'payment' => ['code' => 'to_collect', 'label' => 'À encaisser']],
+                ],
+            ]))];
+        }
+        if ($path === '/api/v1/retrievals/aged') {
+            return [$this->response(200, [
+                'to_handle' => 12,
+                'buckets' => [
+                    '30_60' => ['count' => 4, 'pieces' => 18, 'value' => 64500],
+                    '61_90' => ['count' => 5, 'pieces' => 27, 'value' => 93000],
+                    '90_plus' => ['count' => 3, 'pieces' => 12, 'value' => 41000],
+                ],
+                'items' => [[
+                    'id' => 1, 'code' => 'BG-02588', 'client' => 'Aminata Diarra', 'phone_number' => '0748221903',
+                    'ready_at' => '2026-09-19T10:00:00+00:00', 'retrieve_date' => '2026-09-20T10:00:00+00:00',
+                    'waiting_days' => 31, 'pieces' => 7, 'value' => 18500, 'storage_fee' => 0,
+                    'decision' => ['code' => 'remind', 'label' => 'Relancer'],
+                ]],
+            ])];
+        }
+        if (str_starts_with($path, '/api/v1/deposits/{') && (str_ends_with($path, '/notify') || str_ends_with($path, '/notification-read') || str_ends_with($path, '/aged-action'))) {
+            return [$this->response(200, $deposit + ['notification' => $notification, 'open_url' => null])];
+        }
+        if (str_starts_with($path, '/api/v1/deposits/{') && str_ends_with($path, '/checkout')) {
+            if ($method === 'GET') {
+                return [$this->response(200, [
+                    'deposit' => $deposit,
+                    'header' => [
+                        'client' => ['id' => 1, 'fullname' => 'Aminata Diarra', 'phone_number' => '0748221903', 'client_since' => '2025-03-02', 'loyalty_points' => 740, 'previous_unpaid_count' => 0, 'previous_unpaid_amount' => 0],
+                        'received_by' => 'Grâce A.',
+                        'order_label' => '7 pièces · Classique',
+                        'badges' => [['code' => 'workshop_done', 'label' => 'Atelier terminé'], ['code' => 'due', 'label' => '4 000 FCFA dus']],
+                    ],
+                    'steps' => [
+                        ['code' => 'in_progress', 'label' => 'Pris en charge', 'state' => 'done', 'at' => '2026-09-27T09:00:00+00:00', 'by' => 'Yao'],
+                        ['code' => 'classed', 'label' => 'Prêt', 'state' => 'done', 'at' => '2026-09-28T08:46:00+00:00', 'by' => 'Grâce'],
+                        ['code' => 'deposit.retrieved', 'label' => 'Remis', 'state' => 'current', 'at' => null, 'by' => null],
+                    ],
+                    'units' => [['id' => 1, 'designation' => 'Chemise homme', 'note' => 'Blanche · Taché', 'quantity' => 3, 'retrieved' => 0, 'remaining' => 3, 'verification' => ['code' => 'compliant', 'label' => 'Conforme']]],
+                    'balance' => ['total' => 18500, 'paid' => 14500, 'left_to_pay' => 4000, 'blocked' => true, 'block_reason' => 'Retrait bloqué : solde impayé', 'can_override' => false],
+                    'receiver' => ['types' => [['code' => 'client', 'label' => 'Client lui-même'], ['code' => 'third_party', 'label' => 'Tiers autorisé']], 'default_name' => 'Aminata Diarra'],
+                    'conditions' => [['code' => 'compliant', 'label' => 'Conforme'], ['code' => 'client_reserve', 'label' => 'Réserve client'], ['code' => 'anomaly', 'label' => 'Anomalie constatée']],
+                    'after_confirm' => ['print_slip' => ['enabled' => true, 'terminal' => 'POS-02'], 'notify_sms' => ['enabled' => true, 'destination' => '•••• 03']],
+                    'audit' => [['at' => '2026-10-20T10:37:00+00:00', 'actor' => 'Grâce A.', 'action' => 'deposit.workshop', 'message' => 'État atelier passé à « Classé »']],
+                ])];
+            }
+
+            return [$this->response(200, [
+                'partial' => true,
+                'change_due' => 0,
+                'deposit' => $deposit,
+                'slip_url' => 'https://api.example.com/api/v1/deposits/1/document?type=bon&format=pdf',
+            ])];
+        }
+
         // —— Dépôts ——
         if (str_starts_with($path, '/api/v1/deposits')) {
             if ($method === 'GET' && $path === '/api/v1/deposits') {

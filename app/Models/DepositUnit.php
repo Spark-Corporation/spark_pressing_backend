@@ -32,6 +32,7 @@ class DepositUnit extends \Illuminate\Database\Eloquent\Model
         'color',
         'defects',
         'internal_notes',
+        'verification',
     ];
 
     protected $casts = [

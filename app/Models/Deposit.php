@@ -124,6 +124,18 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
     public const DELIVERY_FAILED = 'failed';
 
     protected $fillable = [
+        'notification_channel',
+        'notification_status',
+        'notified_at',
+        'notification_read_at',
+        'storage_fee',
+        'escalated_at',
+        'aged_handled_at',
+        'retrieve_condition',
+        'retrieve_remarks',
+        'receiver_type',
+        'identity_confirmed',
+        'retrieve_override_reason',
         'is_express',
         'express_supplement',
         'terminal',
@@ -180,7 +192,36 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
         'delivery_confirmed_at' => 'datetime',
         'status' => 'boolean',
         'is_express' => 'boolean',
+        'notified_at' => 'datetime',
+        'notification_read_at' => 'datetime',
+        'escalated_at' => 'datetime',
+        'aged_handled_at' => 'datetime',
+        'identity_confirmed' => 'boolean',
     ];
+
+    /**
+     * Colonne « Notification » du centre de retrait.
+     *
+     * @return array{code:string,label:string,channel:?string,at:?string}
+     */
+    public function notificationState(): array
+    {
+        $channel = ['sms' => 'SMS', 'whatsapp' => 'WhatsApp', 'email' => 'E-mail'][$this->notification_channel] ?? null;
+        [$code, $label] = match (true) {
+            (bool) $this->notification_read_at => ['read', "{$channel} lu"],
+            $this->notification_status === 'failed' => ['failed', 'Échec d’envoi'],
+            $this->notified_at && $this->notified_at->lt(now()->subDay()) && ! $this->retrieved_at => ['reminder_due', 'Relance requise'],
+            (bool) $this->notified_at => ['sent', "{$channel} envoyé"],
+            default => ['to_notify', 'À notifier'],
+        };
+
+        return [
+            'code' => $code,
+            'label' => $label,
+            'channel' => $this->notification_channel,
+            'at' => ($this->notification_read_at ?? $this->notified_at)?->toIso8601String(),
+        ];
+    }
 
     public function pressing(): BelongsTo
     {

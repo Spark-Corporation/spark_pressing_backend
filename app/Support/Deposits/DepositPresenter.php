@@ -77,7 +77,7 @@ class DepositPresenter
         $deposit->loadMissing([
             'client:id,fullname,phone_number,email,code,loyalty_points,wallet_balance,created_at',
             'agency:id,name,code_prefix,address,contact,email,rccm,tax_id',
-            'pressing:id,name,slogan,invoice_terms,express_surcharge_percent',
+            'pressing:id,name,slogan,invoice_terms,express_surcharge_percent,loyalty_redeem_threshold,loyalty_redeem_value,block_retrieve_if_unpaid',
             'units', 'transactions', 'cashier:id,fullname',
         ]);
 
