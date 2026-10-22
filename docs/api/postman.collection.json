@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "d5c3e783-dd73-4772-90fc-fc819fde33f2",
+        "_postman_id": "f71a4862-0982-4a8d-8bf8-fb560c4c7636",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:57:50\",\"retrieve_date\":\"2026-10-22T21:57:50\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T22:01:54\",\"retrieve_date\":\"2026-10-22T22:01:54\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -3969,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -4014,7 +4014,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:57:50\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T22:01:54\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -4040,7 +4040,7 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/laundry-statuses",
+                    "name": "\u00ab D\u00e9fauts \u00e0 la r\u00e9ception \u00bb (`q`, `availability=active|inactive`) avec l\u2019usage dans les d\u00e9p\u00f4ts.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -4063,14 +4063,62 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"b\",\"availability\":\"inactive\"}"
+                        },
                         "description": ""
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Propre\",\n            \"code\": \"clean\",\n            \"status\": true\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 50,\n        \"total\": 1,\n        \"last_page\": 1\n    },\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"code\": \"stain\",\n            \"title\": \"Tach\u00e9\",\n            \"description\": \"Tache visible \u00e0 la r\u00e9ception\",\n            \"usage\": 128,\n            \"usage_label\": \"128 d\u00e9p\u00f4ts\",\n            \"status\": \"active\",\n            \"status_label\": \"Actif\",\n            \"deletable\": false,\n            \"sort_order\": 1\n        }\n    ],\n    \"meta\": {\n        \"total\": 6,\n        \"active\": 5,\n        \"summary_label\": \"6 \u00e9tats \u00b7 5 actifs\",\n        \"results_label\": \"6 r\u00e9sultats\",\n        \"notice\": \"Un \u00e9tat utilis\u00e9 n\u2019est pas supprim\u00e9 : d\u00e9sactivez-le pour les prochaines r\u00e9ceptions. Les constats d\u00e9j\u00e0 enregistr\u00e9s restent consultables dans l\u2019historique des d\u00e9p\u00f4ts.\",\n        \"confidentiality\": \"Les remarques et d\u00e9tails internes sont r\u00e9serv\u00e9s aux r\u00e9ceptionnistes : ils ne sont jamais imprim\u00e9s ni expos\u00e9s au portail client.\"\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "V\u00e9rifications du formulaire \u00ab Ajouter un \u00e9tat du linge \u00bb (`title`, `ignore_id`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/laundry-statuses\/preview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/laundry-statuses\/preview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"b\",\"ignore_id\":16}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"title\": \"Froiss\u00e9\",\n        \"checks\": [\n            {\n                \"code\": \"unique\",\n                \"ok\": true,\n                \"label\": \"Libell\u00e9 disponible\"\n            }\n        ],\n        \"valid\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -4112,7 +4160,7 @@
                         {
                             "header": [],
                             "code": 201,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Propre\",\n        \"code\": \"clean\",\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 7,\n        \"code\": \"froisse\",\n        \"title\": \"Froiss\u00e9\",\n        \"usage\": 0,\n        \"usage_label\": \"0 d\u00e9p\u00f4t\",\n        \"deletable\": true,\n        \"description\": \"Tache visible \u00e0 la r\u00e9ception\",\n        \"status\": \"active\",\n        \"status_label\": \"Actif\",\n        \"sort_order\": 1\n    },\n    \"meta\": {\n        \"notice\": \"Un \u00e9tat utilis\u00e9 n\u2019est pas supprim\u00e9 : d\u00e9sactivez-le pour les prochaines r\u00e9ceptions. Les constats d\u00e9j\u00e0 enregistr\u00e9s restent consultables dans l\u2019historique des d\u00e9p\u00f4ts.\"\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -4130,7 +4178,7 @@
                     ]
                 },
                 {
-                    "name": "PUT api\/v1\/laundry-statuses\/{id}",
+                    "name": "Modifier le libell\u00e9, la description ou la disponibilit\u00e9 (le code technique ne change jamais).",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -4168,7 +4216,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Propre\",\n        \"code\": \"clean\",\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"status\": \"inactive\",\n        \"status_label\": \"Inactif\",\n        \"id\": 1,\n        \"code\": \"stain\",\n        \"title\": \"Tach\u00e9\",\n        \"description\": \"Tache visible \u00e0 la r\u00e9ception\",\n        \"usage\": 128,\n        \"usage_label\": \"128 d\u00e9p\u00f4ts\",\n        \"deletable\": false,\n        \"sort_order\": 1\n    },\n    \"meta\": {\n        \"message\": \"\u00ab Tach\u00e9 \u00bb ne sera plus propos\u00e9 pour les nouveaux constats. L\u2019historique (128 d\u00e9p\u00f4ts) reste inchang\u00e9.\"\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -4186,7 +4234,7 @@
                     ]
                 },
                 {
-                    "name": "DELETE api\/v1\/laundry-statuses\/{id}",
+                    "name": "Suppression possible uniquement si l\u2019\u00e9tat n\u2019a jamais \u00e9t\u00e9 utilis\u00e9.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -5135,7 +5183,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -6056,7 +6104,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T21:57:50",
+                                    "value": "2026-10-22T22:01:54",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -6204,7 +6252,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -6361,7 +6409,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"date\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -6406,7 +6454,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:57:50\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T22:01:54\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7508,7 +7556,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T21:57:50\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T22:01:54\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7553,7 +7601,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:57:50\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T22:01:54\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -8192,7 +8240,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:57\",\"closes_at\":\"21:57\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"22:01\",\"closes_at\":\"22:01\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8327,7 +8375,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -8512,7 +8560,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:57\",\"closes_at\":\"21:57\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"22:01\",\"closes_at\":\"22:01\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -11670,7 +11718,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:57:50\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T22:01:54\"}"
                         },
                         "description": ""
                     },
@@ -11809,7 +11857,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T21:57:50",
+                                    "value": "2026-10-22T22:01:54",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -12758,7 +12806,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:57:50\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T22:01:54\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Models\ArticleAgencySetting;
 use App\Models\ArticleCategory;
 use App\Models\AuditLog;
-use App\Models\Deposit;
+use App\Models\LaundryStatus;
 use App\Models\Render;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -104,7 +104,7 @@ class ArticlePresenter
             'recommendations' => $this->recommendations($article),
             'last_modification' => $last ? ['by' => $lastBy, 'at' => $last->created_at?->toIso8601String()] : null,
             'options' => [
-                'defects' => collect(Deposit::DEFECTS)->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values(),
+                'defects' => collect(LaundryStatus::catalog(auth()->user()?->pressing_id))->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values(),
                 'renders' => Render::query()->where('status', true)->get(['id', 'title']),
                 'services' => collect(Article::SERVICES)->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values(),
                 'priorities' => [['code' => 'standard', 'label' => 'Standard'], ['code' => 'high', 'label' => 'Haute'], ['code' => 'delicate', 'label' => 'Délicat']],

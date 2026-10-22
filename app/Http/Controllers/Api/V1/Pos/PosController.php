@@ -13,7 +13,6 @@ use App\Models\Article;
 use App\Models\Client;
 use App\Models\CodeSuffix;
 use App\Models\DeliveryHour;
-use App\Models\Deposit;
 use App\Models\LaundryStatus;
 use App\Models\Pressing;
 use App\Models\Promo;
@@ -142,7 +141,7 @@ class PosController extends Controller
                 ['code' => 'express', 'label' => "Express · {$pressing->hours_express} h", 'hours' => (int) $pressing->hours_express],
                 ['code' => 'repass', 'label' => "Repassage · {$pressing->hours_repass} h", 'hours' => (int) $pressing->hours_repass],
             ],
-            'defects' => collect(Deposit::DEFECTS)->map(fn ($label, $code) => ['code' => $code, 'label' => $label])->values(),
+            'defects' => collect(LaundryStatus::catalog(auth()->user()?->pressing_id))->map(fn ($label, $code) => ['code' => $code, 'label' => $label])->values(),
             'payment_methods' => collect(DepositPresenter::PAYMENT_METHOD_LABELS)
                 ->except('other')
                 ->map(fn ($label, $code) => ['code' => $code, 'label' => $label])->values(),

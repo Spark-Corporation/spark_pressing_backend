@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Deposit;
+use App\Models\LaundryStatus;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,9 +30,17 @@ class DepositUnitResource extends JsonResource
             'color' => $this->color,
             'defects' => collect($this->defects ?? [])->map(fn ($code) => [
                 'code' => $code,
-                'label' => Deposit::DEFECTS[$code] ?? $code,
+                'label' => self::defectLabels((int) $this->pressing_id)[$code] ?? Deposit::DEFECTS[$code] ?? $code,
             ])->values(),
             'internal_notes' => $this->internal_notes,
         ];
+    }
+
+    /** @var array<int, array<string,string>> */
+    private static array $defectLabels = [];
+
+    private static function defectLabels(int $pressingId): array
+    {
+        return self::$defectLabels[$pressingId] ??= LaundryStatus::catalog($pressingId ?: null, false);
     }
 }

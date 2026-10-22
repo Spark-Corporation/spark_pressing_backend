@@ -10276,12 +10276,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 notes:
                   type: string
@@ -12009,7 +12009,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
               required:
                 - amount
@@ -28511,7 +28511,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -28746,7 +28746,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
               required:
                 - agency_id
@@ -28754,8 +28754,8 @@ paths:
                 - service_id
   /api/v1/laundry-statuses:
     get:
-      summary: ''
-      operationId: getApiV1LaundryStatuses
+      summary: '« Défauts à la réception » (`q`, `availability=active|inactive`) avec l’usage dans les dépôts.'
+      operationId: DfautsLaRceptionqavailabilityactiveinactiveAvecLusageDansLesDpts
       description: ''
       parameters:
         -
@@ -28776,14 +28776,22 @@ paths:
                   data:
                     -
                       id: 1
-                      name: Propre
-                      code: clean
-                      status: true
+                      code: stain
+                      title: Taché
+                      description: 'Tache visible à la réception'
+                      usage: 128
+                      usage_label: '128 dépôts'
+                      status: active
+                      status_label: Actif
+                      deletable: false
+                      sort_order: 1
                   meta:
-                    page: 1
-                    per_page: 50
-                    total: 1
-                    last_page: 1
+                    total: 6
+                    active: 5
+                    summary_label: '6 états · 5 actifs'
+                    results_label: '6 résultats'
+                    notice: 'Un état utilisé n’est pas supprimé : désactivez-le pour les prochaines réceptions. Les constats déjà enregistrés restent consultables dans l’historique des dépôts.'
+                    confidentiality: 'Les remarques et détails internes sont réservés aux réceptionnistes : ils ne sont jamais imprimés ni exposés au portail client.'
                   errors: null
                 properties:
                   data:
@@ -28791,39 +28799,69 @@ paths:
                     example:
                       -
                         id: 1
-                        name: Propre
-                        code: clean
-                        status: true
+                        code: stain
+                        title: Taché
+                        description: 'Tache visible à la réception'
+                        usage: 128
+                        usage_label: '128 dépôts'
+                        status: active
+                        status_label: Actif
+                        deletable: false
+                        sort_order: 1
                     items:
                       type: object
                       properties:
                         id:
                           type: integer
                           example: 1
-                        name:
-                          type: string
-                          example: Propre
                         code:
                           type: string
-                          example: clean
+                          example: stain
+                        title:
+                          type: string
+                          example: Taché
+                        description:
+                          type: string
+                          example: 'Tache visible à la réception'
+                        usage:
+                          type: integer
+                          example: 128
+                        usage_label:
+                          type: string
+                          example: '128 dépôts'
                         status:
+                          type: string
+                          example: active
+                        status_label:
+                          type: string
+                          example: Actif
+                        deletable:
                           type: boolean
-                          example: true
+                          example: false
+                        sort_order:
+                          type: integer
+                          example: 1
                   meta:
                     type: object
                     properties:
-                      page:
-                        type: integer
-                        example: 1
-                      per_page:
-                        type: integer
-                        example: 50
                       total:
                         type: integer
-                        example: 1
-                      last_page:
+                        example: 6
+                      active:
                         type: integer
-                        example: 1
+                        example: 5
+                      summary_label:
+                        type: string
+                        example: '6 états · 5 actifs'
+                      results_label:
+                        type: string
+                        example: '6 résultats'
+                      notice:
+                        type: string
+                        example: 'Un état utilisé n’est pas supprimé : désactivez-le pour les prochaines réceptions. Les constats déjà enregistrés restent consultables dans l’historique des dépôts.'
+                      confidentiality:
+                        type: string
+                        example: 'Les remarques et détails internes sont réservés aux réceptionnistes : ils ne sont jamais imprimés ni exposés au portail client.'
                   errors:
                     type: string
                     example: null
@@ -28870,6 +28908,26 @@ paths:
                           example: 'Non authentifié.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+                availability:
+                  type: string
+                  description: ''
+                  example: inactive
+                  enum:
+                    - active
+                    - inactive
+                  nullable: true
     post:
       summary: ''
       operationId: postApiV1LaundryStatuses
@@ -28891,11 +28949,18 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    name: Propre
-                    code: clean
-                    status: true
-                  meta: {  }
+                    id: 7
+                    code: froisse
+                    title: Froissé
+                    usage: 0
+                    usage_label: '0 dépôt'
+                    deletable: true
+                    description: 'Tache visible à la réception'
+                    status: active
+                    status_label: Actif
+                    sort_order: 1
+                  meta:
+                    notice: 'Un état utilisé n’est pas supprimé : désactivez-le pour les prochaines réceptions. Les constats déjà enregistrés restent consultables dans l’historique des dépôts.'
                   errors: null
                 properties:
                   data:
@@ -28903,19 +28968,40 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 1
-                      name:
-                        type: string
-                        example: Propre
+                        example: 7
                       code:
                         type: string
-                        example: clean
-                      status:
+                        example: froisse
+                      title:
+                        type: string
+                        example: Froissé
+                      usage:
+                        type: integer
+                        example: 0
+                      usage_label:
+                        type: string
+                        example: '0 dépôt'
+                      deletable:
                         type: boolean
                         example: true
+                      description:
+                        type: string
+                        example: 'Tache visible à la réception'
+                      status:
+                        type: string
+                        example: active
+                      status_label:
+                        type: string
+                        example: Actif
+                      sort_order:
+                        type: integer
+                        example: 1
                   meta:
                     type: object
-                    properties: {  }
+                    properties:
+                      notice:
+                        type: string
+                        example: 'Un état utilisé n’est pas supprimé : désactivez-le pour les prochaines réceptions. Les constats déjà enregistrés restent consultables dans l’historique des dépôts.'
                   errors:
                     type: string
                     example: null
@@ -29007,10 +29093,10 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
-  '/api/v1/laundry-statuses/{id}':
-    put:
-      summary: ''
-      operationId: putApiV1LaundryStatusesId
+  /api/v1/laundry-statuses/preview:
+    get:
+      summary: 'Vérifications du formulaire « Ajouter un état du linge » (`title`, `ignore_id`).'
+      operationId: vrificationsDuFormulaireAjouterUntatDuLingetitleignoreId
       description: ''
       parameters:
         -
@@ -29029,31 +29115,185 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    name: Propre
-                    code: clean
-                    status: true
+                    title: Froissé
+                    checks:
+                      -
+                        code: unique
+                        ok: true
+                        label: 'Libellé disponible'
+                    valid: true
                   meta: {  }
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
-                      id:
-                        type: integer
-                        example: 1
-                      name:
+                      title:
                         type: string
-                        example: Propre
-                      code:
-                        type: string
-                        example: clean
-                      status:
+                        example: Froissé
+                      checks:
+                        type: array
+                        example:
+                          -
+                            code: unique
+                            ok: true
+                            label: 'Libellé disponible'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: unique
+                            ok:
+                              type: boolean
+                              example: true
+                            label:
+                              type: string
+                              example: 'Libellé disponible'
+                      valid:
                         type: boolean
                         example: true
                   meta:
                     type: object
                     properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: validation.max.
+                  example: b
+                  nullable: true
+                ignore_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+  '/api/v1/laundry-statuses/{id}':
+    put:
+      summary: 'Modifier le libellé, la description ou la disponibilité (le code technique ne change jamais).'
+      operationId: modifierLeLibellLaDescriptionOuLaDisponibilitleCodeTechniqueNeChangeJamais
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    status: inactive
+                    status_label: Inactif
+                    id: 1
+                    code: stain
+                    title: Taché
+                    description: 'Tache visible à la réception'
+                    usage: 128
+                    usage_label: '128 dépôts'
+                    deletable: false
+                    sort_order: 1
+                  meta:
+                    message: '« Taché » ne sera plus proposé pour les nouveaux constats. L’historique (128 dépôts) reste inchangé.'
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: inactive
+                      status_label:
+                        type: string
+                        example: Inactif
+                      id:
+                        type: integer
+                        example: 1
+                      code:
+                        type: string
+                        example: stain
+                      title:
+                        type: string
+                        example: Taché
+                      description:
+                        type: string
+                        example: 'Tache visible à la réception'
+                      usage:
+                        type: integer
+                        example: 128
+                      usage_label:
+                        type: string
+                        example: '128 dépôts'
+                      deletable:
+                        type: boolean
+                        example: false
+                      sort_order:
+                        type: integer
+                        example: 1
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: '« Taché » ne sera plus proposé pour les nouveaux constats. L’historique (128 dépôts) reste inchangé.'
                   errors:
                     type: string
                     example: null
@@ -29146,8 +29386,8 @@ paths:
       tags:
         - Catalogue
     delete:
-      summary: ''
-      operationId: deleteApiV1LaundryStatusesId
+      summary: 'Suppression possible uniquement si l’état n’a jamais été utilisé.'
+      operationId: suppressionPossibleUniquementSiLtatNaJamaistUtilis
       description: ''
       parameters:
         -
@@ -31928,7 +32168,7 @@ paths:
                 received_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
     post:
       summary: ''
@@ -34574,7 +34814,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 validated:
                   type: boolean
@@ -35232,7 +35472,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
     delete:
       summary: ''
@@ -36018,7 +36258,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -36239,7 +36479,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 period:
                   type: string
@@ -41378,7 +41618,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 date_to:
                   type: string
@@ -41784,7 +42024,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 agency_id:
                   type: integer
@@ -44441,12 +44681,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:57'
+                  example: '22:01'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:57'
+                  example: '22:01'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -44829,7 +45069,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
               required:
                 - source_currency
                 - target_currency
@@ -45412,12 +45652,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:57'
+                  example: '22:01'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:57'
+                  example: '22:01'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -58309,7 +58549,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
     delete:
       summary: ''
@@ -59725,7 +59965,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -63940,7 +64180,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:57:50'
+                  example: '2026-10-22T22:01:54'
                 name:
                   type: string
                   description: validation.max.

@@ -573,6 +573,20 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— États du linge (Figma 17.03) ——
+        if (str_starts_with($path, '/api/v1/laundry-statuses')) {
+            $row = ['id' => 1, 'code' => 'stain', 'title' => 'Taché', 'description' => 'Tache visible à la réception', 'usage' => 128, 'usage_label' => '128 dépôts', 'status' => 'active', 'status_label' => 'Actif', 'deletable' => false, 'sort_order' => 1];
+            $c = \App\Http\Controllers\Api\V1\Catalog\LaundryStatusController::class;
+
+            return [match (true) {
+                str_ends_with($path, '/preview') => $this->response(200, ['title' => 'Froissé', 'checks' => [['code' => 'unique', 'ok' => true, 'label' => 'Libellé disponible']], 'valid' => true]),
+                $method === 'GET' => $this->response(200, [$row], ['total' => 6, 'active' => 5, 'summary_label' => '6 états · 5 actifs', 'results_label' => '6 résultats', 'notice' => $c::NOTICE, 'confidentiality' => $c::CONFIDENTIALITY]),
+                $method === 'POST' => $this->response(201, ['id' => 7, 'code' => 'froisse', 'title' => 'Froissé', 'usage' => 0, 'usage_label' => '0 dépôt', 'deletable' => true] + $row, ['notice' => $c::NOTICE]),
+                $method === 'DELETE' => $this->response(200, ['deleted' => true]),
+                default => $this->response(200, ['status' => 'inactive', 'status_label' => 'Inactif'] + $row, ['message' => '« Taché » ne sera plus proposé pour les nouveaux constats. L’historique (128 dépôts) reste inchangé.']),
+            }];
+        }
+
         // —— Heures de retrait (Figma 17.02) ——
         if (str_starts_with($path, '/api/v1/retrieval-rules')) {
             $example = ['received_at' => '2026-10-15T10:00:00+00:00', 'ready_at' => '2026-10-15T18:00:00+00:00', 'label' => '15 oct. 10:00 → 15 oct. 18:00', 'received_label' => 'Réception · jeu. 15 oct. à 10:00', 'ready_label' => 'Retrait prévu · jeu. 15 oct. à 18:00', 'method' => 'elapsed_hours'];

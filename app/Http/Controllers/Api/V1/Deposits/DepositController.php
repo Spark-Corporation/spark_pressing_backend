@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DepositResource;
 use App\Models\AuditLog;
 use App\Models\Deposit;
+use App\Models\LaundryStatus;
 use App\Support\Deposits\DepositPresenter;
 use App\Support\Deposits\WorkshopBoard;
 use App\Support\Documents\TicketDocument;
@@ -112,7 +113,7 @@ class DepositController extends Controller
             'lines.*.express' => ['sometimes', 'boolean'],
             'lines.*.color' => ['nullable', 'string', 'max:64'],
             'lines.*.defects' => ['nullable', 'array'],
-            'lines.*.defects.*' => ['string', 'in:'.implode(',', array_keys(Deposit::DEFECTS))],
+            'lines.*.defects.*' => ['string', 'in:'.implode(',', array_keys(LaundryStatus::catalog($request->user()->pressing_id)))],
             'lines.*.internal_notes' => ['nullable', 'string', 'max:1000'],
             'terminal' => ['nullable', 'string', 'max:32'],
             'local_ref' => ['nullable', 'string', 'max:40'],

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Agency;
 use App\Models\Article;
 use App\Models\AuditLog;
-use App\Models\Deposit;
+use App\Models\LaundryStatus;
 use App\Support\Catalog\ArticlePresenter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -122,7 +122,7 @@ class ArticleController extends Controller
             'repass_hours' => ['nullable', 'integer', 'min:1'],
             'priority' => ['nullable', 'in:standard,high,delicate'],
             'accepted_defects' => ['nullable', 'array'],
-            'accepted_defects.*' => ['string', 'in:'.implode(',', array_keys(Deposit::DEFECTS))],
+            'accepted_defects.*' => ['string', 'in:'.implode(',', array_keys(LaundryStatus::catalog(request()->user()?->pressing_id)))],
             'compatible_renders' => ['nullable', 'array'],
             'compatible_renders.*' => ['integer'],
             'services' => ['nullable', 'array'],

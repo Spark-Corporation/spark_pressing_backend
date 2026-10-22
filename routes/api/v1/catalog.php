@@ -50,6 +50,7 @@ Route::prefix('agency-prices')->name('agency-prices.')->group(function () {
 
 Route::prefix('laundry-statuses')->name('laundry-statuses.')->group(function () {
     Route::get('/', [LaundryStatusController::class, 'index'])->name('index');
+    Route::get('preview', [LaundryStatusController::class, 'preview'])->name('preview');
     Route::post('/', [LaundryStatusController::class, 'store'])->middleware('permission:articles.manage')->name('store');
     Route::put('{id}', [LaundryStatusController::class, 'update'])->middleware('permission:articles.manage')->name('update');
     Route::delete('{id}', [LaundryStatusController::class, 'destroy'])->middleware('permission:articles.manage')->name('destroy');

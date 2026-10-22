@@ -357,16 +357,19 @@ réceptionnaire et journal enregistrés ensemble.</a>
                                 <a href="#catalogue-POSTapi-v1-agency-prices">POST api/v1/agency-prices</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-laundry-statuses">
-                                <a href="#catalogue-GETapi-v1-laundry-statuses">GET api/v1/laundry-statuses</a>
+                                <a href="#catalogue-GETapi-v1-laundry-statuses">« Défauts à la réception » (`q`, `availability=active|inactive`) avec l’usage dans les dépôts.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-laundry-statuses-preview">
+                                <a href="#catalogue-GETapi-v1-laundry-statuses-preview">Vérifications du formulaire « Ajouter un état du linge » (`title`, `ignore_id`).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-POSTapi-v1-laundry-statuses">
                                 <a href="#catalogue-POSTapi-v1-laundry-statuses">POST api/v1/laundry-statuses</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-PUTapi-v1-laundry-statuses--id-">
-                                <a href="#catalogue-PUTapi-v1-laundry-statuses--id-">PUT api/v1/laundry-statuses/{id}</a>
+                                <a href="#catalogue-PUTapi-v1-laundry-statuses--id-">Modifier le libellé, la description ou la disponibilité (le code technique ne change jamais).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-laundry-statuses--id-">
-                                <a href="#catalogue-DELETEapi-v1-laundry-statuses--id-">DELETE api/v1/laundry-statuses/{id}</a>
+                                <a href="#catalogue-DELETEapi-v1-laundry-statuses--id-">Suppression possible uniquement si l’état n’a jamais été utilisé.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-renders">
                                 <a href="#catalogue-GETapi-v1-renders">GET api/v1/renders</a>
@@ -8733,8 +8736,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T21:57:50\",
-    \"retrieve_date\": \"2026-10-22T21:57:50\",
+    \"deposit_date\": \"2026-10-22T22:01:54\",
+    \"retrieve_date\": \"2026-10-22T22:01:54\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -8789,8 +8792,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T21:57:50",
-    "retrieve_date": "2026-10-22T21:57:50",
+    "deposit_date": "2026-10-22T22:01:54",
+    "retrieve_date": "2026-10-22T22:01:54",
     "notes": "architecto",
     "lines": [
         {
@@ -9303,10 +9306,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -9315,10 +9318,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -9995,7 +9998,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T21:57:50\"
+    \"transaction_date\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -10016,7 +10019,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T21:57:50"
+    "transaction_date": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -10355,10 +10358,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -20152,7 +20155,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php68E6.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php22C2.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -20337,7 +20340,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php68E6.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php22C2.tmp</code></p>
         </div>
         </form>
 
@@ -22962,7 +22965,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T21:57:50\"
+    \"at\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -22984,7 +22987,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T21:57:50"
+    "at": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -23213,10 +23216,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -23245,7 +23248,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T21:57:50\",
+    \"valid_from\": \"2026-10-22T22:01:54\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -23269,7 +23272,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T21:57:50",
+    "valid_from": "2026-10-22T22:01:54",
     "valid_to": "2052-11-14"
 };
 
@@ -23505,10 +23508,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -23524,7 +23527,7 @@ Must be one of:
         </div>
         </form>
 
-                    <h2 id="catalogue-GETapi-v1-laundry-statuses">GET api/v1/laundry-statuses</h2>
+                    <h2 id="catalogue-GETapi-v1-laundry-statuses">« Défauts à la réception » (`q`, `availability=active|inactive`) avec l’usage dans les dépôts.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -23542,7 +23545,12 @@ Must be one of:
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"q\": \"b\",
+    \"availability\": \"inactive\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -23557,10 +23565,15 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "q": "b",
+    "availability": "inactive"
+};
 
 fetch(url, {
     method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -23575,16 +23588,24 @@ fetch(url, {
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Propre&quot;,
-            &quot;code&quot;: &quot;clean&quot;,
-            &quot;status&quot;: true
+            &quot;code&quot;: &quot;stain&quot;,
+            &quot;title&quot;: &quot;Tach&eacute;&quot;,
+            &quot;description&quot;: &quot;Tache visible &agrave; la r&eacute;ception&quot;,
+            &quot;usage&quot;: 128,
+            &quot;usage_label&quot;: &quot;128 d&eacute;p&ocirc;ts&quot;,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;status_label&quot;: &quot;Actif&quot;,
+            &quot;deletable&quot;: false,
+            &quot;sort_order&quot;: 1
         }
     ],
     &quot;meta&quot;: {
-        &quot;page&quot;: 1,
-        &quot;per_page&quot;: 50,
-        &quot;total&quot;: 1,
-        &quot;last_page&quot;: 1
+        &quot;total&quot;: 6,
+        &quot;active&quot;: 5,
+        &quot;summary_label&quot;: &quot;6 &eacute;tats &middot; 5 actifs&quot;,
+        &quot;results_label&quot;: &quot;6 r&eacute;sultats&quot;,
+        &quot;notice&quot;: &quot;Un &eacute;tat utilis&eacute; n&rsquo;est pas supprim&eacute; : d&eacute;sactivez-le pour les prochaines r&eacute;ceptions. Les constats d&eacute;j&agrave; enregistr&eacute;s restent consultables dans l&rsquo;historique des d&eacute;p&ocirc;ts.&quot;,
+        &quot;confidentiality&quot;: &quot;Les remarques et d&eacute;tails internes sont r&eacute;serv&eacute;s aux r&eacute;ceptionnistes : ils ne sont jamais imprim&eacute;s ni expos&eacute;s au portail client.&quot;
     },
     &quot;errors&quot;: null
 }</code>
@@ -23703,7 +23724,248 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>q</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="q"                data-endpoint="GETapi-v1-laundry-statuses"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>availability</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="availability"                data-endpoint="GETapi-v1-laundry-statuses"
+               value="inactive"
+               data-component="body">
+    <br>
+<p>Example: <code>inactive</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>active</code></li> <li><code>inactive</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="catalogue-GETapi-v1-laundry-statuses-preview">Vérifications du formulaire « Ajouter un état du linge » (`title`, `ignore_id`).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-laundry-statuses-preview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/laundry-statuses/preview" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"b\",
+    \"ignore_id\": 16
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/laundry-statuses/preview"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "title": "b",
+    "ignore_id": 16
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-laundry-statuses-preview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;title&quot;: &quot;Froiss&eacute;&quot;,
+        &quot;checks&quot;: [
+            {
+                &quot;code&quot;: &quot;unique&quot;,
+                &quot;ok&quot;: true,
+                &quot;label&quot;: &quot;Libell&eacute; disponible&quot;
+            }
+        ],
+        &quot;valid&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-laundry-statuses-preview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-laundry-statuses-preview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-laundry-statuses-preview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-laundry-statuses-preview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-laundry-statuses-preview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-laundry-statuses-preview" data-method="GET"
+      data-path="api/v1/laundry-statuses/preview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-laundry-statuses-preview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-laundry-statuses-preview"
+                    onclick="tryItOut('GETapi-v1-laundry-statuses-preview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-laundry-statuses-preview"
+                    onclick="cancelTryOut('GETapi-v1-laundry-statuses-preview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-laundry-statuses-preview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/laundry-statuses/preview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-laundry-statuses-preview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-laundry-statuses-preview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-laundry-statuses-preview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-laundry-statuses-preview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="GETapi-v1-laundry-statuses-preview"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>ignore_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="ignore_id"                data-endpoint="GETapi-v1-laundry-statuses-preview"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-POSTapi-v1-laundry-statuses">POST api/v1/laundry-statuses</h2>
 
@@ -23754,12 +24016,20 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;Propre&quot;,
-        &quot;code&quot;: &quot;clean&quot;,
-        &quot;status&quot;: true
+        &quot;id&quot;: 7,
+        &quot;code&quot;: &quot;froisse&quot;,
+        &quot;title&quot;: &quot;Froiss&eacute;&quot;,
+        &quot;usage&quot;: 0,
+        &quot;usage_label&quot;: &quot;0 d&eacute;p&ocirc;t&quot;,
+        &quot;deletable&quot;: true,
+        &quot;description&quot;: &quot;Tache visible &agrave; la r&eacute;ception&quot;,
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;status_label&quot;: &quot;Actif&quot;,
+        &quot;sort_order&quot;: 1
     },
-    &quot;meta&quot;: {},
+    &quot;meta&quot;: {
+        &quot;notice&quot;: &quot;Un &eacute;tat utilis&eacute; n&rsquo;est pas supprim&eacute; : d&eacute;sactivez-le pour les prochaines r&eacute;ceptions. Les constats d&eacute;j&agrave; enregistr&eacute;s restent consultables dans l&rsquo;historique des d&eacute;p&ocirc;ts.&quot;
+    },
     &quot;errors&quot;: null
 }</code>
  </pre>
@@ -23898,7 +24168,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="catalogue-PUTapi-v1-laundry-statuses--id-">PUT api/v1/laundry-statuses/{id}</h2>
+                    <h2 id="catalogue-PUTapi-v1-laundry-statuses--id-">Modifier le libellé, la description ou la disponibilité (le code technique ne change jamais).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -23947,12 +24217,20 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
+        &quot;status&quot;: &quot;inactive&quot;,
+        &quot;status_label&quot;: &quot;Inactif&quot;,
         &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;Propre&quot;,
-        &quot;code&quot;: &quot;clean&quot;,
-        &quot;status&quot;: true
+        &quot;code&quot;: &quot;stain&quot;,
+        &quot;title&quot;: &quot;Tach&eacute;&quot;,
+        &quot;description&quot;: &quot;Tache visible &agrave; la r&eacute;ception&quot;,
+        &quot;usage&quot;: 128,
+        &quot;usage_label&quot;: &quot;128 d&eacute;p&ocirc;ts&quot;,
+        &quot;deletable&quot;: false,
+        &quot;sort_order&quot;: 1
     },
-    &quot;meta&quot;: {},
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;&laquo; Tach&eacute; &raquo; ne sera plus propos&eacute; pour les nouveaux constats. L&rsquo;historique (128 d&eacute;p&ocirc;ts) reste inchang&eacute;.&quot;
+    },
     &quot;errors&quot;: null
 }</code>
  </pre>
@@ -24104,7 +24382,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="catalogue-DELETEapi-v1-laundry-statuses--id-">DELETE api/v1/laundry-statuses/{id}</h2>
+                    <h2 id="catalogue-DELETEapi-v1-laundry-statuses--id-">Suppression possible uniquement si l’état n’a jamais été utilisé.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -27873,7 +28151,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"q\": \"b\",
     \"agency_id\": 16,
-    \"received_at\": \"2026-10-22T21:57:50\"
+    \"received_at\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -27893,7 +28171,7 @@ const headers = {
 let body = {
     "q": "b",
     "agency_id": 16,
-    "received_at": "2026-10-22T21:57:50"
+    "received_at": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -28107,10 +28385,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="received_at"                data-endpoint="GETapi-v1-retrieval-rules"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -31624,13 +31902,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T21:57:50"\
+    --form "action_date=2026-10-22T22:01:54"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php69D3.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php238F.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -31650,7 +31928,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T21:57:50');
+body.append('action_date', '2026-10-22T22:01:54');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -31892,10 +32170,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -31979,7 +32257,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php69D3.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php238F.tmp</code></p>
         </div>
         </form>
 
@@ -32251,7 +32529,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T21:57:50\"
+    \"action_date\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -32272,7 +32550,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T21:57:50"
+    "action_date": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -32562,10 +32840,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -33037,7 +33315,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:57:50\"
+    \"date\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -33055,7 +33333,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:57:50"
+    "date": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -33291,10 +33569,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -33319,7 +33597,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T21:57:50\",
+    \"date\": \"2026-10-22T22:01:54\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -33343,7 +33621,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T21:57:50",
+    "date": "2026-10-22T22:01:54",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -33539,10 +33817,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -38626,7 +38904,7 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T21:57:50\",
+    \"date_from\": \"2026-10-22T22:01:54\",
     \"date_to\": \"2052-11-14\",
     \"preset\": \"month\",
     \"agency_id\": 16,
@@ -38648,7 +38926,7 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T21:57:50",
+    "date_from": "2026-10-22T22:01:54",
     "date_to": "2052-11-14",
     "preset": "month",
     "agency_id": 16,
@@ -38883,10 +39161,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -38962,7 +39240,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T21:57:50\",
+    \"date\": \"2026-10-22T22:01:54\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -38982,7 +39260,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T21:57:50",
+    "date": "2026-10-22T22:01:54",
     "agency_id": 16,
     "format": "json"
 };
@@ -39219,10 +39497,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -42244,8 +42522,8 @@ Must be one of:
     \"currency\": \"ngz\",
     \"code_prefix\": \"miyvdljn\",
     \"code_suffix\": \"ikhwaykc\",
-    \"opens_at\": \"21:57\",
-    \"closes_at\": \"21:57\",
+    \"opens_at\": \"22:01\",
+    \"closes_at\": \"22:01\",
     \"monthly_revenue_target\": 38,
     \"status\": true
 }"
@@ -42271,8 +42549,8 @@ let body = {
     "currency": "ngz",
     "code_prefix": "miyvdljn",
     "code_suffix": "ikhwaykc",
-    "opens_at": "21:57",
-    "closes_at": "21:57",
+    "opens_at": "22:01",
+    "closes_at": "22:01",
     "monthly_revenue_target": 38,
     "status": true
 };
@@ -42534,10 +42812,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:57"
+               value="22:01"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -42546,10 +42824,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="21:57"
+               value="22:01"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -42961,7 +43239,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T21:57:50\"
+    \"rate_date\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -42982,7 +43260,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T21:57:50"
+    "rate_date": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -43188,10 +43466,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -43777,8 +44055,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"currency\": \"zmi\",
     \"code_prefix\": \"yvdljnik\",
     \"code_suffix\": \"hwaykcmy\",
-    \"opens_at\": \"21:57\",
-    \"closes_at\": \"21:57\",
+    \"opens_at\": \"22:01\",
+    \"closes_at\": \"22:01\",
     \"monthly_revenue_target\": 72
 }"
 </code></pre></div>
@@ -43804,8 +44082,8 @@ let body = {
     "currency": "zmi",
     "code_prefix": "yvdljnik",
     "code_suffix": "hwaykcmy",
-    "opens_at": "21:57",
-    "closes_at": "21:57",
+    "opens_at": "22:01",
+    "closes_at": "22:01",
     "monthly_revenue_target": 72
 };
 
@@ -44065,10 +44343,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:57"
+               value="22:01"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -44077,10 +44355,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="21:57"
+               value="22:01"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>21:57</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -59175,7 +59453,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T21:57:50\"
+    \"expires_at\": \"2026-10-22T22:01:54\"
 }"
 </code></pre></div>
 
@@ -59199,7 +59477,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T21:57:50"
+    "expires_at": "2026-10-22T22:01:54"
 };
 
 fetch(url, {
@@ -59534,10 +59812,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
         </form>
 
@@ -59839,10 +60117,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T21:57:50"\
+    --form "effective_at=2026-10-22T22:01:54"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php6839.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php2234.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -59861,7 +60139,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T21:57:50');
+body.append('effective_at', '2026-10-22T22:01:54');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -60371,10 +60649,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -60430,7 +60708,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php6839.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2234.tmp</code></p>
         </div>
         </form>
 
@@ -64643,7 +64921,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T21:57:50\",
+    \"round_date\": \"2026-10-22T22:01:54\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -64664,7 +64942,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T21:57:50",
+    "round_date": "2026-10-22T22:01:54",
     "name": "n"
 };
 
@@ -64871,10 +65149,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T21:57:50"
+               value="2026-10-22T22:01:54"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T21:57:50</code></p>
+<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

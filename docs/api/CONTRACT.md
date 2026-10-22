@@ -357,6 +357,17 @@ Jeton client (`POST /auth/client/login`). Toutes les routes sont sous `/client/a
 
 À la création d’un dépôt, la règle de l’agence (sinon « toutes agences ») pour la prestation (express, repassage seul, sinon classique) fixe `retrieve_date` ; à défaut, l’ancien calcul s’applique.
 
+### 7.0p États du linge (Figma 17.03)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Défauts à la réception | `GET /laundry-statuses?q&availability=active\|inactive` | `code`, `title`, `description`, `usage_label` (« 128 dépôts »), `status_label`, `deletable` ; `meta` (`summary_label` « 6 états · 5 actifs », `notice`, `confidentiality`) |
+| Ajouter / modifier : vérifications | `GET /laundry-statuses/preview?title&ignore_id` | `checks[]` (2–60 caractères, libellé unique), `valid` |
+| Enregistrer, désactiver | `POST /laundry-statuses` (`title`, `description`, `status`), `PUT /laundry-statuses/{id}` | le `code` est généré à la création et ne change jamais ; désactivation → `meta.message` |
+| Supprimer | `DELETE /laundry-statuses/{id}` | refusé (422) si l’état est déjà utilisé : il faut le désactiver |
+
+Les 6 états de la maquette sont créés automatiquement pour chaque pressing. La saisie d’un dépôt (`lines.*.defects`), les articles (`accepted_defects`) et le bootstrap POS utilisent désormais ce référentiel (états actifs).
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |
