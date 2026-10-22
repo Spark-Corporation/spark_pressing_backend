@@ -23,6 +23,9 @@ class Agency extends Model
         'code_suffix',
         'last_deposit_sequence',
         'status',
+        'email',
+        'rccm',
+        'tax_id',
     ];
 
     protected $casts = [

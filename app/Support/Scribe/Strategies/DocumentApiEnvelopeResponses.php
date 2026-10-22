@@ -145,6 +145,19 @@ class DocumentApiEnvelopeResponses extends Strategy
             'etat' => 'waiting',
             'etat_label' => 'À trier',
             'colonne' => 'attente',
+            'workshop_status' => ['code' => 'waiting', 'label' => 'À trier'],
+            'payment_status' => ['code' => 'partial', 'label' => 'Partiellement payé'],
+            'service' => ['code' => 'express', 'label' => 'Express'],
+            'is_express' => true,
+            'express_supplement' => 1000,
+            'pieces_count' => 2,
+            'weight_kg_total' => 0,
+            'quantity_label' => '2 pièces',
+            'terminal' => 'POS-01',
+            'local_ref' => null,
+            'storage_location' => null,
+            'discount_reason' => null,
+            'sync_status' => ['code' => 'synced', 'label' => 'À jour', 'synced_at' => '2026-10-14T09:05:00+00:00'],
             'delivery_status' => null,
             'notes' => null,
             'items_count' => 2,
@@ -164,6 +177,11 @@ class DocumentApiEnvelopeResponses extends Strategy
                     'unit_price' => 1000,
                     'line_total' => 2000,
                     'state' => null,
+                    'is_express' => true,
+                    'express_supplement' => 1000,
+                    'color' => 'Blanches',
+                    'defects' => [['code' => 'stain', 'label' => 'Taché']],
+                    'internal_notes' => 'Tache au col',
                 ],
             ],
             'transactions' => [
@@ -388,7 +406,29 @@ class DocumentApiEnvelopeResponses extends Strategy
         // —— Dépôts ——
         if (str_starts_with($path, '/api/v1/deposits')) {
             if ($method === 'GET' && $path === '/api/v1/deposits') {
-                return [$this->response(200, [$deposit], $pageMeta, description: 'Liste paginée')];
+                return [$this->response(200, [$deposit], array_merge($pageMeta, ['kpis' => [
+                    'deposits_today' => ['value' => 28, 'delta_percent' => 12.0, 'compared_to' => '2026-10-07'],
+                    'revenue_today' => ['value' => 486750, 'collected' => 389500],
+                    'to_retrieve_today' => ['value' => 14, 'ready' => 3],
+                    'left_to_collect' => ['value' => 97250, 'open_deposits' => 11],
+                    'refreshed_at' => '2026-10-14T10:34:00+00:00',
+                ]]), description: 'Liste paginée + KPI')];
+            }
+            if ($method === 'GET' && $path === '/api/v1/deposits/export') {
+                return [[
+                    'status' => 200,
+                    'description' => 'Export CSV (text/csv)',
+                    'content' => json_encode(['data' => ['content_type' => 'text/csv'], 'meta' => (object) [], 'errors' => null], JSON_UNESCAPED_UNICODE),
+                ]];
+            }
+            if ($method === 'POST' && str_ends_with($path, '/document/send')) {
+                return [$this->response(200, [
+                    'sent' => false,
+                    'channel' => 'whatsapp',
+                    'destination' => '0748221903',
+                    'share_url' => 'https://api.example.com/api/v1/public/deposits/1/document?type=ticket&expires=…&signature=…',
+                    'open_url' => 'https://wa.me/0748221903?text=…',
+                ])];
             }
             if ($method === 'GET' && in_array($path, [
                 '/api/v1/deposits/due',
@@ -397,7 +437,29 @@ class DocumentApiEnvelopeResponses extends Strategy
             ], true)) {
                 return [$this->response(200, [$deposit], $pageMeta)];
             }
-            if ($method === 'GET' && ($path === '/api/v1/deposits/{id}' || $path === '/api/v1/deposits/qr/{id}')) {
+            if ($method === 'GET' && $path === '/api/v1/deposits/{id}') {
+                return [$this->response(200, $deposit + [
+                    'invoice_number' => 'FAC-AK-261014-0001',
+                    'commercial_status' => ['code' => 'open', 'label' => 'En cours', 'retrieve_date' => '2026-10-16T09:00:00+00:00'],
+                    'workshop_detail' => ['status' => ['code' => 'classed', 'label' => 'Classé'], 'updated_at' => '2026-10-14T10:38:00+00:00'],
+                    'pricing_mode' => 'piece',
+                    'treatment' => ['express_hours' => 8, 'defects_reported' => true, 'renders' => [1], 'pieces_counted' => 7],
+                    'pickup' => ['mode' => 'agency', 'label' => 'Retrait en agence', 'agency' => 'Akwa', 'retrieve_date' => '2026-10-16T09:00:00+00:00', 'address' => null],
+                    'client_summary' => ['id' => 1, 'fullname' => 'Jean Client', 'phone_number' => '690000001', 'client_since' => '2025-03-02', 'loyalty_points' => 740, 'previous_unpaid_count' => 0, 'previous_unpaid_amount' => 0],
+                    'totals' => ['currency' => 'XAF', 'subtotal' => 2500, 'express_supplement' => 1000, 'express_percent' => 100, 'fees' => 0, 'discount' => 0, 'points_used' => 0, 'points_discount' => 0, 'tax' => 0, 'total' => 3500, 'paid' => 1000, 'left_to_pay' => 2500],
+                    'payments' => [['id' => 1, 'label' => 'Acompte', 'amount' => 1000, 'payment_method' => ['code' => 'cash', 'label' => 'Espèces'], 'at' => '2026-10-14T09:05:00+00:00', 'received_by' => 'Claire Caissier']],
+                    'timeline' => [
+                        ['at' => '2026-10-14T10:38:00+00:00', 'code' => 'classed', 'title' => 'Prêt pour retrait', 'detail' => 'Validé par Mariam K.'],
+                        ['at' => '2026-10-14T09:00:00+00:00', 'code' => 'deposit.created', 'title' => 'Dépôt enregistré', 'detail' => 'Validé par Claire Caissier'],
+                    ],
+                    'audit' => [
+                        ['at' => '2026-10-14T10:38:00+00:00', 'actor' => 'Mariam K.', 'action' => 'deposit.workshop', 'message' => 'État atelier passé à « Classé »'],
+                        ['at' => '2026-10-14T09:00:00+00:00', 'actor' => 'Claire Caissier', 'action' => 'deposit.created', 'message' => 'Dépôt créé depuis POS-01'],
+                    ],
+                    'actions' => ['can_print' => true, 'can_edit' => true, 'can_add_payment' => true, 'can_cancel' => true, 'can_follow_workshop' => true],
+                ])];
+            }
+            if ($method === 'GET' && $path === '/api/v1/deposits/qr/{id}') {
                 return [$this->response(200, $deposit)];
             }
             if ($method === 'POST' && $path === '/api/v1/deposits') {
@@ -410,15 +472,33 @@ class DocumentApiEnvelopeResponses extends Strategy
                 return [$this->response(200, array_merge($deposit, ['etat' => 'ready', 'status' => 'closed']))];
             }
             if ($method === 'GET' && str_contains($path, '/document')) {
-                return [[
-                    'status' => 200,
-                    'description' => 'PDF ticket/facture (application/pdf)',
-                    'content' => json_encode([
-                        'data' => ['content_type' => 'application/pdf', 'note' => 'Réponse binaire PDF'],
-                        'meta' => (object) [],
-                        'errors' => null,
-                    ], JSON_UNESCAPED_UNICODE),
-                ]];
+                return [$this->response(200, [
+                    'type' => 'facture',
+                    'currency' => 'XAF',
+                    'pressing' => 'Élégance Pressing',
+                    'agency' => 'Akwa',
+                    'print_html' => '<!DOCTYPE html>…',
+                    'deposit' => $deposit,
+                    'document' => [
+                        'format' => 'a4',
+                        'number' => 'FAC-AK-261014-0001',
+                        'issued_at' => '2026-10-14T10:40:00+00:00',
+                        'payment_status' => ['code' => 'partial', 'label' => 'Partiellement payé'],
+                        'seller' => ['name' => 'Élégance Pressing', 'slogan' => 'Soin textile premium', 'agency' => 'Akwa', 'address' => 'Douala, Akwa', 'phone' => '+237600000001', 'email' => 'akwa@elegance.cm', 'rccm' => 'RC-DLA-2024-B-01842', 'tax_id' => 'M0123456789'],
+                        'customer' => ['fullname' => 'Jean Client', 'phone_number' => '690000001'],
+                        'deposit' => ['code' => 'AK-0001-EL', 'date' => '2026-10-14T09:00:00+00:00', 'retrieve_date' => '2026-10-16T09:00:00+00:00'],
+                        'lines' => [
+                            ['designation' => 'Chemise', 'quantity' => 2, 'unit' => 'pièce', 'unit_price' => 1000, 'total' => 2000],
+                            ['designation' => 'Majoration Express 8 h', 'quantity' => 1, 'unit' => 'forfait', 'unit_price' => 1000, 'total' => 1000],
+                        ],
+                        'totals' => ['currency' => 'XAF', 'subtotal' => 2500, 'express_supplement' => 1000, 'express_percent' => 100, 'fees' => 0, 'discount' => 0, 'points_used' => 0, 'points_discount' => 0, 'tax' => 0, 'total' => 3500, 'paid' => 1000, 'left_to_pay' => 2500],
+                        'payments' => [['method' => 'Espèces', 'amount' => 1000]],
+                        'terms' => 'TVA non applicable — régime simplifié.',
+                        'qr' => 'qr-demo-token',
+                        'footer' => 'Merci pour votre confiance.',
+                    ],
+                    'share_url' => 'https://api.example.com/api/v1/public/deposits/1/document?type=facture&expires=…&signature=…',
+                ], description: 'JSON structuré ; `format=pdf` renvoie le binaire application/pdf')];
             }
             if ($method === 'DELETE') {
                 return [$this->response(200, ['deleted' => true])];

@@ -32,6 +32,9 @@ class Pressing extends Model
         'reporting_currency',
         'loyalty_redeem_threshold',
         'loyalty_redeem_value',
+        'express_surcharge_percent',
+        'slogan',
+        'invoice_terms',
     ];
 
     protected $casts = [

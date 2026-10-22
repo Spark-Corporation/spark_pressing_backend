@@ -10,6 +10,7 @@ Route::controller(DepositController::class)->prefix('deposits')->name('deposits.
     Route::get('ready', 'ready')->middleware('permission:deposits.retrieve')->name('ready');
     Route::get('workshop', 'workshopBoard')->middleware('permission:deposits.view|workshop.transition')->name('workshop.board');
     Route::get('qr/{token}', QrLookupController::class)->middleware('permission:deposits.view|workshop.transition')->name('qr');
+    Route::get('export', 'export')->middleware('permission:deposits.view')->name('export');
     Route::get('/', 'index')->middleware('permission:deposits.view')->name('index');
     Route::post('/', 'store')->middleware(['permission:deposits.create', 'idempotent'])->name('store');
     Route::get('{deposit}', 'show')->middleware('permission:deposits.view')->name('show');
@@ -18,5 +19,6 @@ Route::controller(DepositController::class)->prefix('deposits')->name('deposits.
     Route::post('{deposit}/retrieve-partial', 'retrievePartial')->middleware(['permission:deposits.retrieve', 'idempotent'])->name('retrieve-partial');
     Route::post('{deposit}/workshop', 'transition')->middleware('permission:workshop.transition')->name('workshop');
     Route::get('{deposit}/document', 'document')->middleware('permission:deposits.view')->name('document');
+    Route::post('{deposit}/document/send', 'sendDocument')->middleware('permission:deposits.view')->name('document.send');
     Route::delete('{deposit}', 'destroy')->middleware('permission:deposits.create')->name('destroy');
 });

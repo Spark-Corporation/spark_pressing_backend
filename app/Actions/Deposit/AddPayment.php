@@ -69,7 +69,7 @@ class AddPayment
 
                 app(RecordLoyalty::class)->earn($locked, $amount);
 
-                AuditLog::record('deposit.payment', $locked, ['amount' => $amount]);
+                AuditLog::record('deposit.payment', $locked, ['amount' => $amount, 'payment_method' => $method]);
 
                 return $locked->fresh(['units', 'client', 'transactions']);
             });

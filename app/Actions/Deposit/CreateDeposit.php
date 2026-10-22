@@ -85,11 +85,16 @@ class CreateDeposit
                 $advanced = min($total, (int) ($payload['advanced'] ?? 0));
                 $left = $total - $advanced;
 
+                $express = collect($lines)->contains('is_express', true);
+                $expressSupplement = (int) collect($lines)->sum('express_supplement');
                 $maxHours = (int) (collect($lines)->max('default_hours') ?: $pressing->hours_classic);
                 $preset = DeliveryHour::query()->where('status', true)->latest('id')->first();
                 $hours = $preset
                     ? $preset->hoursForAction((int) (collect($lines)->max('type_action') ?? 0))
                     : $maxHours;
+                if ($express && $pressing->hours_express) {
+                    $hours = min($hours, (int) $pressing->hours_express);
+                }
 
                 $agency->increment('last_deposit_sequence');
                 $agency->refresh();
@@ -135,6 +140,11 @@ class CreateDeposit
                     'delivery_zone_id' => $payload['delivery_zone_id'] ?? null,
                     'delivery_address' => $payload['delivery_address'] ?? null,
                     'notes' => $payload['notes'] ?? null,
+                    'is_express' => $express,
+                    'express_supplement' => $expressSupplement,
+                    'terminal' => $payload['terminal'] ?? null,
+                    'local_ref' => $payload['local_ref'] ?? null,
+                    'discount_reason' => $payload['discount_reason'] ?? null,
                 ]);
 
                 foreach ($lines as $line) {
@@ -177,6 +187,8 @@ class CreateDeposit
                     'advanced' => $deposit->advanced,
                     'agency_id' => $agency->id,
                     'currency' => $currency,
+                    'terminal' => $deposit->terminal,
+                    'local_ref' => $deposit->local_ref,
                 ]);
 
                 return $deposit->fresh(['units', 'client', 'transactions']);
@@ -323,6 +335,11 @@ class CreateDeposit
                 ? (int) round($unitPrice * ($weight ?: 0))
                 : $unitPrice * $quantity;
 
+            // « Commande express » : majoration selon la politique du pressing (×2 par défaut).
+            $express = ! empty($line['express']) && $typeAction !== 1;
+            $supplement = $express ? (int) round($lineTotal * (int) $pressing->express_surcharge_percent / 100) : 0;
+            $lineTotal += $supplement;
+
             $built[] = [
                 'article_id' => $article->id,
                 'service_id' => $service?->id,
@@ -335,6 +352,11 @@ class CreateDeposit
                 'line_total' => $lineTotal,
                 'state' => $line['state'] ?? null,
                 'render_id' => $line['render_id'] ?? null,
+                'is_express' => $express || $typeAction === 1,
+                'express_supplement' => $supplement,
+                'color' => $line['color'] ?? null,
+                'defects' => $line['defects'] ?? null,
+                'internal_notes' => $line['internal_notes'] ?? null,
                 'default_hours' => $service?->default_hours ?? $this->hoursForLegacy($pressing, $typeAction),
             ];
         }

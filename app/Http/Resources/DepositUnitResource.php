@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Deposit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,6 +24,14 @@ class DepositUnitResource extends JsonResource
             'retrieve_quantity' => $this->retrieve_quantity,
             'state' => $this->state,
             'render_id' => $this->render_id,
+            'is_express' => (bool) $this->is_express,
+            'express_supplement' => (int) $this->express_supplement,
+            'color' => $this->color,
+            'defects' => collect($this->defects ?? [])->map(fn ($code) => [
+                'code' => $code,
+                'label' => Deposit::DEFECTS[$code] ?? $code,
+            ])->values(),
+            'internal_notes' => $this->internal_notes,
         ];
     }
 }

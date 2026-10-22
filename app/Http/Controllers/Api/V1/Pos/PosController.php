@@ -15,12 +15,14 @@ use App\Models\Article;
 use App\Models\Client;
 use App\Models\CodeSuffix;
 use App\Models\DeliveryHour;
+use App\Models\Deposit;
 use App\Models\LaundryStatus;
 use App\Models\Pressing;
 use App\Models\Promo;
 use App\Models\PromoSpecial;
 use App\Models\Render;
 use App\Models\Service;
+use App\Support\Deposits\DepositPresenter;
 use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -74,8 +76,35 @@ class PosController extends Controller
             'code_suffixes' => CodeSuffix::query()->where('status', true)->get(['id', 'agency_id', 'title']),
             'laundry_statuses' => LaundryStatus::query()->where('status', true)->get(['id', 'title', 'status']),
             'renders' => Render::query()->where('status', true)->get(['id', 'title', 'status']),
+            'deposit_options' => $this->depositOptions($pressing),
             'sync' => $this->syncStatusPayload(),
         ]);
+    }
+
+    /** Options de l’écran « Nouveau dépôt » : express, délais, état du vêtement, paiement. */
+    private function depositOptions(Pressing $pressing): array
+    {
+        $percent = (int) $pressing->express_surcharge_percent;
+
+        return [
+            'express' => [
+                'surcharge_percent' => $percent,
+                'multiplier' => round(1 + $percent / 100, 2),
+                'hours' => (int) $pressing->hours_express,
+                'label' => sprintf('Tarif ×%s · Délai express %d h', rtrim(rtrim(number_format(1 + $percent / 100, 2, ',', ''), '0'), ','), $pressing->hours_express),
+            ],
+            'delays' => [
+                ['code' => 'standard', 'label' => "Standard · {$pressing->hours_classic} h", 'hours' => (int) $pressing->hours_classic],
+                ['code' => 'express', 'label' => "Express · {$pressing->hours_express} h", 'hours' => (int) $pressing->hours_express],
+                ['code' => 'repass', 'label' => "Repassage · {$pressing->hours_repass} h", 'hours' => (int) $pressing->hours_repass],
+            ],
+            'defects' => collect(Deposit::DEFECTS)->map(fn ($label, $code) => ['code' => $code, 'label' => $label])->values(),
+            'payment_methods' => collect(DepositPresenter::PAYMENT_METHOD_LABELS)
+                ->except('other')
+                ->map(fn ($label, $code) => ['code' => $code, 'label' => $label])->values(),
+            'discount_modes' => ['amount', 'percent'],
+            'pricing_modes' => $pressing->pricing_mode === 'piece' ? ['piece'] : ['piece', 'kilo'],
+        ];
     }
 
     public function syncStatus(): JsonResponse

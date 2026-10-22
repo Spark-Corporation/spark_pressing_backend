@@ -27,10 +27,17 @@ class DepositUnit extends \Illuminate\Database\Eloquent\Model
         'retrieve_quantity',
         'state',
         'render_id',
+        'is_express',
+        'express_supplement',
+        'color',
+        'defects',
+        'internal_notes',
     ];
 
     protected $casts = [
         'weight_kg' => 'decimal:3',
+        'is_express' => 'boolean',
+        'defects' => 'array',
     ];
 
     public function deposit(): BelongsTo

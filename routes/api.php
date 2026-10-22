@@ -7,6 +7,7 @@ Route::prefix('v1')->name('v1.')->group(function () {
     require __DIR__.'/api/v1/auth.php';
     require __DIR__.'/api/v1/superadmin.php';
     require __DIR__.'/api/v1/portal.php';
+    require __DIR__.'/api/v1/public.php';
 
     Route::middleware('staff')->group(function () {
         require __DIR__.'/api/v1/pos.php';

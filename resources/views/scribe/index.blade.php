@@ -143,7 +143,10 @@
                     <a href="#depots">Dépôts</a>
                 </li>
                                     <ul id="tocify-subheader-depots" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-due">
+                                                    <li class="tocify-item level-2" data-unique="depots-GETapi-v1-public-deposits--deposit--document">
+                                <a href="#depots-GETapi-v1-public-deposits--deposit--document">PDF public via lien signé (envoyé au client).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-due">
                                 <a href="#depots-GETapi-v1-deposits-due">GET api/v1/deposits/due</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-retrieved">
@@ -157,6 +160,9 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-qr--token-">
                                 <a href="#depots-GETapi-v1-deposits-qr--token-">GET api/v1/deposits/qr/{token}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits-export">
+                                <a href="#depots-GETapi-v1-deposits-export">« Exporter » — CSV des dépôts filtrés (mêmes filtres que la liste).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits">
                                 <a href="#depots-GETapi-v1-deposits">GET api/v1/deposits</a>
@@ -180,10 +186,14 @@
                                 <a href="#depots-POSTapi-v1-deposits--deposit_id--workshop">POST api/v1/deposits/{deposit_id}/workshop</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-GETapi-v1-deposits--deposit_id--document">
-                                <a href="#depots-GETapi-v1-deposits--deposit_id--document">GET api/v1/deposits/{deposit_id}/document</a>
+                                <a href="#depots-GETapi-v1-deposits--deposit_id--document">Ticket (80 mm) ou facture A4 : `type=ticket|facture|bon`, `format=pdf` pour le binaire,
+`layout=ticket|a4` pour le document structuré.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="depots-POSTapi-v1-deposits--deposit_id--document-send">
+                                <a href="#depots-POSTapi-v1-deposits--deposit_id--document-send">« Envoyer au client » — lien signé (7 j) vers le PDF par WhatsApp, SMS ou e-mail.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="depots-DELETEapi-v1-deposits--id-">
-                                <a href="#depots-DELETEapi-v1-deposits--id-">DELETE api/v1/deposits/{id}</a>
+                                <a href="#depots-DELETEapi-v1-deposits--id-">« Annuler le dépôt » — journalisé avec le motif.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -4549,7 +4559,191 @@ Must be one of:
 
     <p>Cycle dépôt → paiement → atelier → retrait.</p>
 
-                                <h2 id="depots-GETapi-v1-deposits-due">GET api/v1/deposits/due</h2>
+                                <h2 id="depots-GETapi-v1-public-deposits--deposit--document">PDF public via lien signé (envoyé au client).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-public-deposits--deposit--document">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/public/deposits/16/document" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/public/deposits/16/document"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-public-deposits--deposit--document">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;ok&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-public-deposits--deposit--document" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-public-deposits--deposit--document"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-public-deposits--deposit--document"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-public-deposits--deposit--document" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-public-deposits--deposit--document">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-public-deposits--deposit--document" data-method="GET"
+      data-path="api/v1/public/deposits/{deposit}/document"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-public-deposits--deposit--document', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-public-deposits--deposit--document"
+                    onclick="tryItOut('GETapi-v1-public-deposits--deposit--document');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-public-deposits--deposit--document"
+                    onclick="cancelTryOut('GETapi-v1-public-deposits--deposit--document');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-public-deposits--deposit--document"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/public/deposits/{deposit}/document</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-public-deposits--deposit--document"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-public-deposits--deposit--document"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-public-deposits--deposit--document"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-public-deposits--deposit--document"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit"                data-endpoint="GETapi-v1-public-deposits--deposit--document"
+               value="16"
+               data-component="url">
+    <br>
+<p>The deposit. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="depots-GETapi-v1-deposits-due">GET api/v1/deposits/due</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4626,6 +4820,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -4663,7 +4883,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -4879,6 +5109,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -4916,7 +5172,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -5132,6 +5398,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -5169,7 +5461,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -5395,6 +5697,32 @@ fetch(url, {
                     &quot;etat&quot;: &quot;waiting&quot;,
                     &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
                     &quot;colonne&quot;: &quot;attente&quot;,
+                    &quot;workshop_status&quot;: {
+                        &quot;code&quot;: &quot;waiting&quot;,
+                        &quot;label&quot;: &quot;&Agrave; trier&quot;
+                    },
+                    &quot;payment_status&quot;: {
+                        &quot;code&quot;: &quot;partial&quot;,
+                        &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+                    },
+                    &quot;service&quot;: {
+                        &quot;code&quot;: &quot;express&quot;,
+                        &quot;label&quot;: &quot;Express&quot;
+                    },
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;pieces_count&quot;: 2,
+                    &quot;weight_kg_total&quot;: 0,
+                    &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+                    &quot;terminal&quot;: &quot;POS-01&quot;,
+                    &quot;local_ref&quot;: null,
+                    &quot;storage_location&quot;: null,
+                    &quot;discount_reason&quot;: null,
+                    &quot;sync_status&quot;: {
+                        &quot;code&quot;: &quot;synced&quot;,
+                        &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                        &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                    },
                     &quot;delivery_status&quot;: null,
                     &quot;notes&quot;: null,
                     &quot;items_count&quot;: 2,
@@ -5432,7 +5760,17 @@ fetch(url, {
                             &quot;quantity&quot;: 2,
                             &quot;unit_price&quot;: 1000,
                             &quot;line_total&quot;: 2000,
-                            &quot;state&quot;: null
+                            &quot;state&quot;: null,
+                            &quot;is_express&quot;: true,
+                            &quot;express_supplement&quot;: 1000,
+                            &quot;color&quot;: &quot;Blanches&quot;,
+                            &quot;defects&quot;: [
+                                {
+                                    &quot;code&quot;: &quot;stain&quot;,
+                                    &quot;label&quot;: &quot;Tach&eacute;&quot;
+                                }
+                            ],
+                            &quot;internal_notes&quot;: &quot;Tache au col&quot;
                         }
                     ],
                     &quot;transactions&quot;: [
@@ -5648,6 +5986,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;waiting&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -5685,7 +6049,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -5831,6 +6205,177 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="depots-GETapi-v1-deposits-export">« Exporter » — CSV des dépôts filtrés (mêmes filtres que la liste).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-deposits-export">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/deposits/export" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/export"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-deposits-export">
+            <blockquote>
+            <p>Example response (200, Export CSV (text/csv)):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;content_type&quot;: &quot;text/csv&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-deposits-export" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-deposits-export"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-deposits-export"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-deposits-export" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-deposits-export">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-deposits-export" data-method="GET"
+      data-path="api/v1/deposits/export"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-deposits-export', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-deposits-export"
+                    onclick="tryItOut('GETapi-v1-deposits-export');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-deposits-export"
+                    onclick="cancelTryOut('GETapi-v1-deposits-export');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-deposits-export"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/deposits/export</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-deposits-export"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-deposits-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-deposits-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-deposits-export"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
                     <h2 id="depots-GETapi-v1-deposits">GET api/v1/deposits</h2>
 
 <p>
@@ -5874,7 +6419,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-deposits">
             <blockquote>
-            <p>Example response (200, Liste paginée):</p>
+            <p>Example response (200, Liste paginée + KPI):</p>
         </blockquote>
                 <pre>
 
@@ -5908,6 +6453,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -5945,7 +6516,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -5963,7 +6544,27 @@ fetch(url, {
         &quot;page&quot;: 1,
         &quot;per_page&quot;: 50,
         &quot;total&quot;: 1,
-        &quot;last_page&quot;: 1
+        &quot;last_page&quot;: 1,
+        &quot;kpis&quot;: {
+            &quot;deposits_today&quot;: {
+                &quot;value&quot;: 28,
+                &quot;delta_percent&quot;: 12,
+                &quot;compared_to&quot;: &quot;2026-10-07&quot;
+            },
+            &quot;revenue_today&quot;: {
+                &quot;value&quot;: 486750,
+                &quot;collected&quot;: 389500
+            },
+            &quot;to_retrieve_today&quot;: {
+                &quot;value&quot;: 14,
+                &quot;ready&quot;: 3
+            },
+            &quot;left_to_collect&quot;: {
+                &quot;value&quot;: 97250,
+                &quot;open_deposits&quot;: 11
+            },
+            &quot;refreshed_at&quot;: &quot;2026-10-14T10:34:00+00:00&quot;
+        }
     },
     &quot;errors&quot;: null
 }</code>
@@ -6118,8 +6719,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T11:14:26\",
-    \"retrieve_date\": \"2026-10-22T11:14:26\",
+    \"deposit_date\": \"2026-10-22T11:20:56\",
+    \"retrieve_date\": \"2026-10-22T11:20:56\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -6131,9 +6732,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             \"unit_price\": 8,
             \"designation\": \"architecto\",
             \"state\": \"architecto\",
-            \"render_id\": 16
+            \"render_id\": 16,
+            \"express\": false,
+            \"color\": \"g\",
+            \"defects\": [
+                \"architecto\"
+            ],
+            \"internal_notes\": \"n\"
         }
-    ]
+    ],
+    \"terminal\": \"b\",
+    \"local_ref\": \"n\",
+    \"discount_reason\": \"g\"
 }"
 </code></pre></div>
 
@@ -6165,8 +6775,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T11:14:26",
-    "retrieve_date": "2026-10-22T11:14:26",
+    "deposit_date": "2026-10-22T11:20:56",
+    "retrieve_date": "2026-10-22T11:20:56",
     "notes": "architecto",
     "lines": [
         {
@@ -6178,9 +6788,18 @@ let body = {
             "unit_price": 8,
             "designation": "architecto",
             "state": "architecto",
-            "render_id": 16
+            "render_id": 16,
+            "express": false,
+            "color": "g",
+            "defects": [
+                "architecto"
+            ],
+            "internal_notes": "n"
         }
-    ]
+    ],
+    "terminal": "b",
+    "local_ref": "n",
+    "discount_reason": "g"
 };
 
 fetch(url, {
@@ -6226,6 +6845,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;waiting&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -6263,7 +6908,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -6623,10 +7278,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -6635,10 +7290,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -6786,7 +7441,103 @@ Must be one of:
     <br>
 <p>Example: <code>16</code></p>
                     </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>express</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deposits" style="display: none">
+            <input type="radio" name="lines.0.express"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deposits"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deposits" style="display: none">
+            <input type="radio" name="lines.0.express"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deposits"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="lines.0.color"                data-endpoint="POSTapi-v1-deposits"
+               value="g"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>g</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>defects</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="lines.0.defects[0]"                data-endpoint="POSTapi-v1-deposits"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="lines.0.defects[1]"                data-endpoint="POSTapi-v1-deposits"
+               data-component="body">
+    <br>
+
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>internal_notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="lines.0.internal_notes"                data-endpoint="POSTapi-v1-deposits"
+               value="n"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>n</code></p>
+                    </div>
                                     </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>terminal</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="terminal"                data-endpoint="POSTapi-v1-deposits"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>local_ref</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="local_ref"                data-endpoint="POSTapi-v1-deposits"
+               value="n"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>discount_reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="discount_reason"                data-endpoint="POSTapi-v1-deposits"
+               value="g"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>g</code></p>
         </div>
         </form>
 
@@ -6866,6 +7617,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;waiting&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -6903,7 +7680,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -6914,7 +7701,107 @@ fetch(url, {
                 &quot;payment_method&quot;: &quot;cash&quot;,
                 &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
             }
-        ]
+        ],
+        &quot;invoice_number&quot;: &quot;FAC-AK-261014-0001&quot;,
+        &quot;commercial_status&quot;: {
+            &quot;code&quot;: &quot;open&quot;,
+            &quot;label&quot;: &quot;En cours&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;
+        },
+        &quot;workshop_detail&quot;: {
+            &quot;status&quot;: {
+                &quot;code&quot;: &quot;classed&quot;,
+                &quot;label&quot;: &quot;Class&eacute;&quot;
+            },
+            &quot;updated_at&quot;: &quot;2026-10-14T10:38:00+00:00&quot;
+        },
+        &quot;pricing_mode&quot;: &quot;piece&quot;,
+        &quot;treatment&quot;: {
+            &quot;express_hours&quot;: 8,
+            &quot;defects_reported&quot;: true,
+            &quot;renders&quot;: [
+                1
+            ],
+            &quot;pieces_counted&quot;: 7
+        },
+        &quot;pickup&quot;: {
+            &quot;mode&quot;: &quot;agency&quot;,
+            &quot;label&quot;: &quot;Retrait en agence&quot;,
+            &quot;agency&quot;: &quot;Akwa&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;address&quot;: null
+        },
+        &quot;client_summary&quot;: {
+            &quot;id&quot;: 1,
+            &quot;fullname&quot;: &quot;Jean Client&quot;,
+            &quot;phone_number&quot;: &quot;690000001&quot;,
+            &quot;client_since&quot;: &quot;2025-03-02&quot;,
+            &quot;loyalty_points&quot;: 740,
+            &quot;previous_unpaid_count&quot;: 0,
+            &quot;previous_unpaid_amount&quot;: 0
+        },
+        &quot;totals&quot;: {
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;subtotal&quot;: 2500,
+            &quot;express_supplement&quot;: 1000,
+            &quot;express_percent&quot;: 100,
+            &quot;fees&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;points_used&quot;: 0,
+            &quot;points_discount&quot;: 0,
+            &quot;tax&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;paid&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500
+        },
+        &quot;payments&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;label&quot;: &quot;Acompte&quot;,
+                &quot;amount&quot;: 1000,
+                &quot;payment_method&quot;: {
+                    &quot;code&quot;: &quot;cash&quot;,
+                    &quot;label&quot;: &quot;Esp&egrave;ces&quot;
+                },
+                &quot;at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;,
+                &quot;received_by&quot;: &quot;Claire Caissier&quot;
+            }
+        ],
+        &quot;timeline&quot;: [
+            {
+                &quot;at&quot;: &quot;2026-10-14T10:38:00+00:00&quot;,
+                &quot;code&quot;: &quot;classed&quot;,
+                &quot;title&quot;: &quot;Pr&ecirc;t pour retrait&quot;,
+                &quot;detail&quot;: &quot;Valid&eacute; par Mariam K.&quot;
+            },
+            {
+                &quot;at&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+                &quot;code&quot;: &quot;deposit.created&quot;,
+                &quot;title&quot;: &quot;D&eacute;p&ocirc;t enregistr&eacute;&quot;,
+                &quot;detail&quot;: &quot;Valid&eacute; par Claire Caissier&quot;
+            }
+        ],
+        &quot;audit&quot;: [
+            {
+                &quot;at&quot;: &quot;2026-10-14T10:38:00+00:00&quot;,
+                &quot;actor&quot;: &quot;Mariam K.&quot;,
+                &quot;action&quot;: &quot;deposit.workshop&quot;,
+                &quot;message&quot;: &quot;&Eacute;tat atelier pass&eacute; &agrave; &laquo; Class&eacute; &raquo;&quot;
+            },
+            {
+                &quot;at&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+                &quot;actor&quot;: &quot;Claire Caissier&quot;,
+                &quot;action&quot;: &quot;deposit.created&quot;,
+                &quot;message&quot;: &quot;D&eacute;p&ocirc;t cr&eacute;&eacute; depuis POS-01&quot;
+            }
+        ],
+        &quot;actions&quot;: {
+            &quot;can_print&quot;: true,
+            &quot;can_edit&quot;: true,
+            &quot;can_add_payment&quot;: true,
+            &quot;can_cancel&quot;: true,
+            &quot;can_follow_workshop&quot;: true
+        }
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -7072,7 +7959,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T11:14:26\"
+    \"transaction_date\": \"2026-10-22T11:20:56\"
 }"
 </code></pre></div>
 
@@ -7093,7 +7980,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T11:14:26"
+    "transaction_date": "2026-10-22T11:20:56"
 };
 
 fetch(url, {
@@ -7139,6 +8026,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;waiting&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -7176,7 +8089,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -7385,10 +8308,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
         </form>
 
@@ -7476,6 +8399,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;ready&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -7513,7 +8462,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -7785,6 +8744,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;ready&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -7822,7 +8807,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -8110,6 +9105,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;ready&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: null,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -8147,7 +9168,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -8339,7 +9370,8 @@ Must be one of:
         </div>
         </form>
 
-                    <h2 id="depots-GETapi-v1-deposits--deposit_id--document">GET api/v1/deposits/{deposit_id}/document</h2>
+                    <h2 id="depots-GETapi-v1-deposits--deposit_id--document">Ticket (80 mm) ou facture A4 : `type=ticket|facture|bon`, `format=pdf` pour le binaire,
+`layout=ticket|a4` pour le document structuré.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8382,14 +9414,199 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-deposits--deposit_id--document">
             <blockquote>
-            <p>Example response (200, PDF ticket/facture (application/pdf)):</p>
+            <p>Example response (200, JSON structuré ; `format=pdf` renvoie le binaire application/pdf):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;content_type&quot;: &quot;application/pdf&quot;,
-        &quot;note&quot;: &quot;R&eacute;ponse binaire PDF&quot;
+        &quot;type&quot;: &quot;facture&quot;,
+        &quot;currency&quot;: &quot;XAF&quot;,
+        &quot;pressing&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+        &quot;agency&quot;: &quot;Akwa&quot;,
+        &quot;print_html&quot;: &quot;&lt;!DOCTYPE html&gt;&hellip;&quot;,
+        &quot;deposit&quot;: {
+            &quot;id&quot;: 1,
+            &quot;client_uuid&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+            &quot;code&quot;: &quot;AK-0001-EL&quot;,
+            &quot;qr_token&quot;: &quot;qr-demo-token&quot;,
+            &quot;pressing_id&quot;: 1,
+            &quot;agency_id&quot;: 1,
+            &quot;currency&quot;: &quot;XAF&quot;,
+            &quot;client_id&quot;: 1,
+            &quot;deposit_date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+            &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;,
+            &quot;retrieved_at&quot;: null,
+            &quot;subtotal&quot;: 3500,
+            &quot;collection_fee&quot;: 0,
+            &quot;delivery_fee&quot;: 0,
+            &quot;discount&quot;: 0,
+            &quot;discount_percent&quot;: 0,
+            &quot;promo_code&quot;: null,
+            &quot;points_earned&quot;: 35,
+            &quot;points_redeemed&quot;: 0,
+            &quot;total&quot;: 3500,
+            &quot;advanced&quot;: 1000,
+            &quot;left_to_pay&quot;: 2500,
+            &quot;payment_method&quot;: &quot;cash&quot;,
+            &quot;status&quot;: &quot;open&quot;,
+            &quot;etat&quot;: &quot;waiting&quot;,
+            &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
+            &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
+            &quot;delivery_status&quot;: null,
+            &quot;notes&quot;: null,
+            &quot;items_count&quot;: 2,
+            &quot;articles_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;client_name&quot;: &quot;Jean Client&quot;,
+            &quot;client_phone&quot;: &quot;690000001&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Akwa&quot;
+            },
+            &quot;client&quot;: {
+                &quot;id&quot;: 1,
+                &quot;pressing_id&quot;: 1,
+                &quot;agency_id&quot;: 1,
+                &quot;code&quot;: &quot;C000001&quot;,
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;email&quot;: &quot;jean.client@example.com&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;,
+                &quot;address&quot;: null,
+                &quot;city&quot;: &quot;Douala&quot;,
+                &quot;loyalty_points&quot;: 120,
+                &quot;wallet_balance&quot;: 5000,
+                &quot;sponsor_code&quot;: &quot;JEAN01&quot;,
+                &quot;referred_by_id&quot;: null,
+                &quot;last_deposit_at&quot;: &quot;2026-10-14T10:00:00+00:00&quot;,
+                &quot;status&quot;: true
+            },
+            &quot;units&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;article_id&quot;: 1,
+                    &quot;service_id&quot;: 1,
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;pricing_type&quot;: &quot;piece&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;line_total&quot;: 2000,
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
+                }
+            ],
+            &quot;transactions&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;amount&quot;: 1000,
+                    &quot;type&quot;: &quot;in&quot;,
+                    &quot;payment_method&quot;: &quot;cash&quot;,
+                    &quot;transaction_date&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+                }
+            ]
+        },
+        &quot;document&quot;: {
+            &quot;format&quot;: &quot;a4&quot;,
+            &quot;number&quot;: &quot;FAC-AK-261014-0001&quot;,
+            &quot;issued_at&quot;: &quot;2026-10-14T10:40:00+00:00&quot;,
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;seller&quot;: {
+                &quot;name&quot;: &quot;&Eacute;l&eacute;gance Pressing&quot;,
+                &quot;slogan&quot;: &quot;Soin textile premium&quot;,
+                &quot;agency&quot;: &quot;Akwa&quot;,
+                &quot;address&quot;: &quot;Douala, Akwa&quot;,
+                &quot;phone&quot;: &quot;+237600000001&quot;,
+                &quot;email&quot;: &quot;akwa@elegance.cm&quot;,
+                &quot;rccm&quot;: &quot;RC-DLA-2024-B-01842&quot;,
+                &quot;tax_id&quot;: &quot;M0123456789&quot;
+            },
+            &quot;customer&quot;: {
+                &quot;fullname&quot;: &quot;Jean Client&quot;,
+                &quot;phone_number&quot;: &quot;690000001&quot;
+            },
+            &quot;deposit&quot;: {
+                &quot;code&quot;: &quot;AK-0001-EL&quot;,
+                &quot;date&quot;: &quot;2026-10-14T09:00:00+00:00&quot;,
+                &quot;retrieve_date&quot;: &quot;2026-10-16T09:00:00+00:00&quot;
+            },
+            &quot;lines&quot;: [
+                {
+                    &quot;designation&quot;: &quot;Chemise&quot;,
+                    &quot;quantity&quot;: 2,
+                    &quot;unit&quot;: &quot;pi&egrave;ce&quot;,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;total&quot;: 2000
+                },
+                {
+                    &quot;designation&quot;: &quot;Majoration Express 8 h&quot;,
+                    &quot;quantity&quot;: 1,
+                    &quot;unit&quot;: &quot;forfait&quot;,
+                    &quot;unit_price&quot;: 1000,
+                    &quot;total&quot;: 1000
+                }
+            ],
+            &quot;totals&quot;: {
+                &quot;currency&quot;: &quot;XAF&quot;,
+                &quot;subtotal&quot;: 2500,
+                &quot;express_supplement&quot;: 1000,
+                &quot;express_percent&quot;: 100,
+                &quot;fees&quot;: 0,
+                &quot;discount&quot;: 0,
+                &quot;points_used&quot;: 0,
+                &quot;points_discount&quot;: 0,
+                &quot;tax&quot;: 0,
+                &quot;total&quot;: 3500,
+                &quot;paid&quot;: 1000,
+                &quot;left_to_pay&quot;: 2500
+            },
+            &quot;payments&quot;: [
+                {
+                    &quot;method&quot;: &quot;Esp&egrave;ces&quot;,
+                    &quot;amount&quot;: 1000
+                }
+            ],
+            &quot;terms&quot;: &quot;TVA non applicable &mdash; r&eacute;gime simplifi&eacute;.&quot;,
+            &quot;qr&quot;: &quot;qr-demo-token&quot;,
+            &quot;footer&quot;: &quot;Merci pour votre confiance.&quot;
+        },
+        &quot;share_url&quot;: &quot;https://api.example.com/api/v1/public/deposits/1/document?type=facture&amp;expires=&hellip;&amp;signature=&hellip;&quot;
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -8524,7 +9741,253 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="depots-DELETEapi-v1-deposits--id-">DELETE api/v1/deposits/{id}</h2>
+                    <h2 id="depots-POSTapi-v1-deposits--deposit_id--document-send">« Envoyer au client » — lien signé (7 j) vers le PDF par WhatsApp, SMS ou e-mail.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deposits--deposit_id--document-send">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deposits/16/document/send" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"channel\": \"whatsapp\",
+    \"type\": \"ticket\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deposits/16/document/send"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "channel": "whatsapp",
+    "type": "ticket"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deposits--deposit_id--document-send">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;sent&quot;: false,
+        &quot;channel&quot;: &quot;whatsapp&quot;,
+        &quot;destination&quot;: &quot;0748221903&quot;,
+        &quot;share_url&quot;: &quot;https://api.example.com/api/v1/public/deposits/1/document?type=ticket&amp;expires=&hellip;&amp;signature=&hellip;&quot;,
+        &quot;open_url&quot;: &quot;https://wa.me/0748221903?text=&hellip;&quot;
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-deposits--deposit_id--document-send" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deposits--deposit_id--document-send"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deposits--deposit_id--document-send"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deposits--deposit_id--document-send" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deposits--deposit_id--document-send">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deposits--deposit_id--document-send" data-method="POST"
+      data-path="api/v1/deposits/{deposit_id}/document/send"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deposits--deposit_id--document-send', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deposits--deposit_id--document-send"
+                    onclick="tryItOut('POSTapi-v1-deposits--deposit_id--document-send');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deposits--deposit_id--document-send"
+                    onclick="cancelTryOut('POSTapi-v1-deposits--deposit_id--document-send');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deposits--deposit_id--document-send"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deposits/{deposit_id}/document/send</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>deposit_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="deposit_id"                data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the deposit. Example: <code>16</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="channel"                data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="whatsapp"
+               data-component="body">
+    <br>
+<p>Example: <code>whatsapp</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>whatsapp</code></li> <li><code>sms</code></li> <li><code>email</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="POSTapi-v1-deposits--deposit_id--document-send"
+               value="ticket"
+               data-component="body">
+    <br>
+<p>Example: <code>ticket</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>ticket</code></li> <li><code>facture</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="depots-DELETEapi-v1-deposits--id-">« Annuler le dépôt » — journalisé avec le motif.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8542,7 +10005,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -8557,10 +10024,14 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "reason": "b"
+};
 
 fetch(url, {
     method: "DELETE",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -8706,7 +10177,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the deposit. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="DELETEapi-v1-deposits--id-"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+        </form>
 
                 <h1 id="clients">Clients</h1>
 
@@ -11751,7 +13235,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php5C25.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php4EBB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -11936,7 +13420,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php5C25.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php4EBB.tmp</code></p>
         </div>
         </form>
 
@@ -13410,7 +14894,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T11:14:26\"
+    \"at\": \"2026-10-22T11:20:56\"
 }"
 </code></pre></div>
 
@@ -13432,7 +14916,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T11:14:26"
+    "at": "2026-10-22T11:20:56"
 };
 
 fetch(url, {
@@ -13636,10 +15120,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
         </form>
 
@@ -13668,7 +15152,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T11:14:26\",
+    \"valid_from\": \"2026-10-22T11:20:56\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -13692,7 +15176,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T11:14:26",
+    "valid_from": "2026-10-22T11:20:56",
     "valid_to": "2052-11-14"
 };
 
@@ -13928,10 +15412,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -20171,7 +21655,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"g\",
     \"type\": \"out\",
     \"amount\": 27,
-    \"action_date\": \"2026-10-22T11:14:26\",
+    \"action_date\": \"2026-10-22T11:20:56\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -20194,7 +21678,7 @@ let body = {
     "label": "g",
     "type": "out",
     "amount": 27,
-    "action_date": "2026-10-22T11:14:26",
+    "action_date": "2026-10-22T11:20:56",
     "validated": true
 };
 
@@ -20432,10 +21916,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -20484,7 +21968,7 @@ Must be one of:
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T11:14:26\"
+    \"action_date\": \"2026-10-22T11:20:56\"
 }"
 </code></pre></div>
 
@@ -20505,7 +21989,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T11:14:26"
+    "action_date": "2026-10-22T11:20:56"
 };
 
 fetch(url, {
@@ -20743,10 +22227,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
         </form>
 
@@ -26219,7 +27703,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T11:14:26\"
+    \"rate_date\": \"2026-10-22T11:20:56\"
 }"
 </code></pre></div>
 
@@ -26240,7 +27724,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T11:14:26"
+    "rate_date": "2026-10-22T11:20:56"
 };
 
 fetch(url, {
@@ -26446,10 +27930,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
         </form>
 
@@ -29496,6 +30980,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -29533,7 +31043,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -29749,6 +31269,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -29786,7 +31332,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -29997,6 +31553,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -30034,7 +31616,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -35360,7 +36952,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T11:14:26\"
+    \"expires_at\": \"2026-10-22T11:20:56\"
 }"
 </code></pre></div>
 
@@ -35384,7 +36976,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T11:14:26"
+    "expires_at": "2026-10-22T11:20:56"
 };
 
 fetch(url, {
@@ -35719,10 +37311,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
         </form>
 
@@ -36024,10 +37616,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T11:14:26"\
+    --form "effective_at=2026-10-22T11:20:56"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php5B3A.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php4E5C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -36046,7 +37638,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T11:14:26');
+body.append('effective_at', '2026-10-22T11:20:56');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -36556,10 +38148,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -36615,7 +38207,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php5B3A.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php4E5C.tmp</code></p>
         </div>
         </form>
 
@@ -38879,6 +40471,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -38916,7 +40534,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -39132,6 +40760,32 @@ fetch(url, {
             &quot;etat&quot;: &quot;waiting&quot;,
             &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
             &quot;colonne&quot;: &quot;attente&quot;,
+            &quot;workshop_status&quot;: {
+                &quot;code&quot;: &quot;waiting&quot;,
+                &quot;label&quot;: &quot;&Agrave; trier&quot;
+            },
+            &quot;payment_status&quot;: {
+                &quot;code&quot;: &quot;partial&quot;,
+                &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+            },
+            &quot;service&quot;: {
+                &quot;code&quot;: &quot;express&quot;,
+                &quot;label&quot;: &quot;Express&quot;
+            },
+            &quot;is_express&quot;: true,
+            &quot;express_supplement&quot;: 1000,
+            &quot;pieces_count&quot;: 2,
+            &quot;weight_kg_total&quot;: 0,
+            &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+            &quot;terminal&quot;: &quot;POS-01&quot;,
+            &quot;local_ref&quot;: null,
+            &quot;storage_location&quot;: null,
+            &quot;discount_reason&quot;: null,
+            &quot;sync_status&quot;: {
+                &quot;code&quot;: &quot;synced&quot;,
+                &quot;label&quot;: &quot;&Agrave; jour&quot;,
+                &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+            },
             &quot;delivery_status&quot;: null,
             &quot;notes&quot;: null,
             &quot;items_count&quot;: 2,
@@ -39169,7 +40823,17 @@ fetch(url, {
                     &quot;quantity&quot;: 2,
                     &quot;unit_price&quot;: 1000,
                     &quot;line_total&quot;: 2000,
-                    &quot;state&quot;: null
+                    &quot;state&quot;: null,
+                    &quot;is_express&quot;: true,
+                    &quot;express_supplement&quot;: 1000,
+                    &quot;color&quot;: &quot;Blanches&quot;,
+                    &quot;defects&quot;: [
+                        {
+                            &quot;code&quot;: &quot;stain&quot;,
+                            &quot;label&quot;: &quot;Tach&eacute;&quot;
+                        }
+                    ],
+                    &quot;internal_notes&quot;: &quot;Tache au col&quot;
                 }
             ],
             &quot;transactions&quot;: [
@@ -40227,7 +41891,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T11:14:26\",
+    \"round_date\": \"2026-10-22T11:20:56\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -40248,7 +41912,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T11:14:26",
+    "round_date": "2026-10-22T11:20:56",
     "name": "n"
 };
 
@@ -40455,10 +42119,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T11:14:26"
+               value="2026-10-22T11:20:56"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:20:56</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -40792,6 +42456,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;waiting&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: &quot;delivered&quot;,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -40829,7 +42519,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [
@@ -41127,6 +42827,32 @@ fetch(url, {
         &quot;etat&quot;: &quot;waiting&quot;,
         &quot;etat_label&quot;: &quot;&Agrave; trier&quot;,
         &quot;colonne&quot;: &quot;attente&quot;,
+        &quot;workshop_status&quot;: {
+            &quot;code&quot;: &quot;waiting&quot;,
+            &quot;label&quot;: &quot;&Agrave; trier&quot;
+        },
+        &quot;payment_status&quot;: {
+            &quot;code&quot;: &quot;partial&quot;,
+            &quot;label&quot;: &quot;Partiellement pay&eacute;&quot;
+        },
+        &quot;service&quot;: {
+            &quot;code&quot;: &quot;express&quot;,
+            &quot;label&quot;: &quot;Express&quot;
+        },
+        &quot;is_express&quot;: true,
+        &quot;express_supplement&quot;: 1000,
+        &quot;pieces_count&quot;: 2,
+        &quot;weight_kg_total&quot;: 0,
+        &quot;quantity_label&quot;: &quot;2 pi&egrave;ces&quot;,
+        &quot;terminal&quot;: &quot;POS-01&quot;,
+        &quot;local_ref&quot;: null,
+        &quot;storage_location&quot;: null,
+        &quot;discount_reason&quot;: null,
+        &quot;sync_status&quot;: {
+            &quot;code&quot;: &quot;synced&quot;,
+            &quot;label&quot;: &quot;&Agrave; jour&quot;,
+            &quot;synced_at&quot;: &quot;2026-10-14T09:05:00+00:00&quot;
+        },
         &quot;delivery_status&quot;: &quot;delivered&quot;,
         &quot;notes&quot;: null,
         &quot;items_count&quot;: 2,
@@ -41164,7 +42890,17 @@ fetch(url, {
                 &quot;quantity&quot;: 2,
                 &quot;unit_price&quot;: 1000,
                 &quot;line_total&quot;: 2000,
-                &quot;state&quot;: null
+                &quot;state&quot;: null,
+                &quot;is_express&quot;: true,
+                &quot;express_supplement&quot;: 1000,
+                &quot;color&quot;: &quot;Blanches&quot;,
+                &quot;defects&quot;: [
+                    {
+                        &quot;code&quot;: &quot;stain&quot;,
+                        &quot;label&quot;: &quot;Tach&eacute;&quot;
+                    }
+                ],
+                &quot;internal_notes&quot;: &quot;Tache au col&quot;
             }
         ],
         &quot;transactions&quot;: [

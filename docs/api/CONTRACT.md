@@ -159,6 +159,21 @@ Idempotency-Key: {uuid-v4}
 
 `GET /auth/me` renvoie aussi `meta.contexts`.
 
+### 7.0b Dépôts & POS (Figma 02)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Gestion des dépôts — KPI | `GET /deposits` | `meta.kpis.deposits_today` (+ `delta_percent` vs même jour S-1), `revenue_today` (+ `collected`), `to_retrieve_today` (+ `ready`), `left_to_collect` (+ `open_deposits`) |
+| Filtres | `GET /deposits?q&period=day\|week\|month&date_from&date_to&payment_status=paid\|partial\|unpaid&etat=…\|retrieved&agency_id` | — |
+| Colonnes du tableau | idem | `service` (Express/Classique/Repassage), `quantity_label` (« 7 pièces », « 4,8 kg »), `payment_status`, `workshop_status` (dont « Retiré »), `sync_status` |
+| « Exporter » | `GET /deposits/export` (CSV, mêmes filtres) | — |
+| Détail du dépôt | `GET /deposits/{id}` | `commercial_status`, `workshop_detail`, `treatment`, `pickup`, `client_summary`, `totals` (express, remise, points), `payments[]` (`received_by`), `timeline[]`, `audit[]`, `actions` |
+| Nouveau dépôt — lignes | `POST /deposits` | `lines[].express`, `lines[].color`, `lines[].defects[]` (codes de `deposit_options.defects`), `lines[].internal_notes` ; `terminal`, `local_ref`, `discount_reason` |
+| Options du formulaire | `GET /pos/bootstrap` | `deposit_options` (express ×multiplicateur + délai, délais, défauts, moyens de paiement) |
+| Ticket et facture | `GET /deposits/{id}/document?type=ticket\|facture&layout=ticket\|a4` | `document` (numéro FAC-…, vendeur RCCM/CC, lignes dont « Majoration Express », totaux, conditions), `share_url` |
+| « Envoyer au client » | `POST /deposits/{id}/document/send` (`channel=whatsapp\|sms\|email`) | `share_url` signé 7 j, `open_url` (wa.me) |
+| « Annuler le dépôt » | `DELETE /deposits/{id}` (`reason`) | journalisé |
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |

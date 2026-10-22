@@ -12,6 +12,16 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
 {
     use BelongsToTenant, HasFactory, SoftDeletes;
 
+    /** « État du vêtement » — défauts constatés à la réception. */
+    public const DEFECTS = [
+        'stain' => 'Taché',
+        'torn' => 'Déchiré',
+        'broken_button' => 'Bouton cassé',
+        'hole' => 'Troué',
+        'faded' => 'Décoloré',
+        'other' => 'Autre',
+    ];
+
     public const ETAT_WAITING = 'waiting';
 
     public const ETAT_IN_PROGRESS = 'in_progress';
@@ -60,6 +70,49 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
         return self::etatColumns()[$etat] ?? null;
     }
 
+    /** @return array{code:string,label:string} « Payé » / « Partiellement payé » / « Non payé » */
+    public function paymentStatus(): array
+    {
+        $code = match (true) {
+            (int) $this->left_to_pay === 0 => 'paid',
+            (int) $this->advanced > 0 => 'partial',
+            default => 'unpaid',
+        };
+
+        return ['code' => $code, 'label' => ['paid' => 'Payé', 'partial' => 'Partiellement payé', 'unpaid' => 'Non payé'][$code]];
+    }
+
+    /** @return array{code:string,label:string} État atelier, « Retiré » une fois remis au client. */
+    public function workshopStatus(): array
+    {
+        if ($this->retrieved_at) {
+            return ['code' => 'retrieved', 'label' => 'Retiré'];
+        }
+
+        return ['code' => (string) $this->etat, 'label' => (string) self::etatLabel($this->etat)];
+    }
+
+    /**
+     * Prestation affichée en liste (Express / Repassage / Classique) à partir des lignes.
+     *
+     * @return array{code:string,label:string}
+     */
+    public static function serviceBadge(bool $express, ?int $minAction, ?int $maxAction): array
+    {
+        return match (true) {
+            $express || $maxAction === 1 => ['code' => 'express', 'label' => 'Express'],
+            $minAction === 2 => ['code' => 'repassage', 'label' => 'Repassage'],
+            default => ['code' => 'classique', 'label' => 'Classique'],
+        };
+    }
+
+    public function invoiceNumber(): string
+    {
+        $prefix = Agency::query()->whereKey($this->agency_id)->value('code_prefix') ?: 'SP';
+
+        return sprintf('FAC-%s-%s-%04d', strtoupper($prefix), $this->deposit_date?->format('ymd') ?? now()->format('ymd'), $this->id);
+    }
+
     public const DELIVERY_PENDING = 'pending';
 
     public const DELIVERY_ASSIGNED = 'assigned';
@@ -71,6 +124,13 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
     public const DELIVERY_FAILED = 'failed';
 
     protected $fillable = [
+        'is_express',
+        'express_supplement',
+        'terminal',
+        'local_ref',
+        'storage_location',
+        'discount_reason',
+        'cancel_reason',
         'client_uuid',
         'code',
         'qr_token',
@@ -119,6 +179,7 @@ class Deposit extends \Illuminate\Database\Eloquent\Model
         'delivered_at' => 'datetime',
         'delivery_confirmed_at' => 'datetime',
         'status' => 'boolean',
+        'is_express' => 'boolean',
     ];
 
     public function pressing(): BelongsTo
