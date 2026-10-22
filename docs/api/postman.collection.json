@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "e1ccfcc8-a9a8-4e3f-a0d1-d589c3d4064e",
+        "_postman_id": "be09eb47-7d8e-4c90-bf40-1d4cf03ea5cd",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:49:20\",\"retrieve_date\":\"2026-10-22T11:49:20\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:54:19\",\"retrieve_date\":\"2026-10-22T11:54:19\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:49:20\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:54:19\"}"
                         },
                         "description": ""
                     },
@@ -3727,7 +3727,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:49:20\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:54:19\"}"
                         },
                         "description": ""
                     },
@@ -3772,7 +3772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:49:20\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:54:19\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5435,7 +5435,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T11:49:20",
+                                    "value": "2026-10-22T11:54:19",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5583,7 +5583,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:49:20\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:54:19\"}"
                         },
                         "description": ""
                     },
@@ -5740,7 +5740,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T11:49:20\"}"
+                            "raw": "{\"date\":\"2026-10-22T11:54:19\"}"
                         },
                         "description": ""
                     },
@@ -5785,7 +5785,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T11:49:20\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T11:54:19\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -6860,6 +6860,239 @@
                             "name": "Non authentifi\u00e9"
                         }
                     ]
+                },
+                {
+                    "name": "\u00ab Rapports et bilans \u00bb : p\u00e9riode (`date_from`\/`date_to` ou `preset=today|7d|30d`), `agency_id`,\ncomparaison avec la p\u00e9riode pr\u00e9c\u00e9dente ; `format=csv|pdf` pour \u00ab Exporter \u00bb.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/reports\/overview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/reports\/overview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"date_from\":\"2026-10-22T11:54:19\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"period\": {\n            \"from\": \"2026-09-01\",\n            \"to\": \"2026-09-28\",\n            \"compare_from\": \"2026-08-04\",\n            \"compare_to\": \"2026-08-31\"\n        },\n        \"agency_id\": null,\n        \"kpis\": {\n            \"revenue\": {\n                \"value\": 18642500,\n                \"delta_percent\": 12.4\n            },\n            \"sales\": {\n                \"value\": 1284,\n                \"delta_percent\": 9.7,\n                \"average_basket\": 14519\n            },\n            \"discounts\": {\n                \"value\": 428300,\n                \"share_of_revenue\": 2.3\n            },\n            \"unpaid\": {\n                \"value\": 1176000,\n                \"delta_percent\": -6.1\n            }\n        },\n        \"revenue_chart\": {\n            \"series\": [\n                {\n                    \"date\": \"2026-09-01\",\n                    \"revenue\": 580000,\n                    \"sales\": 41,\n                    \"average_basket\": 14146\n                }\n            ],\n            \"totals\": {\n                \"current\": 18642500,\n                \"previous\": 16580000,\n                \"projection\": 20100000\n            },\n            \"objective\": {\n                \"target\": 21400000,\n                \"percent\": 94\n            }\n        },\n        \"payments\": {\n            \"total\": 17470000,\n            \"methods\": [\n                {\n                    \"code\": \"mobile_money\",\n                    \"label\": \"Mobile Money\",\n                    \"amount\": 8036200,\n                    \"percent\": 46\n                }\n            ]\n        },\n        \"non_sales_movements\": {\n            \"cash_in\": 940000,\n            \"cash_out\": 612500,\n            \"theoretical_balance\": 2847300\n        },\n        \"agencies\": [\n            {\n                \"agency_id\": 1,\n                \"name\": \"Cocody Angr\u00e9\",\n                \"revenue\": 7842000,\n                \"sales\": 514,\n                \"average_basket\": 15257,\n                \"delta_percent\": 15.6\n            }\n        ],\n        \"loyalty\": {\n            \"active_members\": 2468,\n            \"points_issued\": 184200,\n            \"points_used\": 96450,\n            \"retention_percent\": 61\n        },\n        \"reports\": [\n            {\n                \"code\": \"daily\",\n                \"label\": \"Bilan journalier\",\n                \"detail\": \"Recettes, caisse et \u00e9carts\",\n                \"endpoint\": \"\/api\/v1\/reports\/daily\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "JSON ; `format=csv|pdf` pour l\u2019export"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Bilan journalier et performance caissiers \u00bb (`date`, agence d\u2019op\u00e9ration ; `format=csv|pdf`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/reports\/daily",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/reports\/daily"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"date\":\"2026-10-22T11:54:19\",\"agency_id\":16,\"format\":\"json\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"date\": \"2026-09-28\",\n        \"agency\": \"Cocody Angr\u00e9\",\n        \"kpis\": {\n            \"receipts\": {\n                \"value\": 8221000,\n                \"delta_percent\": 11.6,\n                \"compared_to\": \"2026-09-21\"\n            },\n            \"settled_sales\": {\n                \"value\": 566,\n                \"share_percent\": 93.4\n            },\n            \"open_unpaid\": {\n                \"value\": 582500,\n                \"deposits\": 40\n            },\n            \"cash_gap\": {\n                \"value\": -2000,\n                \"tolerance\": 5000,\n                \"within_tolerance\": true\n            }\n        },\n        \"receipts_chart\": {\n            \"total\": 8221000,\n            \"series\": [\n                {\n                    \"hour\": \"08h\",\n                    \"amount\": 158000\n                }\n            ],\n            \"methods\": [\n                {\n                    \"code\": \"mobile_money\",\n                    \"label\": \"Mobile Money\",\n                    \"amount\": 3892000\n                }\n            ]\n        },\n        \"non_deposit_movements\": [\n            {\n                \"label\": \"Fonds de caisse\",\n                \"amount\": 400000\n            },\n            {\n                \"label\": \"Petites d\u00e9penses\",\n                \"amount\": -87500\n            }\n        ],\n        \"reconciliation\": {\n            \"theoretical\": 1253000,\n            \"counted\": 1251000,\n            \"difference\": -2000,\n            \"within_tolerance\": true,\n            \"comment\": \"Commentaire requis \u00e0 la cl\u00f4ture\"\n        },\n        \"settlement\": {\n            \"settled\": 566,\n            \"settled_percent\": 93.4,\n            \"unpaid\": 40,\n            \"unpaid_amount\": 582500\n        },\n        \"discounts\": {\n            \"count\": 76,\n            \"amount\": 214500,\n            \"share_of_revenue\": 2.5,\n            \"sensitive\": {\n                \"threshold_percent\": 15,\n                \"count\": 0\n            }\n        },\n        \"cashiers\": [\n            {\n                \"user_id\": 3,\n                \"fullname\": \"Nadia Assi\",\n                \"session\": {\n                    \"status\": \"Ouverte\",\n                    \"at\": \"2026-09-28T08:01:00+00:00\"\n                },\n                \"receipts\": 2846500,\n                \"sales\": 184,\n                \"average_basket\": 15470,\n                \"productivity_percent\": 100,\n                \"gap\": null\n            }\n        ],\n        \"exports\": {\n            \"csv\": true,\n            \"pdf\": true\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "JSON ; `format=csv|pdf` pour l\u2019export"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Programmer \u00bb : envoi r\u00e9current d\u2019un rapport par e-mail.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/reports\/schedules",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/reports\/schedules"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"report\": \"overview\",\n            \"frequency\": \"weekly\",\n            \"format\": \"csv\",\n            \"recipients\": [\n                \"direction@spark.ci\"\n            ],\n            \"agency_id\": null,\n            \"last_sent_at\": null,\n            \"next_run_at\": \"2026-10-05T07:00:00+00:00\",\n            \"active\": true\n        }\n    ],\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/reports\/schedules",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/reports\/schedules",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/reports\/schedules"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"report\":\"daily\",\"frequency\":\"daily\",\"format\":\"csv\",\"recipients\":[\"rowan.gulgowski@example.com\"],\"agency_id\":16}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"report\": \"overview\",\n        \"frequency\": \"weekly\",\n        \"format\": \"csv\",\n        \"recipients\": [\n            \"direction@spark.ci\"\n        ],\n        \"agency_id\": null,\n        \"last_sent_at\": null,\n        \"next_run_at\": \"2026-10-05T07:00:00+00:00\",\n        \"active\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE api\/v1\/reports\/schedules\/{reportSchedule_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/reports\/schedules\/:reportSchedule_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/reports\/schedules\/:reportSchedule_id",
+                            "variable": [
+                                {
+                                    "id": "reportSchedule_id",
+                                    "key": "reportSchedule_id",
+                                    "value": 16,
+                                    "description": "The ID of the reportSchedule."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
                 }
             ]
         },
@@ -7272,7 +7505,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:49:21\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:54:19\"}"
                         },
                         "description": ""
                     },
@@ -9155,7 +9388,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:49:20\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:54:18\"}"
                         },
                         "description": ""
                     },
@@ -9294,7 +9527,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T11:49:20",
+                                    "value": "2026-10-22T11:54:18",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -10192,7 +10425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:49:20\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:54:19\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

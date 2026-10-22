@@ -536,6 +536,58 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Rapports (Figma 08) ——
+        if ($path === '/api/v1/reports/overview') {
+            return [$this->response(200, [
+                'period' => ['from' => '2026-09-01', 'to' => '2026-09-28', 'compare_from' => '2026-08-04', 'compare_to' => '2026-08-31'],
+                'agency_id' => null,
+                'kpis' => [
+                    'revenue' => ['value' => 18642500, 'delta_percent' => 12.4],
+                    'sales' => ['value' => 1284, 'delta_percent' => 9.7, 'average_basket' => 14519],
+                    'discounts' => ['value' => 428300, 'share_of_revenue' => 2.3],
+                    'unpaid' => ['value' => 1176000, 'delta_percent' => -6.1],
+                ],
+                'revenue_chart' => [
+                    'series' => [['date' => '2026-09-01', 'revenue' => 580000, 'sales' => 41, 'average_basket' => 14146]],
+                    'totals' => ['current' => 18642500, 'previous' => 16580000, 'projection' => 20100000],
+                    'objective' => ['target' => 21400000, 'percent' => 94],
+                ],
+                'payments' => ['total' => 17470000, 'methods' => [['code' => 'mobile_money', 'label' => 'Mobile Money', 'amount' => 8036200, 'percent' => 46]]],
+                'non_sales_movements' => ['cash_in' => 940000, 'cash_out' => 612500, 'theoretical_balance' => 2847300],
+                'agencies' => [['agency_id' => 1, 'name' => 'Cocody Angré', 'revenue' => 7842000, 'sales' => 514, 'average_basket' => 15257, 'delta_percent' => 15.6]],
+                'loyalty' => ['active_members' => 2468, 'points_issued' => 184200, 'points_used' => 96450, 'retention_percent' => 61],
+                'reports' => [['code' => 'daily', 'label' => 'Bilan journalier', 'detail' => 'Recettes, caisse et écarts', 'endpoint' => '/api/v1/reports/daily']],
+            ], description: 'JSON ; `format=csv|pdf` pour l’export')];
+        }
+        if ($path === '/api/v1/reports/daily') {
+            return [$this->response(200, [
+                'date' => '2026-09-28',
+                'agency' => 'Cocody Angré',
+                'kpis' => [
+                    'receipts' => ['value' => 8221000, 'delta_percent' => 11.6, 'compared_to' => '2026-09-21'],
+                    'settled_sales' => ['value' => 566, 'share_percent' => 93.4],
+                    'open_unpaid' => ['value' => 582500, 'deposits' => 40],
+                    'cash_gap' => ['value' => -2000, 'tolerance' => 5000, 'within_tolerance' => true],
+                ],
+                'receipts_chart' => ['total' => 8221000, 'series' => [['hour' => '08h', 'amount' => 158000]], 'methods' => [['code' => 'mobile_money', 'label' => 'Mobile Money', 'amount' => 3892000]]],
+                'non_deposit_movements' => [['label' => 'Fonds de caisse', 'amount' => 400000], ['label' => 'Petites dépenses', 'amount' => -87500]],
+                'reconciliation' => ['theoretical' => 1253000, 'counted' => 1251000, 'difference' => -2000, 'within_tolerance' => true, 'comment' => 'Commentaire requis à la clôture'],
+                'settlement' => ['settled' => 566, 'settled_percent' => 93.4, 'unpaid' => 40, 'unpaid_amount' => 582500],
+                'discounts' => ['count' => 76, 'amount' => 214500, 'share_of_revenue' => 2.5, 'sensitive' => ['threshold_percent' => 15, 'count' => 0]],
+                'cashiers' => [['user_id' => 3, 'fullname' => 'Nadia Assi', 'session' => ['status' => 'Ouverte', 'at' => '2026-09-28T08:01:00+00:00'], 'receipts' => 2846500, 'sales' => 184, 'average_basket' => 15470, 'productivity_percent' => 100, 'gap' => null]],
+                'exports' => ['csv' => true, 'pdf' => true],
+            ], description: 'JSON ; `format=csv|pdf` pour l’export')];
+        }
+        if (str_starts_with($path, '/api/v1/reports/schedules')) {
+            $schedule = ['id' => 1, 'report' => 'overview', 'frequency' => 'weekly', 'format' => 'csv', 'recipients' => ['direction@spark.ci'], 'agency_id' => null, 'last_sent_at' => null, 'next_run_at' => '2026-10-05T07:00:00+00:00', 'active' => true];
+
+            return [match ($method) {
+                'GET' => $this->response(200, [$schedule]),
+                'POST' => $this->response(201, $schedule),
+                default => $this->response(200, ['deleted' => true]),
+            }];
+        }
+
         // —— Caisse (Figma 06) ——
         $cashSession = ['id' => 1, 'code' => 'CAI-BG-0928', 'business_date' => '2026-09-28', 'status' => ['code' => 'open', 'label' => 'Caisse ouverte'], 'opened_at' => '2026-09-28T08:02:00+00:00', 'opened_by' => 'Grâce A.', 'opening_balance' => 180000, 'closed_at' => null];
         $cashClosing = [

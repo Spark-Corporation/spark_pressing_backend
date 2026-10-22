@@ -8913,12 +8913,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
                 notes:
                   type: string
@@ -10646,7 +10646,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
               required:
                 - amount
@@ -27148,7 +27148,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -27300,7 +27300,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
               required:
                 - agency_id
@@ -31480,7 +31480,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
                 validated:
                   type: boolean
@@ -32138,7 +32138,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
     delete:
       summary: ''
@@ -32924,7 +32924,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -33145,7 +33145,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                   nullable: true
                 period:
                   type: string
@@ -37914,6 +37914,1230 @@ paths:
                           example: 'Non authentifié.'
       tags:
         - Rapports
+  /api/v1/reports/overview:
+    get:
+      summary: "« Rapports et bilans » : période (`date_from`/`date_to` ou `preset=today|7d|30d`), `agency_id`,\ncomparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »."
+      operationId: RapportsEtBilansPriodedateFromdateToOupresettoday7d30dagencyIdcomparaisonAvecLaPriodePrcdenteformatcsvpdfPourExporter
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'JSON ; `format=csv|pdf` pour l’export'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    period:
+                      from: '2026-09-01'
+                      to: '2026-09-28'
+                      compare_from: '2026-08-04'
+                      compare_to: '2026-08-31'
+                    agency_id: null
+                    kpis:
+                      revenue:
+                        value: 18642500
+                        delta_percent: 12.4
+                      sales:
+                        value: 1284
+                        delta_percent: 9.7
+                        average_basket: 14519
+                      discounts:
+                        value: 428300
+                        share_of_revenue: 2.3
+                      unpaid:
+                        value: 1176000
+                        delta_percent: -6.1
+                    revenue_chart:
+                      series:
+                        -
+                          date: '2026-09-01'
+                          revenue: 580000
+                          sales: 41
+                          average_basket: 14146
+                      totals:
+                        current: 18642500
+                        previous: 16580000
+                        projection: 20100000
+                      objective:
+                        target: 21400000
+                        percent: 94
+                    payments:
+                      total: 17470000
+                      methods:
+                        -
+                          code: mobile_money
+                          label: 'Mobile Money'
+                          amount: 8036200
+                          percent: 46
+                    non_sales_movements:
+                      cash_in: 940000
+                      cash_out: 612500
+                      theoretical_balance: 2847300
+                    agencies:
+                      -
+                        agency_id: 1
+                        name: 'Cocody Angré'
+                        revenue: 7842000
+                        sales: 514
+                        average_basket: 15257
+                        delta_percent: 15.6
+                    loyalty:
+                      active_members: 2468
+                      points_issued: 184200
+                      points_used: 96450
+                      retention_percent: 61
+                    reports:
+                      -
+                        code: daily
+                        label: 'Bilan journalier'
+                        detail: 'Recettes, caisse et écarts'
+                        endpoint: /api/v1/reports/daily
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      period:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-09-01'
+                          to:
+                            type: string
+                            example: '2026-09-28'
+                          compare_from:
+                            type: string
+                            example: '2026-08-04'
+                          compare_to:
+                            type: string
+                            example: '2026-08-31'
+                      agency_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      kpis:
+                        type: object
+                        properties:
+                          revenue:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 18642500
+                              delta_percent:
+                                type: number
+                                example: 12.4
+                          sales:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 1284
+                              delta_percent:
+                                type: number
+                                example: 9.7
+                              average_basket:
+                                type: integer
+                                example: 14519
+                          discounts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 428300
+                              share_of_revenue:
+                                type: number
+                                example: 2.3
+                          unpaid:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 1176000
+                              delta_percent:
+                                type: number
+                                example: -6.1
+                      revenue_chart:
+                        type: object
+                        properties:
+                          series:
+                            type: array
+                            example:
+                              -
+                                date: '2026-09-01'
+                                revenue: 580000
+                                sales: 41
+                                average_basket: 14146
+                            items:
+                              type: object
+                              properties:
+                                date:
+                                  type: string
+                                  example: '2026-09-01'
+                                revenue:
+                                  type: integer
+                                  example: 580000
+                                sales:
+                                  type: integer
+                                  example: 41
+                                average_basket:
+                                  type: integer
+                                  example: 14146
+                          totals:
+                            type: object
+                            properties:
+                              current:
+                                type: integer
+                                example: 18642500
+                              previous:
+                                type: integer
+                                example: 16580000
+                              projection:
+                                type: integer
+                                example: 20100000
+                          objective:
+                            type: object
+                            properties:
+                              target:
+                                type: integer
+                                example: 21400000
+                              percent:
+                                type: integer
+                                example: 94
+                      payments:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 17470000
+                          methods:
+                            type: array
+                            example:
+                              -
+                                code: mobile_money
+                                label: 'Mobile Money'
+                                amount: 8036200
+                                percent: 46
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: mobile_money
+                                label:
+                                  type: string
+                                  example: 'Mobile Money'
+                                amount:
+                                  type: integer
+                                  example: 8036200
+                                percent:
+                                  type: integer
+                                  example: 46
+                      non_sales_movements:
+                        type: object
+                        properties:
+                          cash_in:
+                            type: integer
+                            example: 940000
+                          cash_out:
+                            type: integer
+                            example: 612500
+                          theoretical_balance:
+                            type: integer
+                            example: 2847300
+                      agencies:
+                        type: array
+                        example:
+                          -
+                            agency_id: 1
+                            name: 'Cocody Angré'
+                            revenue: 7842000
+                            sales: 514
+                            average_basket: 15257
+                            delta_percent: 15.6
+                        items:
+                          type: object
+                          properties:
+                            agency_id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Cocody Angré'
+                            revenue:
+                              type: integer
+                              example: 7842000
+                            sales:
+                              type: integer
+                              example: 514
+                            average_basket:
+                              type: integer
+                              example: 15257
+                            delta_percent:
+                              type: number
+                              example: 15.6
+                      loyalty:
+                        type: object
+                        properties:
+                          active_members:
+                            type: integer
+                            example: 2468
+                          points_issued:
+                            type: integer
+                            example: 184200
+                          points_used:
+                            type: integer
+                            example: 96450
+                          retention_percent:
+                            type: integer
+                            example: 61
+                      reports:
+                        type: array
+                        example:
+                          -
+                            code: daily
+                            label: 'Bilan journalier'
+                            detail: 'Recettes, caisse et écarts'
+                            endpoint: /api/v1/reports/daily
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: daily
+                            label:
+                              type: string
+                              example: 'Bilan journalier'
+                            detail:
+                              type: string
+                              example: 'Recettes, caisse et écarts'
+                            endpoint:
+                              type: string
+                              example: /api/v1/reports/daily
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Rapports
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date_from:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-22T11:54:19'
+                  nullable: true
+                date_to:
+                  type: string
+                  description: 'validation.date validation.after_or_equal.'
+                  example: '2052-11-14'
+                  nullable: true
+                preset:
+                  type: string
+                  description: ''
+                  example: month
+                  enum:
+                    - today
+                    - 7d
+                    - 30d
+                    - month
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                format:
+                  type: string
+                  description: ''
+                  example: json
+                  enum:
+                    - json
+                    - csv
+                    - pdf
+                  nullable: true
+  /api/v1/reports/daily:
+    get:
+      summary: '« Bilan journalier et performance caissiers » (`date`, agence d’opération ; `format=csv|pdf`).'
+      operationId: BilanJournalierEtPerformanceCaissiersdateAgenceDoprationformatcsvpdf
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'JSON ; `format=csv|pdf` pour l’export'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    date: '2026-09-28'
+                    agency: 'Cocody Angré'
+                    kpis:
+                      receipts:
+                        value: 8221000
+                        delta_percent: 11.6
+                        compared_to: '2026-09-21'
+                      settled_sales:
+                        value: 566
+                        share_percent: 93.4
+                      open_unpaid:
+                        value: 582500
+                        deposits: 40
+                      cash_gap:
+                        value: -2000
+                        tolerance: 5000
+                        within_tolerance: true
+                    receipts_chart:
+                      total: 8221000
+                      series:
+                        -
+                          hour: 08h
+                          amount: 158000
+                      methods:
+                        -
+                          code: mobile_money
+                          label: 'Mobile Money'
+                          amount: 3892000
+                    non_deposit_movements:
+                      -
+                        label: 'Fonds de caisse'
+                        amount: 400000
+                      -
+                        label: 'Petites dépenses'
+                        amount: -87500
+                    reconciliation:
+                      theoretical: 1253000
+                      counted: 1251000
+                      difference: -2000
+                      within_tolerance: true
+                      comment: 'Commentaire requis à la clôture'
+                    settlement:
+                      settled: 566
+                      settled_percent: 93.4
+                      unpaid: 40
+                      unpaid_amount: 582500
+                    discounts:
+                      count: 76
+                      amount: 214500
+                      share_of_revenue: 2.5
+                      sensitive:
+                        threshold_percent: 15
+                        count: 0
+                    cashiers:
+                      -
+                        user_id: 3
+                        fullname: 'Nadia Assi'
+                        session:
+                          status: Ouverte
+                          at: '2026-09-28T08:01:00+00:00'
+                        receipts: 2846500
+                        sales: 184
+                        average_basket: 15470
+                        productivity_percent: 100
+                        gap: null
+                    exports:
+                      csv: true
+                      pdf: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                        example: '2026-09-28'
+                      agency:
+                        type: string
+                        example: 'Cocody Angré'
+                      kpis:
+                        type: object
+                        properties:
+                          receipts:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 8221000
+                              delta_percent:
+                                type: number
+                                example: 11.6
+                              compared_to:
+                                type: string
+                                example: '2026-09-21'
+                          settled_sales:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 566
+                              share_percent:
+                                type: number
+                                example: 93.4
+                          open_unpaid:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 582500
+                              deposits:
+                                type: integer
+                                example: 40
+                          cash_gap:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: -2000
+                              tolerance:
+                                type: integer
+                                example: 5000
+                              within_tolerance:
+                                type: boolean
+                                example: true
+                      receipts_chart:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 8221000
+                          series:
+                            type: array
+                            example:
+                              -
+                                hour: 08h
+                                amount: 158000
+                            items:
+                              type: object
+                              properties:
+                                hour:
+                                  type: string
+                                  example: 08h
+                                amount:
+                                  type: integer
+                                  example: 158000
+                          methods:
+                            type: array
+                            example:
+                              -
+                                code: mobile_money
+                                label: 'Mobile Money'
+                                amount: 3892000
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: mobile_money
+                                label:
+                                  type: string
+                                  example: 'Mobile Money'
+                                amount:
+                                  type: integer
+                                  example: 3892000
+                      non_deposit_movements:
+                        type: array
+                        example:
+                          -
+                            label: 'Fonds de caisse'
+                            amount: 400000
+                          -
+                            label: 'Petites dépenses'
+                            amount: -87500
+                        items:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                              example: 'Fonds de caisse'
+                            amount:
+                              type: integer
+                              example: 400000
+                      reconciliation:
+                        type: object
+                        properties:
+                          theoretical:
+                            type: integer
+                            example: 1253000
+                          counted:
+                            type: integer
+                            example: 1251000
+                          difference:
+                            type: integer
+                            example: -2000
+                          within_tolerance:
+                            type: boolean
+                            example: true
+                          comment:
+                            type: string
+                            example: 'Commentaire requis à la clôture'
+                      settlement:
+                        type: object
+                        properties:
+                          settled:
+                            type: integer
+                            example: 566
+                          settled_percent:
+                            type: number
+                            example: 93.4
+                          unpaid:
+                            type: integer
+                            example: 40
+                          unpaid_amount:
+                            type: integer
+                            example: 582500
+                      discounts:
+                        type: object
+                        properties:
+                          count:
+                            type: integer
+                            example: 76
+                          amount:
+                            type: integer
+                            example: 214500
+                          share_of_revenue:
+                            type: number
+                            example: 2.5
+                          sensitive:
+                            type: object
+                            properties:
+                              threshold_percent:
+                                type: integer
+                                example: 15
+                              count:
+                                type: integer
+                                example: 0
+                      cashiers:
+                        type: array
+                        example:
+                          -
+                            user_id: 3
+                            fullname: 'Nadia Assi'
+                            session:
+                              status: Ouverte
+                              at: '2026-09-28T08:01:00+00:00'
+                            receipts: 2846500
+                            sales: 184
+                            average_basket: 15470
+                            productivity_percent: 100
+                            gap: null
+                        items:
+                          type: object
+                          properties:
+                            user_id:
+                              type: integer
+                              example: 3
+                            fullname:
+                              type: string
+                              example: 'Nadia Assi'
+                            session:
+                              type: object
+                              properties:
+                                status:
+                                  type: string
+                                  example: Ouverte
+                                at:
+                                  type: string
+                                  example: '2026-09-28T08:01:00+00:00'
+                            receipts:
+                              type: integer
+                              example: 2846500
+                            sales:
+                              type: integer
+                              example: 184
+                            average_basket:
+                              type: integer
+                              example: 15470
+                            productivity_percent:
+                              type: integer
+                              example: 100
+                            gap:
+                              type: string
+                              example: null
+                              nullable: true
+                      exports:
+                        type: object
+                        properties:
+                          csv:
+                            type: boolean
+                            example: true
+                          pdf:
+                            type: boolean
+                            example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Rapports
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  description: validation.date.
+                  example: '2026-10-22T11:54:19'
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                format:
+                  type: string
+                  description: ''
+                  example: json
+                  enum:
+                    - json
+                    - csv
+                    - pdf
+                  nullable: true
+  /api/v1/reports/schedules:
+    get:
+      summary: '« Programmer » : envoi récurrent d’un rapport par e-mail.'
+      operationId: ProgrammerEnvoiRcurrentDunRapportParEMail
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      report: overview
+                      frequency: weekly
+                      format: csv
+                      recipients:
+                        - direction@spark.ci
+                      agency_id: null
+                      last_sent_at: null
+                      next_run_at: '2026-10-05T07:00:00+00:00'
+                      active: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        report: overview
+                        frequency: weekly
+                        format: csv
+                        recipients:
+                          - direction@spark.ci
+                        agency_id: null
+                        last_sent_at: null
+                        next_run_at: '2026-10-05T07:00:00+00:00'
+                        active: true
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        report:
+                          type: string
+                          example: overview
+                        frequency:
+                          type: string
+                          example: weekly
+                        format:
+                          type: string
+                          example: csv
+                        recipients:
+                          type: array
+                          example:
+                            - direction@spark.ci
+                          items:
+                            type: string
+                        agency_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        last_sent_at:
+                          type: string
+                          example: null
+                          nullable: true
+                        next_run_at:
+                          type: string
+                          example: '2026-10-05T07:00:00+00:00'
+                        active:
+                          type: boolean
+                          example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Rapports
+    post:
+      summary: ''
+      operationId: postApiV1ReportsSchedules
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        201:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    report: overview
+                    frequency: weekly
+                    format: csv
+                    recipients:
+                      - direction@spark.ci
+                    agency_id: null
+                    last_sent_at: null
+                    next_run_at: '2026-10-05T07:00:00+00:00'
+                    active: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      report:
+                        type: string
+                        example: overview
+                      frequency:
+                        type: string
+                        example: weekly
+                      format:
+                        type: string
+                        example: csv
+                      recipients:
+                        type: array
+                        example:
+                          - direction@spark.ci
+                        items:
+                          type: string
+                      agency_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      last_sent_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      next_run_at:
+                        type: string
+                        example: '2026-10-05T07:00:00+00:00'
+                      active:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Rapports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                report:
+                  type: string
+                  description: ''
+                  example: daily
+                  enum:
+                    - overview
+                    - daily
+                frequency:
+                  type: string
+                  description: ''
+                  example: daily
+                  enum:
+                    - daily
+                    - weekly
+                    - monthly
+                format:
+                  type: string
+                  description: ''
+                  example: csv
+                  enum:
+                    - csv
+                    - pdf
+                  nullable: true
+                recipients:
+                  type: array
+                  description: validation.email.
+                  example:
+                    - rowan.gulgowski@example.com
+                  items:
+                    type: string
+                agency_id:
+                  type: integer
+                  description: 'Must match an existing stored value.'
+                  example: 16
+                  nullable: true
+              required:
+                - report
+                - frequency
+  '/api/v1/reports/schedules/{reportSchedule_id}':
+    delete:
+      summary: ''
+      operationId: deleteApiV1ReportsSchedulesReportSchedule_id
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    deleted: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deleted:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Rapports
+    parameters:
+      -
+        in: path
+        name: reportSchedule_id
+        description: 'The ID of the reportSchedule.'
+        example: 16
+        required: true
+        schema:
+          type: integer
   /api/v1/superadmin/roles:
     get:
       summary: ''
@@ -39245,7 +40469,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:21'
+                  example: '2026-10-22T11:54:19'
               required:
                 - source_currency
                 - target_currency
@@ -47846,7 +49070,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:18'
                   nullable: true
     delete:
       summary: ''
@@ -49262,7 +50486,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:18'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -53149,7 +54373,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:49:20'
+                  example: '2026-10-22T11:54:19'
                 name:
                   type: string
                   description: validation.max.

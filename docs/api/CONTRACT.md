@@ -228,6 +228,15 @@ La dérogation « solde impayé » exige la permission `deposits.override` (mana
 | Création / édition d’article | `POST /articles`, `PUT /articles/{id}`, `GET /articles/{id}` | `code`, `category_id`, `billing_mode`, `allow_discount`, `round_to`, `price_editable`, `classic_hours`/`express_hours`/`repass_hours`, `priority`, `accepted_defects[]`, `compatible_renders[]`, `services[]`, `kilo_tiers[]`, `availability[]` (agence, disponible, `price_adjust_percent`) ; réponse : `preview`, `checks[]`, `recommendations[]`, `last_modification`, `options` |
 | Catalogue local du POS | `GET /pos/bootstrap` | `catalog.items[]` (prix ajustés de l’agence, mode, délais, défauts acceptés), `catalog.count` |
 
+### 7.0g Rapports & bilans (Figma 08)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Rapports et bilans (période, agence, comparaison) | `GET /reports/overview?date_from&date_to&preset=today\|7d\|30d&agency_id` | `kpis` (CA, ventes + panier, remises + % CA, impayés, évolutions vs période précédente), `revenue_chart` (série journalière, totaux, projection, `objective` si `monthly_revenue_target`), `payments`, `non_sales_movements`, `agencies[]`, `loyalty`, `reports[]` |
+| Bilan journalier et performance caissiers | `GET /reports/daily?date&agency_id` | `kpis` (recettes, ventes soldées, impayés ouverts, écart de caisse + seuil), `receipts_chart` (tranches de 2 h + moyens), `non_deposit_movements`, `reconciliation`, `settlement`, `discounts` (+ sensibles), `cashiers[]` (session, recettes, ventes, panier, productivité) |
+| « Exporter CSV / Excel / PDF » | mêmes routes avec `format=csv\|pdf` | CSV `;` + BOM (ouvrable dans Excel) |
+| « Programmer » | `GET/POST /reports/schedules`, `DELETE /reports/schedules/{id}` | envoi e-mail par `php artisan reports:send-scheduled` (planifié toutes les heures) |
+
 ### 7.0c Clients & fidélité (Figma 03)
 
 | Écran / bloc | Endpoint | Champs |
