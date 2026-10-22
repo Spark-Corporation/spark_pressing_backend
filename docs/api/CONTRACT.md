@@ -159,6 +159,23 @@ Idempotency-Key: {uuid-v4}
 
 `GET /auth/me` renvoie aussi `meta.contexts`.
 
+### 7.0a Vue d’ensemble & Atelier (Figma 00, 04)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| KPI « Retraits effectués · N commandes à notifier », « Clients fidélité · +x % » | `GET /dashboard` | `kpis.ready_to_notify`, `kpis.loyalty_clients_delta_pct` |
+| Revenus du réseau (7 jours) | idem | `series_7d`, `week.revenue`, `week.revenue_delta_pct` |
+| Comparaison agences (CA cumulé 7 j) | idem | `agencies[].revenue_week`, `revenue_week_delta_pct`, `revenue_week_share_pct` |
+| Pipeline atelier + « N commandes approchent leur délai » | idem | `workshop_pipeline.columns[].title`, `due_soon_count`, `due_soon[]` |
+| Flux de caisse | idem | `cash.agency`, `cash.status`, `cash.inflows`, `cash.outflows`, `cash.by_payment_method` |
+| Impayés · « N à traiter aujourd’hui » | idem | `unpaid_aging.due_today_count` |
+| Activité récente | idem | `recent_activity[]` : `title`, `subtitle`, `amount`, `amount_type` (credit/debit/points/status), `status_label`, `kind` |
+| Atelier Kanban | `GET /deposits/workshop?q&agency_id&service&responsable_id&due_date&period` | `capacity` (« 18 / 24 · Charge modérée »), `columns[]` (`title`, `count`, `overdue_count`, `next_due_at`, `average_stage_minutes`), cartes (`priority`, `overdue_minutes`, `stage_since`, `defects_count`, `responsable.initials`), `filters` |
+| Aperçu du dépôt | `GET /deposits/{id}/workshop` | `articles[]` (note couleur/défauts), `remarks`, `responsables`, `timeline`, `next_action` |
+| « Passer à … » | `POST /deposits/{id}/workshop` (`etat`, `storage_location?` ex. « Rayon B · casier 08 ») | — |
+
+Le pipeline du dashboard et le kanban utilisent les 4 états serveur (`waiting`, `in_progress`, `treated`, `classed`) ; la maquette du dashboard en dessine 5 (À trier, Lavage, Repassage, Contrôle, Prêt).
+
 ### 7.0b Dépôts & POS (Figma 02)
 
 | Écran / bloc | Endpoint | Champs |

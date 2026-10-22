@@ -3,7 +3,6 @@
 namespace App\Support\Reporting;
 
 use App\Models\Agency;
-use App\Models\AuditLog;
 use App\Models\CashMovement;
 use App\Models\Client;
 use App\Models\Deposit;
@@ -11,6 +10,7 @@ use App\Models\ExchangeRate;
 use App\Models\Pressing;
 use App\Models\Transaction;
 use App\Support\DateRange;
+use App\Support\Deposits\WorkshopBoard;
 use App\Support\Money\Currency;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
@@ -278,10 +278,20 @@ class Metrics
         $depositsToday = (int) $today['deposits_today'];
         $retrievesToday = (int) $today['retrieves_today'];
 
-        $agencyRows = self::byAgency($todayRange, $agencies, null, $pressingId)->map(function (array $row) use ($prevRange, $pressingId) {
+        $prevWeekRange = new DateRange($weekRange->from->subDays(7), $weekRange->to->subDays(7));
+        $weekByAgency = self::byAgency($weekRange, $agencies, null, $pressingId)->keyBy('agency_id');
+        $prevWeekByAgency = self::byAgency($prevWeekRange, $agencies, null, $pressingId)->keyBy('agency_id');
+        $weekTotal = max(1, (int) $weekByAgency->sum('receipts'));
+
+        $agencyRows = self::byAgency($todayRange, $agencies, null, $pressingId)->map(function (array $row) use ($prevRange, $weekByAgency, $prevWeekByAgency, $weekTotal) {
             $prev = self::agencyDaySnapshot((int) $row['agency_id'], $prevRange);
+            $week = (int) ($weekByAgency[$row['agency_id']]['receipts'] ?? 0);
+            $prevWeek = (int) ($prevWeekByAgency[$row['agency_id']]['receipts'] ?? 0);
 
             return [
+                'revenue_week' => $week,
+                'revenue_week_delta_pct' => self::pctDelta($week, $prevWeek),
+                'revenue_week_share_pct' => round($week / $weekTotal * 100, 1),
                 'agency_id' => $row['agency_id'],
                 'name' => $row['agency'],
                 'currency' => $row['currency'],
@@ -316,6 +326,14 @@ class Metrics
         });
 
         $loyaltyClients = (int) Client::query()->where('loyalty_points', '>', 0)->count();
+        $loyaltyBefore = (int) Client::query()->where('loyalty_points', '>', 0)->where('created_at', '<', now()->startOfMonth())->count();
+        $readyToNotify = (int) Deposit::query()
+            ->where('status', true)
+            ->whereNull('retrieved_at')
+            ->whereIn('etat', [Deposit::ETAT_TREATED, Deposit::ETAT_CLASSED])
+            ->count();
+        $weekRevenue = (int) self::cashTotals($weekRange)['receipts_deposits'];
+        $prevWeekRevenue = (int) self::cashTotals($prevWeekRange)['receipts_deposits'];
         $newClientsMonth = (int) Client::query()
             ->where('created_at', '>=', now()->startOfMonth())
             ->count();
@@ -337,7 +355,9 @@ class Metrics
                 'retrieve_rate_pct' => $depositsToday > 0
                     ? round(($retrievesToday / $depositsToday) * 100, 1)
                     : 0.0,
+                'ready_to_notify' => $readyToNotify,
                 'loyalty_clients' => $loyaltyClients,
+                'loyalty_clients_delta_pct' => self::pctDelta($loyaltyClients, $loyaltyBefore),
                 'new_clients_month' => $newClientsMonth,
                 'clients' => (int) $today['clients'],
                 'deposits_open' => (int) $today['deposits_open'],
@@ -359,14 +379,19 @@ class Metrics
             'agencies' => $agencyRows->values(),
             'workshop_pipeline' => self::workshopPipeline(),
             'cash' => [
+                'agency' => $agencies->count() === 1 ? $agencies->first()->name : null,
+                'period' => 'today',
+                'status' => ['code' => 'open', 'label' => 'Caisse ouverte'],
                 'balance' => $cash['balance'],
+                'inflows' => $cash['receipts_deposits'] + $cash['cash_in'],
+                'outflows' => $cash['cash_out'],
                 'cash_in' => $cash['cash_in'],
                 'cash_out' => $cash['cash_out'],
                 'receipts_deposits' => $cash['receipts_deposits'],
                 'by_payment_method' => $byMethod,
             ],
             'unpaid_aging' => self::unpaidAging(),
-            'recent_activity' => self::recentActivity(15),
+            'recent_activity' => app(ActivityFeed::class)->latest(15),
             'sync' => [
                 'online' => true,
                 'last_sync_at' => now()->toIso8601String(),
@@ -376,7 +401,8 @@ class Metrics
             'week' => [
                 'from' => $weekRange->from->toDateString(),
                 'to' => $weekRange->to->toDateString(),
-                'revenue' => (int) self::cashTotals($weekRange)['receipts_deposits'],
+                'revenue' => $weekRevenue,
+                'revenue_delta_pct' => self::pctDelta($weekRevenue, $prevWeekRevenue),
             ],
         ];
     }
@@ -429,10 +455,16 @@ class Metrics
             ];
         };
 
+        $dueToday = (int) $unpaid()
+            ->whereNotNull('retrieve_date')
+            ->whereBetween('retrieve_date', [$now->startOfDay(), $now->endOfDay()])
+            ->count();
+
         return [
             'total_amount' => $totalAmount,
             'total_count' => $totalCount,
             'overdue_count' => $overdueCount,
+            'due_today_count' => $dueToday,
             'buckets' => [
                 '0_30' => $bucketQuery(fn ($q) => $q->where('deposit_date', '>', $now->subDays(30))),
                 '31_89' => $bucketQuery(fn ($q) => $q
@@ -467,6 +499,7 @@ class Metrics
                 'etat' => $etat,
                 'colonne' => $colonne,
                 'label' => Deposit::etatLabel($etat),
+                'title' => WorkshopBoard::COLUMN_LABELS[$colonne] ?? $colonne,
                 'deposits' => (int) ($byEtat[$etat] ?? 0),
                 'pieces' => (int) ($piecesByEtat[$etat] ?? 0),
             ];
@@ -479,7 +512,13 @@ class Metrics
             ->limit(5)
             ->get(['id', 'code', 'retrieve_date', 'etat']);
 
+        $dueSoonCount = (int) (clone $open)
+            ->whereNotNull('retrieve_date')
+            ->whereBetween('retrieve_date', [now(), now()->addHours(6)])
+            ->count();
+
         return [
+            'due_soon_count' => $dueSoonCount,
             'in_progress_deposits' => (int) (clone $open)->count(),
             'in_progress_pieces' => (int) array_sum(array_map('intval', $piecesByEtat->all())),
             'columns' => $columns,
@@ -508,45 +547,6 @@ class Metrics
         }
 
         return $series;
-    }
-
-    public static function recentActivity(int $limit = 15): array
-    {
-        $logs = AuditLog::query()
-            ->latest('id')
-            ->limit($limit)
-            ->get(['id', 'action', 'agency_id', 'payload', 'created_at', 'subject_type', 'subject_id']);
-
-        if ($logs->isNotEmpty()) {
-            return $logs->map(fn (AuditLog $log) => [
-                'id' => $log->id,
-                'type' => $log->action,
-                'agency_id' => $log->agency_id,
-                'subject_type' => $log->subject_type,
-                'subject_id' => $log->subject_id,
-                'payload' => $log->payload,
-                'at' => $log->created_at?->toIso8601String(),
-            ])->all();
-        }
-
-        // Fallback : derniers dépôts / transactions si pas encore d’audit.
-        $deposits = Deposit::query()
-            ->with(['client:id,fullname', 'agency:id,name'])
-            ->latest('deposit_date')
-            ->limit($limit)
-            ->get(['id', 'code', 'total', 'payment_method', 'client_id', 'agency_id', 'deposit_date']);
-
-        return $deposits->map(fn (Deposit $d) => [
-            'id' => $d->id,
-            'type' => 'deposit.created',
-            'agency_id' => $d->agency_id,
-            'code' => $d->code,
-            'client' => $d->client?->fullname,
-            'agency' => $d->agency?->name,
-            'amount' => (int) $d->total,
-            'payment_method' => $d->payment_method,
-            'at' => $d->deposit_date?->toIso8601String(),
-        ])->all();
     }
 
     public static function agenciesOverview(Collection $agencies, ?int $pressingId = null): array

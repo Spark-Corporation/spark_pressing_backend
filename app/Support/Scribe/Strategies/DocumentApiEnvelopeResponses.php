@@ -308,7 +308,9 @@ class DocumentApiEnvelopeResponses extends Strategy
                     'pieces_today' => 418,
                     'retrieves_today' => 94,
                     'retrieve_rate_pct' => 74.6,
+                    'ready_to_notify' => 9,
                     'loyalty_clients' => 312,
+                    'loyalty_clients_delta_pct' => 5.1,
                     'new_clients_month' => 23,
                     'clients' => 400,
                     'deposits_open' => 98,
@@ -326,6 +328,9 @@ class DocumentApiEnvelopeResponses extends Strategy
                 'agencies' => [[
                     'agency_id' => 1,
                     'name' => 'Akwa',
+                    'revenue_week' => 5820000,
+                    'revenue_week_delta_pct' => 14.2,
+                    'revenue_week_share_pct' => 31.8,
                     'revenue' => 983500,
                     'revenue_delta_pct' => 8.2,
                     'deposits' => 42,
@@ -334,15 +339,22 @@ class DocumentApiEnvelopeResponses extends Strategy
                     'unpaid_amount' => 45000,
                     'cash_balance' => 900000,
                 ]],
+                'week' => ['from' => '2026-10-14', 'to' => '2026-10-20', 'revenue' => 18291000, 'revenue_delta_pct' => 10.8],
                 'workshop_pipeline' => [
+                    'due_soon_count' => 6,
                     'in_progress_deposits' => 98,
                     'in_progress_pieces' => 320,
                     'columns' => [
-                        ['etat' => 'waiting', 'colonne' => 'attente', 'label' => 'À trier', 'deposits' => 14, 'pieces' => 46],
+                        ['etat' => 'waiting', 'colonne' => 'attente', 'label' => 'À trier', 'title' => 'En attente', 'deposits' => 14, 'pieces' => 46],
                     ],
-                    'due_soon' => [],
+                    'due_soon' => [['id' => 1, 'code' => 'BG-02614', 'etat' => 'in_progress', 'etat_label' => 'En lavage', 'retrieve_date' => '2026-10-20T17:00:00+00:00']],
                 ],
                 'cash' => [
+                    'agency' => 'Bingerville',
+                    'period' => 'today',
+                    'status' => ['code' => 'open', 'label' => 'Caisse ouverte'],
+                    'inflows' => 1945500,
+                    'outflows' => 100000,
                     'balance' => 1745500,
                     'cash_in' => 0,
                     'cash_out' => 100000,
@@ -358,14 +370,19 @@ class DocumentApiEnvelopeResponses extends Strategy
                 'unpaid_aging' => [
                     'total_amount' => 1240000,
                     'total_count' => 94,
-                    'overdue_count' => 18,
+                    'overdue_count' => 94,
+                    'due_today_count' => 18,
                     'buckets' => [
                         '0_30' => ['count' => 32, 'amount' => 420000],
                         '31_89' => ['count' => 41, 'amount' => 540000],
                         '90_plus' => ['count' => 21, 'amount' => 280000],
                     ],
                 ],
-                'recent_activity' => [],
+                'recent_activity' => [
+                    ['id' => 10, 'type' => 'deposit.created', 'agency_id' => 1, 'subject_type' => 'Deposit', 'subject_id' => 2621, 'at' => '2026-10-20T15:57:00+00:00', 'kind' => 'deposit', 'title' => 'Dépôt enregistré · BG-02621', 'subtitle' => 'Mariam Traoré · 7 pièces · Express', 'amount' => 32500, 'amount_type' => 'credit'],
+                    ['id' => 9, 'type' => 'deposit.workshop', 'agency_id' => 1, 'subject_type' => 'Deposit', 'subject_id' => 2602, 'at' => '2026-10-20T15:42:00+00:00', 'kind' => 'workshop', 'title' => 'Commande passée à l’étape « Prêt »', 'subtitle' => 'BG-02602 · 4 pièces · Opérateur : Grâce', 'amount' => null, 'amount_type' => 'status', 'status_label' => 'Prêt'],
+                    ['id' => 8, 'type' => 'cash.validated', 'agency_id' => 1, 'subject_type' => 'CashMovement', 'subject_id' => 12, 'at' => '2026-10-20T15:33:00+00:00', 'kind' => 'cash', 'title' => 'Dépense de caisse validée', 'subtitle' => 'Produits détachants', 'amount' => 45000, 'amount_type' => 'debit'],
+                ],
                 'sync' => [
                     'online' => true,
                     'last_sync_at' => '2026-10-20T16:00:00+00:00',
@@ -398,6 +415,14 @@ class DocumentApiEnvelopeResponses extends Strategy
                 'code_suffixes' => [],
                 'laundry_statuses' => [],
                 'renders' => [],
+                'deposit_options' => [
+                    'express' => ['surcharge_percent' => 100, 'multiplier' => 2, 'hours' => 24, 'label' => 'Tarif ×2 · Délai express 24 h'],
+                    'delays' => [['code' => 'standard', 'label' => 'Standard · 72 h', 'hours' => 72]],
+                    'defects' => [['code' => 'stain', 'label' => 'Taché'], ['code' => 'torn', 'label' => 'Déchiré']],
+                    'payment_methods' => [['code' => 'cash', 'label' => 'Espèces'], ['code' => 'card', 'label' => 'Carte'], ['code' => 'mobile_money', 'label' => 'Mobile Money']],
+                    'discount_modes' => ['amount', 'percent'],
+                    'pricing_modes' => ['piece', 'kilo'],
+                ],
                 'sync' => [
                     'online' => true,
                     'last_sync_at' => '2026-10-20T16:00:00+00:00',
@@ -424,17 +449,43 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        $workshopCard = $deposit + [
+            'priority' => ['code' => 'urgent', 'label' => 'Urgent'],
+            'priorite' => 'Urgent',
+            'echeance' => '2026-10-20T11:30:00+00:00',
+            'overdue_minutes' => 32,
+            'stage_since' => '2026-10-20T09:42:00+00:00',
+            'stage_minutes' => 126,
+            'elapsed_seconds' => 9000,
+            'defects_count' => 2,
+            'responsable' => ['id' => 4, 'fullname' => 'Jean Koffi', 'initials' => 'JK'],
+        ];
         if ($path === '/api/v1/deposits/workshop') {
             return [$this->response(200, [
+                'capacity' => ['in_progress' => 18, 'capacity' => 24, 'percent' => 75, 'label' => 'Charge modérée'],
+                'workflow' => ['laveur_enabled' => true, 'classeur_enabled' => true],
                 'columns' => [
-                    ['etat' => 'waiting', 'colonne' => 'attente', 'label' => 'À trier', 'count' => 2],
+                    ['etat' => 'in_progress', 'colonne' => 'cours', 'label' => 'En lavage', 'title' => 'En cours', 'count' => 6, 'share_percent' => 33, 'pieces' => 52, 'overdue_count' => 1, 'next_due_at' => '2026-10-20T11:30:00+00:00', 'average_stage_minutes' => 95],
                 ],
                 'board' => [
-                    'attente' => [$deposit + ['etat_label' => 'À trier', 'colonne' => 'attente', 'priorite' => 'Haute']],
-                    'cours' => [],
+                    'attente' => [],
+                    'cours' => [$workshopCard],
                     'traites' => [],
                     'classes' => [],
                 ],
+                'filters' => [
+                    'services' => [['code' => 'express', 'label' => 'Express']],
+                    'responsables' => [['id' => 4, 'fullname' => 'Jean Koffi']],
+                ],
+            ])];
+        }
+        if ($method === 'GET' && str_starts_with($path, '/api/v1/deposits/{') && str_ends_with($path, '/workshop')) {
+            return [$this->response(200, $workshopCard + [
+                'articles' => [['quantity' => 3, 'designation' => 'Chemise blanche', 'note' => 'Col fragile']],
+                'remarks' => 'Tache de fond de teint au col.',
+                'responsables' => ['laveur' => ['id' => 4, 'fullname' => 'Jean Koffi'], 'classeur' => null],
+                'timeline' => [['at' => '2026-10-20T10:58:00+00:00', 'code' => 'in_progress', 'title' => 'Pris en charge', 'detail' => 'Validé par Jean Koffi']],
+                'next_action' => ['etat' => 'treated', 'colonne' => 'traites', 'label' => 'Passer à « Traités »'],
             ])];
         }
 

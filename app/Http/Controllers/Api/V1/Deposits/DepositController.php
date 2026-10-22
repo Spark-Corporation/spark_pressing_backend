@@ -12,6 +12,7 @@ use App\Http\Resources\DepositResource;
 use App\Models\AuditLog;
 use App\Models\Deposit;
 use App\Support\Deposits\DepositPresenter;
+use App\Support\Deposits\WorkshopBoard;
 use App\Support\Documents\TicketDocument;
 use App\Support\Sms\SmsSender;
 use Illuminate\Http\JsonResponse;
@@ -162,7 +163,12 @@ class DepositController extends Controller
         $payload = $request->validate([
             'etat' => ['required', 'in:waiting,in_progress,treated,classed'],
             'qr_token' => ['nullable', 'string'],
+            'storage_location' => ['nullable', 'string', 'max:64'],
         ]);
+
+        if (! empty($payload['storage_location'])) {
+            $deposit->update(['storage_location' => $payload['storage_location']]);
+        }
 
         if (! empty($payload['qr_token']) && $deposit->qr_token && $payload['qr_token'] !== $deposit->qr_token) {
             abort(422, 'QR token invalide pour ce dépôt.');
@@ -211,76 +217,16 @@ class DepositController extends Controller
         return $this->page($items, DepositResource::collection($items)->resolve());
     }
 
-    public function workshopBoard(Request $request): JsonResponse
+    /** « Atelier Kanban » : colonnes, cartes, capacité, filtres (q, agency_id, service, responsable_id, due_date, period). */
+    public function workshopBoard(Request $request, WorkshopBoard $board): JsonResponse
     {
-        $etat = $request->query('etat');
-        $items = Deposit::query()
-            ->with([
-                'client:id,fullname,phone_number,code',
-                'agency:id,name',
-                'laveur:id,fullname',
-                'classeur:id,fullname',
-                'cashier:id,fullname',
-            ])
-            ->withSum('units as items_count', 'quantity')
-            ->where('status', true)
-            ->whereNull('retrieved_at')
-            ->when($etat, fn ($q) => $q->where('etat', $etat))
-            ->orderByRaw('case when retrieve_date is null then 1 else 0 end')
-            ->orderBy('retrieve_date')
-            ->limit(min(200, (int) $request->get('limit', 100)))
-            ->get();
-
-        $grouped = [];
-        foreach (Deposit::etatColumns() as $code => $colonne) {
-            $grouped[$colonne] = [];
-        }
-
-        foreach ($items as $deposit) {
-            $colonne = Deposit::etatColumn($deposit->etat) ?? 'attente';
-            $responsable = $deposit->laveur ?? $deposit->classeur ?? $deposit->cashier;
-            $grouped[$colonne][] = array_merge(
-                (new DepositResource($deposit))->resolve(),
-                [
-                    'priorite' => $this->workshopPriority($deposit),
-                    'echeance' => $deposit->retrieve_date?->toIso8601String(),
-                    'elapsed_seconds' => $deposit->deposit_date
-                        ? now()->diffInSeconds($deposit->deposit_date)
-                        : null,
-                    'responsable' => $responsable ? [
-                        'id' => $responsable->id,
-                        'fullname' => $responsable->fullname,
-                    ] : null,
-                ]
-            );
-        }
-
-        return $this->ok([
-            'columns' => collect(Deposit::etatColumns())->map(fn ($colonne, $etat) => [
-                'etat' => $etat,
-                'colonne' => $colonne,
-                'label' => Deposit::etatLabel($etat),
-                'count' => count($grouped[$colonne] ?? []),
-            ])->values(),
-            'board' => $grouped,
-        ]);
+        return $this->ok($board->build($request, $request->user()?->pressing_id));
     }
 
-    private function workshopPriority(Deposit $deposit): string
+    /** Panneau « Aperçu du dépôt » de l’atelier. */
+    public function workshopPreview(Deposit $deposit, WorkshopBoard $board, DepositPresenter $presenter): JsonResponse
     {
-        if (! $deposit->retrieve_date) {
-            return 'Normale';
-        }
-
-        if ($deposit->retrieve_date->isPast()) {
-            return 'Urgente';
-        }
-
-        if ($deposit->retrieve_date->lte(now()->addHours(4))) {
-            return 'Haute';
-        }
-
-        return 'Normale';
+        return $this->ok($board->preview($deposit, $presenter));
     }
 
     /**

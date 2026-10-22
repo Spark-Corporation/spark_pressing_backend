@@ -35,6 +35,7 @@ class Pressing extends Model
         'express_surcharge_percent',
         'slogan',
         'invoice_terms',
+        'workshop_capacity',
     ];
 
     protected $casts = [

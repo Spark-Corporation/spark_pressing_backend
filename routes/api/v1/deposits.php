@@ -17,6 +17,7 @@ Route::controller(DepositController::class)->prefix('deposits')->name('deposits.
     Route::post('{deposit}/payments', 'pay')->middleware(['permission:deposits.pay', 'idempotent'])->name('pay');
     Route::post('{deposit}/retrieve', 'retrieve')->middleware(['permission:deposits.retrieve', 'idempotent'])->name('retrieve');
     Route::post('{deposit}/retrieve-partial', 'retrievePartial')->middleware(['permission:deposits.retrieve', 'idempotent'])->name('retrieve-partial');
+    Route::get('{deposit}/workshop', 'workshopPreview')->middleware('permission:deposits.view|workshop.transition')->name('workshop.preview');
     Route::post('{deposit}/workshop', 'transition')->middleware('permission:workshop.transition')->name('workshop');
     Route::get('{deposit}/document', 'document')->middleware('permission:deposits.view')->name('document');
     Route::post('{deposit}/document/send', 'sendDocument')->middleware('permission:deposits.view')->name('document.send');

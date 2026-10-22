@@ -2097,7 +2097,9 @@ paths:
                       pieces_today: 418
                       retrieves_today: 94
                       retrieve_rate_pct: 74.6
+                      ready_to_notify: 9
                       loyalty_clients: 312
+                      loyalty_clients_delta_pct: 5.1
                       new_clients_month: 23
                       clients: 400
                       deposits_open: 98
@@ -2117,6 +2119,9 @@ paths:
                       -
                         agency_id: 1
                         name: Akwa
+                        revenue_week: 5820000
+                        revenue_week_delta_pct: 14.2
+                        revenue_week_share_pct: 31.8
                         revenue: 983500
                         revenue_delta_pct: 8.2
                         deposits: 42
@@ -2124,7 +2129,13 @@ paths:
                         unpaid_count: 5
                         unpaid_amount: 45000
                         cash_balance: 900000
+                    week:
+                      from: '2026-10-14'
+                      to: '2026-10-20'
+                      revenue: 18291000
+                      revenue_delta_pct: 10.8
                     workshop_pipeline:
+                      due_soon_count: 6
                       in_progress_deposits: 98
                       in_progress_pieces: 320
                       columns:
@@ -2132,10 +2143,24 @@ paths:
                           etat: waiting
                           colonne: attente
                           label: 'À trier'
+                          title: 'En attente'
                           deposits: 14
                           pieces: 46
-                      due_soon: []
+                      due_soon:
+                        -
+                          id: 1
+                          code: BG-02614
+                          etat: in_progress
+                          etat_label: 'En lavage'
+                          retrieve_date: '2026-10-20T17:00:00+00:00'
                     cash:
+                      agency: Bingerville
+                      period: today
+                      status:
+                        code: open
+                        label: 'Caisse ouverte'
+                      inflows: 1945500
+                      outflows: 100000
                       balance: 1745500
                       cash_in: 0
                       cash_out: 100000
@@ -2149,7 +2174,8 @@ paths:
                     unpaid_aging:
                       total_amount: 1240000
                       total_count: 94
-                      overdue_count: 18
+                      overdue_count: 94
+                      due_today_count: 18
                       buckets:
                         '0_30':
                           count: 32
@@ -2160,7 +2186,44 @@ paths:
                         90_plus:
                           count: 21
                           amount: 280000
-                    recent_activity: []
+                    recent_activity:
+                      -
+                        id: 10
+                        type: deposit.created
+                        agency_id: 1
+                        subject_type: Deposit
+                        subject_id: 2621
+                        at: '2026-10-20T15:57:00+00:00'
+                        kind: deposit
+                        title: 'Dépôt enregistré · BG-02621'
+                        subtitle: 'Mariam Traoré · 7 pièces · Express'
+                        amount: 32500
+                        amount_type: credit
+                      -
+                        id: 9
+                        type: deposit.workshop
+                        agency_id: 1
+                        subject_type: Deposit
+                        subject_id: 2602
+                        at: '2026-10-20T15:42:00+00:00'
+                        kind: workshop
+                        title: 'Commande passée à l’étape « Prêt »'
+                        subtitle: 'BG-02602 · 4 pièces · Opérateur : Grâce'
+                        amount: null
+                        amount_type: status
+                        status_label: Prêt
+                      -
+                        id: 8
+                        type: cash.validated
+                        agency_id: 1
+                        subject_type: CashMovement
+                        subject_id: 12
+                        at: '2026-10-20T15:33:00+00:00'
+                        kind: cash
+                        title: 'Dépense de caisse validée'
+                        subtitle: 'Produits détachants'
+                        amount: 45000
+                        amount_type: debit
                     sync:
                       online: true
                       last_sync_at: '2026-10-20T16:00:00+00:00'
@@ -2203,9 +2266,15 @@ paths:
                           retrieve_rate_pct:
                             type: number
                             example: 74.6
+                          ready_to_notify:
+                            type: integer
+                            example: 9
                           loyalty_clients:
                             type: integer
                             example: 312
+                          loyalty_clients_delta_pct:
+                            type: number
+                            example: 5.1
                           new_clients_month:
                             type: integer
                             example: 23
@@ -2261,6 +2330,9 @@ paths:
                           -
                             agency_id: 1
                             name: Akwa
+                            revenue_week: 5820000
+                            revenue_week_delta_pct: 14.2
+                            revenue_week_share_pct: 31.8
                             revenue: 983500
                             revenue_delta_pct: 8.2
                             deposits: 42
@@ -2277,6 +2349,15 @@ paths:
                             name:
                               type: string
                               example: Akwa
+                            revenue_week:
+                              type: integer
+                              example: 5820000
+                            revenue_week_delta_pct:
+                              type: number
+                              example: 14.2
+                            revenue_week_share_pct:
+                              type: number
+                              example: 31.8
                             revenue:
                               type: integer
                               example: 983500
@@ -2298,9 +2379,27 @@ paths:
                             cash_balance:
                               type: integer
                               example: 900000
+                      week:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-10-14'
+                          to:
+                            type: string
+                            example: '2026-10-20'
+                          revenue:
+                            type: integer
+                            example: 18291000
+                          revenue_delta_pct:
+                            type: number
+                            example: 10.8
                       workshop_pipeline:
                         type: object
                         properties:
+                          due_soon_count:
+                            type: integer
+                            example: 6
                           in_progress_deposits:
                             type: integer
                             example: 98
@@ -2314,6 +2413,7 @@ paths:
                                 etat: waiting
                                 colonne: attente
                                 label: 'À trier'
+                                title: 'En attente'
                                 deposits: 14
                                 pieces: 46
                             items:
@@ -2328,6 +2428,9 @@ paths:
                                 label:
                                   type: string
                                   example: 'À trier'
+                                title:
+                                  type: string
+                                  example: 'En attente'
                                 deposits:
                                   type: integer
                                   example: 14
@@ -2336,10 +2439,55 @@ paths:
                                   example: 46
                           due_soon:
                             type: array
-                            example: []
+                            example:
+                              -
+                                id: 1
+                                code: BG-02614
+                                etat: in_progress
+                                etat_label: 'En lavage'
+                                retrieve_date: '2026-10-20T17:00:00+00:00'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 1
+                                code:
+                                  type: string
+                                  example: BG-02614
+                                etat:
+                                  type: string
+                                  example: in_progress
+                                etat_label:
+                                  type: string
+                                  example: 'En lavage'
+                                retrieve_date:
+                                  type: string
+                                  example: '2026-10-20T17:00:00+00:00'
                       cash:
                         type: object
                         properties:
+                          agency:
+                            type: string
+                            example: Bingerville
+                          period:
+                            type: string
+                            example: today
+                          status:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: open
+                              label:
+                                type: string
+                                example: 'Caisse ouverte'
+                          inflows:
+                            type: integer
+                            example: 1945500
+                          outflows:
+                            type: integer
+                            example: 100000
                           balance:
                             type: integer
                             example: 1745500
@@ -2381,6 +2529,9 @@ paths:
                             example: 94
                           overdue_count:
                             type: integer
+                            example: 94
+                          due_today_count:
+                            type: integer
                             example: 18
                           buckets:
                             type: object
@@ -2414,7 +2565,80 @@ paths:
                                     example: 280000
                       recent_activity:
                         type: array
-                        example: []
+                        example:
+                          -
+                            id: 10
+                            type: deposit.created
+                            agency_id: 1
+                            subject_type: Deposit
+                            subject_id: 2621
+                            at: '2026-10-20T15:57:00+00:00'
+                            kind: deposit
+                            title: 'Dépôt enregistré · BG-02621'
+                            subtitle: 'Mariam Traoré · 7 pièces · Express'
+                            amount: 32500
+                            amount_type: credit
+                          -
+                            id: 9
+                            type: deposit.workshop
+                            agency_id: 1
+                            subject_type: Deposit
+                            subject_id: 2602
+                            at: '2026-10-20T15:42:00+00:00'
+                            kind: workshop
+                            title: 'Commande passée à l’étape « Prêt »'
+                            subtitle: 'BG-02602 · 4 pièces · Opérateur : Grâce'
+                            amount: null
+                            amount_type: status
+                            status_label: Prêt
+                          -
+                            id: 8
+                            type: cash.validated
+                            agency_id: 1
+                            subject_type: CashMovement
+                            subject_id: 12
+                            at: '2026-10-20T15:33:00+00:00'
+                            kind: cash
+                            title: 'Dépense de caisse validée'
+                            subtitle: 'Produits détachants'
+                            amount: 45000
+                            amount_type: debit
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 10
+                            type:
+                              type: string
+                              example: deposit.created
+                            agency_id:
+                              type: integer
+                              example: 1
+                            subject_type:
+                              type: string
+                              example: Deposit
+                            subject_id:
+                              type: integer
+                              example: 2621
+                            at:
+                              type: string
+                              example: '2026-10-20T15:57:00+00:00'
+                            kind:
+                              type: string
+                              example: deposit
+                            title:
+                              type: string
+                              example: 'Dépôt enregistré · BG-02621'
+                            subtitle:
+                              type: string
+                              example: 'Mariam Traoré · 7 pièces · Express'
+                            amount:
+                              type: integer
+                              example: 32500
+                            amount_type:
+                              type: string
+                              example: credit
                       sync:
                         type: object
                         properties:
@@ -2623,6 +2847,40 @@ paths:
                     code_suffixes: []
                     laundry_statuses: []
                     renders: []
+                    deposit_options:
+                      express:
+                        surcharge_percent: 100
+                        multiplier: 2
+                        hours: 24
+                        label: 'Tarif ×2 · Délai express 24 h'
+                      delays:
+                        -
+                          code: standard
+                          label: 'Standard · 72 h'
+                          hours: 72
+                      defects:
+                        -
+                          code: stain
+                          label: Taché
+                        -
+                          code: torn
+                          label: Déchiré
+                      payment_methods:
+                        -
+                          code: cash
+                          label: Espèces
+                        -
+                          code: card
+                          label: Carte
+                        -
+                          code: mobile_money
+                          label: 'Mobile Money'
+                      discount_modes:
+                        - amount
+                        - percent
+                      pricing_modes:
+                        - piece
+                        - kilo
                     sync:
                       online: true
                       last_sync_at: '2026-10-20T16:00:00+00:00'
@@ -3029,6 +3287,96 @@ paths:
                       renders:
                         type: array
                         example: []
+                      deposit_options:
+                        type: object
+                        properties:
+                          express:
+                            type: object
+                            properties:
+                              surcharge_percent:
+                                type: integer
+                                example: 100
+                              multiplier:
+                                type: integer
+                                example: 2
+                              hours:
+                                type: integer
+                                example: 24
+                              label:
+                                type: string
+                                example: 'Tarif ×2 · Délai express 24 h'
+                          delays:
+                            type: array
+                            example:
+                              -
+                                code: standard
+                                label: 'Standard · 72 h'
+                                hours: 72
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: standard
+                                label:
+                                  type: string
+                                  example: 'Standard · 72 h'
+                                hours:
+                                  type: integer
+                                  example: 72
+                          defects:
+                            type: array
+                            example:
+                              -
+                                code: stain
+                                label: Taché
+                              -
+                                code: torn
+                                label: Déchiré
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: stain
+                                label:
+                                  type: string
+                                  example: Taché
+                          payment_methods:
+                            type: array
+                            example:
+                              -
+                                code: cash
+                                label: Espèces
+                              -
+                                code: card
+                                label: Carte
+                              -
+                                code: mobile_money
+                                label: 'Mobile Money'
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: cash
+                                label:
+                                  type: string
+                                  example: Espèces
+                          discount_modes:
+                            type: array
+                            example:
+                              - amount
+                              - percent
+                            items:
+                              type: string
+                          pricing_modes:
+                            type: array
+                            example:
+                              - piece
+                              - kilo
+                            items:
+                              type: string
                       sync:
                         type: object
                         properties:
@@ -5532,8 +5880,8 @@ paths:
         - Dépôts
   /api/v1/deposits/workshop:
     get:
-      summary: ''
-      operationId: getApiV1DepositsWorkshop
+      summary: '« Atelier Kanban » : colonnes, cartes, capacité, filtres (q, agency_id, service, responsable_id, due_date, period).'
+      operationId: AtelierKanbanColonnesCartesCapacitFiltresqAgencyIdServiceResponsableIdDueDatePeriod
       description: ''
       parameters:
         -
@@ -5552,14 +5900,29 @@ paths:
                 type: object
                 example:
                   data:
+                    capacity:
+                      in_progress: 18
+                      capacity: 24
+                      percent: 75
+                      label: 'Charge modérée'
+                    workflow:
+                      laveur_enabled: true
+                      classeur_enabled: true
                     columns:
                       -
-                        etat: waiting
-                        colonne: attente
-                        label: 'À trier'
-                        count: 2
+                        etat: in_progress
+                        colonne: cours
+                        label: 'En lavage'
+                        title: 'En cours'
+                        count: 6
+                        share_percent: 33
+                        pieces: 52
+                        overdue_count: 1
+                        next_due_at: '2026-10-20T11:30:00+00:00'
+                        average_stage_minutes: 95
                     board:
-                      attente:
+                      attente: []
+                      cours:
                         -
                           id: 1
                           client_uuid: 550e8400-e29b-41d4-a716-446655440000
@@ -5671,43 +6034,115 @@ paths:
                               type: in
                               payment_method: cash
                               transaction_date: '2026-10-14T09:05:00+00:00'
-                          priorite: Haute
-                      cours: []
+                          priority:
+                            code: urgent
+                            label: Urgent
+                          priorite: Urgent
+                          echeance: '2026-10-20T11:30:00+00:00'
+                          overdue_minutes: 32
+                          stage_since: '2026-10-20T09:42:00+00:00'
+                          stage_minutes: 126
+                          elapsed_seconds: 9000
+                          defects_count: 2
+                          responsable:
+                            id: 4
+                            fullname: 'Jean Koffi'
+                            initials: JK
                       traites: []
                       classes: []
+                    filters:
+                      services:
+                        -
+                          code: express
+                          label: Express
+                      responsables:
+                        -
+                          id: 4
+                          fullname: 'Jean Koffi'
                   meta: {  }
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
+                      capacity:
+                        type: object
+                        properties:
+                          in_progress:
+                            type: integer
+                            example: 18
+                          capacity:
+                            type: integer
+                            example: 24
+                          percent:
+                            type: integer
+                            example: 75
+                          label:
+                            type: string
+                            example: 'Charge modérée'
+                      workflow:
+                        type: object
+                        properties:
+                          laveur_enabled:
+                            type: boolean
+                            example: true
+                          classeur_enabled:
+                            type: boolean
+                            example: true
                       columns:
                         type: array
                         example:
                           -
-                            etat: waiting
-                            colonne: attente
-                            label: 'À trier'
-                            count: 2
+                            etat: in_progress
+                            colonne: cours
+                            label: 'En lavage'
+                            title: 'En cours'
+                            count: 6
+                            share_percent: 33
+                            pieces: 52
+                            overdue_count: 1
+                            next_due_at: '2026-10-20T11:30:00+00:00'
+                            average_stage_minutes: 95
                         items:
                           type: object
                           properties:
                             etat:
                               type: string
-                              example: waiting
+                              example: in_progress
                             colonne:
                               type: string
-                              example: attente
+                              example: cours
                             label:
                               type: string
-                              example: 'À trier'
+                              example: 'En lavage'
+                            title:
+                              type: string
+                              example: 'En cours'
                             count:
                               type: integer
-                              example: 2
+                              example: 6
+                            share_percent:
+                              type: integer
+                              example: 33
+                            pieces:
+                              type: integer
+                              example: 52
+                            overdue_count:
+                              type: integer
+                              example: 1
+                            next_due_at:
+                              type: string
+                              example: '2026-10-20T11:30:00+00:00'
+                            average_stage_minutes:
+                              type: integer
+                              example: 95
                       board:
                         type: object
                         properties:
                           attente:
+                            type: array
+                            example: []
+                          cours:
                             type: array
                             example:
                               -
@@ -5819,7 +6254,20 @@ paths:
                                     type: in
                                     payment_method: cash
                                     transaction_date: '2026-10-14T09:05:00+00:00'
-                                priorite: Haute
+                                priority:
+                                  code: urgent
+                                  label: Urgent
+                                priorite: Urgent
+                                echeance: '2026-10-20T11:30:00+00:00'
+                                overdue_minutes: 32
+                                stage_since: '2026-10-20T09:42:00+00:00'
+                                stage_minutes: 126
+                                elapsed_seconds: 9000
+                                defects_count: 2
+                                responsable:
+                                  id: 4
+                                  fullname: 'Jean Koffi'
+                                  initials: JK
                             items:
                               type: object
                               properties:
@@ -6132,18 +6580,87 @@ paths:
                                       type: { type: string, example: in }
                                       payment_method: { type: string, example: cash }
                                       transaction_date: { type: string, example: '2026-10-14T09:05:00+00:00' }
+                                priority:
+                                  type: object
+                                  properties:
+                                    code:
+                                      type: string
+                                      example: urgent
+                                    label:
+                                      type: string
+                                      example: Urgent
                                 priorite:
                                   type: string
-                                  example: Haute
-                          cours:
-                            type: array
-                            example: []
+                                  example: Urgent
+                                echeance:
+                                  type: string
+                                  example: '2026-10-20T11:30:00+00:00'
+                                overdue_minutes:
+                                  type: integer
+                                  example: 32
+                                stage_since:
+                                  type: string
+                                  example: '2026-10-20T09:42:00+00:00'
+                                stage_minutes:
+                                  type: integer
+                                  example: 126
+                                elapsed_seconds:
+                                  type: integer
+                                  example: 9000
+                                defects_count:
+                                  type: integer
+                                  example: 2
+                                responsable:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 4
+                                    fullname:
+                                      type: string
+                                      example: 'Jean Koffi'
+                                    initials:
+                                      type: string
+                                      example: JK
                           traites:
                             type: array
                             example: []
                           classes:
                             type: array
                             example: []
+                      filters:
+                        type: object
+                        properties:
+                          services:
+                            type: array
+                            example:
+                              -
+                                code: express
+                                label: Express
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: express
+                                label:
+                                  type: string
+                                  example: Express
+                          responsables:
+                            type: array
+                            example:
+                              -
+                                id: 4
+                                fullname: 'Jean Koffi'
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 4
+                                fullname:
+                                  type: string
+                                  example: 'Jean Koffi'
                   meta:
                     type: object
                     properties: {  }
@@ -8274,12 +8791,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
                 notes:
                   type: string
@@ -10007,7 +10524,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
               required:
                 - amount
@@ -11281,6 +11798,711 @@ paths:
         schema:
           type: integer
   '/api/v1/deposits/{deposit_id}/workshop':
+    get:
+      summary: 'Panneau « Aperçu du dépôt » de l’atelier.'
+      operationId: panneauAperuDuDptDeLatelier
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    client_uuid: 550e8400-e29b-41d4-a716-446655440000
+                    code: AK-0001-EL
+                    qr_token: qr-demo-token
+                    pressing_id: 1
+                    agency_id: 1
+                    currency: XAF
+                    client_id: 1
+                    deposit_date: '2026-10-14T09:00:00+00:00'
+                    retrieve_date: '2026-10-16T09:00:00+00:00'
+                    retrieved_at: null
+                    subtotal: 3500
+                    collection_fee: 0
+                    delivery_fee: 0
+                    discount: 0
+                    discount_percent: 0
+                    promo_code: null
+                    points_earned: 35
+                    points_redeemed: 0
+                    total: 3500
+                    advanced: 1000
+                    left_to_pay: 2500
+                    payment_method: cash
+                    status: open
+                    etat: waiting
+                    etat_label: 'À trier'
+                    colonne: attente
+                    workshop_status:
+                      code: waiting
+                      label: 'À trier'
+                    payment_status:
+                      code: partial
+                      label: 'Partiellement payé'
+                    service:
+                      code: express
+                      label: Express
+                    is_express: true
+                    express_supplement: 1000
+                    pieces_count: 2
+                    weight_kg_total: 0
+                    quantity_label: '2 pièces'
+                    terminal: POS-01
+                    local_ref: null
+                    storage_location: null
+                    discount_reason: null
+                    sync_status:
+                      code: synced
+                      label: 'À jour'
+                      synced_at: '2026-10-14T09:05:00+00:00'
+                    delivery_status: null
+                    notes: null
+                    items_count: 2
+                    articles_label: '2 pièces'
+                    client_name: 'Jean Client'
+                    client_phone: '690000001'
+                    agency:
+                      id: 1
+                      name: Akwa
+                    client:
+                      id: 1
+                      pressing_id: 1
+                      agency_id: 1
+                      code: CLI-00001
+                      fullname: 'Jean Client'
+                      email: jean.client@example.com
+                      phone_number: '690000001'
+                      address: null
+                      city: Douala
+                      loyalty_points: 120
+                      wallet_balance: 5000
+                      sponsor_code: JEAN01
+                      referred_by_id: null
+                      last_deposit_at: '2026-10-14T10:00:00+00:00'
+                      status: true
+                      first_name: Jean
+                      last_name: Client
+                      phone_secondary: null
+                      contact_preference: whatsapp
+                      consent_sms: true
+                      consent_email: false
+                      archived_at: null
+                      tier:
+                        code: essentiel
+                        label: Essentiel
+                    units:
+                      -
+                        id: 1
+                        article_id: 1
+                        service_id: 1
+                        designation: Chemise
+                        pricing_type: piece
+                        quantity: 2
+                        unit_price: 1000
+                        line_total: 2000
+                        state: null
+                        is_express: true
+                        express_supplement: 1000
+                        color: Blanches
+                        defects:
+                          -
+                            code: stain
+                            label: Taché
+                        internal_notes: 'Tache au col'
+                    transactions:
+                      -
+                        id: 1
+                        amount: 1000
+                        type: in
+                        payment_method: cash
+                        transaction_date: '2026-10-14T09:05:00+00:00'
+                    priority:
+                      code: urgent
+                      label: Urgent
+                    priorite: Urgent
+                    echeance: '2026-10-20T11:30:00+00:00'
+                    overdue_minutes: 32
+                    stage_since: '2026-10-20T09:42:00+00:00'
+                    stage_minutes: 126
+                    elapsed_seconds: 9000
+                    defects_count: 2
+                    responsable:
+                      id: 4
+                      fullname: 'Jean Koffi'
+                      initials: JK
+                    articles:
+                      -
+                        quantity: 3
+                        designation: 'Chemise blanche'
+                        note: 'Col fragile'
+                    remarks: 'Tache de fond de teint au col.'
+                    responsables:
+                      laveur:
+                        id: 4
+                        fullname: 'Jean Koffi'
+                      classeur: null
+                    timeline:
+                      -
+                        at: '2026-10-20T10:58:00+00:00'
+                        code: in_progress
+                        title: 'Pris en charge'
+                        detail: 'Validé par Jean Koffi'
+                    next_action:
+                      etat: treated
+                      colonne: traites
+                      label: 'Passer à « Traités »'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      client_uuid:
+                        type: string
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      code:
+                        type: string
+                        example: AK-0001-EL
+                      qr_token:
+                        type: string
+                        example: qr-demo-token
+                      pressing_id:
+                        type: integer
+                        example: 1
+                      agency_id:
+                        type: integer
+                        example: 1
+                      currency:
+                        type: string
+                        example: XAF
+                      client_id:
+                        type: integer
+                        example: 1
+                      deposit_date:
+                        type: string
+                        example: '2026-10-14T09:00:00+00:00'
+                      retrieve_date:
+                        type: string
+                        example: '2026-10-16T09:00:00+00:00'
+                      retrieved_at:
+                        type: string
+                        example: null
+                        nullable: true
+                      subtotal:
+                        type: integer
+                        example: 3500
+                      collection_fee:
+                        type: integer
+                        example: 0
+                      delivery_fee:
+                        type: integer
+                        example: 0
+                      discount:
+                        type: integer
+                        example: 0
+                      discount_percent:
+                        type: integer
+                        example: 0
+                      promo_code:
+                        type: string
+                        example: null
+                        nullable: true
+                      points_earned:
+                        type: integer
+                        example: 35
+                      points_redeemed:
+                        type: integer
+                        example: 0
+                      total:
+                        type: integer
+                        example: 3500
+                      advanced:
+                        type: integer
+                        example: 1000
+                      left_to_pay:
+                        type: integer
+                        example: 2500
+                      payment_method:
+                        type: string
+                        example: cash
+                      status:
+                        type: string
+                        example: open
+                      etat:
+                        type: string
+                        example: waiting
+                      etat_label:
+                        type: string
+                        example: 'À trier'
+                      colonne:
+                        type: string
+                        example: attente
+                      workshop_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: waiting
+                          label:
+                            type: string
+                            example: 'À trier'
+                      payment_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: partial
+                          label:
+                            type: string
+                            example: 'Partiellement payé'
+                      service:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: express
+                          label:
+                            type: string
+                            example: Express
+                      is_express:
+                        type: boolean
+                        example: true
+                      express_supplement:
+                        type: integer
+                        example: 1000
+                      pieces_count:
+                        type: integer
+                        example: 2
+                      weight_kg_total:
+                        type: integer
+                        example: 0
+                      quantity_label:
+                        type: string
+                        example: '2 pièces'
+                      terminal:
+                        type: string
+                        example: POS-01
+                      local_ref:
+                        type: string
+                        example: null
+                        nullable: true
+                      storage_location:
+                        type: string
+                        example: null
+                        nullable: true
+                      discount_reason:
+                        type: string
+                        example: null
+                        nullable: true
+                      sync_status:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: synced
+                          label:
+                            type: string
+                            example: 'À jour'
+                          synced_at:
+                            type: string
+                            example: '2026-10-14T09:05:00+00:00'
+                      delivery_status:
+                        type: string
+                        example: null
+                        nullable: true
+                      notes:
+                        type: string
+                        example: null
+                        nullable: true
+                      items_count:
+                        type: integer
+                        example: 2
+                      articles_label:
+                        type: string
+                        example: '2 pièces'
+                      client_name:
+                        type: string
+                        example: 'Jean Client'
+                      client_phone:
+                        type: string
+                        example: '690000001'
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Akwa
+                      client:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          pressing_id:
+                            type: integer
+                            example: 1
+                          agency_id:
+                            type: integer
+                            example: 1
+                          code:
+                            type: string
+                            example: CLI-00001
+                          fullname:
+                            type: string
+                            example: 'Jean Client'
+                          email:
+                            type: string
+                            example: jean.client@example.com
+                          phone_number:
+                            type: string
+                            example: '690000001'
+                          address:
+                            type: string
+                            example: null
+                            nullable: true
+                          city:
+                            type: string
+                            example: Douala
+                          loyalty_points:
+                            type: integer
+                            example: 120
+                          wallet_balance:
+                            type: integer
+                            example: 5000
+                          sponsor_code:
+                            type: string
+                            example: JEAN01
+                          referred_by_id:
+                            type: string
+                            example: null
+                            nullable: true
+                          last_deposit_at:
+                            type: string
+                            example: '2026-10-14T10:00:00+00:00'
+                          status:
+                            type: boolean
+                            example: true
+                          first_name:
+                            type: string
+                            example: Jean
+                          last_name:
+                            type: string
+                            example: Client
+                          phone_secondary:
+                            type: string
+                            example: null
+                            nullable: true
+                          contact_preference:
+                            type: string
+                            example: whatsapp
+                          consent_sms:
+                            type: boolean
+                            example: true
+                          consent_email:
+                            type: boolean
+                            example: false
+                          archived_at:
+                            type: string
+                            example: null
+                            nullable: true
+                          tier:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                example: essentiel
+                              label:
+                                type: string
+                                example: Essentiel
+                      units:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            article_id: 1
+                            service_id: 1
+                            designation: Chemise
+                            pricing_type: piece
+                            quantity: 2
+                            unit_price: 1000
+                            line_total: 2000
+                            state: null
+                            is_express: true
+                            express_supplement: 1000
+                            color: Blanches
+                            defects:
+                              -
+                                code: stain
+                                label: Taché
+                            internal_notes: 'Tache au col'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            article_id:
+                              type: integer
+                              example: 1
+                            service_id:
+                              type: integer
+                              example: 1
+                            designation:
+                              type: string
+                              example: Chemise
+                            pricing_type:
+                              type: string
+                              example: piece
+                            quantity:
+                              type: integer
+                              example: 2
+                            unit_price:
+                              type: integer
+                              example: 1000
+                            line_total:
+                              type: integer
+                              example: 2000
+                            state:
+                              type: string
+                              example: null
+                              nullable: true
+                            is_express:
+                              type: boolean
+                              example: true
+                            express_supplement:
+                              type: integer
+                              example: 1000
+                            color:
+                              type: string
+                              example: Blanches
+                            defects:
+                              type: array
+                              example:
+                                -
+                                  code: stain
+                                  label: Taché
+                              items:
+                                type: object
+                                properties:
+                                  code:
+                                    type: string
+                                    example: stain
+                                  label:
+                                    type: string
+                                    example: Taché
+                            internal_notes:
+                              type: string
+                              example: 'Tache au col'
+                      transactions:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            amount: 1000
+                            type: in
+                            payment_method: cash
+                            transaction_date: '2026-10-14T09:05:00+00:00'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            amount:
+                              type: integer
+                              example: 1000
+                            type:
+                              type: string
+                              example: in
+                            payment_method:
+                              type: string
+                              example: cash
+                            transaction_date:
+                              type: string
+                              example: '2026-10-14T09:05:00+00:00'
+                      priority:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: urgent
+                          label:
+                            type: string
+                            example: Urgent
+                      priorite:
+                        type: string
+                        example: Urgent
+                      echeance:
+                        type: string
+                        example: '2026-10-20T11:30:00+00:00'
+                      overdue_minutes:
+                        type: integer
+                        example: 32
+                      stage_since:
+                        type: string
+                        example: '2026-10-20T09:42:00+00:00'
+                      stage_minutes:
+                        type: integer
+                        example: 126
+                      elapsed_seconds:
+                        type: integer
+                        example: 9000
+                      defects_count:
+                        type: integer
+                        example: 2
+                      responsable:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 4
+                          fullname:
+                            type: string
+                            example: 'Jean Koffi'
+                          initials:
+                            type: string
+                            example: JK
+                      articles:
+                        type: array
+                        example:
+                          -
+                            quantity: 3
+                            designation: 'Chemise blanche'
+                            note: 'Col fragile'
+                        items:
+                          type: object
+                          properties:
+                            quantity:
+                              type: integer
+                              example: 3
+                            designation:
+                              type: string
+                              example: 'Chemise blanche'
+                            note:
+                              type: string
+                              example: 'Col fragile'
+                      remarks:
+                        type: string
+                        example: 'Tache de fond de teint au col.'
+                      responsables:
+                        type: object
+                        properties:
+                          laveur:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 4
+                              fullname:
+                                type: string
+                                example: 'Jean Koffi'
+                          classeur:
+                            type: string
+                            example: null
+                            nullable: true
+                      timeline:
+                        type: array
+                        example:
+                          -
+                            at: '2026-10-20T10:58:00+00:00'
+                            code: in_progress
+                            title: 'Pris en charge'
+                            detail: 'Validé par Jean Koffi'
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-10-20T10:58:00+00:00'
+                            code:
+                              type: string
+                              example: in_progress
+                            title:
+                              type: string
+                              example: 'Pris en charge'
+                            detail:
+                              type: string
+                              example: 'Validé par Jean Koffi'
+                      next_action:
+                        type: object
+                        properties:
+                          etat:
+                            type: string
+                            example: treated
+                          colonne:
+                            type: string
+                            example: traites
+                          label:
+                            type: string
+                            example: 'Passer à « Traités »'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Dépôts
     post:
       summary: ''
       operationId: postApiV1DepositsDeposit_idWorkshop
@@ -11891,7 +13113,7 @@ paths:
                 etat:
                   type: string
                   description: ''
-                  example: waiting
+                  example: classed
                   enum:
                     - waiting
                     - in_progress
@@ -11901,6 +13123,11 @@ paths:
                   type: string
                   description: ''
                   example: architecto
+                  nullable: true
+                storage_location:
+                  type: string
+                  description: validation.max.
+                  example: 'n'
                   nullable: true
               required:
                 - etat
@@ -19206,7 +20433,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -19358,7 +20585,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
               required:
                 - agency_id
@@ -23538,7 +24765,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
                 validated:
                   type: boolean
@@ -23740,7 +24967,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
     delete:
       summary: ''
@@ -27705,7 +28932,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
               required:
                 - source_currency
                 - target_currency
@@ -36306,7 +37533,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
     delete:
       summary: ''
@@ -37722,7 +38949,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -41609,7 +42836,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T11:25:21'
+                  example: '2026-10-22T11:29:13'
                 name:
                   type: string
                   description: validation.max.

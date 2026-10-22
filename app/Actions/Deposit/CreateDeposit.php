@@ -355,7 +355,7 @@ class CreateDeposit
                 'is_express' => $express || $typeAction === 1,
                 'express_supplement' => $supplement,
                 'color' => $line['color'] ?? null,
-                'defects' => $line['defects'] ?? null,
+                'defects' => ! empty($line['defects']) ? array_values($line['defects']) : null,
                 'internal_notes' => $line['internal_notes'] ?? null,
                 'default_hours' => $service?->default_hours ?? $this->hoursForLegacy($pressing, $typeAction),
             ];
