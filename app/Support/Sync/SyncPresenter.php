@@ -93,7 +93,16 @@ class SyncPresenter
             },
             'created_at' => $b->created_at?->toIso8601String(),
             'ago' => $b->created_at?->locale('fr')->diffForHumans(),
+            'progress' => ['done' => $b->succeeded + $b->failed, 'total' => $b->operations, 'percent' => $b->operations ? (int) round(($b->succeeded + $b->failed) / $b->operations * 100) : 100],
+            'operations_detail' => self::publicResults($b->results ?? []),
+            'integrity' => SyncOperationRunner::integrity($b->results ?? []),
         ];
+    }
+
+    /** Résultats par opération sans la charge utile rejouable (gardée côté serveur pour la résolution). */
+    public static function publicResults(array $results): array
+    {
+        return array_map(fn ($r) => collect($r)->except('payload')->all(), $results);
     }
 
     /** Statut POS courant pour l’agence active. */

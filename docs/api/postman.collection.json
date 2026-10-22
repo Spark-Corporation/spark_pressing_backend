@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "62e43a3c-4fb8-4c89-8bf0-4676616015b8",
+        "_postman_id": "73b4e673-94b2-45c8-8e79-b786a6de0ee4",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -967,7 +967,7 @@
                     ]
                 },
                 {
-                    "name": "POST api\/v1\/sync",
+                    "name": "Retour en ligne : rejoue la file locale. Chaque op\u00e9ration renvoie `status`\n(synced, reconciled, duplicate, conflict, failed), `local_ref` \u2192 `server_ref` et, en cas de\nconflit, les options de d\u00e9cision ; `data.integrity` r\u00e9sume les contr\u00f4les.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -992,7 +992,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"operations\":[{\"type\":\"deposit\",\"payload\":[],\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\"}],\"device_code\":\"b\",\"reference\":\"n\"}"
+                            "raw": "{\"operations\":[{\"type\":\"deposit\",\"payload\":[],\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"local_ref\":\"g\"}],\"device_code\":\"b\",\"reference\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -1000,7 +1000,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"batch\": {\n            \"id\": 12,\n            \"reference\": \"SYNC-261022-AB12\",\n            \"status\": \"completed\",\n            \"operations\": 1,\n            \"succeeded\": 1,\n            \"failed\": 0\n        },\n        \"operations\": [\n            {\n                \"type\": \"deposit\",\n                \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n                \"id\": 1,\n                \"code\": \"AK-0001\",\n                \"status\": \"succeeded\",\n                \"replayed\": false\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"batch\": {\n            \"id\": 16,\n            \"reference\": \"SYNC-0928-16H32\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Bingerville\"\n            },\n            \"user\": \"Awa N.\",\n            \"device_code\": \"POS-01\",\n            \"operations\": 5,\n            \"succeeded\": 3,\n            \"conflicts\": 1,\n            \"failed\": 0,\n            \"status\": \"partial\",\n            \"status_label\": \"Partiel\",\n            \"created_at\": \"2026-09-28T16:32:00+00:00\",\n            \"ago\": \"il y a 1 minute\",\n            \"progress\": {\n                \"done\": 3,\n                \"total\": 5,\n                \"percent\": 60\n            }\n        },\n        \"operations\": [\n            {\n                \"type\": \"deposit\",\n                \"client_uuid\": \"21111111-1111-1111-1111-111111111111\",\n                \"local_ref\": \"LOCAL-BGV-0041\",\n                \"status\": \"synced\",\n                \"status_label\": \"Synchronis\u00e9\",\n                \"id\": 2842,\n                \"server_ref\": \"DP-2026-2842\",\n                \"amount\": 15000,\n                \"renumbered\": true\n            },\n            {\n                \"type\": \"payment\",\n                \"client_uuid\": \"41111111-1111-1111-1111-111111111111\",\n                \"local_ref\": \"LOCAL-PAY-0198\",\n                \"status\": \"reconciled\",\n                \"status_label\": \"Rapproch\u00e9\",\n                \"id\": 2842,\n                \"server_ref\": \"DP-2026-2842\",\n                \"amount\": 3200\n            },\n            {\n                \"type\": \"deposit\",\n                \"client_uuid\": \"31111111-1111-1111-1111-111111111111\",\n                \"local_ref\": \"LOCAL-BGV-0042\",\n                \"status\": \"conflict\",\n                \"status_label\": \"D\u00e9cision requise\",\n                \"conflict\": {\n                    \"code\": \"promo_unavailable\",\n                    \"message\": \"Code promo RENTREE15 : Code promo invalide ou expir\u00e9.\",\n                    \"promo_code\": \"RENTREE15\",\n                    \"promo_percent\": 15,\n                    \"options\": [\n                        {\n                            \"code\": \"keep_discount\",\n                            \"label\": \"Conserver la remise\",\n                            \"detail\": \"Exception audit\u00e9e, validation responsable\"\n                        },\n                        {\n                            \"code\": \"remove_discount\",\n                            \"label\": \"Retirer la remise\",\n                            \"detail\": \"Le montant de la remise reste \u00e0 r\u00e9gulariser\"\n                        },\n                        {\n                            \"code\": \"hold\",\n                            \"label\": \"Mettre en attente\",\n                            \"detail\": \"D\u00e9cision du responsable\"\n                        }\n                    ]\n                }\n            }\n        ],\n        \"integrity\": {\n            \"deduplication\": {\n                \"duplicates\": 0,\n                \"status\": \"validated\"\n            },\n            \"renumbering\": {\n                \"done\": 2,\n                \"total\": 3\n            },\n            \"reconciled_payments\": {\n                \"count\": 1,\n                \"amount\": 18200\n            }\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:40:48\",\"retrieve_date\":\"2026-10-22T21:40:48\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T21:44:03\",\"retrieve_date\":\"2026-10-22T21:44:03\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:40:48\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T21:44:03\"}"
                         },
                         "description": ""
                     },
@@ -3969,7 +3969,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:40:48\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T21:44:03\"}"
                         },
                         "description": ""
                     },
@@ -3977,7 +3977,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"agency_id\": 1,\n        \"article_id\": 1,\n        \"service_id\": 1,\n        \"pricing_type\": \"piece\",\n        \"amount_minor\": 1200,\n        \"valid_from\": \"2026-01-01\",\n        \"valid_to\": null\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"operation\": {\n            \"type\": \"deposit\",\n            \"client_uuid\": \"31111111-1111-1111-1111-111111111111\",\n            \"local_ref\": \"LOCAL-BGV-0042\",\n            \"status\": \"synced\",\n            \"status_label\": \"Synchronis\u00e9\",\n            \"id\": 2843,\n            \"server_ref\": \"DP-2026-2843\",\n            \"decision\": \"keep_discount\"\n        },\n        \"batch\": {\n            \"status\": \"completed\",\n            \"conflicts\": 0,\n            \"id\": 16,\n            \"reference\": \"SYNC-0928-16H32\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Bingerville\"\n            },\n            \"user\": \"Awa N.\",\n            \"device_code\": \"POS-01\",\n            \"operations\": 5,\n            \"succeeded\": 3,\n            \"failed\": 0,\n            \"status_label\": \"Partiel\",\n            \"created_at\": \"2026-09-28T16:32:00+00:00\",\n            \"ago\": \"il y a 1 minute\",\n            \"progress\": {\n                \"done\": 3,\n                \"total\": 5,\n                \"percent\": 60\n            }\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -4014,7 +4014,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:40:48\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T21:44:03\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5767,7 +5767,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T21:40:49",
+                                    "value": "2026-10-22T21:44:04",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5915,7 +5915,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:40:49\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T21:44:04\"}"
                         },
                         "description": ""
                     },
@@ -6072,7 +6072,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:40:49\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:44:04\"}"
                         },
                         "description": ""
                     },
@@ -6117,7 +6117,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:40:49\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T21:44:04\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7219,7 +7219,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T21:40:49\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T21:44:04\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7264,7 +7264,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T21:40:49\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T21:44:04\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7903,7 +7903,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:40\",\"closes_at\":\"21:40\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"21:44\",\"closes_at\":\"21:44\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8038,7 +8038,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:40:49\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T21:44:04\"}"
                         },
                         "description": ""
                     },
@@ -8223,7 +8223,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:40\",\"closes_at\":\"21:40\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"21:44\",\"closes_at\":\"21:44\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -10917,7 +10917,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:40:48\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T21:44:03\"}"
                         },
                         "description": ""
                     },
@@ -11056,7 +11056,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T21:40:48",
+                                    "value": "2026-10-22T21:44:03",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -12005,7 +12005,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:40:49\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T21:44:04\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -12991,6 +12991,71 @@
                             "code": 401,
                             "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
                             "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab R\u00e9soudre le conflit \u00bb puis \u00ab Appliquer et reprendre \u00bb (`decision=keep_discount|remove_discount|hold`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/sync\/batches\/:batch_id\/operations\/:clientUuid\/resolve",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/sync\/batches\/:batch_id\/operations\/:clientUuid\/resolve",
+                            "variable": [
+                                {
+                                    "id": "batch_id",
+                                    "key": "batch_id",
+                                    "value": 16,
+                                    "description": "The ID of the batch."
+                                },
+                                {
+                                    "id": "clientUuid",
+                                    "key": "clientUuid",
+                                    "value": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"decision\":\"keep_discount\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"operation\": {\n            \"type\": \"deposit\",\n            \"client_uuid\": \"31111111-1111-1111-1111-111111111111\",\n            \"local_ref\": \"LOCAL-BGV-0042\",\n            \"status\": \"synced\",\n            \"status_label\": \"Synchronis\u00e9\",\n            \"id\": 2843,\n            \"server_ref\": \"DP-2026-2843\",\n            \"decision\": \"keep_discount\"\n        },\n        \"batch\": {\n            \"status\": \"completed\",\n            \"conflicts\": 0,\n            \"id\": 16,\n            \"reference\": \"SYNC-0928-16H32\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Bingerville\"\n            },\n            \"user\": \"Awa N.\",\n            \"device_code\": \"POS-01\",\n            \"operations\": 5,\n            \"succeeded\": 3,\n            \"failed\": 0,\n            \"status_label\": \"Partiel\",\n            \"created_at\": \"2026-09-28T16:32:00+00:00\",\n            \"ago\": \"il y a 1 minute\",\n            \"progress\": {\n                \"done\": 3,\n                \"total\": 5,\n                \"percent\": 60\n            }\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
                         }
                     ]
                 }

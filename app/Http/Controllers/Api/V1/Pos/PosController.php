@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Api\V1\Pos;
 
-use App\Actions\Deposit\AddPayment;
-use App\Actions\Deposit\CreateDeposit;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AgencyResource;
 use App\Http\Resources\ArticleResource;
@@ -24,11 +22,11 @@ use App\Models\Render;
 use App\Models\Service;
 use App\Models\SyncBatch;
 use App\Support\Deposits\DepositPresenter;
+use App\Support\Sync\SyncOperationRunner;
 use App\Support\Sync\SyncPresenter;
 use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Knuckles\Scribe\Attributes\Group;
 
@@ -173,68 +171,25 @@ class PosController extends Controller
         );
     }
 
-    public function sync(Request $request, CreateDeposit $create, AddPayment $pay, SyncPresenter $presenter): JsonResponse
+    /**
+     * Retour en ligne : rejoue la file locale. Chaque opération renvoie `status`
+     * (synced, reconciled, duplicate, conflict, failed), `local_ref` → `server_ref` et, en cas de
+     * conflit, les options de décision ; `data.integrity` résume les contrôles.
+     */
+    public function sync(Request $request, SyncOperationRunner $runner, SyncPresenter $presenter): JsonResponse
     {
         $payload = $request->validate([
             'operations' => ['required', 'array', 'min:1'],
             'operations.*.type' => ['required', 'in:deposit,payment'],
             'operations.*.payload' => ['required', 'array'],
             'operations.*.client_uuid' => ['required', 'uuid'],
+            'operations.*.local_ref' => ['nullable', 'string', 'max:40'],
             'device_code' => ['nullable', 'string', 'max:40'],
             'reference' => ['nullable', 'string', 'max:40'],
         ]);
 
-        $results = [];
-        $succeeded = 0;
-        $failed = 0;
-        $conflicts = 0;
+        $results = array_map(fn ($operation) => $runner->run($request->user(), $operation), $payload['operations']);
 
-        foreach ($payload['operations'] as $operation) {
-            try {
-                $results[] = DB::transaction(function () use ($operation, $request, $create, $pay) {
-                    $opPayload = $operation['payload'] + ['client_uuid' => $operation['client_uuid']];
-
-                    if ($operation['type'] === 'deposit') {
-                        $deposit = $create->handle($request->user(), $opPayload);
-
-                        return [
-                            'type' => 'deposit',
-                            'client_uuid' => $operation['client_uuid'],
-                            'id' => $deposit->id,
-                            'code' => $deposit->code,
-                            'status' => 'succeeded',
-                            'replayed' => false,
-                        ];
-                    }
-
-                    $deposit = Deposit::query()->findOrFail($opPayload['deposit_id'] ?? null);
-                    $deposit = $pay->handle($request->user(), $deposit, $opPayload);
-
-                    return [
-                        'type' => 'payment',
-                        'client_uuid' => $operation['client_uuid'],
-                        'id' => $deposit->id,
-                        'status' => 'succeeded',
-                        'replayed' => false,
-                    ];
-                });
-                $succeeded++;
-            } catch (\Throwable $e) {
-                $failed++;
-                $results[] = [
-                    'type' => $operation['type'],
-                    'client_uuid' => $operation['client_uuid'],
-                    'status' => 'failed',
-                    'error' => $e->getMessage(),
-                ];
-            }
-        }
-
-        $status = match (true) {
-            $failed === 0 => 'completed',
-            $succeeded === 0 => 'failed',
-            default => 'partial',
-        };
         $tenant = app(TenantContext::class);
         $batch = SyncBatch::query()->create([
             'pressing_id' => $request->user()->pressing_id,
@@ -243,16 +198,13 @@ class PosController extends Controller
             'reference' => $payload['reference'] ?? ('SYNC-'.now()->format('ymdHis').'-'.Str::upper(Str::random(4))),
             'device_code' => $payload['device_code'] ?? null,
             'operations' => count($payload['operations']),
-            'succeeded' => $succeeded,
-            'conflicts' => $conflicts,
-            'failed' => $failed,
-            'status' => $status,
-            'results' => $results,
         ]);
+        $runner->recount($batch, $results);
 
         return $this->ok([
             'batch' => $presenter->batch($batch->load(['agency:id,name', 'user:id,fullname'])),
-            'operations' => $results,
+            'operations' => SyncPresenter::publicResults($results),
+            'integrity' => SyncOperationRunner::integrity($results),
         ]);
     }
 }

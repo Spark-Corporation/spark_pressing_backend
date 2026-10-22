@@ -4800,8 +4800,8 @@ paths:
         - POS
   /api/v1/sync:
     post:
-      summary: ''
-      operationId: postApiV1Sync
+      summary: "Retour en ligne : rejoue la file locale. Chaque opération renvoie `status`\n(synced, reconciled, duplicate, conflict, failed), `local_ref` → `server_ref` et, en cas de\nconflit, les options de décision ; `data.integrity` résume les contrôles."
+      operationId: retourEnLigneRejoueLaFileLocaleChaqueOprationRenvoiestatussyncedReconciledDuplicateConflictFailedlocalRefserverRefEtEnCasDeconflitLesOptionsDeDcisiondataintegrityRsumeLesContrles
       description: ''
       parameters:
         -
@@ -4821,20 +4821,79 @@ paths:
                 example:
                   data:
                     batch:
-                      id: 12
-                      reference: SYNC-261022-AB12
-                      status: completed
-                      operations: 1
-                      succeeded: 1
+                      id: 16
+                      reference: SYNC-0928-16H32
+                      agency:
+                        id: 1
+                        name: Bingerville
+                      user: 'Awa N.'
+                      device_code: POS-01
+                      operations: 5
+                      succeeded: 3
+                      conflicts: 1
                       failed: 0
+                      status: partial
+                      status_label: Partiel
+                      created_at: '2026-09-28T16:32:00+00:00'
+                      ago: 'il y a 1 minute'
+                      progress:
+                        done: 3
+                        total: 5
+                        percent: 60
                     operations:
                       -
                         type: deposit
-                        client_uuid: 550e8400-e29b-41d4-a716-446655440000
-                        id: 1
-                        code: AK-0001
-                        status: succeeded
-                        replayed: false
+                        client_uuid: 21111111-1111-1111-1111-111111111111
+                        local_ref: LOCAL-BGV-0041
+                        status: synced
+                        status_label: Synchronisé
+                        id: 2842
+                        server_ref: DP-2026-2842
+                        amount: 15000
+                        renumbered: true
+                      -
+                        type: payment
+                        client_uuid: 41111111-1111-1111-1111-111111111111
+                        local_ref: LOCAL-PAY-0198
+                        status: reconciled
+                        status_label: Rapproché
+                        id: 2842
+                        server_ref: DP-2026-2842
+                        amount: 3200
+                      -
+                        type: deposit
+                        client_uuid: 31111111-1111-1111-1111-111111111111
+                        local_ref: LOCAL-BGV-0042
+                        status: conflict
+                        status_label: 'Décision requise'
+                        conflict:
+                          code: promo_unavailable
+                          message: 'Code promo RENTREE15 : Code promo invalide ou expiré.'
+                          promo_code: RENTREE15
+                          promo_percent: 15
+                          options:
+                            -
+                              code: keep_discount
+                              label: 'Conserver la remise'
+                              detail: 'Exception auditée, validation responsable'
+                            -
+                              code: remove_discount
+                              label: 'Retirer la remise'
+                              detail: 'Le montant de la remise reste à régulariser'
+                            -
+                              code: hold
+                              label: 'Mettre en attente'
+                              detail: 'Décision du responsable'
+                    integrity:
+                      deduplication:
+                        duplicates: 0
+                        status: validated
+                      renumbering:
+                        done: 2
+                        total: 3
+                      reconciled_payments:
+                        count: 1
+                        amount: 18200
                   meta: {  }
                   errors: null
                 properties:
@@ -4846,32 +4905,107 @@ paths:
                         properties:
                           id:
                             type: integer
-                            example: 12
+                            example: 16
                           reference:
                             type: string
-                            example: SYNC-261022-AB12
-                          status:
+                            example: SYNC-0928-16H32
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Bingerville
+                          user:
                             type: string
-                            example: completed
+                            example: 'Awa N.'
+                          device_code:
+                            type: string
+                            example: POS-01
                           operations:
                             type: integer
-                            example: 1
+                            example: 5
                           succeeded:
+                            type: integer
+                            example: 3
+                          conflicts:
                             type: integer
                             example: 1
                           failed:
                             type: integer
                             example: 0
+                          status:
+                            type: string
+                            example: partial
+                          status_label:
+                            type: string
+                            example: Partiel
+                          created_at:
+                            type: string
+                            example: '2026-09-28T16:32:00+00:00'
+                          ago:
+                            type: string
+                            example: 'il y a 1 minute'
+                          progress:
+                            type: object
+                            properties:
+                              done:
+                                type: integer
+                                example: 3
+                              total:
+                                type: integer
+                                example: 5
+                              percent:
+                                type: integer
+                                example: 60
                       operations:
                         type: array
                         example:
                           -
                             type: deposit
-                            client_uuid: 550e8400-e29b-41d4-a716-446655440000
-                            id: 1
-                            code: AK-0001
-                            status: succeeded
-                            replayed: false
+                            client_uuid: 21111111-1111-1111-1111-111111111111
+                            local_ref: LOCAL-BGV-0041
+                            status: synced
+                            status_label: Synchronisé
+                            id: 2842
+                            server_ref: DP-2026-2842
+                            amount: 15000
+                            renumbered: true
+                          -
+                            type: payment
+                            client_uuid: 41111111-1111-1111-1111-111111111111
+                            local_ref: LOCAL-PAY-0198
+                            status: reconciled
+                            status_label: Rapproché
+                            id: 2842
+                            server_ref: DP-2026-2842
+                            amount: 3200
+                          -
+                            type: deposit
+                            client_uuid: 31111111-1111-1111-1111-111111111111
+                            local_ref: LOCAL-BGV-0042
+                            status: conflict
+                            status_label: 'Décision requise'
+                            conflict:
+                              code: promo_unavailable
+                              message: 'Code promo RENTREE15 : Code promo invalide ou expiré.'
+                              promo_code: RENTREE15
+                              promo_percent: 15
+                              options:
+                                -
+                                  code: keep_discount
+                                  label: 'Conserver la remise'
+                                  detail: 'Exception auditée, validation responsable'
+                                -
+                                  code: remove_discount
+                                  label: 'Retirer la remise'
+                                  detail: 'Le montant de la remise reste à régulariser'
+                                -
+                                  code: hold
+                                  label: 'Mettre en attente'
+                                  detail: 'Décision du responsable'
                         items:
                           type: object
                           properties:
@@ -4880,19 +5014,58 @@ paths:
                               example: deposit
                             client_uuid:
                               type: string
-                              example: 550e8400-e29b-41d4-a716-446655440000
-                            id:
-                              type: integer
-                              example: 1
-                            code:
+                              example: 21111111-1111-1111-1111-111111111111
+                            local_ref:
                               type: string
-                              example: AK-0001
+                              example: LOCAL-BGV-0041
                             status:
                               type: string
-                              example: succeeded
-                            replayed:
+                              example: synced
+                            status_label:
+                              type: string
+                              example: Synchronisé
+                            id:
+                              type: integer
+                              example: 2842
+                            server_ref:
+                              type: string
+                              example: DP-2026-2842
+                            amount:
+                              type: integer
+                              example: 15000
+                            renumbered:
                               type: boolean
-                              example: false
+                              example: true
+                      integrity:
+                        type: object
+                        properties:
+                          deduplication:
+                            type: object
+                            properties:
+                              duplicates:
+                                type: integer
+                                example: 0
+                              status:
+                                type: string
+                                example: validated
+                          renumbering:
+                            type: object
+                            properties:
+                              done:
+                                type: integer
+                                example: 2
+                              total:
+                                type: integer
+                                example: 3
+                          reconciled_payments:
+                            type: object
+                            properties:
+                              count:
+                                type: integer
+                                example: 1
+                              amount:
+                                type: integer
+                                example: 18200
                   meta:
                     type: object
                     properties: {  }
@@ -5018,6 +5191,11 @@ paths:
                         type: string
                         description: validation.uuid.
                         example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+                      local_ref:
+                        type: string
+                        description: validation.max.
+                        example: g
+                        nullable: true
                     required:
                       - type
                       - payload
@@ -10098,12 +10276,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                   nullable: true
                 notes:
                   type: string
@@ -11831,7 +12009,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                   nullable: true
               required:
                 - amount
@@ -28333,7 +28511,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -28367,45 +28545,128 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 1
-                    agency_id: 1
-                    article_id: 1
-                    service_id: 1
-                    pricing_type: piece
-                    amount_minor: 1200
-                    valid_from: '2026-01-01'
-                    valid_to: null
+                    operation:
+                      type: deposit
+                      client_uuid: 31111111-1111-1111-1111-111111111111
+                      local_ref: LOCAL-BGV-0042
+                      status: synced
+                      status_label: Synchronisé
+                      id: 2843
+                      server_ref: DP-2026-2843
+                      decision: keep_discount
+                    batch:
+                      status: completed
+                      conflicts: 0
+                      id: 16
+                      reference: SYNC-0928-16H32
+                      agency:
+                        id: 1
+                        name: Bingerville
+                      user: 'Awa N.'
+                      device_code: POS-01
+                      operations: 5
+                      succeeded: 3
+                      failed: 0
+                      status_label: Partiel
+                      created_at: '2026-09-28T16:32:00+00:00'
+                      ago: 'il y a 1 minute'
+                      progress:
+                        done: 3
+                        total: 5
+                        percent: 60
                   meta: {  }
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
-                      id:
-                        type: integer
-                        example: 1
-                      agency_id:
-                        type: integer
-                        example: 1
-                      article_id:
-                        type: integer
-                        example: 1
-                      service_id:
-                        type: integer
-                        example: 1
-                      pricing_type:
-                        type: string
-                        example: piece
-                      amount_minor:
-                        type: integer
-                        example: 1200
-                      valid_from:
-                        type: string
-                        example: '2026-01-01'
-                      valid_to:
-                        type: string
-                        example: null
-                        nullable: true
+                      operation:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: deposit
+                          client_uuid:
+                            type: string
+                            example: 31111111-1111-1111-1111-111111111111
+                          local_ref:
+                            type: string
+                            example: LOCAL-BGV-0042
+                          status:
+                            type: string
+                            example: synced
+                          status_label:
+                            type: string
+                            example: Synchronisé
+                          id:
+                            type: integer
+                            example: 2843
+                          server_ref:
+                            type: string
+                            example: DP-2026-2843
+                          decision:
+                            type: string
+                            example: keep_discount
+                      batch:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                            example: completed
+                          conflicts:
+                            type: integer
+                            example: 0
+                          id:
+                            type: integer
+                            example: 16
+                          reference:
+                            type: string
+                            example: SYNC-0928-16H32
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Bingerville
+                          user:
+                            type: string
+                            example: 'Awa N.'
+                          device_code:
+                            type: string
+                            example: POS-01
+                          operations:
+                            type: integer
+                            example: 5
+                          succeeded:
+                            type: integer
+                            example: 3
+                          failed:
+                            type: integer
+                            example: 0
+                          status_label:
+                            type: string
+                            example: Partiel
+                          created_at:
+                            type: string
+                            example: '2026-09-28T16:32:00+00:00'
+                          ago:
+                            type: string
+                            example: 'il y a 1 minute'
+                          progress:
+                            type: object
+                            properties:
+                              done:
+                                type: integer
+                                example: 3
+                              total:
+                                type: integer
+                                example: 5
+                              percent:
+                                type: integer
+                                example: 60
                   meta:
                     type: object
                     properties: {  }
@@ -28485,7 +28746,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                   nullable: true
               required:
                 - agency_id
@@ -33213,7 +33474,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                   nullable: true
                 validated:
                   type: boolean
@@ -33871,7 +34132,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                   nullable: true
     delete:
       summary: ''
@@ -34657,7 +34918,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -34878,7 +35139,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                   nullable: true
                 period:
                   type: string
@@ -40017,7 +40278,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                   nullable: true
                 date_to:
                   type: string
@@ -40423,7 +40684,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                   nullable: true
                 agency_id:
                   type: integer
@@ -43080,12 +43341,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:40'
+                  example: '21:44'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:40'
+                  example: '21:44'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -43468,7 +43729,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
               required:
                 - source_currency
                 - target_currency
@@ -44051,12 +44312,12 @@ paths:
                 opens_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:40'
+                  example: '21:44'
                   nullable: true
                 closes_at:
                   type: string
                   description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '21:40'
+                  example: '21:44'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
@@ -55061,7 +55322,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                   nullable: true
     delete:
       summary: ''
@@ -56477,7 +56738,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:48'
+                  example: '2026-10-22T21:44:03'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -60692,7 +60953,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T21:40:49'
+                  example: '2026-10-22T21:44:04'
                 name:
                   type: string
                   description: validation.max.
@@ -64820,3 +65081,275 @@ paths:
         required: true
         schema:
           type: integer
+  '/api/v1/sync/batches/{batch_id}/operations/{clientUuid}/resolve':
+    post:
+      summary: '« Résoudre le conflit » puis « Appliquer et reprendre » (`decision=keep_discount|remove_discount|hold`).'
+      operationId: RsoudreLeConflitPuisAppliquerEtReprendredecisionkeepDiscountremoveDiscounthold
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    operation:
+                      type: deposit
+                      client_uuid: 31111111-1111-1111-1111-111111111111
+                      local_ref: LOCAL-BGV-0042
+                      status: synced
+                      status_label: Synchronisé
+                      id: 2843
+                      server_ref: DP-2026-2843
+                      decision: keep_discount
+                    batch:
+                      status: completed
+                      conflicts: 0
+                      id: 16
+                      reference: SYNC-0928-16H32
+                      agency:
+                        id: 1
+                        name: Bingerville
+                      user: 'Awa N.'
+                      device_code: POS-01
+                      operations: 5
+                      succeeded: 3
+                      failed: 0
+                      status_label: Partiel
+                      created_at: '2026-09-28T16:32:00+00:00'
+                      ago: 'il y a 1 minute'
+                      progress:
+                        done: 3
+                        total: 5
+                        percent: 60
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      operation:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: deposit
+                          client_uuid:
+                            type: string
+                            example: 31111111-1111-1111-1111-111111111111
+                          local_ref:
+                            type: string
+                            example: LOCAL-BGV-0042
+                          status:
+                            type: string
+                            example: synced
+                          status_label:
+                            type: string
+                            example: Synchronisé
+                          id:
+                            type: integer
+                            example: 2843
+                          server_ref:
+                            type: string
+                            example: DP-2026-2843
+                          decision:
+                            type: string
+                            example: keep_discount
+                      batch:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                            example: completed
+                          conflicts:
+                            type: integer
+                            example: 0
+                          id:
+                            type: integer
+                            example: 16
+                          reference:
+                            type: string
+                            example: SYNC-0928-16H32
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Bingerville
+                          user:
+                            type: string
+                            example: 'Awa N.'
+                          device_code:
+                            type: string
+                            example: POS-01
+                          operations:
+                            type: integer
+                            example: 5
+                          succeeded:
+                            type: integer
+                            example: 3
+                          failed:
+                            type: integer
+                            example: 0
+                          status_label:
+                            type: string
+                            example: Partiel
+                          created_at:
+                            type: string
+                            example: '2026-09-28T16:32:00+00:00'
+                          ago:
+                            type: string
+                            example: 'il y a 1 minute'
+                          progress:
+                            type: object
+                            properties:
+                              done:
+                                type: integer
+                                example: 3
+                              total:
+                                type: integer
+                                example: 5
+                              percent:
+                                type: integer
+                                example: 60
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Synchronisation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  description: ''
+                  example: keep_discount
+                  enum:
+                    - keep_discount
+                    - remove_discount
+                    - hold
+              required:
+                - decision
+    parameters:
+      -
+        in: path
+        name: batch_id
+        description: 'The ID of the batch.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: clientUuid
+        description: ''
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        required: true
+        schema:
+          type: string

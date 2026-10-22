@@ -311,9 +311,10 @@ Permissions fines : `config/permission_matrix.php` (domaines × colonnes). Les p
 | Écran / bloc | Endpoint | Champs |
 |--------------|----------|--------|
 | Centre de sync | `GET /sync/center?agency_id&days` | `kpis` (disponibilité, agences en ligne, ops en attente), `agencies[]`, `batches[]`, `devices[]`, `alerts[]` |
-| Détail lot | `GET /sync/batches/{id}` | `reference`, compteurs, `status` |
+| Détail lot | `GET /sync/batches/{id}` | `reference`, compteurs, `status`, `progress`, `operations_detail[]`, `integrity` |
 | Statut POS | `GET /pos/sync/status?device_code` | `online`, `pending_ops`, `last_batch` |
-| Envoi retour en ligne | `POST /sync` (`operations[]`, `device_code?`, `reference?`) | crée un `SyncBatch` ; `data.batch` + `data.operations` |
+| Retour en ligne (02e) | `POST /sync` (`operations[]` avec `client_uuid`, `local_ref`, `device_code?`, `reference?`) | `data.batch` (compteurs, `progress`), `data.operations[]` (`status` synced\|reconciled\|duplicate\|conflict\|failed + `status_label`, `local_ref` → `server_ref`, `conflict` {code, message, `options[]`}), `data.integrity` (déduplication UUID, renumérotation, encaissements rapprochés) |
+| Résoudre un conflit | `POST /sync/batches/{id}/operations/{client_uuid}/resolve` (`decision=keep_discount\|remove_discount\|hold`) | rejoue l’opération ; `keep_discount` réservé aux responsables (`deposits.override`), audité ; lot recalculé |
 
 ### 7.0l Hub superadmin (Figma 13–13B)
 

@@ -488,15 +488,6 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
-        if ($path === '/api/v1/sync') {
-            return [$this->response(200, [
-                'batch' => ['id' => 12, 'reference' => 'SYNC-261022-AB12', 'status' => 'completed', 'operations' => 1, 'succeeded' => 1, 'failed' => 0],
-                'operations' => [
-                    ['type' => 'deposit', 'client_uuid' => '550e8400-e29b-41d4-a716-446655440000', 'id' => 1, 'code' => 'AK-0001', 'status' => 'succeeded', 'replayed' => false],
-                ],
-            ])];
-        }
-
         if ($path === '/api/v1/team/overview') {
             return [$this->response(200, [
                 'kpis' => [
@@ -579,6 +570,25 @@ class DocumentApiEnvelopeResponses extends Strategy
                     'unpaid_amount' => 45000,
                     'status' => true,
                 ]],
+            ])];
+        }
+
+        // —— Retour en ligne et conflits (Figma 02e / 12) ——
+        if ($path === '/api/v1/sync' || str_ends_with($path, '/resolve')) {
+            $batch = ['id' => 16, 'reference' => 'SYNC-0928-16H32', 'agency' => ['id' => 1, 'name' => 'Bingerville'], 'user' => 'Awa N.', 'device_code' => 'POS-01', 'operations' => 5, 'succeeded' => 3, 'conflicts' => 1, 'failed' => 0, 'status' => 'partial', 'status_label' => 'Partiel', 'created_at' => '2026-09-28T16:32:00+00:00', 'ago' => 'il y a 1 minute', 'progress' => ['done' => 3, 'total' => 5, 'percent' => 60]];
+            $conflict = ['type' => 'deposit', 'client_uuid' => '31111111-1111-1111-1111-111111111111', 'local_ref' => 'LOCAL-BGV-0042', 'status' => 'conflict', 'status_label' => 'Décision requise', 'conflict' => ['code' => 'promo_unavailable', 'message' => 'Code promo RENTREE15 : Code promo invalide ou expiré.', 'promo_code' => 'RENTREE15', 'promo_percent' => 15, 'options' => \App\Support\Sync\SyncOperationRunner::CONFLICT_OPTIONS]];
+            if (str_ends_with($path, '/resolve')) {
+                return [$this->response(200, ['operation' => ['type' => 'deposit', 'client_uuid' => $conflict['client_uuid'], 'local_ref' => 'LOCAL-BGV-0042', 'status' => 'synced', 'status_label' => 'Synchronisé', 'id' => 2843, 'server_ref' => 'DP-2026-2843', 'decision' => 'keep_discount'], 'batch' => ['status' => 'completed', 'conflicts' => 0] + $batch])];
+            }
+
+            return [$this->response(200, [
+                'batch' => $batch,
+                'operations' => [
+                    ['type' => 'deposit', 'client_uuid' => '21111111-1111-1111-1111-111111111111', 'local_ref' => 'LOCAL-BGV-0041', 'status' => 'synced', 'status_label' => 'Synchronisé', 'id' => 2842, 'server_ref' => 'DP-2026-2842', 'amount' => 15000, 'renumbered' => true],
+                    ['type' => 'payment', 'client_uuid' => '41111111-1111-1111-1111-111111111111', 'local_ref' => 'LOCAL-PAY-0198', 'status' => 'reconciled', 'status_label' => 'Rapproché', 'id' => 2842, 'server_ref' => 'DP-2026-2842', 'amount' => 3200],
+                    $conflict,
+                ],
+                'integrity' => ['deduplication' => ['duplicates' => 0, 'status' => 'validated'], 'renumbering' => ['done' => 2, 'total' => 3], 'reconciled_payments' => ['count' => 1, 'amount' => 18200]],
             ])];
         }
 

@@ -89,6 +89,7 @@ Route::middleware('permission:roles.manage')->group(function () {
 Route::prefix('sync')->name('sync.')->group(function () {
     Route::get('center', [SyncController::class, 'center'])->middleware('permission:reports.view|agencies.manage|roles.manage')->name('center');
     Route::get('batches/{batch}', [SyncController::class, 'showBatch'])->middleware('permission:reports.view|agencies.manage|roles.manage')->name('batches.show');
+    Route::post('batches/{batch}/operations/{clientUuid}/resolve', [SyncController::class, 'resolve'])->middleware('permission:deposits.create')->name('batches.resolve');
 });
 
 Route::middleware('permission:audit.view')->group(function () {

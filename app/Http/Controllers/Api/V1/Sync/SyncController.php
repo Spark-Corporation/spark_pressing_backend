@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Sync;
 
 use App\Http\Controllers\Controller;
 use App\Models\SyncBatch;
+use App\Support\Sync\SyncOperationRunner;
 use App\Support\Sync\SyncPresenter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,5 +35,18 @@ class SyncController extends Controller
         abort_unless((int) $batch->pressing_id === (int) $request->user()->pressing_id, 404);
 
         return $this->ok($this->presenter->batch($batch->load(['agency:id,name', 'user:id,fullname'])));
+    }
+
+    /** « Résoudre le conflit » puis « Appliquer et reprendre » (`decision=keep_discount|remove_discount|hold`). */
+    public function resolve(Request $request, SyncBatch $batch, string $clientUuid, SyncOperationRunner $runner): JsonResponse
+    {
+        abort_unless((int) $batch->pressing_id === (int) $request->user()->pressing_id, 404);
+        $data = $request->validate(['decision' => ['required', 'in:keep_discount,remove_discount,hold']]);
+        $result = $runner->resolve($request->user(), $batch, $clientUuid, $data['decision']);
+
+        return $this->ok([
+            'operation' => collect($result)->except('payload')->all(),
+            'batch' => $this->presenter->batch($batch->fresh()->load(['agency:id,name', 'user:id,fullname'])),
+        ]);
     }
 }
