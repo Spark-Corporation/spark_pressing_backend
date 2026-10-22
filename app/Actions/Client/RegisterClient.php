@@ -43,7 +43,7 @@ class RegisterClient
         $data['wallet_balance'] = $data['wallet_balance'] ?? 0;
 
         $client = Client::withoutGlobalScopes()->create($data);
-        $client->code = 'C'.str_pad((string) $client->id, 6, '0', STR_PAD_LEFT);
+        $client->code = sprintf('CLI-%05d', $client->id);
         $client->save();
 
         $bonus = (int) config('spark.referral_bonus_xaf', 0);

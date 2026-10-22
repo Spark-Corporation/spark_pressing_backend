@@ -174,6 +174,23 @@ Idempotency-Key: {uuid-v4}
 | « Envoyer au client » | `POST /deposits/{id}/document/send` (`channel=whatsapp\|sms\|email`) | `share_url` signé 7 j, `open_url` (wa.me) |
 | « Annuler le dépôt » | `DELETE /deposits/{id}` (`reason`) | journalisé |
 
+### 7.0c Clients & fidélité (Figma 03)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| CRM — KPI, répartition fidélité, puces de palier | `GET /clients` | `meta.kpis` (actifs, nouveaux + semaine, VIP + part, points + évolution), `meta.loyalty_distribution`, `meta.tier_filters` |
+| Filtres | `GET /clients?q&tier=essentiel\|argent\|or\|platine&crm_status=active\|vip\|inactive\|archived&agency_id&period=day\|week\|month` | — |
+| Répertoire | idem | `initials`, `code` (CLI-…), `agency`, `last_deposit_at`, `frequency_per_month`, `lifetime_value`, `loyalty_points`, `tier`, `crm_status` |
+| « Exporter » | `GET /clients/export` | CSV |
+| Nouveau / modifier client | `POST /clients`, `PUT /clients/{id}` | `last_name`, `first_name`, `phone_secondary`, `agency_id`, `contact_preference` (whatsapp/call/sms/email), `loyalty_tier`, `consent_sms`, `consent_email`, `pickup_slot`, `favorite_treatment`, `instructions`, `note` |
+| Contrôle des doublons | `GET /clients/duplicates?phone&email&except_id` | `matches[]` (code, nom, agence) |
+| Fiche client | `GET /clients/{id}` | `stats`, `loyalty` (valeur, palier suivant, progression, règle de conversion), `points_history`, `timeline`, `recent_orders`, `preferences`, `notes`, `account` |
+| « Convertir en remise » | `POST /clients/{id}/loyalty/convert` (`points` ≥ 500) | crédit portefeuille |
+| Notes internes | `GET/POST /clients/{id}/notes` | — |
+| « Archiver le client » | `POST /clients/{id}/archive`, `/restore` | historique conservé |
+
+Paliers dans `config/spark.php` (`loyalty_tiers`, `vip_tier`) : Essentiel 0, Argent 1 000, Or 2 500, Platine 4 000 points (valeurs par défaut à confirmer).
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |

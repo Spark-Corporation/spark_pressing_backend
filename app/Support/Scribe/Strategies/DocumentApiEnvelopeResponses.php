@@ -90,7 +90,7 @@ class DocumentApiEnvelopeResponses extends Strategy
             'id' => 1,
             'pressing_id' => 1,
             'agency_id' => 1,
-            'code' => 'C000001',
+            'code' => 'CLI-00001',
             'fullname' => 'Jean Client',
             'email' => 'jean.client@example.com',
             'phone_number' => '690000001',
@@ -102,7 +102,59 @@ class DocumentApiEnvelopeResponses extends Strategy
             'referred_by_id' => null,
             'last_deposit_at' => '2026-10-14T10:00:00+00:00',
             'status' => true,
+            'first_name' => 'Jean',
+            'last_name' => 'Client',
+            'phone_secondary' => null,
+            'contact_preference' => 'whatsapp',
+            'consent_sms' => true,
+            'consent_email' => false,
+            'archived_at' => null,
+            'tier' => ['code' => 'essentiel', 'label' => 'Essentiel'],
         ];
+        $clientRow = $client + [
+            'agency' => ['id' => 1, 'name' => 'Akwa'],
+            'deposits_count' => 42,
+            'initials' => 'JC',
+            'frequency_per_month' => 2.8,
+            'lifetime_value' => 486500,
+            'crm_status' => ['code' => 'active', 'label' => 'Actif'],
+        ];
+        $clientsMeta = [
+            'kpis' => [
+                'active_clients' => ['value' => 2846, 'delta_percent_month' => 8.2],
+                'new_clients' => ['value' => 184, 'this_week' => 24],
+                'vip_clients' => ['value' => 126, 'share_percent' => 4.4],
+                'points' => ['value' => 482000, 'earned_this_month' => 52000, 'delta_percent_month' => 12.5],
+            ],
+            'loyalty_distribution' => ['total' => 2846, 'tiers' => [
+                ['code' => 'essentiel', 'label' => 'Essentiel', 'count' => 1624, 'percent' => 57],
+                ['code' => 'argent', 'label' => 'Argent', 'count' => 738, 'percent' => 26],
+                ['code' => 'or', 'label' => 'Or', 'count' => 358, 'percent' => 13],
+                ['code' => 'platine', 'label' => 'Platine', 'count' => 126, 'percent' => 4],
+            ]],
+            'tier_filters' => [
+                ['code' => null, 'label' => 'Tous', 'count' => 2846],
+                ['code' => 'essentiel', 'label' => 'Essentiel', 'count' => 1624],
+            ],
+            'synced_at' => '2026-10-14T10:38:00+00:00',
+        ];
+        $clientProfile = array_merge($clientRow, [
+            'contact_preference' => ['code' => 'whatsapp', 'label' => 'WhatsApp'],
+            'stats' => ['lifetime_value' => 486500, 'client_since' => '2024-03-18', 'deposits' => 42, 'frequency_per_month' => 2.8, 'average_basket' => 24325, 'average_basket_delta_percent_6m' => 6.4, 'balance_due' => 12500],
+            'loyalty' => [
+                'points' => 3240, 'value' => 16200,
+                'tier' => ['code' => 'or', 'label' => 'Or'],
+                'next_tier' => ['code' => 'platine', 'label' => 'Platine', 'min_points' => 4000],
+                'points_to_next_tier' => 760, 'progress_percent' => 81,
+                'conversion' => ['points' => 100, 'value' => 500, 'minimum_points' => 500],
+            ],
+            'points_history' => [['label' => 'Dépôt', 'reason' => 'Paiement dépôt DEP-240928-041', 'reference' => 'DEP-240928-041', 'points' => 325, 'at' => '2026-09-28T09:42:00+00:00']],
+            'timeline' => [['type' => 'retrieve', 'title' => 'Retrait effectué', 'detail' => '3 articles remis', 'reference' => 'CMD-240928-018', 'at' => '2026-10-14T10:16:00+00:00']],
+            'recent_orders' => [['id' => 1, 'code' => 'CMD-240928-018', 'date' => '2026-09-28T09:42:00+00:00', 'articles' => 5, 'total' => 32500, 'status' => ['code' => 'ready', 'label' => 'Prête au retrait']]],
+            'preferences' => ['contact_channel' => 'WhatsApp', 'pickup_slot' => 'Fin de journée · 17h–19h', 'favorite_treatment' => 'Soin premium sans parfum', 'instructions' => 'Chemises sur cintre, plis légers'],
+            'notes' => ['count' => 2, 'items' => [['id' => 1, 'body' => 'Cliente attentive aux finitions.', 'author' => 'Fatou', 'created_at' => '2026-09-28T10:00:00+00:00']]],
+            'account' => ['client_since' => '2024-03-18', 'agency' => 'Akwa', 'marketing_consent' => true, 'consents' => ['sms' => true, 'email' => false, 'updated_at' => '2026-03-18T10:00:00+00:00'], 'archived_at' => null],
+        ]);
 
         $article = [
             'id' => 1,
@@ -508,7 +560,30 @@ class DocumentApiEnvelopeResponses extends Strategy
         // —— Clients ——
         if (str_starts_with($path, '/api/v1/clients') || str_starts_with($path, '/api/v1/client/')) {
             if ($method === 'GET' && ($path === '/api/v1/clients' || $path === '/api/v1/clients/inactive')) {
-                return [$this->response(200, [$client], $pageMeta)];
+                return [$this->response(200, [$clientRow], array_merge($pageMeta, $clientsMeta))];
+            }
+            if ($method === 'GET' && $path === '/api/v1/clients/export') {
+                return [[
+                    'status' => 200,
+                    'description' => 'Export CSV (text/csv)',
+                    'content' => json_encode(['data' => ['content_type' => 'text/csv'], 'meta' => (object) [], 'errors' => null], JSON_UNESCAPED_UNICODE),
+                ]];
+            }
+            if ($method === 'GET' && $path === '/api/v1/clients/duplicates') {
+                return [$this->response(200, ['has_duplicates' => true, 'matches' => [
+                    ['id' => 1842, 'code' => 'CLI-01842', 'fullname' => 'Aminata Koné', 'phone_number' => '0748221603', 'agency' => 'Bingerville'],
+                ]])];
+            }
+            if (str_ends_with($path, '/notes')) {
+                $note = ['id' => 1, 'body' => 'Cliente attentive aux finitions.', 'author' => 'Fatou', 'created_at' => '2026-09-28T10:00:00+00:00'];
+
+                return [$method === 'POST' ? $this->response(201, $note) : $this->response(200, [$note])];
+            }
+            if ($method === 'POST' && (str_ends_with($path, '/archive') || str_ends_with($path, '/restore'))) {
+                return [$this->response(200, array_merge($clientRow, ['crm_status' => ['code' => 'archived', 'label' => 'Archivé']]))];
+            }
+            if ($method === 'POST' && str_ends_with($path, '/loyalty/convert')) {
+                return [$this->response(200, ['converted_points' => 500, 'amount' => 2500, 'loyalty' => $clientProfile['loyalty'], 'wallet_balance' => 7500])];
             }
             if ($method === 'GET' && str_contains($path, '/loyalty')) {
                 return [$this->response(200, [
@@ -543,7 +618,13 @@ class DocumentApiEnvelopeResponses extends Strategy
                 return [$this->response(200, [$client])];
             }
             if ($method === 'POST' && $path === '/api/v1/clients') {
-                return [$this->response(201, $client)];
+                return [$this->response(201, $clientProfile)];
+            }
+            if ($method === 'GET' && $path === '/api/v1/clients/{id}') {
+                return [$this->response(200, $clientProfile)];
+            }
+            if ($method === 'PUT' && $path === '/api/v1/clients/{id}') {
+                return [$this->response(200, $clientProfile)];
             }
             if ($method === 'GET' && ($path === '/api/v1/clients/{id}' || $path === '/api/v1/client/profile' || str_contains($path, '/deposits') || str_contains($path, '/retrieves'))) {
                 $data = str_contains($path, '/deposits') || str_contains($path, '/retrieves') ? [$deposit] : $client;

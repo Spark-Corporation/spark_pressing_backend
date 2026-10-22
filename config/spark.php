@@ -25,6 +25,16 @@ return [
         'hours_repass' => 12,
     ],
 
+    // Paliers « Essentiel / Argent / Or / Platine » (écrans Clients & fidélité).
+    'loyalty_tiers' => [
+        'essentiel' => ['label' => 'Essentiel', 'min_points' => 0],
+        'argent' => ['label' => 'Argent', 'min_points' => 1000],
+        'or' => ['label' => 'Or', 'min_points' => 2500],
+        'platine' => ['label' => 'Platine', 'min_points' => 4000],
+    ],
+    'vip_tier' => 'platine',
+    'loyalty_min_conversion_points' => 500,
+
     'referral_bonus_xaf' => (int) env('SPARK_REFERRAL_BONUS', 0),
     'enforce_licenses' => (bool) env('SPARK_ENFORCE_LICENSES', false),
 ];
