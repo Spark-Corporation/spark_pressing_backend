@@ -536,6 +536,41 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Promotions, livraison, notifications (Figma 09) ——
+        if ($path === '/api/v1/promos/overview') {
+            return [$this->response(200, [
+                'kpis' => [
+                    'active_members' => ['value' => 2846, 'delta_percent' => 8.4],
+                    'points_issued' => ['value' => 184620, 'consumable_percent' => 64],
+                    'points_consumed' => ['value' => 72480, 'share_of_stock' => 39.3],
+                    'discounts_granted' => ['value' => 3840000, 'period_from' => '2026-09-01'],
+                    'active_campaigns' => ['value' => 2, 'uses' => 422],
+                ],
+                'program' => ['active' => true, 'earn_points_per_1000' => 10, 'conversion_points' => 200, 'conversion_value' => 1000, 'minimum_points' => 500, 'expiration_months' => 12, 'credit_after_payment' => true, 'stack_with_promotions' => false, 'point_value' => 5, 'earn_label' => '10 points / 1 000 FCFA', 'conversion_label' => '200 points = 1 000 FCFA'],
+                'tiers' => config('settings_schema.categories.loyalty.defaults.tiers'),
+                'history' => [['client' => 'Aminata Koné', 'reason' => 'Paiement dépôt DP-2841', 'points' => 120, 'at' => '2026-09-28T10:21:00+00:00']],
+                'auto_groups' => [['code' => 'gold_platinum', 'label' => 'Clients Or & Platine', 'count' => 486]],
+                'promotions' => [['id' => 1, 'code' => 'RENTREE15', 'name' => 'Rentrée', 'type' => 'percent', 'discount_label' => '15 %', 'starts_at' => '2026-09-01', 'ends_at' => '2026-09-30', 'quota' => 500, 'used' => 312, 'usage_percent' => 62, 'per_client_limit' => 1, 'agencies' => ['Toutes les agences'], 'min_amount' => 10000, 'max_discount' => 12000, 'stack_with_loyalty' => false, 'status' => 'active', 'status_label' => 'Active']],
+            ], ['count' => 1, 'previous_period_from' => '2026-08-01'])];
+        }
+        if ($path === '/api/v1/promos/check-code') {
+            return [$this->response(200, ['code' => 'RENTREE15', 'available' => true])];
+        }
+        if ($path === '/api/v1/deliveries/estimate') {
+            return [$this->response(200, [
+                'zone' => ['id' => 2, 'name' => 'Résidentiel', 'code' => 'Z-BG-02', 'agency' => ['id' => 1, 'name' => 'Bingerville'], 'quarters' => ['Faya', 'Abatta'], 'radius_km' => 5, 'departure_address' => 'Agence Bingerville', 'collection_fee' => 2000, 'delivery_fee' => 2500, 'active' => true, 'status' => 'validated', 'status_label' => 'Validée'],
+                'articles' => 18000, 'collection_fee' => 2000, 'delivery_fee' => 2500, 'total' => 22500,
+                'free_delivery' => ['applied' => false, 'threshold' => 25000, 'remaining' => 7000, 'label' => 'Gratuité non atteinte : seuil 25 000 FCFA'],
+                'minimum_order' => ['amount' => 5000, 'reached' => true],
+            ])];
+        }
+        if ($path === '/api/v1/settings/notifications/logs') {
+            return [$this->response(200, [['id' => 12, 'at' => '2026-09-28T10:21:00+00:00', 'channel' => 'sms', 'recipient' => '•••• 03', 'event' => 'ready', 'event_label' => 'Prêt au retrait', 'status' => 'sent', 'status_label' => 'Envoyé', 'is_test' => false, 'error' => null]], ['count' => 1], description: 'JSON ; `format=csv` pour « Exporter les logs »')];
+        }
+        if ($path === '/api/v1/settings/notifications/test') {
+            return [$this->response(200, ['status' => 'sent', 'status_label' => 'Envoyé', 'message' => 'Bonjour Aminata, votre dépôt DP-2026-2843 est prêt à l’agence Bingerville. Reste à payer : 9 500 FCFA.', 'stats' => ['length' => 118, 'max' => 320, 'segments' => 1]])];
+        }
+
         // —— Paramètres (Figma 09) ——
         $device = ['id' => 1, 'code' => 'CAISSE-BG-01', 'type' => 'pos', 'label' => 'Caisse principale', 'agency' => ['id' => 1, 'name' => 'Bingerville'], 'responsible' => ['id' => 3, 'fullname' => 'Awa N.'], 'status' => 'authorized', 'status_label' => 'Autorisé', 'offline_enabled' => true, 'authorized_at' => '2026-09-28T10:00:00+00:00', 'expires_at' => '2026-12-27T10:00:00+00:00', 'last_seen_at' => null];
         if ($path === '/api/v1/settings') {

@@ -24,6 +24,8 @@ Route::prefix('settings')->name('settings.')->group(function () {
         Route::get('/', 'index')->name('hub');
         Route::get('journal', 'journal')->name('journal');
         Route::get('devices', 'devices')->name('devices.index');
+        Route::get('notifications/logs', 'notificationLogs')->name('notifications.logs');
+        Route::post('notifications/test', 'testNotification')->middleware('permission:settings.manage')->name('notifications.test');
         Route::middleware('permission:settings.manage')->group(function () {
             Route::post('devices', 'storeDevice')->name('devices.store');
             Route::put('devices/{device}', 'updateDevice')->name('devices.update');

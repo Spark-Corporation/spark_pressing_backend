@@ -78,7 +78,8 @@ class CreateDeposit
                     $pressing,
                     $client,
                     $goods,
-                    $payload
+                    $payload,
+                    (int) $agency->id,
                 );
 
                 $total = max(0, $goods - $discount);
@@ -191,7 +192,10 @@ class CreateDeposit
                     'local_ref' => $deposit->local_ref,
                 ]);
 
-                return $deposit->fresh(['units', 'client', 'transactions']);
+                $created = $deposit->fresh(['units', 'client', 'transactions']);
+                $created->wasRecentlyCreated = true;
+
+                return $created;
             });
         } catch (QueryException $e) {
             // Course concurrente sur client_uuid unique → rejouer le dépôt existant.
@@ -216,19 +220,24 @@ class CreateDeposit
             || str_contains($message, 'Duplicate entry');
     }
 
-    private function resolveDiscount(Pressing $pressing, Client $client, int $goods, array $payload): array
+    private function resolveDiscount(Pressing $pressing, Client $client, int $goods, array $payload, ?int $agencyId = null): array
     {
         $manualPercent = (int) ($payload['discount_percent'] ?? 0);
         $manualAmount = (int) ($payload['discount'] ?? 0);
         $promoCode = $payload['promo_code'] ?? null;
         $promoPercent = 0;
+        $promoAmount = 0;
 
         if ($promoCode) {
             $promo = Promo::query()->where('code', $promoCode)->first();
             if (! $promo || ! $promo->isUsable()) {
                 throw ValidationException::withMessages(['promo_code' => 'Code promo invalide ou expiré.']);
             }
-            $promoPercent = (int) $promo->rate_percent;
+            if ($reason = $promo->refusalFor($client, $agencyId, $goods, (int) ($payload['points_to_redeem'] ?? 0) > 0)) {
+                throw ValidationException::withMessages(['promo_code' => $reason]);
+            }
+            $promoAmount = $promo->discountFor($goods);
+            $promoPercent = $promo->type === 'amount' ? 0 : (int) $promo->rate_percent;
             $promo->increment('used');
         }
 
@@ -248,7 +257,7 @@ class CreateDeposit
             ->max('rate_percent');
 
         $percent = max($manualPercent, $promoPercent, $groupPercent, $specialPercent);
-        $percentAmount = (int) floor($goods * $percent / 100);
+        $percentAmount = (int) floor($goods * max($manualPercent, $groupPercent, $specialPercent) / 100);
 
         $points = (int) ($payload['points_to_redeem'] ?? 0);
         $pointsDiscount = 0;
@@ -259,7 +268,7 @@ class CreateDeposit
             }
         }
 
-        $discount = max($manualAmount, $percentAmount) + $pointsDiscount;
+        $discount = max($manualAmount, $percentAmount, $promoAmount) + $pointsDiscount;
 
         return [$discount, $percent, $promoCode, $points];
     }

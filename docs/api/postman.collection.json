@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "e022dde7-491f-45a7-88bf-6b23d1f9f945",
+        "_postman_id": "452b348c-4815-4f24-82ea-0bc074806b58",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T12:15:30\",\"retrieve_date\":\"2026-10-22T12:15:30\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T12:22:17\",\"retrieve_date\":\"2026-10-22T12:22:17\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T12:15:30\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T12:22:17\"}"
                         },
                         "description": ""
                     },
@@ -3727,7 +3727,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T12:15:30\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T12:22:17\"}"
                         },
                         "description": ""
                     },
@@ -3772,7 +3772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T12:15:30\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T12:22:17\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -4179,6 +4179,96 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Promotions et fid\u00e9lit\u00e9 \u00bb : KPIs du mois, r\u00e8gles et niveaux du programme, historique des points,\ngroupes automatiques, tableau des campagnes (`agency_id`, `status`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/promos\/overview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/promos\/overview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"agency_id\":16,\"status\":\"scheduled\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"kpis\": {\n            \"active_members\": {\n                \"value\": 2846,\n                \"delta_percent\": 8.4\n            },\n            \"points_issued\": {\n                \"value\": 184620,\n                \"consumable_percent\": 64\n            },\n            \"points_consumed\": {\n                \"value\": 72480,\n                \"share_of_stock\": 39.3\n            },\n            \"discounts_granted\": {\n                \"value\": 3840000,\n                \"period_from\": \"2026-09-01\"\n            },\n            \"active_campaigns\": {\n                \"value\": 2,\n                \"uses\": 422\n            }\n        },\n        \"program\": {\n            \"active\": true,\n            \"earn_points_per_1000\": 10,\n            \"conversion_points\": 200,\n            \"conversion_value\": 1000,\n            \"minimum_points\": 500,\n            \"expiration_months\": 12,\n            \"credit_after_payment\": true,\n            \"stack_with_promotions\": false,\n            \"point_value\": 5,\n            \"earn_label\": \"10 points \/ 1 000 FCFA\",\n            \"conversion_label\": \"200 points = 1 000 FCFA\"\n        },\n        \"tiers\": {\n            \"basis\": \"points\",\n            \"levels\": [\n                {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\",\n                    \"min\": 0,\n                    \"multiplier\": 1,\n                    \"benefit\": \"Aucun bonus\"\n                },\n                {\n                    \"code\": \"argent\",\n                    \"label\": \"Argent\",\n                    \"min\": 1000,\n                    \"multiplier\": 1.1,\n                    \"benefit\": \"+10 % de points\"\n                },\n                {\n                    \"code\": \"or\",\n                    \"label\": \"Or\",\n                    \"min\": 2500,\n                    \"multiplier\": 1.25,\n                    \"benefit\": \"Priorit\u00e9 & retouches\"\n                },\n                {\n                    \"code\": \"platine\",\n                    \"label\": \"Platine\",\n                    \"min\": 4000,\n                    \"multiplier\": 1.5,\n                    \"benefit\": \"Collecte offerte\"\n                }\n            ]\n        },\n        \"history\": [\n            {\n                \"client\": \"Aminata Kon\u00e9\",\n                \"reason\": \"Paiement d\u00e9p\u00f4t DP-2841\",\n                \"points\": 120,\n                \"at\": \"2026-09-28T10:21:00+00:00\"\n            }\n        ],\n        \"auto_groups\": [\n            {\n                \"code\": \"gold_platinum\",\n                \"label\": \"Clients Or & Platine\",\n                \"count\": 486\n            }\n        ],\n        \"promotions\": [\n            {\n                \"id\": 1,\n                \"code\": \"RENTREE15\",\n                \"name\": \"Rentr\u00e9e\",\n                \"type\": \"percent\",\n                \"discount_label\": \"15 %\",\n                \"starts_at\": \"2026-09-01\",\n                \"ends_at\": \"2026-09-30\",\n                \"quota\": 500,\n                \"used\": 312,\n                \"usage_percent\": 62,\n                \"per_client_limit\": 1,\n                \"agencies\": [\n                    \"Toutes les agences\"\n                ],\n                \"min_amount\": 10000,\n                \"max_discount\": 12000,\n                \"stack_with_loyalty\": false,\n                \"status\": \"active\",\n                \"status_label\": \"Active\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"count\": 1,\n        \"previous_period_from\": \"2026-08-01\"\n    },\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "Disponibilit\u00e9 d\u2019un code (\u00ab Code disponible \u00bb).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/promos\/check-code",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/promos\/check-code"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"b\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"code\": \"RENTREE15\",\n        \"available\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5435,7 +5525,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T12:15:30",
+                                    "value": "2026-10-22T12:22:17",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5583,7 +5673,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T12:15:30\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T12:22:17\"}"
                         },
                         "description": ""
                     },
@@ -5740,7 +5830,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T12:15:30\"}"
+                            "raw": "{\"date\":\"2026-10-22T12:22:17\"}"
                         },
                         "description": ""
                     },
@@ -5785,7 +5875,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T12:15:30\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T12:22:17\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -6887,7 +6977,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T12:15:30\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T12:22:17\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -6932,7 +7022,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T12:15:30\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T12:22:17\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7505,7 +7595,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T12:15:30\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T12:22:17\"}"
                         },
                         "description": ""
                     },
@@ -9388,7 +9478,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T12:15:29\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T12:22:17\"}"
                         },
                         "description": ""
                     },
@@ -9527,7 +9617,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T12:15:29",
+                                    "value": "2026-10-22T12:22:17",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -10206,7 +10296,7 @@
                     ]
                 },
                 {
-                    "name": "GET api\/v1\/deliveries\/zones",
+                    "name": "Zones desservies (Param\u00e8tres \u203a Collecte & livraison) ; `all=1` inclut les zones d\u00e9sactiv\u00e9es.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -10273,7 +10363,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true,\"quarters\":[\"z\"],\"radius_km\":17,\"departure_address\":\"i\",\"collection_fee\":76,\"delivery_fee\":60,\"verified\":false}"
                         },
                         "description": ""
                     },
@@ -10332,7 +10422,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true,\"quarters\":[\"z\"],\"radius_km\":17,\"departure_address\":\"i\",\"collection_fee\":76,\"delivery_fee\":60,\"verified\":false}"
                         },
                         "description": ""
                     },
@@ -10341,6 +10431,57 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Centre-ville\",\n        \"code\": \"CV\",\n        \"agency_id\": 1,\n        \"status\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Estimation du tarif \u00bb : frais de la zone (ou de r\u00e9f\u00e9rence), gratuit\u00e9 au-del\u00e0 du seuil,\nminimum de commande (r\u00e9glages `delivery`).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/deliveries\/estimate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/deliveries\/estimate"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"zone_id\":16,\"amount\":39,\"with_collection\":true,\"with_delivery\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"zone\": {\n            \"id\": 2,\n            \"name\": \"R\u00e9sidentiel\",\n            \"code\": \"Z-BG-02\",\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Bingerville\"\n            },\n            \"quarters\": [\n                \"Faya\",\n                \"Abatta\"\n            ],\n            \"radius_km\": 5,\n            \"departure_address\": \"Agence Bingerville\",\n            \"collection_fee\": 2000,\n            \"delivery_fee\": 2500,\n            \"active\": true,\n            \"status\": \"validated\",\n            \"status_label\": \"Valid\u00e9e\"\n        },\n        \"articles\": 18000,\n        \"collection_fee\": 2000,\n        \"delivery_fee\": 2500,\n        \"total\": 22500,\n        \"free_delivery\": {\n            \"applied\": false,\n            \"threshold\": 25000,\n            \"remaining\": 7000,\n            \"label\": \"Gratuit\u00e9 non atteinte : seuil 25 000 FCFA\"\n        },\n        \"minimum_order\": {\n            \"amount\": 5000,\n            \"reached\": true\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -10425,7 +10566,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T12:15:30\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T12:22:17\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },
@@ -10765,6 +10906,102 @@
                             "code": 401,
                             "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
                             "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Logs r\u00e9cents \u00bb des notifications (`days`, `channel`, `status`, `format=csv` pour \u00ab Exporter les logs \u00bb).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/notifications\/logs",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/notifications\/logs"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"days\":1,\"channel\":\"email\",\"status\":\"architecto\",\"format\":\"csv\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 12,\n            \"at\": \"2026-09-28T10:21:00+00:00\",\n            \"channel\": \"sms\",\n            \"recipient\": \"\u2022\u2022\u2022\u2022 03\",\n            \"event\": \"ready\",\n            \"event_label\": \"Pr\u00eat au retrait\",\n            \"status\": \"sent\",\n            \"status_label\": \"Envoy\u00e9\",\n            \"is_test\": false,\n            \"error\": null\n        }\n    ],\n    \"meta\": {\n        \"count\": 1\n    },\n    \"errors\": null\n}",
+                            "name": "JSON ; `format=csv` pour \u00ab Exporter les logs \u00bb"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Envoyer un test \u00bb : rend le mod\u00e8le (ou `message`) avec des donn\u00e9es d\u2019exemple et l\u2019envoie.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/settings\/notifications\/test",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/settings\/notifications\/test"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"event\":\"architecto\",\"channel\":\"email\",\"recipient\":\"g\",\"message\":\"z\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"status\": \"sent\",\n        \"status_label\": \"Envoy\u00e9\",\n        \"message\": \"Bonjour Aminata, votre d\u00e9p\u00f4t DP-2026-2843 est pr\u00eat \u00e0 l\u2019agence Bingerville. Reste \u00e0 payer : 9 500 FCFA.\",\n        \"stats\": {\n            \"length\": 118,\n            \"max\": 320,\n            \"segments\": 1\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Les donn\u00e9es sont invalides.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"validation\",\n            \"field\": \"field\",\n            \"detail\": \"Le champ est invalide.\"\n        }\n    ]\n}",
+                            "name": "Validation"
                         }
                     ]
                 },

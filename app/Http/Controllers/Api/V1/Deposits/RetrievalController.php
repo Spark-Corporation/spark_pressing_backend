@@ -8,9 +8,11 @@ use App\Actions\Deposit\RetrievePartial;
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
 use App\Models\Deposit;
+use App\Models\NotificationLog;
 use App\Models\Pressing;
 use App\Support\Deposits\DepositPresenter;
 use App\Support\Deposits\RetrievalPresenter;
+use App\Support\Notifications\Notifier;
 use App\Support\Sms\SmsSender;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -166,14 +168,7 @@ class RetrievalController extends Controller
 
         [$deposit, $isPartial] = $result;
 
-        if (! empty($data['notify_sms']) && $deposit->client?->phone_number) {
-            $sms->send($deposit->client->phone_number, sprintf(
-                '%s : retrait %s du dépôt %s enregistré. Merci de votre confiance.',
-                $deposit->pressing?->name ?? 'SPARK PRESSING',
-                $isPartial ? 'partiel' : 'complet',
-                $deposit->code
-            ));
-        }
+        app(Notifier::class)->dispatch('retrieved', $deposit, ! empty($data['notify_sms']) ? ['sms'] : []);
 
         $received = $data['payment']['received'] ?? null;
         $amount = (int) ($data['payment']['amount'] ?? 0);
@@ -209,6 +204,10 @@ class RetrievalController extends Controller
             'notification_read_at' => null,
         ]);
         AuditLog::record('deposit.notified', $deposit, ['channel' => $channel]);
+        NotificationLog::query()->create([
+            'pressing_id' => $deposit->pressing_id, 'agency_id' => $deposit->agency_id, 'client_id' => $deposit->client_id, 'deposit_id' => $deposit->id,
+            'event' => 'ready', 'channel' => $channel, 'recipient' => $phone, 'message' => $message, 'status' => 'sent',
+        ]);
 
         return $openUrl;
     }

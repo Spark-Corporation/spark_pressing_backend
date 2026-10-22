@@ -10,6 +10,7 @@ Route::prefix('deliveries')->name('deliveries.')->group(function () {
     Route::get('zones', [DeliveryController::class, 'zonesIndex'])->middleware('permission:deliveries.view')->name('zones.index');
     Route::post('zones', [DeliveryController::class, 'zonesStore'])->middleware('permission:deliveries.manage')->name('zones.store');
     Route::put('zones/{zone}', [DeliveryController::class, 'zonesUpdate'])->middleware('permission:deliveries.manage')->name('zones.update');
+    Route::post('estimate', [DeliveryController::class, 'estimate'])->middleware('permission:deliveries.view')->name('estimate');
 
     Route::get('rounds', [DeliveryController::class, 'roundsIndex'])->middleware('permission:deliveries.view')->name('rounds.index');
     Route::post('rounds', [DeliveryController::class, 'roundsStore'])->middleware('permission:deliveries.manage')->name('rounds.store');

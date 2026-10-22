@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Api\V1\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\Agency;
 use App\Models\AuditLog;
+use App\Models\NotificationLog;
 use App\Models\PosDevice;
+use App\Support\Notifications\Notifier;
 use App\Support\Settings\SettingsHub;
 use App\Support\Settings\SettingsRegistry;
+use App\Support\Sms\SmsSender;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Knuckles\Scribe\Attributes\Group;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 #[Group('Paramètres')]
 class PressingSettingsController extends Controller
@@ -90,6 +94,68 @@ class PressingSettingsController extends Controller
         $data = $request->validate(['category' => ['nullable', 'string'], 'limit' => ['nullable', 'integer', 'min:1', 'max:100']]);
 
         return $this->ok($this->settings->journal($request->user()->pressing_id, $data['category'] ?? null, $data['limit'] ?? 30));
+    }
+
+    /** « Logs récents » des notifications (`days`, `channel`, `status`, `format=csv` pour « Exporter les logs »). */
+    public function notificationLogs(Request $request): JsonResponse|StreamedResponse
+    {
+        $data = $request->validate([
+            'days' => ['nullable', 'integer', 'min:1', 'max:90'],
+            'channel' => ['nullable', 'in:sms,email'],
+            'status' => ['nullable', 'string'],
+            'format' => ['nullable', 'in:json,csv'],
+        ]);
+        $logs = NotificationLog::query()
+            ->where('pressing_id', $request->user()->pressing_id)
+            ->where('created_at', '>=', now()->subDays($data['days'] ?? 7))
+            ->when($data['channel'] ?? null, fn ($q, $c) => $q->where('channel', $c))
+            ->when($data['status'] ?? null, fn ($q, $st) => $q->where('status', $st))
+            ->latest('id')->limit(500)->get()
+            ->map(fn (NotificationLog $l) => [
+                'id' => $l->id,
+                'at' => $l->created_at?->toIso8601String(),
+                'channel' => $l->channel,
+                'recipient' => $l->channel === 'sms' ? SmsSender::mask($l->recipient) : $l->recipient,
+                'event' => $l->event,
+                'event_label' => Notifier::EVENT_LABELS[$l->event] ?? $l->event,
+                'status' => $l->status,
+                'status_label' => NotificationLog::STATUS_LABELS[$l->status] ?? $l->status,
+                'is_test' => $l->is_test,
+                'error' => $l->error,
+            ]);
+
+        if (($data['format'] ?? 'json') === 'csv') {
+            return response()->streamDownload(function () use ($logs) {
+                $out = fopen('php://output', 'w');
+                fwrite($out, "\xEF\xBB\xBF");
+                fputcsv($out, ['Date', 'Canal', 'Destinataire', 'Événement', 'Statut'], ';');
+                foreach ($logs as $l) {
+                    fputcsv($out, [$l['at'], $l['channel'], $l['recipient'], $l['event_label'], $l['status_label']], ';');
+                }
+                fclose($out);
+            }, 'notifications-'.now()->format('Ymd').'.csv', ['Content-Type' => 'text/csv; charset=UTF-8']);
+        }
+
+        return $this->ok($logs->values()->all(), ['count' => $logs->count()]);
+    }
+
+    /** « Envoyer un test » : rend le modèle (ou `message`) avec des données d’exemple et l’envoie. */
+    public function testNotification(Request $request, Notifier $notifier): JsonResponse
+    {
+        $data = $request->validate([
+            'event' => ['required', 'in:'.implode(',', array_keys(Notifier::EVENT_LABELS))],
+            'channel' => ['required', 'in:sms,email'],
+            'recipient' => ['required', 'string', 'max:191', $request->input('channel') === 'email' ? 'email' : 'regex:/^\+?[0-9 ]{8,20}$/'],
+            'message' => ['nullable', 'string', 'max:640'],
+        ]);
+        $log = $notifier->test($request->user()->pressing_id, $data['event'], $data['channel'], $data['recipient'], $data['message'] ?? null);
+
+        return $this->ok([
+            'status' => $log->status,
+            'status_label' => NotificationLog::STATUS_LABELS[$log->status] ?? $log->status,
+            'message' => $log->message,
+            'stats' => Notifier::smsStats($log->message),
+        ]);
     }
 
     /** Appareils de caisse autorisés (Sécurité, Mode hors ligne). */

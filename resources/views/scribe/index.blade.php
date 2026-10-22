@@ -363,6 +363,13 @@ réceptionnaire et journal enregistrés ensemble.</a>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-DELETEapi-v1-renders--id-">
                                 <a href="#catalogue-DELETEapi-v1-renders--id-">DELETE api/v1/renders/{id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-promos-overview">
+                                <a href="#catalogue-GETapi-v1-promos-overview">« Promotions et fidélité » : KPIs du mois, règles et niveaux du programme, historique des points,
+groupes automatiques, tableau des campagnes (`agency_id`, `status`).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-promos-check-code">
+                                <a href="#catalogue-GETapi-v1-promos-check-code">Disponibilité d’un code (« Code disponible »).</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-promos">
                                 <a href="#catalogue-GETapi-v1-promos">GET api/v1/promos</a>
                             </li>
@@ -781,13 +788,17 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
                                 <a href="#livraison-GETapi-v1-deliveries-history">GET api/v1/deliveries/history</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="livraison-GETapi-v1-deliveries-zones">
-                                <a href="#livraison-GETapi-v1-deliveries-zones">GET api/v1/deliveries/zones</a>
+                                <a href="#livraison-GETapi-v1-deliveries-zones">Zones desservies (Paramètres › Collecte & livraison) ; `all=1` inclut les zones désactivées.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-zones">
                                 <a href="#livraison-POSTapi-v1-deliveries-zones">POST api/v1/deliveries/zones</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="livraison-PUTapi-v1-deliveries-zones--id-">
                                 <a href="#livraison-PUTapi-v1-deliveries-zones--id-">PUT api/v1/deliveries/zones/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="livraison-POSTapi-v1-deliveries-estimate">
+                                <a href="#livraison-POSTapi-v1-deliveries-estimate">« Estimation du tarif » : frais de la zone (ou de référence), gratuité au-delà du seuil,
+minimum de commande (réglages `delivery`).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="livraison-GETapi-v1-deliveries-rounds">
                                 <a href="#livraison-GETapi-v1-deliveries-rounds">GET api/v1/deliveries/rounds</a>
@@ -819,6 +830,12 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="parametres-GETapi-v1-settings-devices">
                                 <a href="#parametres-GETapi-v1-settings-devices">Appareils de caisse autorisés (Sécurité, Mode hors ligne).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="parametres-GETapi-v1-settings-notifications-logs">
+                                <a href="#parametres-GETapi-v1-settings-notifications-logs">« Logs récents » des notifications (`days`, `channel`, `status`, `format=csv` pour « Exporter les logs »).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="parametres-POSTapi-v1-settings-notifications-test">
+                                <a href="#parametres-POSTapi-v1-settings-notifications-test">« Envoyer un test » : rend le modèle (ou `message`) avec des données d’exemple et l’envoie.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="parametres-POSTapi-v1-settings-devices">
                                 <a href="#parametres-POSTapi-v1-settings-devices">« Autoriser l’appareil » : créé autorisé pour `security.devices.validity_days` (ou en attente si `pending`).</a>
@@ -7137,8 +7154,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T12:15:30\",
-    \"retrieve_date\": \"2026-10-22T12:15:30\",
+    \"deposit_date\": \"2026-10-22T12:22:17\",
+    \"retrieve_date\": \"2026-10-22T12:22:17\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -7193,8 +7210,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T12:15:30",
-    "retrieve_date": "2026-10-22T12:15:30",
+    "deposit_date": "2026-10-22T12:22:17",
+    "retrieve_date": "2026-10-22T12:22:17",
     "notes": "architecto",
     "lines": [
         {
@@ -7707,10 +7724,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -7719,10 +7736,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -8399,7 +8416,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T12:15:30\"
+    \"transaction_date\": \"2026-10-22T12:22:17\"
 }"
 </code></pre></div>
 
@@ -8420,7 +8437,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T12:15:30"
+    "transaction_date": "2026-10-22T12:22:17"
 };
 
 fetch(url, {
@@ -8759,10 +8776,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
         </form>
 
@@ -18556,7 +18573,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php4300.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php7AEB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -18741,7 +18758,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php4300.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php7AEB.tmp</code></p>
         </div>
         </form>
 
@@ -21366,7 +21383,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T12:15:30\"
+    \"at\": \"2026-10-22T12:22:17\"
 }"
 </code></pre></div>
 
@@ -21388,7 +21405,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T12:15:30"
+    "at": "2026-10-22T12:22:17"
 };
 
 fetch(url, {
@@ -21592,10 +21609,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
         </form>
 
@@ -21624,7 +21641,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T12:15:30\",
+    \"valid_from\": \"2026-10-22T12:22:17\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -21648,7 +21665,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T12:15:30",
+    "valid_from": "2026-10-22T12:22:17",
     "valid_to": "2052-11-14"
 };
 
@@ -21884,10 +21901,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -23427,6 +23444,516 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The ID of the render. Example: <code>architecto</code></p>
             </div>
                     </form>
+
+                    <h2 id="catalogue-GETapi-v1-promos-overview">« Promotions et fidélité » : KPIs du mois, règles et niveaux du programme, historique des points,
+groupes automatiques, tableau des campagnes (`agency_id`, `status`).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-promos-overview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/promos/overview" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"agency_id\": 16,
+    \"status\": \"scheduled\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/promos/overview"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "agency_id": 16,
+    "status": "scheduled"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-promos-overview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;kpis&quot;: {
+            &quot;active_members&quot;: {
+                &quot;value&quot;: 2846,
+                &quot;delta_percent&quot;: 8.4
+            },
+            &quot;points_issued&quot;: {
+                &quot;value&quot;: 184620,
+                &quot;consumable_percent&quot;: 64
+            },
+            &quot;points_consumed&quot;: {
+                &quot;value&quot;: 72480,
+                &quot;share_of_stock&quot;: 39.3
+            },
+            &quot;discounts_granted&quot;: {
+                &quot;value&quot;: 3840000,
+                &quot;period_from&quot;: &quot;2026-09-01&quot;
+            },
+            &quot;active_campaigns&quot;: {
+                &quot;value&quot;: 2,
+                &quot;uses&quot;: 422
+            }
+        },
+        &quot;program&quot;: {
+            &quot;active&quot;: true,
+            &quot;earn_points_per_1000&quot;: 10,
+            &quot;conversion_points&quot;: 200,
+            &quot;conversion_value&quot;: 1000,
+            &quot;minimum_points&quot;: 500,
+            &quot;expiration_months&quot;: 12,
+            &quot;credit_after_payment&quot;: true,
+            &quot;stack_with_promotions&quot;: false,
+            &quot;point_value&quot;: 5,
+            &quot;earn_label&quot;: &quot;10 points / 1 000 FCFA&quot;,
+            &quot;conversion_label&quot;: &quot;200 points = 1 000 FCFA&quot;
+        },
+        &quot;tiers&quot;: {
+            &quot;basis&quot;: &quot;points&quot;,
+            &quot;levels&quot;: [
+                {
+                    &quot;code&quot;: &quot;essentiel&quot;,
+                    &quot;label&quot;: &quot;Essentiel&quot;,
+                    &quot;min&quot;: 0,
+                    &quot;multiplier&quot;: 1,
+                    &quot;benefit&quot;: &quot;Aucun bonus&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;argent&quot;,
+                    &quot;label&quot;: &quot;Argent&quot;,
+                    &quot;min&quot;: 1000,
+                    &quot;multiplier&quot;: 1.1,
+                    &quot;benefit&quot;: &quot;+10 % de points&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;or&quot;,
+                    &quot;label&quot;: &quot;Or&quot;,
+                    &quot;min&quot;: 2500,
+                    &quot;multiplier&quot;: 1.25,
+                    &quot;benefit&quot;: &quot;Priorit&eacute; &amp; retouches&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;platine&quot;,
+                    &quot;label&quot;: &quot;Platine&quot;,
+                    &quot;min&quot;: 4000,
+                    &quot;multiplier&quot;: 1.5,
+                    &quot;benefit&quot;: &quot;Collecte offerte&quot;
+                }
+            ]
+        },
+        &quot;history&quot;: [
+            {
+                &quot;client&quot;: &quot;Aminata Kon&eacute;&quot;,
+                &quot;reason&quot;: &quot;Paiement d&eacute;p&ocirc;t DP-2841&quot;,
+                &quot;points&quot;: 120,
+                &quot;at&quot;: &quot;2026-09-28T10:21:00+00:00&quot;
+            }
+        ],
+        &quot;auto_groups&quot;: [
+            {
+                &quot;code&quot;: &quot;gold_platinum&quot;,
+                &quot;label&quot;: &quot;Clients Or &amp; Platine&quot;,
+                &quot;count&quot;: 486
+            }
+        ],
+        &quot;promotions&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;code&quot;: &quot;RENTREE15&quot;,
+                &quot;name&quot;: &quot;Rentr&eacute;e&quot;,
+                &quot;type&quot;: &quot;percent&quot;,
+                &quot;discount_label&quot;: &quot;15 %&quot;,
+                &quot;starts_at&quot;: &quot;2026-09-01&quot;,
+                &quot;ends_at&quot;: &quot;2026-09-30&quot;,
+                &quot;quota&quot;: 500,
+                &quot;used&quot;: 312,
+                &quot;usage_percent&quot;: 62,
+                &quot;per_client_limit&quot;: 1,
+                &quot;agencies&quot;: [
+                    &quot;Toutes les agences&quot;
+                ],
+                &quot;min_amount&quot;: 10000,
+                &quot;max_discount&quot;: 12000,
+                &quot;stack_with_loyalty&quot;: false,
+                &quot;status&quot;: &quot;active&quot;,
+                &quot;status_label&quot;: &quot;Active&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {
+        &quot;count&quot;: 1,
+        &quot;previous_period_from&quot;: &quot;2026-08-01&quot;
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-promos-overview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-promos-overview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-promos-overview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-promos-overview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-promos-overview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-promos-overview" data-method="GET"
+      data-path="api/v1/promos/overview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-promos-overview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-promos-overview"
+                    onclick="tryItOut('GETapi-v1-promos-overview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-promos-overview"
+                    onclick="cancelTryOut('GETapi-v1-promos-overview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-promos-overview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/promos/overview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-promos-overview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-promos-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-promos-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-promos-overview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="GETapi-v1-promos-overview"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-promos-overview"
+               value="scheduled"
+               data-component="body">
+    <br>
+<p>Example: <code>scheduled</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>active</code></li> <li><code>scheduled</code></li> <li><code>exhausted</code></li> <li><code>ended</code></li> <li><code>disabled</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="catalogue-GETapi-v1-promos-check-code">Disponibilité d’un code (« Code disponible »).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-promos-check-code">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/promos/check-code" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"code\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/promos/check-code"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "code": "b"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-promos-check-code">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;code&quot;: &quot;RENTREE15&quot;,
+        &quot;available&quot;: true
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-promos-check-code" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-promos-check-code"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-promos-check-code"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-promos-check-code" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-promos-check-code">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-promos-check-code" data-method="GET"
+      data-path="api/v1/promos/check-code"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-promos-check-code', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-promos-check-code"
+                    onclick="tryItOut('GETapi-v1-promos-check-code');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-promos-check-code"
+                    onclick="cancelTryOut('GETapi-v1-promos-check-code');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-promos-check-code"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/promos/check-code</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-promos-check-code"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-promos-check-code"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-promos-check-code"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-promos-check-code"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="GETapi-v1-promos-check-code"
+               value="b"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>b</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-GETapi-v1-promos">GET api/v1/promos</h2>
 
@@ -28137,13 +28664,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T12:15:30"\
+    --form "action_date=2026-10-22T12:22:17"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php43AD.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php7C06.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -28163,7 +28690,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T12:15:30');
+body.append('action_date', '2026-10-22T12:22:17');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -28405,10 +28932,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -28492,7 +29019,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php43AD.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php7C06.tmp</code></p>
         </div>
         </form>
 
@@ -28764,7 +29291,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T12:15:30\"
+    \"action_date\": \"2026-10-22T12:22:17\"
 }"
 </code></pre></div>
 
@@ -28785,7 +29312,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T12:15:30"
+    "action_date": "2026-10-22T12:22:17"
 };
 
 fetch(url, {
@@ -29075,10 +29602,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
         </form>
 
@@ -29550,7 +30077,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T12:15:30\"
+    \"date\": \"2026-10-22T12:22:17\"
 }"
 </code></pre></div>
 
@@ -29568,7 +30095,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T12:15:30"
+    "date": "2026-10-22T12:22:17"
 };
 
 fetch(url, {
@@ -29804,10 +30331,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
         </form>
 
@@ -29832,7 +30359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T12:15:30\",
+    \"date\": \"2026-10-22T12:22:17\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -29856,7 +30383,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T12:15:30",
+    "date": "2026-10-22T12:22:17",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -30052,10 +30579,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -35139,7 +35666,7 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T12:15:30\",
+    \"date_from\": \"2026-10-22T12:22:17\",
     \"date_to\": \"2052-11-14\",
     \"preset\": \"month\",
     \"agency_id\": 16,
@@ -35161,7 +35688,7 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T12:15:30",
+    "date_from": "2026-10-22T12:22:17",
     "date_to": "2052-11-14",
     "preset": "month",
     "agency_id": 16,
@@ -35396,10 +35923,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -35475,7 +36002,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T12:15:30\",
+    \"date\": \"2026-10-22T12:22:17\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -35495,7 +36022,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T12:15:30",
+    "date": "2026-10-22T12:22:17",
     "agency_id": 16,
     "format": "json"
 };
@@ -35732,10 +36259,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -38399,7 +38926,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T12:15:30\"
+    \"rate_date\": \"2026-10-22T12:22:17\"
 }"
 </code></pre></div>
 
@@ -38420,7 +38947,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T12:15:30"
+    "rate_date": "2026-10-22T12:22:17"
 };
 
 fetch(url, {
@@ -38626,10 +39153,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
         </form>
 
@@ -47692,7 +48219,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T12:15:29\"
+    \"expires_at\": \"2026-10-22T12:22:17\"
 }"
 </code></pre></div>
 
@@ -47716,7 +48243,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T12:15:29"
+    "expires_at": "2026-10-22T12:22:17"
 };
 
 fetch(url, {
@@ -48051,10 +48578,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T12:15:29"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:29</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
         </form>
 
@@ -48356,10 +48883,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T12:15:29"\
+    --form "effective_at=2026-10-22T12:22:17"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php42A1.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php7A7C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -48378,7 +48905,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T12:15:29');
+body.append('effective_at', '2026-10-22T12:22:17');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -48888,10 +49415,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T12:15:29"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:29</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -48947,7 +49474,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php42A1.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php7A7C.tmp</code></p>
         </div>
         </form>
 
@@ -51734,7 +52261,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="livraison-GETapi-v1-deliveries-zones">GET api/v1/deliveries/zones</h2>
+                    <h2 id="livraison-GETapi-v1-deliveries-zones">Zones desservies (Paramètres › Collecte &amp; livraison) ; `all=1` inclut les zones désactivées.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -51933,7 +52460,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"name\": \"b\",
     \"code\": \"n\",
-    \"status\": true
+    \"status\": true,
+    \"quarters\": [
+        \"z\"
+    ],
+    \"radius_km\": 17,
+    \"departure_address\": \"i\",
+    \"collection_fee\": 76,
+    \"delivery_fee\": 60,
+    \"verified\": false
 }"
 </code></pre></div>
 
@@ -51953,7 +52488,15 @@ const headers = {
 let body = {
     "name": "b",
     "code": "n",
-    "status": true
+    "status": true,
+    "quarters": [
+        "z"
+    ],
+    "radius_km": 17,
+    "departure_address": "i",
+    "collection_fee": 76,
+    "delivery_fee": 60,
+    "verified": false
 };
 
 fetch(url, {
@@ -52174,6 +52717,90 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>true</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>quarters</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="quarters[0]"                data-endpoint="POSTapi-v1-deliveries-zones"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="quarters[1]"                data-endpoint="POSTapi-v1-deliveries-zones"
+               data-component="body">
+    <br>
+<p>validation.max.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>radius_km</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="radius_km"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="17"
+               data-component="body">
+    <br>
+<p>validation.min validation.max. Example: <code>17</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>departure_address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="departure_address"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="i"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>i</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="collection_fee"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="76"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>76</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="delivery_fee"                data-endpoint="POSTapi-v1-deliveries-zones"
+               value="60"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>60</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>verified</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deliveries-zones" style="display: none">
+            <input type="radio" name="verified"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deliveries-zones"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deliveries-zones" style="display: none">
+            <input type="radio" name="verified"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deliveries-zones"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
         </form>
 
                     <h2 id="livraison-PUTapi-v1-deliveries-zones--id-">PUT api/v1/deliveries/zones/{id}</h2>
@@ -52198,7 +52825,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"name\": \"b\",
     \"code\": \"n\",
-    \"status\": true
+    \"status\": true,
+    \"quarters\": [
+        \"z\"
+    ],
+    \"radius_km\": 17,
+    \"departure_address\": \"i\",
+    \"collection_fee\": 76,
+    \"delivery_fee\": 60,
+    \"verified\": false
 }"
 </code></pre></div>
 
@@ -52218,7 +52853,15 @@ const headers = {
 let body = {
     "name": "b",
     "code": "n",
-    "status": true
+    "status": true,
+    "quarters": [
+        "z"
+    ],
+    "radius_km": 17,
+    "departure_address": "i",
+    "collection_fee": 76,
+    "delivery_fee": 60,
+    "verified": false
 };
 
 fetch(url, {
@@ -52452,6 +53095,397 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>true</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>quarters</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="quarters[0]"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="quarters[1]"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               data-component="body">
+    <br>
+<p>validation.max.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>radius_km</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="radius_km"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="17"
+               data-component="body">
+    <br>
+<p>validation.min validation.max. Example: <code>17</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>departure_address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="departure_address"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="i"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>i</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="collection_fee"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="76"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>76</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="delivery_fee"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
+               value="60"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>60</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>verified</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-deliveries-zones--id-" style="display: none">
+            <input type="radio" name="verified"
+                   value="true"
+                   data-endpoint="PUTapi-v1-deliveries-zones--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-deliveries-zones--id-" style="display: none">
+            <input type="radio" name="verified"
+                   value="false"
+                   data-endpoint="PUTapi-v1-deliveries-zones--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+        </form>
+
+                    <h2 id="livraison-POSTapi-v1-deliveries-estimate">« Estimation du tarif » : frais de la zone (ou de référence), gratuité au-delà du seuil,
+minimum de commande (réglages `delivery`).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-deliveries-estimate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/deliveries/estimate" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"zone_id\": 16,
+    \"amount\": 39,
+    \"with_collection\": true,
+    \"with_delivery\": false
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/deliveries/estimate"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "zone_id": 16,
+    "amount": 39,
+    "with_collection": true,
+    "with_delivery": false
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-deliveries-estimate">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;zone&quot;: {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;R&eacute;sidentiel&quot;,
+            &quot;code&quot;: &quot;Z-BG-02&quot;,
+            &quot;agency&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Bingerville&quot;
+            },
+            &quot;quarters&quot;: [
+                &quot;Faya&quot;,
+                &quot;Abatta&quot;
+            ],
+            &quot;radius_km&quot;: 5,
+            &quot;departure_address&quot;: &quot;Agence Bingerville&quot;,
+            &quot;collection_fee&quot;: 2000,
+            &quot;delivery_fee&quot;: 2500,
+            &quot;active&quot;: true,
+            &quot;status&quot;: &quot;validated&quot;,
+            &quot;status_label&quot;: &quot;Valid&eacute;e&quot;
+        },
+        &quot;articles&quot;: 18000,
+        &quot;collection_fee&quot;: 2000,
+        &quot;delivery_fee&quot;: 2500,
+        &quot;total&quot;: 22500,
+        &quot;free_delivery&quot;: {
+            &quot;applied&quot;: false,
+            &quot;threshold&quot;: 25000,
+            &quot;remaining&quot;: 7000,
+            &quot;label&quot;: &quot;Gratuit&eacute; non atteinte : seuil 25 000 FCFA&quot;
+        },
+        &quot;minimum_order&quot;: {
+            &quot;amount&quot;: 5000,
+            &quot;reached&quot;: true
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-deliveries-estimate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-deliveries-estimate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-deliveries-estimate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-deliveries-estimate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-deliveries-estimate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-deliveries-estimate" data-method="POST"
+      data-path="api/v1/deliveries/estimate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-deliveries-estimate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-deliveries-estimate"
+                    onclick="tryItOut('POSTapi-v1-deliveries-estimate');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-deliveries-estimate"
+                    onclick="cancelTryOut('POSTapi-v1-deliveries-estimate');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-deliveries-estimate"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/deliveries/estimate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-deliveries-estimate"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-deliveries-estimate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-deliveries-estimate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-deliveries-estimate"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>zone_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="zone_id"                data-endpoint="POSTapi-v1-deliveries-estimate"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="amount"                data-endpoint="POSTapi-v1-deliveries-estimate"
+               value="39"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>39</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deliveries-estimate" style="display: none">
+            <input type="radio" name="with_collection"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deliveries-estimate"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deliveries-estimate" style="display: none">
+            <input type="radio" name="with_collection"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deliveries-estimate"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>with_delivery</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-deliveries-estimate" style="display: none">
+            <input type="radio" name="with_delivery"
+                   value="true"
+                   data-endpoint="POSTapi-v1-deliveries-estimate"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-deliveries-estimate" style="display: none">
+            <input type="radio" name="with_delivery"
+                   value="false"
+                   data-endpoint="POSTapi-v1-deliveries-estimate"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
         </form>
 
                     <h2 id="livraison-GETapi-v1-deliveries-rounds">GET api/v1/deliveries/rounds</h2>
@@ -52653,7 +53687,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T12:15:30\",
+    \"round_date\": \"2026-10-22T12:22:17\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -52674,7 +53708,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T12:15:30",
+    "round_date": "2026-10-22T12:22:17",
     "name": "n"
 };
 
@@ -52881,10 +53915,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T12:15:30"
+               value="2026-10-22T12:22:17"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:15:30</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -54651,6 +55685,519 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>expired</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>authorized</code></li> <li><code>pending</code></li> <li><code>revoked</code></li> <li><code>expired</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="parametres-GETapi-v1-settings-notifications-logs">« Logs récents » des notifications (`days`, `channel`, `status`, `format=csv` pour « Exporter les logs »).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-settings-notifications-logs">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/settings/notifications/logs" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"days\": 1,
+    \"channel\": \"email\",
+    \"status\": \"architecto\",
+    \"format\": \"csv\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/settings/notifications/logs"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "days": 1,
+    "channel": "email",
+    "status": "architecto",
+    "format": "csv"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-settings-notifications-logs">
+            <blockquote>
+            <p>Example response (200, JSON ; `format=csv` pour « Exporter les logs »):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 12,
+            &quot;at&quot;: &quot;2026-09-28T10:21:00+00:00&quot;,
+            &quot;channel&quot;: &quot;sms&quot;,
+            &quot;recipient&quot;: &quot;&bull;&bull;&bull;&bull; 03&quot;,
+            &quot;event&quot;: &quot;ready&quot;,
+            &quot;event_label&quot;: &quot;Pr&ecirc;t au retrait&quot;,
+            &quot;status&quot;: &quot;sent&quot;,
+            &quot;status_label&quot;: &quot;Envoy&eacute;&quot;,
+            &quot;is_test&quot;: false,
+            &quot;error&quot;: null
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;count&quot;: 1
+    },
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-settings-notifications-logs" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-settings-notifications-logs"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-settings-notifications-logs"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-settings-notifications-logs" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-settings-notifications-logs">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-settings-notifications-logs" data-method="GET"
+      data-path="api/v1/settings/notifications/logs"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-settings-notifications-logs', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-settings-notifications-logs"
+                    onclick="tryItOut('GETapi-v1-settings-notifications-logs');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-settings-notifications-logs"
+                    onclick="cancelTryOut('GETapi-v1-settings-notifications-logs');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-settings-notifications-logs"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/settings/notifications/logs</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>days</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="days"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="1"
+               data-component="body">
+    <br>
+<p>validation.min validation.max. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="channel"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="email"
+               data-component="body">
+    <br>
+<p>Example: <code>email</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>sms</code></li> <li><code>email</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>format</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="format"                data-endpoint="GETapi-v1-settings-notifications-logs"
+               value="csv"
+               data-component="body">
+    <br>
+<p>Example: <code>csv</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>json</code></li> <li><code>csv</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="parametres-POSTapi-v1-settings-notifications-test">« Envoyer un test » : rend le modèle (ou `message`) avec des données d’exemple et l’envoie.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-settings-notifications-test">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/settings/notifications/test" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"event\": \"architecto\",
+    \"channel\": \"email\",
+    \"recipient\": \"g\",
+    \"message\": \"z\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/settings/notifications/test"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "event": "architecto",
+    "channel": "email",
+    "recipient": "g",
+    "message": "z"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-settings-notifications-test">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;status&quot;: &quot;sent&quot;,
+        &quot;status_label&quot;: &quot;Envoy&eacute;&quot;,
+        &quot;message&quot;: &quot;Bonjour Aminata, votre d&eacute;p&ocirc;t DP-2026-2843 est pr&ecirc;t &agrave; l&rsquo;agence Bingerville. Reste &agrave; payer : 9 500 FCFA.&quot;,
+        &quot;stats&quot;: {
+            &quot;length&quot;: 118,
+            &quot;max&quot;: 320,
+            &quot;segments&quot;: 1
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;validation&quot;,
+            &quot;field&quot;: &quot;field&quot;,
+            &quot;detail&quot;: &quot;Le champ est invalide.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-settings-notifications-test" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-settings-notifications-test"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-settings-notifications-test"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-settings-notifications-test" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-settings-notifications-test">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-settings-notifications-test" data-method="POST"
+      data-path="api/v1/settings/notifications/test"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-settings-notifications-test', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-settings-notifications-test"
+                    onclick="tryItOut('POSTapi-v1-settings-notifications-test');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-settings-notifications-test"
+                    onclick="cancelTryOut('POSTapi-v1-settings-notifications-test');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-settings-notifications-test"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/settings/notifications/test</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>event</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="event"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="channel"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="email"
+               data-component="body">
+    <br>
+<p>Example: <code>email</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>sms</code></li> <li><code>email</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>recipient</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="recipient"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="g"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>g</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="message"                data-endpoint="POSTapi-v1-settings-notifications-test"
+               value="z"
+               data-component="body">
+    <br>
+<p>validation.max. Example: <code>z</code></p>
         </div>
         </form>
 

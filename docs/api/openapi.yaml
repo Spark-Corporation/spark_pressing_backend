@@ -8916,12 +8916,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 notes:
                   type: string
@@ -10649,7 +10649,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
               required:
                 - amount
@@ -27151,7 +27151,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -27303,7 +27303,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
               required:
                 - agency_id
@@ -28260,6 +28260,554 @@ paths:
         required: true
         schema:
           type: string
+  /api/v1/promos/overview:
+    get:
+      summary: "« Promotions et fidélité » : KPIs du mois, règles et niveaux du programme, historique des points,\ngroupes automatiques, tableau des campagnes (`agency_id`, `status`)."
+      operationId: PromotionsEtFidlitKPIsDuMoisRglesEtNiveauxDuProgrammeHistoriqueDesPointsgroupesAutomatiquesTableauDesCampagnesagencyIdstatus
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    kpis:
+                      active_members:
+                        value: 2846
+                        delta_percent: 8.4
+                      points_issued:
+                        value: 184620
+                        consumable_percent: 64
+                      points_consumed:
+                        value: 72480
+                        share_of_stock: 39.3
+                      discounts_granted:
+                        value: 3840000
+                        period_from: '2026-09-01'
+                      active_campaigns:
+                        value: 2
+                        uses: 422
+                    program:
+                      active: true
+                      earn_points_per_1000: 10
+                      conversion_points: 200
+                      conversion_value: 1000
+                      minimum_points: 500
+                      expiration_months: 12
+                      credit_after_payment: true
+                      stack_with_promotions: false
+                      point_value: 5
+                      earn_label: '10 points / 1 000 FCFA'
+                      conversion_label: '200 points = 1 000 FCFA'
+                    tiers:
+                      basis: points
+                      levels:
+                        -
+                          code: essentiel
+                          label: Essentiel
+                          min: 0
+                          multiplier: 1
+                          benefit: 'Aucun bonus'
+                        -
+                          code: argent
+                          label: Argent
+                          min: 1000
+                          multiplier: 1.1
+                          benefit: '+10 % de points'
+                        -
+                          code: or
+                          label: Or
+                          min: 2500
+                          multiplier: 1.25
+                          benefit: 'Priorité & retouches'
+                        -
+                          code: platine
+                          label: Platine
+                          min: 4000
+                          multiplier: 1.5
+                          benefit: 'Collecte offerte'
+                    history:
+                      -
+                        client: 'Aminata Koné'
+                        reason: 'Paiement dépôt DP-2841'
+                        points: 120
+                        at: '2026-09-28T10:21:00+00:00'
+                    auto_groups:
+                      -
+                        code: gold_platinum
+                        label: 'Clients Or & Platine'
+                        count: 486
+                    promotions:
+                      -
+                        id: 1
+                        code: RENTREE15
+                        name: Rentrée
+                        type: percent
+                        discount_label: '15 %'
+                        starts_at: '2026-09-01'
+                        ends_at: '2026-09-30'
+                        quota: 500
+                        used: 312
+                        usage_percent: 62
+                        per_client_limit: 1
+                        agencies:
+                          - 'Toutes les agences'
+                        min_amount: 10000
+                        max_discount: 12000
+                        stack_with_loyalty: false
+                        status: active
+                        status_label: Active
+                  meta:
+                    count: 1
+                    previous_period_from: '2026-08-01'
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      kpis:
+                        type: object
+                        properties:
+                          active_members:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 2846
+                              delta_percent:
+                                type: number
+                                example: 8.4
+                          points_issued:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 184620
+                              consumable_percent:
+                                type: integer
+                                example: 64
+                          points_consumed:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 72480
+                              share_of_stock:
+                                type: number
+                                example: 39.3
+                          discounts_granted:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 3840000
+                              period_from:
+                                type: string
+                                example: '2026-09-01'
+                          active_campaigns:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 2
+                              uses:
+                                type: integer
+                                example: 422
+                      program:
+                        type: object
+                        properties:
+                          active:
+                            type: boolean
+                            example: true
+                          earn_points_per_1000:
+                            type: integer
+                            example: 10
+                          conversion_points:
+                            type: integer
+                            example: 200
+                          conversion_value:
+                            type: integer
+                            example: 1000
+                          minimum_points:
+                            type: integer
+                            example: 500
+                          expiration_months:
+                            type: integer
+                            example: 12
+                          credit_after_payment:
+                            type: boolean
+                            example: true
+                          stack_with_promotions:
+                            type: boolean
+                            example: false
+                          point_value:
+                            type: integer
+                            example: 5
+                          earn_label:
+                            type: string
+                            example: '10 points / 1 000 FCFA'
+                          conversion_label:
+                            type: string
+                            example: '200 points = 1 000 FCFA'
+                      tiers:
+                        type: object
+                        properties:
+                          basis:
+                            type: string
+                            example: points
+                          levels:
+                            type: array
+                            example:
+                              -
+                                code: essentiel
+                                label: Essentiel
+                                min: 0
+                                multiplier: 1
+                                benefit: 'Aucun bonus'
+                              -
+                                code: argent
+                                label: Argent
+                                min: 1000
+                                multiplier: 1.1
+                                benefit: '+10 % de points'
+                              -
+                                code: or
+                                label: Or
+                                min: 2500
+                                multiplier: 1.25
+                                benefit: 'Priorité & retouches'
+                              -
+                                code: platine
+                                label: Platine
+                                min: 4000
+                                multiplier: 1.5
+                                benefit: 'Collecte offerte'
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: essentiel
+                                label:
+                                  type: string
+                                  example: Essentiel
+                                min:
+                                  type: integer
+                                  example: 0
+                                multiplier:
+                                  type: integer
+                                  example: 1
+                                benefit:
+                                  type: string
+                                  example: 'Aucun bonus'
+                      history:
+                        type: array
+                        example:
+                          -
+                            client: 'Aminata Koné'
+                            reason: 'Paiement dépôt DP-2841'
+                            points: 120
+                            at: '2026-09-28T10:21:00+00:00'
+                        items:
+                          type: object
+                          properties:
+                            client:
+                              type: string
+                              example: 'Aminata Koné'
+                            reason:
+                              type: string
+                              example: 'Paiement dépôt DP-2841'
+                            points:
+                              type: integer
+                              example: 120
+                            at:
+                              type: string
+                              example: '2026-09-28T10:21:00+00:00'
+                      auto_groups:
+                        type: array
+                        example:
+                          -
+                            code: gold_platinum
+                            label: 'Clients Or & Platine'
+                            count: 486
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: gold_platinum
+                            label:
+                              type: string
+                              example: 'Clients Or & Platine'
+                            count:
+                              type: integer
+                              example: 486
+                      promotions:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            code: RENTREE15
+                            name: Rentrée
+                            type: percent
+                            discount_label: '15 %'
+                            starts_at: '2026-09-01'
+                            ends_at: '2026-09-30'
+                            quota: 500
+                            used: 312
+                            usage_percent: 62
+                            per_client_limit: 1
+                            agencies:
+                              - 'Toutes les agences'
+                            min_amount: 10000
+                            max_discount: 12000
+                            stack_with_loyalty: false
+                            status: active
+                            status_label: Active
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            code:
+                              type: string
+                              example: RENTREE15
+                            name:
+                              type: string
+                              example: Rentrée
+                            type:
+                              type: string
+                              example: percent
+                            discount_label:
+                              type: string
+                              example: '15 %'
+                            starts_at:
+                              type: string
+                              example: '2026-09-01'
+                            ends_at:
+                              type: string
+                              example: '2026-09-30'
+                            quota:
+                              type: integer
+                              example: 500
+                            used:
+                              type: integer
+                              example: 312
+                            usage_percent:
+                              type: integer
+                              example: 62
+                            per_client_limit:
+                              type: integer
+                              example: 1
+                            agencies:
+                              type: array
+                              example:
+                                - 'Toutes les agences'
+                              items:
+                                type: string
+                            min_amount:
+                              type: integer
+                              example: 10000
+                            max_discount:
+                              type: integer
+                              example: 12000
+                            stack_with_loyalty:
+                              type: boolean
+                              example: false
+                            status:
+                              type: string
+                              example: active
+                            status_label:
+                              type: string
+                              example: Active
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+                      previous_period_from:
+                        type: string
+                        example: '2026-08-01'
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                agency_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: scheduled
+                  enum:
+                    - active
+                    - scheduled
+                    - exhausted
+                    - ended
+                    - disabled
+                  nullable: true
+  /api/v1/promos/check-code:
+    get:
+      summary: 'Disponibilité d’un code (« Code disponible »).'
+      operationId: disponibilitDunCodeCodeDisponible
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    code: RENTREE15
+                    available: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: RENTREE15
+                      available:
+                        type: boolean
+                        example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: validation.max.
+                  example: b
+              required:
+                - code
   /api/v1/promos:
     get:
       summary: ''
@@ -31483,7 +32031,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 validated:
                   type: boolean
@@ -32141,7 +32689,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
     delete:
       summary: ''
@@ -32927,7 +33475,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -33148,7 +33696,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 period:
                   type: string
@@ -38287,7 +38835,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 date_to:
                   type: string
@@ -38693,7 +39241,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 agency_id:
                   type: integer
@@ -40472,7 +41020,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
               required:
                 - source_currency
                 - target_currency
@@ -49073,7 +49621,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:29'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
     delete:
       summary: ''
@@ -50489,7 +51037,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:29'
+                  example: '2026-10-22T12:22:17'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -53656,8 +54204,8 @@ paths:
         - Livraison
   /api/v1/deliveries/zones:
     get:
-      summary: ''
-      operationId: getApiV1DeliveriesZones
+      summary: 'Zones desservies (Paramètres › Collecte & livraison) ; `all=1` inclut les zones désactivées.'
+      operationId: zonesDesserviesParamtresCollecteLivraisonall1InclutLesZonesDsactives
       description: ''
       parameters:
         -
@@ -53927,6 +54475,38 @@ paths:
                   type: boolean
                   description: ''
                   example: true
+                quarters:
+                  type: array
+                  description: validation.max.
+                  example:
+                    - z
+                  items:
+                    type: string
+                radius_km:
+                  type: number
+                  description: 'validation.min validation.max.'
+                  example: 17
+                  nullable: true
+                departure_address:
+                  type: string
+                  description: validation.max.
+                  example: i
+                  nullable: true
+                collection_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 76
+                  nullable: true
+                delivery_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 60
+                  nullable: true
+                verified:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
               required:
                 - name
   '/api/v1/deliveries/zones/{id}':
@@ -54096,6 +54676,38 @@ paths:
                   type: boolean
                   description: ''
                   example: true
+                quarters:
+                  type: array
+                  description: validation.max.
+                  example:
+                    - z
+                  items:
+                    type: string
+                radius_km:
+                  type: number
+                  description: 'validation.min validation.max.'
+                  example: 17
+                  nullable: true
+                departure_address:
+                  type: string
+                  description: validation.max.
+                  example: i
+                  nullable: true
+                collection_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 76
+                  nullable: true
+                delivery_fee:
+                  type: integer
+                  description: validation.min.
+                  example: 60
+                  nullable: true
+                verified:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
     parameters:
       -
         in: path
@@ -54105,6 +54717,270 @@ paths:
         required: true
         schema:
           type: integer
+  /api/v1/deliveries/estimate:
+    post:
+      summary: "« Estimation du tarif » : frais de la zone (ou de référence), gratuité au-delà du seuil,\nminimum de commande (réglages `delivery`)."
+      operationId: EstimationDuTarifFraisDeLaZoneouDeRfrenceGratuitAuDelDuSeuilminimumDeCommanderglagesdelivery
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    zone:
+                      id: 2
+                      name: Résidentiel
+                      code: Z-BG-02
+                      agency:
+                        id: 1
+                        name: Bingerville
+                      quarters:
+                        - Faya
+                        - Abatta
+                      radius_km: 5
+                      departure_address: 'Agence Bingerville'
+                      collection_fee: 2000
+                      delivery_fee: 2500
+                      active: true
+                      status: validated
+                      status_label: Validée
+                    articles: 18000
+                    collection_fee: 2000
+                    delivery_fee: 2500
+                    total: 22500
+                    free_delivery:
+                      applied: false
+                      threshold: 25000
+                      remaining: 7000
+                      label: 'Gratuité non atteinte : seuil 25 000 FCFA'
+                    minimum_order:
+                      amount: 5000
+                      reached: true
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      zone:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          name:
+                            type: string
+                            example: Résidentiel
+                          code:
+                            type: string
+                            example: Z-BG-02
+                          agency:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Bingerville
+                          quarters:
+                            type: array
+                            example:
+                              - Faya
+                              - Abatta
+                            items:
+                              type: string
+                          radius_km:
+                            type: integer
+                            example: 5
+                          departure_address:
+                            type: string
+                            example: 'Agence Bingerville'
+                          collection_fee:
+                            type: integer
+                            example: 2000
+                          delivery_fee:
+                            type: integer
+                            example: 2500
+                          active:
+                            type: boolean
+                            example: true
+                          status:
+                            type: string
+                            example: validated
+                          status_label:
+                            type: string
+                            example: Validée
+                      articles:
+                        type: integer
+                        example: 18000
+                      collection_fee:
+                        type: integer
+                        example: 2000
+                      delivery_fee:
+                        type: integer
+                        example: 2500
+                      total:
+                        type: integer
+                        example: 22500
+                      free_delivery:
+                        type: object
+                        properties:
+                          applied:
+                            type: boolean
+                            example: false
+                          threshold:
+                            type: integer
+                            example: 25000
+                          remaining:
+                            type: integer
+                            example: 7000
+                          label:
+                            type: string
+                            example: 'Gratuité non atteinte : seuil 25 000 FCFA'
+                      minimum_order:
+                        type: object
+                        properties:
+                          amount:
+                            type: integer
+                            example: 5000
+                          reached:
+                            type: boolean
+                            example: true
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Livraison
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                zone_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                  nullable: true
+                amount:
+                  type: integer
+                  description: validation.min.
+                  example: 39
+                with_collection:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: true
+                with_delivery:
+                  type: boolean
+                  description: ''
+                  example: false
+                  nullable: true
+              required:
+                - amount
   /api/v1/deliveries/rounds:
     get:
       summary: ''
@@ -54376,7 +55252,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:15:30'
+                  example: '2026-10-22T12:22:17'
                 name:
                   type: string
                   description: validation.max.
@@ -56710,6 +57586,357 @@ paths:
               required:
                 - agency_id
                 - code
+  /api/v1/settings/notifications/logs:
+    get:
+      summary: '« Logs récents » des notifications (`days`, `channel`, `status`, `format=csv` pour « Exporter les logs »).'
+      operationId: LogsRcentsDesNotificationsdayschannelstatusformatcsvPourExporterLesLogs
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'JSON ; `format=csv` pour « Exporter les logs »'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 12
+                      at: '2026-09-28T10:21:00+00:00'
+                      channel: sms
+                      recipient: '•••• 03'
+                      event: ready
+                      event_label: 'Prêt au retrait'
+                      status: sent
+                      status_label: Envoyé
+                      is_test: false
+                      error: null
+                  meta:
+                    count: 1
+                  errors: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 12
+                        at: '2026-09-28T10:21:00+00:00'
+                        channel: sms
+                        recipient: '•••• 03'
+                        event: ready
+                        event_label: 'Prêt au retrait'
+                        status: sent
+                        status_label: Envoyé
+                        is_test: false
+                        error: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 12
+                        at:
+                          type: string
+                          example: '2026-09-28T10:21:00+00:00'
+                        channel:
+                          type: string
+                          example: sms
+                        recipient:
+                          type: string
+                          example: '•••• 03'
+                        event:
+                          type: string
+                          example: ready
+                        event_label:
+                          type: string
+                          example: 'Prêt au retrait'
+                        status:
+                          type: string
+                          example: sent
+                        status_label:
+                          type: string
+                          example: Envoyé
+                        is_test:
+                          type: boolean
+                          example: false
+                        error:
+                          type: string
+                          example: null
+                          nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 1
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                days:
+                  type: integer
+                  description: 'validation.min validation.max.'
+                  example: 1
+                  nullable: true
+                channel:
+                  type: string
+                  description: ''
+                  example: email
+                  enum:
+                    - sms
+                    - email
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                format:
+                  type: string
+                  description: ''
+                  example: csv
+                  enum:
+                    - json
+                    - csv
+                  nullable: true
+  /api/v1/settings/notifications/test:
+    post:
+      summary: '« Envoyer un test » : rend le modèle (ou `message`) avec des données d’exemple et l’envoie.'
+      operationId: EnvoyerUnTestRendLeModleoumessageAvecDesDonnesDexempleEtLenvoie
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    status: sent
+                    status_label: Envoyé
+                    message: 'Bonjour Aminata, votre dépôt DP-2026-2843 est prêt à l’agence Bingerville. Reste à payer : 9 500 FCFA.'
+                    stats:
+                      length: 118
+                      max: 320
+                      segments: 1
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: sent
+                      status_label:
+                        type: string
+                        example: Envoyé
+                      message:
+                        type: string
+                        example: 'Bonjour Aminata, votre dépôt DP-2026-2843 est prêt à l’agence Bingerville. Reste à payer : 9 500 FCFA.'
+                      stats:
+                        type: object
+                        properties:
+                          length:
+                            type: integer
+                            example: 118
+                          max:
+                            type: integer
+                            example: 320
+                          segments:
+                            type: integer
+                            example: 1
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+        422:
+          description: Validation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Les données sont invalides.'
+                  errors:
+                    -
+                      code: validation
+                      field: field
+                      detail: 'Le champ est invalide.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Les données sont invalides.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: validation
+                        field: field
+                        detail: 'Le champ est invalide.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: validation
+                        field:
+                          type: string
+                          example: field
+                        detail:
+                          type: string
+                          example: 'Le champ est invalide.'
+      tags:
+        - Paramètres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                event:
+                  type: string
+                  description: ''
+                  example: architecto
+                channel:
+                  type: string
+                  description: ''
+                  example: email
+                  enum:
+                    - sms
+                    - email
+                recipient:
+                  type: string
+                  description: validation.max.
+                  example: g
+                message:
+                  type: string
+                  description: validation.max.
+                  example: z
+                  nullable: true
+              required:
+                - event
+                - channel
+                - recipient
   '/api/v1/settings/devices/{id}':
     put:
       summary: ''

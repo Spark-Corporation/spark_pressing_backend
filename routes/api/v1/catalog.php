@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\Catalog\LaundryStatusController;
 use App\Http\Controllers\Api\V1\Catalog\LoyalGroupController;
 use App\Http\Controllers\Api\V1\Catalog\PromoController;
 use App\Http\Controllers\Api\V1\Catalog\PromoSpecialController;
+use App\Http\Controllers\Api\V1\Catalog\PromotionOverviewController;
 use App\Http\Controllers\Api\V1\Catalog\RenderController;
 use App\Http\Controllers\Api\V1\Catalog\ServiceController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,8 @@ Route::prefix('renders')->name('renders.')->group(function () {
 });
 
 Route::prefix('promos')->name('promos.')->group(function () {
+    Route::get('overview', [PromotionOverviewController::class, 'overview'])->name('overview');
+    Route::get('check-code', [PromotionOverviewController::class, 'checkCode'])->name('check-code');
     Route::get('/', [PromoController::class, 'index'])->name('index');
     Route::post('/', [PromoController::class, 'store'])->middleware('permission:settings.manage')->name('store');
     Route::put('{id}', [PromoController::class, 'update'])->middleware('permission:settings.manage')->name('update');

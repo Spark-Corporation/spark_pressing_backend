@@ -120,4 +120,62 @@ class SettingsScreensTest extends TestCase
             ->assertStatus(422)->assertJsonPath('meta.attempts_remaining', 0)->assertJsonPath('meta.max_attempts', 3);
         $this->postJson('/api/v1/auth/staff/login', ['login' => 'admin@spark.ci', 'password' => 'password'])->assertStatus(429);
     }
+
+    public function test_promotions_delivery_and_notifications(): void
+    {
+        $this->seedRoles();
+        [$pressing, $agency] = $this->makePressingWithAgency();
+        Sanctum::actingAs($this->makeStaff($agency, 'admin'));
+        $headers = ['X-Pressing-Id' => $pressing->id, 'X-Agency-Id' => $agency->id];
+        $client = $this->makeClient($agency, ['phone_number' => '+2250748221603', 'email' => 'aminata@example.com']);
+        $article = $this->makeArticle($pressing, ['classic_price' => 10000]);
+
+        $this->withHeaders($headers)->postJson('/api/v1/promos', [
+            'code' => 'RENTREE', 'name' => 'Rentrée', 'type' => 'amount', 'amount' => 5000, 'min_amount' => 15000, 'per_client_limit' => 1,
+        ])->assertCreated();
+        $this->withHeaders($headers)->getJson('/api/v1/promos/check-code?code=rentree')->assertJsonPath('data.available', false);
+
+        $deposit = fn (int $qty) => $this->withHeaders($headers)->postJson('/api/v1/deposits', [
+            'client_id' => $client->id, 'advanced' => 0, 'promo_code' => 'RENTREE', 'lines' => [['article_id' => $article->id, 'quantity' => $qty]],
+        ]);
+        $deposit(1)->assertStatus(422)->assertJsonPath('errors.0.field', 'promo_code');
+        $deposit(2)->assertCreated()->assertJsonPath('data.discount', 5000);
+        $deposit(2)->assertStatus(422);
+
+        $this->withHeaders($headers)->getJson('/api/v1/promos/overview')
+            ->assertOk()
+            ->assertJsonPath('data.kpis.active_campaigns.value', 1)
+            ->assertJsonPath('data.kpis.active_campaigns.uses', 1)
+            ->assertJsonPath('data.promotions.0.discount_label', '5 000 FCFA')
+            ->assertJsonPath('data.promotions.0.agencies.0', 'Toutes les agences')
+            ->assertJsonCount(4, 'data.auto_groups')
+            ->assertJsonCount(4, 'data.tiers.levels');
+
+        $zone = $this->withHeaders($headers)->postJson('/api/v1/deliveries/zones', [
+            'name' => 'Résidentiel', 'code' => 'Z-BG-02', 'agency_id' => $agency->id, 'quarters' => ['Faya', 'Abatta'],
+            'radius_km' => 5, 'collection_fee' => 2000, 'delivery_fee' => 2500,
+        ])->assertCreated()->assertJsonPath('data.status', 'to_verify')->json('data.id');
+        $this->withHeaders($headers)->postJson('/api/v1/deliveries/estimate', ['zone_id' => $zone, 'amount' => 18000])
+            ->assertOk()
+            ->assertJsonPath('data.total', 22500)
+            ->assertJsonPath('data.free_delivery.applied', false)
+            ->assertJsonPath('data.free_delivery.remaining', 7000);
+        $this->withHeaders($headers)->postJson('/api/v1/deliveries/estimate', ['zone_id' => $zone, 'amount' => 30000])
+            ->assertJsonPath('data.delivery_fee', 0);
+
+        $this->withHeaders($headers)->getJson('/api/v1/settings/notifications/logs')
+            ->assertOk()
+            ->assertJsonPath('meta.count', 2)
+            ->assertJsonPath('data.0.event_label', 'Dépôt enregistré')
+            ->assertJsonPath('data.1.recipient', '•••• 03');
+        $this->withHeaders($headers)->postJson('/api/v1/settings/notifications/test', [
+            'event' => 'ready', 'channel' => 'sms', 'recipient' => '+2250700000000',
+        ])->assertOk()
+            ->assertJsonPath('data.status', 'sent')
+            ->assertJsonPath('data.stats.segments', 1);
+        $this->withHeaders($headers)->getJson('/api/v1/settings/notifications')
+            ->assertOk()
+            ->assertJsonPath('data.context.providers.sms.sent_7d', 1)
+            ->assertJsonCount(7, 'data.context.events');
+    }
 }

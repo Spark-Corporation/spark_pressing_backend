@@ -14,6 +14,7 @@ use App\Models\Deposit;
 use App\Support\Deposits\DepositPresenter;
 use App\Support\Deposits\WorkshopBoard;
 use App\Support\Documents\TicketDocument;
+use App\Support\Notifications\Notifier;
 use App\Support\Sms\SmsSender;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class DepositController extends Controller
         return $this->page($deposits, DepositResource::collection($deposits)->resolve());
     }
 
-    public function store(Request $request, CreateDeposit $action): JsonResponse
+    public function store(Request $request, CreateDeposit $action, Notifier $notifier): JsonResponse
     {
         $payload = $request->validate([
             'client_uuid' => ['nullable', 'uuid'],
@@ -119,6 +120,9 @@ class DepositController extends Controller
         ]);
 
         $deposit = $action->handle($request->user(), $payload);
+        if ($deposit->wasRecentlyCreated) {
+            $notifier->dispatch('deposit_created', $deposit);
+        }
 
         return $this->created((new DepositResource($deposit))->resolve());
     }
@@ -133,7 +137,7 @@ class DepositController extends Controller
         ])));
     }
 
-    public function pay(Request $request, Deposit $deposit, AddPayment $action): JsonResponse
+    public function pay(Request $request, Deposit $deposit, AddPayment $action, Notifier $notifier): JsonResponse
     {
         $payload = $request->validate([
             'client_uuid' => ['nullable', 'uuid'],
@@ -143,17 +147,19 @@ class DepositController extends Controller
         ]);
 
         $deposit = $action->handle($request->user(), $deposit, $payload);
+        $notifier->dispatch('payment_received', $deposit);
 
         return $this->ok((new DepositResource($deposit))->resolve());
     }
 
-    public function retrieve(Request $request, Deposit $deposit, RetrieveDeposit $action): JsonResponse
+    public function retrieve(Request $request, Deposit $deposit, RetrieveDeposit $action, Notifier $notifier): JsonResponse
     {
         $payload = $request->validate([
             'receiver_name' => ['nullable', 'string', 'max:191'],
         ]);
 
         $deposit = $action->handle($request->user(), $deposit, $payload);
+        $notifier->dispatch('retrieved', $deposit);
 
         return $this->ok((new DepositResource($deposit))->resolve());
     }

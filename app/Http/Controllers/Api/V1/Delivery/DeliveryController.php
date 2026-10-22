@@ -10,6 +10,7 @@ use App\Models\DeliveryRound;
 use App\Models\DeliveryZone;
 use App\Models\Deposit;
 use App\Models\User;
+use App\Support\Settings\SettingsRegistry;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,15 +19,76 @@ use Knuckles\Scribe\Attributes\Group;
 #[Group('Livraison', 'Module Livreur v3.0 — tournées, marquage livré, encaissement mobile.')]
 class DeliveryController extends Controller
 {
+    /** Zones desservies (Paramètres › Collecte & livraison) ; `all=1` inclut les zones désactivées. */
     public function zonesIndex(Request $request): JsonResponse
     {
         $items = DeliveryZone::query()
+            ->with('agency:id,name')
             ->when($request->agency_id, fn ($q, $id) => $q->where('agency_id', $id))
-            ->where('status', true)
+            ->when(! $request->boolean('all'), fn ($q) => $q->where('status', true))
             ->latest()
             ->paginate(50);
 
-        return $this->page($items, $items->items());
+        return $this->page($items, collect($items->items())->map(fn (DeliveryZone $z) => $this->zoneRow($z))->all());
+    }
+
+    /**
+     * « Estimation du tarif » : frais de la zone (ou de référence), gratuité au-delà du seuil,
+     * minimum de commande (réglages `delivery`).
+     */
+    public function estimate(Request $request, SettingsRegistry $settings): JsonResponse
+    {
+        $data = $request->validate([
+            'zone_id' => ['nullable', 'integer'],
+            'amount' => ['required', 'integer', 'min:0'],
+            'with_collection' => ['nullable', 'boolean'],
+            'with_delivery' => ['nullable', 'boolean'],
+        ]);
+        $config = $settings->get($request->user()->pressing_id, 'delivery');
+        $zone = isset($data['zone_id']) ? DeliveryZone::query()->findOrFail($data['zone_id']) : null;
+        $byZone = $config['fees']['calculation'] === 'zone' && $zone;
+        $collection = ($data['with_collection'] ?? true) && $config['collection_enabled']
+            ? (int) ($byZone && $zone->collection_fee !== null ? $zone->collection_fee : $config['fees']['collection_reference']) : 0;
+        $delivery = ($data['with_delivery'] ?? true) && $config['delivery_enabled']
+            ? (int) ($byZone && $zone->delivery_fee !== null ? $zone->delivery_fee : $config['fees']['delivery_reference']) : 0;
+        $threshold = (int) $config['fees']['free_threshold'];
+        $free = $config['fees']['free_delivery_enabled'] && $data['amount'] >= $threshold;
+        if ($free) {
+            $delivery = 0;
+        }
+
+        return $this->ok([
+            'zone' => $zone ? $this->zoneRow($zone) : null,
+            'articles' => $data['amount'],
+            'collection_fee' => $collection,
+            'delivery_fee' => $delivery,
+            'total' => $data['amount'] + $collection + $delivery,
+            'free_delivery' => [
+                'applied' => $free,
+                'threshold' => $threshold,
+                'remaining' => max(0, $threshold - $data['amount']),
+                'label' => $free ? 'Livraison offerte' : 'Gratuité non atteinte : seuil '.number_format($threshold, 0, ',', ' ').' FCFA',
+            ],
+            'minimum_order' => ['amount' => (int) $config['minimum_order'], 'reached' => $data['amount'] >= (int) $config['minimum_order']],
+        ]);
+    }
+
+    private function zoneRow(DeliveryZone $zone): array
+    {
+        return [
+            'id' => $zone->id,
+            'name' => $zone->name,
+            'code' => $zone->code,
+            'agency' => $zone->agency ? ['id' => $zone->agency->id, 'name' => $zone->agency->name] : null,
+            'quarters' => $zone->quarters ?? [],
+            'radius_km' => $zone->radius_km,
+            'departure_address' => $zone->departure_address,
+            'collection_fee' => $zone->collection_fee,
+            'delivery_fee' => $zone->delivery_fee,
+            'active' => (bool) $zone->status,
+            'status' => $zone->verified_at ? 'validated' : 'to_verify',
+            'status_label' => $zone->verified_at ? 'Validée' : 'À vérifier',
+        ];
     }
 
     public function zonesStore(Request $request): JsonResponse
@@ -36,7 +98,18 @@ class DeliveryController extends Controller
             'code' => ['nullable', 'string', 'max:32'],
             'agency_id' => ['nullable', 'exists:agencies,id'],
             'status' => ['sometimes', 'boolean'],
+            'quarters' => ['nullable', 'array'],
+            'quarters.*' => ['string', 'max:100'],
+            'radius_km' => ['nullable', 'numeric', 'min:0', 'max:500'],
+            'departure_address' => ['nullable', 'string', 'max:255'],
+            'collection_fee' => ['nullable', 'integer', 'min:0'],
+            'delivery_fee' => ['nullable', 'integer', 'min:0'],
+            'verified' => ['nullable', 'boolean'],
         ]);
+        if (array_key_exists('verified', $data)) {
+            $data['verified_at'] = $data['verified'] ? now() : null;
+            unset($data['verified']);
+        }
 
         if (! empty($data['agency_id'])) {
             abort_unless($request->user()->canAccessAgency((int) $data['agency_id']), 403);
@@ -47,7 +120,7 @@ class DeliveryController extends Controller
             'status' => $data['status'] ?? true,
         ]);
 
-        return $this->created($zone);
+        return $this->created($this->zoneRow($zone->load('agency:id,name')));
     }
 
     public function zonesUpdate(Request $request, DeliveryZone $zone): JsonResponse
@@ -59,11 +132,22 @@ class DeliveryController extends Controller
             'code' => ['nullable', 'string', 'max:32'],
             'agency_id' => ['nullable', 'exists:agencies,id'],
             'status' => ['sometimes', 'boolean'],
+            'quarters' => ['nullable', 'array'],
+            'quarters.*' => ['string', 'max:100'],
+            'radius_km' => ['nullable', 'numeric', 'min:0', 'max:500'],
+            'departure_address' => ['nullable', 'string', 'max:255'],
+            'collection_fee' => ['nullable', 'integer', 'min:0'],
+            'delivery_fee' => ['nullable', 'integer', 'min:0'],
+            'verified' => ['nullable', 'boolean'],
         ]);
+        if (array_key_exists('verified', $data)) {
+            $data['verified_at'] = $data['verified'] ? now() : null;
+            unset($data['verified']);
+        }
 
         $zone->update($data);
 
-        return $this->ok($zone);
+        return $this->ok($this->zoneRow($zone->load('agency:id,name')));
     }
 
     public function roundsIndex(Request $request): JsonResponse

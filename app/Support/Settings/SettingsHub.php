@@ -7,10 +7,12 @@ use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\AuditLog;
 use App\Models\DeliveryZone;
+use App\Models\NotificationLog;
 use App\Models\PosDevice;
 use App\Models\PressingSetting;
 use App\Models\Promo;
 use App\Models\User;
+use App\Support\Notifications\Notifier;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
 
@@ -95,6 +97,7 @@ class SettingsHub
                 'zones' => DeliveryZone::query()->withoutGlobalScopes()->where('pressing_id', $pressingId)->whereNull('deleted_at')->count(),
                 'agencies' => (clone $agencies)->orderBy('name')->get(['id', 'name'])->all(),
             ],
+            'notifications' => $this->notificationsContext($pressingId),
             'branding', 'receipts' => [
                 'impact' => ['agencies' => (clone $agencies)->count(), 'surfaces' => $category === 'branding' ? ['navigation', 'tickets', 'emails_sms', 'domain'] : ['tickets', 'invoices', 'receipts']],
                 'protected_rules' => $category === 'receipts' ? ['Les notes internes ne sont jamais imprimées.'] : [],
@@ -233,6 +236,35 @@ class SettingsHub
             'roles' => $users->flatMap(fn ($u) => $u->roles->pluck('name'))->countBy()
                 ->map(fn ($count, $role) => ['role' => $role, 'accounts' => $count, 'mfa_required' => in_array($role, $required, true)])->values()->all(),
             'devices_to_approve' => PosDevice::query()->withoutGlobalScopes()->where('pressing_id', $pressingId)->where('status', 'pending')->count(),
+        ];
+    }
+
+    /** Cartes fournisseurs (taux de livraison sur 7 jours), variables et taille des modèles. */
+    private function notificationsContext(int $pressingId): array
+    {
+        $since = now()->subDays(7);
+        $stats = NotificationLog::query()->where('pressing_id', $pressingId)->where('is_test', false)->where('created_at', '>=', $since)
+            ->selectRaw('channel, status, count(*) as total')->groupBy('channel', 'status')->get()->groupBy('channel');
+        $provider = function (string $channel) use ($stats) {
+            $rows = $stats->get($channel, collect());
+            $total = (int) $rows->sum('total');
+            $ok = (int) $rows->whereIn('status', ['sent', 'delivered', 'opened'])->sum('total');
+
+            return ['sent_7d' => $total, 'delivered_percent' => $total ? round($ok / $total * 100, 1) : null,
+                'opened_percent' => $channel === 'email' && $total ? round((int) $rows->where('status', 'opened')->sum('total') / $total * 100, 1) : null,
+                'bounce_percent' => $channel === 'email' && $total ? round((int) $rows->where('status', 'bounced')->sum('total') / $total * 100, 1) : null];
+        };
+        $config = $this->settings->get($pressingId, 'notifications');
+
+        return [
+            'providers' => [
+                'sms' => ['name' => $config['providers']['sms'], 'integrated' => false] + $provider('sms'),
+                'email' => ['name' => $config['providers']['email'], 'integrated' => true] + $provider('email'),
+                'future' => [['code' => 'whatsapp', 'label' => 'WhatsApp Business', 'status' => 'À intégrer'], ['code' => 'push', 'label' => 'Notifications push', 'status' => 'À intégrer']],
+            ],
+            'events' => collect(Notifier::EVENT_LABELS)->map(fn ($label, $code) => ['code' => $code, 'label' => $label, 'scope' => 'MVP actif'])->values()->all(),
+            'variables' => Notifier::VARIABLES,
+            'templates' => collect($config['templates'])->map(fn ($t, $code) => ['event' => $code, 'stats' => Notifier::smsStats($t['message'])])->values()->all(),
         ];
     }
 

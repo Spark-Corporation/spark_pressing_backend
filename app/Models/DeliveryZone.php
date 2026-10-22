@@ -17,10 +17,19 @@ class DeliveryZone extends \Illuminate\Database\Eloquent\Model
         'name',
         'code',
         'status',
+        'quarters',
+        'radius_km',
+        'departure_address',
+        'collection_fee',
+        'delivery_fee',
+        'verified_at',
     ];
 
     protected $casts = [
         'status' => 'boolean',
+        'quarters' => 'array',
+        'radius_km' => 'float',
+        'verified_at' => 'datetime',
     ];
 
     public function tenantScopesToAgency(): bool
