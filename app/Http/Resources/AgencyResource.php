@@ -19,6 +19,10 @@ class AgencyResource extends JsonResource
             'currency' => $this->currency,
             'code_prefix' => $this->code_prefix,
             'code_suffix' => $this->code_suffix,
+            'email' => $this->email,
+            'opens_at' => $this->opens_at,
+            'closes_at' => $this->closes_at,
+            'monthly_revenue_target' => $this->monthly_revenue_target,
             'status' => $this->status,
         ];
     }

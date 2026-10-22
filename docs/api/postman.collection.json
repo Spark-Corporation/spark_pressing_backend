@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "452b348c-4815-4f24-82ea-0bc074806b58",
+        "_postman_id": "83427f55-35cc-4d78-81e2-ca02529b910f",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1159,7 +1159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T12:22:17\",\"retrieve_date\":\"2026-10-22T12:22:17\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"78f3d895-a847-35bd-af01-d47228544ce2\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T12:31:51\",\"retrieve_date\":\"2026-10-22T12:31:51\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
                         },
                         "description": ""
                     },
@@ -1268,7 +1268,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T12:22:17\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T12:31:51\"}"
                         },
                         "description": ""
                     },
@@ -3727,7 +3727,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T12:22:17\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T12:31:50\"}"
                         },
                         "description": ""
                     },
@@ -3772,7 +3772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T12:22:17\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T12:31:50\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -5525,7 +5525,7 @@
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T12:22:17",
+                                    "value": "2026-10-22T12:31:51",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -5673,7 +5673,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T12:22:17\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T12:31:51\"}"
                         },
                         "description": ""
                     },
@@ -5830,7 +5830,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T12:22:17\"}"
+                            "raw": "{\"date\":\"2026-10-22T12:31:51\"}"
                         },
                         "description": ""
                     },
@@ -5875,7 +5875,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T12:22:17\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T12:31:51\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -6977,7 +6977,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T12:22:17\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-10-22T12:31:51\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7022,7 +7022,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T12:22:17\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-10-22T12:31:51\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7174,6 +7174,98 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"data\": {\n        \"deleted\": true\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab Vue consolid\u00e9e multi-agences \u00bb : KPIs r\u00e9seau, CA journalier, classement, comparaison,\nalertes op\u00e9rationnelles et \u00e9tat des agences (`date_from`\/`date_to`, mois en cours par d\u00e9faut).",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/network\/overview",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/network\/overview"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"period\": {\n            \"from\": \"2026-09-01\",\n            \"to\": \"2026-09-28\",\n            \"compare_from\": \"2026-08-04\",\n            \"compare_to\": \"2026-08-31\"\n        },\n        \"kpis\": {\n            \"revenue\": {\n                \"value\": 18291000,\n                \"delta_percent\": 10.8\n            },\n            \"deposits\": {\n                \"value\": 1267,\n                \"pieces\": 4186\n            },\n            \"retrievals\": {\n                \"value\": 1150,\n                \"finalized_percent\": 90.8\n            },\n            \"cash_flow\": {\n                \"value\": 15840500,\n                \"delta_percent\": 9.6\n            },\n            \"unpaid\": {\n                \"value\": 1240000,\n                \"deposits\": 94,\n                \"share_of_revenue\": 6.8\n            },\n            \"loyalty\": {\n                \"members\": 2846,\n                \"points_issued\": 482000\n            },\n            \"sync_health\": {\n                \"percent\": 99.8,\n                \"online_agencies\": 4,\n                \"agencies\": 4\n            },\n            \"network_objective\": {\n                \"percent\": 86,\n                \"target\": 21268000,\n                \"agencies_above_85\": 2\n            }\n        },\n        \"revenue_chart\": {\n            \"total\": 18291000,\n            \"series\": [\n                {\n                    \"date\": \"2026-09-01\",\n                    \"revenue\": 580000\n                }\n            ]\n        },\n        \"ranking\": [\n            {\n                \"rank\": 1,\n                \"agency_id\": 2,\n                \"name\": \"Plateau\",\n                \"revenue\": 5820000,\n                \"delta_percent\": 14.2,\n                \"share_percent\": 31.8\n            }\n        ],\n        \"comparison\": [\n            {\n                \"agency_id\": 2,\n                \"name\": \"Plateau\",\n                \"deposits\": 386,\n                \"retrieved\": 344,\n                \"unpaid\": 215000,\n                \"unpaid_level\": \"normal\",\n                \"objective\": {\n                    \"target\": 6326000,\n                    \"percent\": 92,\n                    \"remaining\": 506000,\n                    \"level\": \"good\"\n                }\n            }\n        ],\n        \"alerts\": [\n            {\n                \"agency_id\": 4,\n                \"type\": \"unpaid\",\n                \"severity\": \"critical\",\n                \"title\": \"Marcory \u00b7 impay\u00e9s \u00e9lev\u00e9s\",\n                \"detail\": \"543 750 FCFA\",\n                \"endpoint\": \"\/api\/v1\/receipts\/unpaid?agency_id=4\"\n            }\n        ],\n        \"agencies\": [\n            {\n                \"agency_id\": 2,\n                \"name\": \"Plateau\",\n                \"address\": \"Avenue Chardy\",\n                \"online\": true,\n                \"status_label\": \"En ligne\",\n                \"deposits\": 386,\n                \"objective_percent\": 92,\n                \"endpoint\": \"\/api\/v1\/network\/agencies\/2\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
+                    "name": "\u00ab D\u00e9tail agence \u00bb : KPIs, comparaison au r\u00e9seau, atelier, clients, retards & impay\u00e9s, \u00e9quipe, historique, synchro.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/network\/agencies\/:agency_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/network\/agencies\/:agency_id",
+                            "variable": [
+                                {
+                                    "id": "agency_id",
+                                    "key": "agency_id",
+                                    "value": 1,
+                                    "description": "The ID of the agency."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Bingerville\",\n            \"code\": \"BGV-01\",\n            \"address\": \"Carrefour Feh Kess\u00e9\",\n            \"contact\": \"+225 07 00 00 00\",\n            \"email\": \"bingerville@spark.ci\",\n            \"opening_hours\": {\n                \"opens_at\": \"08:00\",\n                \"closes_at\": \"19:00\",\n                \"label\": \"ouverte aujourd\u2019hui de 08:00 \u00e0 19:00\"\n            }\n        },\n        \"kpis\": {\n            \"revenue\": {\n                \"value\": 4965500,\n                \"delta_percent\": 12.4,\n                \"network_rank\": 2\n            },\n            \"cash_today\": {\n                \"value\": 983500,\n                \"gap\": 0,\n                \"session_status\": \"open\"\n            },\n            \"deposits_retrievals\": {\n                \"deposits\": 342,\n                \"retrieved\": 311,\n                \"retrieval_rate\": 90.9\n            },\n            \"objective\": {\n                \"target\": 5641500,\n                \"percent\": 88,\n                \"remaining\": 676000,\n                \"level\": \"good\"\n            }\n        },\n        \"performance_chart\": {\n            \"total\": 4965500,\n            \"cumulative\": true,\n            \"series\": [\n                {\n                    \"date\": \"2026-09-01\",\n                    \"revenue\": 160000,\n                    \"cumulative\": 160000\n                }\n            ]\n        },\n        \"network_comparison\": [\n            {\n                \"code\": \"basket\",\n                \"label\": \"Panier moyen\",\n                \"value\": 14520,\n                \"unit\": \"amount\",\n                \"detail\": \"+1160 FCFA vs r\u00e9seau\"\n            }\n        ],\n        \"workshop\": {\n            \"orders\": 86,\n            \"pieces\": 284,\n            \"columns\": [\n                {\n                    \"etat\": \"waiting\",\n                    \"label\": \"En attente\",\n                    \"deposits\": 14,\n                    \"pieces\": 46\n                }\n            ],\n            \"due_soon\": 6,\n            \"late\": 2\n        },\n        \"clients\": {\n            \"active\": 846,\n            \"new_this_month\": 62,\n            \"loyalty_members\": 612,\n            \"members_percent\": 72,\n            \"points_this_month\": 126400,\n            \"new_vip_7d\": 18,\n            \"distribution\": [\n                {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\",\n                    \"count\": 480\n                }\n            ]\n        },\n        \"delays_unpaid\": {\n            \"to_recover\": {\n                \"amount\": 186750,\n                \"deposits\": 14\n            },\n            \"workshop_delays\": {\n                \"deposits\": 7,\n                \"over_24h\": 2\n            },\n            \"unpaid_followup\": {\n                \"clients\": 8,\n                \"amount\": 62500,\n                \"since_days\": 30\n            },\n            \"rows\": [\n                {\n                    \"deposit_id\": 2624,\n                    \"code\": \"BG-02624\",\n                    \"client\": \"Awa Diabat\u00e9\",\n                    \"delay\": \"32 min\",\n                    \"left_to_pay\": 12500\n                }\n            ]\n        },\n        \"team\": {\n            \"members\": 8,\n            \"present\": 6,\n            \"list\": [\n                {\n                    \"user_id\": 5,\n                    \"fullname\": \"Gr\u00e2ce Amani\",\n                    \"initials\": \"GA\",\n                    \"role\": \"manager\",\n                    \"present\": true,\n                    \"status_label\": \"Pr\u00e9sent\"\n                }\n            ]\n        },\n        \"history\": [\n            {\n                \"at\": \"2026-09-28T10:38:00+00:00\",\n                \"type\": \"deposit.retrieved\",\n                \"title\": \"Retrait finalis\u00e9 \u00b7 BG-02612\",\n                \"subtitle\": \"Chlo\u00e9 A.\",\n                \"amount\": 18000,\n                \"amount_type\": \"credit\"\n            }\n        ],\n        \"sync\": {\n            \"online\": true,\n            \"status_label\": \"En ligne \u00b7 synchronis\u00e9e\",\n            \"last_sync_at\": \"2026-09-28T10:42:08+00:00\",\n            \"pending_operations\": 0,\n            \"interruptions_30d\": 2,\n            \"last_batch_status\": \"completed\",\n            \"availability_percent\": 99.8\n        }\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -7460,7 +7552,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"status\":true}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"12:31\",\"closes_at\":\"12:31\",\"monthly_revenue_target\":38,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -7595,7 +7687,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T12:22:17\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T12:31:51\"}"
                         },
                         "description": ""
                     },
@@ -7780,7 +7872,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\"}"
+                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"12:31\",\"closes_at\":\"12:31\",\"monthly_revenue_target\":72}"
                         },
                         "description": ""
                     },
@@ -9478,7 +9570,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T12:22:17\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T12:31:50\"}"
                         },
                         "description": ""
                     },
@@ -9617,7 +9709,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-22T12:22:17",
+                                    "value": "2026-10-22T12:31:50",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -10566,7 +10658,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T12:22:17\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T12:31:51\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

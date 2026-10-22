@@ -24,10 +24,11 @@ class ActivityFeed
         'client.points_converted',
     ];
 
-    public function latest(int $limit = 15): array
+    public function latest(int $limit = 15, ?int $agencyId = null): array
     {
         $logs = AuditLog::query()
             ->whereIn('action', self::ACTIONS)
+            ->when($agencyId, fn ($q) => $q->where('agency_id', $agencyId))
             ->latest('id')
             ->limit($limit)
             ->get();

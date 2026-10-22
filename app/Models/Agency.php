@@ -26,6 +26,9 @@ class Agency extends Model
         'email',
         'rccm',
         'tax_id',
+        'opens_at',
+        'closes_at',
+        'monthly_revenue_target',
     ];
 
     protected $casts = [

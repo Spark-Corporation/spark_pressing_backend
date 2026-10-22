@@ -569,6 +569,13 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
                                                                                 <li class="tocify-item level-2" data-unique="rapports-DELETEapi-v1-reports-schedules--reportSchedule_id-">
                                 <a href="#rapports-DELETEapi-v1-reports-schedules--reportSchedule_id-">DELETE api/v1/reports/schedules/{reportSchedule_id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="rapports-GETapi-v1-network-overview">
+                                <a href="#rapports-GETapi-v1-network-overview">« Vue consolidée multi-agences » : KPIs réseau, CA journalier, classement, comparaison,
+alertes opérationnelles et état des agences (`date_from`/`date_to`, mois en cours par défaut).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="rapports-GETapi-v1-network-agencies--agency_id-">
+                                <a href="#rapports-GETapi-v1-network-agencies--agency_id-">« Détail agence » : KPIs, comparaison au réseau, atelier, clients, retards & impayés, équipe, historique, synchro.</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-organisation" class="tocify-header">
@@ -7140,7 +7147,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"client_uuid\": \"78f3d895-a847-35bd-af01-d47228544ce2\",
     \"client_id\": \"architecto\",
     \"discount\": 39,
     \"discount_percent\": 7,
@@ -7154,8 +7161,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T12:22:17\",
-    \"retrieve_date\": \"2026-10-22T12:22:17\",
+    \"deposit_date\": \"2026-10-22T12:31:51\",
+    \"retrieve_date\": \"2026-10-22T12:31:51\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -7196,7 +7203,7 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "client_uuid": "78f3d895-a847-35bd-af01-d47228544ce2",
     "client_id": "architecto",
     "discount": 39,
     "discount_percent": 7,
@@ -7210,8 +7217,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T12:22:17",
-    "retrieve_date": "2026-10-22T12:22:17",
+    "deposit_date": "2026-10-22T12:31:51",
+    "retrieve_date": "2026-10-22T12:31:51",
     "notes": "architecto",
     "lines": [
         {
@@ -7522,10 +7529,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               value="78f3d895-a847-35bd-af01-d47228544ce2"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+<p>validation.uuid. Example: <code>78f3d895-a847-35bd-af01-d47228544ce2</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
@@ -7724,10 +7731,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -7736,10 +7743,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -8416,7 +8423,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T12:22:17\"
+    \"transaction_date\": \"2026-10-22T12:31:51\"
 }"
 </code></pre></div>
 
@@ -8437,7 +8444,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T12:22:17"
+    "transaction_date": "2026-10-22T12:31:51"
 };
 
 fetch(url, {
@@ -8776,10 +8783,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
         </form>
 
@@ -18573,7 +18580,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php7AEB.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php3AC9.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -18758,7 +18765,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php7AEB.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php3AC9.tmp</code></p>
         </div>
         </form>
 
@@ -21383,7 +21390,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T12:22:17\"
+    \"at\": \"2026-10-22T12:31:50\"
 }"
 </code></pre></div>
 
@@ -21405,7 +21412,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T12:22:17"
+    "at": "2026-10-22T12:31:50"
 };
 
 fetch(url, {
@@ -21609,10 +21616,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:50</code></p>
         </div>
         </form>
 
@@ -21641,7 +21648,7 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T12:22:17\",
+    \"valid_from\": \"2026-10-22T12:31:50\",
     \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
@@ -21665,7 +21672,7 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-22T12:22:17",
+    "valid_from": "2026-10-22T12:31:50",
     "valid_to": "2052-11-14"
 };
 
@@ -21901,10 +21908,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -28664,13 +28671,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "label=g"\
     --form "type=out"\
     --form "amount=27"\
-    --form "action_date=2026-10-22T12:22:17"\
+    --form "action_date=2026-10-22T12:31:51"\
     --form "validated=1"\
     --form "payment_method=cash"\
     --form "beneficiary=v"\
     --form "reference=d"\
     --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php7C06.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php3BE4.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -28690,7 +28697,7 @@ body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
 body.append('label', 'g');
 body.append('type', 'out');
 body.append('amount', '27');
-body.append('action_date', '2026-10-22T12:22:17');
+body.append('action_date', '2026-10-22T12:31:51');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
 body.append('beneficiary', 'v');
@@ -28932,10 +28939,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -29019,7 +29026,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php7C06.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php3BE4.tmp</code></p>
         </div>
         </form>
 
@@ -29291,7 +29298,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-22T12:22:17\"
+    \"action_date\": \"2026-10-22T12:31:51\"
 }"
 </code></pre></div>
 
@@ -29312,7 +29319,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-22T12:22:17"
+    "action_date": "2026-10-22T12:31:51"
 };
 
 fetch(url, {
@@ -29602,10 +29609,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
         </form>
 
@@ -30077,7 +30084,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T12:22:17\"
+    \"date\": \"2026-10-22T12:31:51\"
 }"
 </code></pre></div>
 
@@ -30095,7 +30102,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T12:22:17"
+    "date": "2026-10-22T12:31:51"
 };
 
 fetch(url, {
@@ -30331,10 +30338,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
         </form>
 
@@ -30359,7 +30366,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T12:22:17\",
+    \"date\": \"2026-10-22T12:31:51\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -30383,7 +30390,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T12:22:17",
+    "date": "2026-10-22T12:31:51",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -30579,10 +30586,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -35666,7 +35673,7 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T12:22:17\",
+    \"date_from\": \"2026-10-22T12:31:51\",
     \"date_to\": \"2052-11-14\",
     \"preset\": \"month\",
     \"agency_id\": 16,
@@ -35688,7 +35695,7 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T12:22:17",
+    "date_from": "2026-10-22T12:31:51",
     "date_to": "2052-11-14",
     "preset": "month",
     "agency_id": 16,
@@ -35923,10 +35930,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -36002,7 +36009,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T12:22:17\",
+    \"date\": \"2026-10-22T12:31:51\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -36022,7 +36029,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T12:22:17",
+    "date": "2026-10-22T12:31:51",
     "agency_id": 16,
     "format": "json"
 };
@@ -36259,10 +36266,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -36945,6 +36952,602 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="url">
     <br>
 <p>The ID of the reportSchedule. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="rapports-GETapi-v1-network-overview">« Vue consolidée multi-agences » : KPIs réseau, CA journalier, classement, comparaison,
+alertes opérationnelles et état des agences (`date_from`/`date_to`, mois en cours par défaut).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-network-overview">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/network/overview" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/network/overview"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-network-overview">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;period&quot;: {
+            &quot;from&quot;: &quot;2026-09-01&quot;,
+            &quot;to&quot;: &quot;2026-09-28&quot;,
+            &quot;compare_from&quot;: &quot;2026-08-04&quot;,
+            &quot;compare_to&quot;: &quot;2026-08-31&quot;
+        },
+        &quot;kpis&quot;: {
+            &quot;revenue&quot;: {
+                &quot;value&quot;: 18291000,
+                &quot;delta_percent&quot;: 10.8
+            },
+            &quot;deposits&quot;: {
+                &quot;value&quot;: 1267,
+                &quot;pieces&quot;: 4186
+            },
+            &quot;retrievals&quot;: {
+                &quot;value&quot;: 1150,
+                &quot;finalized_percent&quot;: 90.8
+            },
+            &quot;cash_flow&quot;: {
+                &quot;value&quot;: 15840500,
+                &quot;delta_percent&quot;: 9.6
+            },
+            &quot;unpaid&quot;: {
+                &quot;value&quot;: 1240000,
+                &quot;deposits&quot;: 94,
+                &quot;share_of_revenue&quot;: 6.8
+            },
+            &quot;loyalty&quot;: {
+                &quot;members&quot;: 2846,
+                &quot;points_issued&quot;: 482000
+            },
+            &quot;sync_health&quot;: {
+                &quot;percent&quot;: 99.8,
+                &quot;online_agencies&quot;: 4,
+                &quot;agencies&quot;: 4
+            },
+            &quot;network_objective&quot;: {
+                &quot;percent&quot;: 86,
+                &quot;target&quot;: 21268000,
+                &quot;agencies_above_85&quot;: 2
+            }
+        },
+        &quot;revenue_chart&quot;: {
+            &quot;total&quot;: 18291000,
+            &quot;series&quot;: [
+                {
+                    &quot;date&quot;: &quot;2026-09-01&quot;,
+                    &quot;revenue&quot;: 580000
+                }
+            ]
+        },
+        &quot;ranking&quot;: [
+            {
+                &quot;rank&quot;: 1,
+                &quot;agency_id&quot;: 2,
+                &quot;name&quot;: &quot;Plateau&quot;,
+                &quot;revenue&quot;: 5820000,
+                &quot;delta_percent&quot;: 14.2,
+                &quot;share_percent&quot;: 31.8
+            }
+        ],
+        &quot;comparison&quot;: [
+            {
+                &quot;agency_id&quot;: 2,
+                &quot;name&quot;: &quot;Plateau&quot;,
+                &quot;deposits&quot;: 386,
+                &quot;retrieved&quot;: 344,
+                &quot;unpaid&quot;: 215000,
+                &quot;unpaid_level&quot;: &quot;normal&quot;,
+                &quot;objective&quot;: {
+                    &quot;target&quot;: 6326000,
+                    &quot;percent&quot;: 92,
+                    &quot;remaining&quot;: 506000,
+                    &quot;level&quot;: &quot;good&quot;
+                }
+            }
+        ],
+        &quot;alerts&quot;: [
+            {
+                &quot;agency_id&quot;: 4,
+                &quot;type&quot;: &quot;unpaid&quot;,
+                &quot;severity&quot;: &quot;critical&quot;,
+                &quot;title&quot;: &quot;Marcory &middot; impay&eacute;s &eacute;lev&eacute;s&quot;,
+                &quot;detail&quot;: &quot;543 750 FCFA&quot;,
+                &quot;endpoint&quot;: &quot;/api/v1/receipts/unpaid?agency_id=4&quot;
+            }
+        ],
+        &quot;agencies&quot;: [
+            {
+                &quot;agency_id&quot;: 2,
+                &quot;name&quot;: &quot;Plateau&quot;,
+                &quot;address&quot;: &quot;Avenue Chardy&quot;,
+                &quot;online&quot;: true,
+                &quot;status_label&quot;: &quot;En ligne&quot;,
+                &quot;deposits&quot;: 386,
+                &quot;objective_percent&quot;: 92,
+                &quot;endpoint&quot;: &quot;/api/v1/network/agencies/2&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-network-overview" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-network-overview"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-network-overview"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-network-overview" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-network-overview">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-network-overview" data-method="GET"
+      data-path="api/v1/network/overview"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-network-overview', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-network-overview"
+                    onclick="tryItOut('GETapi-v1-network-overview');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-network-overview"
+                    onclick="cancelTryOut('GETapi-v1-network-overview');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-network-overview"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/network/overview</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-network-overview"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-network-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-network-overview"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-network-overview"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="rapports-GETapi-v1-network-agencies--agency_id-">« Détail agence » : KPIs, comparaison au réseau, atelier, clients, retards &amp; impayés, équipe, historique, synchro.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-network-agencies--agency_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/network/agencies/1" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/network/agencies/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-network-agencies--agency_id-">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;agency&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Bingerville&quot;,
+            &quot;code&quot;: &quot;BGV-01&quot;,
+            &quot;address&quot;: &quot;Carrefour Feh Kess&eacute;&quot;,
+            &quot;contact&quot;: &quot;+225 07 00 00 00&quot;,
+            &quot;email&quot;: &quot;bingerville@spark.ci&quot;,
+            &quot;opening_hours&quot;: {
+                &quot;opens_at&quot;: &quot;08:00&quot;,
+                &quot;closes_at&quot;: &quot;19:00&quot;,
+                &quot;label&quot;: &quot;ouverte aujourd&rsquo;hui de 08:00 &agrave; 19:00&quot;
+            }
+        },
+        &quot;kpis&quot;: {
+            &quot;revenue&quot;: {
+                &quot;value&quot;: 4965500,
+                &quot;delta_percent&quot;: 12.4,
+                &quot;network_rank&quot;: 2
+            },
+            &quot;cash_today&quot;: {
+                &quot;value&quot;: 983500,
+                &quot;gap&quot;: 0,
+                &quot;session_status&quot;: &quot;open&quot;
+            },
+            &quot;deposits_retrievals&quot;: {
+                &quot;deposits&quot;: 342,
+                &quot;retrieved&quot;: 311,
+                &quot;retrieval_rate&quot;: 90.9
+            },
+            &quot;objective&quot;: {
+                &quot;target&quot;: 5641500,
+                &quot;percent&quot;: 88,
+                &quot;remaining&quot;: 676000,
+                &quot;level&quot;: &quot;good&quot;
+            }
+        },
+        &quot;performance_chart&quot;: {
+            &quot;total&quot;: 4965500,
+            &quot;cumulative&quot;: true,
+            &quot;series&quot;: [
+                {
+                    &quot;date&quot;: &quot;2026-09-01&quot;,
+                    &quot;revenue&quot;: 160000,
+                    &quot;cumulative&quot;: 160000
+                }
+            ]
+        },
+        &quot;network_comparison&quot;: [
+            {
+                &quot;code&quot;: &quot;basket&quot;,
+                &quot;label&quot;: &quot;Panier moyen&quot;,
+                &quot;value&quot;: 14520,
+                &quot;unit&quot;: &quot;amount&quot;,
+                &quot;detail&quot;: &quot;+1160 FCFA vs r&eacute;seau&quot;
+            }
+        ],
+        &quot;workshop&quot;: {
+            &quot;orders&quot;: 86,
+            &quot;pieces&quot;: 284,
+            &quot;columns&quot;: [
+                {
+                    &quot;etat&quot;: &quot;waiting&quot;,
+                    &quot;label&quot;: &quot;En attente&quot;,
+                    &quot;deposits&quot;: 14,
+                    &quot;pieces&quot;: 46
+                }
+            ],
+            &quot;due_soon&quot;: 6,
+            &quot;late&quot;: 2
+        },
+        &quot;clients&quot;: {
+            &quot;active&quot;: 846,
+            &quot;new_this_month&quot;: 62,
+            &quot;loyalty_members&quot;: 612,
+            &quot;members_percent&quot;: 72,
+            &quot;points_this_month&quot;: 126400,
+            &quot;new_vip_7d&quot;: 18,
+            &quot;distribution&quot;: [
+                {
+                    &quot;code&quot;: &quot;essentiel&quot;,
+                    &quot;label&quot;: &quot;Essentiel&quot;,
+                    &quot;count&quot;: 480
+                }
+            ]
+        },
+        &quot;delays_unpaid&quot;: {
+            &quot;to_recover&quot;: {
+                &quot;amount&quot;: 186750,
+                &quot;deposits&quot;: 14
+            },
+            &quot;workshop_delays&quot;: {
+                &quot;deposits&quot;: 7,
+                &quot;over_24h&quot;: 2
+            },
+            &quot;unpaid_followup&quot;: {
+                &quot;clients&quot;: 8,
+                &quot;amount&quot;: 62500,
+                &quot;since_days&quot;: 30
+            },
+            &quot;rows&quot;: [
+                {
+                    &quot;deposit_id&quot;: 2624,
+                    &quot;code&quot;: &quot;BG-02624&quot;,
+                    &quot;client&quot;: &quot;Awa Diabat&eacute;&quot;,
+                    &quot;delay&quot;: &quot;32 min&quot;,
+                    &quot;left_to_pay&quot;: 12500
+                }
+            ]
+        },
+        &quot;team&quot;: {
+            &quot;members&quot;: 8,
+            &quot;present&quot;: 6,
+            &quot;list&quot;: [
+                {
+                    &quot;user_id&quot;: 5,
+                    &quot;fullname&quot;: &quot;Gr&acirc;ce Amani&quot;,
+                    &quot;initials&quot;: &quot;GA&quot;,
+                    &quot;role&quot;: &quot;manager&quot;,
+                    &quot;present&quot;: true,
+                    &quot;status_label&quot;: &quot;Pr&eacute;sent&quot;
+                }
+            ]
+        },
+        &quot;history&quot;: [
+            {
+                &quot;at&quot;: &quot;2026-09-28T10:38:00+00:00&quot;,
+                &quot;type&quot;: &quot;deposit.retrieved&quot;,
+                &quot;title&quot;: &quot;Retrait finalis&eacute; &middot; BG-02612&quot;,
+                &quot;subtitle&quot;: &quot;Chlo&eacute; A.&quot;,
+                &quot;amount&quot;: 18000,
+                &quot;amount_type&quot;: &quot;credit&quot;
+            }
+        ],
+        &quot;sync&quot;: {
+            &quot;online&quot;: true,
+            &quot;status_label&quot;: &quot;En ligne &middot; synchronis&eacute;e&quot;,
+            &quot;last_sync_at&quot;: &quot;2026-09-28T10:42:08+00:00&quot;,
+            &quot;pending_operations&quot;: 0,
+            &quot;interruptions_30d&quot;: 2,
+            &quot;last_batch_status&quot;: &quot;completed&quot;,
+            &quot;availability_percent&quot;: 99.8
+        }
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-network-agencies--agency_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-network-agencies--agency_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-network-agencies--agency_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-network-agencies--agency_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-network-agencies--agency_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-network-agencies--agency_id-" data-method="GET"
+      data-path="api/v1/network/agencies/{agency_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-network-agencies--agency_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-network-agencies--agency_id-"
+                    onclick="tryItOut('GETapi-v1-network-agencies--agency_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-network-agencies--agency_id-"
+                    onclick="cancelTryOut('GETapi-v1-network-agencies--agency_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-network-agencies--agency_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/network/agencies/{agency_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-network-agencies--agency_id-"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-network-agencies--agency_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-network-agencies--agency_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-network-agencies--agency_id-"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="GETapi-v1-network-agencies--agency_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the agency. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -38251,6 +38854,9 @@ Must be one of:
     \"currency\": \"ngz\",
     \"code_prefix\": \"miyvdljn\",
     \"code_suffix\": \"ikhwaykc\",
+    \"opens_at\": \"12:31\",
+    \"closes_at\": \"12:31\",
+    \"monthly_revenue_target\": 38,
     \"status\": true
 }"
 </code></pre></div>
@@ -38275,6 +38881,9 @@ let body = {
     "currency": "ngz",
     "code_prefix": "miyvdljn",
     "code_suffix": "ikhwaykc",
+    "opens_at": "12:31",
+    "closes_at": "12:31",
+    "monthly_revenue_target": 38,
     "status": true
 };
 
@@ -38527,6 +39136,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>validation.max. Example: <code>ikhwaykc</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>opens_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="opens_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
+               value="12:31"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>12:31</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="closes_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
+               value="12:31"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>12:31</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="monthly_revenue_target"                data-endpoint="PUTapi-v1-settings-agencies--id-"
+               value="38"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -38926,7 +39571,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T12:22:17\"
+    \"rate_date\": \"2026-10-22T12:31:51\"
 }"
 </code></pre></div>
 
@@ -38947,7 +39592,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-22T12:22:17"
+    "rate_date": "2026-10-22T12:31:51"
 };
 
 fetch(url, {
@@ -39153,10 +39798,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
         </form>
 
@@ -39741,7 +40386,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"country_code\": \"ng\",
     \"currency\": \"zmi\",
     \"code_prefix\": \"yvdljnik\",
-    \"code_suffix\": \"hwaykcmy\"
+    \"code_suffix\": \"hwaykcmy\",
+    \"opens_at\": \"12:31\",
+    \"closes_at\": \"12:31\",
+    \"monthly_revenue_target\": 72
 }"
 </code></pre></div>
 
@@ -39765,7 +40413,10 @@ let body = {
     "country_code": "ng",
     "currency": "zmi",
     "code_prefix": "yvdljnik",
-    "code_suffix": "hwaykcmy"
+    "code_suffix": "hwaykcmy",
+    "opens_at": "12:31",
+    "closes_at": "12:31",
+    "monthly_revenue_target": 72
 };
 
 fetch(url, {
@@ -40016,6 +40667,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>validation.max. Example: <code>hwaykcmy</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>opens_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="opens_at"                data-endpoint="POSTapi-v1-org-agencies"
+               value="12:31"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>12:31</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="closes_at"                data-endpoint="POSTapi-v1-org-agencies"
+               value="12:31"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>12:31</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="monthly_revenue_target"                data-endpoint="POSTapi-v1-org-agencies"
+               value="72"
+               data-component="body">
+    <br>
+<p>validation.min. Example: <code>72</code></p>
         </div>
         </form>
 
@@ -48219,7 +48906,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T12:22:17\"
+    \"expires_at\": \"2026-10-22T12:31:50\"
 }"
 </code></pre></div>
 
@@ -48243,7 +48930,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-22T12:22:17"
+    "expires_at": "2026-10-22T12:31:50"
 };
 
 fetch(url, {
@@ -48578,10 +49265,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:50</code></p>
         </div>
         </form>
 
@@ -48883,10 +49570,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-22T12:22:17"\
+    --form "effective_at=2026-10-22T12:31:50"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php7A7C.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php3A1C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -48905,7 +49592,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T12:22:17');
+body.append('effective_at', '2026-10-22T12:31:50');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -49415,10 +50102,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:50"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -49474,7 +50161,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php7A7C.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php3A1C.tmp</code></p>
         </div>
         </form>
 
@@ -53687,7 +54374,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T12:22:17\",
+    \"round_date\": \"2026-10-22T12:31:51\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -53708,7 +54395,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-22T12:22:17",
+    "round_date": "2026-10-22T12:31:51",
     "name": "n"
 };
 
@@ -53915,10 +54602,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T12:22:17"
+               value="2026-10-22T12:31:51"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T12:22:17</code></p>
+<p>validation.date. Example: <code>2026-10-22T12:31:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

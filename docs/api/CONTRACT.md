@@ -256,6 +256,14 @@ Envois automatiques : dépôt enregistré, paiement reçu, retrait effectué (et
 
 Effets appliqués : `security.lockout` (échecs / durée) et `security.sessions.max_hours` à la connexion staff, `receipts.footer_message` sur le ticket, `loyalty.program.minimum_points` pour « Convertir en remise ».
 
+### 7.0i Multi-agences (Figma 10)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| Vue consolidée multi-agences (période, Comparer) | `GET /network/overview?date_from&date_to` (mois en cours par défaut ; admin/manager) | `kpis` (CA + évolution, dépôts + pièces, retraits + % finalisés, cash-flow net, impayés + % CA, fidélité, `sync_health` (disponibilité 30 j, agences en ligne), `network_objective` (+ agences ≥ 85 %)), `revenue_chart`, `ranking[]` (rang, CA, évolution, part), `comparison[]` (dépôts, retraits, impayés + `unpaid_level`, `objective` percent/remaining/level), `alerts[]` (impayés élevés, retards, opérations hors ligne, objectif proche ; `severity`, `endpoint`), `agencies[]` (en ligne, dépôts, objectif) |
+| Détail agence | `GET /network/agencies/{id}?date_from&date_to` | `agency` (code, adresse, horaires du jour), `kpis` (CA + rang réseau, caisse du jour + écart, dépôts/retraits + taux, objectif + reste), `performance_chart` (cumulé), `network_comparison[]` (CA, panier, impayés, retards atelier ; satisfaction = null tant que les avis ne sont pas collectés), `workshop` (colonnes + pièces, délais proches, retards), `clients` (actifs, nouveaux, membres fidélité, points du mois, VIP, répartition), `delays_unpaid` (à recouvrer, retards > 24 h, impayés 30 j+, lignes), `team` (présents = connectés aujourd’hui), `history[]`, `sync` |
+| Gérer l’agence (horaires, objectif) | `POST /org/agencies`, `PUT /settings/agencies/{id}` | `opens_at`, `closes_at` (HH:MM), `monthly_revenue_target` (sinon objectif du pressing réparti entre agences) |
+
 ### 7.0c Clients & fidélité (Figma 03)
 
 | Écran / bloc | Endpoint | Champs |

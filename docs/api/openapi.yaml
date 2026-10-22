@@ -8838,7 +8838,7 @@ paths:
                 client_uuid:
                   type: string
                   description: validation.uuid.
-                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+                  example: 78f3d895-a847-35bd-af01-d47228544ce2
                   nullable: true
                 client_id:
                   type: string
@@ -8916,12 +8916,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
                 notes:
                   type: string
@@ -10649,7 +10649,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
               required:
                 - amount
@@ -27151,7 +27151,7 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:50'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
@@ -27303,7 +27303,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:50'
                   nullable: true
               required:
                 - agency_id
@@ -32031,7 +32031,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
                 validated:
                   type: boolean
@@ -32689,7 +32689,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
     delete:
       summary: ''
@@ -33475,7 +33475,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -33696,7 +33696,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
                 period:
                   type: string
@@ -38835,7 +38835,7 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
                 date_to:
                   type: string
@@ -39241,7 +39241,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                   nullable: true
                 agency_id:
                   type: integer
@@ -39686,6 +39686,1006 @@ paths:
         name: reportSchedule_id
         description: 'The ID of the reportSchedule.'
         example: 16
+        required: true
+        schema:
+          type: integer
+  /api/v1/network/overview:
+    get:
+      summary: "« Vue consolidée multi-agences » : KPIs réseau, CA journalier, classement, comparaison,\nalertes opérationnelles et état des agences (`date_from`/`date_to`, mois en cours par défaut)."
+      operationId: VueConsolideMultiAgencesKPIsRseauCAJournalierClassementComparaisonalertesOprationnellesEttatDesAgencesdateFromdateToMoisEnCoursParDfaut
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    period:
+                      from: '2026-09-01'
+                      to: '2026-09-28'
+                      compare_from: '2026-08-04'
+                      compare_to: '2026-08-31'
+                    kpis:
+                      revenue:
+                        value: 18291000
+                        delta_percent: 10.8
+                      deposits:
+                        value: 1267
+                        pieces: 4186
+                      retrievals:
+                        value: 1150
+                        finalized_percent: 90.8
+                      cash_flow:
+                        value: 15840500
+                        delta_percent: 9.6
+                      unpaid:
+                        value: 1240000
+                        deposits: 94
+                        share_of_revenue: 6.8
+                      loyalty:
+                        members: 2846
+                        points_issued: 482000
+                      sync_health:
+                        percent: 99.8
+                        online_agencies: 4
+                        agencies: 4
+                      network_objective:
+                        percent: 86
+                        target: 21268000
+                        agencies_above_85: 2
+                    revenue_chart:
+                      total: 18291000
+                      series:
+                        -
+                          date: '2026-09-01'
+                          revenue: 580000
+                    ranking:
+                      -
+                        rank: 1
+                        agency_id: 2
+                        name: Plateau
+                        revenue: 5820000
+                        delta_percent: 14.2
+                        share_percent: 31.8
+                    comparison:
+                      -
+                        agency_id: 2
+                        name: Plateau
+                        deposits: 386
+                        retrieved: 344
+                        unpaid: 215000
+                        unpaid_level: normal
+                        objective:
+                          target: 6326000
+                          percent: 92
+                          remaining: 506000
+                          level: good
+                    alerts:
+                      -
+                        agency_id: 4
+                        type: unpaid
+                        severity: critical
+                        title: 'Marcory · impayés élevés'
+                        detail: '543 750 FCFA'
+                        endpoint: '/api/v1/receipts/unpaid?agency_id=4'
+                    agencies:
+                      -
+                        agency_id: 2
+                        name: Plateau
+                        address: 'Avenue Chardy'
+                        online: true
+                        status_label: 'En ligne'
+                        deposits: 386
+                        objective_percent: 92
+                        endpoint: /api/v1/network/agencies/2
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      period:
+                        type: object
+                        properties:
+                          from:
+                            type: string
+                            example: '2026-09-01'
+                          to:
+                            type: string
+                            example: '2026-09-28'
+                          compare_from:
+                            type: string
+                            example: '2026-08-04'
+                          compare_to:
+                            type: string
+                            example: '2026-08-31'
+                      kpis:
+                        type: object
+                        properties:
+                          revenue:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 18291000
+                              delta_percent:
+                                type: number
+                                example: 10.8
+                          deposits:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 1267
+                              pieces:
+                                type: integer
+                                example: 4186
+                          retrievals:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 1150
+                              finalized_percent:
+                                type: number
+                                example: 90.8
+                          cash_flow:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 15840500
+                              delta_percent:
+                                type: number
+                                example: 9.6
+                          unpaid:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 1240000
+                              deposits:
+                                type: integer
+                                example: 94
+                              share_of_revenue:
+                                type: number
+                                example: 6.8
+                          loyalty:
+                            type: object
+                            properties:
+                              members:
+                                type: integer
+                                example: 2846
+                              points_issued:
+                                type: integer
+                                example: 482000
+                          sync_health:
+                            type: object
+                            properties:
+                              percent:
+                                type: number
+                                example: 99.8
+                              online_agencies:
+                                type: integer
+                                example: 4
+                              agencies:
+                                type: integer
+                                example: 4
+                          network_objective:
+                            type: object
+                            properties:
+                              percent:
+                                type: integer
+                                example: 86
+                              target:
+                                type: integer
+                                example: 21268000
+                              agencies_above_85:
+                                type: integer
+                                example: 2
+                      revenue_chart:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 18291000
+                          series:
+                            type: array
+                            example:
+                              -
+                                date: '2026-09-01'
+                                revenue: 580000
+                            items:
+                              type: object
+                              properties:
+                                date:
+                                  type: string
+                                  example: '2026-09-01'
+                                revenue:
+                                  type: integer
+                                  example: 580000
+                      ranking:
+                        type: array
+                        example:
+                          -
+                            rank: 1
+                            agency_id: 2
+                            name: Plateau
+                            revenue: 5820000
+                            delta_percent: 14.2
+                            share_percent: 31.8
+                        items:
+                          type: object
+                          properties:
+                            rank:
+                              type: integer
+                              example: 1
+                            agency_id:
+                              type: integer
+                              example: 2
+                            name:
+                              type: string
+                              example: Plateau
+                            revenue:
+                              type: integer
+                              example: 5820000
+                            delta_percent:
+                              type: number
+                              example: 14.2
+                            share_percent:
+                              type: number
+                              example: 31.8
+                      comparison:
+                        type: array
+                        example:
+                          -
+                            agency_id: 2
+                            name: Plateau
+                            deposits: 386
+                            retrieved: 344
+                            unpaid: 215000
+                            unpaid_level: normal
+                            objective:
+                              target: 6326000
+                              percent: 92
+                              remaining: 506000
+                              level: good
+                        items:
+                          type: object
+                          properties:
+                            agency_id:
+                              type: integer
+                              example: 2
+                            name:
+                              type: string
+                              example: Plateau
+                            deposits:
+                              type: integer
+                              example: 386
+                            retrieved:
+                              type: integer
+                              example: 344
+                            unpaid:
+                              type: integer
+                              example: 215000
+                            unpaid_level:
+                              type: string
+                              example: normal
+                            objective:
+                              type: object
+                              properties:
+                                target:
+                                  type: integer
+                                  example: 6326000
+                                percent:
+                                  type: integer
+                                  example: 92
+                                remaining:
+                                  type: integer
+                                  example: 506000
+                                level:
+                                  type: string
+                                  example: good
+                      alerts:
+                        type: array
+                        example:
+                          -
+                            agency_id: 4
+                            type: unpaid
+                            severity: critical
+                            title: 'Marcory · impayés élevés'
+                            detail: '543 750 FCFA'
+                            endpoint: '/api/v1/receipts/unpaid?agency_id=4'
+                        items:
+                          type: object
+                          properties:
+                            agency_id:
+                              type: integer
+                              example: 4
+                            type:
+                              type: string
+                              example: unpaid
+                            severity:
+                              type: string
+                              example: critical
+                            title:
+                              type: string
+                              example: 'Marcory · impayés élevés'
+                            detail:
+                              type: string
+                              example: '543 750 FCFA'
+                            endpoint:
+                              type: string
+                              example: '/api/v1/receipts/unpaid?agency_id=4'
+                      agencies:
+                        type: array
+                        example:
+                          -
+                            agency_id: 2
+                            name: Plateau
+                            address: 'Avenue Chardy'
+                            online: true
+                            status_label: 'En ligne'
+                            deposits: 386
+                            objective_percent: 92
+                            endpoint: /api/v1/network/agencies/2
+                        items:
+                          type: object
+                          properties:
+                            agency_id:
+                              type: integer
+                              example: 2
+                            name:
+                              type: string
+                              example: Plateau
+                            address:
+                              type: string
+                              example: 'Avenue Chardy'
+                            online:
+                              type: boolean
+                              example: true
+                            status_label:
+                              type: string
+                              example: 'En ligne'
+                            deposits:
+                              type: integer
+                              example: 386
+                            objective_percent:
+                              type: integer
+                              example: 92
+                            endpoint:
+                              type: string
+                              example: /api/v1/network/agencies/2
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Rapports
+  '/api/v1/network/agencies/{agency_id}':
+    get:
+      summary: '« Détail agence » : KPIs, comparaison au réseau, atelier, clients, retards & impayés, équipe, historique, synchro.'
+      operationId: DtailAgenceKPIsComparaisonAuRseauAtelierClientsRetardsImpaysquipeHistoriqueSynchro
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    agency:
+                      id: 1
+                      name: Bingerville
+                      code: BGV-01
+                      address: 'Carrefour Feh Kessé'
+                      contact: '+225 07 00 00 00'
+                      email: bingerville@spark.ci
+                      opening_hours:
+                        opens_at: '08:00'
+                        closes_at: '19:00'
+                        label: 'ouverte aujourd’hui de 08:00 à 19:00'
+                    kpis:
+                      revenue:
+                        value: 4965500
+                        delta_percent: 12.4
+                        network_rank: 2
+                      cash_today:
+                        value: 983500
+                        gap: 0
+                        session_status: open
+                      deposits_retrievals:
+                        deposits: 342
+                        retrieved: 311
+                        retrieval_rate: 90.9
+                      objective:
+                        target: 5641500
+                        percent: 88
+                        remaining: 676000
+                        level: good
+                    performance_chart:
+                      total: 4965500
+                      cumulative: true
+                      series:
+                        -
+                          date: '2026-09-01'
+                          revenue: 160000
+                          cumulative: 160000
+                    network_comparison:
+                      -
+                        code: basket
+                        label: 'Panier moyen'
+                        value: 14520
+                        unit: amount
+                        detail: '+1160 FCFA vs réseau'
+                    workshop:
+                      orders: 86
+                      pieces: 284
+                      columns:
+                        -
+                          etat: waiting
+                          label: 'En attente'
+                          deposits: 14
+                          pieces: 46
+                      due_soon: 6
+                      late: 2
+                    clients:
+                      active: 846
+                      new_this_month: 62
+                      loyalty_members: 612
+                      members_percent: 72
+                      points_this_month: 126400
+                      new_vip_7d: 18
+                      distribution:
+                        -
+                          code: essentiel
+                          label: Essentiel
+                          count: 480
+                    delays_unpaid:
+                      to_recover:
+                        amount: 186750
+                        deposits: 14
+                      workshop_delays:
+                        deposits: 7
+                        over_24h: 2
+                      unpaid_followup:
+                        clients: 8
+                        amount: 62500
+                        since_days: 30
+                      rows:
+                        -
+                          deposit_id: 2624
+                          code: BG-02624
+                          client: 'Awa Diabaté'
+                          delay: '32 min'
+                          left_to_pay: 12500
+                    team:
+                      members: 8
+                      present: 6
+                      list:
+                        -
+                          user_id: 5
+                          fullname: 'Grâce Amani'
+                          initials: GA
+                          role: manager
+                          present: true
+                          status_label: Présent
+                    history:
+                      -
+                        at: '2026-09-28T10:38:00+00:00'
+                        type: deposit.retrieved
+                        title: 'Retrait finalisé · BG-02612'
+                        subtitle: 'Chloé A.'
+                        amount: 18000
+                        amount_type: credit
+                    sync:
+                      online: true
+                      status_label: 'En ligne · synchronisée'
+                      last_sync_at: '2026-09-28T10:42:08+00:00'
+                      pending_operations: 0
+                      interruptions_30d: 2
+                      last_batch_status: completed
+                      availability_percent: 99.8
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      agency:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Bingerville
+                          code:
+                            type: string
+                            example: BGV-01
+                          address:
+                            type: string
+                            example: 'Carrefour Feh Kessé'
+                          contact:
+                            type: string
+                            example: '+225 07 00 00 00'
+                          email:
+                            type: string
+                            example: bingerville@spark.ci
+                          opening_hours:
+                            type: object
+                            properties:
+                              opens_at:
+                                type: string
+                                example: '08:00'
+                              closes_at:
+                                type: string
+                                example: '19:00'
+                              label:
+                                type: string
+                                example: 'ouverte aujourd’hui de 08:00 à 19:00'
+                      kpis:
+                        type: object
+                        properties:
+                          revenue:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 4965500
+                              delta_percent:
+                                type: number
+                                example: 12.4
+                              network_rank:
+                                type: integer
+                                example: 2
+                          cash_today:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 983500
+                              gap:
+                                type: integer
+                                example: 0
+                              session_status:
+                                type: string
+                                example: open
+                          deposits_retrievals:
+                            type: object
+                            properties:
+                              deposits:
+                                type: integer
+                                example: 342
+                              retrieved:
+                                type: integer
+                                example: 311
+                              retrieval_rate:
+                                type: number
+                                example: 90.9
+                          objective:
+                            type: object
+                            properties:
+                              target:
+                                type: integer
+                                example: 5641500
+                              percent:
+                                type: integer
+                                example: 88
+                              remaining:
+                                type: integer
+                                example: 676000
+                              level:
+                                type: string
+                                example: good
+                      performance_chart:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                            example: 4965500
+                          cumulative:
+                            type: boolean
+                            example: true
+                          series:
+                            type: array
+                            example:
+                              -
+                                date: '2026-09-01'
+                                revenue: 160000
+                                cumulative: 160000
+                            items:
+                              type: object
+                              properties:
+                                date:
+                                  type: string
+                                  example: '2026-09-01'
+                                revenue:
+                                  type: integer
+                                  example: 160000
+                                cumulative:
+                                  type: integer
+                                  example: 160000
+                      network_comparison:
+                        type: array
+                        example:
+                          -
+                            code: basket
+                            label: 'Panier moyen'
+                            value: 14520
+                            unit: amount
+                            detail: '+1160 FCFA vs réseau'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: basket
+                            label:
+                              type: string
+                              example: 'Panier moyen'
+                            value:
+                              type: integer
+                              example: 14520
+                            unit:
+                              type: string
+                              example: amount
+                            detail:
+                              type: string
+                              example: '+1160 FCFA vs réseau'
+                      workshop:
+                        type: object
+                        properties:
+                          orders:
+                            type: integer
+                            example: 86
+                          pieces:
+                            type: integer
+                            example: 284
+                          columns:
+                            type: array
+                            example:
+                              -
+                                etat: waiting
+                                label: 'En attente'
+                                deposits: 14
+                                pieces: 46
+                            items:
+                              type: object
+                              properties:
+                                etat:
+                                  type: string
+                                  example: waiting
+                                label:
+                                  type: string
+                                  example: 'En attente'
+                                deposits:
+                                  type: integer
+                                  example: 14
+                                pieces:
+                                  type: integer
+                                  example: 46
+                          due_soon:
+                            type: integer
+                            example: 6
+                          late:
+                            type: integer
+                            example: 2
+                      clients:
+                        type: object
+                        properties:
+                          active:
+                            type: integer
+                            example: 846
+                          new_this_month:
+                            type: integer
+                            example: 62
+                          loyalty_members:
+                            type: integer
+                            example: 612
+                          members_percent:
+                            type: integer
+                            example: 72
+                          points_this_month:
+                            type: integer
+                            example: 126400
+                          new_vip_7d:
+                            type: integer
+                            example: 18
+                          distribution:
+                            type: array
+                            example:
+                              -
+                                code: essentiel
+                                label: Essentiel
+                                count: 480
+                            items:
+                              type: object
+                              properties:
+                                code:
+                                  type: string
+                                  example: essentiel
+                                label:
+                                  type: string
+                                  example: Essentiel
+                                count:
+                                  type: integer
+                                  example: 480
+                      delays_unpaid:
+                        type: object
+                        properties:
+                          to_recover:
+                            type: object
+                            properties:
+                              amount:
+                                type: integer
+                                example: 186750
+                              deposits:
+                                type: integer
+                                example: 14
+                          workshop_delays:
+                            type: object
+                            properties:
+                              deposits:
+                                type: integer
+                                example: 7
+                              over_24h:
+                                type: integer
+                                example: 2
+                          unpaid_followup:
+                            type: object
+                            properties:
+                              clients:
+                                type: integer
+                                example: 8
+                              amount:
+                                type: integer
+                                example: 62500
+                              since_days:
+                                type: integer
+                                example: 30
+                          rows:
+                            type: array
+                            example:
+                              -
+                                deposit_id: 2624
+                                code: BG-02624
+                                client: 'Awa Diabaté'
+                                delay: '32 min'
+                                left_to_pay: 12500
+                            items:
+                              type: object
+                              properties:
+                                deposit_id:
+                                  type: integer
+                                  example: 2624
+                                code:
+                                  type: string
+                                  example: BG-02624
+                                client:
+                                  type: string
+                                  example: 'Awa Diabaté'
+                                delay:
+                                  type: string
+                                  example: '32 min'
+                                left_to_pay:
+                                  type: integer
+                                  example: 12500
+                      team:
+                        type: object
+                        properties:
+                          members:
+                            type: integer
+                            example: 8
+                          present:
+                            type: integer
+                            example: 6
+                          list:
+                            type: array
+                            example:
+                              -
+                                user_id: 5
+                                fullname: 'Grâce Amani'
+                                initials: GA
+                                role: manager
+                                present: true
+                                status_label: Présent
+                            items:
+                              type: object
+                              properties:
+                                user_id:
+                                  type: integer
+                                  example: 5
+                                fullname:
+                                  type: string
+                                  example: 'Grâce Amani'
+                                initials:
+                                  type: string
+                                  example: GA
+                                role:
+                                  type: string
+                                  example: manager
+                                present:
+                                  type: boolean
+                                  example: true
+                                status_label:
+                                  type: string
+                                  example: Présent
+                      history:
+                        type: array
+                        example:
+                          -
+                            at: '2026-09-28T10:38:00+00:00'
+                            type: deposit.retrieved
+                            title: 'Retrait finalisé · BG-02612'
+                            subtitle: 'Chloé A.'
+                            amount: 18000
+                            amount_type: credit
+                        items:
+                          type: object
+                          properties:
+                            at:
+                              type: string
+                              example: '2026-09-28T10:38:00+00:00'
+                            type:
+                              type: string
+                              example: deposit.retrieved
+                            title:
+                              type: string
+                              example: 'Retrait finalisé · BG-02612'
+                            subtitle:
+                              type: string
+                              example: 'Chloé A.'
+                            amount:
+                              type: integer
+                              example: 18000
+                            amount_type:
+                              type: string
+                              example: credit
+                      sync:
+                        type: object
+                        properties:
+                          online:
+                            type: boolean
+                            example: true
+                          status_label:
+                            type: string
+                            example: 'En ligne · synchronisée'
+                          last_sync_at:
+                            type: string
+                            example: '2026-09-28T10:42:08+00:00'
+                          pending_operations:
+                            type: integer
+                            example: 0
+                          interruptions_30d:
+                            type: integer
+                            example: 2
+                          last_batch_status:
+                            type: string
+                            example: completed
+                          availability_percent:
+                            type: number
+                            example: 99.8
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Rapports
+    parameters:
+      -
+        in: path
+        name: agency_id
+        description: 'The ID of the agency.'
+        example: 1
         required: true
         schema:
           type: integer
@@ -40644,6 +41644,21 @@ paths:
                   description: validation.max.
                   example: ikhwaykc
                   nullable: true
+                opens_at:
+                  type: string
+                  description: 'Must be a valid date in the format <code>H:i</code>.'
+                  example: '12:31'
+                  nullable: true
+                closes_at:
+                  type: string
+                  description: 'Must be a valid date in the format <code>H:i</code>.'
+                  example: '12:31'
+                  nullable: true
+                monthly_revenue_target:
+                  type: integer
+                  description: validation.min.
+                  example: 38
+                  nullable: true
                 status:
                   type: boolean
                   description: ''
@@ -41020,7 +42035,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
               required:
                 - source_currency
                 - target_currency
@@ -41599,6 +42614,21 @@ paths:
                   type: string
                   description: validation.max.
                   example: hwaykcmy
+                  nullable: true
+                opens_at:
+                  type: string
+                  description: 'Must be a valid date in the format <code>H:i</code>.'
+                  example: '12:31'
+                  nullable: true
+                closes_at:
+                  type: string
+                  description: 'Must be a valid date in the format <code>H:i</code>.'
+                  example: '12:31'
+                  nullable: true
+                monthly_revenue_target:
+                  type: integer
+                  description: validation.min.
+                  example: 72
                   nullable: true
               required:
                 - name
@@ -49621,7 +50651,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:50'
                   nullable: true
     delete:
       summary: ''
@@ -51037,7 +52067,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:50'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -55252,7 +56282,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T12:22:17'
+                  example: '2026-10-22T12:31:51'
                 name:
                   type: string
                   description: validation.max.

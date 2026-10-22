@@ -536,6 +536,48 @@ class DocumentApiEnvelopeResponses extends Strategy
             ])];
         }
 
+        // —— Multi-agences (Figma 10) ——
+        $objective = ['target' => 5641500, 'percent' => 88, 'remaining' => 676000, 'level' => 'good'];
+        if ($path === '/api/v1/network/overview') {
+            return [$this->response(200, [
+                'period' => ['from' => '2026-09-01', 'to' => '2026-09-28', 'compare_from' => '2026-08-04', 'compare_to' => '2026-08-31'],
+                'kpis' => [
+                    'revenue' => ['value' => 18291000, 'delta_percent' => 10.8],
+                    'deposits' => ['value' => 1267, 'pieces' => 4186],
+                    'retrievals' => ['value' => 1150, 'finalized_percent' => 90.8],
+                    'cash_flow' => ['value' => 15840500, 'delta_percent' => 9.6],
+                    'unpaid' => ['value' => 1240000, 'deposits' => 94, 'share_of_revenue' => 6.8],
+                    'loyalty' => ['members' => 2846, 'points_issued' => 482000],
+                    'sync_health' => ['percent' => 99.8, 'online_agencies' => 4, 'agencies' => 4],
+                    'network_objective' => ['percent' => 86, 'target' => 21268000, 'agencies_above_85' => 2],
+                ],
+                'revenue_chart' => ['total' => 18291000, 'series' => [['date' => '2026-09-01', 'revenue' => 580000]]],
+                'ranking' => [['rank' => 1, 'agency_id' => 2, 'name' => 'Plateau', 'revenue' => 5820000, 'delta_percent' => 14.2, 'share_percent' => 31.8]],
+                'comparison' => [['agency_id' => 2, 'name' => 'Plateau', 'deposits' => 386, 'retrieved' => 344, 'unpaid' => 215000, 'unpaid_level' => 'normal', 'objective' => ['target' => 6326000, 'percent' => 92, 'remaining' => 506000, 'level' => 'good']]],
+                'alerts' => [['agency_id' => 4, 'type' => 'unpaid', 'severity' => 'critical', 'title' => 'Marcory · impayés élevés', 'detail' => '543 750 FCFA', 'endpoint' => '/api/v1/receipts/unpaid?agency_id=4']],
+                'agencies' => [['agency_id' => 2, 'name' => 'Plateau', 'address' => 'Avenue Chardy', 'online' => true, 'status_label' => 'En ligne', 'deposits' => 386, 'objective_percent' => 92, 'endpoint' => '/api/v1/network/agencies/2']],
+            ])];
+        }
+        if (str_starts_with($path, '/api/v1/network/agencies/')) {
+            return [$this->response(200, [
+                'agency' => ['id' => 1, 'name' => 'Bingerville', 'code' => 'BGV-01', 'address' => 'Carrefour Feh Kessé', 'contact' => '+225 07 00 00 00', 'email' => 'bingerville@spark.ci', 'opening_hours' => ['opens_at' => '08:00', 'closes_at' => '19:00', 'label' => 'ouverte aujourd’hui de 08:00 à 19:00']],
+                'kpis' => [
+                    'revenue' => ['value' => 4965500, 'delta_percent' => 12.4, 'network_rank' => 2],
+                    'cash_today' => ['value' => 983500, 'gap' => 0, 'session_status' => 'open'],
+                    'deposits_retrievals' => ['deposits' => 342, 'retrieved' => 311, 'retrieval_rate' => 90.9],
+                    'objective' => $objective,
+                ],
+                'performance_chart' => ['total' => 4965500, 'cumulative' => true, 'series' => [['date' => '2026-09-01', 'revenue' => 160000, 'cumulative' => 160000]]],
+                'network_comparison' => [['code' => 'basket', 'label' => 'Panier moyen', 'value' => 14520, 'unit' => 'amount', 'detail' => '+1160 FCFA vs réseau']],
+                'workshop' => ['orders' => 86, 'pieces' => 284, 'columns' => [['etat' => 'waiting', 'label' => 'En attente', 'deposits' => 14, 'pieces' => 46]], 'due_soon' => 6, 'late' => 2],
+                'clients' => ['active' => 846, 'new_this_month' => 62, 'loyalty_members' => 612, 'members_percent' => 72, 'points_this_month' => 126400, 'new_vip_7d' => 18, 'distribution' => [['code' => 'essentiel', 'label' => 'Essentiel', 'count' => 480]]],
+                'delays_unpaid' => ['to_recover' => ['amount' => 186750, 'deposits' => 14], 'workshop_delays' => ['deposits' => 7, 'over_24h' => 2], 'unpaid_followup' => ['clients' => 8, 'amount' => 62500, 'since_days' => 30], 'rows' => [['deposit_id' => 2624, 'code' => 'BG-02624', 'client' => 'Awa Diabaté', 'delay' => '32 min', 'left_to_pay' => 12500]]],
+                'team' => ['members' => 8, 'present' => 6, 'list' => [['user_id' => 5, 'fullname' => 'Grâce Amani', 'initials' => 'GA', 'role' => 'manager', 'present' => true, 'status_label' => 'Présent']]],
+                'history' => [['at' => '2026-09-28T10:38:00+00:00', 'type' => 'deposit.retrieved', 'title' => 'Retrait finalisé · BG-02612', 'subtitle' => 'Chloé A.', 'amount' => 18000, 'amount_type' => 'credit']],
+                'sync' => ['online' => true, 'status_label' => 'En ligne · synchronisée', 'last_sync_at' => '2026-09-28T10:42:08+00:00', 'pending_operations' => 0, 'interruptions_30d' => 2, 'last_batch_status' => 'completed', 'availability_percent' => 99.8],
+            ])];
+        }
+
         // —— Promotions, livraison, notifications (Figma 09) ——
         if ($path === '/api/v1/promos/overview') {
             return [$this->response(200, [

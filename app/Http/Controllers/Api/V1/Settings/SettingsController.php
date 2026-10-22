@@ -85,6 +85,9 @@ class SettingsController extends Controller
             'currency' => ['nullable', 'string', 'size:3'],
             'code_prefix' => ['nullable', 'string', 'max:8'],
             'code_suffix' => ['nullable', 'string', 'max:8'],
+            'opens_at' => ['nullable', 'date_format:H:i'],
+            'closes_at' => ['nullable', 'date_format:H:i'],
+            'monthly_revenue_target' => ['nullable', 'integer', 'min:0'],
             'status' => ['sometimes', 'boolean'],
         ]);
 
