@@ -7,9 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\UserResource;
 use App\Models\Admin;
+use App\Models\Agency;
 use App\Models\Client;
 use App\Models\User;
 use App\Support\ApiResponse;
+use App\Support\Auth\LoginThrottle;
+use App\Support\Auth\PasswordResetCodes;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -26,14 +29,26 @@ use Knuckles\Scribe\Attributes\Unauthenticated;
 #[Group('Authentification')]
 class AuthController extends Controller
 {
+    private const ROLE_LABELS = [
+        'admin' => 'Administrateur',
+        'manager' => 'Manager',
+        'caissier' => 'Caissier',
+        'laveur' => 'Laveur',
+        'classeur' => 'Classeur',
+        'livreur' => 'Livreur',
+    ];
+
     #[Unauthenticated]
-    #[Endpoint('Connexion staff', 'Retourne un token Sanctum Bearer et le profil staff (rôles, agence, pressing).')]
-    #[BodyParam('email', 'string', 'Email du compte staff.', required: true, example: 'caissier@elegance.local')]
+    #[Endpoint('Connexion staff', 'Identifiant (e-mail ou téléphone) + mot de passe, agence/contexte optionnel. Après 5 échecs : 429 pendant 15 minutes.')]
+    #[BodyParam('login', 'string', 'E-mail ou téléphone du compte staff (ou `email`).', required: true, example: 'caissier@elegance.local')]
     #[BodyParam('password', 'string', 'Mot de passe.', required: true, example: 'password')]
+    #[BodyParam('agency_id', 'integer', 'Contexte d’agence choisi (doit faire partie de `contexts`).', required: false, example: 1)]
+    #[BodyParam('remember', 'boolean', '« Se souvenir de moi » : jeton valable 30 jours au lieu de 12 h.', required: false, example: true)]
     #[Response([
         'data' => [
             'token' => '1|abcExampleSanctumToken',
             'token_type' => 'Bearer',
+            'expires_at' => '2026-10-22T22:00:00+00:00',
             'actor' => 'staff',
             'user' => [
                 'id' => 1,
@@ -89,6 +104,10 @@ class AuthController extends Controller
                     'hours_repass' => null,
                 ],
                 'can_view_all_agencies' => false,
+                'contexts' => [
+                    ['agency_id' => 1, 'agency' => 'Akwa', 'role' => 'caissier', 'label' => 'Akwa • Caissier', 'is_home' => true],
+                ],
+                'active_agency_id' => 1,
             ],
         ],
         'meta' => new \stdClass,
@@ -96,11 +115,18 @@ class AuthController extends Controller
     ], status: 200, description: 'Succès')]
     #[Response([
         'data' => null,
-        'meta' => ['message' => 'Les données sont invalides.'],
+        'meta' => ['message' => 'Les données sont invalides.', 'attempts_remaining' => 3, 'max_attempts' => 5],
         'errors' => [
-            ['code' => 'validation', 'field' => 'email', 'detail' => 'Identifiants invalides.'],
+            ['code' => 'validation', 'field' => 'login', 'detail' => 'Identifiants invalides.'],
         ],
     ], status: 422, description: 'Identifiants invalides')]
+    #[Response([
+        'data' => null,
+        'meta' => ['message' => 'Trop de tentatives. Accès limité pendant 15 minutes.', 'retry_after' => 840, 'attempts_remaining' => 0],
+        'errors' => [
+            ['code' => 'locked', 'detail' => 'Réessayez dans 840 secondes.'],
+        ],
+    ], status: 429, description: 'Compte verrouillé après 5 échecs')]
     #[Response([
         'data' => null,
         'meta' => ['message' => 'Compte désactivé.'],
@@ -111,17 +137,31 @@ class AuthController extends Controller
     public function staffLogin(Request $request): JsonResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'login' => ['required_without:email', 'nullable', 'string', 'max:191'],
+            'email' => ['required_without:login', 'nullable', 'email'],
             'password' => ['required', 'string'],
+            'agency_id' => ['nullable', 'integer'],
+            'remember' => ['sometimes', 'boolean'],
         ]);
 
-        $user = User::query()->where('email', $credentials['email'])->first();
+        $identifier = $credentials['login'] ?? $credentials['email'];
+        $user = User::query()
+            ->where(fn ($q) => $q->where('email', $identifier)->orWhere('phone_number', $identifier))
+            ->first();
 
-        return $this->issueToken($user, $credentials['password'], 'staff', function (User $user) {
+        if ($user && isset($credentials['agency_id']) && Hash::check($credentials['password'], $user->password)
+            && ! in_array((int) $credentials['agency_id'], $user->allowedAgencyIds(), true)) {
+            throw ValidationException::withMessages(['agency_id' => 'Agence non autorisée pour ce compte.']);
+        }
+
+        return $this->issueToken($user, $credentials['password'], 'staff', function (User $user) use ($credentials) {
             $user->load(['agency', 'pressing', 'roles', 'agencies']);
 
-            return (new UserResource($user))->resolve();
-        });
+            return (new UserResource($user))->resolve() + [
+                'contexts' => $this->contexts($user),
+                'active_agency_id' => (int) ($credentials['agency_id'] ?? $user->agency_id) ?: null,
+            ];
+        }, $identifier, $request->boolean('remember'), isset($credentials['login']) ? 'login' : 'email');
     }
 
     #[Unauthenticated]
@@ -177,7 +217,7 @@ class AuthController extends Controller
 
         return $this->issueToken($client, $credentials['password'], 'client', function (Client $client) {
             return (new ClientResource($client))->resolve();
-        });
+        }, $credentials['login'], $request->boolean('remember'), 'login');
     }
 
     #[Unauthenticated]
@@ -277,7 +317,7 @@ class AuthController extends Controller
 
         return $this->issueToken($admin, $credentials['password'], 'superadmin', function (Admin $admin) {
             return $this->adminPayload($admin);
-        });
+        }, $credentials['email'], $request->boolean('remember'));
     }
 
     #[Endpoint('Profil courant', 'Retourne l’acteur authentifié (staff, client ou superadmin) selon le token Bearer.')]
@@ -322,6 +362,7 @@ class AuthController extends Controller
                 'actor' => 'staff',
                 'can_view_all_agencies' => $actor->canViewAllAgencies(),
                 'allowed_agency_ids' => $actor->allowedAgencyIds(),
+                'contexts' => $this->contexts($actor),
             ]);
         }
 
@@ -383,26 +424,97 @@ class AuthController extends Controller
     }
 
     #[Unauthenticated]
-    #[Endpoint('Mot de passe oublié')]
+    #[Endpoint('Canaux de réinitialisation', '« Recevoir le code par » : e-mail et SMS masqués (ex. « SMS •••• 42 »).')]
     #[BodyParam('email', 'string', required: true, example: 'caissier@elegance.local')]
     #[Response([
-        'data' => ['sent' => true],
+        'data' => ['channels' => [
+            ['code' => 'email', 'label' => 'E-mail', 'destination' => 'ca•••••••@elegance.local'],
+            ['code' => 'sms', 'label' => 'SMS', 'destination' => '•••• 42'],
+        ]],
         'meta' => new \stdClass,
         'errors' => null,
-    ], status: 200, description: 'Lien envoyé (toujours 200 pour ne pas divulguer l’existence du compte)')]
-    public function forgotPassword(Request $request): JsonResponse
+    ], status: 200, description: 'Canaux disponibles')]
+    public function resetChannels(Request $request, PasswordResetCodes $codes): JsonResponse
     {
         $request->validate(['email' => ['required', 'email']]);
 
-        Password::broker()->sendResetLink($request->only('email'));
-
-        return $this->ok(['sent' => true]);
+        return $this->ok(['channels' => $codes->channels($request->string('email')->toString())]);
     }
 
     #[Unauthenticated]
-    #[Endpoint('Réinitialiser le mot de passe')]
+    #[Endpoint('Mot de passe oublié (étape 1/3)', 'Envoie un code à 6 chiffres valable 10 minutes. Anti-abus : 2 demandes par 15 minutes (429 sinon).')]
     #[BodyParam('email', 'string', required: true, example: 'caissier@elegance.local')]
-    #[BodyParam('token', 'string', 'Token reçu par email.', required: true, example: 'reset-token')]
+    #[BodyParam('channel', 'string', 'email ou sms.', required: false, example: 'email')]
+    #[Response([
+        'data' => ['sent' => true, 'channel' => 'email', 'destination' => 'ca•••••••@elegance.local', 'expires_in' => 600, 'step' => 1, 'steps' => 3],
+        'meta' => new \stdClass,
+        'errors' => null,
+    ], status: 200, description: 'Code envoyé (toujours 200 pour ne pas divulguer l’existence du compte)')]
+    public function forgotPassword(Request $request, PasswordResetCodes $codes): JsonResponse
+    {
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+            'channel' => ['nullable', 'in:email,sms'],
+        ]);
+        $channel = $data['channel'] ?? 'email';
+
+        if ($retry = $codes->throttled($data['email'])) {
+            return ApiResponse::error(
+                'Contrôle anti-abus : 2 demandes toutes les 15 minutes.',
+                429,
+                [['code' => 'throttled', 'detail' => "Nouvelle demande possible dans {$retry} secondes."]],
+                ['retry_after' => $retry],
+            );
+        }
+
+        $codes->send($data['email'], $channel);
+        $destination = collect($codes->channels($data['email']))->firstWhere('code', $channel)['destination']
+            ?? PasswordResetCodes::maskEmail($data['email']);
+
+        return $this->ok([
+            'sent' => true,
+            'channel' => $channel,
+            'destination' => $destination,
+            'expires_in' => PasswordResetCodes::CODE_TTL,
+            'step' => 1,
+            'steps' => 3,
+        ]);
+    }
+
+    #[Unauthenticated]
+    #[Endpoint('Vérifier le code (étape 2/3)', 'Échange le code à 6 chiffres contre un `reset_token` (15 min).')]
+    #[BodyParam('email', 'string', required: true, example: 'caissier@elegance.local')]
+    #[BodyParam('code', 'string', required: true, example: '482913')]
+    #[Response([
+        'data' => ['reset_token' => 'Q2x…', 'expires_in' => 900, 'step' => 2, 'steps' => 3],
+        'meta' => new \stdClass,
+        'errors' => null,
+    ], status: 200, description: 'Code valide')]
+    public function verifyResetCode(Request $request, PasswordResetCodes $codes): JsonResponse
+    {
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+            'code' => ['required', 'digits:6'],
+        ]);
+
+        $token = $codes->verify($data['email'], $data['code']);
+        if (! $token) {
+            throw ValidationException::withMessages(['code' => 'Code invalide ou expiré.']);
+        }
+
+        return $this->ok([
+            'reset_token' => $token,
+            'expires_in' => PasswordResetCodes::TOKEN_TTL,
+            'step' => 2,
+            'steps' => 3,
+        ]);
+    }
+
+    #[Unauthenticated]
+    #[Endpoint('Réinitialiser le mot de passe (étape 3/3)', 'Accepte le `reset_token` issu du code, ou le `token` d’un lien e-mail.')]
+    #[BodyParam('email', 'string', required: true, example: 'caissier@elegance.local')]
+    #[BodyParam('reset_token', 'string', 'Jeton reçu à l’étape 2.', required: false, example: 'Q2x…')]
+    #[BodyParam('token', 'string', 'Token reçu par lien e-mail (ancien flux).', required: false, example: 'reset-token')]
     #[BodyParam('password', 'string', required: true, example: 'password')]
     #[BodyParam('password_confirmation', 'string', required: true, example: 'password')]
     #[Response([
@@ -410,13 +522,30 @@ class AuthController extends Controller
         'meta' => new \stdClass,
         'errors' => null,
     ], status: 200, description: 'Mot de passe réinitialisé')]
-    public function resetPassword(Request $request): JsonResponse
+    public function resetPassword(Request $request, PasswordResetCodes $codes): JsonResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
-            'token' => ['required', 'string'],
+            'reset_token' => ['required_without:token', 'nullable', 'string'],
+            'token' => ['required_without:reset_token', 'nullable', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        if ($request->filled('reset_token')) {
+            $user = User::query()->where('email', $request->email)->first();
+            if (! $user || ! $codes->consume($user, $request->reset_token)) {
+                throw ValidationException::withMessages(['reset_token' => 'Jeton invalide ou expiré.']);
+            }
+
+            $user->forceFill([
+                'password' => $request->password,
+                'remember_token' => Str::random(60),
+            ])->save();
+            $user->tokens()->delete();
+            event(new PasswordReset($user));
+
+            return $this->ok(['reset' => true]);
+        }
 
         $status = Password::broker()->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
@@ -449,26 +578,80 @@ class AuthController extends Controller
         return $this->ok(['logged_out' => true]);
     }
 
-    private function issueToken(?object $actor, string $password, string $type, callable $resolver): JsonResponse
-    {
+    private function issueToken(
+        ?object $actor,
+        string $password,
+        string $type,
+        callable $resolver,
+        string $identifier = '',
+        bool $remember = false,
+        string $field = 'email',
+    ): JsonResponse {
+        $throttleKey = LoginThrottle::key($type, $identifier);
+
+        if (LoginThrottle::locked($throttleKey)) {
+            $retry = LoginThrottle::retryAfter($throttleKey);
+
+            return ApiResponse::error(
+                'Trop de tentatives. Accès limité pendant 15 minutes.',
+                429,
+                [['code' => 'locked', 'detail' => "Réessayez dans {$retry} secondes."]],
+                ['retry_after' => $retry, 'attempts_remaining' => 0],
+            );
+        }
+
         if (! $actor || ! Hash::check($password, $actor->password)) {
-            throw ValidationException::withMessages([
-                'email' => 'Identifiants invalides.',
-            ]);
+            $remaining = LoginThrottle::fail($throttleKey);
+
+            return ApiResponse::error(
+                'Les données sont invalides.',
+                422,
+                [['code' => 'validation', 'field' => $field, 'detail' => 'Identifiants invalides.']],
+                ['attempts_remaining' => $remaining, 'max_attempts' => LoginThrottle::MAX_ATTEMPTS],
+            );
         }
 
         if (isset($actor->status) && $actor->status === false) {
             return ApiResponse::error('Compte désactivé.', 403);
         }
 
-        $token = $actor->createToken($type)->plainTextToken;
+        LoginThrottle::clear($throttleKey);
+
+        $expiresAt = $remember ? now()->addDays(30) : now()->addHours(12);
+        $token = $actor->createToken($type, ['*'], $expiresAt)->plainTextToken;
 
         return $this->ok([
             'token' => $token,
             'token_type' => 'Bearer',
+            'expires_at' => $expiresAt->toIso8601String(),
             'actor' => $type,
             'user' => $resolver($actor),
         ]);
+    }
+
+    /**
+     * Sélecteur « Agence ou contexte » (ex. « Cocody Angré • Manager »).
+     *
+     * @return list<array{agency_id:int,agency:string,role:?string,label:string,is_home:bool}>
+     */
+    private function contexts(User $user): array
+    {
+        $role = $user->getRoleNames()->first();
+        $roleLabel = $role ? (self::ROLE_LABELS[$role] ?? ucfirst($role)) : null;
+
+        return Agency::query()
+            ->whereIn('id', $user->allowedAgencyIds())
+            ->orderBy('name')
+            ->get(['id', 'name'])
+            ->map(fn (Agency $agency) => [
+                'agency_id' => $agency->id,
+                'agency' => $agency->name,
+                'role' => $role,
+                'label' => $roleLabel ? "{$agency->name} • {$roleLabel}" : $agency->name,
+                'is_home' => (int) $agency->id === (int) $user->agency_id,
+            ])
+            ->values()
+            ->all();
     }
 
     /** @return array<string, mixed> */

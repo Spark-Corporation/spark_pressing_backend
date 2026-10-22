@@ -174,7 +174,7 @@ paths:
     post:
       summary: 'Connexion staff'
       operationId: connexionStaff
-      description: 'Retourne un token Sanctum Bearer et le profil staff (rôles, agence, pressing).'
+      description: 'Identifiant (e-mail ou téléphone) + mot de passe, agence/contexte optionnel. Après 5 échecs : 429 pendant 15 minutes.'
       parameters:
         -
           in: header
@@ -194,6 +194,7 @@ paths:
                   data:
                     token: 1|abcExampleSanctumToken
                     token_type: Bearer
+                    expires_at: '2026-10-22T22:00:00+00:00'
                     actor: staff
                     user:
                       id: 1
@@ -246,6 +247,14 @@ paths:
                         hours_express: null
                         hours_repass: null
                       can_view_all_agencies: false
+                      contexts:
+                        -
+                          agency_id: 1
+                          agency: Akwa
+                          role: caissier
+                          label: 'Akwa • Caissier'
+                          is_home: true
+                      active_agency_id: 1
                   meta: {  }
                   errors: null
                 properties:
@@ -258,6 +267,9 @@ paths:
                       token_type:
                         type: string
                         example: Bearer
+                      expires_at:
+                        type: string
+                        example: '2026-10-22T22:00:00+00:00'
                       actor:
                         type: string
                         example: staff
@@ -430,6 +442,36 @@ paths:
                           can_view_all_agencies:
                             type: boolean
                             example: false
+                          contexts:
+                            type: array
+                            example:
+                              -
+                                agency_id: 1
+                                agency: Akwa
+                                role: caissier
+                                label: 'Akwa • Caissier'
+                                is_home: true
+                            items:
+                              type: object
+                              properties:
+                                agency_id:
+                                  type: integer
+                                  example: 1
+                                agency:
+                                  type: string
+                                  example: Akwa
+                                role:
+                                  type: string
+                                  example: caissier
+                                label:
+                                  type: string
+                                  example: 'Akwa • Caissier'
+                                is_home:
+                                  type: boolean
+                                  example: true
+                          active_agency_id:
+                            type: integer
+                            example: 1
                   meta:
                     type: object
                     properties: {  }
@@ -487,10 +529,12 @@ paths:
                   data: null
                   meta:
                     message: 'Les données sont invalides.'
+                    attempts_remaining: 3
+                    max_attempts: 5
                   errors:
                     -
                       code: validation
-                      field: email
+                      field: login
                       detail: 'Identifiants invalides.'
                 properties:
                   data:
@@ -503,12 +547,18 @@ paths:
                       message:
                         type: string
                         example: 'Les données sont invalides.'
+                      attempts_remaining:
+                        type: integer
+                        example: 3
+                      max_attempts:
+                        type: integer
+                        example: 5
                   errors:
                     type: array
                     example:
                       -
                         code: validation
-                        field: email
+                        field: login
                         detail: 'Identifiants invalides.'
                     items:
                       type: object
@@ -518,10 +568,58 @@ paths:
                           example: validation
                         field:
                           type: string
-                          example: email
+                          example: login
                         detail:
                           type: string
                           example: 'Identifiants invalides.'
+        429:
+          description: 'Compte verrouillé après 5 échecs'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Trop de tentatives. Accès limité pendant 15 minutes.'
+                    retry_after: 840
+                    attempts_remaining: 0
+                  errors:
+                    -
+                      code: locked
+                      detail: 'Réessayez dans 840 secondes.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Trop de tentatives. Accès limité pendant 15 minutes.'
+                      retry_after:
+                        type: integer
+                        example: 840
+                      attempts_remaining:
+                        type: integer
+                        example: 0
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: locked
+                        detail: 'Réessayez dans 840 secondes.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: locked
+                        detail:
+                          type: string
+                          example: 'Réessayez dans 840 secondes.'
       tags:
         - Authentification
       requestBody:
@@ -531,23 +629,36 @@ paths:
             schema:
               type: object
               properties:
+                login:
+                  type: string
+                  description: 'E-mail ou téléphone du compte staff (ou `email`).'
+                  example: caissier@elegance.local
                 email:
                   type: string
-                  description: 'Email du compte staff.'
-                  example: caissier@elegance.local
+                  description: 'This field is required when <code>login</code> is not present. validation.email.'
+                  example: zbailey@example.net
+                  nullable: true
                 password:
                   type: string
                   description: 'Mot de passe.'
                   example: password
+                agency_id:
+                  type: integer
+                  description: 'Contexte d’agence choisi (doit faire partie de `contexts`).'
+                  example: 1
+                remember:
+                  type: boolean
+                  description: '« Se souvenir de moi » : jeton valable 30 jours au lieu de 12 h.'
+                  example: true
               required:
-                - email
+                - login
                 - password
       security: []
-  /api/v1/auth/staff/forgot-password:
+  /api/v1/auth/staff/password/channels:
     post:
-      summary: 'Mot de passe oublié'
-      operationId: motDePasseOubli
-      description: ''
+      summary: 'Canaux de réinitialisation'
+      operationId: canauxDeRinitialisation
+      description: '« Recevoir le code par » : e-mail et SMS masqués (ex. « SMS •••• 42 »).'
       parameters:
         -
           in: header
@@ -558,23 +669,51 @@ paths:
             type: string
       responses:
         200:
-          description: 'Lien envoyé (toujours 200 pour ne pas divulguer l’existence du compte)'
+          description: 'Canaux disponibles'
           content:
             application/json:
               schema:
                 type: object
                 example:
                   data:
-                    sent: true
+                    channels:
+                      -
+                        code: email
+                        label: E-mail
+                        destination: ca•••••••@elegance.local
+                      -
+                        code: sms
+                        label: SMS
+                        destination: '•••• 42'
                   meta: {  }
                   errors: null
                 properties:
                   data:
                     type: object
                     properties:
-                      sent:
-                        type: boolean
-                        example: true
+                      channels:
+                        type: array
+                        example:
+                          -
+                            code: email
+                            label: E-mail
+                            destination: ca•••••••@elegance.local
+                          -
+                            code: sms
+                            label: SMS
+                            destination: '•••• 42'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: email
+                            label:
+                              type: string
+                              example: E-mail
+                            destination:
+                              type: string
+                              example: ca•••••••@elegance.local
                   meta:
                     type: object
                     properties: {  }
@@ -598,11 +737,162 @@ paths:
               required:
                 - email
       security: []
+  /api/v1/auth/staff/forgot-password:
+    post:
+      summary: 'Mot de passe oublié (étape 1/3)'
+      operationId: motDePasseOublitape13
+      description: 'Envoie un code à 6 chiffres valable 10 minutes. Anti-abus : 2 demandes par 15 minutes (429 sinon).'
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Code envoyé (toujours 200 pour ne pas divulguer l’existence du compte)'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    sent: true
+                    channel: email
+                    destination: ca•••••••@elegance.local
+                    expires_in: 600
+                    step: 1
+                    steps: 3
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      sent:
+                        type: boolean
+                        example: true
+                      channel:
+                        type: string
+                        example: email
+                      destination:
+                        type: string
+                        example: ca•••••••@elegance.local
+                      expires_in:
+                        type: integer
+                        example: 600
+                      step:
+                        type: integer
+                        example: 1
+                      steps:
+                        type: integer
+                        example: 3
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: caissier@elegance.local
+                channel:
+                  type: string
+                  description: 'email ou sms.'
+                  example: email
+              required:
+                - email
+      security: []
+  /api/v1/auth/staff/verify-reset-code:
+    post:
+      summary: 'Vérifier le code (étape 2/3)'
+      operationId: vrifierLeCodetape23
+      description: 'Échange le code à 6 chiffres contre un `reset_token` (15 min).'
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Code valide'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    reset_token: Q2x…
+                    expires_in: 900
+                    step: 2
+                    steps: 3
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      reset_token:
+                        type: string
+                        example: Q2x…
+                      expires_in:
+                        type: integer
+                        example: 900
+                      step:
+                        type: integer
+                        example: 2
+                      steps:
+                        type: integer
+                        example: 3
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Authentification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: caissier@elegance.local
+                code:
+                  type: string
+                  description: ''
+                  example: '482913'
+              required:
+                - email
+                - code
+      security: []
   /api/v1/auth/staff/reset-password:
     post:
-      summary: 'Réinitialiser le mot de passe'
-      operationId: rinitialiserLeMotDePasse
-      description: ''
+      summary: 'Réinitialiser le mot de passe (étape 3/3)'
+      operationId: rinitialiserLeMotDePassetape33
+      description: 'Accepte le `reset_token` issu du code, ou le `token` d’un lien e-mail.'
       parameters:
         -
           in: header
@@ -650,9 +940,13 @@ paths:
                   type: string
                   description: ''
                   example: caissier@elegance.local
+                reset_token:
+                  type: string
+                  description: 'Jeton reçu à l’étape 2.'
+                  example: Q2x…
                 token:
                   type: string
-                  description: 'Token reçu par email.'
+                  description: 'Token reçu par lien e-mail (ancien flux).'
                   example: reset-token
                 password:
                   type: string
@@ -664,7 +958,6 @@ paths:
                   example: password
               required:
                 - email
-                - token
                 - password
                 - password_confirmation
       security: []
@@ -6257,12 +6550,12 @@ paths:
                 deposit_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
                 retrieve_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
                 notes:
                   type: string
@@ -7262,7 +7555,7 @@ paths:
                 transaction_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
               required:
                 - amount
@@ -12065,11 +12358,11 @@ paths:
                 valid_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:27'
+                  example: '2026-10-22T11:14:26'
                 valid_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
-                  example: '2052-11-13'
+                  example: '2052-11-14'
                   nullable: true
               required:
                 - agency_id
@@ -12217,7 +12510,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:27'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
               required:
                 - agency_id
@@ -16345,7 +16638,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
                 validated:
                   type: boolean
@@ -16547,7 +16840,7 @@ paths:
                 action_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
     delete:
       summary: ''
@@ -20512,7 +20805,7 @@ paths:
                 rate_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
               required:
                 - source_currency
                 - target_currency
@@ -28465,7 +28758,7 @@ paths:
                 expires_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:27'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
     delete:
       summary: ''
@@ -29881,7 +30174,7 @@ paths:
                 effective_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:27'
+                  example: '2026-10-22T11:14:26'
                   nullable: true
                 auto_renew:
                   type: boolean
@@ -33336,7 +33629,7 @@ paths:
                 round_date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-21T16:19:28'
+                  example: '2026-10-22T11:14:26'
                 name:
                   type: string
                   description: validation.max.

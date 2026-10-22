@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->name('auth.')->controller(AuthController::class)->group(function () {
     Route::post('staff/login', 'staffLogin')->middleware('throttle:login')->name('staff.login');
+    Route::post('staff/password/channels', 'resetChannels')->middleware('throttle:login')->name('staff.reset.channels');
     Route::post('staff/forgot-password', 'forgotPassword')->middleware('throttle:login')->name('staff.forgot');
+    Route::post('staff/verify-reset-code', 'verifyResetCode')->middleware('throttle:login')->name('staff.reset.verify');
     Route::post('staff/reset-password', 'resetPassword')->middleware('throttle:login')->name('staff.reset');
     Route::post('client/login', 'clientLogin')->middleware('throttle:login')->name('client.login');
     Route::post('client/register', 'clientRegister')->middleware('throttle:login')->name('client.register');

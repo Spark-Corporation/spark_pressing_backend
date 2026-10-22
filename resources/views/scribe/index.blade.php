@@ -84,11 +84,17 @@
                                                     <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-staff-login">
                                 <a href="#authentification-POSTapi-v1-auth-staff-login">Connexion staff</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-staff-password-channels">
+                                <a href="#authentification-POSTapi-v1-auth-staff-password-channels">Canaux de réinitialisation</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-staff-forgot-password">
-                                <a href="#authentification-POSTapi-v1-auth-staff-forgot-password">Mot de passe oublié</a>
+                                <a href="#authentification-POSTapi-v1-auth-staff-forgot-password">Mot de passe oublié (étape 1/3)</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-staff-verify-reset-code">
+                                <a href="#authentification-POSTapi-v1-auth-staff-verify-reset-code">Vérifier le code (étape 2/3)</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-staff-reset-password">
-                                <a href="#authentification-POSTapi-v1-auth-staff-reset-password">Réinitialiser le mot de passe</a>
+                                <a href="#authentification-POSTapi-v1-auth-staff-reset-password">Réinitialiser le mot de passe (étape 3/3)</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentification-POSTapi-v1-auth-client-login">
                                 <a href="#authentification-POSTapi-v1-auth-client-login">Connexion client</a>
@@ -692,7 +698,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 21, 2026</li>
+        <li>Last updated: October 22, 2026</li>
     </ul>
 </div>
 
@@ -903,7 +909,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-<p>Retourne un token Sanctum Bearer et le profil staff (rôles, agence, pressing).</p>
+<p>Identifiant (e-mail ou téléphone) + mot de passe, agence/contexte optionnel. Après 5 échecs : 429 pendant 15 minutes.</p>
 
 <span id="example-requests-POSTapi-v1-auth-staff-login">
 <blockquote>Example request:</blockquote>
@@ -916,8 +922,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"email\": \"caissier@elegance.local\",
-    \"password\": \"password\"
+    \"login\": \"caissier@elegance.local\",
+    \"email\": \"zbailey@example.net\",
+    \"password\": \"password\",
+    \"agency_id\": 1,
+    \"remember\": true
 }"
 </code></pre></div>
 
@@ -934,8 +943,11 @@ const headers = {
 };
 
 let body = {
-    "email": "caissier@elegance.local",
-    "password": "password"
+    "login": "caissier@elegance.local",
+    "email": "zbailey@example.net",
+    "password": "password",
+    "agency_id": 1,
+    "remember": true
 };
 
 fetch(url, {
@@ -956,6 +968,7 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;token&quot;: &quot;1|abcExampleSanctumToken&quot;,
         &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;expires_at&quot;: &quot;2026-10-22T22:00:00+00:00&quot;,
         &quot;actor&quot;: &quot;staff&quot;,
         &quot;user&quot;: {
             &quot;id&quot;: 1,
@@ -1012,7 +1025,17 @@ fetch(url, {
                 &quot;hours_express&quot;: null,
                 &quot;hours_repass&quot;: null
             },
-            &quot;can_view_all_agencies&quot;: false
+            &quot;can_view_all_agencies&quot;: false,
+            &quot;contexts&quot;: [
+                {
+                    &quot;agency_id&quot;: 1,
+                    &quot;agency&quot;: &quot;Akwa&quot;,
+                    &quot;role&quot;: &quot;caissier&quot;,
+                    &quot;label&quot;: &quot;Akwa &bull; Caissier&quot;,
+                    &quot;is_home&quot;: true
+                }
+            ],
+            &quot;active_agency_id&quot;: 1
         }
     },
     &quot;meta&quot;: {},
@@ -1045,13 +1068,35 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: null,
     &quot;meta&quot;: {
-        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;
+        &quot;message&quot;: &quot;Les donn&eacute;es sont invalides.&quot;,
+        &quot;attempts_remaining&quot;: 3,
+        &quot;max_attempts&quot;: 5
     },
     &quot;errors&quot;: [
         {
             &quot;code&quot;: &quot;validation&quot;,
-            &quot;field&quot;: &quot;email&quot;,
+            &quot;field&quot;: &quot;login&quot;,
             &quot;detail&quot;: &quot;Identifiants invalides.&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Compte verrouillé après 5 échecs):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Trop de tentatives. Acc&egrave;s limit&eacute; pendant 15 minutes.&quot;,
+        &quot;retry_after&quot;: 840,
+        &quot;attempts_remaining&quot;: 0
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;locked&quot;,
+            &quot;detail&quot;: &quot;R&eacute;essayez dans 840 secondes.&quot;
         }
     ]
 }</code>
@@ -1142,16 +1187,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>login</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-v1-auth-staff-login"
+                              name="login"                data-endpoint="POSTapi-v1-auth-staff-login"
                value="caissier@elegance.local"
                data-component="body">
     <br>
-<p>Email du compte staff. Example: <code>caissier@elegance.local</code></p>
+<p>E-mail ou téléphone du compte staff (ou <code>email</code>). Example: <code>caissier@elegance.local</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-auth-staff-login"
+               value="zbailey@example.net"
+               data-component="body">
+    <br>
+<p>This field is required when <code>login</code> is not present. validation.email. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1165,22 +1222,56 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Mot de passe. Example: <code>password</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="POSTapi-v1-auth-staff-login"
+               value="1"
+               data-component="body">
+    <br>
+<p>Contexte d’agence choisi (doit faire partie de <code>contexts</code>). Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>remember</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-auth-staff-login" style="display: none">
+            <input type="radio" name="remember"
+                   value="true"
+                   data-endpoint="POSTapi-v1-auth-staff-login"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-auth-staff-login" style="display: none">
+            <input type="radio" name="remember"
+                   value="false"
+                   data-endpoint="POSTapi-v1-auth-staff-login"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>« Se souvenir de moi » : jeton valable 30 jours au lieu de 12 h. Example: <code>true</code></p>
+        </div>
         </form>
 
-                    <h2 id="authentification-POSTapi-v1-auth-staff-forgot-password">Mot de passe oublié</h2>
+                    <h2 id="authentification-POSTapi-v1-auth-staff-password-channels">Canaux de réinitialisation</h2>
 
 <p>
 </p>
 
+<p>« Recevoir le code par » : e-mail et SMS masqués (ex. « SMS •••• 42 »).</p>
 
-
-<span id="example-requests-POSTapi-v1-auth-staff-forgot-password">
+<span id="example-requests-POSTapi-v1-auth-staff-password-channels">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/auth/staff/forgot-password" \
+    "http://localhost:8000/api/v1/auth/staff/password/channels" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
@@ -1192,7 +1283,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/auth/staff/forgot-password"
+    "http://localhost:8000/api/v1/auth/staff/password/channels"
 );
 
 const headers = {
@@ -1213,15 +1304,192 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-v1-auth-staff-forgot-password">
+<span id="example-responses-POSTapi-v1-auth-staff-password-channels">
             <blockquote>
-            <p>Example response (200, Lien envoyé (toujours 200 pour ne pas divulguer l’existence du compte)):</p>
+            <p>Example response (200, Canaux disponibles):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;sent&quot;: true
+        &quot;channels&quot;: [
+            {
+                &quot;code&quot;: &quot;email&quot;,
+                &quot;label&quot;: &quot;E-mail&quot;,
+                &quot;destination&quot;: &quot;ca&bull;&bull;&bull;&bull;&bull;&bull;&bull;@elegance.local&quot;
+            },
+            {
+                &quot;code&quot;: &quot;sms&quot;,
+                &quot;label&quot;: &quot;SMS&quot;,
+                &quot;destination&quot;: &quot;&bull;&bull;&bull;&bull; 42&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth-staff-password-channels" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-staff-password-channels"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-staff-password-channels"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-staff-password-channels" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-staff-password-channels">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-staff-password-channels" data-method="POST"
+      data-path="api/v1/auth/staff/password/channels"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-staff-password-channels', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-staff-password-channels"
+                    onclick="tryItOut('POSTapi-v1-auth-staff-password-channels');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-staff-password-channels"
+                    onclick="cancelTryOut('POSTapi-v1-auth-staff-password-channels');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-staff-password-channels"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/staff/password/channels</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-auth-staff-password-channels"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-auth-staff-password-channels"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-auth-staff-password-channels"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-auth-staff-password-channels"
+               value="caissier@elegance.local"
+               data-component="body">
+    <br>
+<p>Example: <code>caissier@elegance.local</code></p>
+        </div>
+        </form>
+
+                    <h2 id="authentification-POSTapi-v1-auth-staff-forgot-password">Mot de passe oublié (étape 1/3)</h2>
+
+<p>
+</p>
+
+<p>Envoie un code à 6 chiffres valable 10 minutes. Anti-abus : 2 demandes par 15 minutes (429 sinon).</p>
+
+<span id="example-requests-POSTapi-v1-auth-staff-forgot-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/auth/staff/forgot-password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"email\": \"caissier@elegance.local\",
+    \"channel\": \"email\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/auth/staff/forgot-password"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "email": "caissier@elegance.local",
+    "channel": "email"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-staff-forgot-password">
+            <blockquote>
+            <p>Example response (200, Code envoyé (toujours 200 pour ne pas divulguer l’existence du compte)):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;sent&quot;: true,
+        &quot;channel&quot;: &quot;email&quot;,
+        &quot;destination&quot;: &quot;ca&bull;&bull;&bull;&bull;&bull;&bull;&bull;@elegance.local&quot;,
+        &quot;expires_in&quot;: 600,
+        &quot;step&quot;: 1,
+        &quot;steps&quot;: 3
     },
     &quot;meta&quot;: {},
     &quot;errors&quot;: null
@@ -1324,14 +1592,202 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>caissier@elegance.local</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="channel"                data-endpoint="POSTapi-v1-auth-staff-forgot-password"
+               value="email"
+               data-component="body">
+    <br>
+<p>email ou sms. Example: <code>email</code></p>
+        </div>
         </form>
 
-                    <h2 id="authentification-POSTapi-v1-auth-staff-reset-password">Réinitialiser le mot de passe</h2>
+                    <h2 id="authentification-POSTapi-v1-auth-staff-verify-reset-code">Vérifier le code (étape 2/3)</h2>
 
 <p>
 </p>
 
+<p>Échange le code à 6 chiffres contre un <code>reset_token</code> (15 min).</p>
 
+<span id="example-requests-POSTapi-v1-auth-staff-verify-reset-code">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/auth/staff/verify-reset-code" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"email\": \"caissier@elegance.local\",
+    \"code\": \"482913\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/auth/staff/verify-reset-code"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+let body = {
+    "email": "caissier@elegance.local",
+    "code": "482913"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-staff-verify-reset-code">
+            <blockquote>
+            <p>Example response (200, Code valide):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;reset_token&quot;: &quot;Q2x&hellip;&quot;,
+        &quot;expires_in&quot;: 900,
+        &quot;step&quot;: 2,
+        &quot;steps&quot;: 3
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth-staff-verify-reset-code" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-staff-verify-reset-code"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-staff-verify-reset-code"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-staff-verify-reset-code" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-staff-verify-reset-code">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-staff-verify-reset-code" data-method="POST"
+      data-path="api/v1/auth/staff/verify-reset-code"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-staff-verify-reset-code', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-staff-verify-reset-code"
+                    onclick="tryItOut('POSTapi-v1-auth-staff-verify-reset-code');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-staff-verify-reset-code"
+                    onclick="cancelTryOut('POSTapi-v1-auth-staff-verify-reset-code');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-staff-verify-reset-code"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/staff/verify-reset-code</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-auth-staff-verify-reset-code"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-auth-staff-verify-reset-code"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="POSTapi-v1-auth-staff-verify-reset-code"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-auth-staff-verify-reset-code"
+               value="caissier@elegance.local"
+               data-component="body">
+    <br>
+<p>Example: <code>caissier@elegance.local</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-v1-auth-staff-verify-reset-code"
+               value="482913"
+               data-component="body">
+    <br>
+<p>Example: <code>482913</code></p>
+        </div>
+        </form>
+
+                    <h2 id="authentification-POSTapi-v1-auth-staff-reset-password">Réinitialiser le mot de passe (étape 3/3)</h2>
+
+<p>
+</p>
+
+<p>Accepte le <code>reset_token</code> issu du code, ou le <code>token</code> d’un lien e-mail.</p>
 
 <span id="example-requests-POSTapi-v1-auth-staff-reset-password">
 <blockquote>Example request:</blockquote>
@@ -1345,6 +1801,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"email\": \"caissier@elegance.local\",
+    \"reset_token\": \"Q2x…\",
     \"token\": \"reset-token\",
     \"password\": \"password\",
     \"password_confirmation\": \"password\"
@@ -1365,6 +1822,7 @@ const headers = {
 
 let body = {
     "email": "caissier@elegance.local",
+    "reset_token": "Q2x…",
     "token": "reset-token",
     "password": "password",
     "password_confirmation": "password"
@@ -1490,16 +1948,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>caissier@elegance.local</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reset_token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reset_token"                data-endpoint="POSTapi-v1-auth-staff-reset-password"
+               value="Q2x…"
+               data-component="body">
+    <br>
+<p>Jeton reçu à l’étape 2. Example: <code>Q2x…</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="token"                data-endpoint="POSTapi-v1-auth-staff-reset-password"
                value="reset-token"
                data-component="body">
     <br>
-<p>Token reçu par email. Example: <code>reset-token</code></p>
+<p>Token reçu par lien e-mail (ancien flux). Example: <code>reset-token</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -5648,8 +6118,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"delivery_address\": \"y\",
     \"advanced\": 60,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-21T16:19:28\",
-    \"retrieve_date\": \"2026-10-21T16:19:28\",
+    \"deposit_date\": \"2026-10-22T11:14:26\",
+    \"retrieve_date\": \"2026-10-22T11:14:26\",
     \"notes\": \"architecto\",
     \"lines\": [
         {
@@ -5695,8 +6165,8 @@ let body = {
     "delivery_address": "y",
     "advanced": 60,
     "payment_method": "cash",
-    "deposit_date": "2026-10-21T16:19:28",
-    "retrieve_date": "2026-10-21T16:19:28",
+    "deposit_date": "2026-10-22T11:14:26",
+    "retrieve_date": "2026-10-22T11:14:26",
     "notes": "architecto",
     "lines": [
         {
@@ -6153,10 +6623,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -6165,10 +6635,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -6602,7 +7072,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"amount\": 67,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-21T16:19:28\"
+    \"transaction_date\": \"2026-10-22T11:14:26\"
 }"
 </code></pre></div>
 
@@ -6623,7 +7093,7 @@ let body = {
     "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "amount": 67,
     "payment_method": "cash",
-    "transaction_date": "2026-10-21T16:19:28"
+    "transaction_date": "2026-10-22T11:14:26"
 };
 
 fetch(url, {
@@ -6915,10 +7385,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
         </form>
 
@@ -11281,7 +11751,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php2BFB.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php5C25.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -11466,7 +11936,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2BFB.tmp</code></p>
+<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php5C25.tmp</code></p>
         </div>
         </form>
 
@@ -12940,7 +13410,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-21T16:19:27\"
+    \"at\": \"2026-10-22T11:14:26\"
 }"
 </code></pre></div>
 
@@ -12962,7 +13432,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-21T16:19:27"
+    "at": "2026-10-22T11:14:26"
 };
 
 fetch(url, {
@@ -13166,10 +13636,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-21T16:19:27"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
         </form>
 
@@ -13198,8 +13668,8 @@ Must be one of:
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
     \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-21T16:19:27\",
-    \"valid_to\": \"2052-11-13\"
+    \"valid_from\": \"2026-10-22T11:14:26\",
+    \"valid_to\": \"2052-11-14\"
 }"
 </code></pre></div>
 
@@ -13222,8 +13692,8 @@ let body = {
     "service_id": "architecto",
     "pricing_type": "kilo",
     "amount_minor": 84,
-    "valid_from": "2026-10-21T16:19:27",
-    "valid_to": "2052-11-13"
+    "valid_from": "2026-10-22T11:14:26",
+    "valid_to": "2052-11-14"
 };
 
 fetch(url, {
@@ -13458,10 +13928,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-21T16:19:27"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -13470,10 +13940,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_to"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2052-11-13"
+               value="2052-11-14"
                data-component="body">
     <br>
-<p>validation.date validation.after_or_equal. Example: <code>2052-11-13</code></p>
+<p>validation.date validation.after_or_equal. Example: <code>2052-11-14</code></p>
         </div>
         </form>
 
@@ -19701,7 +20171,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"label\": \"g\",
     \"type\": \"out\",
     \"amount\": 27,
-    \"action_date\": \"2026-10-21T16:19:28\",
+    \"action_date\": \"2026-10-22T11:14:26\",
     \"validated\": true
 }"
 </code></pre></div>
@@ -19724,7 +20194,7 @@ let body = {
     "label": "g",
     "type": "out",
     "amount": 27,
-    "action_date": "2026-10-21T16:19:28",
+    "action_date": "2026-10-22T11:14:26",
     "validated": true
 };
 
@@ -19962,10 +20432,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -20014,7 +20484,7 @@ Must be one of:
     \"label\": \"b\",
     \"type\": \"out\",
     \"amount\": 67,
-    \"action_date\": \"2026-10-21T16:19:28\"
+    \"action_date\": \"2026-10-22T11:14:26\"
 }"
 </code></pre></div>
 
@@ -20035,7 +20505,7 @@ let body = {
     "label": "b",
     "type": "out",
     "amount": 67,
-    "action_date": "2026-10-21T16:19:28"
+    "action_date": "2026-10-22T11:14:26"
 };
 
 fetch(url, {
@@ -20273,10 +20743,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
         </form>
 
@@ -25749,7 +26219,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"source_currency\": \"bng\",
     \"target_currency\": \"zmi\",
     \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-21T16:19:28\"
+    \"rate_date\": \"2026-10-22T11:14:26\"
 }"
 </code></pre></div>
 
@@ -25770,7 +26240,7 @@ let body = {
     "source_currency": "bng",
     "target_currency": "zmi",
     "rate": 4326.41688,
-    "rate_date": "2026-10-21T16:19:28"
+    "rate_date": "2026-10-22T11:14:26"
 };
 
 fetch(url, {
@@ -25976,10 +26446,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
         </form>
 
@@ -34890,7 +35360,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"max_agencies\": 66,
     \"storage_gb\": 27,
     \"status\": true,
-    \"expires_at\": \"2026-10-21T16:19:27\"
+    \"expires_at\": \"2026-10-22T11:14:26\"
 }"
 </code></pre></div>
 
@@ -34914,7 +35384,7 @@ let body = {
     "max_agencies": 66,
     "storage_gb": 27,
     "status": true,
-    "expires_at": "2026-10-21T16:19:27"
+    "expires_at": "2026-10-22T11:14:26"
 };
 
 fetch(url, {
@@ -35249,10 +35719,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-21T16:19:27"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
         </form>
 
@@ -35554,10 +36024,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "periodicity=architecto"\
     --form "payment_method=architecto"\
     --form "reference=n"\
-    --form "effective_at=2026-10-21T16:19:27"\
+    --form "effective_at=2026-10-22T11:14:26"\
     --form "auto_renew=1"\
     --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php2A73.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php5B3A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -35576,7 +36046,7 @@ const body = new FormData();
 body.append('periodicity', 'architecto');
 body.append('payment_method', 'architecto');
 body.append('reference', 'n');
-body.append('effective_at', '2026-10-21T16:19:27');
+body.append('effective_at', '2026-10-22T11:14:26');
 body.append('auto_renew', '1');
 body.append('mark_paid', '');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
@@ -36086,10 +36556,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-21T16:19:27"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:27</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -36145,7 +36615,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2A73.tmp</code></p>
+<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php5B3A.tmp</code></p>
         </div>
         </form>
 
@@ -39757,7 +40227,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"agency_id\": \"architecto\",
     \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-21T16:19:28\",
+    \"round_date\": \"2026-10-22T11:14:26\",
     \"name\": \"n\"
 }"
 </code></pre></div>
@@ -39778,7 +40248,7 @@ const headers = {
 let body = {
     "agency_id": "architecto",
     "livreur_id": "architecto",
-    "round_date": "2026-10-21T16:19:28",
+    "round_date": "2026-10-22T11:14:26",
     "name": "n"
 };
 
@@ -39985,10 +40455,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-21T16:19:28"
+               value="2026-10-22T11:14:26"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-21T16:19:28</code></p>
+<p>validation.date. Example: <code>2026-10-22T11:14:26</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;

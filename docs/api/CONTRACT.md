@@ -146,6 +146,19 @@ Idempotency-Key: {uuid-v4}
 
 États dépôt / livraison : valeurs documentées dans OpenAPI et ressources (`etat`, `delivery_status`, etc.) — le frontend mappe via un enum aligné sur l’API, pas des labels hardcodés divergents.
 
+### 7.0 Authentification staff (Figma 01)
+
+| Écran / bloc | Endpoint | Champs |
+|--------------|----------|--------|
+| « Bienvenue » — identifiant ou e-mail, agence ou contexte, se souvenir de moi | `POST /auth/staff/login` (`login`, `password`, `agency_id?`, `remember?`) | `token`, `expires_at` (12 h, 30 j si `remember`), `user.contexts[]` (`label` « Agence • Rôle »), `user.active_agency_id` |
+| « Après 5 échecs, accès limité pendant 15 minutes » | idem | 422 + `meta.attempts_remaining` ; 429 + `meta.retry_after` une fois verrouillé |
+| « Réinitialiser l’accès » — recevoir le code par E-mail / SMS •••• 42 | `POST /auth/staff/password/channels` | `channels[]` {`code`, `label`, `destination` masquée} |
+| Étape 1/3 — envoyer le code sécurisé | `POST /auth/staff/forgot-password` (`email`, `channel`) | `expires_in` 600 ; 429 au-delà de 2 demandes / 15 min |
+| Étape 2/3 — vérifier le code à 6 chiffres | `POST /auth/staff/verify-reset-code` | `reset_token` |
+| Étape 3/3 — nouveau mot de passe | `POST /auth/staff/reset-password` (`reset_token`) | `reset` |
+
+`GET /auth/me` renvoie aussi `meta.contexts`.
+
 ### 7.1 Centre des licences superadmin (Figma 13C)
 
 | Écran / bloc | Endpoint | Champs |

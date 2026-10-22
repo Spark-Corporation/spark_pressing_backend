@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "aaad6686-82dc-4ea0-b808-58a3301ef916",
+        "_postman_id": "ee6673b3-f292-4693-8c12-1b34549b0682",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -96,9 +96,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"caissier@elegance.local\",\"password\":\"password\"}"
+                            "raw": "{\"login\":\"caissier@elegance.local\",\"email\":\"zbailey@example.net\",\"password\":\"password\",\"agency_id\":1,\"remember\":true}"
                         },
-                        "description": "Retourne un token Sanctum Bearer et le profil staff (r\u00f4les, agence, pressing).",
+                        "description": "Identifiant (e-mail ou t\u00e9l\u00e9phone) + mot de passe, agence\/contexte optionnel. Apr\u00e8s 5 \u00e9checs : 429 pendant 15 minutes.",
                         "auth": {
                             "type": "noauth"
                         }
@@ -107,7 +107,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"token\":\"1|abcExampleSanctumToken\",\"token_type\":\"Bearer\",\"actor\":\"staff\",\"user\":{\"id\":1,\"fullname\":\"Claire Caissier\",\"email\":\"caissier@elegance.local\",\"phone_number\":null,\"pressing_id\":1,\"agency_id\":1,\"status\":true,\"roles\":[\"caissier\"],\"agency\":{\"id\":1,\"pressing_id\":1,\"name\":\"Akwa\",\"address\":\"Douala, Akwa\",\"contact\":\"+237600000001\",\"country_code\":\"CM\",\"currency\":\"XAF\",\"code_prefix\":\"AK\",\"code_suffix\":\"EL\",\"status\":true},\"agencies\":[{\"id\":1,\"pressing_id\":1,\"name\":\"Akwa\",\"address\":\"Douala, Akwa\",\"contact\":\"+237600000001\",\"country_code\":\"CM\",\"currency\":\"XAF\",\"code_prefix\":\"AK\",\"code_suffix\":\"EL\",\"status\":true}],\"pressing\":{\"id\":1,\"name\":\"\\u00c9l\\u00e9gance Pressing\",\"details\":\"Enseigne de d\\u00e9monstration\",\"status\":true,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"qr_labels_enabled\":false,\"block_retrieve_if_unpaid\":true,\"reporting_currency\":null,\"collection_fee\":0,\"delivery_fee\":0,\"loyalty_points_rate\":0,\"hours_classic\":null,\"hours_express\":null,\"hours_repass\":null},\"can_view_all_agencies\":false}},\"meta\":{},\"errors\":null}",
+                            "body": "{\"data\":{\"token\":\"1|abcExampleSanctumToken\",\"token_type\":\"Bearer\",\"expires_at\":\"2026-10-22T22:00:00+00:00\",\"actor\":\"staff\",\"user\":{\"id\":1,\"fullname\":\"Claire Caissier\",\"email\":\"caissier@elegance.local\",\"phone_number\":null,\"pressing_id\":1,\"agency_id\":1,\"status\":true,\"roles\":[\"caissier\"],\"agency\":{\"id\":1,\"pressing_id\":1,\"name\":\"Akwa\",\"address\":\"Douala, Akwa\",\"contact\":\"+237600000001\",\"country_code\":\"CM\",\"currency\":\"XAF\",\"code_prefix\":\"AK\",\"code_suffix\":\"EL\",\"status\":true},\"agencies\":[{\"id\":1,\"pressing_id\":1,\"name\":\"Akwa\",\"address\":\"Douala, Akwa\",\"contact\":\"+237600000001\",\"country_code\":\"CM\",\"currency\":\"XAF\",\"code_prefix\":\"AK\",\"code_suffix\":\"EL\",\"status\":true}],\"pressing\":{\"id\":1,\"name\":\"\\u00c9l\\u00e9gance Pressing\",\"details\":\"Enseigne de d\\u00e9monstration\",\"status\":true,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"qr_labels_enabled\":false,\"block_retrieve_if_unpaid\":true,\"reporting_currency\":null,\"collection_fee\":0,\"delivery_fee\":0,\"loyalty_points_rate\":0,\"hours_classic\":null,\"hours_express\":null,\"hours_repass\":null},\"can_view_all_agencies\":false,\"contexts\":[{\"agency_id\":1,\"agency\":\"Akwa\",\"role\":\"caissier\",\"label\":\"Akwa \\u2022 Caissier\",\"is_home\":true}],\"active_agency_id\":1}},\"meta\":{},\"errors\":null}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -119,13 +119,61 @@
                         {
                             "header": [],
                             "code": 422,
-                            "body": "{\"data\":null,\"meta\":{\"message\":\"Les donn\\u00e9es sont invalides.\"},\"errors\":[{\"code\":\"validation\",\"field\":\"email\",\"detail\":\"Identifiants invalides.\"}]}",
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Les donn\\u00e9es sont invalides.\",\"attempts_remaining\":3,\"max_attempts\":5},\"errors\":[{\"code\":\"validation\",\"field\":\"login\",\"detail\":\"Identifiants invalides.\"}]}",
                             "name": "Identifiants invalides"
+                        },
+                        {
+                            "header": [],
+                            "code": 429,
+                            "body": "{\"data\":null,\"meta\":{\"message\":\"Trop de tentatives. Acc\\u00e8s limit\\u00e9 pendant 15 minutes.\",\"retry_after\":840,\"attempts_remaining\":0},\"errors\":[{\"code\":\"locked\",\"detail\":\"R\\u00e9essayez dans 840 secondes.\"}]}",
+                            "name": "Compte verrouill\u00e9 apr\u00e8s 5 \u00e9checs"
                         }
                     ]
                 },
                 {
-                    "name": "Mot de passe oubli\u00e9",
+                    "name": "Canaux de r\u00e9initialisation",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/password\/channels",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/password\/channels"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"caissier@elegance.local\"}"
+                        },
+                        "description": "\u00ab Recevoir le code par \u00bb : e-mail et SMS masqu\u00e9s (ex. \u00ab SMS \u2022\u2022\u2022\u2022 42 \u00bb).",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"channels\":[{\"code\":\"email\",\"label\":\"E-mail\",\"destination\":\"ca\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022@elegance.local\"},{\"code\":\"sms\",\"label\":\"SMS\",\"destination\":\"\\u2022\\u2022\\u2022\\u2022 42\"}]},\"meta\":{},\"errors\":null}",
+                            "name": "Canaux disponibles"
+                        }
+                    ]
+                },
+                {
+                    "name": "Mot de passe oubli\u00e9 (\u00e9tape 1\/3)",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -150,9 +198,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"caissier@elegance.local\"}"
+                            "raw": "{\"email\":\"caissier@elegance.local\",\"channel\":\"email\"}"
                         },
-                        "description": "",
+                        "description": "Envoie un code \u00e0 6 chiffres valable 10 minutes. Anti-abus : 2 demandes par 15 minutes (429 sinon).",
                         "auth": {
                             "type": "noauth"
                         }
@@ -161,13 +209,55 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"sent\":true},\"meta\":{},\"errors\":null}",
-                            "name": "Lien envoy\u00e9 (toujours 200 pour ne pas divulguer l\u2019existence du compte)"
+                            "body": "{\"data\":{\"sent\":true,\"channel\":\"email\",\"destination\":\"ca\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022@elegance.local\",\"expires_in\":600,\"step\":1,\"steps\":3},\"meta\":{},\"errors\":null}",
+                            "name": "Code envoy\u00e9 (toujours 200 pour ne pas divulguer l\u2019existence du compte)"
                         }
                     ]
                 },
                 {
-                    "name": "R\u00e9initialiser le mot de passe",
+                    "name": "V\u00e9rifier le code (\u00e9tape 2\/3)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/staff\/verify-reset-code",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/staff\/verify-reset-code"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"caissier@elegance.local\",\"code\":\"482913\"}"
+                        },
+                        "description": "\u00c9change le code \u00e0 6 chiffres contre un `reset_token` (15 min).",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"reset_token\":\"Q2x\\u2026\",\"expires_in\":900,\"step\":2,\"steps\":3},\"meta\":{},\"errors\":null}",
+                            "name": "Code valide"
+                        }
+                    ]
+                },
+                {
+                    "name": "R\u00e9initialiser le mot de passe (\u00e9tape 3\/3)",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -192,9 +282,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"caissier@elegance.local\",\"token\":\"reset-token\",\"password\":\"password\",\"password_confirmation\":\"password\"}"
+                            "raw": "{\"email\":\"caissier@elegance.local\",\"reset_token\":\"Q2x\u2026\",\"token\":\"reset-token\",\"password\":\"password\",\"password_confirmation\":\"password\"}"
                         },
-                        "description": "",
+                        "description": "Accepte le `reset_token` issu du code, ou le `token` d\u2019un lien e-mail.",
                         "auth": {
                             "type": "noauth"
                         }
@@ -977,7 +1067,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-21T16:19:28\",\"retrieve_date\":\"2026-10-21T16:19:28\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16}]}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T11:14:26\",\"retrieve_date\":\"2026-10-22T11:14:26\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16}]}"
                         },
                         "description": ""
                     },
@@ -1086,7 +1176,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-21T16:19:28\"}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T11:14:26\"}"
                         },
                         "description": ""
                     },
@@ -2473,7 +2563,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-21T16:19:27\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T11:14:26\"}"
                         },
                         "description": ""
                     },
@@ -2518,7 +2608,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-21T16:19:27\",\"valid_to\":\"2052-11-13\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T11:14:26\",\"valid_to\":\"2052-11-14\"}"
                         },
                         "description": ""
                     },
@@ -4154,7 +4244,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-21T16:19:28\",\"validated\":true}"
+                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"label\":\"g\",\"type\":\"out\",\"amount\":27,\"action_date\":\"2026-10-22T11:14:26\",\"validated\":true}"
                         },
                         "description": ""
                     },
@@ -4213,7 +4303,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-21T16:19:28\"}"
+                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T11:14:26\"}"
                         },
                         "description": ""
                     },
@@ -5448,7 +5538,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-21T16:19:28\"}"
+                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T11:14:26\"}"
                         },
                         "description": ""
                     },
@@ -7331,7 +7421,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-21T16:19:27\"}"
+                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T11:14:26\"}"
                         },
                         "description": ""
                     },
@@ -7470,7 +7560,7 @@
                                 },
                                 {
                                     "key": "effective_at",
-                                    "value": "2026-10-21T16:19:27",
+                                    "value": "2026-10-22T11:14:26",
                                     "type": "text",
                                     "description": "validation.date."
                                 },
@@ -8368,7 +8458,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-21T16:19:28\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T11:14:26\",\"name\":\"n\"}"
                         },
                         "description": ""
                     },

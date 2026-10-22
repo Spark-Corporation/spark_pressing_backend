@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms' => [
+        // Pas de fournisseur SMS branché : messages journalisés sur ce canal.
+        'log_channel' => env('SMS_LOG_CHANNEL'),
+    ],
+
 ];
