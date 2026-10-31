@@ -51,8 +51,9 @@ return new class extends Migration
                 $table->string('reference', 64)->nullable();
                 $table->string('invoice_number', 32)->nullable()->unique();
                 $table->string('status', 16)->default('pending');
-                $table->timestamp('period_start');
-                $table->timestamp('period_end');
+                // dateTime : évite MySQL 1067 « Invalid default value » (2 TIMESTAMP NOT NULL sous STRICT).
+                $table->dateTime('period_start');
+                $table->dateTime('period_end');
                 $table->string('proof_path')->nullable();
                 $table->string('recorded_by_type')->nullable();
                 $table->unsignedBigInteger('recorded_by_id')->nullable();
