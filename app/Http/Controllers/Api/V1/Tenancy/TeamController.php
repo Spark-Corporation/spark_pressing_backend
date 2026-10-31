@@ -92,7 +92,9 @@ class TeamController extends Controller
             ->when($data['agency_id'] ?? null, fn ($q, $id) => $q->where(fn ($w) => $w->where('agency_id', $id)->orWhereHas('agencies', fn ($a) => $a->where('agencies.id', $id))))
             ->when($data['role'] ?? null, fn ($q, $role) => $q->role($role))
             ->when(isset($data['status']), fn ($q) => $q->where('status', $data['status'] === 'active'))
-            ->when($data['period'] ?? null, fn ($q, $p) => $q->where('last_login_at', '>=', match ($p) { 'day' => now()->startOfDay(), 'week' => now()->subWeek(), default => now()->subMonth() }))
+            ->when($data['period'] ?? null, fn ($q, $p) => $q->where('last_login_at', '>=', match ($p) {
+                'day' => now()->startOfDay(), 'week' => now()->subWeek(), default => now()->subMonth()
+            }))
             ->orderBy('fullname')
             ->paginate(20);
 

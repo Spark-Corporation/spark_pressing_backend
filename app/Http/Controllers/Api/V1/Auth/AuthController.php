@@ -20,6 +20,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Knuckles\Scribe\Attributes\BodyParam;
@@ -644,11 +645,18 @@ class AuthController extends Controller
         $sessionHours = $type === 'staff' && $pressingId ? (int) $settings->value($pressingId, 'security', 'sessions.max_hours', 12) : 12;
         $expiresAt = $remember ? now()->addDays(30) : now()->addHours($sessionHours);
         $newToken = $actor->createToken($type, ['*'], $expiresAt);
-        $newToken->accessToken->forceFill([
-            'ip_address' => request()?->ip(),
-            'user_agent' => Str::limit((string) request()?->userAgent(), 255, ''),
-        ])->save();
-        if ($actor instanceof User) {
+        // Colonnes ajoutées par 2026_10_22_200000 — ne pas faire échouer le login si migrate est en retard.
+        $tokenMeta = [];
+        if (Schema::hasColumn('personal_access_tokens', 'ip_address')) {
+            $tokenMeta['ip_address'] = request()?->ip();
+        }
+        if (Schema::hasColumn('personal_access_tokens', 'user_agent')) {
+            $tokenMeta['user_agent'] = Str::limit((string) request()?->userAgent(), 255, '');
+        }
+        if ($tokenMeta !== []) {
+            $newToken->accessToken->forceFill($tokenMeta)->save();
+        }
+        if ($actor instanceof User && Schema::hasColumn('users', 'last_login_at')) {
             $actor->forceFill(['last_login_at' => now()])->save();
         }
 
