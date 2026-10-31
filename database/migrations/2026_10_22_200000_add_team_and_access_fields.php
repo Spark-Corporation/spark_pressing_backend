@@ -65,7 +65,7 @@ return new class extends Migration
                 $table->json('agency_ids');
                 $table->boolean('require_mfa')->default(false);
                 $table->string('token', 64)->unique();
-                $table->timestamp('expires_at');
+                $table->dateTime('expires_at');
                 $table->timestamp('accepted_at')->nullable();
                 $table->timestamp('revoked_at')->nullable();
                 $table->foreignId('invited_by')->nullable()->constrained('users')->nullOnDelete();

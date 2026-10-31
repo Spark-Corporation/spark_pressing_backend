@@ -10,25 +10,34 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pressings', function (Blueprint $table) {
-            $table->unsignedBigInteger('monthly_revenue_target')->nullable();
-            $table->unsignedBigInteger('cash_gap_tolerance')->default(5000);
-            $table->unsignedTinyInteger('sensitive_discount_percent')->default(15);
+            if (! Schema::hasColumn('pressings', 'monthly_revenue_target')) {
+                $table->unsignedBigInteger('monthly_revenue_target')->nullable();
+            }
+            if (! Schema::hasColumn('pressings', 'cash_gap_tolerance')) {
+                $table->unsignedBigInteger('cash_gap_tolerance')->default(5000);
+            }
+            if (! Schema::hasColumn('pressings', 'sensitive_discount_percent')) {
+                $table->unsignedTinyInteger('sensitive_discount_percent')->default(15);
+            }
         });
 
-        Schema::create('report_schedules', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pressing_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('agency_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('report', 32);
-            $table->string('frequency', 16);
-            $table->string('format', 8)->default('csv');
-            $table->json('recipients');
-            $table->timestamp('last_sent_at')->nullable();
-            $table->timestamp('next_run_at');
-            $table->boolean('active')->default(true);
-            $table->timestamps();
-        });
+        if (! Schema::hasTable('report_schedules')) {
+            Schema::create('report_schedules', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('pressing_id')->constrained()->cascadeOnDelete();
+                $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+                $table->foreignId('agency_id')->nullable()->constrained()->nullOnDelete();
+                $table->string('report', 32);
+                $table->string('frequency', 16);
+                $table->string('format', 8)->default('csv');
+                $table->json('recipients');
+                $table->timestamp('last_sent_at')->nullable();
+                // dateTime : MySQL STRICT refuse un 2e TIMESTAMP NOT NULL sans défaut explicite.
+                $table->dateTime('next_run_at');
+                $table->boolean('active')->default(true);
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void
@@ -36,7 +45,13 @@ return new class extends Migration
         Schema::dropIfExists('report_schedules');
 
         Schema::table('pressings', function (Blueprint $table) {
-            $table->dropColumn(['monthly_revenue_target', 'cash_gap_tolerance', 'sensitive_discount_percent']);
+            $drop = array_values(array_filter(
+                ['monthly_revenue_target', 'cash_gap_tolerance', 'sensitive_discount_percent'],
+                fn (string $c) => Schema::hasColumn('pressings', $c)
+            ));
+            if ($drop) {
+                $table->dropColumn($drop);
+            }
         });
     }
 };

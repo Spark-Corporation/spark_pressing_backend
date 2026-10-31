@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('agency_id')->constrained()->cascadeOnDelete();
             $table->string('code', 32);
             $table->date('business_date');
-            $table->timestamp('opened_at');
+            $table->dateTime('opened_at');
             $table->foreignId('opened_by')->nullable()->constrained('users')->nullOnDelete();
             $table->unsignedBigInteger('opening_balance')->default(0);
             $table->string('status', 16)->default('open');

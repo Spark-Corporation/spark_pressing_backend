@@ -222,7 +222,12 @@ class SettingsRegistry
 
     private function row(int $pressingId, string $category): ?PressingSetting
     {
-        return PressingSetting::query()->where('pressing_id', $pressingId)->where('category', $category)->first();
+        try {
+            return PressingSetting::query()->where('pressing_id', $pressingId)->where('category', $category)->first();
+        } catch (\Throwable) {
+            // Table absente tant que migrate n’a pas fini (ex. pressing_settings).
+            return null;
+        }
     }
 
     private function audit(int $pressingId, ?User $user, string $action, array $payload): void
