@@ -1029,7 +1029,7 @@ minimum de commande (réglages `delivery`).</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 22, 2026</li>
+        <li>Last updated: November 6, 2026</li>
     </ul>
 </div>
 
@@ -3879,14 +3879,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"first_name\": \"b\",
-    \"last_name\": \"n\",
-    \"email\": \"ashly64@example.com\",
-    \"phone_number\": \"v\",
-    \"job_title\": \"d\",
+    \"first_name\": \"exemple\",
+    \"last_name\": \"exemple\",
+    \"email\": \"client@example.com\",
+    \"phone_number\": \"690000001\",
+    \"job_title\": \"exemple\",
     \"preferences\": {
-        \"language\": \"ljnikh\",
-        \"timezone\": \"Europe\\/Oslo\",
+        \"language\": \"exemple\",
+        \"timezone\": \"exemple\",
         \"daily_summary\": true,
         \"workshop_sound_alerts\": true,
         \"whatsapp_notifications\": true
@@ -3908,14 +3908,14 @@ const headers = {
 };
 
 let body = {
-    "first_name": "b",
-    "last_name": "n",
-    "email": "ashly64@example.com",
-    "phone_number": "v",
-    "job_title": "d",
+    "first_name": "exemple",
+    "last_name": "exemple",
+    "email": "client@example.com",
+    "phone_number": "690000001",
+    "job_title": "exemple",
     "preferences": {
-        "language": "ljnikh",
-        "timezone": "Europe\/Oslo",
+        "language": "exemple",
+        "timezone": "exemple",
         "daily_summary": true,
         "workshop_sound_alerts": true,
         "whatsapp_notifications": true
@@ -4155,10 +4155,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="first_name"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -4167,10 +4167,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="last_name"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>last name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -4179,10 +4179,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="ashly64@example.com"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.email validation.max. Example: <code>ashly64@example.com</code></p>
+<p>email — Optionnel, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -4191,10 +4191,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="v"
+               value="690000001"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>v</code></p>
+<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>job_title</code></b>&nbsp;&nbsp;
@@ -4203,10 +4203,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="job_title"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="d"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>d</code></p>
+<p>job title — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -4216,7 +4216,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
 <br>
-
+<p>preferences — Optionnel, tableau.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>language</code></b>&nbsp;&nbsp;
@@ -4225,10 +4225,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="preferences.language"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="ljnikh"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ljnikh</code></p>
+<p>preferences language — Optionnel. validation.max. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>timezone</code></b>&nbsp;&nbsp;
@@ -4237,10 +4237,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="preferences.timezone"                data-endpoint="PUTapi-v1-auth-staff-profile"
-               value="Europe/Oslo"
+               value="exemple"
                data-component="body">
     <br>
-<p>Must be a valid time zone, such as <code>Africa/Accra</code>. Example: <code>Europe/Oslo</code></p>
+<p>preferences timezone — Optionnel. Must be a valid time zone, such as <code>Africa/Accra</code>. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>daily_summary</code></b>&nbsp;&nbsp;
@@ -4262,7 +4262,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>preferences daily summary — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>workshop_sound_alerts</code></b>&nbsp;&nbsp;
@@ -4284,7 +4284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>preferences workshop sound alerts — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>whatsapp_notifications</code></b>&nbsp;&nbsp;
@@ -4306,7 +4306,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>preferences whatsapp notifications — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                     </details>
         </div>
@@ -4332,8 +4332,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"current_password\": \"architecto\",
-    \"password\": \"]|{+-0pBNvYg\"
+    \"current_password\": \"password\",
+    \"password\": \"password\"
 }"
 </code></pre></div>
 
@@ -4351,8 +4351,8 @@ const headers = {
 };
 
 let body = {
-    "current_password": "architecto",
-    "password": "]|{+-0pBNvYg"
+    "current_password": "password",
+    "password": "password"
 };
 
 fetch(url, {
@@ -4519,10 +4519,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="current_password"                data-endpoint="PUTapi-v1-auth-staff-password"
-               value="architecto"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>current password — Requis. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -4531,10 +4531,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-auth-staff-password"
-               value="]|{+-0pBNvYg"
+               value="password"
                data-component="body">
     <br>
-<p>The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>]|{+-0pBNvYg</code></p>
+<p>password — Requis. The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -6093,12 +6093,12 @@ conflit, les options de décision ; `data.integrity` résume les contrôles.</h2
         {
             \"type\": \"deposit\",
             \"payload\": [],
-            \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-            \"local_ref\": \"g\"
+            \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",
+            \"local_ref\": \"exemple\"
         }
     ],
-    \"device_code\": \"b\",
-    \"reference\": \"n\"
+    \"device_code\": \"exemple\",
+    \"reference\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -6120,12 +6120,12 @@ let body = {
         {
             "type": "deposit",
             "payload": [],
-            "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-            "local_ref": "g"
+            "client_uuid": "550e8400-e29b-41d4-a716-446655440000",
+            "local_ref": "exemple"
         }
     ],
-    "device_code": "b",
-    "reference": "n"
+    "device_code": "exemple",
+    "reference": "exemple"
 };
 
 fetch(url, {
@@ -6381,7 +6381,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-<p>validation.min.</p>
+<p>operations — Requis, tableau. validation.min.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -6393,7 +6393,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="deposit"
                data-component="body">
     <br>
-<p>Example: <code>deposit</code></p>
+<p>operations * type — Requis, parmi deposit, payment. Example: <code>deposit</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>deposit</code></li> <li><code>payment</code></li></ul>
                     </div>
@@ -6407,7 +6407,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-
+<p>operations * payload — Requis, tableau.</p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>client_uuid</code></b>&nbsp;&nbsp;
@@ -6416,10 +6416,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="operations.0.client_uuid"                data-endpoint="POSTapi-v1-sync"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               value="550e8400-e29b-41d4-a716-446655440000"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+<p>operations * client uuid — Requis, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>local_ref</code></b>&nbsp;&nbsp;
@@ -6428,10 +6428,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="operations.0.local_ref"                data-endpoint="POSTapi-v1-sync"
-               value="g"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>g</code></p>
+<p>operations * local ref — Optionnel. validation.max. Example: <code>exemple</code></p>
                     </div>
                                     </details>
         </div>
@@ -6442,10 +6442,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="device_code"                data-endpoint="POSTapi-v1-sync"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>device code — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
@@ -6454,10 +6454,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="reference"                data-endpoint="POSTapi-v1-sync"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>reference — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -8722,45 +8722,47 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"client_id\": \"architecto\",
-    \"discount\": 39,
-    \"discount_percent\": 7,
-    \"promo_code\": \"architecto\",
-    \"promo_special_code\": \"architecto\",
-    \"points_to_redeem\": 39,
+    \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",
+    \"client_id\": 1,
+    \"discount\": 1,
+    \"discount_percent\": 1,
+    \"promo_code\": \"exemple\",
+    \"promo_special_code\": \"exemple\",
+    \"points_to_redeem\": 1,
     \"with_collection\": true,
-    \"with_delivery\": false,
-    \"collection_fee\": 77,
-    \"delivery_fee\": 8,
-    \"delivery_address\": \"y\",
-    \"advanced\": 60,
+    \"with_delivery\": true,
+    \"collection_fee\": 1000,
+    \"delivery_fee\": 1000,
+    \"delivery_zone_id\": 1,
+    \"delivery_address\": \"exemple\",
+    \"advanced\": 1,
     \"payment_method\": \"cash\",
-    \"deposit_date\": \"2026-10-22T22:01:54\",
-    \"retrieve_date\": \"2026-10-22T22:01:54\",
-    \"notes\": \"architecto\",
+    \"deposit_date\": \"2026-11-06T10:00:00+00:00\",
+    \"retrieve_date\": \"2026-11-06T10:00:00+00:00\",
+    \"notes\": \"exemple\",
     \"lines\": [
         {
-            \"article_id\": \"architecto\",
-            \"quantity\": 22,
+            \"article_id\": 1,
+            \"service_id\": 1,
+            \"quantity\": 1,
             \"type_action\": 0,
-            \"pricing_type\": \"kilo\",
-            \"weight_kg\": 77,
-            \"unit_price\": 8,
-            \"designation\": \"architecto\",
-            \"state\": \"architecto\",
-            \"render_id\": 16,
-            \"express\": false,
-            \"color\": \"g\",
+            \"pricing_type\": \"piece\",
+            \"weight_kg\": 1,
+            \"unit_price\": 1000,
+            \"designation\": \"exemple\",
+            \"state\": \"exemple\",
+            \"render_id\": 1,
+            \"express\": true,
+            \"color\": \"exemple\",
             \"defects\": [
-                \"architecto\"
+                \"exemple\"
             ],
-            \"internal_notes\": \"n\"
+            \"internal_notes\": \"exemple\"
         }
     ],
-    \"terminal\": \"b\",
-    \"local_ref\": \"n\",
-    \"discount_reason\": \"g\"
+    \"terminal\": \"exemple\",
+    \"local_ref\": \"exemple\",
+    \"discount_reason\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -8778,45 +8780,47 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "client_id": "architecto",
-    "discount": 39,
-    "discount_percent": 7,
-    "promo_code": "architecto",
-    "promo_special_code": "architecto",
-    "points_to_redeem": 39,
+    "client_uuid": "550e8400-e29b-41d4-a716-446655440000",
+    "client_id": 1,
+    "discount": 1,
+    "discount_percent": 1,
+    "promo_code": "exemple",
+    "promo_special_code": "exemple",
+    "points_to_redeem": 1,
     "with_collection": true,
-    "with_delivery": false,
-    "collection_fee": 77,
-    "delivery_fee": 8,
-    "delivery_address": "y",
-    "advanced": 60,
+    "with_delivery": true,
+    "collection_fee": 1000,
+    "delivery_fee": 1000,
+    "delivery_zone_id": 1,
+    "delivery_address": "exemple",
+    "advanced": 1,
     "payment_method": "cash",
-    "deposit_date": "2026-10-22T22:01:54",
-    "retrieve_date": "2026-10-22T22:01:54",
-    "notes": "architecto",
+    "deposit_date": "2026-11-06T10:00:00+00:00",
+    "retrieve_date": "2026-11-06T10:00:00+00:00",
+    "notes": "exemple",
     "lines": [
         {
-            "article_id": "architecto",
-            "quantity": 22,
+            "article_id": 1,
+            "service_id": 1,
+            "quantity": 1,
             "type_action": 0,
-            "pricing_type": "kilo",
-            "weight_kg": 77,
-            "unit_price": 8,
-            "designation": "architecto",
-            "state": "architecto",
-            "render_id": 16,
-            "express": false,
-            "color": "g",
+            "pricing_type": "piece",
+            "weight_kg": 1,
+            "unit_price": 1000,
+            "designation": "exemple",
+            "state": "exemple",
+            "render_id": 1,
+            "express": true,
+            "color": "exemple",
             "defects": [
-                "architecto"
+                "exemple"
             ],
-            "internal_notes": "n"
+            "internal_notes": "exemple"
         }
     ],
-    "terminal": "b",
-    "local_ref": "n",
-    "discount_reason": "g"
+    "terminal": "exemple",
+    "local_ref": "exemple",
+    "discount_reason": "exemple"
 };
 
 fetch(url, {
@@ -9104,10 +9108,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               value="550e8400-e29b-41d4-a716-446655440000"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
@@ -9116,10 +9120,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_id"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>client id — Requis, id existant (clients). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount</code></b>&nbsp;&nbsp;
@@ -9128,10 +9132,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="discount"                data-endpoint="POSTapi-v1-deposits"
-               value="39"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>39</code></p>
+<p>discount — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount_percent</code></b>&nbsp;&nbsp;
@@ -9140,10 +9144,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="discount_percent"                data-endpoint="POSTapi-v1-deposits"
-               value="7"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>7</code></p>
+<p>discount percent — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>promo_code</code></b>&nbsp;&nbsp;
@@ -9152,10 +9156,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="promo_code"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>promo code — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>promo_special_code</code></b>&nbsp;&nbsp;
@@ -9164,10 +9168,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="promo_special_code"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>promo special code — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>points_to_redeem</code></b>&nbsp;&nbsp;
@@ -9176,10 +9180,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="points_to_redeem"                data-endpoint="POSTapi-v1-deposits"
-               value="39"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>39</code></p>
+<p>points to redeem — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
@@ -9201,7 +9205,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>with collection — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_delivery</code></b>&nbsp;&nbsp;
@@ -9223,7 +9227,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>with delivery — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -9232,10 +9236,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="POSTapi-v1-deposits"
-               value="77"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>77</code></p>
+<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -9244,10 +9248,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="POSTapi-v1-deposits"
-               value="8"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>8</code></p>
+<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
@@ -9256,10 +9260,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_zone_id"                data-endpoint="POSTapi-v1-deposits"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>delivery zone id — Optionnel, id existant (delivery_zones). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_address</code></b>&nbsp;&nbsp;
@@ -9268,10 +9272,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_address"                data-endpoint="POSTapi-v1-deposits"
-               value="y"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>y</code></p>
+<p>delivery address — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>advanced</code></b>&nbsp;&nbsp;
@@ -9280,10 +9284,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="advanced"                data-endpoint="POSTapi-v1-deposits"
-               value="60"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>60</code></p>
+<p>advanced — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -9295,7 +9299,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="cash"
                data-component="body">
     <br>
-<p>Example: <code>cash</code></p>
+<p>payment method — Optionnel, parmi cash, card, mobile_money, wallet, other. Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
         </div>
@@ -9306,10 +9310,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="deposit_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>deposit date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -9318,10 +9322,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="retrieve_date"                data-endpoint="POSTapi-v1-deposits"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>retrieve date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -9330,10 +9334,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="notes"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>notes — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -9343,7 +9347,7 @@ Must be one of:
  &nbsp;
  &nbsp;
 <br>
-<p>validation.min.</p>
+<p>lines — Requis, tableau. validation.min.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
@@ -9352,10 +9356,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.article_id"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>lines * article id — Requis, id existant (articles). Must match an existing stored value. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
@@ -9364,10 +9368,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.service_id"                data-endpoint="POSTapi-v1-deposits"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>lines * service id — Optionnel, id existant (services). Must match an existing stored value. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -9376,10 +9380,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.quantity"                data-endpoint="POSTapi-v1-deposits"
-               value="22"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>22</code></p>
+<p>lines * quantity — Optionnel, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type_action</code></b>&nbsp;&nbsp;
@@ -9391,7 +9395,7 @@ Must be one of:
                value="0"
                data-component="body">
     <br>
-<p>Example: <code>0</code></p>
+<p>lines * type action — Optionnel, parmi 0, 1, 2. Example: <code>0</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>0</code></li> <li><code>1</code></li> <li><code>2</code></li></ul>
                     </div>
@@ -9402,10 +9406,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.pricing_type"                data-endpoint="POSTapi-v1-deposits"
-               value="kilo"
+               value="piece"
                data-component="body">
     <br>
-<p>Example: <code>kilo</code></p>
+<p>lines * pricing type — Optionnel, parmi piece, kilo. Example: <code>piece</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li></ul>
                     </div>
@@ -9416,10 +9420,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.weight_kg"                data-endpoint="POSTapi-v1-deposits"
-               value="77"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>77</code></p>
+<p>lines * weight kg — Optionnel, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>unit_price</code></b>&nbsp;&nbsp;
@@ -9428,10 +9432,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.unit_price"                data-endpoint="POSTapi-v1-deposits"
-               value="8"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>8</code></p>
+<p>lines * unit price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>designation</code></b>&nbsp;&nbsp;
@@ -9440,10 +9444,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.designation"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>lines * designation — Optionnel. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
@@ -9452,10 +9456,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.state"                data-endpoint="POSTapi-v1-deposits"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>lines * state — Optionnel. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>render_id</code></b>&nbsp;&nbsp;
@@ -9464,10 +9468,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="lines.0.render_id"                data-endpoint="POSTapi-v1-deposits"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>lines * render id — Optionnel, nombre. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>express</code></b>&nbsp;&nbsp;
@@ -9489,7 +9493,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>lines * express — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
@@ -9498,10 +9502,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.color"                data-endpoint="POSTapi-v1-deposits"
-               value="g"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>g</code></p>
+<p>lines * color — Optionnel. validation.max. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>defects</code></b>&nbsp;&nbsp;
@@ -9515,7 +9519,9 @@ Must be one of:
                name="lines.0.defects[1]"                data-endpoint="POSTapi-v1-deposits"
                data-component="body">
     <br>
-
+<p>lines <em> defects </em> — Optionnel.</p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>internal_notes</code></b>&nbsp;&nbsp;
@@ -9524,10 +9530,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="lines.0.internal_notes"                data-endpoint="POSTapi-v1-deposits"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>lines * internal notes — Optionnel. validation.max. Example: <code>exemple</code></p>
                     </div>
                                     </details>
         </div>
@@ -9538,10 +9544,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="terminal"                data-endpoint="POSTapi-v1-deposits"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>terminal — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>local_ref</code></b>&nbsp;&nbsp;
@@ -9550,10 +9556,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="local_ref"                data-endpoint="POSTapi-v1-deposits"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>local ref — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount_reason</code></b>&nbsp;&nbsp;
@@ -9562,10 +9568,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="discount_reason"                data-endpoint="POSTapi-v1-deposits"
-               value="g"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>g</code></p>
+<p>discount reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -9995,10 +10001,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"amount\": 67,
+    \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",
+    \"amount\": 1000,
     \"payment_method\": \"cash\",
-    \"transaction_date\": \"2026-10-22T22:01:54\"
+    \"transaction_date\": \"2026-11-06T10:00:00+00:00\"
 }"
 </code></pre></div>
 
@@ -10016,10 +10022,10 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "amount": 67,
+    "client_uuid": "550e8400-e29b-41d4-a716-446655440000",
+    "amount": 1000,
     "payment_method": "cash",
-    "transaction_date": "2026-10-22T22:01:54"
+    "transaction_date": "2026-11-06T10:00:00+00:00"
 };
 
 fetch(url, {
@@ -10320,10 +10326,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               value="550e8400-e29b-41d4-a716-446655440000"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -10332,10 +10338,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="67"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>67</code></p>
+<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -10347,7 +10353,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="cash"
                data-component="body">
     <br>
-<p>Example: <code>cash</code></p>
+<p>payment method — Optionnel, parmi cash, card, mobile_money, wallet, other. Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
         </div>
@@ -10358,10 +10364,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="transaction_date"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>transaction date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -10385,7 +10391,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"receiver_name\": \"b\"
+    \"receiver_name\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -10403,7 +10409,7 @@ const headers = {
 };
 
 let body = {
-    "receiver_name": "b"
+    "receiver_name": "exemple"
 };
 
 fetch(url, {
@@ -10704,10 +10710,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="receiver_name"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>receiver name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -10733,8 +10739,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"units\": [
         {
-            \"id\": 16,
-            \"quantity\": 22
+            \"id\": 1,
+            \"quantity\": 1
         }
     ]
 }"
@@ -10756,8 +10762,8 @@ const headers = {
 let body = {
     "units": [
         {
-            "id": 16,
-            "quantity": 22
+            "id": 1,
+            "quantity": 1
         }
     ]
 };
@@ -11061,7 +11067,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-<p>validation.min.</p>
+<p>units — Requis, tableau. validation.min.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -11070,10 +11076,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="units.0.id"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve-partial"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>units * id — Requis, nombre. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -11082,10 +11088,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="units.0.quantity"                data-endpoint="POSTapi-v1-deposits--deposit_id--retrieve-partial"
-               value="22"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>22</code></p>
+<p>units * quantity — Requis, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -11461,9 +11467,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"etat\": \"classed\",
-    \"qr_token\": \"architecto\",
-    \"storage_location\": \"n\"
+    \"etat\": \"waiting\",
+    \"qr_token\": \"exemple\",
+    \"storage_location\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -11481,9 +11487,9 @@ const headers = {
 };
 
 let body = {
-    "etat": "classed",
-    "qr_token": "architecto",
-    "storage_location": "n"
+    "etat": "waiting",
+    "qr_token": "exemple",
+    "storage_location": "exemple"
 };
 
 fetch(url, {
@@ -11784,10 +11790,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="etat"                data-endpoint="POSTapi-v1-deposits--deposit_id--workshop"
-               value="classed"
+               value="waiting"
                data-component="body">
     <br>
-<p>Example: <code>classed</code></p>
+<p>etat — Requis, parmi waiting, in_progress, treated, classed. Example: <code>waiting</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>waiting</code></li> <li><code>in_progress</code></li> <li><code>treated</code></li> <li><code>classed</code></li></ul>
         </div>
@@ -11798,10 +11804,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="qr_token"                data-endpoint="POSTapi-v1-deposits--deposit_id--workshop"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>qr token — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>storage_location</code></b>&nbsp;&nbsp;
@@ -11810,10 +11816,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="storage_location"                data-endpoint="POSTapi-v1-deposits--deposit_id--workshop"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>storage location — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -12425,7 +12431,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="whatsapp"
                data-component="body">
     <br>
-<p>Example: <code>whatsapp</code></p>
+<p>channel — Requis, parmi whatsapp, sms, email. Example: <code>whatsapp</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>whatsapp</code></li> <li><code>sms</code></li> <li><code>email</code></li></ul>
         </div>
@@ -12439,7 +12445,7 @@ Must be one of:
                value="ticket"
                data-component="body">
     <br>
-<p>Example: <code>ticket</code></p>
+<p>type — Optionnel, parmi ticket, facture. Example: <code>ticket</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>ticket</code></li> <li><code>facture</code></li></ul>
         </div>
@@ -12465,7 +12471,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"reason\": \"b\"
+    \"reason\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -12483,7 +12489,7 @@ const headers = {
 };
 
 let body = {
-    "reason": "b"
+    "reason": "exemple"
 };
 
 fetch(url, {
@@ -12643,10 +12649,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="DELETEapi-v1-deposits--id-"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -13217,8 +13223,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"action\": \"handled\",
-    \"amount\": 22
+    \"action\": \"remind\",
+    \"amount\": 1000
 }"
 </code></pre></div>
 
@@ -13236,8 +13242,8 @@ const headers = {
 };
 
 let body = {
-    "action": "handled",
-    "amount": 22
+    "action": "remind",
+    "amount": 1000
 };
 
 fetch(url, {
@@ -13545,10 +13551,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="action"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
-               value="handled"
+               value="remind"
                data-component="body">
     <br>
-<p>Example: <code>handled</code></p>
+<p>action — Requis, parmi remind, storage_fee, escalate, handled. Example: <code>remind</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>remind</code></li> <li><code>storage_fee</code></li> <li><code>escalate</code></li> <li><code>handled</code></li></ul>
         </div>
@@ -13559,10 +13565,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-deposits--deposit_id--aged-action"
-               value="22"
+               value="1000"
                data-component="body">
     <br>
-<p>This field is required when <code>action</code> is <code>storage_fee</code>. validation.min. Example: <code>22</code></p>
+<p>amount — Requis, nombre. This field is required when <code>action</code> is <code>storage_fee</code>. validation.min. Example: <code>1000</code></p>
         </div>
         </form>
 
@@ -13915,7 +13921,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="sms"
                data-component="body">
     <br>
-<p>Example: <code>sms</code></p>
+<p>channel — Requis, parmi sms, whatsapp. Example: <code>sms</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>sms</code></li> <li><code>whatsapp</code></li></ul>
         </div>
@@ -14696,21 +14702,21 @@ réceptionnaire et journal enregistrés ensemble.</h2>
     --header "X-Agency-Id: 1" \
     --data "{
     \"condition\": \"compliant\",
-    \"remarks\": \"n\",
+    \"remarks\": \"exemple\",
     \"receiver_type\": \"client\",
-    \"receiver_name\": \"z\",
+    \"receiver_name\": \"exemple\",
     \"identity_confirmed\": true,
     \"payment\": {
-        \"amount\": 8,
-        \"method\": \"mobile_money\",
-        \"received\": 60
+        \"amount\": 1000,
+        \"method\": \"cash\",
+        \"received\": 1
     },
-    \"override_reason\": \"d\",
-    \"notify_sms\": false,
+    \"override_reason\": \"exemple\",
+    \"notify_sms\": true,
     \"units\": [
         {
-            \"id\": 16,
-            \"quantity\": 39,
+            \"id\": 1,
+            \"quantity\": 1,
             \"verification\": \"compliant\"
         }
     ]
@@ -14732,21 +14738,21 @@ const headers = {
 
 let body = {
     "condition": "compliant",
-    "remarks": "n",
+    "remarks": "exemple",
     "receiver_type": "client",
-    "receiver_name": "z",
+    "receiver_name": "exemple",
     "identity_confirmed": true,
     "payment": {
-        "amount": 8,
-        "method": "mobile_money",
-        "received": 60
+        "amount": 1000,
+        "method": "cash",
+        "received": 1
     },
-    "override_reason": "d",
-    "notify_sms": false,
+    "override_reason": "exemple",
+    "notify_sms": true,
     "units": [
         {
-            "id": 16,
-            "quantity": 39,
+            "id": 1,
+            "quantity": 1,
             "verification": "compliant"
         }
     ]
@@ -15056,7 +15062,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
 <br>
-
+<p>units — Optionnel, tableau.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -15065,10 +15071,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="units.0.id"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>units * id — Requis, nombre. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -15077,10 +15083,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="units.0.quantity"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="39"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>39</code></p>
+<p>units * quantity — Requis, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>verification</code></b>&nbsp;&nbsp;
@@ -15092,7 +15098,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="compliant"
                data-component="body">
     <br>
-<p>Example: <code>compliant</code></p>
+<p>units * verification — Requis, parmi compliant, control_required. Example: <code>compliant</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>compliant</code></li> <li><code>control_required</code></li></ul>
                     </div>
@@ -15108,7 +15114,7 @@ Must be one of:
                value="compliant"
                data-component="body">
     <br>
-<p>Example: <code>compliant</code></p>
+<p>condition — Optionnel, parmi compliant, client_reserve, anomaly. Example: <code>compliant</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>compliant</code></li> <li><code>client_reserve</code></li> <li><code>anomaly</code></li></ul>
         </div>
@@ -15119,10 +15125,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="remarks"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>remarks — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>receiver_type</code></b>&nbsp;&nbsp;
@@ -15134,7 +15140,7 @@ Must be one of:
                value="client"
                data-component="body">
     <br>
-<p>Example: <code>client</code></p>
+<p>receiver type — Optionnel, parmi client, third_party. Example: <code>client</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>client</code></li> <li><code>third_party</code></li></ul>
         </div>
@@ -15145,10 +15151,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="receiver_name"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="z"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>z</code></p>
+<p>receiver name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>identity_confirmed</code></b>&nbsp;&nbsp;
@@ -15170,7 +15176,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>identity confirmed — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -15189,10 +15195,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="payment.amount"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="8"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>8</code></p>
+<p>payment amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>method</code></b>&nbsp;&nbsp;
@@ -15201,10 +15207,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment.method"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="mobile_money"
+               value="cash"
                data-component="body">
     <br>
-<p>Example: <code>mobile_money</code></p>
+<p>payment method — Optionnel, parmi cash, card, mobile_money, wallet, other. Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
                     </div>
@@ -15215,10 +15221,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="payment.received"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="60"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>60</code></p>
+<p>payment received — Optionnel, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -15229,10 +15235,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="override_reason"                data-endpoint="POSTapi-v1-deposits--deposit_id--checkout"
-               value="d"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>d</code></p>
+<p>override reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notify_sms</code></b>&nbsp;&nbsp;
@@ -15254,7 +15260,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>notify sms — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -16232,7 +16238,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"fullname\": \"Jean Dupont\",
+    \"last_name\": \"exemple\",
+    \"first_name\": \"exemple\",
+    \"phone_number\": \"690000001\",
+    \"email\": \"client@example.com\",
+    \"address\": \"exemple\",
+    \"city\": \"exemple\",
+    \"password\": \"password\",
+    \"sponsor_code\": \"exemple\",
+    \"phone_secondary\": \"690000001\",
+    \"agency_id\": 1,
+    \"contact_preference\": \"exemple\",
+    \"loyalty_tier\": \"exemple\",
+    \"consent_sms\": true,
+    \"consent_email\": true,
+    \"pickup_slot\": \"exemple\",
+    \"favorite_treatment\": \"exemple\",
+    \"instructions\": \"exemple\",
+    \"note\": \"exemple\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -16247,10 +16275,32 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "fullname": "Jean Dupont",
+    "last_name": "exemple",
+    "first_name": "exemple",
+    "phone_number": "690000001",
+    "email": "client@example.com",
+    "address": "exemple",
+    "city": "exemple",
+    "password": "password",
+    "sponsor_code": "exemple",
+    "phone_secondary": "690000001",
+    "agency_id": 1,
+    "contact_preference": "exemple",
+    "loyalty_tier": "exemple",
+    "consent_sms": true,
+    "consent_email": true,
+    "pickup_slot": "exemple",
+    "favorite_treatment": "exemple",
+    "instructions": "exemple",
+    "note": "exemple"
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -16530,7 +16580,260 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="fullname"                data-endpoint="POSTapi-v1-clients"
+               value="Jean Dupont"
+               data-component="body">
+    <br>
+<p>fullname — Requis. This field is required when <code>last_name</code> is not present. validation.max. Example: <code>Jean Dupont</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="last_name"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>last name — Requis. This field is required when <code>fullname</code> is not present. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="first_name"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="POSTapi-v1-clients"
+               value="690000001"
+               data-component="body">
+    <br>
+<p>phone number — Requis. validation.max. Example: <code>690000001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-clients"
+               value="client@example.com"
+               data-component="body">
+    <br>
+<p>email — Optionnel, e-mail. validation.email. Example: <code>client@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>address — Optionnel. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>city</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="city"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>city — Optionnel. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-v1-clients"
+               value="password"
+               data-component="body">
+    <br>
+<p>password — Optionnel. validation.min. Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sponsor_code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sponsor_code"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>sponsor code — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_secondary</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_secondary"                data-endpoint="POSTapi-v1-clients"
+               value="690000001"
+               data-component="body">
+    <br>
+<p>phone secondary — Optionnel. validation.max. Example: <code>690000001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="POSTapi-v1-clients"
+               value="1"
+               data-component="body">
+    <br>
+<p>agency id — Optionnel, id existant (agencies), nombre. Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>contact_preference</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="contact_preference"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>contact preference — Optionnel. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>loyalty_tier</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="loyalty_tier"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>loyalty tier — Optionnel. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>consent_sms</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-clients" style="display: none">
+            <input type="radio" name="consent_sms"
+                   value="true"
+                   data-endpoint="POSTapi-v1-clients"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-clients" style="display: none">
+            <input type="radio" name="consent_sms"
+                   value="false"
+                   data-endpoint="POSTapi-v1-clients"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>consent sms — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>consent_email</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-clients" style="display: none">
+            <input type="radio" name="consent_email"
+                   value="true"
+                   data-endpoint="POSTapi-v1-clients"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-clients" style="display: none">
+            <input type="radio" name="consent_email"
+                   value="false"
+                   data-endpoint="POSTapi-v1-clients"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>consent email — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pickup_slot</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pickup_slot"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>pickup slot — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>favorite_treatment</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="favorite_treatment"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>favorite treatment — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>instructions</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="instructions"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>instructions — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="note"                data-endpoint="POSTapi-v1-clients"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>note — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+        </form>
 
                     <h2 id="clients-GETapi-v1-clients--id-">GET api/v1/clients/{id}</h2>
 
@@ -16546,7 +16849,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1" \
+    --get "http://localhost:8000/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16555,7 +16858,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1"
+    "http://localhost:8000/api/v1/clients/16"
 );
 
 const headers = {
@@ -16837,10 +17140,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-clients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -16858,7 +17161,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/state" \
+    --get "http://localhost:8000/api/v1/clients/16/state" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16867,7 +17170,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/state"
+    "http://localhost:8000/api/v1/clients/16/state"
 );
 
 const headers = {
@@ -17051,10 +17354,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--state"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -17072,7 +17375,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/referrals" \
+    --get "http://localhost:8000/api/v1/clients/16/referrals" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17081,7 +17384,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/referrals"
+    "http://localhost:8000/api/v1/clients/16/referrals"
 );
 
 const headers = {
@@ -17262,10 +17565,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--referrals"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -17283,16 +17586,38 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/clients/1" \
+    "http://localhost:8000/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"fullname\": \"Jean Dupont\",
+    \"last_name\": \"exemple\",
+    \"first_name\": \"exemple\",
+    \"phone_number\": \"690000001\",
+    \"email\": \"client@example.com\",
+    \"address\": \"exemple\",
+    \"city\": \"exemple\",
+    \"status\": true,
+    \"password\": \"password\",
+    \"phone_secondary\": \"690000001\",
+    \"agency_id\": 1,
+    \"contact_preference\": \"exemple\",
+    \"loyalty_tier\": \"exemple\",
+    \"consent_sms\": true,
+    \"consent_email\": true,
+    \"pickup_slot\": \"exemple\",
+    \"favorite_treatment\": \"exemple\",
+    \"instructions\": \"exemple\",
+    \"note\": \"exemple\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1"
+    "http://localhost:8000/api/v1/clients/16"
 );
 
 const headers = {
@@ -17302,10 +17627,32 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "fullname": "Jean Dupont",
+    "last_name": "exemple",
+    "first_name": "exemple",
+    "phone_number": "690000001",
+    "email": "client@example.com",
+    "address": "exemple",
+    "city": "exemple",
+    "status": true,
+    "password": "password",
+    "phone_secondary": "690000001",
+    "agency_id": 1,
+    "contact_preference": "exemple",
+    "loyalty_tier": "exemple",
+    "consent_sms": true,
+    "consent_email": true,
+    "pickup_slot": "exemple",
+    "favorite_treatment": "exemple",
+    "instructions": "exemple",
+    "note": "exemple"
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -17593,12 +17940,275 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-clients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="fullname"                data-endpoint="PUTapi-v1-clients--id-"
+               value="Jean Dupont"
+               data-component="body">
+    <br>
+<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="last_name"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>last name — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="first_name"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="PUTapi-v1-clients--id-"
+               value="690000001"
+               data-component="body">
+    <br>
+<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="PUTapi-v1-clients--id-"
+               value="client@example.com"
+               data-component="body">
+    <br>
+<p>email — Optionnel, e-mail. validation.email. Example: <code>client@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>address — Optionnel. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>city</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="city"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>city — Optionnel. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-clients--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-clients--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-clients--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-clients--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="PUTapi-v1-clients--id-"
+               value="password"
+               data-component="body">
+    <br>
+<p>password — Optionnel. validation.min. Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_secondary</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_secondary"                data-endpoint="PUTapi-v1-clients--id-"
+               value="690000001"
+               data-component="body">
+    <br>
+<p>phone secondary — Optionnel. validation.max. Example: <code>690000001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="PUTapi-v1-clients--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>agency id — Optionnel, id existant (agencies), nombre. Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>contact_preference</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="contact_preference"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>contact preference — Optionnel. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>loyalty_tier</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="loyalty_tier"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>loyalty tier — Optionnel. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>consent_sms</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-clients--id-" style="display: none">
+            <input type="radio" name="consent_sms"
+                   value="true"
+                   data-endpoint="PUTapi-v1-clients--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-clients--id-" style="display: none">
+            <input type="radio" name="consent_sms"
+                   value="false"
+                   data-endpoint="PUTapi-v1-clients--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>consent sms — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>consent_email</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-clients--id-" style="display: none">
+            <input type="radio" name="consent_email"
+                   value="true"
+                   data-endpoint="PUTapi-v1-clients--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-clients--id-" style="display: none">
+            <input type="radio" name="consent_email"
+                   value="false"
+                   data-endpoint="PUTapi-v1-clients--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>consent email — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pickup_slot</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pickup_slot"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>pickup slot — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>favorite_treatment</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="favorite_treatment"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>favorite treatment — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>instructions</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="instructions"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>instructions — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="note"                data-endpoint="PUTapi-v1-clients--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>note — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+        </form>
 
                     <h2 id="clients-DELETEapi-v1-clients--id-">DELETE api/v1/clients/{id}</h2>
 
@@ -17614,7 +18224,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/clients/1" \
+    "http://localhost:8000/api/v1/clients/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17623,7 +18233,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1"
+    "http://localhost:8000/api/v1/clients/16"
 );
 
 const headers = {
@@ -17777,10 +18387,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-clients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -17798,7 +18408,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/notes" \
+    --get "http://localhost:8000/api/v1/clients/16/notes" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17807,7 +18417,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/notes"
+    "http://localhost:8000/api/v1/clients/16/notes"
 );
 
 const headers = {
@@ -17966,10 +18576,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--notes"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -17987,20 +18597,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/notes" \
+    "http://localhost:8000/api/v1/clients/16/notes" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"body\": \"b\"
+    \"body\": \"exemple\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/notes"
+    "http://localhost:8000/api/v1/clients/16/notes"
 );
 
 const headers = {
@@ -18011,7 +18621,7 @@ const headers = {
 };
 
 let body = {
-    "body": "b"
+    "body": "exemple"
 };
 
 fetch(url, {
@@ -18180,10 +18790,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--notes"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -18193,10 +18803,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="body"                data-endpoint="POSTapi-v1-clients--client_id--notes"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>body — Requis. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -18214,7 +18824,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/archive" \
+    "http://localhost:8000/api/v1/clients/16/archive" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18223,7 +18833,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/archive"
+    "http://localhost:8000/api/v1/clients/16/archive"
 );
 
 const headers = {
@@ -18433,10 +19043,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--archive"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -18454,7 +19064,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/restore" \
+    "http://localhost:8000/api/v1/clients/16/restore" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18463,7 +19073,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/restore"
+    "http://localhost:8000/api/v1/clients/16/restore"
 );
 
 const headers = {
@@ -18673,10 +19283,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--restore"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -18694,20 +19304,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/loyalty/convert" \
+    "http://localhost:8000/api/v1/clients/16/loyalty/convert" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"points\": 16
+    \"points\": 1
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/loyalty/convert"
+    "http://localhost:8000/api/v1/clients/16/loyalty/convert"
 );
 
 const headers = {
@@ -18718,7 +19328,7 @@ const headers = {
 };
 
 let body = {
-    "points": 16
+    "points": 1
 };
 
 fetch(url, {
@@ -18906,23 +19516,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--loyalty-convert"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>points</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>string</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="points"                data-endpoint="POSTapi-v1-clients--client_id--loyalty-convert"
-               value="16"
+                <input type="text" style="display: none"
+                              name="points"                data-endpoint="POSTapi-v1-clients--client_id--loyalty-convert"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>points — Requis, nombre. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -18940,7 +19550,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/loyalty" \
+    --get "http://localhost:8000/api/v1/clients/16/loyalty" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -18949,7 +19559,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/loyalty"
+    "http://localhost:8000/api/v1/clients/16/loyalty"
 );
 
 const headers = {
@@ -19110,10 +19720,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--loyalty"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -19131,7 +19741,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/clients/1/wallet" \
+    --get "http://localhost:8000/api/v1/clients/16/wallet" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -19140,7 +19750,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/wallet"
+    "http://localhost:8000/api/v1/clients/16/wallet"
 );
 
 const headers = {
@@ -19296,10 +19906,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="GETapi-v1-clients--client_id--wallet"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -19317,21 +19927,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/wallet/credit" \
+    "http://localhost:8000/api/v1/clients/16/wallet/credit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"amount\": 16,
-    \"reason\": \"n\"
+    \"amount\": 1000,
+    \"reason\": \"exemple\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/wallet/credit"
+    "http://localhost:8000/api/v1/clients/16/wallet/credit"
 );
 
 const headers = {
@@ -19342,8 +19952,8 @@ const headers = {
 };
 
 let body = {
-    "amount": 16,
-    "reason": "n"
+    "amount": 1000,
+    "reason": "exemple"
 };
 
 fetch(url, {
@@ -19514,10 +20124,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -19527,10 +20137,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="16"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>16</code></p>
+<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -19539,10 +20149,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-v1-clients--client_id--wallet-credit"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -19560,21 +20170,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/clients/1/wallet/debit" \
+    "http://localhost:8000/api/v1/clients/16/wallet/debit" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"amount\": 16,
-    \"reason\": \"n\"
+    \"amount\": 1000,
+    \"reason\": \"exemple\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/clients/1/wallet/debit"
+    "http://localhost:8000/api/v1/clients/16/wallet/debit"
 );
 
 const headers = {
@@ -19585,8 +20195,8 @@ const headers = {
 };
 
 let body = {
-    "amount": 16,
-    "reason": "n"
+    "amount": 1000,
+    "reason": "exemple"
 };
 
 fetch(url, {
@@ -19757,10 +20367,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="client_id"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the client. Example: <code>1</code></p>
+<p>The ID of the client. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -19770,10 +20380,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="16"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>16</code></p>
+<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -19782,10 +20392,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-v1-clients--client_id--wallet-debit"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -20155,7 +20765,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php22C2.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\php14C1.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -20340,7 +20950,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php22C2.tmp</code></p>
+<p>file — Requis, fichier. Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php14C1.tmp</code></p>
         </div>
         </form>
 
@@ -20789,7 +21399,55 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"description\": \"exemple\",
+    \"classic_price\": 1000,
+    \"express_price\": 1000,
+    \"repass_price\": 1000,
+    \"classic_price_kilo\": 1000,
+    \"express_price_kilo\": 1000,
+    \"repass_price_kilo\": 1000,
+    \"status\": true,
+    \"code\": \"exemple\",
+    \"category_id\": 1,
+    \"billing_mode\": \"exemple\",
+    \"icon\": \"exemple\",
+    \"allow_discount\": true,
+    \"round_to\": 1,
+    \"price_editable\": true,
+    \"classic_hours\": 1,
+    \"express_hours\": 1,
+    \"repass_hours\": 1,
+    \"priority\": \"standard\",
+    \"accepted_defects\": [
+        \"exemple\"
+    ],
+    \"compatible_renders\": [
+        1
+    ],
+    \"services\": [
+        \"exemple\"
+    ],
+    \"kilo_tiers\": [
+        {
+            \"min_kg\": 1,
+            \"max_kg\": 1,
+            \"classic\": 1,
+            \"express\": 1
+        }
+    ],
+    \"availability\": [
+        {
+            \"agency_id\": 1,
+            \"available\": true,
+            \"price_adjust_percent\": 1000,
+            \"note\": \"exemple\"
+        }
+    ]
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -20804,10 +21462,58 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "description": "exemple",
+    "classic_price": 1000,
+    "express_price": 1000,
+    "repass_price": 1000,
+    "classic_price_kilo": 1000,
+    "express_price_kilo": 1000,
+    "repass_price_kilo": 1000,
+    "status": true,
+    "code": "exemple",
+    "category_id": 1,
+    "billing_mode": "exemple",
+    "icon": "exemple",
+    "allow_discount": true,
+    "round_to": 1,
+    "price_editable": true,
+    "classic_hours": 1,
+    "express_hours": 1,
+    "repass_hours": 1,
+    "priority": "standard",
+    "accepted_defects": [
+        "exemple"
+    ],
+    "compatible_renders": [
+        1
+    ],
+    "services": [
+        "exemple"
+    ],
+    "kilo_tiers": [
+        {
+            "min_kg": 1,
+            "max_kg": 1,
+            "classic": 1,
+            "express": 1
+        }
+    ],
+    "availability": [
+        {
+            "agency_id": 1,
+            "available": true,
+            "price_adjust_percent": 1000,
+            "note": "exemple"
+        }
+    ]
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -21111,7 +21817,458 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-articles"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-v1-articles"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>description — Optionnel. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>classic_price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="classic_price"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>classic price — Requis, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_price"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>express price — Requis, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repass_price"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>repass price — Requis, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="classic_price_kilo"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>classic price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_price_kilo"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>express price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repass_price_kilo"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>repass price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-v1-articles"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="category_id"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>category id — Optionnel, id existant (article_categories), nombre. Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>billing_mode</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="billing_mode"                data-endpoint="POSTapi-v1-articles"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>billing mode — Optionnel. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="icon"                data-endpoint="POSTapi-v1-articles"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>allow_discount</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="allow_discount"
+                   value="true"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="allow_discount"
+                   value="false"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>allow discount — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>round_to</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="round_to"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>round to — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>price_editable</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="price_editable"
+                   value="true"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="price_editable"
+                   value="false"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>price editable — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>classic_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="classic_hours"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>classic hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_hours"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>express hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repass_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repass_hours"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>repass hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="priority"                data-endpoint="POSTapi-v1-articles"
+               value="standard"
+               data-component="body">
+    <br>
+<p>priority — Optionnel, parmi standard, high, delicate. Example: <code>standard</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>standard</code></li> <li><code>high</code></li> <li><code>delicate</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>accepted_defects</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="accepted_defects[0]"                data-endpoint="POSTapi-v1-articles"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="accepted_defects[1]"                data-endpoint="POSTapi-v1-articles"
+               data-component="body">
+    <br>
+<p>accepted defects * — Optionnel.</p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>compatible_renders</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="compatible_renders[0]"                data-endpoint="POSTapi-v1-articles"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="compatible_renders[1]"                data-endpoint="POSTapi-v1-articles"
+               data-component="body">
+    <br>
+<p>compatible renders * — Optionnel, nombre.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>services</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="services[0]"                data-endpoint="POSTapi-v1-articles"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="services[1]"                data-endpoint="POSTapi-v1-articles"
+               data-component="body">
+    <br>
+<p>services * — Optionnel.</p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>kilo_tiers</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+<p>kilo tiers — Optionnel, tableau.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>min_kg</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.min_kg"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * min kg — Requis, nombre. validation.min. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>max_kg</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.max_kg"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * max kg — Optionnel, nombre. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>classic</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.classic"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * classic — Requis, nombre. validation.min. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>express</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.express"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>availability</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+<p>availability — Optionnel, tableau.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="availability.0.agency_id"                data-endpoint="POSTapi-v1-articles"
+               value="1"
+               data-component="body">
+    <br>
+<p>availability * agency id — Requis, id existant (agencies), nombre. Must match an existing stored value. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>available</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="availability.0.available"
+                   value="true"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-articles" style="display: none">
+            <input type="radio" name="availability.0.available"
+                   value="false"
+                   data-endpoint="POSTapi-v1-articles"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>availability * available — Requis, booléen. Example: <code>true</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>price_adjust_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="availability.0.price_adjust_percent"                data-endpoint="POSTapi-v1-articles"
+               value="1000"
+               data-component="body">
+    <br>
+<p>availability * price adjust percent — Optionnel, nombre. validation.min validation.max. Example: <code>1000</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="availability.0.note"                data-endpoint="POSTapi-v1-articles"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>availability * note — Optionnel. validation.max. Example: <code>exemple</code></p>
+                    </div>
+                                    </details>
+        </div>
+        </form>
 
                     <h2 id="catalogue-GETapi-v1-articles--id-">GET api/v1/articles/{id}</h2>
 
@@ -21127,7 +22284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/articles/1" \
+    --get "http://localhost:8000/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21136,7 +22293,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/1"
+    "http://localhost:8000/api/v1/articles/16"
 );
 
 const headers = {
@@ -21442,10 +22599,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-articles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>1</code></p>
+<p>The ID of the article. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -21463,16 +22620,64 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/articles/1" \
+    "http://localhost:8000/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"description\": \"exemple\",
+    \"classic_price\": 1000,
+    \"express_price\": 1000,
+    \"repass_price\": 1000,
+    \"classic_price_kilo\": 1000,
+    \"express_price_kilo\": 1000,
+    \"repass_price_kilo\": 1000,
+    \"status\": true,
+    \"code\": \"exemple\",
+    \"category_id\": 1,
+    \"billing_mode\": \"exemple\",
+    \"icon\": \"exemple\",
+    \"allow_discount\": true,
+    \"round_to\": 1,
+    \"price_editable\": true,
+    \"classic_hours\": 1,
+    \"express_hours\": 1,
+    \"repass_hours\": 1,
+    \"priority\": \"standard\",
+    \"accepted_defects\": [
+        \"exemple\"
+    ],
+    \"compatible_renders\": [
+        1
+    ],
+    \"services\": [
+        \"exemple\"
+    ],
+    \"kilo_tiers\": [
+        {
+            \"min_kg\": 1,
+            \"max_kg\": 1,
+            \"classic\": 1,
+            \"express\": 1
+        }
+    ],
+    \"availability\": [
+        {
+            \"agency_id\": 1,
+            \"available\": true,
+            \"price_adjust_percent\": 1000,
+            \"note\": \"exemple\"
+        }
+    ]
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/1"
+    "http://localhost:8000/api/v1/articles/16"
 );
 
 const headers = {
@@ -21482,10 +22687,58 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "description": "exemple",
+    "classic_price": 1000,
+    "express_price": 1000,
+    "repass_price": 1000,
+    "classic_price_kilo": 1000,
+    "express_price_kilo": 1000,
+    "repass_price_kilo": 1000,
+    "status": true,
+    "code": "exemple",
+    "category_id": 1,
+    "billing_mode": "exemple",
+    "icon": "exemple",
+    "allow_discount": true,
+    "round_to": 1,
+    "price_editable": true,
+    "classic_hours": 1,
+    "express_hours": 1,
+    "repass_hours": 1,
+    "priority": "standard",
+    "accepted_defects": [
+        "exemple"
+    ],
+    "compatible_renders": [
+        1
+    ],
+    "services": [
+        "exemple"
+    ],
+    "kilo_tiers": [
+        {
+            "min_kg": 1,
+            "max_kg": 1,
+            "classic": 1,
+            "express": 1
+        }
+    ],
+    "availability": [
+        {
+            "agency_id": 1,
+            "available": true,
+            "price_adjust_percent": 1000,
+            "note": "exemple"
+        }
+    ]
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -21797,12 +23050,463 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-articles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>1</code></p>
+<p>The ID of the article. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-articles--id-"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-v1-articles--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>description — Optionnel. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>classic_price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="classic_price"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>classic price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_price"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>express price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repass_price"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>repass price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="classic_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>classic price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>express price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repass_price_kilo"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>repass price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="PUTapi-v1-articles--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="category_id"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>category id — Optionnel, id existant (article_categories), nombre. Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>billing_mode</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="billing_mode"                data-endpoint="PUTapi-v1-articles--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>billing mode — Optionnel. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="icon"                data-endpoint="PUTapi-v1-articles--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>allow_discount</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="allow_discount"
+                   value="true"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="allow_discount"
+                   value="false"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>allow discount — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>round_to</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="round_to"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>round to — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>price_editable</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="price_editable"
+                   value="true"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="price_editable"
+                   value="false"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>price editable — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>classic_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="classic_hours"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>classic hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_hours"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>express hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repass_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repass_hours"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>repass hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="priority"                data-endpoint="PUTapi-v1-articles--id-"
+               value="standard"
+               data-component="body">
+    <br>
+<p>priority — Optionnel, parmi standard, high, delicate. Example: <code>standard</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>standard</code></li> <li><code>high</code></li> <li><code>delicate</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>accepted_defects</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="accepted_defects[0]"                data-endpoint="PUTapi-v1-articles--id-"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="accepted_defects[1]"                data-endpoint="PUTapi-v1-articles--id-"
+               data-component="body">
+    <br>
+<p>accepted defects * — Optionnel.</p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>compatible_renders</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="compatible_renders[0]"                data-endpoint="PUTapi-v1-articles--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="compatible_renders[1]"                data-endpoint="PUTapi-v1-articles--id-"
+               data-component="body">
+    <br>
+<p>compatible renders * — Optionnel, nombre.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>services</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="services[0]"                data-endpoint="PUTapi-v1-articles--id-"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="services[1]"                data-endpoint="PUTapi-v1-articles--id-"
+               data-component="body">
+    <br>
+<p>services * — Optionnel.</p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>kilo_tiers</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+<p>kilo tiers — Optionnel, tableau.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>min_kg</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.min_kg"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * min kg — Requis, nombre. validation.min. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>max_kg</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.max_kg"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * max kg — Optionnel, nombre. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>classic</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.classic"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * classic — Requis, nombre. validation.min. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>express</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="kilo_tiers.0.express"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>kilo tiers * express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+                    </div>
+                                    </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>availability</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+<br>
+<p>availability — Optionnel, tableau.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="availability.0.agency_id"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>availability * agency id — Requis, id existant (agencies), nombre. Must match an existing stored value. Example: <code>1</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>available</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="availability.0.available"
+                   value="true"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-articles--id-" style="display: none">
+            <input type="radio" name="availability.0.available"
+                   value="false"
+                   data-endpoint="PUTapi-v1-articles--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>availability * available — Requis, booléen. Example: <code>true</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>price_adjust_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="availability.0.price_adjust_percent"                data-endpoint="PUTapi-v1-articles--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>availability * price adjust percent — Optionnel, nombre. validation.min validation.max. Example: <code>1000</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="availability.0.note"                data-endpoint="PUTapi-v1-articles--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>availability * note — Optionnel. validation.max. Example: <code>exemple</code></p>
+                    </div>
+                                    </details>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-articles--id-">DELETE api/v1/articles/{id}</h2>
 
@@ -21818,7 +23522,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/articles/1" \
+    "http://localhost:8000/api/v1/articles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -21827,7 +23531,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/articles/1"
+    "http://localhost:8000/api/v1/articles/16"
 );
 
 const headers = {
@@ -21981,10 +23685,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-articles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the article. Example: <code>1</code></p>
+<p>The ID of the article. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -22185,7 +23889,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"icon\": \"exemple\",
+    \"shared\": true,
+    \"sort_order\": 1
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -22200,10 +23911,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "icon": "exemple",
+    "shared": true,
+    "sort_order": 1
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -22361,7 +24079,66 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-article-categories"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="icon"                data-endpoint="POSTapi-v1-article-categories"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>shared</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-article-categories" style="display: none">
+            <input type="radio" name="shared"
+                   value="true"
+                   data-endpoint="POSTapi-v1-article-categories"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-article-categories" style="display: none">
+            <input type="radio" name="shared"
+                   value="false"
+                   data-endpoint="POSTapi-v1-article-categories"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>shared — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sort_order"                data-endpoint="POSTapi-v1-article-categories"
+               value="1"
+               data-component="body">
+    <br>
+<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-article-categories--articleCategory_id-">PUT api/v1/article-categories/{articleCategory_id}</h2>
 
@@ -22381,7 +24158,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"icon\": \"exemple\",
+    \"shared\": true,
+    \"sort_order\": 1
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -22396,10 +24180,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "icon": "exemple",
+    "shared": true,
+    "sort_order": 1
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -22570,7 +24361,66 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the articleCategory. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="icon"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>shared</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-article-categories--articleCategory_id-" style="display: none">
+            <input type="radio" name="shared"
+                   value="true"
+                   data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-article-categories--articleCategory_id-" style="display: none">
+            <input type="radio" name="shared"
+                   value="false"
+                   data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>shared — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sort_order"                data-endpoint="PUTapi-v1-article-categories--articleCategory_id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-article-categories--articleCategory_id-">DELETE api/v1/article-categories/{articleCategory_id}</h2>
 
@@ -22965,7 +24815,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-10-22T22:01:54\"
+    \"at\": \"2026-11-06T04:15:04\"
 }"
 </code></pre></div>
 
@@ -22987,7 +24837,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-10-22T22:01:54"
+    "at": "2026-11-06T04:15:04"
 };
 
 fetch(url, {
@@ -23216,10 +25066,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T04:15:04"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
         </div>
         </form>
 
@@ -23243,13 +25093,13 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"agency_id\": \"architecto\",
-    \"article_id\": \"architecto\",
-    \"service_id\": \"architecto\",
-    \"pricing_type\": \"kilo\",
-    \"amount_minor\": 84,
-    \"valid_from\": \"2026-10-22T22:01:54\",
-    \"valid_to\": \"2052-11-14\"
+    \"agency_id\": 1,
+    \"article_id\": 1,
+    \"service_id\": 1,
+    \"pricing_type\": \"piece\",
+    \"amount_minor\": 1000,
+    \"valid_from\": \"2026-11-06T10:00:00+00:00\",
+    \"valid_to\": \"2026-11-06T10:00:00+00:00\"
 }"
 </code></pre></div>
 
@@ -23267,13 +25117,13 @@ const headers = {
 };
 
 let body = {
-    "agency_id": "architecto",
-    "article_id": "architecto",
-    "service_id": "architecto",
-    "pricing_type": "kilo",
-    "amount_minor": 84,
-    "valid_from": "2026-10-22T22:01:54",
-    "valid_to": "2052-11-14"
+    "agency_id": 1,
+    "article_id": 1,
+    "service_id": 1,
+    "pricing_type": "piece",
+    "amount_minor": 1000,
+    "valid_from": "2026-11-06T10:00:00+00:00",
+    "valid_to": "2026-11-06T10:00:00+00:00"
 };
 
 fetch(url, {
@@ -23446,10 +25296,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-agency-prices"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>agency id — Requis, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
@@ -23458,10 +25308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="article_id"                data-endpoint="POSTapi-v1-agency-prices"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>article id — Requis, id existant (articles). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
@@ -23470,10 +25320,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="service_id"                data-endpoint="POSTapi-v1-agency-prices"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>service id — Requis, id existant (services). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_type</code></b>&nbsp;&nbsp;
@@ -23482,10 +25332,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="pricing_type"                data-endpoint="POSTapi-v1-agency-prices"
-               value="kilo"
+               value="piece"
                data-component="body">
     <br>
-<p>Example: <code>kilo</code></p>
+<p>pricing type — Optionnel, parmi piece, kilo. Example: <code>piece</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li></ul>
         </div>
@@ -23496,10 +25346,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount_minor"                data-endpoint="POSTapi-v1-agency-prices"
-               value="84"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>84</code></p>
+<p>amount minor — Requis, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_from</code></b>&nbsp;&nbsp;
@@ -23508,10 +25358,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_from"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>valid from — Requis, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -23520,10 +25370,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="valid_to"                data-endpoint="POSTapi-v1-agency-prices"
-               value="2052-11-14"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date validation.after_or_equal. Example: <code>2052-11-14</code></p>
+<p>valid to — Optionnel, date ISO 8601. validation.date validation.after_or_equal. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -23985,7 +25835,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"exemple\",
+    \"description\": \"exemple\",
+    \"status\": true,
+    \"sort_order\": 1
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -24000,10 +25857,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "title": "exemple",
+    "description": "exemple",
+    "status": true,
+    "sort_order": 1
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -24166,7 +26030,66 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="POSTapi-v1-laundry-statuses"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-v1-laundry-statuses"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-laundry-statuses" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-laundry-statuses"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-laundry-statuses" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-laundry-statuses"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sort_order"                data-endpoint="POSTapi-v1-laundry-statuses"
+               value="1"
+               data-component="body">
+    <br>
+<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-laundry-statuses--id-">Modifier le libellé, la description ou la disponibilité (le code technique ne change jamais).</h2>
 
@@ -24186,7 +26109,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"exemple\",
+    \"description\": \"exemple\",
+    \"status\": true,
+    \"sort_order\": 1
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -24201,10 +26131,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "title": "exemple",
+    "description": "exemple",
+    "status": true,
+    "sort_order": 1
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -24380,7 +26317,66 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the laundry status. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="PUTapi-v1-laundry-statuses--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-v1-laundry-statuses--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-laundry-statuses--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-laundry-statuses--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-laundry-statuses--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-laundry-statuses--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sort_order"                data-endpoint="PUTapi-v1-laundry-statuses--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-laundry-statuses--id-">Suppression possible uniquement si l’état n’a jamais été utilisé.</h2>
 
@@ -24764,7 +26760,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"exemple\",
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -24779,10 +26780,15 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "title": "exemple",
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -24936,7 +26942,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="POSTapi-v1-renders"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-renders" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-renders"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-renders" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-renders"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-renders--id-">PUT api/v1/renders/{id}</h2>
 
@@ -24956,7 +26997,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"exemple\",
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -24971,10 +27017,15 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "title": "exemple",
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -25141,7 +27192,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the render. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="PUTapi-v1-renders--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-renders--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-renders--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-renders--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-renders--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-renders--id-">DELETE api/v1/renders/{id}</h2>
 
@@ -26036,7 +28122,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"code\": \"exemple\",
+    \"name\": \"Exemple\",
+    \"type\": \"percent\",
+    \"rate_percent\": 1,
+    \"amount\": 1000,
+    \"starts_at\": \"2026-11-06T10:00:00+00:00\",
+    \"ends_at\": \"2026-11-06T10:00:00+00:00\",
+    \"quota\": 1,
+    \"per_client_limit\": 1,
+    \"agency_ids\": [
+        1
+    ],
+    \"min_amount\": 1000,
+    \"max_discount\": 1,
+    \"stack_with_loyalty\": true,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -26051,10 +28156,29 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "code": "exemple",
+    "name": "Exemple",
+    "type": "percent",
+    "rate_percent": 1,
+    "amount": 1000,
+    "starts_at": "2026-11-06T10:00:00+00:00",
+    "ends_at": "2026-11-06T10:00:00+00:00",
+    "quota": 1,
+    "per_client_limit": 1,
+    "agency_ids": [
+        1
+    ],
+    "min_amount": 1000,
+    "max_discount": 1,
+    "stack_with_loyalty": true,
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -26209,7 +28333,200 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-v1-promos"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-promos"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="POSTapi-v1-promos"
+               value="percent"
+               data-component="body">
+    <br>
+<p>type — Optionnel, parmi percent, amount. Example: <code>percent</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>percent</code></li> <li><code>amount</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_percent"                data-endpoint="POSTapi-v1-promos"
+               value="1"
+               data-component="body">
+    <br>
+<p>rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="amount"                data-endpoint="POSTapi-v1-promos"
+               value="1000"
+               data-component="body">
+    <br>
+<p>amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>starts_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="starts_at"                data-endpoint="POSTapi-v1-promos"
+               value="2026-11-06T10:00:00+00:00"
+               data-component="body">
+    <br>
+<p>starts at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="ends_at"                data-endpoint="POSTapi-v1-promos"
+               value="2026-11-06T10:00:00+00:00"
+               data-component="body">
+    <br>
+<p>ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>quota</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="quota"                data-endpoint="POSTapi-v1-promos"
+               value="1"
+               data-component="body">
+    <br>
+<p>quota — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_client_limit</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_client_limit"                data-endpoint="POSTapi-v1-promos"
+               value="1"
+               data-component="body">
+    <br>
+<p>per client limit — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_ids[0]"                data-endpoint="POSTapi-v1-promos"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="agency_ids[1]"                data-endpoint="POSTapi-v1-promos"
+               data-component="body">
+    <br>
+<p>agency ids * — Optionnel, id existant (agencies), nombre. Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_amount"                data-endpoint="POSTapi-v1-promos"
+               value="1000"
+               data-component="body">
+    <br>
+<p>min amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_discount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_discount"                data-endpoint="POSTapi-v1-promos"
+               value="1"
+               data-component="body">
+    <br>
+<p>max discount — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>stack_with_loyalty</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-promos" style="display: none">
+            <input type="radio" name="stack_with_loyalty"
+                   value="true"
+                   data-endpoint="POSTapi-v1-promos"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-promos" style="display: none">
+            <input type="radio" name="stack_with_loyalty"
+                   value="false"
+                   data-endpoint="POSTapi-v1-promos"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>stack with loyalty — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-promos" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-promos"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-promos" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-promos"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-promos--id-">PUT api/v1/promos/{id}</h2>
 
@@ -26229,7 +28546,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"code\": \"exemple\",
+    \"name\": \"Exemple\",
+    \"type\": \"percent\",
+    \"rate_percent\": 1,
+    \"amount\": 1000,
+    \"starts_at\": \"2026-11-06T10:00:00+00:00\",
+    \"ends_at\": \"2026-11-06T10:00:00+00:00\",
+    \"quota\": 1,
+    \"per_client_limit\": 1,
+    \"agency_ids\": [
+        1
+    ],
+    \"min_amount\": 1000,
+    \"max_discount\": 1,
+    \"stack_with_loyalty\": true,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -26244,10 +28580,29 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "code": "exemple",
+    "name": "Exemple",
+    "type": "percent",
+    "rate_percent": 1,
+    "amount": 1000,
+    "starts_at": "2026-11-06T10:00:00+00:00",
+    "ends_at": "2026-11-06T10:00:00+00:00",
+    "quota": 1,
+    "per_client_limit": 1,
+    "agency_ids": [
+        1
+    ],
+    "min_amount": 1000,
+    "max_discount": 1,
+    "stack_with_loyalty": true,
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -26415,7 +28770,200 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the promo. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="PUTapi-v1-promos--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-promos--id-"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="PUTapi-v1-promos--id-"
+               value="percent"
+               data-component="body">
+    <br>
+<p>type — Optionnel, parmi percent, amount. Example: <code>percent</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>percent</code></li> <li><code>amount</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_percent"                data-endpoint="PUTapi-v1-promos--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="amount"                data-endpoint="PUTapi-v1-promos--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>starts_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="starts_at"                data-endpoint="PUTapi-v1-promos--id-"
+               value="2026-11-06T10:00:00+00:00"
+               data-component="body">
+    <br>
+<p>starts at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="ends_at"                data-endpoint="PUTapi-v1-promos--id-"
+               value="2026-11-06T10:00:00+00:00"
+               data-component="body">
+    <br>
+<p>ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>quota</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="quota"                data-endpoint="PUTapi-v1-promos--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>quota — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_client_limit</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_client_limit"                data-endpoint="PUTapi-v1-promos--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>per client limit — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_ids[0]"                data-endpoint="PUTapi-v1-promos--id-"
+               data-component="body">
+        <input type="number" style="display: none"
+               name="agency_ids[1]"                data-endpoint="PUTapi-v1-promos--id-"
+               data-component="body">
+    <br>
+<p>agency ids * — Optionnel, id existant (agencies), nombre. Must match an existing stored value.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_amount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_amount"                data-endpoint="PUTapi-v1-promos--id-"
+               value="1000"
+               data-component="body">
+    <br>
+<p>min amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_discount</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_discount"                data-endpoint="PUTapi-v1-promos--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>max discount — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>stack_with_loyalty</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-promos--id-" style="display: none">
+            <input type="radio" name="stack_with_loyalty"
+                   value="true"
+                   data-endpoint="PUTapi-v1-promos--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-promos--id-" style="display: none">
+            <input type="radio" name="stack_with_loyalty"
+                   value="false"
+                   data-endpoint="PUTapi-v1-promos--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>stack with loyalty — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-promos--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-promos--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-promos--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-promos--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-promos--id-">DELETE api/v1/promos/{id}</h2>
 
@@ -26800,7 +29348,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"code\": \"exemple\",
+    \"rate_percent\": 1,
+    \"max_clients\": 1,
+    \"ends_at\": \"2026-11-06T10:00:00+00:00\",
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -26815,10 +29371,18 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "code": "exemple",
+    "rate_percent": 1,
+    "max_clients": 1,
+    "ends_at": "2026-11-06T10:00:00+00:00",
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -26973,7 +29537,78 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-v1-promo-specials"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_percent"                data-endpoint="POSTapi-v1-promo-specials"
+               value="1"
+               data-component="body">
+    <br>
+<p>rate percent — Requis, nombre. validation.min validation.max. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_clients</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_clients"                data-endpoint="POSTapi-v1-promo-specials"
+               value="1"
+               data-component="body">
+    <br>
+<p>max clients — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="ends_at"                data-endpoint="POSTapi-v1-promo-specials"
+               value="2026-11-06T10:00:00+00:00"
+               data-component="body">
+    <br>
+<p>ends at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-promo-specials" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-promo-specials"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-promo-specials" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-promo-specials"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-promo-specials--id-">PUT api/v1/promo-specials/{id}</h2>
 
@@ -26993,7 +29628,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"code\": \"exemple\",
+    \"rate_percent\": 1,
+    \"max_clients\": 1,
+    \"ends_at\": \"2026-11-06T10:00:00+00:00\",
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -27008,10 +29651,18 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "code": "exemple",
+    "rate_percent": 1,
+    "max_clients": 1,
+    "ends_at": "2026-11-06T10:00:00+00:00",
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -27179,7 +29830,78 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the promo special. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="PUTapi-v1-promo-specials--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_percent"                data-endpoint="PUTapi-v1-promo-specials--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>rate percent — Requis, nombre. validation.min validation.max. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_clients</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_clients"                data-endpoint="PUTapi-v1-promo-specials--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>max clients — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="ends_at"                data-endpoint="PUTapi-v1-promo-specials--id-"
+               value="2026-11-06T10:00:00+00:00"
+               data-component="body">
+    <br>
+<p>ends at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-promo-specials--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-promo-specials--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-promo-specials--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-promo-specials--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-promo-specials--id-">DELETE api/v1/promo-specials/{id}</h2>
 
@@ -27564,7 +30286,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"lavage_hour\": 1,
+    \"express_hour\": 1,
+    \"repassage_hour\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -27579,10 +30308,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "lavage_hour": 1,
+    "express_hour": 1,
+    "repassage_hour": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -27737,7 +30473,66 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>lavage_hour</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="lavage_hour"                data-endpoint="POSTapi-v1-delivery-hours"
+               value="1"
+               data-component="body">
+    <br>
+<p>lavage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_hour</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_hour"                data-endpoint="POSTapi-v1-delivery-hours"
+               value="1"
+               data-component="body">
+    <br>
+<p>express hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repassage_hour</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repassage_hour"                data-endpoint="POSTapi-v1-delivery-hours"
+               value="1"
+               data-component="body">
+    <br>
+<p>repassage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-delivery-hours" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-delivery-hours"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-delivery-hours" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-delivery-hours"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-delivery-hours--id-">PUT api/v1/delivery-hours/{id}</h2>
 
@@ -27757,7 +30552,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"lavage_hour\": 1,
+    \"express_hour\": 1,
+    \"repassage_hour\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -27772,10 +30574,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "lavage_hour": 1,
+    "express_hour": 1,
+    "repassage_hour": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -27943,7 +30752,66 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the delivery hour. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>lavage_hour</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="lavage_hour"                data-endpoint="PUTapi-v1-delivery-hours--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>lavage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>express_hour</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="express_hour"                data-endpoint="PUTapi-v1-delivery-hours--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>express hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>repassage_hour</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="repassage_hour"                data-endpoint="PUTapi-v1-delivery-hours--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>repassage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-delivery-hours--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-delivery-hours--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-delivery-hours--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-delivery-hours--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-delivery-hours--id-">DELETE api/v1/delivery-hours/{id}</h2>
 
@@ -28151,7 +31019,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"q\": \"b\",
     \"agency_id\": 16,
-    \"received_at\": \"2026-10-22T22:01:54\"
+    \"received_at\": \"2026-11-06T04:15:04\"
 }"
 </code></pre></div>
 
@@ -28171,7 +31039,7 @@ const headers = {
 let body = {
     "q": "b",
     "agency_id": 16,
-    "received_at": "2026-10-22T22:01:54"
+    "received_at": "2026-11-06T04:15:04"
 };
 
 fetch(url, {
@@ -28385,10 +31253,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="received_at"                data-endpoint="GETapi-v1-retrieval-rules"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T04:15:04"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
         </div>
         </form>
 
@@ -29661,7 +32529,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"exemple\",
+    \"agency_id\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -29676,10 +32550,16 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "title": "exemple",
+    "agency_id": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -29840,7 +32720,54 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="POSTapi-v1-code-suffixes"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="POSTapi-v1-code-suffixes"
+               value="1"
+               data-component="body">
+    <br>
+<p>agency id — Requis, nombre. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-code-suffixes" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-code-suffixes"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-code-suffixes" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-code-suffixes"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-PUTapi-v1-code-suffixes--id-">PUT api/v1/code-suffixes/{id}</h2>
 
@@ -29860,7 +32787,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"title\": \"exemple\",
+    \"agency_id\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -29875,10 +32808,16 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "title": "exemple",
+    "agency_id": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -30052,7 +32991,54 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the code suffix. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="PUTapi-v1-code-suffixes--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="agency_id"                data-endpoint="PUTapi-v1-code-suffixes--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>agency id — Requis, nombre. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-code-suffixes--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-code-suffixes--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-code-suffixes--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-code-suffixes--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-DELETEapi-v1-code-suffixes--id-">« Supprimer le suffixe » : les futurs dépôts utiliseront le préfixe seul ; les codes existants ne changent pas.</h2>
 
@@ -30450,8 +33436,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"rate_percent\": 22
+    \"name\": \"Exemple\",
+    \"rate_percent\": 1
 }"
 </code></pre></div>
 
@@ -30469,8 +33455,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "rate_percent": 22
+    "name": "Exemple",
+    "rate_percent": 1
 };
 
 fetch(url, {
@@ -30639,10 +33625,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-loyal-groups"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -30651,10 +33637,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="rate_percent"                data-endpoint="POSTapi-v1-loyal-groups"
-               value="22"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>22</code></p>
+<p>rate percent — Requis, nombre. validation.min validation.max. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -30676,7 +33662,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"rate_percent\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -30691,10 +33683,16 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "rate_percent": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -30862,7 +33860,54 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the loyalGroup. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="rate_percent"                data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>rate percent — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-loyal-groups--loyalGroup_id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="catalogue-GETapi-v1-loyal-groups--loyalGroup_id--clients">GET api/v1/loyal-groups/{loyalGroup_id}/clients</h2>
 
@@ -31095,7 +34140,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_id\": \"architecto\"
+    \"client_id\": 1
 }"
 </code></pre></div>
 
@@ -31113,7 +34158,7 @@ const headers = {
 };
 
 let body = {
-    "client_id": "architecto"
+    "client_id": 1
 };
 
 fetch(url, {
@@ -31292,10 +34337,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_id"                data-endpoint="POSTapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>client id — Requis, id existant (clients). Must match an existing stored value. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -31319,7 +34364,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_id\": \"architecto\"
+    \"client_id\": 1
 }"
 </code></pre></div>
 
@@ -31337,7 +34382,7 @@ const headers = {
 };
 
 let body = {
-    "client_id": "architecto"
+    "client_id": 1
 };
 
 fetch(url, {
@@ -31497,10 +34542,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_id"                data-endpoint="DELETEapi-v1-loyal-groups--loyalGroup_id--clients"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>client id — Requis, id existant (clients). Must match an existing stored value. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -31898,17 +34943,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "client_uuid=6ff8f7f6-1eb3-3525-be4a-3932c805afed"\
-    --form "label=g"\
-    --form "type=out"\
-    --form "amount=27"\
-    --form "action_date=2026-10-22T22:01:54"\
+    --form "client_uuid=550e8400-e29b-41d4-a716-446655440000"\
+    --form "label=Exemple"\
+    --form "type=in"\
+    --form "amount=1000"\
+    --form "category_id=1"\
+    --form "action_date=2026-11-06T10:00:00+00:00"\
     --form "validated=1"\
     --form "payment_method=cash"\
-    --form "beneficiary=v"\
-    --form "reference=d"\
-    --form "comment=l"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php238F.tmp" </code></pre></div>
+    --form "beneficiary=exemple"\
+    --form "reference=exemple"\
+    --form "comment=exemple"\
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php160C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -31924,16 +34970,17 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('client_uuid', '6ff8f7f6-1eb3-3525-be4a-3932c805afed');
-body.append('label', 'g');
-body.append('type', 'out');
-body.append('amount', '27');
-body.append('action_date', '2026-10-22T22:01:54');
+body.append('client_uuid', '550e8400-e29b-41d4-a716-446655440000');
+body.append('label', 'Exemple');
+body.append('type', 'in');
+body.append('amount', '1000');
+body.append('category_id', '1');
+body.append('action_date', '2026-11-06T10:00:00+00:00');
 body.append('validated', '1');
 body.append('payment_method', 'cash');
-body.append('beneficiary', 'v');
-body.append('reference', 'd');
-body.append('comment', 'l');
+body.append('beneficiary', 'exemple');
+body.append('reference', 'exemple');
+body.append('comment', 'exemple');
 body.append('proof', document.querySelector('input[name="proof"]').files[0]);
 
 fetch(url, {
@@ -32108,10 +35155,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-cash-movements"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               value="550e8400-e29b-41d4-a716-446655440000"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
@@ -32120,10 +35167,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="POSTapi-v1-cash-movements"
-               value="g"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>g</code></p>
+<p>label — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -32132,10 +35179,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-v1-cash-movements"
-               value="out"
+               value="in"
                data-component="body">
     <br>
-<p>Example: <code>out</code></p>
+<p>type — Requis, parmi in, out. Example: <code>in</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>in</code></li> <li><code>out</code></li></ul>
         </div>
@@ -32146,10 +35193,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-cash-movements"
-               value="27"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>27</code></p>
+<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -32158,10 +35205,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="category_id"                data-endpoint="POSTapi-v1-cash-movements"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>category id — Optionnel, id existant (cash_movement_categories). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>action_date</code></b>&nbsp;&nbsp;
@@ -32170,10 +35217,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="POSTapi-v1-cash-movements"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>action date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -32195,7 +35242,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>validated — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -32207,7 +35254,7 @@ Must be one of:
                value="cash"
                data-component="body">
     <br>
-<p>Example: <code>cash</code></p>
+<p>payment method — Optionnel, parmi cash, mobile_money, card, other. Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>mobile_money</code></li> <li><code>card</code></li> <li><code>other</code></li></ul>
         </div>
@@ -32218,10 +35265,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="beneficiary"                data-endpoint="POSTapi-v1-cash-movements"
-               value="v"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>v</code></p>
+<p>beneficiary — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
@@ -32230,10 +35277,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="reference"                data-endpoint="POSTapi-v1-cash-movements"
-               value="d"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>d</code></p>
+<p>reference — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -32242,10 +35289,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="comment"                data-endpoint="POSTapi-v1-cash-movements"
-               value="l"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>l</code></p>
+<p>comment — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>proof</code></b>&nbsp;&nbsp;
@@ -32257,7 +35304,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php238F.tmp</code></p>
+<p>proof — Optionnel, fichier. Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php160C.tmp</code></p>
         </div>
         </form>
 
@@ -32526,10 +35573,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"label\": \"b\",
-    \"type\": \"out\",
-    \"amount\": 67,
-    \"action_date\": \"2026-10-22T22:01:54\"
+    \"label\": \"Exemple\",
+    \"type\": \"in\",
+    \"amount\": 1000,
+    \"category_id\": 1,
+    \"action_date\": \"2026-11-06T10:00:00+00:00\"
 }"
 </code></pre></div>
 
@@ -32547,10 +35595,11 @@ const headers = {
 };
 
 let body = {
-    "label": "b",
-    "type": "out",
-    "amount": 67,
-    "action_date": "2026-10-22T22:01:54"
+    "label": "Exemple",
+    "type": "in",
+    "amount": 1000,
+    "category_id": 1,
+    "action_date": "2026-11-06T10:00:00+00:00"
 };
 
 fetch(url, {
@@ -32790,10 +35839,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -32802,10 +35851,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="out"
+               value="in"
                data-component="body">
     <br>
-<p>Example: <code>out</code></p>
+<p>type — Optionnel, parmi in, out. Example: <code>in</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>in</code></li> <li><code>out</code></li></ul>
         </div>
@@ -32816,10 +35865,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="67"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>67</code></p>
+<p>amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -32828,10 +35877,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="category_id"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>category id — Optionnel, id existant (cash_movement_categories). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>action_date</code></b>&nbsp;&nbsp;
@@ -32840,10 +35889,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="action_date"                data-endpoint="PUTapi-v1-cash-movements--cashMovement_id-"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>action date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -33315,7 +36364,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T22:01:54\"
+    \"date\": \"2026-11-06T04:15:04\"
 }"
 </code></pre></div>
 
@@ -33333,7 +36382,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T22:01:54"
+    "date": "2026-11-06T04:15:04"
 };
 
 fetch(url, {
@@ -33569,10 +36618,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T04:15:04"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
         </div>
         </form>
 
@@ -33597,7 +36646,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-10-22T22:01:54\",
+    \"date\": \"2026-11-06T04:15:04\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -33621,7 +36670,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-10-22T22:01:54",
+    "date": "2026-11-06T04:15:04",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -33817,10 +36866,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T04:15:04"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -34095,7 +37144,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"opening_balance\": 27
+    \"opening_balance\": 1
 }"
 </code></pre></div>
 
@@ -34113,7 +37162,7 @@ const headers = {
 };
 
 let body = {
-    "opening_balance": 27
+    "opening_balance": 1
 };
 
 fetch(url, {
@@ -34289,10 +37338,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="opening_balance"                data-endpoint="POSTapi-v1-cash-sessions"
-               value="27"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>27</code></p>
+<p>opening balance — Requis, nombre. validation.min. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -34610,11 +37659,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"counted\": {
-        \"cash\": 27,
-        \"mobile_money\": 39,
-        \"card\": 84
+        \"cash\": 1,
+        \"mobile_money\": 1,
+        \"card\": 1
     },
-    \"difference_reason\": \"z\"
+    \"difference_reason\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -34633,11 +37682,11 @@ const headers = {
 
 let body = {
     "counted": {
-        "cash": 27,
-        "mobile_money": 39,
-        "card": 84
+        "cash": 1,
+        "mobile_money": 1,
+        "card": 1
     },
-    "difference_reason": "z"
+    "difference_reason": "exemple"
 };
 
 fetch(url, {
@@ -34926,7 +37975,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-
+<p>counted — Requis, tableau.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>cash</code></b>&nbsp;&nbsp;
@@ -34935,10 +37984,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="counted.cash"                data-endpoint="POSTapi-v1-cash-sessions--cashSession_id--count"
-               value="27"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>27</code></p>
+<p>counted cash — Requis, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>mobile_money</code></b>&nbsp;&nbsp;
@@ -34947,10 +37996,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="counted.mobile_money"                data-endpoint="POSTapi-v1-cash-sessions--cashSession_id--count"
-               value="39"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>39</code></p>
+<p>counted mobile money — Optionnel, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>card</code></b>&nbsp;&nbsp;
@@ -34959,10 +38008,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="counted.card"                data-endpoint="POSTapi-v1-cash-sessions--cashSession_id--count"
-               value="84"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>84</code></p>
+<p>counted card — Optionnel, nombre. validation.min. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -34973,10 +38022,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="difference_reason"                data-endpoint="POSTapi-v1-cash-sessions--cashSession_id--count"
-               value="z"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>z</code></p>
+<p>difference reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -35989,8 +39038,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"direction\": \"out\"
+    \"name\": \"Exemple\",
+    \"direction\": \"in\"
 }"
 </code></pre></div>
 
@@ -36008,8 +39057,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "direction": "out"
+    "name": "Exemple",
+    "direction": "in"
 };
 
 fetch(url, {
@@ -36178,10 +39227,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-cash-categories"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>direction</code></b>&nbsp;&nbsp;
@@ -36190,10 +39239,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="direction"                data-endpoint="POSTapi-v1-cash-categories"
-               value="out"
+               value="in"
                data-component="body">
     <br>
-<p>Example: <code>out</code></p>
+<p>direction — Requis, parmi in, out. Example: <code>in</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>in</code></li> <li><code>out</code></li></ul>
         </div>
@@ -38904,8 +41953,8 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-10-22T22:01:54\",
-    \"date_to\": \"2052-11-14\",
+    \"date_from\": \"2026-11-06T04:15:04\",
+    \"date_to\": \"2052-11-29\",
     \"preset\": \"month\",
     \"agency_id\": 16,
     \"format\": \"json\"
@@ -38926,8 +41975,8 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-10-22T22:01:54",
-    "date_to": "2052-11-14",
+    "date_from": "2026-11-06T04:15:04",
+    "date_to": "2052-11-29",
     "preset": "month",
     "agency_id": 16,
     "format": "json"
@@ -39161,10 +42210,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T04:15:04"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -39173,10 +42222,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_to"                data-endpoint="GETapi-v1-reports-overview"
-               value="2052-11-14"
+               value="2052-11-29"
                data-component="body">
     <br>
-<p>validation.date validation.after_or_equal. Example: <code>2052-11-14</code></p>
+<p>validation.date validation.after_or_equal. Example: <code>2052-11-29</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>preset</code></b>&nbsp;&nbsp;
@@ -39240,7 +42289,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-10-22T22:01:54\",
+    \"date\": \"2026-11-06T04:15:04\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -39260,7 +42309,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-10-22T22:01:54",
+    "date": "2026-11-06T04:15:04",
     "agency_id": 16,
     "format": "json"
 };
@@ -39497,10 +42546,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T04:15:04"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -39733,13 +42782,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"report\": \"daily\",
+    \"report\": \"overview\",
     \"frequency\": \"daily\",
     \"format\": \"csv\",
     \"recipients\": [
-        \"rowan.gulgowski@example.com\"
+        \"client@example.com\"
     ],
-    \"agency_id\": 16
+    \"agency_id\": 1
 }"
 </code></pre></div>
 
@@ -39757,13 +42806,13 @@ const headers = {
 };
 
 let body = {
-    "report": "daily",
+    "report": "overview",
     "frequency": "daily",
     "format": "csv",
     "recipients": [
-        "rowan.gulgowski@example.com"
+        "client@example.com"
     ],
-    "agency_id": 16
+    "agency_id": 1
 };
 
 fetch(url, {
@@ -39939,10 +42988,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="report"                data-endpoint="POSTapi-v1-reports-schedules"
-               value="daily"
+               value="overview"
                data-component="body">
     <br>
-<p>Example: <code>daily</code></p>
+<p>report — Requis, parmi overview, daily. Example: <code>overview</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>overview</code></li> <li><code>daily</code></li></ul>
         </div>
@@ -39956,7 +43005,7 @@ Must be one of:
                value="daily"
                data-component="body">
     <br>
-<p>Example: <code>daily</code></p>
+<p>frequency — Requis, parmi daily, weekly, monthly. Example: <code>daily</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>daily</code></li> <li><code>weekly</code></li> <li><code>monthly</code></li></ul>
         </div>
@@ -39970,7 +43019,7 @@ Must be one of:
                value="csv"
                data-component="body">
     <br>
-<p>Example: <code>csv</code></p>
+<p>format — Optionnel, parmi csv, pdf. Example: <code>csv</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>csv</code></li> <li><code>pdf</code></li></ul>
         </div>
@@ -39986,7 +43035,7 @@ Must be one of:
                name="recipients[1]"                data-endpoint="POSTapi-v1-reports-schedules"
                data-component="body">
     <br>
-<p>validation.email.</p>
+<p>recipients * — Optionnel, e-mail. validation.email.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -39995,10 +43044,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="agency_id"                data-endpoint="POSTapi-v1-reports-schedules"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>16</code></p>
+<p>agency id — Optionnel, id existant (agencies), nombre. Must match an existing stored value. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -40471,7 +43520,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/network/agencies/1" \
+    --get "http://localhost:8000/api/v1/network/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -40480,7 +43529,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/network/agencies/1"
+    "http://localhost:8000/api/v1/network/agencies/16"
 );
 
 const headers = {
@@ -40775,10 +43824,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="agency_id"                data-endpoint="GETapi-v1-network-agencies--agency_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -41148,14 +44197,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/roles/1" \
+    "http://localhost:8000/api/v1/superadmin/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
     \"permissions\": [
-        \"architecto\"
+        \"exemple\"
     ]
 }"
 </code></pre></div>
@@ -41163,7 +44212,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/roles/1"
+    "http://localhost:8000/api/v1/superadmin/roles/16"
 );
 
 const headers = {
@@ -41175,7 +44224,7 @@ const headers = {
 
 let body = {
     "permissions": [
-        "architecto"
+        "exemple"
     ]
 };
 
@@ -41345,10 +44394,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="role_id"                data-endpoint="PUTapi-v1-superadmin-roles--role_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>1</code></p>
+<p>The ID of the role. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -41363,7 +44412,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="permissions[1]"                data-endpoint="PUTapi-v1-superadmin-roles--role_id-"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>permissions * — Optionnel, id existant (permissions). Must match an existing stored value.</p>
         </div>
         </form>
 
@@ -41571,9 +44620,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"b\",
-    \"password\": \"]|{+-0pBNvYg\",
-    \"phone_number\": \"h\"
+    \"fullname\": \"Jean Dupont\",
+    \"password\": \"password\",
+    \"phone_number\": \"690000001\"
 }"
 </code></pre></div>
 
@@ -41591,9 +44640,9 @@ const headers = {
 };
 
 let body = {
-    "fullname": "b",
-    "password": "]|{+-0pBNvYg",
-    "phone_number": "h"
+    "fullname": "Jean Dupont",
+    "password": "password",
+    "phone_number": "690000001"
 };
 
 fetch(url, {
@@ -41769,14 +44818,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="POSTapi-v1-invitations--token--accept"
-               value="b"
+               value="Jean Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -41785,10 +44834,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-invitations--token--accept"
-               value="]|{+-0pBNvYg"
+               value="password"
                data-component="body">
     <br>
-<p>Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>]|{+-0pBNvYg</code></p>
+<p>password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -41797,10 +44846,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="POSTapi-v1-invitations--token--accept"
-               value="h"
+               value="690000001"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>h</code></p>
+<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
         </div>
         </form>
 
@@ -42010,24 +45059,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"details\": \"architecto\",
+    \"name\": \"Exemple\",
+    \"details\": \"exemple\",
     \"pricing_mode\": \"piece\",
     \"workflow_laveur_enabled\": true,
-    \"workflow_classeur_enabled\": false,
+    \"workflow_classeur_enabled\": true,
     \"qr_labels_enabled\": true,
     \"block_retrieve_if_unpaid\": true,
-    \"loyalty_points_rate\": 76,
-    \"loyalty_redeem_threshold\": 16,
-    \"loyalty_redeem_value\": 42,
-    \"hours_classic\": 40,
-    \"hours_express\": 4,
-    \"hours_repass\": 2,
-    \"collection_fee\": 8,
-    \"delivery_fee\": 75,
-    \"reporting_currency\": \"hwa\",
-    \"primary_color\": \"ykcmyuwpwlvqwrsi\",
-    \"secondary_color\": \"tcpscqldzsnrwtuj\"
+    \"loyalty_points_rate\": 1,
+    \"loyalty_redeem_threshold\": 1,
+    \"loyalty_redeem_value\": 1,
+    \"hours_classic\": 1,
+    \"hours_express\": 1,
+    \"hours_repass\": 1,
+    \"collection_fee\": 1000,
+    \"delivery_fee\": 1000,
+    \"reporting_currency\": \"exemple\",
+    \"primary_color\": \"exemple\",
+    \"secondary_color\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -42045,24 +45094,24 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "details": "architecto",
+    "name": "Exemple",
+    "details": "exemple",
     "pricing_mode": "piece",
     "workflow_laveur_enabled": true,
-    "workflow_classeur_enabled": false,
+    "workflow_classeur_enabled": true,
     "qr_labels_enabled": true,
     "block_retrieve_if_unpaid": true,
-    "loyalty_points_rate": 76,
-    "loyalty_redeem_threshold": 16,
-    "loyalty_redeem_value": 42,
-    "hours_classic": 40,
-    "hours_express": 4,
-    "hours_repass": 2,
-    "collection_fee": 8,
-    "delivery_fee": 75,
-    "reporting_currency": "hwa",
-    "primary_color": "ykcmyuwpwlvqwrsi",
-    "secondary_color": "tcpscqldzsnrwtuj"
+    "loyalty_points_rate": 1,
+    "loyalty_redeem_threshold": 1,
+    "loyalty_redeem_value": 1,
+    "hours_classic": 1,
+    "hours_express": 1,
+    "hours_repass": 1,
+    "collection_fee": 1000,
+    "delivery_fee": 1000,
+    "reporting_currency": "exemple",
+    "primary_color": "exemple",
+    "secondary_color": "exemple"
 };
 
 fetch(url, {
@@ -42243,10 +45292,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -42255,10 +45304,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="details"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>details — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_mode</code></b>&nbsp;&nbsp;
@@ -42270,7 +45319,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="piece"
                data-component="body">
     <br>
-<p>Example: <code>piece</code></p>
+<p>pricing mode — Optionnel, parmi piece, kilo, mixed. Example: <code>piece</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li> <li><code>mixed</code></li></ul>
         </div>
@@ -42294,7 +45343,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>workflow laveur enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>workflow_classeur_enabled</code></b>&nbsp;&nbsp;
@@ -42316,7 +45365,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>workflow classeur enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>qr_labels_enabled</code></b>&nbsp;&nbsp;
@@ -42338,7 +45387,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>qr labels enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>block_retrieve_if_unpaid</code></b>&nbsp;&nbsp;
@@ -42360,7 +45409,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>block retrieve if unpaid — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_points_rate</code></b>&nbsp;&nbsp;
@@ -42369,10 +45418,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_points_rate"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="76"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>76</code></p>
+<p>loyalty points rate — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_threshold</code></b>&nbsp;&nbsp;
@@ -42381,10 +45430,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_redeem_threshold"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>16</code></p>
+<p>loyalty redeem threshold — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_value</code></b>&nbsp;&nbsp;
@@ -42393,10 +45442,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_redeem_value"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="42"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>42</code></p>
+<p>loyalty redeem value — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -42405,10 +45454,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_classic"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="40"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>40</code></p>
+<p>hours classic — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -42417,10 +45466,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_express"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="4"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>4</code></p>
+<p>hours express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -42429,10 +45478,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_repass"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="2"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>2</code></p>
+<p>hours repass — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -42441,10 +45490,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="8"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>8</code></p>
+<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -42453,10 +45502,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="75"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>75</code></p>
+<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reporting_currency</code></b>&nbsp;&nbsp;
@@ -42465,10 +45514,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="reporting_currency"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="hwa"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>hwa</code></p>
+<p>reporting currency — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>primary_color</code></b>&nbsp;&nbsp;
@@ -42477,10 +45526,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="primary_color"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="ykcmyuwpwlvqwrsi"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ykcmyuwpwlvqwrsi</code></p>
+<p>primary color — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>secondary_color</code></b>&nbsp;&nbsp;
@@ -42489,10 +45538,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="secondary_color"                data-endpoint="PUTapi-v1-settings-pressing"
-               value="tcpscqldzsnrwtuj"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>tcpscqldzsnrwtuj</code></p>
+<p>secondary color — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -42510,21 +45559,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/settings/agencies/1" \
+    "http://localhost:8000/api/v1/settings/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"address\": \"architecto\",
-    \"contact\": \"architecto\",
-    \"currency\": \"ngz\",
-    \"code_prefix\": \"miyvdljn\",
-    \"code_suffix\": \"ikhwaykc\",
-    \"opens_at\": \"22:01\",
-    \"closes_at\": \"22:01\",
-    \"monthly_revenue_target\": 38,
+    \"name\": \"Exemple\",
+    \"address\": \"exemple\",
+    \"contact\": \"exemple\",
+    \"currency\": \"exemple\",
+    \"code_prefix\": \"exemple\",
+    \"code_suffix\": \"exemple\",
+    \"opens_at\": \"2026-11-06T10:00:00+00:00\",
+    \"closes_at\": \"2026-11-06T10:00:00+00:00\",
+    \"monthly_revenue_target\": 1,
     \"status\": true
 }"
 </code></pre></div>
@@ -42532,7 +45581,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/settings/agencies/1"
+    "http://localhost:8000/api/v1/settings/agencies/16"
 );
 
 const headers = {
@@ -42543,15 +45592,15 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "address": "architecto",
-    "contact": "architecto",
-    "currency": "ngz",
-    "code_prefix": "miyvdljn",
-    "code_suffix": "ikhwaykc",
-    "opens_at": "22:01",
-    "closes_at": "22:01",
-    "monthly_revenue_target": 38,
+    "name": "Exemple",
+    "address": "exemple",
+    "contact": "exemple",
+    "currency": "exemple",
+    "code_prefix": "exemple",
+    "code_suffix": "exemple",
+    "opens_at": "2026-11-06T10:00:00+00:00",
+    "closes_at": "2026-11-06T10:00:00+00:00",
+    "monthly_revenue_target": 1,
     "status": true
 };
 
@@ -42727,10 +45776,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -42740,10 +45789,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -42752,10 +45801,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>address — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -42764,10 +45813,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>contact — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -42776,10 +45825,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="ngz"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>ngz</code></p>
+<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -42788,10 +45837,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="miyvdljn"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>miyvdljn</code></p>
+<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -42800,10 +45849,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="ikhwaykc"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ikhwaykc</code></p>
+<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>opens_at</code></b>&nbsp;&nbsp;
@@ -42812,10 +45861,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="22:01"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
+<p>opens at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -42824,10 +45873,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="22:01"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
+<p>closes at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -42836,10 +45885,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="monthly_revenue_target"                data-endpoint="PUTapi-v1-settings-agencies--id-"
-               value="38"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>38</code></p>
+<p>monthly revenue target — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -42861,7 +45910,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -43236,10 +46285,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"source_currency\": \"bng\",
-    \"target_currency\": \"zmi\",
-    \"rate\": 4326.41688,
-    \"rate_date\": \"2026-10-22T22:01:54\"
+    \"source_currency\": \"exemple\",
+    \"target_currency\": \"exemple\",
+    \"rate\": 1,
+    \"rate_date\": \"2026-11-06T10:00:00+00:00\"
 }"
 </code></pre></div>
 
@@ -43257,10 +46306,10 @@ const headers = {
 };
 
 let body = {
-    "source_currency": "bng",
-    "target_currency": "zmi",
-    "rate": 4326.41688,
-    "rate_date": "2026-10-22T22:01:54"
+    "source_currency": "exemple",
+    "target_currency": "exemple",
+    "rate": 1,
+    "rate_date": "2026-11-06T10:00:00+00:00"
 };
 
 fetch(url, {
@@ -43430,10 +46479,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="source_currency"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="bng"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>bng</code></p>
+<p>source currency — Requis. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_currency</code></b>&nbsp;&nbsp;
@@ -43442,10 +46491,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="target_currency"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="zmi"
+               value="exemple"
                data-component="body">
     <br>
-<p>The value and <code>source_currency</code> must be different. validation.size. Example: <code>zmi</code></p>
+<p>target currency — Requis. The value and <code>source_currency</code> must be different. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate</code></b>&nbsp;&nbsp;
@@ -43454,10 +46503,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="rate"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="4326.41688"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>4326.41688</code></p>
+<p>rate — Requis, nombre. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_date</code></b>&nbsp;&nbsp;
@@ -43466,10 +46515,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="rate_date"                data-endpoint="POSTapi-v1-settings-exchange-rates"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>rate date — Requis, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -44048,16 +47097,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"address\": \"architecto\",
-    \"contact\": \"architecto\",
-    \"country_code\": \"ng\",
-    \"currency\": \"zmi\",
-    \"code_prefix\": \"yvdljnik\",
-    \"code_suffix\": \"hwaykcmy\",
-    \"opens_at\": \"22:01\",
-    \"closes_at\": \"22:01\",
-    \"monthly_revenue_target\": 72
+    \"name\": \"Exemple\",
+    \"address\": \"exemple\",
+    \"contact\": \"exemple\",
+    \"country_code\": \"exemple\",
+    \"currency\": \"exemple\",
+    \"code_prefix\": \"exemple\",
+    \"code_suffix\": \"exemple\",
+    \"opens_at\": \"2026-11-06T10:00:00+00:00\",
+    \"closes_at\": \"2026-11-06T10:00:00+00:00\",
+    \"monthly_revenue_target\": 1
 }"
 </code></pre></div>
 
@@ -44075,16 +47124,16 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "address": "architecto",
-    "contact": "architecto",
-    "country_code": "ng",
-    "currency": "zmi",
-    "code_prefix": "yvdljnik",
-    "code_suffix": "hwaykcmy",
-    "opens_at": "22:01",
-    "closes_at": "22:01",
-    "monthly_revenue_target": 72
+    "name": "Exemple",
+    "address": "exemple",
+    "contact": "exemple",
+    "country_code": "exemple",
+    "currency": "exemple",
+    "code_prefix": "exemple",
+    "code_suffix": "exemple",
+    "opens_at": "2026-11-06T10:00:00+00:00",
+    "closes_at": "2026-11-06T10:00:00+00:00",
+    "monthly_revenue_target": 1
 };
 
 fetch(url, {
@@ -44259,10 +47308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-org-agencies"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -44271,10 +47320,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="POSTapi-v1-org-agencies"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>address — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -44283,10 +47332,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="POSTapi-v1-org-agencies"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>contact — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
@@ -44295,10 +47344,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="country_code"                data-endpoint="POSTapi-v1-org-agencies"
-               value="ng"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>ng</code></p>
+<p>country code — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -44307,10 +47356,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="POSTapi-v1-org-agencies"
-               value="zmi"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>zmi</code></p>
+<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -44319,10 +47368,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="POSTapi-v1-org-agencies"
-               value="yvdljnik"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>yvdljnik</code></p>
+<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -44331,10 +47380,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="POSTapi-v1-org-agencies"
-               value="hwaykcmy"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>hwaykcmy</code></p>
+<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>opens_at</code></b>&nbsp;&nbsp;
@@ -44343,10 +47392,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="opens_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="22:01"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
+<p>opens at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>closes_at</code></b>&nbsp;&nbsp;
@@ -44355,10 +47404,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="closes_at"                data-endpoint="POSTapi-v1-org-agencies"
-               value="22:01"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>22:01</code></p>
+<p>closes at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>monthly_revenue_target</code></b>&nbsp;&nbsp;
@@ -44367,10 +47416,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="monthly_revenue_target"                data-endpoint="POSTapi-v1-org-agencies"
-               value="72"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>72</code></p>
+<p>monthly revenue target — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -44581,11 +47630,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"b\",
-    \"email\": \"zbailey@example.net\",
-    \"password\": \"-0pBNvYgxw\",
-    \"agency_id\": \"architecto\",
-    \"role\": \"architecto\"
+    \"fullname\": \"Jean Dupont\",
+    \"email\": \"client@example.com\",
+    \"password\": \"password\",
+    \"agency_id\": 1,
+    \"role\": \"admin\"
 }"
 </code></pre></div>
 
@@ -44603,11 +47652,11 @@ const headers = {
 };
 
 let body = {
-    "fullname": "b",
-    "email": "zbailey@example.net",
-    "password": "-0pBNvYgxw",
-    "agency_id": "architecto",
-    "role": "architecto"
+    "fullname": "Jean Dupont",
+    "email": "client@example.com",
+    "password": "password",
+    "agency_id": 1,
+    "role": "admin"
 };
 
 fetch(url, {
@@ -44782,10 +47831,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="POSTapi-v1-org-users"
-               value="b"
+               value="Jean Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -44794,10 +47843,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-org-users"
-               value="zbailey@example.net"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>zbailey@example.net</code></p>
+<p>email — Requis, e-mail. validation.email. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -44806,10 +47855,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-org-users"
-               value="-0pBNvYgxw"
+               value="password"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>-0pBNvYgxw</code></p>
+<p>password — Requis. validation.min. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -44818,10 +47867,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-org-users"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>agency id — Requis, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -44830,10 +47879,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="POSTapi-v1-org-users"
-               value="architecto"
+               value="admin"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>role — Requis, parmi admin, manager, caissier, laveur, classeur, livreur. Example: <code>admin</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>manager</code></li> <li><code>caissier</code></li> <li><code>laveur</code></li> <li><code>classeur</code></li> <li><code>livreur</code></li></ul>
         </div>
         </form>
 
@@ -44851,15 +47902,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/org/users/1" \
+    "http://localhost:8000/api/v1/org/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"b\",
-    \"email\": \"zbailey@example.net\",
-    \"password\": \"-0pBNvYgxw\",
+    \"fullname\": \"Jean Dupont\",
+    \"email\": \"client@example.com\",
+    \"password\": \"password\",
+    \"agency_id\": 1,
+    \"role\": \"admin\",
     \"status\": true
 }"
 </code></pre></div>
@@ -44867,7 +47920,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users/1"
+    "http://localhost:8000/api/v1/org/users/16"
 );
 
 const headers = {
@@ -44878,9 +47931,11 @@ const headers = {
 };
 
 let body = {
-    "fullname": "b",
-    "email": "zbailey@example.net",
-    "password": "-0pBNvYgxw",
+    "fullname": "Jean Dupont",
+    "email": "client@example.com",
+    "password": "password",
+    "agency_id": 1,
+    "role": "admin",
     "status": true
 };
 
@@ -45056,10 +48111,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -45069,10 +48124,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="b"
+               value="Jean Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -45081,10 +48136,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="zbailey@example.net"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>zbailey@example.net</code></p>
+<p>email — Optionnel, e-mail. validation.email. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -45093,10 +48148,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-org-users--id-"
-               value="-0pBNvYgxw"
+               value="password"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>-0pBNvYgxw</code></p>
+<p>password — Optionnel. validation.min. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -45105,10 +48160,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="PUTapi-v1-org-users--id-"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>agency id — Optionnel, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -45117,10 +48172,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="PUTapi-v1-org-users--id-"
-               value=""
+               value="admin"
                data-component="body">
     <br>
-
+<p>role — Optionnel, parmi admin, manager, caissier, laveur, classeur, livreur. Example: <code>admin</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>manager</code></li> <li><code>caissier</code></li> <li><code>laveur</code></li> <li><code>classeur</code></li> <li><code>livreur</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -45142,7 +48199,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -45160,7 +48217,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/org/users/1" \
+    "http://localhost:8000/api/v1/org/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -45169,7 +48226,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/org/users/1"
+    "http://localhost:8000/api/v1/org/users/16"
 );
 
 const headers = {
@@ -45323,10 +48380,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-org-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -45818,7 +48875,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/team/users/1" \
+    --get "http://localhost:8000/api/v1/team/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -45827,7 +48884,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/team/users/1"
+    "http://localhost:8000/api/v1/team/users/16"
 );
 
 const headers = {
@@ -45990,10 +49047,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-team-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -46011,25 +49068,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/team/users/1" \
+    "http://localhost:8000/api/v1/team/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"b\",
-    \"first_name\": \"n\",
-    \"last_name\": \"g\",
-    \"job_title\": \"z\",
-    \"employee_number\": \"m\",
-    \"phone_number\": \"i\",
-    \"email\": \"okon.justina@example.com\",
-    \"role\": \"architecto\",
-    \"agency_id\": 16,
+    \"fullname\": \"Jean Dupont\",
+    \"first_name\": \"exemple\",
+    \"last_name\": \"exemple\",
+    \"job_title\": \"exemple\",
+    \"employee_number\": \"exemple\",
+    \"phone_number\": \"690000001\",
+    \"email\": \"client@example.com\",
+    \"role\": \"exemple\",
+    \"agency_id\": 1,
     \"agency_ids\": [
-        16
+        1
     ],
-    \"mfa_required\": false,
+    \"mfa_required\": true,
     \"status\": true
 }"
 </code></pre></div>
@@ -46037,7 +49094,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/team/users/1"
+    "http://localhost:8000/api/v1/team/users/16"
 );
 
 const headers = {
@@ -46048,19 +49105,19 @@ const headers = {
 };
 
 let body = {
-    "fullname": "b",
-    "first_name": "n",
-    "last_name": "g",
-    "job_title": "z",
-    "employee_number": "m",
-    "phone_number": "i",
-    "email": "okon.justina@example.com",
-    "role": "architecto",
-    "agency_id": 16,
+    "fullname": "Jean Dupont",
+    "first_name": "exemple",
+    "last_name": "exemple",
+    "job_title": "exemple",
+    "employee_number": "exemple",
+    "phone_number": "690000001",
+    "email": "client@example.com",
+    "role": "exemple",
+    "agency_id": 1,
     "agency_ids": [
-        16
+        1
     ],
-    "mfa_required": false,
+    "mfa_required": true,
     "status": true
 };
 
@@ -46236,10 +49293,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -46249,10 +49306,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="b"
+               value="Jean Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
@@ -46261,10 +49318,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="first_name"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -46273,10 +49330,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="last_name"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="g"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>g</code></p>
+<p>last name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>job_title</code></b>&nbsp;&nbsp;
@@ -46285,10 +49342,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="job_title"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="z"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>z</code></p>
+<p>job title — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>employee_number</code></b>&nbsp;&nbsp;
@@ -46297,10 +49354,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="employee_number"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="m"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>m</code></p>
+<p>employee number — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -46309,10 +49366,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="i"
+               value="690000001"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>i</code></p>
+<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -46321,10 +49378,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="okon.justina@example.com"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.email validation.max. Example: <code>okon.justina@example.com</code></p>
+<p>email — Optionnel, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -46333,10 +49390,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>role — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -46345,10 +49402,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="agency_id"                data-endpoint="PUTapi-v1-team-users--id-"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>agency id — Optionnel, nombre. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
@@ -46362,7 +49419,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="agency_ids[1]"                data-endpoint="PUTapi-v1-team-users--id-"
                data-component="body">
     <br>
-
+<p>agency ids * — Optionnel, nombre.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>mfa_required</code></b>&nbsp;&nbsp;
@@ -46384,7 +49441,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>mfa required — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -46406,7 +49463,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -46424,7 +49481,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/team/users/1/disable" \
+    "http://localhost:8000/api/v1/team/users/16/disable" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -46433,7 +49490,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/team/users/1/disable"
+    "http://localhost:8000/api/v1/team/users/16/disable"
 );
 
 const headers = {
@@ -46615,10 +49672,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-v1-team-users--user_id--disable"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -46636,7 +49693,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/team/users/1/enable" \
+    "http://localhost:8000/api/v1/team/users/16/enable" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -46645,7 +49702,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/team/users/1/enable"
+    "http://localhost:8000/api/v1/team/users/16/enable"
 );
 
 const headers = {
@@ -46827,10 +49884,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="POSTapi-v1-team-users--user_id--enable"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -46848,7 +49905,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/team/users/1/sessions" \
+    --get "http://localhost:8000/api/v1/team/users/16/sessions" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -46857,7 +49914,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/team/users/1/sessions"
+    "http://localhost:8000/api/v1/team/users/16/sessions"
 );
 
 const headers = {
@@ -47020,10 +50077,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="GETapi-v1-team-users--user_id--sessions"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -47041,7 +50098,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/team/users/1/sessions/architecto" \
+    "http://localhost:8000/api/v1/team/users/16/sessions/architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -47050,7 +50107,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/team/users/1/sessions/architecto"
+    "http://localhost:8000/api/v1/team/users/16/sessions/architecto"
 );
 
 const headers = {
@@ -47204,10 +50261,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="user_id"                data-endpoint="DELETEapi-v1-team-users--user_id--sessions--tokenId-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>tokenId</code></b>&nbsp;&nbsp;
@@ -47585,13 +50642,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"email\": \"gbailey@example.net\",
-    \"fullname\": \"m\",
-    \"role\": \"architecto\",
+    \"email\": \"client@example.com\",
+    \"fullname\": \"Jean Dupont\",
+    \"role\": \"exemple\",
     \"agency_ids\": [
-        16
+        1
     ],
-    \"require_mfa\": false
+    \"require_mfa\": true
 }"
 </code></pre></div>
 
@@ -47609,13 +50666,13 @@ const headers = {
 };
 
 let body = {
-    "email": "gbailey@example.net",
-    "fullname": "m",
-    "role": "architecto",
+    "email": "client@example.com",
+    "fullname": "Jean Dupont",
+    "role": "exemple",
     "agency_ids": [
-        16
+        1
     ],
-    "require_mfa": false
+    "require_mfa": true
 };
 
 fetch(url, {
@@ -47782,10 +50839,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-team-invitations"
-               value="gbailey@example.net"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.email validation.max. Example: <code>gbailey@example.net</code></p>
+<p>email — Requis, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
@@ -47794,10 +50851,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="POSTapi-v1-team-invitations"
-               value="m"
+               value="Jean Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>m</code></p>
+<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -47806,10 +50863,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="POSTapi-v1-team-invitations"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>role — Requis. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
@@ -47823,7 +50880,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="agency_ids[1]"                data-endpoint="POSTapi-v1-team-invitations"
                data-component="body">
     <br>
-
+<p>agency ids * — Optionnel, nombre.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>require_mfa</code></b>&nbsp;&nbsp;
@@ -47845,7 +50902,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>require mfa — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -48468,7 +51525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"code\": \"architecto\"
+    \"code\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -48486,7 +51543,7 @@ const headers = {
 };
 
 let body = {
-    "code": "architecto"
+    "code": "exemple"
 };
 
 fetch(url, {
@@ -48653,10 +51710,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="POSTapi-v1-team-mfa-confirm"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>code — Requis. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -48680,8 +51737,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"password\": \"|]|{+-\",
-    \"code\": \"architecto\"
+    \"password\": \"password\",
+    \"code\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -48699,8 +51756,8 @@ const headers = {
 };
 
 let body = {
-    "password": "|]|{+-",
-    "code": "architecto"
+    "password": "password",
+    "code": "exemple"
 };
 
 fetch(url, {
@@ -48867,10 +51924,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-team-mfa-disable"
-               value="|]|{+-"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>|]|{+-</code></p>
+<p>password — Requis. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -48879,10 +51936,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="POSTapi-v1-team-mfa-disable"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>code — Optionnel. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -49290,17 +52347,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"label\": \"b\",
-    \"description\": \"Et animi quos velit et fugiat.\",
-    \"scope\": \"architecto\",
-    \"data_level\": \"architecto\",
+    \"label\": \"Exemple\",
+    \"description\": \"exemple\",
+    \"scope\": \"assigned\",
+    \"data_level\": \"exemple\",
     \"agency_ids\": [
-        16
+        1
     ],
     \"permissions\": [
-        \"architecto\"
+        \"exemple\"
     ],
-    \"confirm_sensitive\": false
+    \"confirm_sensitive\": true
 }"
 </code></pre></div>
 
@@ -49318,17 +52375,17 @@ const headers = {
 };
 
 let body = {
-    "label": "b",
-    "description": "Et animi quos velit et fugiat.",
-    "scope": "architecto",
-    "data_level": "architecto",
+    "label": "Exemple",
+    "description": "exemple",
+    "scope": "assigned",
+    "data_level": "exemple",
     "agency_ids": [
-        16
+        1
     ],
     "permissions": [
-        "architecto"
+        "exemple"
     ],
-    "confirm_sensitive": false
+    "confirm_sensitive": true
 };
 
 fetch(url, {
@@ -49500,10 +52557,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="POSTapi-v1-roles"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>label — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -49512,10 +52569,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-v1-roles"
-               value="Et animi quos velit et fugiat."
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>Et animi quos velit et fugiat.</code></p>
+<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>scope</code></b>&nbsp;&nbsp;
@@ -49524,10 +52581,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="scope"                data-endpoint="POSTapi-v1-roles"
-               value="architecto"
+               value="assigned"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>scope — Requis, parmi assigned, all. Example: <code>assigned</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>assigned</code></li> <li><code>all</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>data_level</code></b>&nbsp;&nbsp;
@@ -49536,10 +52595,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="data_level"                data-endpoint="POSTapi-v1-roles"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>data level — Requis. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
@@ -49553,7 +52612,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="agency_ids[1]"                data-endpoint="POSTapi-v1-roles"
                data-component="body">
     <br>
-
+<p>agency ids * — Optionnel, nombre.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>permissions</code></b>&nbsp;&nbsp;
@@ -49567,7 +52626,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="permissions[1]"                data-endpoint="POSTapi-v1-roles"
                data-component="body">
     <br>
-
+<p>permissions * — Optionnel.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>confirm_sensitive</code></b>&nbsp;&nbsp;
@@ -49589,7 +52648,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>confirm sensitive — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -49607,7 +52666,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/roles/1" \
+    --get "http://localhost:8000/api/v1/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -49616,7 +52675,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/roles/1"
+    "http://localhost:8000/api/v1/roles/16"
 );
 
 const headers = {
@@ -49776,10 +52835,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-roles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>1</code></p>
+<p>The ID of the role. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -49797,28 +52856,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/roles/1" \
+    "http://localhost:8000/api/v1/roles/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"label\": \"b\",
-    \"description\": \"Et animi quos velit et fugiat.\",
+    \"label\": \"Exemple\",
+    \"description\": \"exemple\",
+    \"scope\": \"assigned\",
+    \"data_level\": \"exemple\",
     \"agency_ids\": [
-        16
+        1
     ],
+    \"status\": \"active\",
     \"permissions\": [
-        \"architecto\"
+        \"exemple\"
     ],
-    \"confirm_sensitive\": false
+    \"confirm_sensitive\": true
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/roles/1"
+    "http://localhost:8000/api/v1/roles/16"
 );
 
 const headers = {
@@ -49829,15 +52891,18 @@ const headers = {
 };
 
 let body = {
-    "label": "b",
-    "description": "Et animi quos velit et fugiat.",
+    "label": "Exemple",
+    "description": "exemple",
+    "scope": "assigned",
+    "data_level": "exemple",
     "agency_ids": [
-        16
+        1
     ],
+    "status": "active",
     "permissions": [
-        "architecto"
+        "exemple"
     ],
-    "confirm_sensitive": false
+    "confirm_sensitive": true
 };
 
 fetch(url, {
@@ -50009,10 +53074,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-roles--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the role. Example: <code>1</code></p>
+<p>The ID of the role. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -50022,10 +53087,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="PUTapi-v1-roles--id-"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -50034,10 +53099,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-v1-roles--id-"
-               value="Et animi quos velit et fugiat."
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>Et animi quos velit et fugiat.</code></p>
+<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>scope</code></b>&nbsp;&nbsp;
@@ -50046,10 +53111,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="scope"                data-endpoint="PUTapi-v1-roles--id-"
-               value=""
+               value="assigned"
                data-component="body">
     <br>
-
+<p>scope — Optionnel, parmi assigned, all. Example: <code>assigned</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>assigned</code></li> <li><code>all</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>data_level</code></b>&nbsp;&nbsp;
@@ -50058,10 +53125,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="data_level"                data-endpoint="PUTapi-v1-roles--id-"
-               value=""
+               value="exemple"
                data-component="body">
     <br>
-
+<p>data level — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
@@ -50075,7 +53142,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="agency_ids[1]"                data-endpoint="PUTapi-v1-roles--id-"
                data-component="body">
     <br>
-
+<p>agency ids * — Optionnel, nombre.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -50084,10 +53151,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="status"                data-endpoint="PUTapi-v1-roles--id-"
-               value=""
+               value="active"
                data-component="body">
     <br>
-
+<p>status — Optionnel, parmi active, inactive. Example: <code>active</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>active</code></li> <li><code>inactive</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>permissions</code></b>&nbsp;&nbsp;
@@ -50101,7 +53170,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="permissions[1]"                data-endpoint="PUTapi-v1-roles--id-"
                data-component="body">
     <br>
-
+<p>permissions * — Optionnel.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>confirm_sensitive</code></b>&nbsp;&nbsp;
@@ -50123,7 +53192,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>confirm sensitive — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -53086,15 +56155,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"fullname\": \"b\",
-    \"phone_number\": \"n\",
-    \"email\": \"ashly64@example.com\",
-    \"address\": \"v\",
-    \"agency_id\": 16,
+    \"fullname\": \"Jean Dupont\",
+    \"phone_number\": \"690000001\",
+    \"email\": \"client@example.com\",
+    \"address\": \"exemple\",
+    \"agency_id\": 1,
     \"communication\": {
-        \"sms\": false,
+        \"sms\": true,
         \"email\": true,
-        \"personalized_offers\": false
+        \"personalized_offers\": true
     }
 }"
 </code></pre></div>
@@ -53113,15 +56182,15 @@ const headers = {
 };
 
 let body = {
-    "fullname": "b",
-    "phone_number": "n",
-    "email": "ashly64@example.com",
-    "address": "v",
-    "agency_id": 16,
+    "fullname": "Jean Dupont",
+    "phone_number": "690000001",
+    "email": "client@example.com",
+    "address": "exemple",
+    "agency_id": 1,
     "communication": {
-        "sms": false,
+        "sms": true,
         "email": true,
-        "personalized_offers": false
+        "personalized_offers": true
     }
 };
 
@@ -53326,10 +56395,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fullname"                data-endpoint="PUTapi-v1-client-app-profile"
-               value="b"
+               value="Jean Dupont"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -53338,10 +56407,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="PUTapi-v1-client-app-profile"
-               value="n"
+               value="690000001"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -53350,10 +56419,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-client-app-profile"
-               value="ashly64@example.com"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.email validation.max. Example: <code>ashly64@example.com</code></p>
+<p>email — Optionnel, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -53362,10 +56431,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-client-app-profile"
-               value="v"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>v</code></p>
+<p>address — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -53374,10 +56443,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="agency_id"                data-endpoint="PUTapi-v1-client-app-profile"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>agency id — Optionnel, nombre. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -53387,7 +56456,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
 <br>
-
+<p>communication — Optionnel, tableau.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>sms</code></b>&nbsp;&nbsp;
@@ -53409,7 +56478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>communication sms — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -53431,7 +56500,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>communication email — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>personalized_offers</code></b>&nbsp;&nbsp;
@@ -53453,7 +56522,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>communication personalized offers — Optionnel, booléen. Example: <code>true</code></p>
                     </div>
                                     </details>
         </div>
@@ -53479,8 +56548,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"current_password\": \"architecto\",
-    \"password\": \"]|{+-0pBNvYg\"
+    \"current_password\": \"password\",
+    \"password\": \"password\"
 }"
 </code></pre></div>
 
@@ -53498,8 +56567,8 @@ const headers = {
 };
 
 let body = {
-    "current_password": "architecto",
-    "password": "]|{+-0pBNvYg"
+    "current_password": "password",
+    "password": "password"
 };
 
 fetch(url, {
@@ -53665,10 +56734,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="current_password"                data-endpoint="PUTapi-v1-client-app-password"
-               value="architecto"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>current password — Requis. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -53677,10 +56746,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-client-app-password"
-               value="]|{+-0pBNvYg"
+               value="password"
                data-component="body">
     <br>
-<p>Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>]|{+-0pBNvYg</code></p>
+<p>password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -54068,7 +57137,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"password\": \"|]|{+-\"
+    \"password\": \"password\"
 }"
 </code></pre></div>
 
@@ -54086,7 +57155,7 @@ const headers = {
 };
 
 let body = {
-    "password": "|]|{+-"
+    "password": "password"
 };
 
 fetch(url, {
@@ -54252,10 +57321,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-client-app-account-delete"
-               value="|]|{+-"
+               value="password"
                data-component="body">
     <br>
-<p>Example: <code>|]|{+-</code></p>
+<p>password — Requis. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -54674,11 +57743,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"details\": \"architecto\",
+    \"name\": \"Exemple\",
+    \"details\": \"exemple\",
     \"pricing_mode\": \"piece\",
     \"workflow_laveur_enabled\": true,
-    \"workflow_classeur_enabled\": false,
+    \"workflow_classeur_enabled\": true,
     \"block_retrieve_if_unpaid\": true
 }"
 </code></pre></div>
@@ -54697,11 +57766,11 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "details": "architecto",
+    "name": "Exemple",
+    "details": "exemple",
     "pricing_mode": "piece",
     "workflow_laveur_enabled": true,
-    "workflow_classeur_enabled": false,
+    "workflow_classeur_enabled": true,
     "block_retrieve_if_unpaid": true
 };
 
@@ -54883,10 +57952,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-superadmin-pressings"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -54895,10 +57964,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="details"                data-endpoint="POSTapi-v1-superadmin-pressings"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>details — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_mode</code></b>&nbsp;&nbsp;
@@ -54910,7 +57979,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="piece"
                data-component="body">
     <br>
-<p>Example: <code>piece</code></p>
+<p>pricing mode — Optionnel, parmi piece, kilo, mixed. Example: <code>piece</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li> <li><code>mixed</code></li></ul>
         </div>
@@ -54934,7 +58003,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>workflow laveur enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>workflow_classeur_enabled</code></b>&nbsp;&nbsp;
@@ -54956,7 +58025,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>workflow classeur enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>block_retrieve_if_unpaid</code></b>&nbsp;&nbsp;
@@ -54978,7 +58047,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>block retrieve if unpaid — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -54996,7 +58065,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/pressings/1" \
+    --get "http://localhost:8000/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -55005,7 +58074,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/1"
+    "http://localhost:8000/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -55174,10 +58243,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-pressings--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>1</code></p>
+<p>The ID of the pressing. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -55195,30 +58264,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/pressings/1" \
+    "http://localhost:8000/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"details\": \"architecto\",
-    \"status\": false,
+    \"name\": \"Exemple\",
+    \"details\": \"exemple\",
+    \"status\": true,
     \"pricing_mode\": \"piece\",
-    \"workflow_laveur_enabled\": false,
+    \"workflow_laveur_enabled\": true,
     \"workflow_classeur_enabled\": true,
     \"block_retrieve_if_unpaid\": true,
-    \"loyalty_points_rate\": 76,
-    \"hours_classic\": 16,
-    \"hours_express\": 26,
-    \"hours_repass\": 40
+    \"loyalty_points_rate\": 1,
+    \"hours_classic\": 1,
+    \"hours_express\": 1,
+    \"hours_repass\": 1
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/1"
+    "http://localhost:8000/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -55229,17 +58298,17 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "details": "architecto",
-    "status": false,
+    "name": "Exemple",
+    "details": "exemple",
+    "status": true,
     "pricing_mode": "piece",
-    "workflow_laveur_enabled": false,
+    "workflow_laveur_enabled": true,
     "workflow_classeur_enabled": true,
     "block_retrieve_if_unpaid": true,
-    "loyalty_points_rate": 76,
-    "hours_classic": 16,
-    "hours_express": 26,
-    "hours_repass": 40
+    "loyalty_points_rate": 1,
+    "hours_classic": 1,
+    "hours_express": 1,
+    "hours_repass": 1
 };
 
 fetch(url, {
@@ -55424,10 +58493,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>1</code></p>
+<p>The ID of the pressing. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -55437,10 +58506,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -55449,10 +58518,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="details"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>details — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -55474,7 +58543,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pricing_mode</code></b>&nbsp;&nbsp;
@@ -55486,7 +58555,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="piece"
                data-component="body">
     <br>
-<p>Example: <code>piece</code></p>
+<p>pricing mode — Optionnel, parmi piece, kilo, mixed. Example: <code>piece</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>piece</code></li> <li><code>kilo</code></li> <li><code>mixed</code></li></ul>
         </div>
@@ -55510,7 +58579,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>workflow laveur enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>workflow_classeur_enabled</code></b>&nbsp;&nbsp;
@@ -55532,7 +58601,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>workflow classeur enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>block_retrieve_if_unpaid</code></b>&nbsp;&nbsp;
@@ -55554,7 +58623,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>block retrieve if unpaid — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_points_rate</code></b>&nbsp;&nbsp;
@@ -55563,10 +58632,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="loyalty_points_rate"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="76"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>76</code></p>
+<p>loyalty points rate — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -55575,10 +58644,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_classic"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>16</code></p>
+<p>hours classic — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -55587,10 +58656,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_express"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="26"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>26</code></p>
+<p>hours express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -55599,10 +58668,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="hours_repass"                data-endpoint="PUTapi-v1-superadmin-pressings--id-"
-               value="40"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>40</code></p>
+<p>hours repass — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -55620,7 +58689,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/pressings/1" \
+    "http://localhost:8000/api/v1/superadmin/pressings/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -55629,7 +58698,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/pressings/1"
+    "http://localhost:8000/api/v1/superadmin/pressings/16"
 );
 
 const headers = {
@@ -55783,10 +58852,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-pressings--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pressing. Example: <code>1</code></p>
+<p>The ID of the pressing. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -55997,14 +59066,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"pressing_id\": \"architecto\",
-    \"name\": \"n\",
-    \"address\": \"architecto\",
-    \"contact\": \"architecto\",
-    \"country_code\": \"ng\",
-    \"currency\": \"zmi\",
-    \"code_prefix\": \"yvdljnik\",
-    \"code_suffix\": \"hwaykcmy\"
+    \"pressing_id\": 1,
+    \"name\": \"Exemple\",
+    \"address\": \"exemple\",
+    \"contact\": \"exemple\",
+    \"country_code\": \"exemple\",
+    \"currency\": \"exemple\",
+    \"code_prefix\": \"exemple\",
+    \"code_suffix\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -56022,14 +59091,14 @@ const headers = {
 };
 
 let body = {
-    "pressing_id": "architecto",
-    "name": "n",
-    "address": "architecto",
-    "contact": "architecto",
-    "country_code": "ng",
-    "currency": "zmi",
-    "code_prefix": "yvdljnik",
-    "code_suffix": "hwaykcmy"
+    "pressing_id": 1,
+    "name": "Exemple",
+    "address": "exemple",
+    "contact": "exemple",
+    "country_code": "exemple",
+    "currency": "exemple",
+    "code_prefix": "exemple",
+    "code_suffix": "exemple"
 };
 
 fetch(url, {
@@ -56204,10 +59273,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="pressing_id"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>pressing id — Requis, id existant (pressings). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -56216,10 +59285,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="n"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -56228,10 +59297,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>address — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -56240,10 +59309,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>contact — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
@@ -56252,10 +59321,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="country_code"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="ng"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>ng</code></p>
+<p>country code — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -56264,10 +59333,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="zmi"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>zmi</code></p>
+<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -56276,10 +59345,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="yvdljnik"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>yvdljnik</code></p>
+<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -56288,10 +59357,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="POSTapi-v1-superadmin-agencies"
-               value="hwaykcmy"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>hwaykcmy</code></p>
+<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -56309,7 +59378,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/agencies/1" \
+    --get "http://localhost:8000/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -56318,7 +59387,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/1"
+    "http://localhost:8000/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -56481,10 +59550,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -56502,19 +59571,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/agencies/1" \
+    "http://localhost:8000/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"address\": \"architecto\",
-    \"contact\": \"architecto\",
-    \"country_code\": \"ng\",
-    \"currency\": \"zmi\",
-    \"code_prefix\": \"yvdljnik\",
-    \"code_suffix\": \"hwaykcmy\",
+    \"name\": \"Exemple\",
+    \"address\": \"exemple\",
+    \"contact\": \"exemple\",
+    \"country_code\": \"exemple\",
+    \"currency\": \"exemple\",
+    \"code_prefix\": \"exemple\",
+    \"code_suffix\": \"exemple\",
     \"status\": true
 }"
 </code></pre></div>
@@ -56522,7 +59591,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/1"
+    "http://localhost:8000/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -56533,13 +59602,13 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "address": "architecto",
-    "contact": "architecto",
-    "country_code": "ng",
-    "currency": "zmi",
-    "code_prefix": "yvdljnik",
-    "code_suffix": "hwaykcmy",
+    "name": "Exemple",
+    "address": "exemple",
+    "contact": "exemple",
+    "country_code": "exemple",
+    "currency": "exemple",
+    "code_prefix": "exemple",
+    "code_suffix": "exemple",
     "status": true
 };
 
@@ -56719,10 +59788,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -56732,10 +59801,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -56744,10 +59813,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>address — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact</code></b>&nbsp;&nbsp;
@@ -56756,10 +59825,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="contact"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>contact — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_code</code></b>&nbsp;&nbsp;
@@ -56768,10 +59837,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="country_code"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="ng"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>ng</code></p>
+<p>country code — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -56780,10 +59849,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="currency"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="zmi"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.size. Example: <code>zmi</code></p>
+<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -56792,10 +59861,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_prefix"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="yvdljnik"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>yvdljnik</code></p>
+<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -56804,10 +59873,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code_suffix"                data-endpoint="PUTapi-v1-superadmin-agencies--id-"
-               value="hwaykcmy"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>hwaykcmy</code></p>
+<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -56829,7 +59898,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -56847,7 +59916,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/agencies/1" \
+    "http://localhost:8000/api/v1/superadmin/agencies/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -56856,7 +59925,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/agencies/1"
+    "http://localhost:8000/api/v1/superadmin/agencies/16"
 );
 
 const headers = {
@@ -57019,10 +60088,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-agencies--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the agency. Example: <code>1</code></p>
+<p>The ID of the agency. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -57231,7 +60300,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"fullname\": \"Jean Dupont\",
+    \"email\": \"client@example.com\",
+    \"password\": \"password\",
+    \"phone_number\": \"690000001\",
+    \"pressing_id\": 1,
+    \"agency_id\": 1,
+    \"role\": \"admin\",
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -57246,10 +60326,21 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "fullname": "Jean Dupont",
+    "email": "client@example.com",
+    "password": "password",
+    "phone_number": "690000001",
+    "pressing_id": 1,
+    "agency_id": 1,
+    "role": "admin",
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -57410,7 +60501,116 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="fullname"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="Jean Dupont"
+               data-component="body">
+    <br>
+<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="client@example.com"
+               data-component="body">
+    <br>
+<p>email — Requis, e-mail. validation.email. Example: <code>client@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="password"
+               data-component="body">
+    <br>
+<p>password — Requis. validation.min. Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="690000001"
+               data-component="body">
+    <br>
+<p>phone number — Optionnel. Example: <code>690000001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pressing_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pressing_id"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="1"
+               data-component="body">
+    <br>
+<p>pressing id — Requis, id existant (pressings). Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="1"
+               data-component="body">
+    <br>
+<p>agency id — Requis, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="role"                data-endpoint="POSTapi-v1-superadmin-users"
+               value="admin"
+               data-component="body">
+    <br>
+<p>role — Requis, parmi admin, manager, caissier, laveur, classeur, livreur. Example: <code>admin</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>manager</code></li> <li><code>caissier</code></li> <li><code>laveur</code></li> <li><code>classeur</code></li> <li><code>livreur</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-superadmin-users" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-superadmin-users"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-superadmin-users" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-superadmin-users"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="superadmin-PUTapi-v1-superadmin-users--id-">PUT api/v1/superadmin/users/{id}</h2>
 
@@ -57426,16 +60626,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/users/1" \
+    "http://localhost:8000/api/v1/superadmin/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"fullname\": \"Jean Dupont\",
+    \"email\": \"client@example.com\",
+    \"password\": \"password\",
+    \"phone_number\": \"690000001\",
+    \"pressing_id\": 1,
+    \"agency_id\": 1,
+    \"role\": \"admin\",
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users/1"
+    "http://localhost:8000/api/v1/superadmin/users/16"
 );
 
 const headers = {
@@ -57445,10 +60656,21 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "fullname": "Jean Dupont",
+    "email": "client@example.com",
+    "password": "password",
+    "phone_number": "690000001",
+    "pressing_id": 1,
+    "agency_id": 1,
+    "role": "admin",
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -57617,12 +60839,121 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="fullname"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="Jean Dupont"
+               data-component="body">
+    <br>
+<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="client@example.com"
+               data-component="body">
+    <br>
+<p>email — Requis, e-mail. validation.email. Example: <code>client@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="password"
+               data-component="body">
+    <br>
+<p>password — Requis. validation.min. Example: <code>password</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="690000001"
+               data-component="body">
+    <br>
+<p>phone number — Optionnel. Example: <code>690000001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pressing_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pressing_id"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>pressing id — Requis, id existant (pressings). Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="agency_id"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>agency id — Requis, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="role"                data-endpoint="PUTapi-v1-superadmin-users--id-"
+               value="admin"
+               data-component="body">
+    <br>
+<p>role — Requis, parmi admin, manager, caissier, laveur, classeur, livreur. Example: <code>admin</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>manager</code></li> <li><code>caissier</code></li> <li><code>laveur</code></li> <li><code>classeur</code></li> <li><code>livreur</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-superadmin-users--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-superadmin-users--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-superadmin-users--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-superadmin-users--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="superadmin-DELETEapi-v1-superadmin-users--id-">DELETE api/v1/superadmin/users/{id}</h2>
 
@@ -57638,7 +60969,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/users/1" \
+    "http://localhost:8000/api/v1/superadmin/users/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -57647,7 +60978,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/users/1"
+    "http://localhost:8000/api/v1/superadmin/users/16"
 );
 
 const headers = {
@@ -57801,10 +61132,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-users--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the user. Example: <code>1</code></p>
+<p>The ID of the user. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -58589,14 +61920,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"pressing_id\": \"architecto\",
-    \"plan\": \"n\",
+    \"pressing_id\": 1,
+    \"plan\": \"exemple\",
+    \"periodicity\": \"exemple\",
     \"auto_renew\": true,
-    \"seats\": 66,
-    \"max_agencies\": 27,
-    \"storage_gb\": 35,
-    \"months\": 43,
-    \"activate\": false
+    \"seats\": 1,
+    \"max_agencies\": 1,
+    \"storage_gb\": 1,
+    \"months\": 1,
+    \"activate\": true
 }"
 </code></pre></div>
 
@@ -58614,14 +61946,15 @@ const headers = {
 };
 
 let body = {
-    "pressing_id": "architecto",
-    "plan": "n",
+    "pressing_id": 1,
+    "plan": "exemple",
+    "periodicity": "exemple",
     "auto_renew": true,
-    "seats": 66,
-    "max_agencies": 27,
-    "storage_gb": 35,
-    "months": 43,
-    "activate": false
+    "seats": 1,
+    "max_agencies": 1,
+    "storage_gb": 1,
+    "months": 1,
+    "activate": true
 };
 
 fetch(url, {
@@ -58839,10 +62172,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="pressing_id"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>pressing id — Requis, id existant (pressings). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>plan</code></b>&nbsp;&nbsp;
@@ -58851,10 +62184,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plan"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>plan — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
@@ -58863,10 +62196,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="periodicity"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value=""
+               value="exemple"
                data-component="body">
     <br>
-
+<p>periodicity — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -58888,7 +62221,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>auto renew — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
@@ -58897,10 +62230,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="seats"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="66"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>66</code></p>
+<p>seats — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_agencies</code></b>&nbsp;&nbsp;
@@ -58909,10 +62242,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="max_agencies"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="27"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>27</code></p>
+<p>max agencies — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>storage_gb</code></b>&nbsp;&nbsp;
@@ -58921,10 +62254,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="storage_gb"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="35"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>35</code></p>
+<p>storage gb — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>months</code></b>&nbsp;&nbsp;
@@ -58933,10 +62266,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="months"                data-endpoint="POSTapi-v1-superadmin-licenses"
-               value="43"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>43</code></p>
+<p>months — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>activate</code></b>&nbsp;&nbsp;
@@ -58958,7 +62291,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>activate — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -58976,7 +62309,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/licenses/1" \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -58985,7 +62318,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1"
+    "http://localhost:8000/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -59420,10 +62753,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-superadmin-licenses--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -59441,26 +62774,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/v1/superadmin/licenses/1" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"plan\": \"b\",
-    \"auto_renew\": false,
-    \"seats\": 67,
-    \"max_agencies\": 66,
-    \"storage_gb\": 27,
+    \"plan\": \"exemple\",
+    \"periodicity\": \"exemple\",
+    \"auto_renew\": true,
+    \"seats\": 1,
+    \"max_agencies\": 1,
+    \"storage_gb\": 1,
     \"status\": true,
-    \"expires_at\": \"2026-10-22T22:01:54\"
+    \"expires_at\": \"2026-11-06T10:00:00+00:00\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1"
+    "http://localhost:8000/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -59471,13 +62805,14 @@ const headers = {
 };
 
 let body = {
-    "plan": "b",
-    "auto_renew": false,
-    "seats": 67,
-    "max_agencies": 66,
-    "storage_gb": 27,
+    "plan": "exemple",
+    "periodicity": "exemple",
+    "auto_renew": true,
+    "seats": 1,
+    "max_agencies": 1,
+    "storage_gb": 1,
     "status": true,
-    "expires_at": "2026-10-22T22:01:54"
+    "expires_at": "2026-11-06T10:00:00+00:00"
 };
 
 fetch(url, {
@@ -59695,10 +63030,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -59708,10 +63043,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plan"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>plan — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
@@ -59720,10 +63055,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="periodicity"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value=""
+               value="exemple"
                data-component="body">
     <br>
-
+<p>periodicity — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -59745,7 +63080,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>auto renew — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
@@ -59754,10 +63089,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="seats"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="67"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>67</code></p>
+<p>seats — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_agencies</code></b>&nbsp;&nbsp;
@@ -59766,10 +63101,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="max_agencies"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="66"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>66</code></p>
+<p>max agencies — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>storage_gb</code></b>&nbsp;&nbsp;
@@ -59778,10 +63113,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="storage_gb"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="27"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>27</code></p>
+<p>storage gb — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -59803,7 +63138,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>expires_at</code></b>&nbsp;&nbsp;
@@ -59812,10 +63147,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="expires_at"                data-endpoint="PUTapi-v1-superadmin-licenses--id-"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>expires at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -59833,20 +63168,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/1/activate" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16/activate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"months\": 16
+    \"months\": 1
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/activate"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/activate"
 );
 
 const headers = {
@@ -59857,7 +63192,7 @@ const headers = {
 };
 
 let body = {
-    "months": 16
+    "months": 1
 };
 
 fetch(url, {
@@ -60075,10 +63410,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--activate"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -60088,10 +63423,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="months"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--activate"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>16</code></p>
+<p>months — Optionnel, nombre. validation.min. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -60109,45 +63444,51 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/1/renew" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16/renew" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
-    --header "Content-Type: multipart/form-data" \
+    --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "periodicity=architecto"\
-    --form "payment_method=architecto"\
-    --form "reference=n"\
-    --form "effective_at=2026-10-22T22:01:54"\
-    --form "auto_renew=1"\
-    --form "mark_paid="\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php2234.tmp" </code></pre></div>
+    --data "{
+    \"periodicity\": \"exemple\",
+    \"plan\": \"exemple\",
+    \"payment_method\": \"exemple\",
+    \"reference\": \"exemple\",
+    \"effective_at\": \"2026-11-06T10:00:00+00:00\",
+    \"auto_renew\": true,
+    \"mark_paid\": true,
+    \"proof\": \"architecto\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/renew"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/renew"
 );
 
 const headers = {
     "Authorization": "Bearer {VOTRE_TOKEN}",
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json",
     "Accept": "application/json",
     "X-Agency-Id": "1",
 };
 
-const body = new FormData();
-body.append('periodicity', 'architecto');
-body.append('payment_method', 'architecto');
-body.append('reference', 'n');
-body.append('effective_at', '2026-10-22T22:01:54');
-body.append('auto_renew', '1');
-body.append('mark_paid', '');
-body.append('proof', document.querySelector('input[name="proof"]').files[0]);
+let body = {
+    "periodicity": "exemple",
+    "plan": "exemple",
+    "payment_method": "exemple",
+    "reference": "exemple",
+    "effective_at": "2026-11-06T10:00:00+00:00",
+    "auto_renew": true,
+    "mark_paid": true,
+    "proof": "architecto"
+};
 
 fetch(url, {
     method: "POST",
     headers,
-    body,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -60503,7 +63844,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <form id="form-POSTapi-v1-superadmin-licenses--license_id--renew" data-method="POST"
       data-path="api/v1/superadmin/licenses/{license_id}/renew"
       data-authed="1"
-      data-hasfiles="1"
+      data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-superadmin-licenses--license_id--renew', this);">
@@ -60551,10 +63892,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Content-Type"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="multipart/form-data"
+               value="application/json"
                data-component="header">
     <br>
-<p>Example: <code>multipart/form-data</code></p>
+<p>Example: <code>application/json</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
@@ -60588,10 +63929,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -60601,10 +63942,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="periodicity"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>periodicity — Requis. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>plan</code></b>&nbsp;&nbsp;
@@ -60613,10 +63954,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="plan"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value=""
+               value="exemple"
                data-component="body">
     <br>
-
+<p>plan — Optionnel. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -60625,10 +63966,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>payment method — Requis. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
@@ -60637,10 +63978,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reference"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>reference — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>effective_at</code></b>&nbsp;&nbsp;
@@ -60649,10 +63990,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="effective_at"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>effective at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -60674,7 +64015,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>auto renew — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>mark_paid</code></b>&nbsp;&nbsp;
@@ -60696,19 +64037,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>mark paid — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>proof</code></b>&nbsp;&nbsp;
-<small>file</small>&nbsp;
+<small>string</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
-                <input type="file" style="display: none"
+                <input type="text" style="display: none"
                               name="proof"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--renew"
-               value=""
+               value="architecto"
                data-component="body">
     <br>
-<p>Must be a file. Example: <code>C:\Users\ativo\AppData\Local\Temp\php2234.tmp</code></p>
+<p>proof — Optionnel, fichier. Must be a file. Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -60726,20 +64067,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/1/suspend" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16/suspend" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"reason\": \"b\"
+    \"reason\": \"exemple\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/suspend"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/suspend"
 );
 
 const headers = {
@@ -60750,7 +64091,7 @@ const headers = {
 };
 
 let body = {
-    "reason": "b"
+    "reason": "exemple"
 };
 
 fetch(url, {
@@ -60968,10 +64309,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -60981,10 +64322,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--suspend"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -61002,7 +64343,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/1/reactivate" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16/reactivate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -61011,7 +64352,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/reactivate"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/reactivate"
 );
 
 const headers = {
@@ -61236,10 +64577,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--reactivate"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -61257,7 +64598,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/licenses/1/payments?format=architecto" \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/16/payments?format=architecto" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -61266,7 +64607,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/payments"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/payments"
 );
 
 const params = {
@@ -61464,10 +64805,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -61498,7 +64839,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/validate" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16/payments/16/validate" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -61507,7 +64848,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/validate"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/payments/16/validate"
 );
 
 const headers = {
@@ -61711,10 +65052,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="POSTapi-v1-superadmin-licenses--license_id--payments--payment_id--validate"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>payment_id</code></b>&nbsp;&nbsp;
@@ -61744,7 +65085,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/invoice" \
+    --get "http://localhost:8000/api/v1/superadmin/licenses/16/payments/16/invoice" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -61753,7 +65094,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1/payments/16/invoice"
+    "http://localhost:8000/api/v1/superadmin/licenses/16/payments/16/invoice"
 );
 
 const headers = {
@@ -61908,10 +65249,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="license_id"                data-endpoint="GETapi-v1-superadmin-licenses--license_id--payments--payment_id--invoice"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>payment_id</code></b>&nbsp;&nbsp;
@@ -61941,7 +65282,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/v1/superadmin/licenses/1" \
+    "http://localhost:8000/api/v1/superadmin/licenses/16" \
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -61950,7 +65291,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/superadmin/licenses/1"
+    "http://localhost:8000/api/v1/superadmin/licenses/16"
 );
 
 const headers = {
@@ -62104,10 +65445,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-v1-superadmin-licenses--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the license. Example: <code>1</code></p>
+<p>The ID of the license. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -62318,7 +65659,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"code\": \"exemple\",
+    \"legacy_type_action\": 0,
+    \"sort_order\": 1,
+    \"default_hours\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -62333,10 +65683,19 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "code": "exemple",
+    "legacy_type_action": 0,
+    "sort_order": 1,
+    "default_hours": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -62495,7 +65854,92 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>1</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-v1-services"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="POSTapi-v1-services"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>legacy_type_action</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="legacy_type_action"                data-endpoint="POSTapi-v1-services"
+               value="0"
+               data-component="body">
+    <br>
+<p>legacy type action — Optionnel, parmi 0, 1, 2. Example: <code>0</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>0</code></li> <li><code>1</code></li> <li><code>2</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sort_order"                data-endpoint="POSTapi-v1-services"
+               value="1"
+               data-component="body">
+    <br>
+<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>default_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="default_hours"                data-endpoint="POSTapi-v1-services"
+               value="1"
+               data-component="body">
+    <br>
+<p>default hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-services" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="POSTapi-v1-services"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-services" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="POSTapi-v1-services"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-PUTapi-v1-services--id-">PUT api/v1/services/{id}</h2>
 
@@ -62515,7 +65959,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"name\": \"Exemple\",
+    \"code\": \"exemple\",
+    \"legacy_type_action\": 0,
+    \"sort_order\": 1,
+    \"default_hours\": 1,
+    \"status\": true
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -62530,10 +65983,19 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "name": "Exemple",
+    "code": "exemple",
+    "legacy_type_action": 0,
+    "sort_order": 1,
+    "default_hours": 1,
+    "status": true
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -62705,7 +66167,92 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the service. Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-v1-services--id-"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="code"                data-endpoint="PUTapi-v1-services--id-"
+               value="exemple"
+               data-component="body">
+    <br>
+<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>legacy_type_action</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="legacy_type_action"                data-endpoint="PUTapi-v1-services--id-"
+               value="0"
+               data-component="body">
+    <br>
+<p>legacy type action — Optionnel, parmi 0, 1, 2. Example: <code>0</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>0</code></li> <li><code>1</code></li> <li><code>2</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sort_order"                data-endpoint="PUTapi-v1-services--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>default_hours</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="default_hours"                data-endpoint="PUTapi-v1-services--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>default hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-services--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="true"
+                   data-endpoint="PUTapi-v1-services--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-services--id-" style="display: none">
+            <input type="radio" name="status"
+                   value="false"
+                   data-endpoint="PUTapi-v1-services--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-DELETEapi-v1-services--id-">DELETE api/v1/services/{id}</h2>
 
@@ -63692,17 +67239,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"code\": \"n\",
+    \"name\": \"Exemple\",
+    \"code\": \"exemple\",
+    \"agency_id\": 1,
     \"status\": true,
     \"quarters\": [
-        \"z\"
+        \"exemple\"
     ],
-    \"radius_km\": 17,
-    \"departure_address\": \"i\",
-    \"collection_fee\": 76,
-    \"delivery_fee\": 60,
-    \"verified\": false
+    \"radius_km\": 1,
+    \"departure_address\": \"exemple\",
+    \"collection_fee\": 1000,
+    \"delivery_fee\": 1000,
+    \"verified\": true
 }"
 </code></pre></div>
 
@@ -63720,17 +67268,18 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "code": "n",
+    "name": "Exemple",
+    "code": "exemple",
+    "agency_id": 1,
     "status": true,
     "quarters": [
-        "z"
+        "exemple"
     ],
-    "radius_km": 17,
-    "departure_address": "i",
-    "collection_fee": 76,
-    "delivery_fee": 60,
-    "verified": false
+    "radius_km": 1,
+    "departure_address": "exemple",
+    "collection_fee": 1000,
+    "delivery_fee": 1000,
+    "verified": true
 };
 
 fetch(url, {
@@ -63900,10 +67449,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -63912,10 +67461,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -63924,10 +67473,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>agency id — Optionnel, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -63949,7 +67498,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quarters</code></b>&nbsp;&nbsp;
@@ -63963,7 +67512,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="quarters[1]"                data-endpoint="POSTapi-v1-deliveries-zones"
                data-component="body">
     <br>
-<p>validation.max.</p>
+<p>quarters * — Optionnel. validation.max.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>radius_km</code></b>&nbsp;&nbsp;
@@ -63972,10 +67521,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="radius_km"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="17"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>17</code></p>
+<p>radius km — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>departure_address</code></b>&nbsp;&nbsp;
@@ -63984,10 +67533,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="departure_address"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="i"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>i</code></p>
+<p>departure address — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -63996,10 +67545,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="76"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>76</code></p>
+<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -64008,10 +67557,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="POSTapi-v1-deliveries-zones"
-               value="60"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>60</code></p>
+<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verified</code></b>&nbsp;&nbsp;
@@ -64033,7 +67582,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>verified — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -64057,17 +67606,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"name\": \"b\",
-    \"code\": \"n\",
+    \"name\": \"Exemple\",
+    \"code\": \"exemple\",
+    \"agency_id\": 1,
     \"status\": true,
     \"quarters\": [
-        \"z\"
+        \"exemple\"
     ],
-    \"radius_km\": 17,
-    \"departure_address\": \"i\",
-    \"collection_fee\": 76,
-    \"delivery_fee\": 60,
-    \"verified\": false
+    \"radius_km\": 1,
+    \"departure_address\": \"exemple\",
+    \"collection_fee\": 1000,
+    \"delivery_fee\": 1000,
+    \"verified\": true
 }"
 </code></pre></div>
 
@@ -64085,17 +67635,18 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "code": "n",
+    "name": "Exemple",
+    "code": "exemple",
+    "agency_id": 1,
     "status": true,
     "quarters": [
-        "z"
+        "exemple"
     ],
-    "radius_km": 17,
-    "departure_address": "i",
-    "collection_fee": 76,
-    "delivery_fee": 60,
-    "verified": false
+    "radius_km": 1,
+    "departure_address": "exemple",
+    "collection_fee": 1000,
+    "delivery_fee": 1000,
+    "verified": true
 };
 
 fetch(url, {
@@ -64278,10 +67829,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="b"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -64290,10 +67841,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -64302,10 +67853,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>agency id — Optionnel, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -64327,7 +67878,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>status — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quarters</code></b>&nbsp;&nbsp;
@@ -64341,7 +67892,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="quarters[1]"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
                data-component="body">
     <br>
-<p>validation.max.</p>
+<p>quarters * — Optionnel. validation.max.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>radius_km</code></b>&nbsp;&nbsp;
@@ -64350,10 +67901,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="radius_km"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="17"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>17</code></p>
+<p>radius km — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>departure_address</code></b>&nbsp;&nbsp;
@@ -64362,10 +67913,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="departure_address"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="i"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>i</code></p>
+<p>departure address — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -64374,10 +67925,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collection_fee"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="76"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>76</code></p>
+<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -64386,10 +67937,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="delivery_fee"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
-               value="60"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>60</code></p>
+<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verified</code></b>&nbsp;&nbsp;
@@ -64411,7 +67962,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>verified — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -64436,10 +67987,10 @@ minimum de commande (réglages `delivery`).</h2>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"zone_id\": 16,
-    \"amount\": 39,
+    \"zone_id\": 1,
+    \"amount\": 1000,
     \"with_collection\": true,
-    \"with_delivery\": false
+    \"with_delivery\": true
 }"
 </code></pre></div>
 
@@ -64457,10 +68008,10 @@ const headers = {
 };
 
 let body = {
-    "zone_id": 16,
-    "amount": 39,
+    "zone_id": 1,
+    "amount": 1000,
     "with_collection": true,
-    "with_delivery": false
+    "with_delivery": true
 };
 
 fetch(url, {
@@ -64659,10 +68210,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="zone_id"                data-endpoint="POSTapi-v1-deliveries-estimate"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>zone id — Optionnel, nombre. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -64671,10 +68222,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="amount"                data-endpoint="POSTapi-v1-deliveries-estimate"
-               value="39"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>39</code></p>
+<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
@@ -64696,7 +68247,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>with collection — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_delivery</code></b>&nbsp;&nbsp;
@@ -64718,7 +68269,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>with delivery — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -64919,10 +68470,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"agency_id\": \"architecto\",
-    \"livreur_id\": \"architecto\",
-    \"round_date\": \"2026-10-22T22:01:54\",
-    \"name\": \"n\"
+    \"agency_id\": 1,
+    \"livreur_id\": 1,
+    \"delivery_zone_id\": 1,
+    \"round_date\": \"2026-11-06T10:00:00+00:00\",
+    \"name\": \"Exemple\"
 }"
 </code></pre></div>
 
@@ -64940,10 +68492,11 @@ const headers = {
 };
 
 let body = {
-    "agency_id": "architecto",
-    "livreur_id": "architecto",
-    "round_date": "2026-10-22T22:01:54",
-    "name": "n"
+    "agency_id": 1,
+    "livreur_id": 1,
+    "delivery_zone_id": 1,
+    "round_date": "2026-11-06T10:00:00+00:00",
+    "name": "Exemple"
 };
 
 fetch(url, {
@@ -65113,10 +68666,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="agency_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>agency id — Requis, id existant (agencies). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
@@ -65125,10 +68678,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="livreur_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="architecto"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>architecto</code></p>
+<p>livreur id — Requis, id existant (users). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
@@ -65137,10 +68690,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_zone_id"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>delivery zone id — Optionnel, id existant (delivery_zones). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>round_date</code></b>&nbsp;&nbsp;
@@ -65149,10 +68702,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="round_date"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="2026-10-22T22:01:54"
+               value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-10-22T22:01:54</code></p>
+<p>round date — Requis, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -65161,10 +68714,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-deliveries-rounds"
-               value="n"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
         </form>
 
@@ -65189,7 +68742,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"deposit_ids\": [
-        16
+        1
     ]
 }"
 </code></pre></div>
@@ -65209,7 +68762,7 @@ const headers = {
 
 let body = {
     "deposit_ids": [
-        16
+        1
     ]
 };
 
@@ -65398,7 +68951,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="deposit_ids[1]"                data-endpoint="POSTapi-v1-deliveries-rounds--round_id--assign"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>deposit ids * — Optionnel, id existant (deposits), nombre. Must match an existing stored value.</p>
         </div>
         </form>
 
@@ -65422,7 +68975,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"delivery_address\": \"b\"
+    \"delivery_zone_id\": 1,
+    \"delivery_address\": \"exemple\",
+    \"livreur_id\": 1
 }"
 </code></pre></div>
 
@@ -65440,7 +68995,9 @@ const headers = {
 };
 
 let body = {
-    "delivery_address": "b"
+    "delivery_zone_id": 1,
+    "delivery_address": "exemple",
+    "livreur_id": 1
 };
 
 fetch(url, {
@@ -65741,10 +69298,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_zone_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>delivery zone id — Optionnel, id existant (delivery_zones). Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_address</code></b>&nbsp;&nbsp;
@@ -65753,10 +69310,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="delivery_address"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>delivery address — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
@@ -65765,10 +69322,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="livreur_id"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--schedule"
-               value=""
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value.</p>
+<p>livreur id — Optionnel, id existant (users). Must match an existing stored value. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -65792,13 +69349,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"confirmation_type\": \"architecto\",
-    \"confirmation_value\": \"architecto\",
-    \"receiver_name\": \"n\",
-    \"collect_amount\": 84,
+    \"confirmation_type\": \"signature\",
+    \"confirmation_value\": \"exemple\",
+    \"receiver_name\": \"exemple\",
+    \"collect_amount\": 1000,
     \"payment_method\": \"cash\",
     \"require_settled\": true,
-    \"client_uuid\": \"a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f\"
+    \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\"
 }"
 </code></pre></div>
 
@@ -65816,13 +69373,13 @@ const headers = {
 };
 
 let body = {
-    "confirmation_type": "architecto",
-    "confirmation_value": "architecto",
-    "receiver_name": "n",
-    "collect_amount": 84,
+    "confirmation_type": "signature",
+    "confirmation_value": "exemple",
+    "receiver_name": "exemple",
+    "collect_amount": 1000,
     "payment_method": "cash",
     "require_settled": true,
-    "client_uuid": "a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f"
+    "client_uuid": "550e8400-e29b-41d4-a716-446655440000"
 };
 
 fetch(url, {
@@ -66123,10 +69680,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="confirmation_type"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="architecto"
+               value="signature"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>confirmation type — Requis, parmi signature, code. Example: <code>signature</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>code</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>confirmation_value</code></b>&nbsp;&nbsp;
@@ -66135,10 +69694,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="confirmation_value"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>confirmation value — Requis. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>receiver_name</code></b>&nbsp;&nbsp;
@@ -66147,10 +69706,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="receiver_name"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>receiver name — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collect_amount</code></b>&nbsp;&nbsp;
@@ -66159,10 +69718,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="collect_amount"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="84"
+               value="1000"
                data-component="body">
     <br>
-<p>validation.min. Example: <code>84</code></p>
+<p>collect amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -66174,7 +69733,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="cash"
                data-component="body">
     <br>
-<p>Example: <code>cash</code></p>
+<p>payment method — Optionnel, parmi cash, card, mobile_money, wallet, other. Example: <code>cash</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>cash</code></li> <li><code>card</code></li> <li><code>mobile_money</code></li> <li><code>wallet</code></li> <li><code>other</code></li></ul>
         </div>
@@ -66198,7 +69757,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>require settled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_uuid</code></b>&nbsp;&nbsp;
@@ -66207,10 +69766,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f"
+               value="550e8400-e29b-41d4-a716-446655440000"
                data-component="body">
     <br>
-<p>validation.uuid. Example: <code>a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f</code></p>
+<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
         </div>
         </form>
 
@@ -67193,10 +70752,10 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"event\": \"architecto\",
-    \"channel\": \"email\",
-    \"recipient\": \"g\",
-    \"message\": \"z\"
+    \"event\": \"exemple\",
+    \"channel\": \"sms\",
+    \"recipient\": \"client@example.com\",
+    \"message\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -67214,10 +70773,10 @@ const headers = {
 };
 
 let body = {
-    "event": "architecto",
-    "channel": "email",
-    "recipient": "g",
-    "message": "z"
+    "event": "exemple",
+    "channel": "sms",
+    "recipient": "client@example.com",
+    "message": "exemple"
 };
 
 fetch(url, {
@@ -67390,10 +70949,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="event"                data-endpoint="POSTapi-v1-settings-notifications-test"
-               value="architecto"
+               value="exemple"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>event — Requis. Example: <code>exemple</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code></code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
@@ -67402,10 +70963,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="channel"                data-endpoint="POSTapi-v1-settings-notifications-test"
-               value="email"
+               value="sms"
                data-component="body">
     <br>
-<p>Example: <code>email</code></p>
+<p>channel — Requis, parmi sms, email. Example: <code>sms</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>sms</code></li> <li><code>email</code></li></ul>
         </div>
@@ -67416,10 +70977,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="recipient"                data-endpoint="POSTapi-v1-settings-notifications-test"
-               value="g"
+               value="client@example.com"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>g</code></p>
+<p>recipient — Requis, e-mail. validation.email Must match the regex /^+?[0-9 ]{8,20}$/. validation.max. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
@@ -67428,10 +70989,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="message"                data-endpoint="POSTapi-v1-settings-notifications-test"
-               value="z"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>z</code></p>
+<p>message — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -67455,14 +71016,14 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"agency_id\": 16,
-    \"code\": \"n\",
+    \"agency_id\": 1,
+    \"code\": \"exemple\",
     \"type\": \"pos\",
-    \"label\": \"z\",
-    \"responsible_id\": 16,
-    \"offline_enabled\": false,
-    \"validity_days\": 7,
-    \"pending\": false
+    \"label\": \"Exemple\",
+    \"responsible_id\": 1,
+    \"offline_enabled\": true,
+    \"validity_days\": 1,
+    \"pending\": true
 }"
 </code></pre></div>
 
@@ -67480,14 +71041,14 @@ const headers = {
 };
 
 let body = {
-    "agency_id": 16,
-    "code": "n",
+    "agency_id": 1,
+    "code": "exemple",
     "type": "pos",
-    "label": "z",
-    "responsible_id": 16,
-    "offline_enabled": false,
-    "validity_days": 7,
-    "pending": false
+    "label": "Exemple",
+    "responsible_id": 1,
+    "offline_enabled": true,
+    "validity_days": 1,
+    "pending": true
 };
 
 fetch(url, {
@@ -67670,10 +71231,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="agency_id"                data-endpoint="POSTapi-v1-settings-devices"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>16</code></p>
+<p>agency id — Requis, id existant (agencies), nombre. Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -67682,10 +71243,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="code"                data-endpoint="POSTapi-v1-settings-devices"
-               value="n"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>code — Requis. validation.max. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -67697,7 +71258,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="pos"
                data-component="body">
     <br>
-<p>Example: <code>pos</code></p>
+<p>type — Optionnel, parmi pos, tablet, workshop. Example: <code>pos</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>pos</code></li> <li><code>tablet</code></li> <li><code>workshop</code></li></ul>
         </div>
@@ -67708,10 +71269,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="label"                data-endpoint="POSTapi-v1-settings-devices"
-               value="z"
+               value="Exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>z</code></p>
+<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>responsible_id</code></b>&nbsp;&nbsp;
@@ -67720,10 +71281,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="responsible_id"                data-endpoint="POSTapi-v1-settings-devices"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Must match an existing stored value. Example: <code>16</code></p>
+<p>responsible id — Optionnel, id existant (users), nombre. Must match an existing stored value. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>offline_enabled</code></b>&nbsp;&nbsp;
@@ -67745,7 +71306,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>offline enabled — Optionnel, booléen. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validity_days</code></b>&nbsp;&nbsp;
@@ -67754,10 +71315,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="validity_days"                data-endpoint="POSTapi-v1-settings-devices"
-               value="7"
+               value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>7</code></p>
+<p>validity days — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pending</code></b>&nbsp;&nbsp;
@@ -67779,7 +71340,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>pending — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -67801,7 +71362,14 @@ Must be one of:
     --header "Authorization: Bearer {VOTRE_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "X-Agency-Id: 1"</code></pre></div>
+    --header "X-Agency-Id: 1" \
+    --data "{
+    \"label\": \"Exemple\",
+    \"responsible_id\": 1,
+    \"offline_enabled\": true,
+    \"type\": \"pos\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -67816,10 +71384,17 @@ const headers = {
     "X-Agency-Id": "1",
 };
 
+let body = {
+    "label": "Exemple",
+    "responsible_id": 1,
+    "offline_enabled": true,
+    "type": "pos"
+};
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -68001,7 +71576,68 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the device. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label"                data-endpoint="PUTapi-v1-settings-devices--id-"
+               value="Exemple"
+               data-component="body">
+    <br>
+<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>responsible_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="responsible_id"                data-endpoint="PUTapi-v1-settings-devices--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>responsible id — Optionnel, id existant (users), nombre. Must match an existing stored value. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>offline_enabled</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PUTapi-v1-settings-devices--id-" style="display: none">
+            <input type="radio" name="offline_enabled"
+                   value="true"
+                   data-endpoint="PUTapi-v1-settings-devices--id-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PUTapi-v1-settings-devices--id-" style="display: none">
+            <input type="radio" name="offline_enabled"
+                   value="false"
+                   data-endpoint="PUTapi-v1-settings-devices--id-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>offline enabled — Optionnel, booléen. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="PUTapi-v1-settings-devices--id-"
+               value="pos"
+               data-component="body">
+    <br>
+<p>type — Optionnel, parmi pos, tablet, workshop. Example: <code>pos</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>pos</code></li> <li><code>tablet</code></li> <li><code>workshop</code></li></ul>
+        </div>
+        </form>
 
                     <h2 id="parametres-POSTapi-v1-settings-devices--device_id--approve">POST api/v1/settings/devices/{device_id}/approve</h2>
 
@@ -68240,7 +71876,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>1</code></p>
+<p>validity days — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -68264,7 +71900,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"reason\": \"b\"
+    \"reason\": \"exemple\"
 }"
 </code></pre></div>
 
@@ -68282,7 +71918,7 @@ const headers = {
 };
 
 let body = {
-    "reason": "b"
+    "reason": "exemple"
 };
 
 fetch(url, {
@@ -68478,10 +72114,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="reason"                data-endpoint="POSTapi-v1-settings-devices--device_id--revoke"
-               value="b"
+               value="exemple"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -68690,7 +72326,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"values\": [],
-    \"draft\": false
+    \"draft\": true
 }"
 </code></pre></div>
 
@@ -68709,7 +72345,7 @@ const headers = {
 
 let body = {
     "values": [],
-    "draft": false
+    "draft": true
 };
 
 fetch(url, {
@@ -68891,7 +72527,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-
+<p>values — Requis, tableau.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>draft</code></b>&nbsp;&nbsp;
@@ -68913,7 +72549,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>draft — Optionnel, booléen. Example: <code>true</code></p>
         </div>
         </form>
 
@@ -69141,7 +72777,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"version_id\": 16
+    \"version_id\": 1
 }"
 </code></pre></div>
 
@@ -69159,7 +72795,7 @@ const headers = {
 };
 
 let body = {
-    "version_id": 16
+    "version_id": 1
 };
 
 fetch(url, {
@@ -69339,10 +72975,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="version_id"                data-endpoint="POSTapi-v1-settings--category--restore"
-               value="16"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>version id — Optionnel, nombre. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -70041,7 +73677,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="keep_discount"
                data-component="body">
     <br>
-<p>Example: <code>keep_discount</code></p>
+<p>decision — Requis, parmi keep_discount, remove_discount, hold. Example: <code>keep_discount</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>keep_discount</code></li> <li><code>remove_discount</code></li> <li><code>hold</code></li></ul>
         </div>

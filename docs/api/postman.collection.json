@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "f71a4862-0982-4a8d-8bf8-fb560c4c7636",
+        "_postman_id": "99ac3d67-13fb-4d3c-9b3c-24e882813010",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -621,7 +621,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"b\",\"last_name\":\"n\",\"email\":\"ashly64@example.com\",\"phone_number\":\"v\",\"job_title\":\"d\",\"preferences\":{\"language\":\"ljnikh\",\"timezone\":\"Europe\\\/Oslo\",\"daily_summary\":true,\"workshop_sound_alerts\":true,\"whatsapp_notifications\":true}}"
+                            "raw": "{\"first_name\":\"exemple\",\"last_name\":\"exemple\",\"email\":\"client@example.com\",\"phone_number\":\"690000001\",\"job_title\":\"exemple\",\"preferences\":{\"language\":\"exemple\",\"timezone\":\"exemple\",\"daily_summary\":true,\"workshop_sound_alerts\":true,\"whatsapp_notifications\":true}}"
                         },
                         "description": ""
                     },
@@ -672,7 +672,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"architecto\",\"password\":\"]|{+-0pBNvYg\"}"
+                            "raw": "{\"current_password\":\"password\",\"password\":\"password\"}"
                         },
                         "description": ""
                     },
@@ -992,7 +992,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"operations\":[{\"type\":\"deposit\",\"payload\":[],\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"local_ref\":\"g\"}],\"device_code\":\"b\",\"reference\":\"n\"}"
+                            "raw": "{\"operations\":[{\"type\":\"deposit\",\"payload\":[],\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\",\"local_ref\":\"exemple\"}],\"device_code\":\"exemple\",\"reference\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"client_id\":\"architecto\",\"discount\":39,\"discount_percent\":7,\"promo_code\":\"architecto\",\"promo_special_code\":\"architecto\",\"points_to_redeem\":39,\"with_collection\":true,\"with_delivery\":false,\"collection_fee\":77,\"delivery_fee\":8,\"delivery_address\":\"y\",\"advanced\":60,\"payment_method\":\"cash\",\"deposit_date\":\"2026-10-22T22:01:54\",\"retrieve_date\":\"2026-10-22T22:01:54\",\"notes\":\"architecto\",\"lines\":[{\"article_id\":\"architecto\",\"quantity\":22,\"type_action\":0,\"pricing_type\":\"kilo\",\"weight_kg\":77,\"unit_price\":8,\"designation\":\"architecto\",\"state\":\"architecto\",\"render_id\":16,\"express\":false,\"color\":\"g\",\"defects\":[\"architecto\"],\"internal_notes\":\"n\"}],\"terminal\":\"b\",\"local_ref\":\"n\",\"discount_reason\":\"g\"}"
+                            "raw": "{\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\",\"client_id\":1,\"discount\":1,\"discount_percent\":1,\"promo_code\":\"exemple\",\"promo_special_code\":\"exemple\",\"points_to_redeem\":1,\"with_collection\":true,\"with_delivery\":true,\"collection_fee\":1000,\"delivery_fee\":1000,\"delivery_zone_id\":1,\"delivery_address\":\"exemple\",\"advanced\":1,\"payment_method\":\"cash\",\"deposit_date\":\"2026-11-06T10:00:00+00:00\",\"retrieve_date\":\"2026-11-06T10:00:00+00:00\",\"notes\":\"exemple\",\"lines\":[{\"article_id\":1,\"service_id\":1,\"quantity\":1,\"type_action\":0,\"pricing_type\":\"piece\",\"weight_kg\":1,\"unit_price\":1000,\"designation\":\"exemple\",\"state\":\"exemple\",\"render_id\":1,\"express\":true,\"color\":\"exemple\",\"defects\":[\"exemple\"],\"internal_notes\":\"exemple\"}],\"terminal\":\"exemple\",\"local_ref\":\"exemple\",\"discount_reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",\"amount\":67,\"payment_method\":\"cash\",\"transaction_date\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\",\"amount\":1000,\"payment_method\":\"cash\",\"transaction_date\":\"2026-11-06T10:00:00+00:00\"}"
                         },
                         "description": ""
                     },
@@ -1569,7 +1569,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"receiver_name\":\"b\"}"
+                            "raw": "{\"receiver_name\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -1628,7 +1628,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"units\":[{\"id\":16,\"quantity\":22}]}"
+                            "raw": "{\"units\":[{\"id\":1,\"quantity\":1}]}"
                         },
                         "description": ""
                     },
@@ -1737,7 +1737,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"etat\":\"classed\",\"qr_token\":\"architecto\",\"storage_location\":\"n\"}"
+                            "raw": "{\"etat\":\"waiting\",\"qr_token\":\"exemple\",\"storage_location\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -1905,7 +1905,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"b\"}"
+                            "raw": "{\"reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -2042,7 +2042,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"action\":\"handled\",\"amount\":22}"
+                            "raw": "{\"action\":\"remind\",\"amount\":1000}"
                         },
                         "description": ""
                     },
@@ -2266,7 +2266,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"condition\":\"compliant\",\"remarks\":\"n\",\"receiver_type\":\"client\",\"receiver_name\":\"z\",\"identity_confirmed\":true,\"payment\":{\"amount\":8,\"method\":\"mobile_money\",\"received\":60},\"override_reason\":\"d\",\"notify_sms\":false,\"units\":[{\"id\":16,\"quantity\":39,\"verification\":\"compliant\"}]}"
+                            "raw": "{\"condition\":\"compliant\",\"remarks\":\"exemple\",\"receiver_type\":\"client\",\"receiver_name\":\"exemple\",\"identity_confirmed\":true,\"payment\":{\"amount\":1000,\"method\":\"cash\",\"received\":1},\"override_reason\":\"exemple\",\"notify_sms\":true,\"units\":[{\"id\":1,\"quantity\":1,\"verification\":\"compliant\"}]}"
                         },
                         "description": ""
                     },
@@ -2492,7 +2492,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"last_name\":\"exemple\",\"first_name\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"city\":\"exemple\",\"password\":\"password\",\"sponsor_code\":\"exemple\",\"phone_secondary\":\"690000001\",\"agency_id\":1,\"contact_preference\":\"exemple\",\"loyalty_tier\":\"exemple\",\"consent_sms\":true,\"consent_email\":true,\"pickup_slot\":\"exemple\",\"favorite_treatment\":\"exemple\",\"instructions\":\"exemple\",\"note\":\"exemple\"}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -2528,7 +2531,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2578,7 +2581,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2628,7 +2631,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2678,7 +2681,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2698,7 +2701,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"last_name\":\"exemple\",\"first_name\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"city\":\"exemple\",\"status\":true,\"password\":\"password\",\"phone_secondary\":\"690000001\",\"agency_id\":1,\"contact_preference\":\"exemple\",\"loyalty_tier\":\"exemple\",\"consent_sms\":true,\"consent_email\":true,\"pickup_slot\":\"exemple\",\"favorite_treatment\":\"exemple\",\"instructions\":\"exemple\",\"note\":\"exemple\"}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -2734,7 +2740,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2784,7 +2790,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2834,7 +2840,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2856,7 +2862,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"body\":\"b\"}"
+                            "raw": "{\"body\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -2893,7 +2899,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -2949,7 +2955,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -3005,7 +3011,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -3027,7 +3033,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"points\":16}"
+                            "raw": "{\"points\":1}"
                         },
                         "description": ""
                     },
@@ -3064,7 +3070,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -3114,7 +3120,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -3164,7 +3170,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -3186,7 +3192,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"amount\":16,\"reason\":\"n\"}"
+                            "raw": "{\"amount\":1000,\"reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -3223,7 +3229,7 @@
                                 {
                                     "id": "client_id",
                                     "key": "client_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the client."
                                 }
                             ]
@@ -3245,7 +3251,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"amount\":16,\"reason\":\"n\"}"
+                            "raw": "{\"amount\":1000,\"reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -3525,7 +3531,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"description\":\"exemple\",\"classic_price\":1000,\"express_price\":1000,\"repass_price\":1000,\"classic_price_kilo\":1000,\"express_price_kilo\":1000,\"repass_price_kilo\":1000,\"status\":true,\"code\":\"exemple\",\"category_id\":1,\"billing_mode\":\"exemple\",\"icon\":\"exemple\",\"allow_discount\":true,\"round_to\":1,\"price_editable\":true,\"classic_hours\":1,\"express_hours\":1,\"repass_hours\":1,\"priority\":\"standard\",\"accepted_defects\":[\"exemple\"],\"compatible_renders\":[1],\"services\":[\"exemple\"],\"kilo_tiers\":[{\"min_kg\":1,\"max_kg\":1,\"classic\":1,\"express\":1}],\"availability\":[{\"agency_id\":1,\"available\":true,\"price_adjust_percent\":1000,\"note\":\"exemple\"}]}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -3561,7 +3570,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -3611,7 +3620,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -3631,7 +3640,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"description\":\"exemple\",\"classic_price\":1000,\"express_price\":1000,\"repass_price\":1000,\"classic_price_kilo\":1000,\"express_price_kilo\":1000,\"repass_price_kilo\":1000,\"status\":true,\"code\":\"exemple\",\"category_id\":1,\"billing_mode\":\"exemple\",\"icon\":\"exemple\",\"allow_discount\":true,\"round_to\":1,\"price_editable\":true,\"classic_hours\":1,\"express_hours\":1,\"repass_hours\":1,\"priority\":\"standard\",\"accepted_defects\":[\"exemple\"],\"compatible_renders\":[1],\"services\":[\"exemple\"],\"kilo_tiers\":[{\"min_kg\":1,\"max_kg\":1,\"classic\":1,\"express\":1}],\"availability\":[{\"agency_id\":1,\"available\":true,\"price_adjust_percent\":1000,\"note\":\"exemple\"}]}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -3667,7 +3679,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the article."
                                 }
                             ]
@@ -3771,7 +3783,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"icon\":\"exemple\",\"shared\":true,\"sort_order\":1}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -3827,7 +3842,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"icon\":\"exemple\",\"shared\":true,\"sort_order\":1}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -3969,7 +3987,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-11-06T04:15:04\"}"
                         },
                         "description": ""
                     },
@@ -4014,7 +4032,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"amount_minor\":84,\"valid_from\":\"2026-10-22T22:01:54\",\"valid_to\":\"2052-11-14\"}"
+                            "raw": "{\"agency_id\":1,\"article_id\":1,\"service_id\":1,\"pricing_type\":\"piece\",\"amount_minor\":1000,\"valid_from\":\"2026-11-06T10:00:00+00:00\",\"valid_to\":\"2026-11-06T10:00:00+00:00\"}"
                         },
                         "description": ""
                     },
@@ -4153,7 +4171,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"exemple\",\"description\":\"exemple\",\"status\":true,\"sort_order\":1}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4209,7 +4230,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"exemple\",\"description\":\"exemple\",\"status\":true,\"sort_order\":1}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4349,7 +4373,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"exemple\",\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4405,7 +4432,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"exemple\",\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4635,7 +4665,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"exemple\",\"name\":\"Exemple\",\"type\":\"percent\",\"rate_percent\":1,\"amount\":1000,\"starts_at\":\"2026-11-06T10:00:00+00:00\",\"ends_at\":\"2026-11-06T10:00:00+00:00\",\"quota\":1,\"per_client_limit\":1,\"agency_ids\":[1],\"min_amount\":1000,\"max_discount\":1,\"stack_with_loyalty\":true,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4691,7 +4724,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"exemple\",\"name\":\"Exemple\",\"type\":\"percent\",\"rate_percent\":1,\"amount\":1000,\"starts_at\":\"2026-11-06T10:00:00+00:00\",\"ends_at\":\"2026-11-06T10:00:00+00:00\",\"quota\":1,\"per_client_limit\":1,\"agency_ids\":[1],\"min_amount\":1000,\"max_discount\":1,\"stack_with_loyalty\":true,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4831,7 +4867,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"exemple\",\"rate_percent\":1,\"max_clients\":1,\"ends_at\":\"2026-11-06T10:00:00+00:00\",\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -4887,7 +4926,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\":\"exemple\",\"rate_percent\":1,\"max_clients\":1,\"ends_at\":\"2026-11-06T10:00:00+00:00\",\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -5027,7 +5069,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"lavage_hour\":1,\"express_hour\":1,\"repassage_hour\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -5083,7 +5128,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"lavage_hour\":1,\"express_hour\":1,\"repassage_hour\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -5183,7 +5231,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-11-06T04:15:04\"}"
                         },
                         "description": ""
                     },
@@ -5512,7 +5560,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"exemple\",\"agency_id\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -5568,7 +5619,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"exemple\",\"agency_id\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -5710,7 +5764,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"rate_percent\":22}"
+                            "raw": "{\"name\":\"Exemple\",\"rate_percent\":1}"
                         },
                         "description": ""
                     },
@@ -5767,7 +5821,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"rate_percent\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -5875,7 +5932,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_id\":\"architecto\"}"
+                            "raw": "{\"client_id\":1}"
                         },
                         "description": ""
                     },
@@ -5934,7 +5991,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_id\":\"architecto\"}"
+                            "raw": "{\"client_id\":1}"
                         },
                         "description": ""
                     },
@@ -6080,63 +6137,69 @@
                             "formdata": [
                                 {
                                     "key": "client_uuid",
-                                    "value": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+                                    "value": "550e8400-e29b-41d4-a716-446655440000",
                                     "type": "text",
-                                    "description": "validation.uuid."
+                                    "description": "client uuid \u2014 Optionnel, UUID. validation.uuid."
                                 },
                                 {
                                     "key": "label",
-                                    "value": "g",
+                                    "value": "Exemple",
                                     "type": "text",
-                                    "description": "validation.max."
+                                    "description": "label \u2014 Requis. validation.max."
                                 },
                                 {
                                     "key": "type",
-                                    "value": "out",
+                                    "value": "in",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "type \u2014 Requis, parmi in, out."
                                 },
                                 {
                                     "key": "amount",
-                                    "value": "27",
+                                    "value": "1000",
                                     "type": "text",
-                                    "description": "validation.min."
+                                    "description": "amount \u2014 Requis, nombre. validation.min."
+                                },
+                                {
+                                    "key": "category_id",
+                                    "value": "1",
+                                    "type": "text",
+                                    "description": "category id \u2014 Optionnel, id existant (cash_movement_categories). Must match an existing stored value."
                                 },
                                 {
                                     "key": "action_date",
-                                    "value": "2026-10-22T22:01:54",
+                                    "value": "2026-11-06T10:00:00+00:00",
                                     "type": "text",
-                                    "description": "validation.date."
+                                    "description": "action date \u2014 Optionnel, date ISO 8601. validation.date."
                                 },
                                 {
                                     "key": "validated",
                                     "value": "1",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "validated \u2014 Optionnel, bool\u00e9en."
                                 },
                                 {
                                     "key": "payment_method",
                                     "value": "cash",
                                     "type": "text",
-                                    "description": ""
+                                    "description": "payment method \u2014 Optionnel, parmi cash, mobile_money, card, other."
                                 },
                                 {
                                     "key": "beneficiary",
-                                    "value": "v",
+                                    "value": "exemple",
                                     "type": "text",
-                                    "description": "validation.max."
+                                    "description": "beneficiary \u2014 Optionnel. validation.max."
                                 },
                                 {
                                     "key": "reference",
-                                    "value": "d",
+                                    "value": "exemple",
                                     "type": "text",
-                                    "description": "validation.max."
+                                    "description": "reference \u2014 Optionnel. validation.max."
                                 },
                                 {
                                     "key": "comment",
-                                    "value": "l",
+                                    "value": "exemple",
                                     "type": "text",
-                                    "description": "validation.max."
+                                    "description": "comment \u2014 Optionnel. validation.max."
                                 },
                                 {
                                     "key": "proof",
@@ -6252,7 +6315,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"type\":\"out\",\"amount\":67,\"action_date\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"label\":\"Exemple\",\"type\":\"in\",\"amount\":1000,\"category_id\":1,\"action_date\":\"2026-11-06T10:00:00+00:00\"}"
                         },
                         "description": ""
                     },
@@ -6409,7 +6472,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"date\":\"2026-11-06T04:15:04\"}"
                         },
                         "description": ""
                     },
@@ -6454,7 +6517,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-10-22T22:01:54\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-11-06T04:15:04\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -6541,7 +6604,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"opening_balance\":27}"
+                            "raw": "{\"opening_balance\":1}"
                         },
                         "description": ""
                     },
@@ -6650,7 +6713,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"counted\":{\"cash\":27,\"mobile_money\":39,\"card\":84},\"difference_reason\":\"z\"}"
+                            "raw": "{\"counted\":{\"cash\":1,\"mobile_money\":1,\"card\":1},\"difference_reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -6905,7 +6968,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"direction\":\"out\"}"
+                            "raw": "{\"name\":\"Exemple\",\"direction\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7556,7 +7619,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-10-22T22:01:54\",\"date_to\":\"2052-11-14\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-11-06T04:15:04\",\"date_to\":\"2052-11-29\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7601,7 +7664,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-10-22T22:01:54\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-11-06T04:15:04\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7688,7 +7751,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"report\":\"daily\",\"frequency\":\"daily\",\"format\":\"csv\",\"recipients\":[\"rowan.gulgowski@example.com\"],\"agency_id\":16}"
+                            "raw": "{\"report\":\"overview\",\"frequency\":\"daily\",\"format\":\"csv\",\"recipients\":[\"client@example.com\"],\"agency_id\":1}"
                         },
                         "description": ""
                     },
@@ -7817,7 +7880,7 @@
                                 {
                                     "id": "agency_id",
                                     "key": "agency_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -7957,7 +8020,7 @@
                                 {
                                     "id": "role_id",
                                     "key": "role_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -7979,7 +8042,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"permissions\":[\"architecto\"]}"
+                            "raw": "{\"permissions\":[\"exemple\"]}"
                         },
                         "description": ""
                     },
@@ -8088,7 +8151,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"b\",\"password\":\"]|{+-0pBNvYg\",\"phone_number\":\"h\"}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"password\":\"password\",\"phone_number\":\"690000001\"}"
                         },
                         "description": ""
                     },
@@ -8181,7 +8244,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"details\":\"architecto\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":false,\"qr_labels_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":76,\"loyalty_redeem_threshold\":16,\"loyalty_redeem_value\":42,\"hours_classic\":40,\"hours_express\":4,\"hours_repass\":2,\"collection_fee\":8,\"delivery_fee\":75,\"reporting_currency\":\"hwa\",\"primary_color\":\"ykcmyuwpwlvqwrsi\",\"secondary_color\":\"tcpscqldzsnrwtuj\"}"
+                            "raw": "{\"name\":\"Exemple\",\"details\":\"exemple\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"qr_labels_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":1,\"loyalty_redeem_threshold\":1,\"loyalty_redeem_value\":1,\"hours_classic\":1,\"hours_express\":1,\"hours_repass\":1,\"collection_fee\":1000,\"delivery_fee\":1000,\"reporting_currency\":\"exemple\",\"primary_color\":\"exemple\",\"secondary_color\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -8218,7 +8281,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -8240,7 +8303,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"currency\":\"ngz\",\"code_prefix\":\"miyvdljn\",\"code_suffix\":\"ikhwaykc\",\"opens_at\":\"22:01\",\"closes_at\":\"22:01\",\"monthly_revenue_target\":38,\"status\":true}"
+                            "raw": "{\"name\":\"Exemple\",\"address\":\"exemple\",\"contact\":\"exemple\",\"currency\":\"exemple\",\"code_prefix\":\"exemple\",\"code_suffix\":\"exemple\",\"opens_at\":\"2026-11-06T10:00:00+00:00\",\"closes_at\":\"2026-11-06T10:00:00+00:00\",\"monthly_revenue_target\":1,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8375,7 +8438,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"source_currency\":\"bng\",\"target_currency\":\"zmi\",\"rate\":4326.41688,\"rate_date\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"source_currency\":\"exemple\",\"target_currency\":\"exemple\",\"rate\":1,\"rate_date\":\"2026-11-06T10:00:00+00:00\"}"
                         },
                         "description": ""
                     },
@@ -8560,7 +8623,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"opens_at\":\"22:01\",\"closes_at\":\"22:01\",\"monthly_revenue_target\":72}"
+                            "raw": "{\"name\":\"Exemple\",\"address\":\"exemple\",\"contact\":\"exemple\",\"country_code\":\"exemple\",\"currency\":\"exemple\",\"code_prefix\":\"exemple\",\"code_suffix\":\"exemple\",\"opens_at\":\"2026-11-06T10:00:00+00:00\",\"closes_at\":\"2026-11-06T10:00:00+00:00\",\"monthly_revenue_target\":1}"
                         },
                         "description": ""
                     },
@@ -8653,7 +8716,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"b\",\"email\":\"zbailey@example.net\",\"password\":\"-0pBNvYgxw\",\"agency_id\":\"architecto\",\"role\":\"architecto\"}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"email\":\"client@example.com\",\"password\":\"password\",\"agency_id\":1,\"role\":\"admin\"}"
                         },
                         "description": ""
                     },
@@ -8690,7 +8753,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -8712,7 +8775,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"b\",\"email\":\"zbailey@example.net\",\"password\":\"-0pBNvYgxw\",\"status\":true}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"email\":\"client@example.com\",\"password\":\"password\",\"agency_id\":1,\"role\":\"admin\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8749,7 +8812,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -8886,7 +8949,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -8936,7 +8999,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -8958,7 +9021,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"b\",\"first_name\":\"n\",\"last_name\":\"g\",\"job_title\":\"z\",\"employee_number\":\"m\",\"phone_number\":\"i\",\"email\":\"okon.justina@example.com\",\"role\":\"architecto\",\"agency_id\":16,\"agency_ids\":[16],\"mfa_required\":false,\"status\":true}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"first_name\":\"exemple\",\"last_name\":\"exemple\",\"job_title\":\"exemple\",\"employee_number\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"role\":\"exemple\",\"agency_id\":1,\"agency_ids\":[1],\"mfa_required\":true,\"status\":true}"
                         },
                         "description": ""
                     },
@@ -8995,7 +9058,7 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -9051,7 +9114,7 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -9107,7 +9170,7 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -9157,7 +9220,7 @@
                                 {
                                     "id": "user_id",
                                     "key": "user_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 },
                                 {
@@ -9311,7 +9374,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"gbailey@example.net\",\"fullname\":\"m\",\"role\":\"architecto\",\"agency_ids\":[16],\"require_mfa\":false}"
+                            "raw": "{\"email\":\"client@example.com\",\"fullname\":\"Jean Dupont\",\"role\":\"exemple\",\"agency_ids\":[1],\"require_mfa\":true}"
                         },
                         "description": "`meta.sensitive_permissions` liste les droits sensibles du r\u00f4le choisi."
                     },
@@ -9522,7 +9585,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"code\":\"architecto\"}"
+                            "raw": "{\"code\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -9573,7 +9636,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\"|]|{+-\",\"code\":\"architecto\"}"
+                            "raw": "{\"password\":\"password\",\"code\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -9708,7 +9771,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"scope\":\"architecto\",\"data_level\":\"architecto\",\"agency_ids\":[16],\"permissions\":[\"architecto\"],\"confirm_sensitive\":false}"
+                            "raw": "{\"label\":\"Exemple\",\"description\":\"exemple\",\"scope\":\"assigned\",\"data_level\":\"exemple\",\"agency_ids\":[1],\"permissions\":[\"exemple\"],\"confirm_sensitive\":true}"
                         },
                         "description": ""
                     },
@@ -9745,7 +9808,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -9795,7 +9858,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the role."
                                 }
                             ]
@@ -9817,7 +9880,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"label\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"agency_ids\":[16],\"permissions\":[\"architecto\"],\"confirm_sensitive\":false}"
+                            "raw": "{\"label\":\"Exemple\",\"description\":\"exemple\",\"scope\":\"assigned\",\"data_level\":\"exemple\",\"agency_ids\":[1],\"status\":\"active\",\"permissions\":[\"exemple\"],\"confirm_sensitive\":true}"
                         },
                         "description": ""
                     },
@@ -10439,7 +10502,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"b\",\"phone_number\":\"n\",\"email\":\"ashly64@example.com\",\"address\":\"v\",\"agency_id\":16,\"communication\":{\"sms\":false,\"email\":true,\"personalized_offers\":false}}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"agency_id\":1,\"communication\":{\"sms\":true,\"email\":true,\"personalized_offers\":true}}"
                         },
                         "description": ""
                     },
@@ -10490,7 +10553,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"architecto\",\"password\":\"]|{+-0pBNvYg\"}"
+                            "raw": "{\"current_password\":\"password\",\"password\":\"password\"}"
                         },
                         "description": ""
                     },
@@ -10631,7 +10694,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\"|]|{+-\"}"
+                            "raw": "{\"password\":\"password\"}"
                         },
                         "description": ""
                     },
@@ -10772,7 +10835,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"details\":\"architecto\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":false,\"block_retrieve_if_unpaid\":true}"
+                            "raw": "{\"name\":\"Exemple\",\"details\":\"exemple\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"block_retrieve_if_unpaid\":true}"
                         },
                         "description": ""
                     },
@@ -10809,7 +10872,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -10859,7 +10922,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -10881,7 +10944,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"details\":\"architecto\",\"status\":false,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":false,\"workflow_classeur_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":76,\"hours_classic\":16,\"hours_express\":26,\"hours_repass\":40}"
+                            "raw": "{\"name\":\"Exemple\",\"details\":\"exemple\",\"status\":true,\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":1,\"hours_classic\":1,\"hours_express\":1,\"hours_repass\":1}"
                         },
                         "description": ""
                     },
@@ -10918,7 +10981,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the pressing."
                                 }
                             ]
@@ -11024,7 +11087,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pressing_id\":\"architecto\",\"name\":\"n\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\"}"
+                            "raw": "{\"pressing_id\":1,\"name\":\"Exemple\",\"address\":\"exemple\",\"contact\":\"exemple\",\"country_code\":\"exemple\",\"currency\":\"exemple\",\"code_prefix\":\"exemple\",\"code_suffix\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -11061,7 +11124,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -11111,7 +11174,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -11133,7 +11196,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"address\":\"architecto\",\"contact\":\"architecto\",\"country_code\":\"ng\",\"currency\":\"zmi\",\"code_prefix\":\"yvdljnik\",\"code_suffix\":\"hwaykcmy\",\"status\":true}"
+                            "raw": "{\"name\":\"Exemple\",\"address\":\"exemple\",\"contact\":\"exemple\",\"country_code\":\"exemple\",\"currency\":\"exemple\",\"code_prefix\":\"exemple\",\"code_suffix\":\"exemple\",\"status\":true}"
                         },
                         "description": ""
                     },
@@ -11170,7 +11233,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the agency."
                                 }
                             ]
@@ -11274,7 +11337,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"email\":\"client@example.com\",\"password\":\"password\",\"phone_number\":\"690000001\",\"pressing_id\":1,\"agency_id\":1,\"role\":\"admin\",\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -11310,7 +11376,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -11330,7 +11396,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"email\":\"client@example.com\",\"password\":\"password\",\"phone_number\":\"690000001\",\"pressing_id\":1,\"agency_id\":1,\"role\":\"admin\",\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -11366,7 +11435,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -11609,7 +11678,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"pressing_id\":\"architecto\",\"plan\":\"n\",\"auto_renew\":true,\"seats\":66,\"max_agencies\":27,\"storage_gb\":35,\"months\":43,\"activate\":false}"
+                            "raw": "{\"pressing_id\":1,\"plan\":\"exemple\",\"periodicity\":\"exemple\",\"auto_renew\":true,\"seats\":1,\"max_agencies\":1,\"storage_gb\":1,\"months\":1,\"activate\":true}"
                         },
                         "description": ""
                     },
@@ -11646,7 +11715,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -11696,7 +11765,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -11718,7 +11787,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"plan\":\"b\",\"auto_renew\":false,\"seats\":67,\"max_agencies\":66,\"storage_gb\":27,\"status\":true,\"expires_at\":\"2026-10-22T22:01:54\"}"
+                            "raw": "{\"plan\":\"exemple\",\"periodicity\":\"exemple\",\"auto_renew\":true,\"seats\":1,\"max_agencies\":1,\"storage_gb\":1,\"status\":true,\"expires_at\":\"2026-11-06T10:00:00+00:00\"}"
                         },
                         "description": ""
                     },
@@ -11755,7 +11824,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -11777,7 +11846,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"months\":16}"
+                            "raw": "{\"months\":1}"
                         },
                         "description": ""
                     },
@@ -11814,7 +11883,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -11823,7 +11892,7 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "multipart\/form-data"
+                                "value": "application\/json"
                             },
                             {
                                 "key": "Accept",
@@ -11835,50 +11904,8 @@
                             }
                         ],
                         "body": {
-                            "mode": "formdata",
-                            "formdata": [
-                                {
-                                    "key": "periodicity",
-                                    "value": "architecto",
-                                    "type": "text",
-                                    "description": ""
-                                },
-                                {
-                                    "key": "payment_method",
-                                    "value": "architecto",
-                                    "type": "text",
-                                    "description": ""
-                                },
-                                {
-                                    "key": "reference",
-                                    "value": "n",
-                                    "type": "text",
-                                    "description": "validation.max."
-                                },
-                                {
-                                    "key": "effective_at",
-                                    "value": "2026-10-22T22:01:54",
-                                    "type": "text",
-                                    "description": "validation.date."
-                                },
-                                {
-                                    "key": "auto_renew",
-                                    "value": "1",
-                                    "type": "text",
-                                    "description": ""
-                                },
-                                {
-                                    "key": "mark_paid",
-                                    "value": "",
-                                    "type": "text",
-                                    "description": ""
-                                },
-                                {
-                                    "key": "proof",
-                                    "src": [],
-                                    "type": "file"
-                                }
-                            ]
+                            "mode": "raw",
+                            "raw": "{\"periodicity\":\"exemple\",\"plan\":\"exemple\",\"payment_method\":\"exemple\",\"reference\":\"exemple\",\"effective_at\":\"2026-11-06T10:00:00+00:00\",\"auto_renew\":true,\"mark_paid\":true,\"proof\":\"architecto\"}"
                         },
                         "description": ""
                     },
@@ -11915,7 +11942,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -11937,7 +11964,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"b\"}"
+                            "raw": "{\"reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -11974,7 +12001,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -12037,7 +12064,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -12087,7 +12114,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 },
                                 {
@@ -12149,7 +12176,7 @@
                                 {
                                     "id": "license_id",
                                     "key": "license_id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 },
                                 {
@@ -12205,7 +12232,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": 1,
+                                    "value": 16,
                                     "description": "The ID of the license."
                                 }
                             ]
@@ -12315,7 +12342,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"code\":\"exemple\",\"legacy_type_action\":0,\"sort_order\":1,\"default_hours\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -12371,7 +12401,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Exemple\",\"code\":\"exemple\",\"legacy_type_action\":0,\"sort_order\":1,\"default_hours\":1,\"status\":true}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -12603,7 +12636,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true,\"quarters\":[\"z\"],\"radius_km\":17,\"departure_address\":\"i\",\"collection_fee\":76,\"delivery_fee\":60,\"verified\":false}"
+                            "raw": "{\"name\":\"Exemple\",\"code\":\"exemple\",\"agency_id\":1,\"status\":true,\"quarters\":[\"exemple\"],\"radius_km\":1,\"departure_address\":\"exemple\",\"collection_fee\":1000,\"delivery_fee\":1000,\"verified\":true}"
                         },
                         "description": ""
                     },
@@ -12662,7 +12695,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"b\",\"code\":\"n\",\"status\":true,\"quarters\":[\"z\"],\"radius_km\":17,\"departure_address\":\"i\",\"collection_fee\":76,\"delivery_fee\":60,\"verified\":false}"
+                            "raw": "{\"name\":\"Exemple\",\"code\":\"exemple\",\"agency_id\":1,\"status\":true,\"quarters\":[\"exemple\"],\"radius_km\":1,\"departure_address\":\"exemple\",\"collection_fee\":1000,\"delivery_fee\":1000,\"verified\":true}"
                         },
                         "description": ""
                     },
@@ -12713,7 +12746,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"zone_id\":16,\"amount\":39,\"with_collection\":true,\"with_delivery\":false}"
+                            "raw": "{\"zone_id\":1,\"amount\":1000,\"with_collection\":true,\"with_delivery\":true}"
                         },
                         "description": ""
                     },
@@ -12806,7 +12839,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"livreur_id\":\"architecto\",\"round_date\":\"2026-10-22T22:01:54\",\"name\":\"n\"}"
+                            "raw": "{\"agency_id\":1,\"livreur_id\":1,\"delivery_zone_id\":1,\"round_date\":\"2026-11-06T10:00:00+00:00\",\"name\":\"Exemple\"}"
                         },
                         "description": ""
                     },
@@ -12865,7 +12898,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"deposit_ids\":[16]}"
+                            "raw": "{\"deposit_ids\":[1]}"
                         },
                         "description": ""
                     },
@@ -12924,7 +12957,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"delivery_address\":\"b\"}"
+                            "raw": "{\"delivery_zone_id\":1,\"delivery_address\":\"exemple\",\"livreur_id\":1}"
                         },
                         "description": ""
                     },
@@ -12983,7 +13016,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"confirmation_type\":\"architecto\",\"confirmation_value\":\"architecto\",\"receiver_name\":\"n\",\"collect_amount\":84,\"payment_method\":\"cash\",\"require_settled\":true,\"client_uuid\":\"a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f\"}"
+                            "raw": "{\"confirmation_type\":\"signature\",\"confirmation_value\":\"exemple\",\"receiver_name\":\"exemple\",\"collect_amount\":1000,\"payment_method\":\"cash\",\"require_settled\":true,\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}"
                         },
                         "description": ""
                     },
@@ -13220,7 +13253,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"event\":\"architecto\",\"channel\":\"email\",\"recipient\":\"g\",\"message\":\"z\"}"
+                            "raw": "{\"event\":\"exemple\",\"channel\":\"sms\",\"recipient\":\"client@example.com\",\"message\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -13271,7 +13304,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":16,\"code\":\"n\",\"type\":\"pos\",\"label\":\"z\",\"responsible_id\":16,\"offline_enabled\":false,\"validity_days\":7,\"pending\":false}"
+                            "raw": "{\"agency_id\":1,\"code\":\"exemple\",\"type\":\"pos\",\"label\":\"Exemple\",\"responsible_id\":1,\"offline_enabled\":true,\"validity_days\":1,\"pending\":true}"
                         },
                         "description": ""
                     },
@@ -13328,7 +13361,10 @@
                                 "value": "1"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"label\":\"Exemple\",\"responsible_id\":1,\"offline_enabled\":true,\"type\":\"pos\"}"
+                        },
                         "description": ""
                     },
                     "response": [
@@ -13445,7 +13481,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"reason\":\"b\"}"
+                            "raw": "{\"reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -13554,7 +13590,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"values\":[],\"draft\":false}"
+                            "raw": "{\"values\":[],\"draft\":true}"
                         },
                         "description": "Pour branding\/re\u00e7us, les changements restent en brouillon jusqu\u2019\u00e0 `publish` (`draft=false` pour forcer)."
                     },
@@ -13669,7 +13705,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"version_id\":16}"
+                            "raw": "{\"version_id\":1}"
                         },
                         "description": ""
                     },

@@ -259,6 +259,7 @@ return [
         ],
         'bodyParameters' => [
             ...Defaults::BODY_PARAMETERS_STRATEGIES,
+            \App\Support\Scribe\Strategies\DocumentInlineRequestBody::class,
         ],
         'responses' => [
             ...configureStrategy(

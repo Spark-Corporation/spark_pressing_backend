@@ -2495,50 +2495,50 @@ paths:
               properties:
                 first_name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'first name — Optionnel. validation.max.'
+                  example: exemple
                 last_name:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'last name — Optionnel. validation.max.'
+                  example: exemple
                 email:
                   type: string
-                  description: 'validation.email validation.max.'
-                  example: ashly64@example.com
+                  description: 'email — Optionnel, e-mail. validation.email validation.max.'
+                  example: client@example.com
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: v
+                  description: 'phone number — Optionnel. validation.max.'
+                  example: '690000001'
                   nullable: true
                 job_title:
                   type: string
-                  description: validation.max.
-                  example: d
+                  description: 'job title — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 preferences:
                   type: object
-                  description: ''
+                  description: 'preferences — Optionnel, tableau.'
                   example: null
                   properties:
                     language:
                       type: string
-                      description: validation.max.
-                      example: ljnikh
+                      description: 'preferences language — Optionnel. validation.max.'
+                      example: exemple
                     timezone:
                       type: string
-                      description: 'Must be a valid time zone, such as <code>Africa/Accra</code>.'
-                      example: Europe/Oslo
+                      description: 'preferences timezone — Optionnel. Must be a valid time zone, such as <code>Africa/Accra</code>.'
+                      example: exemple
                     daily_summary:
                       type: boolean
-                      description: ''
+                      description: 'preferences daily summary — Optionnel, booléen.'
                       example: true
                     workshop_sound_alerts:
                       type: boolean
-                      description: ''
+                      description: 'preferences workshop sound alerts — Optionnel, booléen.'
                       example: true
                     whatsapp_notifications:
                       type: boolean
-                      description: ''
+                      description: 'preferences whatsapp notifications — Optionnel, booléen.'
                       example: true
   /api/v1/auth/staff/password:
     put:
@@ -2679,12 +2679,12 @@ paths:
               properties:
                 current_password:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'current password — Requis.'
+                  example: password
                 password:
                   type: string
-                  description: 'The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
-                  example: ']|{+-0pBNvYg'
+                  description: 'password — Requis. The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  example: password
               required:
                 - current_password
                 - password
@@ -5169,7 +5169,7 @@ paths:
               properties:
                 operations:
                   type: array
-                  description: validation.min.
+                  description: 'operations — Requis, tableau. validation.min.'
                   example:
                     - []
                   items:
@@ -5177,24 +5177,24 @@ paths:
                     properties:
                       type:
                         type: string
-                        description: ''
+                        description: 'operations * type — Requis, parmi deposit, payment.'
                         example: deposit
                         enum:
                           - deposit
                           - payment
                       payload:
                         type: object
-                        description: ''
+                        description: 'operations * payload — Requis, tableau.'
                         example: []
                         properties: {  }
                       client_uuid:
                         type: string
-                        description: validation.uuid.
-                        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+                        description: 'operations * client uuid — Requis, UUID. validation.uuid.'
+                        example: 550e8400-e29b-41d4-a716-446655440000
                       local_ref:
                         type: string
-                        description: validation.max.
-                        example: g
+                        description: 'operations * local ref — Optionnel. validation.max.'
+                        example: exemple
                         nullable: true
                     required:
                       - type
@@ -5202,13 +5202,13 @@ paths:
                       - client_uuid
                 device_code:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'device code — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 reference:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'reference — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - operations
@@ -10197,74 +10197,74 @@ paths:
               properties:
                 client_uuid:
                   type: string
-                  description: validation.uuid.
-                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
+                  example: 550e8400-e29b-41d4-a716-446655440000
                   nullable: true
                 client_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'client id — Requis, id existant (clients). Must match an existing stored value.'
+                  example: 1
                 discount:
                   type: integer
-                  description: validation.min.
-                  example: 39
+                  description: 'discount — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 discount_percent:
                   type: integer
-                  description: 'validation.min validation.max.'
-                  example: 7
+                  description: 'discount percent — Optionnel, nombre. validation.min validation.max.'
+                  example: 1
                   nullable: true
                 promo_code:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'promo code — Optionnel.'
+                  example: exemple
                   nullable: true
                 promo_special_code:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'promo special code — Optionnel.'
+                  example: exemple
                   nullable: true
                 points_to_redeem:
                   type: integer
-                  description: validation.min.
-                  example: 39
+                  description: 'points to redeem — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 with_collection:
                   type: boolean
-                  description: ''
+                  description: 'with collection — Optionnel, booléen.'
                   example: true
                 with_delivery:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'with delivery — Optionnel, booléen.'
+                  example: true
                 collection_fee:
                   type: integer
-                  description: validation.min.
-                  example: 77
+                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 delivery_fee:
                   type: integer
-                  description: validation.min.
-                  example: 8
+                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 delivery_zone_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'delivery zone id — Optionnel, id existant (delivery_zones). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 delivery_address:
                   type: string
-                  description: validation.max.
-                  example: 'y'
+                  description: 'delivery address — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 advanced:
                   type: integer
-                  description: validation.min.
-                  example: 60
+                  description: 'advanced — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 payment_method:
                   type: string
-                  description: ''
+                  description: 'payment method — Optionnel, parmi cash, card, mobile_money, wallet, other.'
                   example: cash
                   enum:
                     - cash
@@ -10275,22 +10275,22 @@ paths:
                   nullable: true
                 deposit_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'deposit date — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 retrieve_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'retrieve date — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 notes:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'notes — Optionnel.'
+                  example: exemple
                   nullable: true
                 lines:
                   type: array
-                  description: validation.min.
+                  description: 'lines — Requis, tableau. validation.min.'
                   example:
                     - []
                   items:
@@ -10298,21 +10298,21 @@ paths:
                     properties:
                       article_id:
                         type: string
-                        description: 'Must match an existing stored value.'
-                        example: architecto
+                        description: 'lines * article id — Requis, id existant (articles). Must match an existing stored value.'
+                        example: 1
                       service_id:
                         type: string
-                        description: 'Must match an existing stored value.'
-                        example: null
+                        description: 'lines * service id — Optionnel, id existant (services). Must match an existing stored value.'
+                        example: 1
                         nullable: true
                       quantity:
                         type: integer
-                        description: validation.min.
-                        example: 22
+                        description: 'lines * quantity — Optionnel, nombre. validation.min.'
+                        example: 1
                         nullable: true
                       type_action:
                         type: integer
-                        description: ''
+                        description: 'lines * type action — Optionnel, parmi 0, 1, 2.'
                         example: 0
                         enum:
                           - 0
@@ -10321,74 +10321,76 @@ paths:
                         nullable: true
                       pricing_type:
                         type: string
-                        description: ''
-                        example: kilo
+                        description: 'lines * pricing type — Optionnel, parmi piece, kilo.'
+                        example: piece
                         enum:
                           - piece
                           - kilo
                         nullable: true
                       weight_kg:
                         type: number
-                        description: validation.min.
-                        example: 77
+                        description: 'lines * weight kg — Optionnel, nombre. validation.min.'
+                        example: 1.0
                         nullable: true
                       unit_price:
                         type: integer
-                        description: validation.min.
-                        example: 8
+                        description: 'lines * unit price — Optionnel, nombre. validation.min.'
+                        example: 1000
                         nullable: true
                       designation:
                         type: string
-                        description: ''
-                        example: architecto
+                        description: 'lines * designation — Optionnel.'
+                        example: exemple
                         nullable: true
                       state:
                         type: string
-                        description: ''
-                        example: architecto
+                        description: 'lines * state — Optionnel.'
+                        example: exemple
                         nullable: true
                       render_id:
                         type: integer
-                        description: ''
-                        example: 16
+                        description: 'lines * render id — Optionnel, nombre.'
+                        example: 1
                         nullable: true
                       express:
                         type: boolean
-                        description: ''
-                        example: false
+                        description: 'lines * express — Optionnel, booléen.'
+                        example: true
                       color:
                         type: string
-                        description: validation.max.
-                        example: g
+                        description: 'lines * color — Optionnel. validation.max.'
+                        example: exemple
                         nullable: true
                       defects:
                         type: array
-                        description: ''
+                        description: 'lines * defects * — Optionnel.'
                         example:
-                          - architecto
+                          - exemple
                         items:
                           type: string
+                          enum:
+                            - null
                       internal_notes:
                         type: string
-                        description: validation.max.
-                        example: 'n'
+                        description: 'lines * internal notes — Optionnel. validation.max.'
+                        example: exemple
                         nullable: true
                     required:
                       - article_id
                 terminal:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'terminal — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 local_ref:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'local ref — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 discount_reason:
                   type: string
-                  description: validation.max.
-                  example: g
+                  description: 'discount reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - client_id
@@ -11366,8 +11368,8 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
     parameters:
       -
@@ -11988,16 +11990,16 @@ paths:
               properties:
                 client_uuid:
                   type: string
-                  description: validation.uuid.
-                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
+                  example: 550e8400-e29b-41d4-a716-446655440000
                   nullable: true
                 amount:
                   type: integer
-                  description: validation.min.
-                  example: 67
+                  description: 'amount — Requis, nombre. validation.min.'
+                  example: 1000
                 payment_method:
                   type: string
-                  description: ''
+                  description: 'payment method — Optionnel, parmi cash, card, mobile_money, wallet, other.'
                   example: cash
                   enum:
                     - cash
@@ -12008,8 +12010,8 @@ paths:
                   nullable: true
                 transaction_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'transaction date — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
               required:
                 - amount
@@ -12632,8 +12634,8 @@ paths:
               properties:
                 receiver_name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'receiver name — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
     parameters:
       -
@@ -13254,7 +13256,7 @@ paths:
               properties:
                 units:
                   type: array
-                  description: validation.min.
+                  description: 'units — Requis, tableau. validation.min.'
                   example:
                     - []
                   items:
@@ -13262,12 +13264,12 @@ paths:
                     properties:
                       id:
                         type: integer
-                        description: ''
-                        example: 16
+                        description: 'units * id — Requis, nombre.'
+                        example: 1
                       quantity:
                         type: integer
-                        description: validation.min.
-                        example: 22
+                        description: 'units * quantity — Requis, nombre. validation.min.'
+                        example: 1
                     required:
                       - id
                       - quantity
@@ -14597,8 +14599,8 @@ paths:
               properties:
                 etat:
                   type: string
-                  description: ''
-                  example: classed
+                  description: 'etat — Requis, parmi waiting, in_progress, treated, classed.'
+                  example: waiting
                   enum:
                     - waiting
                     - in_progress
@@ -14606,13 +14608,13 @@ paths:
                     - classed
                 qr_token:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'qr token — Optionnel.'
+                  example: exemple
                   nullable: true
                 storage_location:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'storage location — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - etat
@@ -15586,7 +15588,7 @@ paths:
               properties:
                 channel:
                   type: string
-                  description: ''
+                  description: 'channel — Requis, parmi whatsapp, sms, email.'
                   example: whatsapp
                   enum:
                     - whatsapp
@@ -15594,7 +15596,7 @@ paths:
                     - email
                 type:
                   type: string
-                  description: ''
+                  description: 'type — Optionnel, parmi ticket, facture.'
                   example: ticket
                   enum:
                     - ticket
@@ -17278,8 +17280,8 @@ paths:
               properties:
                 action:
                   type: string
-                  description: ''
-                  example: handled
+                  description: 'action — Requis, parmi remind, storage_fee, escalate, handled.'
+                  example: remind
                   enum:
                     - remind
                     - storage_fee
@@ -17287,8 +17289,8 @@ paths:
                     - handled
                 amount:
                   type: integer
-                  description: 'This field is required when <code>action</code> is <code>storage_fee</code>. validation.min.'
-                  example: 22
+                  description: 'amount — Requis, nombre. This field is required when <code>action</code> is <code>storage_fee</code>. validation.min.'
+                  example: 1000
                   nullable: true
               required:
                 - action
@@ -17936,7 +17938,7 @@ paths:
               properties:
                 channel:
                   type: string
-                  description: ''
+                  description: 'channel — Requis, parmi sms, whatsapp.'
                   example: sms
                   enum:
                     - sms
@@ -20094,7 +20096,7 @@ paths:
               properties:
                 units:
                   type: array
-                  description: ''
+                  description: 'units — Optionnel, tableau.'
                   example: null
                   items:
                     type: object
@@ -20102,15 +20104,15 @@ paths:
                     properties:
                       id:
                         type: integer
-                        description: ''
-                        example: 16
+                        description: 'units * id — Requis, nombre.'
+                        example: 1
                       quantity:
                         type: integer
-                        description: validation.min.
-                        example: 39
+                        description: 'units * quantity — Requis, nombre. validation.min.'
+                        example: 1
                       verification:
                         type: string
-                        description: ''
+                        description: 'units * verification — Requis, parmi compliant, control_required.'
                         example: compliant
                         enum:
                           - compliant
@@ -20121,7 +20123,7 @@ paths:
                       - quantity
                 condition:
                   type: string
-                  description: ''
+                  description: 'condition — Optionnel, parmi compliant, client_reserve, anomaly.'
                   example: compliant
                   enum:
                     - compliant
@@ -20130,12 +20132,12 @@ paths:
                   nullable: true
                 remarks:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'remarks — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 receiver_type:
                   type: string
-                  description: ''
+                  description: 'receiver type — Optionnel, parmi client, third_party.'
                   example: client
                   enum:
                     - client
@@ -20143,12 +20145,12 @@ paths:
                   nullable: true
                 receiver_name:
                   type: string
-                  description: validation.max.
-                  example: z
+                  description: 'receiver name — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 identity_confirmed:
                   type: boolean
-                  description: ''
+                  description: 'identity confirmed — Optionnel, booléen.'
                   example: true
                 payment:
                   type: object
@@ -20157,13 +20159,13 @@ paths:
                   properties:
                     amount:
                       type: integer
-                      description: validation.min.
-                      example: 8
+                      description: 'payment amount — Optionnel, nombre. validation.min.'
+                      example: 1000
                       nullable: true
                     method:
                       type: string
-                      description: ''
-                      example: mobile_money
+                      description: 'payment method — Optionnel, parmi cash, card, mobile_money, wallet, other.'
+                      example: cash
                       enum:
                         - cash
                         - card
@@ -20173,18 +20175,18 @@ paths:
                       nullable: true
                     received:
                       type: integer
-                      description: validation.min.
-                      example: 60
+                      description: 'payment received — Optionnel, nombre. validation.min.'
+                      example: 1
                       nullable: true
                 override_reason:
                   type: string
-                  description: validation.max.
-                  example: d
+                  description: 'override reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 notify_sms:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'notify sms — Optionnel, booléen.'
+                  example: true
     parameters:
       -
         in: path
@@ -21866,6 +21868,111 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: 'fullname — Requis. This field is required when <code>last_name</code> is not present. validation.max.'
+                  example: 'Jean Dupont'
+                  nullable: true
+                last_name:
+                  type: string
+                  description: 'last name — Requis. This field is required when <code>fullname</code> is not present. validation.max.'
+                  example: exemple
+                  nullable: true
+                first_name:
+                  type: string
+                  description: 'first name — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                phone_number:
+                  type: string
+                  description: 'phone number — Requis. validation.max.'
+                  example: '690000001'
+                email:
+                  type: string
+                  description: 'email — Optionnel, e-mail. validation.email.'
+                  example: client@example.com
+                  nullable: true
+                address:
+                  type: string
+                  description: 'address — Optionnel.'
+                  example: exemple
+                  nullable: true
+                city:
+                  type: string
+                  description: 'city — Optionnel.'
+                  example: exemple
+                  nullable: true
+                password:
+                  type: string
+                  description: 'password — Optionnel. validation.min.'
+                  example: password
+                  nullable: true
+                sponsor_code:
+                  type: string
+                  description: 'sponsor code — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                phone_secondary:
+                  type: string
+                  description: 'phone secondary — Optionnel. validation.max.'
+                  example: '690000001'
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: 'agency id — Optionnel, id existant (agencies), nombre. Must match an existing stored value.'
+                  example: 1
+                  nullable: true
+                contact_preference:
+                  type: string
+                  description: 'contact preference — Optionnel.'
+                  example: exemple
+                  enum:
+                    - null
+                  nullable: true
+                loyalty_tier:
+                  type: string
+                  description: 'loyalty tier — Optionnel.'
+                  example: exemple
+                  enum:
+                    - null
+                  nullable: true
+                consent_sms:
+                  type: boolean
+                  description: 'consent sms — Optionnel, booléen.'
+                  example: true
+                consent_email:
+                  type: boolean
+                  description: 'consent email — Optionnel, booléen.'
+                  example: true
+                pickup_slot:
+                  type: string
+                  description: 'pickup slot — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                favorite_treatment:
+                  type: string
+                  description: 'favorite treatment — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                instructions:
+                  type: string
+                  description: 'instructions — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                note:
+                  type: string
+                  description: 'note — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+              required:
+                - phone_number
   '/api/v1/clients/{id}':
     get:
       summary: ''
@@ -22982,6 +23089,107 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Clients
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: 'fullname — Optionnel. validation.max.'
+                  example: 'Jean Dupont'
+                last_name:
+                  type: string
+                  description: 'last name — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                first_name:
+                  type: string
+                  description: 'first name — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                phone_number:
+                  type: string
+                  description: 'phone number — Optionnel. validation.max.'
+                  example: '690000001'
+                email:
+                  type: string
+                  description: 'email — Optionnel, e-mail. validation.email.'
+                  example: client@example.com
+                  nullable: true
+                address:
+                  type: string
+                  description: 'address — Optionnel.'
+                  example: exemple
+                  nullable: true
+                city:
+                  type: string
+                  description: 'city — Optionnel.'
+                  example: exemple
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+                password:
+                  type: string
+                  description: 'password — Optionnel. validation.min.'
+                  example: password
+                  nullable: true
+                phone_secondary:
+                  type: string
+                  description: 'phone secondary — Optionnel. validation.max.'
+                  example: '690000001'
+                  nullable: true
+                agency_id:
+                  type: integer
+                  description: 'agency id — Optionnel, id existant (agencies), nombre. Must match an existing stored value.'
+                  example: 1
+                  nullable: true
+                contact_preference:
+                  type: string
+                  description: 'contact preference — Optionnel.'
+                  example: exemple
+                  enum:
+                    - null
+                  nullable: true
+                loyalty_tier:
+                  type: string
+                  description: 'loyalty tier — Optionnel.'
+                  example: exemple
+                  enum:
+                    - null
+                  nullable: true
+                consent_sms:
+                  type: boolean
+                  description: 'consent sms — Optionnel, booléen.'
+                  example: true
+                consent_email:
+                  type: boolean
+                  description: 'consent email — Optionnel, booléen.'
+                  example: true
+                pickup_slot:
+                  type: string
+                  description: 'pickup slot — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                favorite_treatment:
+                  type: string
+                  description: 'favorite treatment — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                instructions:
+                  type: string
+                  description: 'instructions — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                note:
+                  type: string
+                  description: 'note — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
     delete:
       summary: ''
       operationId: deleteApiV1ClientsId
@@ -23067,7 +23275,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -23273,7 +23481,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -23493,7 +23701,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -23745,8 +23953,8 @@ paths:
               properties:
                 body:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'body — Requis. validation.max.'
+                  example: exemple
               required:
                 - body
     parameters:
@@ -23754,7 +23962,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -24029,7 +24237,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -24304,7 +24512,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -24514,9 +24722,9 @@ paths:
               type: object
               properties:
                 points:
-                  type: integer
-                  description: ''
-                  example: 16
+                  type: string
+                  description: 'points — Requis, nombre.'
+                  example: 1
               required:
                 - points
     parameters:
@@ -24524,7 +24732,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -24637,7 +24845,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -24735,7 +24943,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -24890,12 +25098,12 @@ paths:
               properties:
                 amount:
                   type: integer
-                  description: validation.min.
-                  example: 16
+                  description: 'amount — Requis, nombre. validation.min.'
+                  example: 1000
                 reason:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - amount
@@ -24904,7 +25112,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -25059,12 +25267,12 @@ paths:
               properties:
                 amount:
                   type: integer
-                  description: validation.min.
-                  example: 16
+                  description: 'amount — Requis, nombre. validation.min.'
+                  example: 1000
                 reason:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - amount
@@ -25073,7 +25281,7 @@ paths:
         in: path
         name: client_id
         description: 'The ID of the client.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -25383,7 +25591,7 @@ paths:
                 file:
                   type: string
                   format: binary
-                  description: 'Must be a file. validation.max.'
+                  description: 'file — Requis, fichier. Must be a file. validation.max.'
               required:
                 - file
   /api/v1/articles/history:
@@ -26460,6 +26668,200 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
+                description:
+                  type: string
+                  description: 'description — Optionnel.'
+                  example: exemple
+                  nullable: true
+                classic_price:
+                  type: integer
+                  description: 'classic price — Requis, nombre. validation.min.'
+                  example: 1000
+                express_price:
+                  type: integer
+                  description: 'express price — Requis, nombre. validation.min.'
+                  example: 1000
+                repass_price:
+                  type: integer
+                  description: 'repass price — Requis, nombre. validation.min.'
+                  example: 1000
+                classic_price_kilo:
+                  type: integer
+                  description: 'classic price kilo — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                express_price_kilo:
+                  type: integer
+                  description: 'express price kilo — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                repass_price_kilo:
+                  type: integer
+                  description: 'repass price kilo — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+                code:
+                  type: string
+                  description: 'code — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                category_id:
+                  type: integer
+                  description: 'category id — Optionnel, id existant (article_categories), nombre. Must match an existing stored value.'
+                  example: 1
+                  nullable: true
+                billing_mode:
+                  type: string
+                  description: 'billing mode — Optionnel.'
+                  example: exemple
+                  enum:
+                    - null
+                  nullable: true
+                icon:
+                  type: string
+                  description: 'icon — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                allow_discount:
+                  type: boolean
+                  description: 'allow discount — Optionnel, booléen.'
+                  example: true
+                round_to:
+                  type: integer
+                  description: 'round to — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                price_editable:
+                  type: boolean
+                  description: 'price editable — Optionnel, booléen.'
+                  example: true
+                classic_hours:
+                  type: integer
+                  description: 'classic hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                express_hours:
+                  type: integer
+                  description: 'express hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                repass_hours:
+                  type: integer
+                  description: 'repass hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                priority:
+                  type: string
+                  description: 'priority — Optionnel, parmi standard, high, delicate.'
+                  example: standard
+                  enum:
+                    - standard
+                    - high
+                    - delicate
+                  nullable: true
+                accepted_defects:
+                  type: array
+                  description: 'accepted defects * — Optionnel.'
+                  example:
+                    - exemple
+                  items:
+                    type: string
+                    enum:
+                      - null
+                compatible_renders:
+                  type: array
+                  description: 'compatible renders * — Optionnel, nombre.'
+                  example:
+                    - 1
+                  items:
+                    type: integer
+                services:
+                  type: array
+                  description: 'services * — Optionnel.'
+                  example:
+                    - exemple
+                  items:
+                    type: string
+                    enum:
+                      - null
+                kilo_tiers:
+                  type: array
+                  description: 'kilo tiers — Optionnel, tableau.'
+                  example: null
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      min_kg:
+                        type: number
+                        description: 'kilo tiers * min kg — Requis, nombre. validation.min.'
+                        example: 1.0
+                      max_kg:
+                        type: number
+                        description: 'kilo tiers * max kg — Optionnel, nombre.'
+                        example: 1.0
+                        nullable: true
+                      classic:
+                        type: integer
+                        description: 'kilo tiers * classic — Requis, nombre. validation.min.'
+                        example: 1
+                      express:
+                        type: integer
+                        description: 'kilo tiers * express — Optionnel, nombre. validation.min.'
+                        example: 1
+                        nullable: true
+                    required:
+                      - min_kg
+                      - classic
+                availability:
+                  type: array
+                  description: 'availability — Optionnel, tableau.'
+                  example: null
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      agency_id:
+                        type: integer
+                        description: 'availability * agency id — Requis, id existant (agencies), nombre. Must match an existing stored value.'
+                        example: 1
+                      available:
+                        type: boolean
+                        description: 'availability * available — Requis, booléen.'
+                        example: true
+                      price_adjust_percent:
+                        type: integer
+                        description: 'availability * price adjust percent — Optionnel, nombre. validation.min validation.max.'
+                        example: 1000
+                        nullable: true
+                      note:
+                        type: string
+                        description: 'availability * note — Optionnel. validation.max.'
+                        example: exemple
+                        nullable: true
+                    required:
+                      - agency_id
+                      - available
+              required:
+                - name
+                - classic_price
+                - express_price
+                - repass_price
   '/api/v1/articles/{id}':
     get:
       summary: ''
@@ -27590,6 +27992,195 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
+                description:
+                  type: string
+                  description: 'description — Optionnel.'
+                  example: exemple
+                  nullable: true
+                classic_price:
+                  type: integer
+                  description: 'classic price — Optionnel, nombre. validation.min.'
+                  example: 1000
+                express_price:
+                  type: integer
+                  description: 'express price — Optionnel, nombre. validation.min.'
+                  example: 1000
+                repass_price:
+                  type: integer
+                  description: 'repass price — Optionnel, nombre. validation.min.'
+                  example: 1000
+                classic_price_kilo:
+                  type: integer
+                  description: 'classic price kilo — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                express_price_kilo:
+                  type: integer
+                  description: 'express price kilo — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                repass_price_kilo:
+                  type: integer
+                  description: 'repass price kilo — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+                code:
+                  type: string
+                  description: 'code — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                category_id:
+                  type: integer
+                  description: 'category id — Optionnel, id existant (article_categories), nombre. Must match an existing stored value.'
+                  example: 1
+                  nullable: true
+                billing_mode:
+                  type: string
+                  description: 'billing mode — Optionnel.'
+                  example: exemple
+                  enum:
+                    - null
+                  nullable: true
+                icon:
+                  type: string
+                  description: 'icon — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                allow_discount:
+                  type: boolean
+                  description: 'allow discount — Optionnel, booléen.'
+                  example: true
+                round_to:
+                  type: integer
+                  description: 'round to — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                price_editable:
+                  type: boolean
+                  description: 'price editable — Optionnel, booléen.'
+                  example: true
+                classic_hours:
+                  type: integer
+                  description: 'classic hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                express_hours:
+                  type: integer
+                  description: 'express hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                repass_hours:
+                  type: integer
+                  description: 'repass hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                priority:
+                  type: string
+                  description: 'priority — Optionnel, parmi standard, high, delicate.'
+                  example: standard
+                  enum:
+                    - standard
+                    - high
+                    - delicate
+                  nullable: true
+                accepted_defects:
+                  type: array
+                  description: 'accepted defects * — Optionnel.'
+                  example:
+                    - exemple
+                  items:
+                    type: string
+                    enum:
+                      - null
+                compatible_renders:
+                  type: array
+                  description: 'compatible renders * — Optionnel, nombre.'
+                  example:
+                    - 1
+                  items:
+                    type: integer
+                services:
+                  type: array
+                  description: 'services * — Optionnel.'
+                  example:
+                    - exemple
+                  items:
+                    type: string
+                    enum:
+                      - null
+                kilo_tiers:
+                  type: array
+                  description: 'kilo tiers — Optionnel, tableau.'
+                  example: null
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      min_kg:
+                        type: number
+                        description: 'kilo tiers * min kg — Requis, nombre. validation.min.'
+                        example: 1.0
+                      max_kg:
+                        type: number
+                        description: 'kilo tiers * max kg — Optionnel, nombre.'
+                        example: 1.0
+                        nullable: true
+                      classic:
+                        type: integer
+                        description: 'kilo tiers * classic — Requis, nombre. validation.min.'
+                        example: 1
+                      express:
+                        type: integer
+                        description: 'kilo tiers * express — Optionnel, nombre. validation.min.'
+                        example: 1
+                        nullable: true
+                    required:
+                      - min_kg
+                      - classic
+                availability:
+                  type: array
+                  description: 'availability — Optionnel, tableau.'
+                  example: null
+                  items:
+                    type: object
+                    nullable: true
+                    properties:
+                      agency_id:
+                        type: integer
+                        description: 'availability * agency id — Requis, id existant (agencies), nombre. Must match an existing stored value.'
+                        example: 1
+                      available:
+                        type: boolean
+                        description: 'availability * available — Requis, booléen.'
+                        example: true
+                      price_adjust_percent:
+                        type: integer
+                        description: 'availability * price adjust percent — Optionnel, nombre. validation.min validation.max.'
+                        example: 1000
+                        nullable: true
+                      note:
+                        type: string
+                        description: 'availability * note — Optionnel. validation.max.'
+                        example: exemple
+                        nullable: true
+                    required:
+                      - agency_id
+                      - available
     delete:
       summary: ''
       operationId: deleteApiV1ArticlesId
@@ -27675,7 +28266,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the article.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -27945,6 +28536,31 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
+                icon:
+                  type: string
+                  description: 'icon — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                shared:
+                  type: boolean
+                  description: 'shared — Optionnel, booléen.'
+                  example: true
+                sort_order:
+                  type: integer
+                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
   '/api/v1/article-categories/{articleCategory_id}':
     put:
       summary: ''
@@ -28095,6 +28711,31 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
+                icon:
+                  type: string
+                  description: 'icon — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                shared:
+                  type: boolean
+                  description: 'shared — Optionnel, booléen.'
+                  example: true
+                sort_order:
+                  type: integer
+                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
     delete:
       summary: ''
       operationId: deleteApiV1ArticleCategoriesArticleCategory_id
@@ -28486,36 +29127,36 @@ paths:
               properties:
                 agency_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'agency id — Requis, id existant (agencies). Must match an existing stored value.'
+                  example: 1
                 article_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'article id — Requis, id existant (articles). Must match an existing stored value.'
+                  example: 1
                 service_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'service id — Requis, id existant (services). Must match an existing stored value.'
+                  example: 1
                 pricing_type:
                   type: string
-                  description: ''
-                  example: kilo
+                  description: 'pricing type — Optionnel, parmi piece, kilo.'
+                  example: piece
                   enum:
                     - piece
                     - kilo
                   nullable: true
                 amount_minor:
                   type: integer
-                  description: validation.min.
-                  example: 84
+                  description: 'amount minor — Requis, nombre. validation.min.'
+                  example: 1000
                 valid_from:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'valid from — Requis, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                 valid_to:
                   type: string
-                  description: 'validation.date validation.after_or_equal.'
-                  example: '2052-11-14'
+                  description: 'valid to — Optionnel, date ISO 8601. validation.date validation.after_or_equal.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
               required:
                 - agency_id
@@ -28746,7 +29387,7 @@ paths:
                 at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  example: '2026-11-06T04:15:04'
                   nullable: true
               required:
                 - agency_id
@@ -29093,6 +29734,30 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title — Requis. validation.max.'
+                  example: exemple
+                description:
+                  type: string
+                  description: 'description — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+                sort_order:
+                  type: integer
+                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  example: 1
   /api/v1/laundry-statuses/preview:
     get:
       summary: 'Vérifications du formulaire « Ajouter un état du linge » (`title`, `ignore_id`).'
@@ -29385,6 +30050,30 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title — Requis. validation.max.'
+                  example: exemple
+                description:
+                  type: string
+                  description: 'description — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+                sort_order:
+                  type: integer
+                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  example: 1
     delete:
       summary: 'Suppression possible uniquement si l’état n’a jamais été utilisé.'
       operationId: suppressionPossibleUniquementSiLtatNaJamaistUtilis
@@ -29720,6 +30409,21 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title — Requis. validation.max.'
+                  example: exemple
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
   '/api/v1/renders/{id}':
     put:
       summary: ''
@@ -29854,6 +30558,21 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title — Requis. validation.max.'
+                  example: exemple
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1RendersId
@@ -30746,6 +31465,84 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'code — Requis. validation.max.'
+                  example: exemple
+                name:
+                  type: string
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
+                  nullable: true
+                type:
+                  type: string
+                  description: 'type — Optionnel, parmi percent, amount.'
+                  example: percent
+                  enum:
+                    - percent
+                    - amount
+                rate_percent:
+                  type: integer
+                  description: 'rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max.'
+                  example: 1
+                  nullable: true
+                amount:
+                  type: integer
+                  description: 'amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min.'
+                  example: 1000
+                  nullable: true
+                starts_at:
+                  type: string
+                  description: 'starts at — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
+                  nullable: true
+                ends_at:
+                  type: string
+                  description: 'ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal.'
+                  example: '2026-11-06T10:00:00+00:00'
+                  nullable: true
+                quota:
+                  type: integer
+                  description: 'quota — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                per_client_limit:
+                  type: integer
+                  description: 'per client limit — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                agency_ids:
+                  type: array
+                  description: 'agency ids * — Optionnel, id existant (agencies), nombre. Must match an existing stored value.'
+                  example:
+                    - 1
+                  items:
+                    type: integer
+                min_amount:
+                  type: integer
+                  description: 'min amount — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                max_discount:
+                  type: integer
+                  description: 'max discount — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                stack_with_loyalty:
+                  type: boolean
+                  description: 'stack with loyalty — Optionnel, booléen.'
+                  example: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
   '/api/v1/promos/{id}':
     put:
       summary: ''
@@ -30884,6 +31681,84 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'code — Requis. validation.max.'
+                  example: exemple
+                name:
+                  type: string
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
+                  nullable: true
+                type:
+                  type: string
+                  description: 'type — Optionnel, parmi percent, amount.'
+                  example: percent
+                  enum:
+                    - percent
+                    - amount
+                rate_percent:
+                  type: integer
+                  description: 'rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max.'
+                  example: 1
+                  nullable: true
+                amount:
+                  type: integer
+                  description: 'amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min.'
+                  example: 1000
+                  nullable: true
+                starts_at:
+                  type: string
+                  description: 'starts at — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
+                  nullable: true
+                ends_at:
+                  type: string
+                  description: 'ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal.'
+                  example: '2026-11-06T10:00:00+00:00'
+                  nullable: true
+                quota:
+                  type: integer
+                  description: 'quota — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                per_client_limit:
+                  type: integer
+                  description: 'per client limit — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                agency_ids:
+                  type: array
+                  description: 'agency ids * — Optionnel, id existant (agencies), nombre. Must match an existing stored value.'
+                  example:
+                    - 1
+                  items:
+                    type: integer
+                min_amount:
+                  type: integer
+                  description: 'min amount — Optionnel, nombre. validation.min.'
+                  example: 1000
+                  nullable: true
+                max_discount:
+                  type: integer
+                  description: 'max discount — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                stack_with_loyalty:
+                  type: boolean
+                  description: 'stack with loyalty — Optionnel, booléen.'
+                  example: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1PromosId
@@ -31228,6 +32103,35 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'code — Requis. validation.max.'
+                  example: exemple
+                rate_percent:
+                  type: integer
+                  description: 'rate percent — Requis, nombre. validation.min validation.max.'
+                  example: 1
+                max_clients:
+                  type: integer
+                  description: 'max clients — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                ends_at:
+                  type: string
+                  description: 'ends at — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
   '/api/v1/promo-specials/{id}':
     put:
       summary: ''
@@ -31366,6 +32270,35 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'code — Requis. validation.max.'
+                  example: exemple
+                rate_percent:
+                  type: integer
+                  description: 'rate percent — Requis, nombre. validation.min validation.max.'
+                  example: 1
+                max_clients:
+                  type: integer
+                  description: 'max clients — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                ends_at:
+                  type: string
+                  description: 'ends at — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1PromoSpecialsId
@@ -31710,6 +32643,29 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lavage_hour:
+                  type: integer
+                  description: 'lavage hour — Optionnel, nombre. validation.min.'
+                  example: 1
+                express_hour:
+                  type: integer
+                  description: 'express hour — Optionnel, nombre. validation.min.'
+                  example: 1
+                repassage_hour:
+                  type: integer
+                  description: 'repassage hour — Optionnel, nombre. validation.min.'
+                  example: 1
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
   '/api/v1/delivery-hours/{id}':
     put:
       summary: ''
@@ -31848,6 +32804,29 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                lavage_hour:
+                  type: integer
+                  description: 'lavage hour — Optionnel, nombre. validation.min.'
+                  example: 1
+                express_hour:
+                  type: integer
+                  description: 'express hour — Optionnel, nombre. validation.min.'
+                  example: 1
+                repassage_hour:
+                  type: integer
+                  description: 'repassage hour — Optionnel, nombre. validation.min.'
+                  example: 1
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1DeliveryHoursId
@@ -32168,7 +33147,7 @@ paths:
                 received_at:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  example: '2026-11-06T04:15:04'
                   nullable: true
     post:
       summary: ''
@@ -33095,6 +34074,25 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title — Requis. validation.max.'
+                  example: exemple
+                agency_id:
+                  type: integer
+                  description: 'agency id — Requis, nombre.'
+                  example: 1
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
   /api/v1/code-suffixes/preview:
     get:
       summary: '« Aperçu du code » et « Vérifications » avant enregistrement (`agency_id`, `suffix`).'
@@ -33389,6 +34387,25 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'title — Requis. validation.max.'
+                  example: exemple
+                agency_id:
+                  type: integer
+                  description: 'agency id — Requis, nombre.'
+                  example: 1
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: '« Supprimer le suffixe » : les futurs dépôts utiliseront le préfixe seul ; les codes existants ne changent pas.'
       operationId: SupprimerLeSuffixeLesFutursDptsUtiliserontLePrfixeSeulLesCodesExistantsNeChangentPas
@@ -33783,12 +34800,12 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
                 rate_percent:
                   type: integer
-                  description: 'validation.min validation.max.'
-                  example: 22
+                  description: 'rate percent — Requis, nombre. validation.min validation.max.'
+                  example: 1
               required:
                 - name
                 - rate_percent
@@ -33930,6 +34947,25 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Catalogue
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
+                rate_percent:
+                  type: integer
+                  description: 'rate percent — Optionnel, nombre. validation.min validation.max.'
+                  example: 1
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1LoyalGroupsLoyalGroup_id
@@ -34364,8 +35400,8 @@ paths:
               properties:
                 client_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'client id — Requis, id existant (clients). Must match an existing stored value.'
+                  example: 1
               required:
                 - client_id
     delete:
@@ -34457,8 +35493,8 @@ paths:
               properties:
                 client_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'client id — Requis, id existant (clients). Must match an existing stored value.'
+                  example: 1
               required:
                 - client_id
     parameters:
@@ -34788,41 +35824,41 @@ paths:
               properties:
                 client_uuid:
                   type: string
-                  description: validation.uuid.
-                  example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
+                  example: 550e8400-e29b-41d4-a716-446655440000
                   nullable: true
                 label:
                   type: string
-                  description: validation.max.
-                  example: g
+                  description: 'label — Requis. validation.max.'
+                  example: Exemple
                 type:
                   type: string
-                  description: ''
-                  example: out
+                  description: 'type — Requis, parmi in, out.'
+                  example: in
                   enum:
                     - in
                     - out
                 amount:
                   type: integer
-                  description: validation.min.
-                  example: 27
+                  description: 'amount — Requis, nombre. validation.min.'
+                  example: 1000
                 category_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'category id — Optionnel, id existant (cash_movement_categories). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 action_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'action date — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 validated:
                   type: boolean
-                  description: ''
+                  description: 'validated — Optionnel, booléen.'
                   example: true
                 payment_method:
                   type: string
-                  description: ''
+                  description: 'payment method — Optionnel, parmi cash, mobile_money, card, other.'
                   example: cash
                   enum:
                     - cash
@@ -34832,23 +35868,23 @@ paths:
                   nullable: true
                 beneficiary:
                   type: string
-                  description: validation.max.
-                  example: v
+                  description: 'beneficiary — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 reference:
                   type: string
-                  description: validation.max.
-                  example: d
+                  description: 'reference — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 comment:
                   type: string
-                  description: validation.max.
-                  example: l
+                  description: 'comment — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 proof:
                   type: string
                   format: binary
-                  description: 'Must be a file. validation.max.'
+                  description: 'proof — Optionnel, fichier. Must be a file. validation.max.'
                   nullable: true
               required:
                 - label
@@ -35451,28 +36487,28 @@ paths:
               properties:
                 label:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'label — Optionnel. validation.max.'
+                  example: Exemple
                 type:
                   type: string
-                  description: ''
-                  example: out
+                  description: 'type — Optionnel, parmi in, out.'
+                  example: in
                   enum:
                     - in
                     - out
                 amount:
                   type: integer
-                  description: validation.min.
-                  example: 67
+                  description: 'amount — Optionnel, nombre. validation.min.'
+                  example: 1000
                 category_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'category id — Optionnel, id existant (cash_movement_categories). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 action_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'action date — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
     delete:
       summary: ''
@@ -36258,7 +37294,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  example: '2026-11-06T04:15:04'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -36479,7 +37515,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  example: '2026-11-06T04:15:04'
                   nullable: true
                 period:
                   type: string
@@ -36820,8 +37856,8 @@ paths:
               properties:
                 opening_balance:
                   type: integer
-                  description: validation.min.
-                  example: 27
+                  description: 'opening balance — Requis, nombre. validation.min.'
+                  example: 1
               required:
                 - opening_balance
   '/api/v1/cash/sessions/{cashSession_id}/closing':
@@ -37765,29 +38801,29 @@ paths:
               properties:
                 counted:
                   type: object
-                  description: ''
+                  description: 'counted — Requis, tableau.'
                   example: []
                   properties:
                     cash:
                       type: integer
-                      description: validation.min.
-                      example: 27
+                      description: 'counted cash — Requis, nombre. validation.min.'
+                      example: 1
                     mobile_money:
                       type: integer
-                      description: validation.min.
-                      example: 39
+                      description: 'counted mobile money — Optionnel, nombre. validation.min.'
+                      example: 1
                       nullable: true
                     card:
                       type: integer
-                      description: validation.min.
-                      example: 84
+                      description: 'counted card — Optionnel, nombre. validation.min.'
+                      example: 1
                       nullable: true
                   required:
                     - cash
                 difference_reason:
                   type: string
-                  description: validation.max.
-                  example: z
+                  description: 'difference reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - counted
@@ -39140,12 +40176,12 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
                 direction:
                   type: string
-                  description: ''
-                  example: out
+                  description: 'direction — Requis, parmi in, out.'
+                  example: in
                   enum:
                     - in
                     - out
@@ -41618,12 +42654,12 @@ paths:
                 date_from:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  example: '2026-11-06T04:15:04'
                   nullable: true
                 date_to:
                   type: string
                   description: 'validation.date validation.after_or_equal.'
-                  example: '2052-11-14'
+                  example: '2052-11-29'
                   nullable: true
                 preset:
                   type: string
@@ -42024,7 +43060,7 @@ paths:
                 date:
                   type: string
                   description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  example: '2026-11-06T04:15:04'
                   nullable: true
                 agency_id:
                   type: integer
@@ -42346,14 +43382,14 @@ paths:
               properties:
                 report:
                   type: string
-                  description: ''
-                  example: daily
+                  description: 'report — Requis, parmi overview, daily.'
+                  example: overview
                   enum:
                     - overview
                     - daily
                 frequency:
                   type: string
-                  description: ''
+                  description: 'frequency — Requis, parmi daily, weekly, monthly.'
                   example: daily
                   enum:
                     - daily
@@ -42361,7 +43397,7 @@ paths:
                     - monthly
                 format:
                   type: string
-                  description: ''
+                  description: 'format — Optionnel, parmi csv, pdf.'
                   example: csv
                   enum:
                     - csv
@@ -42369,15 +43405,15 @@ paths:
                   nullable: true
                 recipients:
                   type: array
-                  description: validation.email.
+                  description: 'recipients * — Optionnel, e-mail. validation.email.'
                   example:
-                    - rowan.gulgowski@example.com
+                    - client@example.com
                   items:
                     type: string
                 agency_id:
                   type: integer
-                  description: 'Must match an existing stored value.'
-                  example: 16
+                  description: 'agency id — Optionnel, id existant (agencies), nombre. Must match an existing stored value.'
+                  example: 1
                   nullable: true
               required:
                 - report
@@ -43468,7 +44504,7 @@ paths:
         in: path
         name: agency_id
         description: 'The ID of the agency.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -43802,9 +44838,9 @@ paths:
               properties:
                 permissions:
                   type: array
-                  description: 'Must match an existing stored value.'
+                  description: 'permissions * — Optionnel, id existant (permissions). Must match an existing stored value.'
                   example:
-                    - architecto
+                    - exemple
                   items:
                     type: string
     parameters:
@@ -43812,7 +44848,7 @@ paths:
         in: path
         name: role_id
         description: 'The ID of the role.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -44045,18 +45081,19 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'fullname — Requis. validation.max.'
+                  example: 'Jean Dupont'
                 password:
                   type: string
-                  description: 'Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
-                  example: ']|{+-0pBNvYg'
+                  description: 'password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  example: password
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: h
+                  description: 'phone number — Optionnel. validation.max.'
+                  example: '690000001'
                   nullable: true
               required:
+                - fullname
                 - password
     parameters:
       -
@@ -44402,16 +45439,16 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
                 details:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'details — Optionnel.'
+                  example: exemple
                   nullable: true
                 pricing_mode:
                   type: string
-                  description: ''
+                  description: 'pricing mode — Optionnel, parmi piece, kilo, mixed.'
                   example: piece
                   enum:
                     - piece
@@ -44419,66 +45456,66 @@ paths:
                     - mixed
                 workflow_laveur_enabled:
                   type: boolean
-                  description: ''
+                  description: 'workflow laveur enabled — Optionnel, booléen.'
                   example: true
                 workflow_classeur_enabled:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'workflow classeur enabled — Optionnel, booléen.'
+                  example: true
                 qr_labels_enabled:
                   type: boolean
-                  description: ''
+                  description: 'qr labels enabled — Optionnel, booléen.'
                   example: true
                 block_retrieve_if_unpaid:
                   type: boolean
-                  description: ''
+                  description: 'block retrieve if unpaid — Optionnel, booléen.'
                   example: true
                 loyalty_points_rate:
                   type: integer
-                  description: validation.min.
-                  example: 76
+                  description: 'loyalty points rate — Optionnel, nombre. validation.min.'
+                  example: 1
                 loyalty_redeem_threshold:
                   type: integer
-                  description: validation.min.
-                  example: 16
+                  description: 'loyalty redeem threshold — Optionnel, nombre. validation.min.'
+                  example: 1
                 loyalty_redeem_value:
                   type: integer
-                  description: validation.min.
-                  example: 42
+                  description: 'loyalty redeem value — Optionnel, nombre. validation.min.'
+                  example: 1
                 hours_classic:
                   type: integer
-                  description: validation.min.
-                  example: 40
+                  description: 'hours classic — Optionnel, nombre. validation.min.'
+                  example: 1
                 hours_express:
                   type: integer
-                  description: validation.min.
-                  example: 4
+                  description: 'hours express — Optionnel, nombre. validation.min.'
+                  example: 1
                 hours_repass:
                   type: integer
-                  description: validation.min.
-                  example: 2
+                  description: 'hours repass — Optionnel, nombre. validation.min.'
+                  example: 1
                 collection_fee:
                   type: integer
-                  description: validation.min.
-                  example: 8
+                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                 delivery_fee:
                   type: integer
-                  description: validation.min.
-                  example: 75
+                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                 reporting_currency:
                   type: string
-                  description: validation.size.
-                  example: hwa
+                  description: 'reporting currency — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 primary_color:
                   type: string
-                  description: validation.max.
-                  example: ykcmyuwpwlvqwrsi
+                  description: 'primary color — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 secondary_color:
                   type: string
-                  description: validation.max.
-                  example: tcpscqldzsnrwtuj
+                  description: 'secondary color — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
   '/api/v1/settings/agencies/{id}':
     put:
@@ -44651,58 +45688,58 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
                 address:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'address — Optionnel.'
+                  example: exemple
                   nullable: true
                 contact:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'contact — Optionnel.'
+                  example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: validation.size.
-                  example: ngz
+                  description: 'currency — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: validation.max.
-                  example: miyvdljn
+                  description: 'code prefix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: validation.max.
-                  example: ikhwaykc
+                  description: 'code suffix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 opens_at:
                   type: string
-                  description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '22:01'
+                  description: 'opens at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 closes_at:
                   type: string
-                  description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '22:01'
+                  description: 'closes at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
-                  description: validation.min.
-                  example: 38
+                  description: 'monthly revenue target — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the agency.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -45056,20 +46093,20 @@ paths:
               properties:
                 source_currency:
                   type: string
-                  description: validation.size.
-                  example: bng
+                  description: 'source currency — Requis. validation.size.'
+                  example: exemple
                 target_currency:
                   type: string
-                  description: 'The value and <code>source_currency</code> must be different. validation.size.'
-                  example: zmi
+                  description: 'target currency — Requis. The value and <code>source_currency</code> must be different. validation.size.'
+                  example: exemple
                 rate:
                   type: number
-                  description: ''
-                  example: 4326.41688
+                  description: 'rate — Requis, nombre.'
+                  example: 1.0
                 rate_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'rate date — Requis, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
               required:
                 - source_currency
                 - target_currency
@@ -45617,52 +46654,52 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
                 address:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'address — Optionnel.'
+                  example: exemple
                   nullable: true
                 contact:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'contact — Optionnel.'
+                  example: exemple
                   nullable: true
                 country_code:
                   type: string
-                  description: validation.size.
-                  example: ng
+                  description: 'country code — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: validation.size.
-                  example: zmi
+                  description: 'currency — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: validation.max.
-                  example: yvdljnik
+                  description: 'code prefix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: validation.max.
-                  example: hwaykcmy
+                  description: 'code suffix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 opens_at:
                   type: string
-                  description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '22:01'
+                  description: 'opens at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 closes_at:
                   type: string
-                  description: 'Must be a valid date in the format <code>H:i</code>.'
-                  example: '22:01'
+                  description: 'closes at — Optionnel, date ISO 8601. Must be a valid date in the format <code>H:i</code>.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 monthly_revenue_target:
                   type: integer
-                  description: validation.min.
-                  example: 72
+                  description: 'monthly revenue target — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
               required:
                 - name
@@ -45977,24 +47014,31 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'fullname — Requis. validation.max.'
+                  example: 'Jean Dupont'
                 email:
                   type: string
-                  description: validation.email.
-                  example: zbailey@example.net
+                  description: 'email — Requis, e-mail. validation.email.'
+                  example: client@example.com
                 password:
                   type: string
-                  description: validation.min.
-                  example: '-0pBNvYgxw'
+                  description: 'password — Requis. validation.min.'
+                  example: password
                 agency_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'agency id — Requis, id existant (agencies). Must match an existing stored value.'
+                  example: 1
                 role:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'role — Requis, parmi admin, manager, caissier, laveur, classeur, livreur.'
+                  example: admin
+                  enum:
+                    - admin
+                    - manager
+                    - caissier
+                    - laveur
+                    - classeur
+                    - livreur
               required:
                 - fullname
                 - email
@@ -46169,28 +47213,35 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'fullname — Optionnel. validation.max.'
+                  example: 'Jean Dupont'
                 email:
                   type: string
-                  description: validation.email.
-                  example: zbailey@example.net
+                  description: 'email — Optionnel, e-mail. validation.email.'
+                  example: client@example.com
                 password:
                   type: string
-                  description: validation.min.
-                  example: '-0pBNvYgxw'
+                  description: 'password — Optionnel. validation.min.'
+                  example: password
                   nullable: true
                 agency_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'agency id — Optionnel, id existant (agencies). Must match an existing stored value.'
+                  example: 1
                 role:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'role — Optionnel, parmi admin, manager, caissier, laveur, classeur, livreur.'
+                  example: admin
+                  enum:
+                    - admin
+                    - manager
+                    - caissier
+                    - laveur
+                    - classeur
+                    - livreur
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
     delete:
       summary: ''
@@ -46277,7 +47328,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -46934,66 +47985,66 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'fullname — Optionnel. validation.max.'
+                  example: 'Jean Dupont'
                 first_name:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'first name — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 last_name:
                   type: string
-                  description: validation.max.
-                  example: g
+                  description: 'last name — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 job_title:
                   type: string
-                  description: validation.max.
-                  example: z
+                  description: 'job title — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 employee_number:
                   type: string
-                  description: validation.max.
-                  example: m
+                  description: 'employee number — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: i
+                  description: 'phone number — Optionnel. validation.max.'
+                  example: '690000001'
                   nullable: true
                 email:
                   type: string
-                  description: 'validation.email validation.max.'
-                  example: okon.justina@example.com
+                  description: 'email — Optionnel, e-mail. validation.email validation.max.'
+                  example: client@example.com
                 role:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'role — Optionnel.'
+                  example: exemple
                 agency_id:
                   type: integer
-                  description: ''
-                  example: 16
+                  description: 'agency id — Optionnel, nombre.'
+                  example: 1
                 agency_ids:
                   type: array
-                  description: ''
+                  description: 'agency ids * — Optionnel, nombre.'
                   example:
-                    - 16
+                    - 1
                   items:
                     type: integer
                 mfa_required:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'mfa required — Optionnel, booléen.'
+                  example: true
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -47161,7 +48212,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -47329,7 +48380,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -47452,7 +48503,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -47542,7 +48593,7 @@ paths:
         in: path
         name: user_id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -47854,28 +48905,28 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'validation.email validation.max.'
-                  example: gbailey@example.net
+                  description: 'email — Requis, e-mail. validation.email validation.max.'
+                  example: client@example.com
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: m
+                  description: 'fullname — Optionnel. validation.max.'
+                  example: 'Jean Dupont'
                   nullable: true
                 role:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'role — Requis.'
+                  example: exemple
                 agency_ids:
                   type: array
-                  description: ''
+                  description: 'agency ids * — Optionnel, nombre.'
                   example:
-                    - 16
+                    - 1
                   items:
                     type: integer
                 require_mfa:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'require mfa — Optionnel, booléen.'
+                  example: true
                   nullable: true
               required:
                 - email
@@ -48427,8 +49478,8 @@ paths:
               properties:
                 code:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'code — Requis.'
+                  example: exemple
               required:
                 - code
   /api/v1/team/mfa/disable:
@@ -48570,12 +49621,12 @@ paths:
               properties:
                 password:
                   type: string
-                  description: ''
-                  example: '|]|{+-'
+                  description: 'password — Requis.'
+                  example: password
                 code:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'code — Optionnel.'
+                  example: exemple
                   nullable: true
               required:
                 - password
@@ -48902,39 +49953,42 @@ paths:
               properties:
                 label:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'label — Requis. validation.max.'
+                  example: Exemple
                 description:
                   type: string
-                  description: validation.max.
-                  example: 'Et animi quos velit et fugiat.'
+                  description: 'description — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 scope:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'scope — Requis, parmi assigned, all.'
+                  example: assigned
+                  enum:
+                    - assigned
+                    - all
                 data_level:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'data level — Requis.'
+                  example: exemple
                 agency_ids:
                   type: array
-                  description: ''
+                  description: 'agency ids * — Optionnel, nombre.'
                   example:
-                    - 16
+                    - 1
                   items:
                     type: integer
                 permissions:
                   type: array
-                  description: ''
+                  description: 'permissions * — Optionnel.'
                   example:
-                    - architecto
+                    - exemple
                   items:
                     type: string
                 confirm_sensitive:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'confirm sensitive — Optionnel, booléen.'
+                  example: true
                   nullable: true
               required:
                 - label
@@ -49328,50 +50382,56 @@ paths:
               properties:
                 label:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'label — Optionnel. validation.max.'
+                  example: Exemple
                 description:
                   type: string
-                  description: validation.max.
-                  example: 'Et animi quos velit et fugiat.'
+                  description: 'description — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 scope:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'scope — Optionnel, parmi assigned, all.'
+                  example: assigned
+                  enum:
+                    - assigned
+                    - all
                 data_level:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'data level — Optionnel.'
+                  example: exemple
                 agency_ids:
                   type: array
-                  description: ''
+                  description: 'agency ids * — Optionnel, nombre.'
                   example:
-                    - 16
+                    - 1
                   items:
                     type: integer
                 status:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'status — Optionnel, parmi active, inactive.'
+                  example: active
+                  enum:
+                    - active
+                    - inactive
                 permissions:
                   type: array
-                  description: ''
+                  description: 'permissions * — Optionnel.'
                   example:
-                    - architecto
+                    - exemple
                   items:
                     type: string
                 confirm_sensitive:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'confirm sensitive — Optionnel, booléen.'
+                  example: true
                   nullable: true
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the role.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -53234,43 +54294,43 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'fullname — Optionnel. validation.max.'
+                  example: 'Jean Dupont'
                 phone_number:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'phone number — Optionnel. validation.max.'
+                  example: '690000001'
                 email:
                   type: string
-                  description: 'validation.email validation.max.'
-                  example: ashly64@example.com
+                  description: 'email — Optionnel, e-mail. validation.email validation.max.'
+                  example: client@example.com
                   nullable: true
                 address:
                   type: string
-                  description: validation.max.
-                  example: v
+                  description: 'address — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 agency_id:
                   type: integer
-                  description: ''
-                  example: 16
+                  description: 'agency id — Optionnel, nombre.'
+                  example: 1
                 communication:
                   type: object
-                  description: ''
+                  description: 'communication — Optionnel, tableau.'
                   example: null
                   properties:
                     sms:
                       type: boolean
-                      description: ''
-                      example: false
+                      description: 'communication sms — Optionnel, booléen.'
+                      example: true
                     email:
                       type: boolean
-                      description: ''
+                      description: 'communication email — Optionnel, booléen.'
                       example: true
                     personalized_offers:
                       type: boolean
-                      description: ''
-                      example: false
+                      description: 'communication personalized offers — Optionnel, booléen.'
+                      example: true
   /api/v1/client/app/password:
     put:
       summary: '« Changer le mot de passe » : 8 caractères minimum, une majuscule et un chiffre.'
@@ -53406,12 +54466,12 @@ paths:
               properties:
                 current_password:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'current password — Requis.'
+                  example: password
                 password:
                   type: string
-                  description: 'Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
-                  example: ']|{+-0pBNvYg'
+                  description: 'password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  example: password
               required:
                 - current_password
                 - password
@@ -53769,8 +54829,8 @@ paths:
               properties:
                 password:
                   type: string
-                  description: ''
-                  example: '|]|{+-'
+                  description: 'password — Requis.'
+                  example: password
               required:
                 - password
   /api/v1/superadmin/overview:
@@ -54306,16 +55366,16 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
                 details:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'details — Optionnel.'
+                  example: exemple
                   nullable: true
                 pricing_mode:
                   type: string
-                  description: ''
+                  description: 'pricing mode — Optionnel, parmi piece, kilo, mixed.'
                   example: piece
                   enum:
                     - piece
@@ -54324,15 +55384,15 @@ paths:
                   nullable: true
                 workflow_laveur_enabled:
                   type: boolean
-                  description: ''
+                  description: 'workflow laveur enabled — Optionnel, booléen.'
                   example: true
                 workflow_classeur_enabled:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'workflow classeur enabled — Optionnel, booléen.'
+                  example: true
                 block_retrieve_if_unpaid:
                   type: boolean
-                  description: ''
+                  description: 'block retrieve if unpaid — Optionnel, booléen.'
                   example: true
               required:
                 - name
@@ -54671,20 +55731,20 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
                 details:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'details — Optionnel.'
+                  example: exemple
                   nullable: true
                 status:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'status — Optionnel, booléen.'
+                  example: true
                 pricing_mode:
                   type: string
-                  description: ''
+                  description: 'pricing mode — Optionnel, parmi piece, kilo, mixed.'
                   example: piece
                   enum:
                     - piece
@@ -54692,32 +55752,32 @@ paths:
                     - mixed
                 workflow_laveur_enabled:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'workflow laveur enabled — Optionnel, booléen.'
+                  example: true
                 workflow_classeur_enabled:
                   type: boolean
-                  description: ''
+                  description: 'workflow classeur enabled — Optionnel, booléen.'
                   example: true
                 block_retrieve_if_unpaid:
                   type: boolean
-                  description: ''
+                  description: 'block retrieve if unpaid — Optionnel, booléen.'
                   example: true
                 loyalty_points_rate:
                   type: integer
-                  description: validation.min.
-                  example: 76
+                  description: 'loyalty points rate — Optionnel, nombre. validation.min.'
+                  example: 1
                 hours_classic:
                   type: integer
-                  description: validation.min.
-                  example: 16
+                  description: 'hours classic — Optionnel, nombre. validation.min.'
+                  example: 1
                 hours_express:
                   type: integer
-                  description: validation.min.
-                  example: 26
+                  description: 'hours express — Optionnel, nombre. validation.min.'
+                  example: 1
                 hours_repass:
                   type: integer
-                  description: validation.min.
-                  example: 40
+                  description: 'hours repass — Optionnel, nombre. validation.min.'
+                  example: 1
     delete:
       summary: ''
       operationId: deleteApiV1SuperadminPressingsId
@@ -54803,7 +55863,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the pressing.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -55125,41 +56185,41 @@ paths:
               properties:
                 pressing_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'pressing id — Requis, id existant (pressings). Must match an existing stored value.'
+                  example: 1
                 name:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
                 address:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'address — Optionnel.'
+                  example: exemple
                   nullable: true
                 contact:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'contact — Optionnel.'
+                  example: exemple
                   nullable: true
                 country_code:
                   type: string
-                  description: validation.size.
-                  example: ng
+                  description: 'country code — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: validation.size.
-                  example: zmi
+                  description: 'currency — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: validation.max.
-                  example: yvdljnik
+                  description: 'code prefix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: validation.max.
-                  example: hwaykcmy
+                  description: 'code suffix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - pressing_id
@@ -55451,41 +56511,41 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
                 address:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'address — Optionnel.'
+                  example: exemple
                   nullable: true
                 contact:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'contact — Optionnel.'
+                  example: exemple
                   nullable: true
                 country_code:
                   type: string
-                  description: validation.size.
-                  example: ng
+                  description: 'country code — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: validation.size.
-                  example: zmi
+                  description: 'currency — Optionnel. validation.size.'
+                  example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: validation.max.
-                  example: yvdljnik
+                  description: 'code prefix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: validation.max.
-                  example: hwaykcmy
+                  description: 'code suffix — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
     delete:
       summary: ''
@@ -55608,7 +56668,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the agency.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -55914,6 +56974,55 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Superadmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: 'fullname — Requis. validation.max.'
+                  example: 'Jean Dupont'
+                email:
+                  type: string
+                  description: 'email — Requis, e-mail. validation.email.'
+                  example: client@example.com
+                password:
+                  type: string
+                  description: 'password — Requis. validation.min.'
+                  example: password
+                phone_number:
+                  type: string
+                  description: 'phone number — Optionnel.'
+                  example: '690000001'
+                  nullable: true
+                pressing_id:
+                  type: string
+                  description: 'pressing id — Requis, id existant (pressings). Must match an existing stored value.'
+                  example: 1
+                agency_id:
+                  type: string
+                  description: 'agency id — Requis, id existant (agencies). Must match an existing stored value.'
+                  example: 1
+                role:
+                  type: string
+                  description: 'role — Requis, parmi admin, manager, caissier, laveur, classeur, livreur.'
+                  example: admin
+                  enum:
+                    - admin
+                    - manager
+                    - caissier
+                    - laveur
+                    - classeur
+                    - livreur
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+              required:
+                - password
   '/api/v1/superadmin/users/{id}':
     put:
       summary: ''
@@ -56073,6 +57182,55 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Superadmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  description: 'fullname — Requis. validation.max.'
+                  example: 'Jean Dupont'
+                email:
+                  type: string
+                  description: 'email — Requis, e-mail. validation.email.'
+                  example: client@example.com
+                password:
+                  type: string
+                  description: 'password — Requis. validation.min.'
+                  example: password
+                phone_number:
+                  type: string
+                  description: 'phone number — Optionnel.'
+                  example: '690000001'
+                  nullable: true
+                pressing_id:
+                  type: string
+                  description: 'pressing id — Requis, id existant (pressings). Must match an existing stored value.'
+                  example: 1
+                agency_id:
+                  type: string
+                  description: 'agency id — Requis, id existant (agencies). Must match an existing stored value.'
+                  example: 1
+                role:
+                  type: string
+                  description: 'role — Requis, parmi admin, manager, caissier, laveur, classeur, livreur.'
+                  example: admin
+                  enum:
+                    - admin
+                    - manager
+                    - caissier
+                    - laveur
+                    - classeur
+                    - livreur
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
+              required:
+                - password
     delete:
       summary: ''
       operationId: deleteApiV1SuperadminUsersId
@@ -56158,7 +57316,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -57237,46 +58395,46 @@ paths:
               properties:
                 pressing_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'pressing id — Requis, id existant (pressings). Must match an existing stored value.'
+                  example: 1
                 plan:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'plan — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 periodicity:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'periodicity — Optionnel.'
+                  example: exemple
                   nullable: true
                 auto_renew:
                   type: boolean
-                  description: ''
+                  description: 'auto renew — Optionnel, booléen.'
                   example: true
                 seats:
                   type: integer
-                  description: validation.min.
-                  example: 66
+                  description: 'seats — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 max_agencies:
                   type: integer
-                  description: validation.min.
-                  example: 27
+                  description: 'max agencies — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 storage_gb:
                   type: integer
-                  description: validation.min.
-                  example: 35
+                  description: 'storage gb — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 months:
                   type: integer
-                  description: validation.min.
-                  example: 43
+                  description: 'months — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 activate:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'activate — Optionnel, booléen.'
+                  example: true
               required:
                 - pressing_id
   '/api/v1/superadmin/licenses/{id}':
@@ -58518,38 +59676,38 @@ paths:
               properties:
                 plan:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'plan — Optionnel. validation.max.'
+                  example: exemple
                 periodicity:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'periodicity — Optionnel.'
+                  example: exemple
                 auto_renew:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'auto renew — Optionnel, booléen.'
+                  example: true
                 seats:
                   type: integer
-                  description: validation.min.
-                  example: 67
+                  description: 'seats — Optionnel, nombre. validation.min.'
+                  example: 1
                 max_agencies:
                   type: integer
-                  description: validation.min.
-                  example: 66
+                  description: 'max agencies — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 storage_gb:
                   type: integer
-                  description: validation.min.
-                  example: 27
+                  description: 'storage gb — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
                 expires_at:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'expires at — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
     delete:
       summary: ''
@@ -58636,7 +59794,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -58949,15 +60107,15 @@ paths:
               properties:
                 months:
                   type: integer
-                  description: validation.min.
-                  example: 16
+                  description: 'months — Optionnel, nombre. validation.min.'
+                  example: 1
                   nullable: true
     parameters:
       -
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -59940,45 +61098,45 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
                 periodicity:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'periodicity — Requis.'
+                  example: exemple
                 plan:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'plan — Optionnel.'
+                  example: exemple
                   nullable: true
                 payment_method:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'payment method — Requis.'
+                  example: exemple
                 reference:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'reference — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 effective_at:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'effective at — Optionnel, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 auto_renew:
                   type: boolean
-                  description: ''
+                  description: 'auto renew — Optionnel, booléen.'
                   example: true
                 mark_paid:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'mark paid — Optionnel, booléen.'
+                  example: true
                 proof:
                   type: string
-                  format: binary
-                  description: 'Must be a file.'
+                  description: 'proof — Optionnel, fichier. Must be a file.'
+                  example: architecto
                   nullable: true
               required:
                 - periodicity
@@ -59988,7 +61146,7 @@ paths:
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -60299,15 +61457,15 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
     parameters:
       -
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -60616,7 +61774,7 @@ paths:
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -60869,7 +62027,7 @@ paths:
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -61108,7 +62266,7 @@ paths:
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -61210,7 +62368,7 @@ paths:
         in: path
         name: license_id
         description: 'The ID of the license.'
-        example: 1
+        example: 16
         required: true
         schema:
           type: integer
@@ -61513,6 +62671,45 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
+                code:
+                  type: string
+                  description: 'code — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                legacy_type_action:
+                  type: integer
+                  description: 'legacy type action — Optionnel, parmi 0, 1, 2.'
+                  example: 0
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                  nullable: true
+                sort_order:
+                  type: integer
+                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                default_hours:
+                  type: integer
+                  description: 'default hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
   '/api/v1/services/{id}':
     put:
       summary: ''
@@ -61667,6 +62864,45 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
+                code:
+                  type: string
+                  description: 'code — Optionnel. validation.max.'
+                  example: exemple
+                  nullable: true
+                legacy_type_action:
+                  type: integer
+                  description: 'legacy type action — Optionnel, parmi 0, 1, 2.'
+                  example: 0
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                  nullable: true
+                sort_order:
+                  type: integer
+                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                default_hours:
+                  type: integer
+                  description: 'default hours — Optionnel, nombre. validation.min.'
+                  example: 1
+                  nullable: true
+                status:
+                  type: boolean
+                  description: 'status — Optionnel, booléen.'
+                  example: true
     delete:
       summary: ''
       operationId: deleteApiV1ServicesId
@@ -63387,53 +64623,53 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Requis. validation.max.'
+                  example: Exemple
                 code:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'code — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 agency_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'agency id — Optionnel, id existant (agencies). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
                 quarters:
                   type: array
-                  description: validation.max.
+                  description: 'quarters * — Optionnel. validation.max.'
                   example:
-                    - z
+                    - exemple
                   items:
                     type: string
                 radius_km:
                   type: number
-                  description: 'validation.min validation.max.'
-                  example: 17
+                  description: 'radius km — Optionnel, nombre. validation.min validation.max.'
+                  example: 1.0
                   nullable: true
                 departure_address:
                   type: string
-                  description: validation.max.
-                  example: i
+                  description: 'departure address — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 collection_fee:
                   type: integer
-                  description: validation.min.
-                  example: 76
+                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 delivery_fee:
                   type: integer
-                  description: validation.min.
-                  example: 60
+                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 verified:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'verified — Optionnel, booléen.'
+                  example: true
                   nullable: true
               required:
                 - name
@@ -63588,53 +64824,53 @@ paths:
               properties:
                 name:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
                 code:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'code — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 agency_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'agency id — Optionnel, id existant (agencies). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 status:
                   type: boolean
-                  description: ''
+                  description: 'status — Optionnel, booléen.'
                   example: true
                 quarters:
                   type: array
-                  description: validation.max.
+                  description: 'quarters * — Optionnel. validation.max.'
                   example:
-                    - z
+                    - exemple
                   items:
                     type: string
                 radius_km:
                   type: number
-                  description: 'validation.min validation.max.'
-                  example: 17
+                  description: 'radius km — Optionnel, nombre. validation.min validation.max.'
+                  example: 1.0
                   nullable: true
                 departure_address:
                   type: string
-                  description: validation.max.
-                  example: i
+                  description: 'departure address — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 collection_fee:
                   type: integer
-                  description: validation.min.
-                  example: 76
+                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 delivery_fee:
                   type: integer
-                  description: validation.min.
-                  example: 60
+                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 verified:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'verified — Optionnel, booléen.'
+                  example: true
                   nullable: true
     parameters:
       -
@@ -63890,22 +65126,22 @@ paths:
               properties:
                 zone_id:
                   type: integer
-                  description: ''
-                  example: 16
+                  description: 'zone id — Optionnel, nombre.'
+                  example: 1
                   nullable: true
                 amount:
                   type: integer
-                  description: validation.min.
-                  example: 39
+                  description: 'amount — Requis, nombre. validation.min.'
+                  example: 1000
                 with_collection:
                   type: boolean
-                  description: ''
+                  description: 'with collection — Optionnel, booléen.'
                   example: true
                   nullable: true
                 with_delivery:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'with delivery — Optionnel, booléen.'
+                  example: true
                   nullable: true
               required:
                 - amount
@@ -64166,25 +65402,25 @@ paths:
               properties:
                 agency_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'agency id — Requis, id existant (agencies). Must match an existing stored value.'
+                  example: 1
                 livreur_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: architecto
+                  description: 'livreur id — Requis, id existant (users). Must match an existing stored value.'
+                  example: 1
                 delivery_zone_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'delivery zone id — Optionnel, id existant (delivery_zones). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 round_date:
                   type: string
-                  description: validation.date.
-                  example: '2026-10-22T22:01:54'
+                  description: 'round date — Requis, date ISO 8601. validation.date.'
+                  example: '2026-11-06T10:00:00+00:00'
                 name:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'name — Optionnel. validation.max.'
+                  example: Exemple
                   nullable: true
               required:
                 - agency_id
@@ -64341,9 +65577,9 @@ paths:
               properties:
                 deposit_ids:
                   type: array
-                  description: 'Must match an existing stored value.'
+                  description: 'deposit ids * — Optionnel, id existant (deposits), nombre. Must match an existing stored value.'
                   example:
-                    - 16
+                    - 1
                   items:
                     type: integer
     parameters:
@@ -64964,18 +66200,18 @@ paths:
               properties:
                 delivery_zone_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'delivery zone id — Optionnel, id existant (delivery_zones). Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 delivery_address:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'delivery address — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 livreur_id:
                   type: string
-                  description: 'Must match an existing stored value.'
-                  example: null
+                  description: 'livreur id — Optionnel, id existant (users). Must match an existing stored value.'
+                  example: 1
                   nullable: true
     parameters:
       -
@@ -65595,25 +66831,28 @@ paths:
               properties:
                 confirmation_type:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'confirmation type — Requis, parmi signature, code.'
+                  example: signature
+                  enum:
+                    - signature
+                    - code
                 confirmation_value:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'confirmation value — Requis.'
+                  example: exemple
                 receiver_name:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'receiver name — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
                 collect_amount:
                   type: integer
-                  description: validation.min.
-                  example: 84
+                  description: 'collect amount — Optionnel, nombre. validation.min.'
+                  example: 1000
                   nullable: true
                 payment_method:
                   type: string
-                  description: ''
+                  description: 'payment method — Optionnel, parmi cash, card, mobile_money, wallet, other.'
                   example: cash
                   enum:
                     - cash
@@ -65624,12 +66863,12 @@ paths:
                   nullable: true
                 require_settled:
                   type: boolean
-                  description: ''
+                  description: 'require settled — Optionnel, booléen.'
                   example: true
                 client_uuid:
                   type: string
-                  description: validation.uuid.
-                  example: a1a0a47d-e8c3-3cf0-8e6e-c1ff9dca5d1f
+                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
+                  example: 550e8400-e29b-41d4-a716-446655440000
                   nullable: true
               required:
                 - confirmation_type
@@ -66471,15 +67710,15 @@ paths:
               properties:
                 agency_id:
                   type: integer
-                  description: 'Must match an existing stored value.'
-                  example: 16
+                  description: 'agency id — Requis, id existant (agencies), nombre. Must match an existing stored value.'
+                  example: 1
                 code:
                   type: string
-                  description: validation.max.
-                  example: 'n'
+                  description: 'code — Requis. validation.max.'
+                  example: exemple
                 type:
                   type: string
-                  description: ''
+                  description: 'type — Optionnel, parmi pos, tablet, workshop.'
                   example: pos
                   enum:
                     - pos
@@ -66488,28 +67727,28 @@ paths:
                   nullable: true
                 label:
                   type: string
-                  description: validation.max.
-                  example: z
+                  description: 'label — Optionnel. validation.max.'
+                  example: Exemple
                   nullable: true
                 responsible_id:
                   type: integer
-                  description: 'Must match an existing stored value.'
-                  example: 16
+                  description: 'responsible id — Optionnel, id existant (users), nombre. Must match an existing stored value.'
+                  example: 1
                   nullable: true
                 offline_enabled:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'offline enabled — Optionnel, booléen.'
+                  example: true
                   nullable: true
                 validity_days:
                   type: integer
-                  description: 'validation.min validation.max.'
-                  example: 7
+                  description: 'validity days — Optionnel, nombre. validation.min validation.max.'
+                  example: 1
                   nullable: true
                 pending:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'pending — Optionnel, booléen.'
+                  example: true
                   nullable: true
               required:
                 - agency_id
@@ -66843,23 +68082,25 @@ paths:
               properties:
                 event:
                   type: string
-                  description: ''
-                  example: architecto
+                  description: 'event — Requis.'
+                  example: exemple
+                  enum:
+                    - null
                 channel:
                   type: string
-                  description: ''
-                  example: email
+                  description: 'channel — Requis, parmi sms, email.'
+                  example: sms
                   enum:
                     - sms
                     - email
                 recipient:
                   type: string
-                  description: validation.max.
-                  example: g
+                  description: 'recipient — Requis, e-mail. validation.email Must match the regex /^\+?[0-9 ]{8,20}$/. validation.max.'
+                  example: client@example.com
                 message:
                   type: string
-                  description: validation.max.
-                  example: z
+                  description: 'message — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
               required:
                 - event
@@ -67052,6 +68293,35 @@ paths:
                           example: 'Le champ est invalide.'
       tags:
         - Paramètres
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: 'label — Optionnel. validation.max.'
+                  example: Exemple
+                  nullable: true
+                responsible_id:
+                  type: integer
+                  description: 'responsible id — Optionnel, id existant (users), nombre. Must match an existing stored value.'
+                  example: 1
+                  nullable: true
+                offline_enabled:
+                  type: boolean
+                  description: 'offline enabled — Optionnel, booléen.'
+                  example: true
+                type:
+                  type: string
+                  description: 'type — Optionnel, parmi pos, tablet, workshop.'
+                  example: pos
+                  enum:
+                    - pos
+                    - tablet
+                    - workshop
     parameters:
       -
         in: path
@@ -67257,7 +68527,7 @@ paths:
               properties:
                 validity_days:
                   type: integer
-                  description: 'validation.min validation.max.'
+                  description: 'validity days — Optionnel, nombre. validation.min validation.max.'
                   example: 1
                   nullable: true
     parameters:
@@ -67465,8 +68735,8 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: validation.max.
-                  example: b
+                  description: 'reason — Optionnel. validation.max.'
+                  example: exemple
                   nullable: true
     parameters:
       -
@@ -67692,13 +68962,13 @@ paths:
               properties:
                 values:
                   type: object
-                  description: ''
+                  description: 'values — Requis, tableau.'
                   example: []
                   properties: {  }
                 draft:
                   type: boolean
-                  description: ''
-                  example: false
+                  description: 'draft — Optionnel, booléen.'
+                  example: true
                   nullable: true
               required:
                 - values
@@ -67989,8 +69259,8 @@ paths:
               properties:
                 version_id:
                   type: integer
-                  description: ''
-                  example: 16
+                  description: 'version id — Optionnel, nombre.'
+                  example: 1
                   nullable: true
     parameters:
       -
@@ -68555,7 +69825,7 @@ paths:
               properties:
                 decision:
                   type: string
-                  description: ''
+                  description: 'decision — Requis, parmi keep_discount, remove_discount, hold.'
                   example: keep_discount
                   enum:
                     - keep_discount
