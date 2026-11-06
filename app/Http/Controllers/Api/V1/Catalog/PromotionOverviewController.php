@@ -87,7 +87,11 @@ class PromotionOverviewController extends Controller
             'program' => $loyalty['program'] + [
                 'point_value' => $loyalty['program']['conversion_points'] ? round($loyalty['program']['conversion_value'] / $loyalty['program']['conversion_points'], 2) : 0,
                 'earn_label' => sprintf('%d points / 1 000 FCFA', $loyalty['program']['earn_points_per_1000']),
-                'conversion_label' => sprintf('%s points = %s FCFA', number_format($loyalty['program']['conversion_points'], 0, ',', ' '), number_format($loyalty['program']['conversion_value'], 0, ',', ' ')),
+                'conversion_label' => sprintf(
+                    '%s points = 1 FCFA · %s points = 5 FCFA',
+                    number_format($loyalty['program']['points_for_1_fcfa'], 0, ',', ' '),
+                    number_format($loyalty['program']['points_for_5_fcfa'], 0, ',', ' '),
+                ),
             ],
             'tiers' => $loyalty['tiers'],
             'history' => $history,

@@ -29,6 +29,7 @@ class Client extends Authenticatable
         'picture',
         'password',
         'loyalty_points',
+        'loyalty_fcfa_unit',
         'wallet_balance',
         'sponsor_code',
         'referred_by_id',

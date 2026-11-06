@@ -302,6 +302,7 @@ class ClientController extends Controller
             'agency_id' => ['nullable', 'integer', 'exists:agencies,id'],
             'contact_preference' => ['nullable', 'in:'.implode(',', array_keys(Client::CONTACT_PREFERENCES))],
             'loyalty_tier' => ['nullable', 'in:'.implode(',', array_keys(config('spark.loyalty_tiers')))],
+            'loyalty_fcfa_unit' => ['nullable', 'integer', 'in:1,5'],
             'consent_sms' => ['sometimes', 'boolean'],
             'consent_email' => ['sometimes', 'boolean'],
             'pickup_slot' => ['nullable', 'string', 'max:191'],

@@ -136,7 +136,7 @@ class ClientAppPresenter
         $current = $levels->filter(fn ($l) => $measure >= $l['min'])->last() ?? $levels->first();
         $next = $levels->first(fn ($l) => $l['min'] > $measure);
         $points = (int) $client->loyalty_points;
-        $conversionPoints = max(1, (int) $program['conversion_points']);
+        $rate = \App\Support\Loyalty\PointRate::for($client, $client->pressing ?? \App\Models\Pressing::query()->find($client->pressing_id));
         $minimum = (int) $program['minimum_points'];
         $target = max($minimum, (int) (ceil(($points + 1) / 1000) * 1000));
         $missing = max(0, $target - $points);
@@ -144,7 +144,7 @@ class ClientAppPresenter
         return [
             'points' => $points,
             'tier' => ['code' => $current['code'], 'label' => $current['label'], 'multiplier' => $current['multiplier']],
-            'convertible_value' => $points >= $minimum ? (int) floor($points / $conversionPoints) * (int) $program['conversion_value'] : 0,
+            'convertible_value' => $points >= $minimum ? $rate->discountFor($points) : 0,
             'progress' => [
                 'basis' => $basis,
                 'current' => $measure,
@@ -160,7 +160,7 @@ class ClientAppPresenter
             ])),
             'next_reward' => [
                 'points' => $target,
-                'value' => (int) floor($target / $conversionPoints) * (int) $program['conversion_value'],
+                'value' => $rate->discountFor($target),
                 'missing_points' => $missing,
                 'percent' => (int) min(100, round($points / max(1, $target) * 100)),
                 'estimated_spend' => $missing ? (int) ceil($missing / max(1, $program['earn_points_per_1000'] * $current['multiplier']) * 1000) : 0,
@@ -174,7 +174,7 @@ class ClientAppPresenter
                 ])->values()->all(),
             'rules' => array_values(array_filter([
                 sprintf('%d points gagnés par tranche de 1 000 FCFA payés.', $program['earn_points_per_1000']),
-                sprintf('Conversion dès %s points : %s points valent %s FCFA.', number_format($minimum, 0, ',', ' '), number_format($conversionPoints, 0, ',', ' '), number_format($program['conversion_value'], 0, ',', ' ')),
+                sprintf('Conversion dès %s points : %s.', number_format($minimum, 0, ',', ' '), $rate->label()),
                 $program['expiration_months'] ? sprintf('Les points expirent %d mois après leur date d’acquisition.', $program['expiration_months']) : null,
                 $program['stack_with_promotions'] ? null : 'Une remise fidélité ne se cumule pas avec un code promotionnel.',
             ])),

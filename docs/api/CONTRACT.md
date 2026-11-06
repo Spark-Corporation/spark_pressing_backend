@@ -274,10 +274,11 @@ Effets appliqués : `security.lockout` (échecs / durée) et `security.sessions.
 | Filtres | `GET /clients?q&tier=essentiel\|argent\|or\|platine&crm_status=active\|vip\|inactive\|archived&agency_id&period=day\|week\|month` | — |
 | Répertoire | idem | `initials`, `code` (CLI-…), `agency`, `last_deposit_at`, `frequency_per_month`, `lifetime_value`, `loyalty_points`, `tier`, `crm_status` |
 | « Exporter » | `GET /clients/export` | CSV |
-| Nouveau / modifier client | `POST /clients`, `PUT /clients/{id}` | `last_name`, `first_name`, `phone_secondary`, `agency_id`, `contact_preference` (whatsapp/call/sms/email), `loyalty_tier`, `consent_sms`, `consent_email`, `pickup_slot`, `favorite_treatment`, `instructions`, `note` |
+| Nouveau / modifier client | `POST /clients`, `PUT /clients/{id}` | `last_name`, `first_name`, `phone_secondary`, `agency_id`, `contact_preference` (whatsapp/call/sms/email), `loyalty_tier`, `loyalty_fcfa_unit` (1 ou 5), `consent_sms`, `consent_email`, `pickup_slot`, `favorite_treatment`, `instructions`, `note` |
 | Contrôle des doublons | `GET /clients/duplicates?phone&email&except_id` | `matches[]` (code, nom, agence) |
 | Fiche client | `GET /clients/{id}` | `stats`, `loyalty` (valeur, palier suivant, progression, règle de conversion), `points_history`, `timeline`, `recent_orders`, `preferences`, `notes`, `account` |
-| « Convertir en remise » | `POST /clients/{id}/loyalty/convert` (`points` ≥ 500) | crédit portefeuille |
+| Barème points → remise | `PUT /settings/loyalty` | `program.points_for_1_fcfa`, `program.points_for_5_fcfa` (quota de points pour 1 ou 5 FCFA, selon `loyalty_fcfa_unit` du client) |
+| « Convertir en remise » | `POST /clients/{id}/loyalty/convert` (`points` ≥ 500) | crédit portefeuille au barème du client |
 | Notes internes | `GET/POST /clients/{id}/notes` | — |
 | « Archiver le client » | `POST /clients/{id}/archive`, `/restore` | historique conservé |
 

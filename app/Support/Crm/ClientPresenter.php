@@ -135,7 +135,7 @@ class ClientPresenter
     /** « Fiche client ». */
     public function profile(Client $client): array
     {
-        $client->loadMissing('agency:id,name', 'pressing:id,loyalty_redeem_threshold,loyalty_redeem_value');
+        $client->loadMissing('agency:id,name', 'pressing:id,loyalty_redeem_threshold,loyalty_redeem_value,loyalty_points_for_1,loyalty_points_for_5');
         $stats = Deposit::query()
             ->where('client_id', $client->id)
             ->selectRaw('count(*) as cnt, coalesce(sum(total),0) as total, min(deposit_date) as first_at')
@@ -219,8 +219,7 @@ class ClientPresenter
     public function loyalty(Client $client): array
     {
         $pressing = $client->pressing ?? Pressing::query()->find($client->pressing_id);
-        $threshold = max(1, (int) ($pressing?->loyalty_redeem_threshold ?? 100));
-        $value = (int) ($pressing?->loyalty_redeem_value ?? 0);
+        $rate = \App\Support\Loyalty\PointRate::for($client, $pressing);
         $points = (int) $client->loyalty_points;
         $tiers = config('spark.loyalty_tiers');
         $current = $client->tier();
@@ -229,15 +228,17 @@ class ClientPresenter
 
         return [
             'points' => $points,
-            'value' => (int) floor($points * $value / $threshold),
+            'value' => $rate->valueOf($points),
             'tier' => $current,
             'next_tier' => $next ? ['code' => $nextCode, 'label' => $next['label'], 'min_points' => $next['min_points']] : null,
             'points_to_next_tier' => $next ? $next['min_points'] - $points : 0,
             'progress_percent' => $next ? (int) min(100, round($points / $next['min_points'] * 100)) : 100,
             'conversion' => [
-                'points' => $threshold,
-                'value' => $value,
-                'minimum_points' => (int) app(SettingsRegistry::class)->value($client->pressing_id, 'loyalty', 'program.minimum_points', $threshold),
+                'points' => $rate->quota,
+                'value' => $rate->unit,
+                'unit' => $rate->mode === 'unit' ? $rate->unit : null,
+                'label' => $rate->label(),
+                'minimum_points' => (int) app(SettingsRegistry::class)->value($client->pressing_id, 'loyalty', 'program.minimum_points', $rate->quota),
             ],
         ];
     }

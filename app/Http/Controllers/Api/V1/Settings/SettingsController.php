@@ -39,6 +39,8 @@ class SettingsController extends Controller
             'loyalty_points_rate' => ['sometimes', 'integer', 'min:0'],
             'loyalty_redeem_threshold' => ['sometimes', 'integer', 'min:1'],
             'loyalty_redeem_value' => ['sometimes', 'integer', 'min:0'],
+            'loyalty_points_for_1' => ['sometimes', 'integer', 'min:1'],
+            'loyalty_points_for_5' => ['sometimes', 'integer', 'min:1'],
             'hours_classic' => ['sometimes', 'integer', 'min:1'],
             'hours_express' => ['sometimes', 'integer', 'min:1'],
             'hours_repass' => ['sometimes', 'integer', 'min:1'],

@@ -748,7 +748,7 @@ class DocumentApiEnvelopeResponses extends Strategy
                     'discounts_granted' => ['value' => 3840000, 'period_from' => '2026-09-01'],
                     'active_campaigns' => ['value' => 2, 'uses' => 422],
                 ],
-                'program' => ['active' => true, 'earn_points_per_1000' => 10, 'conversion_points' => 200, 'conversion_value' => 1000, 'minimum_points' => 500, 'expiration_months' => 12, 'credit_after_payment' => true, 'stack_with_promotions' => false, 'point_value' => 5, 'earn_label' => '10 points / 1 000 FCFA', 'conversion_label' => '200 points = 1 000 FCFA'],
+                'program' => ['active' => true, 'earn_points_per_1000' => 10, 'conversion_points' => 200, 'conversion_value' => 1000, 'points_for_1_fcfa' => 100, 'points_for_5_fcfa' => 20, 'minimum_points' => 500, 'expiration_months' => 12, 'credit_after_payment' => true, 'stack_with_promotions' => false, 'point_value' => 5, 'earn_label' => '10 points / 1 000 FCFA', 'conversion_label' => '100 points = 1 FCFA · 20 points = 5 FCFA'],
                 'tiers' => config('settings_schema.categories.loyalty.defaults.tiers'),
                 'history' => [['client' => 'Aminata Koné', 'reason' => 'Paiement dépôt DP-2841', 'points' => 120, 'at' => '2026-09-28T10:21:00+00:00']],
                 'auto_groups' => [['code' => 'gold_platinum', 'label' => 'Clients Or & Platine', 'count' => 486]],

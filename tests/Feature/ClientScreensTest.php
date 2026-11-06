@@ -123,4 +123,37 @@ class ClientScreensTest extends TestCase
 
         $this->assertSame(1, Deposit::query()->where('client_id', $client->id)->count());
     }
+
+    public function test_point_quota_depends_on_the_client_franc_unit(): void
+    {
+        [$pressing, $agency] = $this->setUpStaff();
+        $pressing->update(['loyalty_points_for_1' => 10, 'loyalty_points_for_5' => 4]);
+
+        $onFive = $this->makeClient($agency, ['loyalty_points' => 500, 'loyalty_fcfa_unit' => 5]);
+        $onOne = $this->makeClient($agency, ['loyalty_points' => 500, 'loyalty_fcfa_unit' => 1]);
+
+        $this->withHeaders($this->headers)->getJson("/api/v1/clients/{$onFive->id}")
+            ->assertOk()
+            ->assertJsonPath('data.loyalty.value', 625)
+            ->assertJsonPath('data.loyalty.conversion.unit', 5)
+            ->assertJsonPath('data.loyalty.conversion.points', 4)
+            ->assertJsonPath('data.loyalty.conversion.label', '4 points = 5 FCFA');
+
+        $this->withHeaders($this->headers)->getJson("/api/v1/clients/{$onOne->id}")
+            ->assertOk()
+            ->assertJsonPath('data.loyalty.value', 50)
+            ->assertJsonPath('data.loyalty.conversion.label', '10 points = 1 FCFA');
+
+        $this->withHeaders($this->headers)->postJson("/api/v1/clients/{$onFive->id}/loyalty/convert", ['points' => 500])
+            ->assertOk()
+            ->assertJsonPath('data.amount', 625);
+
+        $this->withHeaders($this->headers)->postJson("/api/v1/clients/{$onOne->id}/loyalty/convert", ['points' => 500])
+            ->assertOk()
+            ->assertJsonPath('data.amount', 50);
+
+        $this->withHeaders($this->headers)->putJson("/api/v1/clients/{$onOne->id}", ['loyalty_fcfa_unit' => 5])
+            ->assertOk()
+            ->assertJsonPath('data.loyalty.conversion.unit', 5);
+    }
 }

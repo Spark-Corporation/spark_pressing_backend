@@ -35,6 +35,8 @@ return [
                 'program.earn_points_per_1000' => 'loyalty_points_rate',
                 'program.conversion_points' => 'loyalty_redeem_threshold',
                 'program.conversion_value' => 'loyalty_redeem_value',
+                'program.points_for_1_fcfa' => 'loyalty_points_for_1',
+                'program.points_for_5_fcfa' => 'loyalty_points_for_5',
             ],
             'defaults' => [
                 'program' => [
@@ -42,6 +44,8 @@ return [
                     'earn_points_per_1000' => 10,
                     'conversion_points' => 200,
                     'conversion_value' => 1000,
+                    'points_for_1_fcfa' => 100,
+                    'points_for_5_fcfa' => 20,
                     'minimum_points' => 500,
                     'expiration_months' => 12,
                     'credit_after_payment' => true,

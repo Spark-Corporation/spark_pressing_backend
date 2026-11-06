@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Deposit;
 use App\Models\LoyaltyLedger;
 use App\Models\Pressing;
+use App\Support\Loyalty\PointRate;
 
 class RecordLoyalty
 {
@@ -47,14 +48,13 @@ class RecordLoyalty
             return 0;
         }
 
-        $threshold = max(1, (int) $pressing->loyalty_redeem_threshold);
-        $value = (int) $pressing->loyalty_redeem_value;
+        $rate = PointRate::for($client, $pressing);
 
-        if ($points < $threshold || $client->loyalty_points < $points) {
+        if ($points < $rate->quota || $client->loyalty_points < $points) {
             return 0;
         }
 
-        $discount = intdiv($points, $threshold) * $value;
+        $discount = $rate->discountFor($points);
         $client->decrement('loyalty_points', $points);
 
         LoyaltyLedger::query()->create([

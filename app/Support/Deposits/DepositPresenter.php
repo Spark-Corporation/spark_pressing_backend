@@ -78,7 +78,7 @@ class DepositPresenter
         $deposit->loadMissing([
             'client:id,fullname,phone_number,email,code,loyalty_points,wallet_balance,created_at',
             'agency:id,name,code_prefix,address,contact,email,rccm,tax_id',
-            'pressing:id,name,slogan,invoice_terms,express_surcharge_percent,loyalty_redeem_threshold,loyalty_redeem_value,block_retrieve_if_unpaid',
+            'pressing:id,name,slogan,invoice_terms,express_surcharge_percent,loyalty_redeem_threshold,loyalty_redeem_value,loyalty_points_for_1,loyalty_points_for_5,block_retrieve_if_unpaid',
             'units', 'transactions', 'cashier:id,fullname',
         ]);
 
@@ -163,10 +163,9 @@ class DepositPresenter
     /** Décomposition « Total et paiements » / ticket / facture. */
     public function totals(Deposit $deposit): array
     {
-        $deposit->loadMissing('units', 'pressing');
-        $loyaltyValue = (int) ($deposit->pressing?->loyalty_redeem_value ?? 0);
-        $loyaltyThreshold = max(1, (int) ($deposit->pressing?->loyalty_redeem_threshold ?? 100));
-        $pointsDiscount = (int) floor((int) $deposit->points_redeemed / $loyaltyThreshold) * $loyaltyValue;
+        $deposit->loadMissing('units', 'pressing', 'client');
+        $rate = \App\Support\Loyalty\PointRate::for($deposit->client, $deposit->pressing);
+        $pointsDiscount = $rate->discountFor((int) $deposit->points_redeemed);
         $express = (int) $deposit->express_supplement;
 
         return [
