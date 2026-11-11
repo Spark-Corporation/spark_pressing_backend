@@ -61,6 +61,29 @@ class ClientScreensTest extends TestCase
             ->assertJsonPath('data.matches.0.agency', 'Bingerville');
     }
 
+    public function test_create_accepts_display_labels_and_explains_invalid_values(): void
+    {
+        $this->setUpStaff();
+
+        $this->withHeaders($this->headers)->postJson('/api/v1/clients', [
+            'last_name' => 'Yao',
+            'phone_number' => '0701010101',
+            'contact_preference' => 'Appel',
+            'loyalty_tier' => 'Essentiel',
+            'loyalty_fcfa_unit' => '5 FCFA',
+        ])->assertCreated()
+            ->assertJsonPath('data.contact_preference.code', 'call')
+            ->assertJsonPath('data.tier.code', 'essentiel');
+
+        $this->withHeaders($this->headers)->postJson('/api/v1/clients', [
+            'last_name' => 'Yao',
+            'phone_number' => '0702020202',
+            'contact_preference' => 'pigeon',
+        ])->assertStatus(422)
+            ->assertJsonPath('errors.0.field', 'contact_preference')
+            ->assertJsonPath('errors.0.detail', 'Le champ contact_preference doit valoir : whatsapp, call, sms ou email.');
+    }
+
     public function test_list_kpis_distribution_and_tier_filter(): void
     {
         [, $agency] = $this->setUpStaff();

@@ -42,7 +42,17 @@ class CashPresenter
         return [
             'date' => $day->toDateString(),
             'agency' => Agency::query()->whereKey($agencyId)->value('name'),
-            'session' => $this->sessionPayload($session),
+            // Toujours un objet (le front attend `session.status`) : « Caisse non ouverte » si aucune session ce jour-là.
+            'session' => $this->sessionPayload($session) ?? [
+                'id' => null,
+                'code' => null,
+                'business_date' => $day->toDateString(),
+                'status' => ['code' => 'none', 'label' => 'Caisse non ouverte'],
+                'opened_at' => null,
+                'opened_by' => null,
+                'opening_balance' => 0,
+                'closed_at' => null,
+            ],
             'kpis' => [
                 'receipts' => [
                     'value' => $received,

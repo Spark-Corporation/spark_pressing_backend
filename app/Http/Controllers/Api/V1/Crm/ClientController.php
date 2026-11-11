@@ -131,6 +131,7 @@ class ClientController extends Controller
     public function store(Request $request, RegisterClient $register): JsonResponse
     {
         $user = $request->user();
+        self::normalizeProfileInput($request);
 
         $data = $request->validate([
             'fullname' => ['required_without:last_name', 'nullable', 'string', 'max:191'],
@@ -272,6 +273,7 @@ class ClientController extends Controller
 
     public function update(Request $request, Client $client): JsonResponse
     {
+        self::normalizeProfileInput($request);
         $data = $request->validate([
             'fullname' => ['sometimes', 'string', 'max:191'],
             'last_name' => ['sometimes', 'nullable', 'string', 'max:191'],
@@ -292,6 +294,49 @@ class ClientController extends Controller
         $client->update($data);
 
         return $this->ok($this->presenter->profile($client->fresh()));
+    }
+
+    /**
+     * Accepte aussi les libellés affichés (« WhatsApp », « Appel », « Essentiel »…) et « 5 FCFA »,
+     * convertis en codes avant validation ; une chaîne vide vaut null.
+     */
+    private static function normalizeProfileInput(Request $request): void
+    {
+        $toCode = function ($value, array $choices) {
+            if (! is_string($value)) {
+                return $value;
+            }
+            $needle = mb_strtolower(trim($value));
+            if ($needle === '') {
+                return null;
+            }
+            foreach ($choices as $code => $label) {
+                if ($needle === mb_strtolower((string) $code) || $needle === mb_strtolower((string) $label)) {
+                    return $code;
+                }
+            }
+
+            return $value;
+        };
+
+        $merge = [];
+        if ($request->has('contact_preference')) {
+            $pref = $toCode($request->input('contact_preference'), Client::CONTACT_PREFERENCES);
+            $aliases = ['mail' => 'email', 'téléphone' => 'call', 'telephone' => 'call', 'appel téléphonique' => 'call'];
+            $merge['contact_preference'] = is_string($pref) ? ($aliases[mb_strtolower(trim($pref))] ?? $pref) : $pref;
+        }
+        if ($request->has('loyalty_tier')) {
+            $merge['loyalty_tier'] = $toCode($request->input('loyalty_tier'), collect(config('spark.loyalty_tiers'))->map(fn ($t) => $t['label'])->all());
+        }
+        if ($request->has('loyalty_fcfa_unit')) {
+            $unit = $request->input('loyalty_fcfa_unit');
+            if (is_string($unit)) {
+                $unit = trim($unit) === '' ? null : (preg_match('/^\s*(\d+)/', $unit, $m) ? (int) $m[1] : $unit);
+            }
+            $merge['loyalty_fcfa_unit'] = $unit;
+        }
+
+        $request->merge($merge);
     }
 
     /** Champs « Relation client », consentements, préférences (création et modification). */

@@ -15,6 +15,21 @@ class CashScreensTest extends TestCase
 {
     use CreatesSparkFixtures, RefreshDatabase;
 
+    public function test_cash_center_without_open_session_still_returns_a_session_object(): void
+    {
+        $this->seedRoles();
+        [, $agency] = $this->makePressingWithAgency();
+        Sanctum::actingAs($this->makeStaff($agency, 'caissier'));
+
+        $this->withHeaders(['X-Pressing-Id' => $agency->pressing_id, 'X-Agency-Id' => $agency->id])
+            ->getJson('/api/v1/cash/center')
+            ->assertOk()
+            ->assertJsonPath('data.session.id', null)
+            ->assertJsonPath('data.session.status.code', 'none')
+            ->assertJsonPath('data.session.status.label', 'Caisse non ouverte')
+            ->assertJsonCount(12, 'data.hourly.series');
+    }
+
     public function test_cash_center_double_control_and_closing(): void
     {
         Storage::fake(config('filesystems.default'));

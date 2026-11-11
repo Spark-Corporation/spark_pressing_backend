@@ -193,7 +193,9 @@ class CashSessionController extends Controller
 
     private function agencyId(Request $request): int
     {
-        $id = app(TenantContext::class)->agencyId ?? $request->user()->agency_id;
+        $user = $request->user();
+        // Sans X-Agency-Id ni agence de rattachement (ex. admin réseau) : première agence accessible.
+        $id = app(TenantContext::class)->agencyId ?? $user->agency_id ?? ($user->allowedAgencyIds()[0] ?? null);
         abort_unless($id, 422, 'Agence d’opération requise (X-Agency-Id).');
 
         return (int) $id;
