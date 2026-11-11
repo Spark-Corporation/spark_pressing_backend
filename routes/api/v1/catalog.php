@@ -21,6 +21,7 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::get('template', [ArticleImportController::class, 'template'])->middleware('permission:articles.manage')->name('template');
     Route::post('import', [ArticleImportController::class, 'import'])->middleware('permission:articles.manage')->name('import');
     Route::get('history', [ArticleController::class, 'history'])->middleware('permission:articles.manage')->name('history');
+    Route::get('options', [ArticleController::class, 'options'])->name('options');
     Route::get('/', [ArticleController::class, 'index'])->name('index');
     Route::post('/', [ArticleController::class, 'store'])->middleware('permission:articles.manage')->name('store');
     Route::get('{article}', [ArticleController::class, 'show'])->name('show');

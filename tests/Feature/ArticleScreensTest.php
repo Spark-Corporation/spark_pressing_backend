@@ -25,6 +25,14 @@ class ArticleScreensTest extends TestCase
         $categoryId = $this->withHeaders($headers)->postJson('/api/v1/article-categories', ['name' => 'Cérémonie', 'icon' => 'suit'])
             ->assertCreated()->json('data.id');
 
+        $this->withHeaders($headers)->getJson('/api/v1/articles/options')
+            ->assertOk()
+            ->assertJsonPath('data.services.0', ['code' => 'collection', 'label' => 'Collecte'])
+            ->assertJsonPath('data.services.1.code', 'delivery')
+            ->assertJsonPath('data.billing_modes.2.code', 'mixed')
+            ->assertJsonPath('data.categories.0.name', 'Cérémonie')
+            ->assertJsonCount(2, 'data.agencies');
+
         $id = $this->withHeaders($headers)->postJson('/api/v1/articles', [
             'name' => 'Costume 2 pièces',
             'category_id' => $categoryId,

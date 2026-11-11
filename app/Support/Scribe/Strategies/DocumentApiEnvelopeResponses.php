@@ -1188,6 +1188,17 @@ class DocumentApiEnvelopeResponses extends Strategy
                     'updated_at' => '2026-09-28T09:42:00+00:00',
                 ]]))];
             }
+            if ($method === 'GET' && $path === '/api/v1/articles/options') {
+                return [$this->response(200, [
+                    'defects' => [['code' => 'stain', 'label' => 'Taché']],
+                    'renders' => [['id' => 1, 'title' => 'Sur cintre']],
+                    'services' => [['code' => 'collection', 'label' => 'Collecte'], ['code' => 'delivery', 'label' => 'Livraison'], ['code' => 'anti_odor', 'label' => 'Traitement anti-odeur']],
+                    'priorities' => [['code' => 'standard', 'label' => 'Standard'], ['code' => 'high', 'label' => 'Haute'], ['code' => 'delicate', 'label' => 'Délicat']],
+                    'billing_modes' => [['code' => 'piece', 'label' => 'Pièce'], ['code' => 'kilo', 'label' => 'Kilo'], ['code' => 'mixed', 'label' => 'Mixte']],
+                    'categories' => [['id' => 1, 'name' => 'Cérémonie']],
+                    'agencies' => [['id' => 1, 'name' => 'Cocody Angré']],
+                ])];
+            }
             if ($method === 'GET' && $path === '/api/v1/articles/history') {
                 return [$this->response(200, [['at' => '2026-09-18T16:24:00+00:00', 'article_id' => 1, 'article' => 'Chemise', 'action' => 'article.updated', 'label' => 'Article modifié', 'changes' => ['express_price'], 'by' => 'Nadia Assi']])];
             }

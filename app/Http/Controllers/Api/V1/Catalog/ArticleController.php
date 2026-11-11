@@ -40,6 +40,15 @@ class ArticleController extends Controller
         return $this->ok($this->presenter->history());
     }
 
+    /**
+     * Listes de choix du formulaire de création / édition : services associés (`services[]`),
+     * défauts acceptés (`accepted_defects[]`), rendus, priorités, modes de facturation, catégories, agences.
+     */
+    public function options(): JsonResponse
+    {
+        return $this->ok($this->presenter->formOptions());
+    }
+
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([

@@ -103,12 +103,21 @@ class ArticlePresenter
             'checks' => $this->checks($article, $availability),
             'recommendations' => $this->recommendations($article),
             'last_modification' => $last ? ['by' => $lastBy, 'at' => $last->created_at?->toIso8601String()] : null,
-            'options' => [
-                'defects' => collect(LaundryStatus::catalog(auth()->user()?->pressing_id))->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values(),
-                'renders' => Render::query()->where('status', true)->get(['id', 'title']),
-                'services' => collect(Article::SERVICES)->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values(),
-                'priorities' => [['code' => 'standard', 'label' => 'Standard'], ['code' => 'high', 'label' => 'Haute'], ['code' => 'delicate', 'label' => 'Délicat']],
-            ],
+            'options' => $this->formOptions(),
+        ];
+    }
+
+    /** Listes de choix du formulaire « Création et édition d’article » (codes à renvoyer en POST/PUT). */
+    public function formOptions(): array
+    {
+        return [
+            'defects' => collect(LaundryStatus::catalog(auth()->user()?->pressing_id))->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values()->all(),
+            'renders' => Render::query()->where('status', true)->get(['id', 'title'])->toArray(),
+            'services' => collect(Article::SERVICES)->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values()->all(),
+            'priorities' => [['code' => 'standard', 'label' => 'Standard'], ['code' => 'high', 'label' => 'Haute'], ['code' => 'delicate', 'label' => 'Délicat']],
+            'billing_modes' => collect(Article::BILLING_MODES)->map(fn ($l, $c) => ['code' => $c, 'label' => $l])->values()->all(),
+            'categories' => ArticleCategory::query()->orderBy('name')->get(['id', 'name'])->toArray(),
+            'agencies' => Agency::query()->where('status', true)->orderBy('name')->get(['id', 'name'])->toArray(),
         ];
     }
 
