@@ -31,7 +31,7 @@ return [
             - Admin / manager voient tout le pressing. Filtrer une agence avec `X-Agency-Id`.
             - Superadmin : `X-Pressing-Id` (et optionnellement `X-Agency-Id`).
 
-            **Montants** : entiers XAF. **Idempotence POS** : `client_uuid` (UUID) sur dépôts et paiements.
+            **Montants** : entiers XAF. **`client_uuid`** : clé d’idempotence générée par l’app (UUID), **pas** l’id d’un client CRM — optionnelle sur dépôts, paiements et mouvements de caisse (le serveur en génère une si omise).
 
             Chaque endpoint documente ses **exemples de réponses** (200/201 + erreurs 401/422 quand applicable).
 

@@ -46,6 +46,12 @@ class CashMovementController extends Controller
         ]);
     }
 
+    /**
+     * Créer un mouvement de caisse.
+     *
+     * `client_uuid` est une clé d’idempotence optionnelle (UUID généré par l’app),
+     * pas l’identifiant d’un client CRM. Si omis, le serveur en génère une.
+     */
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([

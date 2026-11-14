@@ -320,6 +320,10 @@ réceptionnaire et journal enregistrés ensemble.</a>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-articles-history">
                                 <a href="#catalogue-GETapi-v1-articles-history">Onglet « Historique » du catalogue.</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-articles-options">
+                                <a href="#catalogue-GETapi-v1-articles-options">Listes de choix du formulaire de création / édition : services associés (`services[]`),
+défauts acceptés (`accepted_defects[]`), rendus, priorités, modes de facturation, catégories, agences.</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="catalogue-GETapi-v1-articles">
                                 <a href="#catalogue-GETapi-v1-articles">« Catalogue articles et tarifs » (q, category_id, billing_mode, agency_id, tab=all|kilo|unavailable, active_only).</a>
                             </li>
@@ -488,7 +492,7 @@ groupes automatiques, tableau des campagnes (`agency_id`, `status`).</a>
                                 <a href="#caisse-GETapi-v1-cash-movements">GET api/v1/cash-movements</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="caisse-POSTapi-v1-cash-movements">
-                                <a href="#caisse-POSTapi-v1-cash-movements">POST api/v1/cash-movements</a>
+                                <a href="#caisse-POSTapi-v1-cash-movements">Créer un mouvement de caisse.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="caisse-GETapi-v1-cash-movements--cashMovement_id-">
                                 <a href="#caisse-GETapi-v1-cash-movements--cashMovement_id-">Détail du mouvement : traçabilité horodatée, double contrôle, caisse concernée.</a>
@@ -1029,7 +1033,7 @@ minimum de commande (réglages `delivery`).</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 6, 2026</li>
+        <li>Last updated: November 14, 2026</li>
     </ul>
 </div>
 
@@ -1054,7 +1058,7 @@ minimum de commande (réglages `delivery`).</a>
 - Admin / manager voient tout le pressing. Filtrer une agence avec `X-Agency-Id`.
 - Superadmin : `X-Pressing-Id` (et optionnellement `X-Agency-Id`).
 
-**Montants** : entiers XAF. **Idempotence POS** : `client_uuid` (UUID) sur dépôts et paiements.
+**Montants** : entiers XAF. **`client_uuid`** : clé d’idempotence générée par l’app (UUID), **pas** l’id d’un client CRM — optionnelle sur dépôts, paiements et mouvements de caisse (le serveur en génère une si omise).
 
 Chaque endpoint documente ses **exemples de réponses** (200/201 + erreurs 401/422 quand applicable).
 
@@ -1539,7 +1543,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="zbailey@example.net"
                data-component="body">
     <br>
-<p>This field is required when <code>login</code> is not present. validation.email. Example: <code>zbailey@example.net</code></p>
+<p>This field is required when <code>login</code> is not present. Le champ value doit être une adresse e-mail valide. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -4158,7 +4162,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>first name — Optionnel. Le champ value ne doit pas dépasser 100 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -4170,7 +4174,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>last name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>last name — Optionnel. Le champ value ne doit pas dépasser 100 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -4182,7 +4186,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Optionnel, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
+<p>email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -4194,7 +4198,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>job_title</code></b>&nbsp;&nbsp;
@@ -4206,7 +4210,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>job title — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>job title — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -4228,7 +4232,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>preferences language — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>preferences language — Optionnel. Le champ value ne doit pas dépasser 10 caractères. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>timezone</code></b>&nbsp;&nbsp;
@@ -4534,7 +4538,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Requis. The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>password</code></p>
+<p>password — Requis. The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. Le champ value doit contenir au moins 12 caractères. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -6381,7 +6385,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-<p>operations — Requis, tableau. validation.min.</p>
+<p>operations — Requis, tableau. Le champ value doit contenir au moins 1 éléments.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -6419,7 +6423,7 @@ Must be one of:
                value="550e8400-e29b-41d4-a716-446655440000"
                data-component="body">
     <br>
-<p>operations * client uuid — Requis, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>Clé d’idempotence générée par l’app (UUID). Requis. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>local_ref</code></b>&nbsp;&nbsp;
@@ -6431,7 +6435,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>operations * local ref — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>operations * local ref — Optionnel. Le champ value ne doit pas dépasser 40 caractères. Example: <code>exemple</code></p>
                     </div>
                                     </details>
         </div>
@@ -6445,7 +6449,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>device code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>device code — Optionnel. Le champ value ne doit pas dépasser 40 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
@@ -6457,7 +6461,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>reference — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reference — Optionnel. Le champ value ne doit pas dépasser 40 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -8722,7 +8726,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",
     \"client_id\": 1,
     \"discount\": 1,
     \"discount_percent\": 1,
@@ -8780,7 +8783,6 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "550e8400-e29b-41d4-a716-446655440000",
     "client_id": 1,
     "discount": 1,
     "discount_percent": 1,
@@ -9108,10 +9110,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits"
-               value="550e8400-e29b-41d4-a716-446655440000"
+               value=""
                data-component="body">
     <br>
-<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
@@ -9135,7 +9137,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>discount — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>discount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount_percent</code></b>&nbsp;&nbsp;
@@ -9147,7 +9149,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>discount percent — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>discount percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>promo_code</code></b>&nbsp;&nbsp;
@@ -9183,7 +9185,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>points to redeem — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>points to redeem — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
@@ -9239,7 +9241,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -9251,7 +9253,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_zone_id</code></b>&nbsp;&nbsp;
@@ -9275,7 +9277,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>delivery address — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>delivery address — Optionnel. Le champ value ne doit pas dépasser 500 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>advanced</code></b>&nbsp;&nbsp;
@@ -9287,7 +9289,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>advanced — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>advanced — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -9313,7 +9315,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>deposit date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>deposit date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>retrieve_date</code></b>&nbsp;&nbsp;
@@ -9325,7 +9327,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>retrieve date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>retrieve date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -9347,7 +9349,7 @@ Must be one of:
  &nbsp;
  &nbsp;
 <br>
-<p>lines — Requis, tableau. validation.min.</p>
+<p>lines — Requis, tableau. Le champ value doit contenir au moins 1 éléments.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>article_id</code></b>&nbsp;&nbsp;
@@ -9383,7 +9385,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>lines * quantity — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>lines * quantity — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>type_action</code></b>&nbsp;&nbsp;
@@ -9423,7 +9425,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>lines * weight kg — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>lines * weight kg — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>unit_price</code></b>&nbsp;&nbsp;
@@ -9435,7 +9437,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>lines * unit price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>lines * unit price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>designation</code></b>&nbsp;&nbsp;
@@ -9505,7 +9507,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>lines * color — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>lines * color — Optionnel. Le champ value ne doit pas dépasser 64 caractères. Example: <code>exemple</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>defects</code></b>&nbsp;&nbsp;
@@ -9533,7 +9535,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>lines * internal notes — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>lines * internal notes — Optionnel. Le champ value ne doit pas dépasser 1000 caractères. Example: <code>exemple</code></p>
                     </div>
                                     </details>
         </div>
@@ -9547,7 +9549,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>terminal — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>terminal — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>local_ref</code></b>&nbsp;&nbsp;
@@ -9559,7 +9561,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>local ref — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>local ref — Optionnel. Le champ value ne doit pas dépasser 40 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>discount_reason</code></b>&nbsp;&nbsp;
@@ -9571,7 +9573,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>discount reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>discount reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -10001,7 +10003,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",
     \"amount\": 1000,
     \"payment_method\": \"cash\",
     \"transaction_date\": \"2026-11-06T10:00:00+00:00\"
@@ -10022,7 +10023,6 @@ const headers = {
 };
 
 let body = {
-    "client_uuid": "550e8400-e29b-41d4-a716-446655440000",
     "amount": 1000,
     "payment_method": "cash",
     "transaction_date": "2026-11-06T10:00:00+00:00"
@@ -10326,10 +10326,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deposits--deposit_id--payments"
-               value="550e8400-e29b-41d4-a716-446655440000"
+               value=""
                data-component="body">
     <br>
-<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -10341,7 +10341,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -10367,7 +10367,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>transaction date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>transaction date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -10713,7 +10713,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>receiver name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>receiver name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -11067,7 +11067,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
 <br>
-<p>units — Requis, tableau. validation.min.</p>
+<p>units — Requis, tableau. Le champ value doit contenir au moins 1 éléments.</p>
             </summary>
                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -11091,7 +11091,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>units * quantity — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>units * quantity — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -11819,7 +11819,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>storage location — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>storage location — Optionnel. Le champ value ne doit pas dépasser 64 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -12652,7 +12652,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -13568,7 +13568,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. This field is required when <code>action</code> is <code>storage_fee</code>. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. This field is required when <code>action</code> is <code>storage_fee</code>. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
         </form>
 
@@ -15086,7 +15086,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>units * quantity — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>units * quantity — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>verification</code></b>&nbsp;&nbsp;
@@ -15128,7 +15128,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>remarks — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>remarks — Optionnel. Le champ value ne doit pas dépasser 2000 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>receiver_type</code></b>&nbsp;&nbsp;
@@ -15154,7 +15154,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>receiver name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>receiver name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>identity_confirmed</code></b>&nbsp;&nbsp;
@@ -15198,7 +15198,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>payment amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>payment amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>method</code></b>&nbsp;&nbsp;
@@ -15224,7 +15224,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>payment received — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>payment received — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -15238,7 +15238,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>override reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>override reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notify_sms</code></b>&nbsp;&nbsp;
@@ -15916,7 +15916,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 32 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -15928,7 +15928,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="zbailey@example.net"
                data-component="body">
     <br>
-<p>validation.email. Example: <code>zbailey@example.net</code></p>
+<p>Le champ value doit être une adresse e-mail valide. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>except_id</code></b>&nbsp;&nbsp;
@@ -16253,6 +16253,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"agency_id\": 1,
     \"contact_preference\": \"exemple\",
     \"loyalty_tier\": \"exemple\",
+    \"loyalty_fcfa_unit\": 1,
     \"consent_sms\": true,
     \"consent_email\": true,
     \"pickup_slot\": \"exemple\",
@@ -16289,6 +16290,7 @@ let body = {
     "agency_id": 1,
     "contact_preference": "exemple",
     "loyalty_tier": "exemple",
+    "loyalty_fcfa_unit": 1,
     "consent_sms": true,
     "consent_email": true,
     "pickup_slot": "exemple",
@@ -16591,7 +16593,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Requis. This field is required when <code>last_name</code> is not present. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Requis. This field is required when <code>last_name</code> is not present. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -16603,7 +16605,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>last name — Requis. This field is required when <code>fullname</code> is not present. validation.max. Example: <code>exemple</code></p>
+<p>last name — Requis. This field is required when <code>fullname</code> is not present. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
@@ -16615,7 +16617,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>first name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -16627,7 +16629,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone number — Requis. validation.max. Example: <code>690000001</code></p>
+<p>phone number — Requis. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -16639,7 +16641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Optionnel, e-mail. validation.email. Example: <code>client@example.com</code></p>
+<p>email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -16675,7 +16677,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Optionnel. validation.min. Example: <code>password</code></p>
+<p>password — Optionnel. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>sponsor_code</code></b>&nbsp;&nbsp;
@@ -16687,7 +16689,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>sponsor code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>sponsor code — Optionnel. Le champ value ne doit pas dépasser 12 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_secondary</code></b>&nbsp;&nbsp;
@@ -16699,7 +16701,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone secondary — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone secondary — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -16740,6 +16742,20 @@ Must be one of:
 <p>loyalty tier — Optionnel. Example: <code>exemple</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>loyalty_fcfa_unit</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="loyalty_fcfa_unit"                data-endpoint="POSTapi-v1-clients"
+               value="1"
+               data-component="body">
+    <br>
+<p>loyalty fcfa unit — Optionnel, parmi 1, 5. Example: <code>1</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>1</code></li> <li><code>5</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>consent_sms</code></b>&nbsp;&nbsp;
@@ -16795,7 +16811,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>pickup slot — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>pickup slot — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>favorite_treatment</code></b>&nbsp;&nbsp;
@@ -16807,7 +16823,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>favorite treatment — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>favorite treatment — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>instructions</code></b>&nbsp;&nbsp;
@@ -16819,7 +16835,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>instructions — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>instructions — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
@@ -16831,7 +16847,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>note — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>note — Optionnel. Le champ value ne doit pas dépasser 2000 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -17605,6 +17621,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"agency_id\": 1,
     \"contact_preference\": \"exemple\",
     \"loyalty_tier\": \"exemple\",
+    \"loyalty_fcfa_unit\": 1,
     \"consent_sms\": true,
     \"consent_email\": true,
     \"pickup_slot\": \"exemple\",
@@ -17641,6 +17658,7 @@ let body = {
     "agency_id": 1,
     "contact_preference": "exemple",
     "loyalty_tier": "exemple",
+    "loyalty_fcfa_unit": 1,
     "consent_sms": true,
     "consent_email": true,
     "pickup_slot": "exemple",
@@ -17956,7 +17974,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -17968,7 +17986,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>last name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>last name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
@@ -17980,7 +17998,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>first name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -17992,7 +18010,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -18004,7 +18022,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Optionnel, e-mail. validation.email. Example: <code>client@example.com</code></p>
+<p>email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -18062,7 +18080,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Optionnel. validation.min. Example: <code>password</code></p>
+<p>password — Optionnel. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_secondary</code></b>&nbsp;&nbsp;
@@ -18074,7 +18092,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone secondary — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone secondary — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -18115,6 +18133,20 @@ Must be one of:
 <p>loyalty tier — Optionnel. Example: <code>exemple</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code></code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>loyalty_fcfa_unit</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="loyalty_fcfa_unit"                data-endpoint="PUTapi-v1-clients--id-"
+               value="1"
+               data-component="body">
+    <br>
+<p>loyalty fcfa unit — Optionnel, parmi 1, 5. Example: <code>1</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>1</code></li> <li><code>5</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>consent_sms</code></b>&nbsp;&nbsp;
@@ -18170,7 +18202,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>pickup slot — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>pickup slot — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>favorite_treatment</code></b>&nbsp;&nbsp;
@@ -18182,7 +18214,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>favorite treatment — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>favorite treatment — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>instructions</code></b>&nbsp;&nbsp;
@@ -18194,7 +18226,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>instructions — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>instructions — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
@@ -18206,7 +18238,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>note — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>note — Optionnel. Le champ value ne doit pas dépasser 2000 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -18806,7 +18838,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>body — Requis. validation.max. Example: <code>exemple</code></p>
+<p>body — Requis. Le champ value ne doit pas dépasser 2000 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -20140,7 +20172,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -20152,7 +20184,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reason — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -20383,7 +20415,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
@@ -20395,7 +20427,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reason — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -20765,7 +20797,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "file=@C:\Users\ativo\AppData\Local\Temp\php14C1.tmp" </code></pre></div>
+    --form "file=@C:\Users\ativo\AppData\Local\Temp\phpD46C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -20950,7 +20982,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>file — Requis, fichier. Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php14C1.tmp</code></p>
+<p>file — Requis, fichier. Must be a file. Le fichier value ne doit pas dépasser 2048 Ko. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpD46C.tmp</code></p>
         </div>
         </form>
 
@@ -21128,6 +21160,243 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Agency-Id"                data-endpoint="GETapi-v1-articles-history"
+               value="1"
+               data-component="header">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="catalogue-GETapi-v1-articles-options">Listes de choix du formulaire de création / édition : services associés (`services[]`),
+défauts acceptés (`accepted_defects[]`), rendus, priorités, modes de facturation, catégories, agences.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-articles-options">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/articles/options" \
+    --header "Authorization: Bearer {VOTRE_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "X-Agency-Id: 1"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/articles/options"
+);
+
+const headers = {
+    "Authorization": "Bearer {VOTRE_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Agency-Id": "1",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-articles-options">
+            <blockquote>
+            <p>Example response (200, Succès):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;defects&quot;: [
+            {
+                &quot;code&quot;: &quot;stain&quot;,
+                &quot;label&quot;: &quot;Tach&eacute;&quot;
+            }
+        ],
+        &quot;renders&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;title&quot;: &quot;Sur cintre&quot;
+            }
+        ],
+        &quot;services&quot;: [
+            {
+                &quot;code&quot;: &quot;collection&quot;,
+                &quot;label&quot;: &quot;Collecte&quot;
+            },
+            {
+                &quot;code&quot;: &quot;delivery&quot;,
+                &quot;label&quot;: &quot;Livraison&quot;
+            },
+            {
+                &quot;code&quot;: &quot;anti_odor&quot;,
+                &quot;label&quot;: &quot;Traitement anti-odeur&quot;
+            }
+        ],
+        &quot;priorities&quot;: [
+            {
+                &quot;code&quot;: &quot;standard&quot;,
+                &quot;label&quot;: &quot;Standard&quot;
+            },
+            {
+                &quot;code&quot;: &quot;high&quot;,
+                &quot;label&quot;: &quot;Haute&quot;
+            },
+            {
+                &quot;code&quot;: &quot;delicate&quot;,
+                &quot;label&quot;: &quot;D&eacute;licat&quot;
+            }
+        ],
+        &quot;billing_modes&quot;: [
+            {
+                &quot;code&quot;: &quot;piece&quot;,
+                &quot;label&quot;: &quot;Pi&egrave;ce&quot;
+            },
+            {
+                &quot;code&quot;: &quot;kilo&quot;,
+                &quot;label&quot;: &quot;Kilo&quot;
+            },
+            {
+                &quot;code&quot;: &quot;mixed&quot;,
+                &quot;label&quot;: &quot;Mixte&quot;
+            }
+        ],
+        &quot;categories&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;C&eacute;r&eacute;monie&quot;
+            }
+        ],
+        &quot;agencies&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Cocody Angr&eacute;&quot;
+            }
+        ]
+    },
+    &quot;meta&quot;: {},
+    &quot;errors&quot;: null
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Non authentifié):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: null,
+    &quot;meta&quot;: {
+        &quot;message&quot;: &quot;Non authentifi&eacute;.&quot;
+    },
+    &quot;errors&quot;: [
+        {
+            &quot;code&quot;: &quot;unauthenticated&quot;,
+            &quot;detail&quot;: &quot;Non authentifi&eacute;.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-articles-options" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-articles-options"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-articles-options"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-articles-options" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-articles-options">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-articles-options" data-method="GET"
+      data-path="api/v1/articles/options"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-articles-options', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-articles-options"
+                    onclick="tryItOut('GETapi-v1-articles-options');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-articles-options"
+                    onclick="cancelTryOut('GETapi-v1-articles-options');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-articles-options"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/articles/options</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-articles-options"
+               value="Bearer {VOTRE_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {VOTRE_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-articles-options"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-articles-options"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Agency-Id</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Agency-Id"                data-endpoint="GETapi-v1-articles-options"
                value="1"
                data-component="header">
     <br>
@@ -21828,7 +22097,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -21852,7 +22121,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>classic price — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>classic price — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
@@ -21864,7 +22133,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>express price — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>express price — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
@@ -21876,7 +22145,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>repass price — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>repass price — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
@@ -21888,7 +22157,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>classic price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>classic price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
@@ -21900,7 +22169,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>express price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>express price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
@@ -21912,7 +22181,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>repass price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>repass price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -21946,7 +22215,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -21984,7 +22253,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_discount</code></b>&nbsp;&nbsp;
@@ -22018,7 +22287,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>round to — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>round to — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price_editable</code></b>&nbsp;&nbsp;
@@ -22052,7 +22321,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>classic hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>classic hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_hours</code></b>&nbsp;&nbsp;
@@ -22064,7 +22333,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>express hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>express hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_hours</code></b>&nbsp;&nbsp;
@@ -22076,7 +22345,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>repass hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>repass hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
@@ -22158,7 +22427,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>kilo tiers * min kg — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>kilo tiers * min kg — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>max_kg</code></b>&nbsp;&nbsp;
@@ -22182,7 +22451,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>kilo tiers * classic — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>kilo tiers * classic — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>express</code></b>&nbsp;&nbsp;
@@ -22194,7 +22463,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>kilo tiers * express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>kilo tiers * express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -22252,7 +22521,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>availability * price adjust percent — Optionnel, nombre. validation.min validation.max. Example: <code>1000</code></p>
+<p>availability * price adjust percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à -90. Le champ value ne doit pas être supérieur à 200. Example: <code>1000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
@@ -22264,7 +22533,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>availability * note — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>availability * note — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
                     </div>
                                     </details>
         </div>
@@ -23066,7 +23335,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -23090,7 +23359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>classic price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>classic price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price</code></b>&nbsp;&nbsp;
@@ -23102,7 +23371,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>express price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>express price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price</code></b>&nbsp;&nbsp;
@@ -23114,7 +23383,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>repass price — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>repass price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>classic_price_kilo</code></b>&nbsp;&nbsp;
@@ -23126,7 +23395,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>classic price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>classic price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_price_kilo</code></b>&nbsp;&nbsp;
@@ -23138,7 +23407,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>express price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>express price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_price_kilo</code></b>&nbsp;&nbsp;
@@ -23150,7 +23419,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>repass price kilo — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>repass price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -23184,7 +23453,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -23222,7 +23491,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_discount</code></b>&nbsp;&nbsp;
@@ -23256,7 +23525,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>round to — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>round to — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price_editable</code></b>&nbsp;&nbsp;
@@ -23290,7 +23559,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>classic hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>classic hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_hours</code></b>&nbsp;&nbsp;
@@ -23302,7 +23571,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>express hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>express hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repass_hours</code></b>&nbsp;&nbsp;
@@ -23314,7 +23583,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>repass hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>repass hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>priority</code></b>&nbsp;&nbsp;
@@ -23396,7 +23665,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>kilo tiers * min kg — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>kilo tiers * min kg — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>max_kg</code></b>&nbsp;&nbsp;
@@ -23420,7 +23689,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>kilo tiers * classic — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>kilo tiers * classic — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>express</code></b>&nbsp;&nbsp;
@@ -23432,7 +23701,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>kilo tiers * express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>kilo tiers * express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -23490,7 +23759,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>availability * price adjust percent — Optionnel, nombre. validation.min validation.max. Example: <code>1000</code></p>
+<p>availability * price adjust percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à -90. Le champ value ne doit pas être supérieur à 200. Example: <code>1000</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>note</code></b>&nbsp;&nbsp;
@@ -23502,7 +23771,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>availability * note — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>availability * note — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
                     </div>
                                     </details>
         </div>
@@ -24090,7 +24359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
@@ -24102,7 +24371,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>shared</code></b>&nbsp;&nbsp;
@@ -24136,7 +24405,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -24372,7 +24641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
@@ -24384,7 +24653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>icon — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>shared</code></b>&nbsp;&nbsp;
@@ -24418,7 +24687,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -24815,7 +25084,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"article_id\": \"architecto\",
     \"service_id\": \"architecto\",
     \"pricing_type\": \"kilo\",
-    \"at\": \"2026-11-06T04:15:04\"
+    \"at\": \"2026-11-14T10:47:47\"
 }"
 </code></pre></div>
 
@@ -24837,7 +25106,7 @@ let body = {
     "article_id": "architecto",
     "service_id": "architecto",
     "pricing_type": "kilo",
-    "at": "2026-11-06T04:15:04"
+    "at": "2026-11-14T10:47:47"
 };
 
 fetch(url, {
@@ -25066,10 +25335,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="at"                data-endpoint="GETapi-v1-agency-prices-resolve"
-               value="2026-11-06T04:15:04"
+               value="2026-11-14T10:47:47"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
+<p>Le champ value n’est pas une date valide. Example: <code>2026-11-14T10:47:47</code></p>
         </div>
         </form>
 
@@ -25349,7 +25618,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>amount minor — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount minor — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_from</code></b>&nbsp;&nbsp;
@@ -25361,7 +25630,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>valid from — Requis, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>valid from — Requis, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>valid_to</code></b>&nbsp;&nbsp;
@@ -25373,7 +25642,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>valid to — Optionnel, date ISO 8601. validation.date validation.after_or_equal. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>valid to — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>valid_from</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -25585,7 +25854,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 60 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>availability</code></b>&nbsp;&nbsp;
@@ -25801,7 +26070,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 60 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ignore_id</code></b>&nbsp;&nbsp;
@@ -26041,7 +26310,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+<p>title — Requis. Le champ value ne doit pas dépasser 60 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -26053,7 +26322,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>description — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -26087,7 +26356,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -26328,7 +26597,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+<p>title — Requis. Le champ value ne doit pas dépasser 60 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -26340,7 +26609,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>description — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -26374,7 +26643,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -26953,7 +27222,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+<p>title — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -27203,7 +27472,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+<p>title — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -27500,13 +27769,15 @@ fetch(url, {
             &quot;earn_points_per_1000&quot;: 10,
             &quot;conversion_points&quot;: 200,
             &quot;conversion_value&quot;: 1000,
+            &quot;points_for_1_fcfa&quot;: 100,
+            &quot;points_for_5_fcfa&quot;: 20,
             &quot;minimum_points&quot;: 500,
             &quot;expiration_months&quot;: 12,
             &quot;credit_after_payment&quot;: true,
             &quot;stack_with_promotions&quot;: false,
             &quot;point_value&quot;: 5,
             &quot;earn_label&quot;: &quot;10 points / 1 000 FCFA&quot;,
-            &quot;conversion_label&quot;: &quot;200 points = 1 000 FCFA&quot;
+            &quot;conversion_label&quot;: &quot;100 points = 1 FCFA &middot; 20 points = 5 FCFA&quot;
         },
         &quot;tiers&quot;: {
             &quot;basis&quot;: &quot;points&quot;,
@@ -27919,7 +28190,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 32 caractères. Example: <code>b</code></p>
         </div>
         </form>
 
@@ -28344,7 +28615,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+<p>code — Requis. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -28356,7 +28627,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -28382,7 +28653,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max. Example: <code>1</code></p>
+<p>rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -28394,7 +28665,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>starts_at</code></b>&nbsp;&nbsp;
@@ -28406,7 +28677,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>starts at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>starts at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -28418,7 +28689,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>starts_at</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quota</code></b>&nbsp;&nbsp;
@@ -28430,7 +28701,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>quota — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>quota — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>per_client_limit</code></b>&nbsp;&nbsp;
@@ -28442,7 +28713,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>per client limit — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>per client limit — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
@@ -28468,7 +28739,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>min amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>min amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_discount</code></b>&nbsp;&nbsp;
@@ -28480,7 +28751,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>max discount — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>max discount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>stack_with_loyalty</code></b>&nbsp;&nbsp;
@@ -28781,7 +29052,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+<p>code — Requis. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -28793,7 +29064,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -28819,7 +29090,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max. Example: <code>1</code></p>
+<p>rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -28831,7 +29102,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>starts_at</code></b>&nbsp;&nbsp;
@@ -28843,7 +29114,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>starts at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>starts at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -28855,7 +29126,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>starts_at</code>. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quota</code></b>&nbsp;&nbsp;
@@ -28867,7 +29138,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>quota — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>quota — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>per_client_limit</code></b>&nbsp;&nbsp;
@@ -28879,7 +29150,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>per client limit — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>per client limit — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_ids</code></b>&nbsp;&nbsp;
@@ -28905,7 +29176,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>min amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>min amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_discount</code></b>&nbsp;&nbsp;
@@ -28917,7 +29188,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>max discount — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>max discount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>stack_with_loyalty</code></b>&nbsp;&nbsp;
@@ -29548,7 +29819,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+<p>code — Requis. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -29560,7 +29831,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>rate percent — Requis, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>rate percent — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_clients</code></b>&nbsp;&nbsp;
@@ -29572,7 +29843,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>max clients — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>max clients — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -29584,7 +29855,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>ends at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -29841,7 +30112,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+<p>code — Requis. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -29853,7 +30124,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>rate percent — Requis, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>rate percent — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_clients</code></b>&nbsp;&nbsp;
@@ -29865,7 +30136,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>max clients — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>max clients — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -29877,7 +30148,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>ends at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -30484,7 +30755,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>lavage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>lavage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_hour</code></b>&nbsp;&nbsp;
@@ -30496,7 +30767,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>express hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>express hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repassage_hour</code></b>&nbsp;&nbsp;
@@ -30508,7 +30779,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>repassage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>repassage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -30763,7 +31034,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>lavage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>lavage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>express_hour</code></b>&nbsp;&nbsp;
@@ -30775,7 +31046,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>express hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>express hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>repassage_hour</code></b>&nbsp;&nbsp;
@@ -30787,7 +31058,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>repassage hour — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>repassage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -31019,7 +31290,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"q\": \"b\",
     \"agency_id\": 16,
-    \"received_at\": \"2026-11-06T04:15:04\"
+    \"received_at\": \"2026-11-14T10:47:47\"
 }"
 </code></pre></div>
 
@@ -31039,7 +31310,7 @@ const headers = {
 let body = {
     "q": "b",
     "agency_id": 16,
-    "received_at": "2026-11-06T04:15:04"
+    "received_at": "2026-11-14T10:47:47"
 };
 
 fetch(url, {
@@ -31220,7 +31491,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 60 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -31253,10 +31524,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="received_at"                data-endpoint="GETapi-v1-retrieval-rules"
-               value="2026-11-06T04:15:04"
+               value="2026-11-14T10:47:47"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
+<p>Le champ value n’est pas une date valide. Example: <code>2026-11-14T10:47:47</code></p>
         </div>
         </form>
 
@@ -32266,7 +32537,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 60 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -32495,7 +32766,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="ngzm"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>ngzm</code></p>
+<p>Le champ value ne doit pas dépasser 12 caractères. Example: <code>ngzm</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ignore_id</code></b>&nbsp;&nbsp;
@@ -32731,7 +33002,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+<p>title — Requis. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -33002,7 +33273,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>title — Requis. validation.max. Example: <code>exemple</code></p>
+<p>title — Requis. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -33628,7 +33899,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -33640,7 +33911,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>rate percent — Requis, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>rate percent — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -33871,7 +34142,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate_percent</code></b>&nbsp;&nbsp;
@@ -33883,7 +34154,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>rate percent — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>rate percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 100. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -34924,13 +35195,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="caisse-POSTapi-v1-cash-movements">POST api/v1/cash-movements</h2>
+                    <h2 id="caisse-POSTapi-v1-cash-movements">Créer un mouvement de caisse.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p><code>client_uuid</code> est une clé d’idempotence optionnelle (UUID généré par l’app),
+pas l’identifiant d’un client CRM. Si omis, le serveur en génère une.</p>
 
 <span id="example-requests-POSTapi-v1-cash-movements">
 <blockquote>Example request:</blockquote>
@@ -34943,7 +35215,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
-    --form "client_uuid=550e8400-e29b-41d4-a716-446655440000"\
     --form "label=Exemple"\
     --form "type=in"\
     --form "amount=1000"\
@@ -34954,7 +35225,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "beneficiary=exemple"\
     --form "reference=exemple"\
     --form "comment=exemple"\
-    --form "proof=@C:\Users\ativo\AppData\Local\Temp\php160C.tmp" </code></pre></div>
+    --form "proof=@C:\Users\ativo\AppData\Local\Temp\phpD75D.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -34970,7 +35241,6 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('client_uuid', '550e8400-e29b-41d4-a716-446655440000');
 body.append('label', 'Exemple');
 body.append('type', 'in');
 body.append('amount', '1000');
@@ -35155,10 +35425,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-cash-movements"
-               value="550e8400-e29b-41d4-a716-446655440000"
+               value=""
                data-component="body">
     <br>
-<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>label</code></b>&nbsp;&nbsp;
@@ -35170,7 +35440,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>label — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>label — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -35196,7 +35466,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -35220,7 +35490,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>action date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>action date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>validated</code></b>&nbsp;&nbsp;
@@ -35268,7 +35538,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>beneficiary — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>beneficiary — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
@@ -35280,7 +35550,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>reference — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reference — Optionnel. Le champ value ne doit pas dépasser 64 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -35292,7 +35562,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>comment — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>comment — Optionnel. Le champ value ne doit pas dépasser 2000 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>proof</code></b>&nbsp;&nbsp;
@@ -35304,7 +35574,7 @@ Must be one of:
                value=""
                data-component="body">
     <br>
-<p>proof — Optionnel, fichier. Must be a file. validation.max. Example: <code>C:\Users\ativo\AppData\Local\Temp\php160C.tmp</code></p>
+<p>proof — Optionnel, fichier. Must be a file. Le fichier value ne doit pas dépasser 10240 Ko. Example: <code>C:\Users\ativo\AppData\Local\Temp\phpD75D.tmp</code></p>
         </div>
         </form>
 
@@ -35842,7 +36112,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>label — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -35868,7 +36138,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -35892,7 +36162,7 @@ Must be one of:
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>action date — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>action date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -36364,7 +36634,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-11-06T04:15:04\"
+    \"date\": \"2026-11-14T10:47:47\"
 }"
 </code></pre></div>
 
@@ -36382,7 +36652,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-11-06T04:15:04"
+    "date": "2026-11-14T10:47:47"
 };
 
 fetch(url, {
@@ -36618,10 +36888,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-center"
-               value="2026-11-06T04:15:04"
+               value="2026-11-14T10:47:47"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
+<p>Le champ value n’est pas une date valide. Example: <code>2026-11-14T10:47:47</code></p>
         </div>
         </form>
 
@@ -36646,7 +36916,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Agency-Id: 1" \
     --data "{
     \"q\": \"architecto\",
-    \"date\": \"2026-11-06T04:15:04\",
+    \"date\": \"2026-11-14T10:47:47\",
     \"period\": \"day\",
     \"category_id\": 16,
     \"payment_method\": \"architecto\",
@@ -36670,7 +36940,7 @@ const headers = {
 
 let body = {
     "q": "architecto",
-    "date": "2026-11-06T04:15:04",
+    "date": "2026-11-14T10:47:47",
     "period": "day",
     "category_id": 16,
     "payment_method": "architecto",
@@ -36866,10 +37136,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-cash-journal"
-               value="2026-11-06T04:15:04"
+               value="2026-11-14T10:47:47"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
+<p>Le champ value n’est pas une date valide. Example: <code>2026-11-14T10:47:47</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>period</code></b>&nbsp;&nbsp;
@@ -37341,7 +37611,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>opening balance — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>opening balance — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -37987,7 +38257,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>counted cash — Requis, nombre. validation.min. Example: <code>1</code></p>
+<p>counted cash — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>mobile_money</code></b>&nbsp;&nbsp;
@@ -37999,7 +38269,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>counted mobile money — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>counted mobile money — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>card</code></b>&nbsp;&nbsp;
@@ -38011,7 +38281,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>counted card — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>counted card — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
                     </div>
                                     </details>
         </div>
@@ -38025,7 +38295,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>difference reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>difference reason — Optionnel. Le champ value ne doit pas dépasser 2000 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -39230,7 +39500,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>direction</code></b>&nbsp;&nbsp;
@@ -41953,8 +42223,8 @@ comparaison avec la période précédente ; `format=csv|pdf` pour « Exporter »
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date_from\": \"2026-11-06T04:15:04\",
-    \"date_to\": \"2052-11-29\",
+    \"date_from\": \"2026-11-14T10:47:47\",
+    \"date_to\": \"2052-12-07\",
     \"preset\": \"month\",
     \"agency_id\": 16,
     \"format\": \"json\"
@@ -41975,8 +42245,8 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-11-06T04:15:04",
-    "date_to": "2052-11-29",
+    "date_from": "2026-11-14T10:47:47",
+    "date_to": "2052-12-07",
     "preset": "month",
     "agency_id": 16,
     "format": "json"
@@ -42210,10 +42480,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-v1-reports-overview"
-               value="2026-11-06T04:15:04"
+               value="2026-11-14T10:47:47"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
+<p>Le champ value n’est pas une date valide. Example: <code>2026-11-14T10:47:47</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -42222,10 +42492,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_to"                data-endpoint="GETapi-v1-reports-overview"
-               value="2052-11-29"
+               value="2052-12-07"
                data-component="body">
     <br>
-<p>validation.date validation.after_or_equal. Example: <code>2052-11-29</code></p>
+<p>Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>date_from</code>. Example: <code>2052-12-07</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>preset</code></b>&nbsp;&nbsp;
@@ -42289,7 +42559,7 @@ Must be one of:
     --header "Accept: application/json" \
     --header "X-Agency-Id: 1" \
     --data "{
-    \"date\": \"2026-11-06T04:15:04\",
+    \"date\": \"2026-11-14T10:47:47\",
     \"agency_id\": 16,
     \"format\": \"json\"
 }"
@@ -42309,7 +42579,7 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-11-06T04:15:04",
+    "date": "2026-11-14T10:47:47",
     "agency_id": 16,
     "format": "json"
 };
@@ -42546,10 +42816,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-v1-reports-daily"
-               value="2026-11-06T04:15:04"
+               value="2026-11-14T10:47:47"
                data-component="body">
     <br>
-<p>validation.date. Example: <code>2026-11-06T04:15:04</code></p>
+<p>Le champ value n’est pas une date valide. Example: <code>2026-11-14T10:47:47</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -43035,7 +43305,7 @@ Must be one of:
                name="recipients[1]"                data-endpoint="POSTapi-v1-reports-schedules"
                data-component="body">
     <br>
-<p>recipients * — Optionnel, e-mail. validation.email.</p>
+<p>recipients * — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -44825,7 +45095,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -44837,7 +45107,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>password</code></p>
+<p>password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. Le champ value doit contenir au moins 12 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -44849,7 +45119,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
         </form>
 
@@ -45069,6 +45339,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"loyalty_points_rate\": 1,
     \"loyalty_redeem_threshold\": 1,
     \"loyalty_redeem_value\": 1,
+    \"loyalty_points_for_1\": 1,
+    \"loyalty_points_for_5\": 1,
     \"hours_classic\": 1,
     \"hours_express\": 1,
     \"hours_repass\": 1,
@@ -45104,6 +45376,8 @@ let body = {
     "loyalty_points_rate": 1,
     "loyalty_redeem_threshold": 1,
     "loyalty_redeem_value": 1,
+    "loyalty_points_for_1": 1,
+    "loyalty_points_for_5": 1,
     "hours_classic": 1,
     "hours_express": 1,
     "hours_repass": 1,
@@ -45295,7 +45569,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -45421,7 +45695,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>loyalty points rate — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>loyalty points rate — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_threshold</code></b>&nbsp;&nbsp;
@@ -45433,7 +45707,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>loyalty redeem threshold — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>loyalty redeem threshold — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>loyalty_redeem_value</code></b>&nbsp;&nbsp;
@@ -45445,7 +45719,31 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>loyalty redeem value — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>loyalty redeem value — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>loyalty_points_for_1</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="loyalty_points_for_1"                data-endpoint="PUTapi-v1-settings-pressing"
+               value="1"
+               data-component="body">
+    <br>
+<p>loyalty points for 1 — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>loyalty_points_for_5</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="loyalty_points_for_5"                data-endpoint="PUTapi-v1-settings-pressing"
+               value="1"
+               data-component="body">
+    <br>
+<p>loyalty points for 5 — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -45457,7 +45755,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>hours classic — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>hours classic — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -45469,7 +45767,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>hours express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>hours express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -45481,7 +45779,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>hours repass — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>hours repass — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -45493,7 +45791,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -45505,7 +45803,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reporting_currency</code></b>&nbsp;&nbsp;
@@ -45517,7 +45815,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>reporting currency — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>reporting currency — Optionnel. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>primary_color</code></b>&nbsp;&nbsp;
@@ -45529,7 +45827,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>primary color — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>primary color — Optionnel. Le champ value ne doit pas dépasser 16 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>secondary_color</code></b>&nbsp;&nbsp;
@@ -45541,7 +45839,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>secondary color — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>secondary color — Optionnel. Le champ value ne doit pas dépasser 16 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -45792,7 +46090,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -45828,7 +46126,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>currency — Optionnel. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -45840,7 +46138,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -45852,7 +46150,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>opens_at</code></b>&nbsp;&nbsp;
@@ -45888,7 +46186,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>monthly revenue target — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>monthly revenue target — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -46482,7 +46780,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>source currency — Requis. validation.size. Example: <code>exemple</code></p>
+<p>source currency — Requis. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target_currency</code></b>&nbsp;&nbsp;
@@ -46494,7 +46792,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>target currency — Requis. The value and <code>source_currency</code> must be different. validation.size. Example: <code>exemple</code></p>
+<p>target currency — Requis. The value and <code>source_currency</code> must be different. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rate</code></b>&nbsp;&nbsp;
@@ -46518,7 +46816,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>rate date — Requis, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>rate date — Requis, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -47311,7 +47609,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -47347,7 +47645,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>country code — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>country code — Optionnel. Le champ value doit contenir 2 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -47359,7 +47657,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>currency — Optionnel. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -47371,7 +47669,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -47383,7 +47681,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>opens_at</code></b>&nbsp;&nbsp;
@@ -47419,7 +47717,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>monthly revenue target — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>monthly revenue target — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -47834,7 +48132,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -47846,7 +48144,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Requis, e-mail. validation.email. Example: <code>client@example.com</code></p>
+<p>email — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -47858,7 +48156,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Requis. validation.min. Example: <code>password</code></p>
+<p>password — Requis. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -48127,7 +48425,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -48139,7 +48437,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Optionnel, e-mail. validation.email. Example: <code>client@example.com</code></p>
+<p>email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -48151,7 +48449,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Optionnel. validation.min. Example: <code>password</code></p>
+<p>password — Optionnel. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -48805,7 +49103,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 100 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -49309,7 +49607,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
@@ -49321,7 +49619,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>first name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>first name — Optionnel. Le champ value ne doit pas dépasser 80 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -49333,7 +49631,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>last name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>last name — Optionnel. Le champ value ne doit pas dépasser 80 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>job_title</code></b>&nbsp;&nbsp;
@@ -49345,7 +49643,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>job title — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>job title — Optionnel. Le champ value ne doit pas dépasser 80 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>employee_number</code></b>&nbsp;&nbsp;
@@ -49357,7 +49655,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>employee number — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>employee number — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -49369,7 +49667,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -49381,7 +49679,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Optionnel, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
+<p>email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -50842,7 +51140,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Requis, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
+<p>email — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>fullname</code></b>&nbsp;&nbsp;
@@ -50854,7 +51152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -52560,7 +52858,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>label — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>label — Requis. Le champ value ne doit pas dépasser 80 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -52572,7 +52870,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>description — Optionnel. Le champ value ne doit pas dépasser 250 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>scope</code></b>&nbsp;&nbsp;
@@ -53090,7 +53388,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>label — Optionnel. Le champ value ne doit pas dépasser 80 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -53102,7 +53400,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>description — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>description — Optionnel. Le champ value ne doit pas dépasser 250 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>scope</code></b>&nbsp;&nbsp;
@@ -55474,7 +55772,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="b"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>b</code></p>
+<p>Le champ value ne doit pas dépasser 40 caractères. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -56398,7 +56696,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Optionnel. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -56410,7 +56708,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="690000001"
                data-component="body">
     <br>
-<p>phone number — Optionnel. validation.max. Example: <code>690000001</code></p>
+<p>phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>690000001</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -56422,7 +56720,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Optionnel, e-mail. validation.email validation.max. Example: <code>client@example.com</code></p>
+<p>email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -56434,7 +56732,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>address — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>address — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -56749,7 +57047,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min. Example: <code>password</code></p>
+<p>password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
         </form>
 
@@ -57955,7 +58253,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -58509,7 +58807,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>details</code></b>&nbsp;&nbsp;
@@ -58635,7 +58933,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>loyalty points rate — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>loyalty points rate — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_classic</code></b>&nbsp;&nbsp;
@@ -58647,7 +58945,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>hours classic — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>hours classic — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_express</code></b>&nbsp;&nbsp;
@@ -58659,7 +58957,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>hours express — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>hours express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>hours_repass</code></b>&nbsp;&nbsp;
@@ -58671,7 +58969,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>hours repass — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>hours repass — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -59288,7 +59586,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -59324,7 +59622,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>country code — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>country code — Optionnel. Le champ value doit contenir 2 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -59336,7 +59634,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>currency — Optionnel. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -59348,7 +59646,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -59360,7 +59658,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -59804,7 +60102,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -59840,7 +60138,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>country code — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>country code — Optionnel. Le champ value doit contenir 2 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
@@ -59852,7 +60150,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>currency — Optionnel. validation.size. Example: <code>exemple</code></p>
+<p>currency — Optionnel. Le champ value doit contenir 3 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_prefix</code></b>&nbsp;&nbsp;
@@ -59864,7 +60162,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code prefix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code_suffix</code></b>&nbsp;&nbsp;
@@ -59876,7 +60174,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code suffix — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -60512,7 +60810,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -60524,7 +60822,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Requis, e-mail. validation.email. Example: <code>client@example.com</code></p>
+<p>email — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -60536,7 +60834,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Requis. validation.min. Example: <code>password</code></p>
+<p>password — Requis. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -60855,7 +61153,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Jean Dupont"
                data-component="body">
     <br>
-<p>fullname — Requis. validation.max. Example: <code>Jean Dupont</code></p>
+<p>fullname — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Jean Dupont</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -60867,7 +61165,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="client@example.com"
                data-component="body">
     <br>
-<p>email — Requis, e-mail. validation.email. Example: <code>client@example.com</code></p>
+<p>email — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -60879,7 +61177,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="password"
                data-component="body">
     <br>
-<p>password — Requis. validation.min. Example: <code>password</code></p>
+<p>password — Requis. Le champ value doit contenir au moins 8 caractères. Example: <code>password</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -62187,7 +62485,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>plan — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>plan — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
@@ -62233,7 +62531,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>seats — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>seats — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_agencies</code></b>&nbsp;&nbsp;
@@ -62245,7 +62543,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>max agencies — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>max agencies — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>storage_gb</code></b>&nbsp;&nbsp;
@@ -62257,7 +62555,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>storage gb — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>storage gb — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>months</code></b>&nbsp;&nbsp;
@@ -62269,7 +62567,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>months — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>months — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>activate</code></b>&nbsp;&nbsp;
@@ -63046,7 +63344,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>plan — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>plan — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>periodicity</code></b>&nbsp;&nbsp;
@@ -63092,7 +63390,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>seats — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>seats — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_agencies</code></b>&nbsp;&nbsp;
@@ -63104,7 +63402,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>max agencies — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>max agencies — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>storage_gb</code></b>&nbsp;&nbsp;
@@ -63116,7 +63414,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>storage gb — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>storage gb — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -63150,7 +63448,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>expires at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>expires at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
         </form>
 
@@ -63426,7 +63724,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>months — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>months — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -63981,7 +64279,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>reference — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reference — Optionnel. Le champ value ne doit pas dépasser 64 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>effective_at</code></b>&nbsp;&nbsp;
@@ -63993,7 +64291,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>effective at — Optionnel, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>effective at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>auto_renew</code></b>&nbsp;&nbsp;
@@ -64325,7 +64623,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -65865,7 +66163,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -65877,7 +66175,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>legacy_type_action</code></b>&nbsp;&nbsp;
@@ -65903,7 +66201,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>default_hours</code></b>&nbsp;&nbsp;
@@ -65915,7 +66213,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>default hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>default hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -66178,7 +66476,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -66190,7 +66488,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>legacy_type_action</code></b>&nbsp;&nbsp;
@@ -66216,7 +66514,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>sort order — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>default_hours</code></b>&nbsp;&nbsp;
@@ -66228,7 +66526,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>default hours — Optionnel, nombre. validation.min. Example: <code>1</code></p>
+<p>default hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
@@ -67452,7 +67750,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Requis. validation.max. Example: <code>Exemple</code></p>
+<p>name — Requis. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -67464,7 +67762,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -67512,7 +67810,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="quarters[1]"                data-endpoint="POSTapi-v1-deliveries-zones"
                data-component="body">
     <br>
-<p>quarters * — Optionnel. validation.max.</p>
+<p>quarters * — Optionnel. Le champ value ne doit pas dépasser 100 caractères.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>radius_km</code></b>&nbsp;&nbsp;
@@ -67524,7 +67822,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>radius km — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>radius km — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 500. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>departure_address</code></b>&nbsp;&nbsp;
@@ -67536,7 +67834,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>departure address — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>departure address — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -67548,7 +67846,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -67560,7 +67858,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verified</code></b>&nbsp;&nbsp;
@@ -67832,7 +68130,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>code</code></b>&nbsp;&nbsp;
@@ -67844,7 +68142,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>code — Optionnel. Le champ value ne doit pas dépasser 32 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>agency_id</code></b>&nbsp;&nbsp;
@@ -67892,7 +68190,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                name="quarters[1]"                data-endpoint="PUTapi-v1-deliveries-zones--id-"
                data-component="body">
     <br>
-<p>quarters * — Optionnel. validation.max.</p>
+<p>quarters * — Optionnel. Le champ value ne doit pas dépasser 100 caractères.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>radius_km</code></b>&nbsp;&nbsp;
@@ -67904,7 +68202,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>radius km — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>radius km — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 500. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>departure_address</code></b>&nbsp;&nbsp;
@@ -67916,7 +68214,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>departure address — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>departure address — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collection_fee</code></b>&nbsp;&nbsp;
@@ -67928,7 +68226,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>collection fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_fee</code></b>&nbsp;&nbsp;
@@ -67940,7 +68238,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>delivery fee — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verified</code></b>&nbsp;&nbsp;
@@ -68225,7 +68523,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1000"
                data-component="body">
     <br>
-<p>amount — Requis, nombre. validation.min. Example: <code>1000</code></p>
+<p>amount — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>with_collection</code></b>&nbsp;&nbsp;
@@ -68705,7 +69003,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="2026-11-06T10:00:00+00:00"
                data-component="body">
     <br>
-<p>round date — Requis, date ISO 8601. validation.date. Example: <code>2026-11-06T10:00:00+00:00</code></p>
+<p>round date — Requis, date ISO 8601. Le champ value n’est pas une date valide. Example: <code>2026-11-06T10:00:00+00:00</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -68717,7 +69015,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>name — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
         </form>
 
@@ -69313,7 +69611,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>delivery address — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>delivery address — Optionnel. Le champ value ne doit pas dépasser 500 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>livreur_id</code></b>&nbsp;&nbsp;
@@ -69354,8 +69652,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"receiver_name\": \"exemple\",
     \"collect_amount\": 1000,
     \"payment_method\": \"cash\",
-    \"require_settled\": true,
-    \"client_uuid\": \"550e8400-e29b-41d4-a716-446655440000\"
+    \"require_settled\": true
 }"
 </code></pre></div>
 
@@ -69378,8 +69675,7 @@ let body = {
     "receiver_name": "exemple",
     "collect_amount": 1000,
     "payment_method": "cash",
-    "require_settled": true,
-    "client_uuid": "550e8400-e29b-41d4-a716-446655440000"
+    "require_settled": true
 };
 
 fetch(url, {
@@ -69709,7 +70005,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>receiver name — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>receiver name — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>collect_amount</code></b>&nbsp;&nbsp;
@@ -69721,7 +70017,7 @@ Must be one of:
                value="1000"
                data-component="body">
     <br>
-<p>collect amount — Optionnel, nombre. validation.min. Example: <code>1000</code></p>
+<p>collect amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
@@ -69766,10 +70062,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="client_uuid"                data-endpoint="POSTapi-v1-deliveries-deposits--deposit_id--deliver"
-               value="550e8400-e29b-41d4-a716-446655440000"
+               value=""
                data-component="body">
     <br>
-<p>client uuid — Optionnel, UUID. validation.uuid. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.</p>
         </div>
         </form>
 
@@ -70021,7 +70317,7 @@ Must be one of:
                value="n"
                data-component="body">
     <br>
-<p>validation.max. Example: <code>n</code></p>
+<p>Le champ value ne doit pas dépasser 100 caractères. Example: <code>n</code></p>
         </div>
         </form>
 
@@ -70243,7 +70539,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="22"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>22</code></p>
+<p>Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100. Example: <code>22</code></p>
         </div>
         </form>
 
@@ -70688,7 +70984,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>1</code></p>
+<p>Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 90. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
@@ -70980,7 +71276,7 @@ Must be one of:
                value="client@example.com"
                data-component="body">
     <br>
-<p>recipient — Requis, e-mail. validation.email Must match the regex /^+?[0-9 ]{8,20}$/. validation.max. Example: <code>client@example.com</code></p>
+<p>recipient — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Must match the regex /^+?[0-9 ]{8,20}$/. Le champ value ne doit pas dépasser 191 caractères. Example: <code>client@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
@@ -70992,7 +71288,7 @@ Must be one of:
                value="exemple"
                data-component="body">
     <br>
-<p>message — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>message — Optionnel. Le champ value ne doit pas dépasser 640 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -71246,7 +71542,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>code — Requis. validation.max. Example: <code>exemple</code></p>
+<p>code — Requis. Le champ value ne doit pas dépasser 40 caractères. Example: <code>exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
@@ -71272,7 +71568,7 @@ Must be one of:
                value="Exemple"
                data-component="body">
     <br>
-<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>label — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>responsible_id</code></b>&nbsp;&nbsp;
@@ -71318,7 +71614,7 @@ Must be one of:
                value="1"
                data-component="body">
     <br>
-<p>validity days — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>validity days — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 365. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pending</code></b>&nbsp;&nbsp;
@@ -71587,7 +71883,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="Exemple"
                data-component="body">
     <br>
-<p>label — Optionnel. validation.max. Example: <code>Exemple</code></p>
+<p>label — Optionnel. Le champ value ne doit pas dépasser 191 caractères. Example: <code>Exemple</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>responsible_id</code></b>&nbsp;&nbsp;
@@ -71876,7 +72172,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>validity days — Optionnel, nombre. validation.min validation.max. Example: <code>1</code></p>
+<p>validity days — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 365. Example: <code>1</code></p>
         </div>
         </form>
 
@@ -72117,7 +72413,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="exemple"
                data-component="body">
     <br>
-<p>reason — Optionnel. validation.max. Example: <code>exemple</code></p>
+<p>reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères. Example: <code>exemple</code></p>
         </div>
         </form>
 
@@ -73225,7 +73521,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="22"
                data-component="body">
     <br>
-<p>validation.min validation.max. Example: <code>22</code></p>
+<p>Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 90. Example: <code>22</code></p>
         </div>
         </form>
 

@@ -17,7 +17,7 @@
 
 - Header optionnel `Idempotency-Key` (ou `X-Idempotency-Key`) sur POST dépôt / paiement / retrait / sync POS / caisse / livraison.
 - Rejoue la **même** réponse si succès (`Idempotent-Replay: true`) ; libère la clé si erreur (retry autorisé).
-- Domaine : `client_uuid` unique sur dépôts, transactions et mouvements de caisse.
+- Domaine : `client_uuid` = UUID d’idempotence généré par l’app (pas un client CRM), unique sur dépôts, transactions et mouvements de caisse ; omis → généré côté serveur.
 - Toute écriture critique est dans `DB::transaction` : validation / portefeuille insuffisant → **rollback** complet.
 
 - Mots de passe hashés (bcrypt).

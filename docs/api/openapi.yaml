@@ -641,7 +641,7 @@ paths:
                   example: caissier@elegance.local
                 email:
                   type: string
-                  description: 'This field is required when <code>login</code> is not present. validation.email.'
+                  description: 'This field is required when <code>login</code> is not present. Le champ value doit être une adresse e-mail valide.'
                   example: zbailey@example.net
                   nullable: true
                 password:
@@ -2495,24 +2495,24 @@ paths:
               properties:
                 first_name:
                   type: string
-                  description: 'first name — Optionnel. validation.max.'
+                  description: 'first name — Optionnel. Le champ value ne doit pas dépasser 100 caractères.'
                   example: exemple
                 last_name:
                   type: string
-                  description: 'last name — Optionnel. validation.max.'
+                  description: 'last name — Optionnel. Le champ value ne doit pas dépasser 100 caractères.'
                   example: exemple
                 email:
                   type: string
-                  description: 'email — Optionnel, e-mail. validation.email validation.max.'
+                  description: 'email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères.'
                   example: client@example.com
                 phone_number:
                   type: string
-                  description: 'phone number — Optionnel. validation.max.'
+                  description: 'phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                   nullable: true
                 job_title:
                   type: string
-                  description: 'job title — Optionnel. validation.max.'
+                  description: 'job title — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 preferences:
@@ -2522,7 +2522,7 @@ paths:
                   properties:
                     language:
                       type: string
-                      description: 'preferences language — Optionnel. validation.max.'
+                      description: 'preferences language — Optionnel. Le champ value ne doit pas dépasser 10 caractères.'
                       example: exemple
                     timezone:
                       type: string
@@ -2683,7 +2683,7 @@ paths:
                   example: password
                 password:
                   type: string
-                  description: 'password — Requis. The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  description: 'password — Requis. The value and <code>current_password</code> must be different. Must match the regex /[A-Z]/. Must match the regex /\d/. Le champ value doit contenir au moins 12 caractères.'
                   example: password
               required:
                 - current_password
@@ -5169,7 +5169,7 @@ paths:
               properties:
                 operations:
                   type: array
-                  description: 'operations — Requis, tableau. validation.min.'
+                  description: 'operations — Requis, tableau. Le champ value doit contenir au moins 1 éléments.'
                   example:
                     - []
                   items:
@@ -5189,11 +5189,11 @@ paths:
                         properties: {  }
                       client_uuid:
                         type: string
-                        description: 'operations * client uuid — Requis, UUID. validation.uuid.'
+                        description: 'Clé d’idempotence générée par l’app (UUID). Requis. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.'
                         example: 550e8400-e29b-41d4-a716-446655440000
                       local_ref:
                         type: string
-                        description: 'operations * local ref — Optionnel. validation.max.'
+                        description: 'operations * local ref — Optionnel. Le champ value ne doit pas dépasser 40 caractères.'
                         example: exemple
                         nullable: true
                     required:
@@ -5202,12 +5202,12 @@ paths:
                       - client_uuid
                 device_code:
                   type: string
-                  description: 'device code — Optionnel. validation.max.'
+                  description: 'device code — Optionnel. Le champ value ne doit pas dépasser 40 caractères.'
                   example: exemple
                   nullable: true
                 reference:
                   type: string
-                  description: 'reference — Optionnel. validation.max.'
+                  description: 'reference — Optionnel. Le champ value ne doit pas dépasser 40 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -10197,8 +10197,8 @@ paths:
               properties:
                 client_uuid:
                   type: string
-                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
-                  example: 550e8400-e29b-41d4-a716-446655440000
+                  description: 'Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.'
+                  example: null
                   nullable: true
                 client_id:
                   type: string
@@ -10206,12 +10206,12 @@ paths:
                   example: 1
                 discount:
                   type: integer
-                  description: 'discount — Optionnel, nombre. validation.min.'
+                  description: 'discount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 discount_percent:
                   type: integer
-                  description: 'discount percent — Optionnel, nombre. validation.min validation.max.'
+                  description: 'discount percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
                   nullable: true
                 promo_code:
@@ -10226,7 +10226,7 @@ paths:
                   nullable: true
                 points_to_redeem:
                   type: integer
-                  description: 'points to redeem — Optionnel, nombre. validation.min.'
+                  description: 'points to redeem — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 with_collection:
@@ -10239,12 +10239,12 @@ paths:
                   example: true
                 collection_fee:
                   type: integer
-                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  description: 'collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 delivery_fee:
                   type: integer
-                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  description: 'delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 delivery_zone_id:
@@ -10254,12 +10254,12 @@ paths:
                   nullable: true
                 delivery_address:
                   type: string
-                  description: 'delivery address — Optionnel. validation.max.'
+                  description: 'delivery address — Optionnel. Le champ value ne doit pas dépasser 500 caractères.'
                   example: exemple
                   nullable: true
                 advanced:
                   type: integer
-                  description: 'advanced — Optionnel, nombre. validation.min.'
+                  description: 'advanced — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 payment_method:
@@ -10275,12 +10275,12 @@ paths:
                   nullable: true
                 deposit_date:
                   type: string
-                  description: 'deposit date — Optionnel, date ISO 8601. validation.date.'
+                  description: 'deposit date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 retrieve_date:
                   type: string
-                  description: 'retrieve date — Optionnel, date ISO 8601. validation.date.'
+                  description: 'retrieve date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 notes:
@@ -10290,7 +10290,7 @@ paths:
                   nullable: true
                 lines:
                   type: array
-                  description: 'lines — Requis, tableau. validation.min.'
+                  description: 'lines — Requis, tableau. Le champ value doit contenir au moins 1 éléments.'
                   example:
                     - []
                   items:
@@ -10307,7 +10307,7 @@ paths:
                         nullable: true
                       quantity:
                         type: integer
-                        description: 'lines * quantity — Optionnel, nombre. validation.min.'
+                        description: 'lines * quantity — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                         example: 1
                         nullable: true
                       type_action:
@@ -10329,12 +10329,12 @@ paths:
                         nullable: true
                       weight_kg:
                         type: number
-                        description: 'lines * weight kg — Optionnel, nombre. validation.min.'
+                        description: 'lines * weight kg — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1.0
                         nullable: true
                       unit_price:
                         type: integer
-                        description: 'lines * unit price — Optionnel, nombre. validation.min.'
+                        description: 'lines * unit price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1000
                         nullable: true
                       designation:
@@ -10358,7 +10358,7 @@ paths:
                         example: true
                       color:
                         type: string
-                        description: 'lines * color — Optionnel. validation.max.'
+                        description: 'lines * color — Optionnel. Le champ value ne doit pas dépasser 64 caractères.'
                         example: exemple
                         nullable: true
                       defects:
@@ -10372,24 +10372,24 @@ paths:
                             - null
                       internal_notes:
                         type: string
-                        description: 'lines * internal notes — Optionnel. validation.max.'
+                        description: 'lines * internal notes — Optionnel. Le champ value ne doit pas dépasser 1000 caractères.'
                         example: exemple
                         nullable: true
                     required:
                       - article_id
                 terminal:
                   type: string
-                  description: 'terminal — Optionnel. validation.max.'
+                  description: 'terminal — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 local_ref:
                   type: string
-                  description: 'local ref — Optionnel. validation.max.'
+                  description: 'local ref — Optionnel. Le champ value ne doit pas dépasser 40 caractères.'
                   example: exemple
                   nullable: true
                 discount_reason:
                   type: string
-                  description: 'discount reason — Optionnel. validation.max.'
+                  description: 'discount reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -11368,7 +11368,7 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: 'reason — Optionnel. validation.max.'
+                  description: 'reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
     parameters:
@@ -11990,12 +11990,12 @@ paths:
               properties:
                 client_uuid:
                   type: string
-                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
-                  example: 550e8400-e29b-41d4-a716-446655440000
+                  description: 'Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.'
+                  example: null
                   nullable: true
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. validation.min.'
+                  description: 'amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                 payment_method:
                   type: string
@@ -12010,7 +12010,7 @@ paths:
                   nullable: true
                 transaction_date:
                   type: string
-                  description: 'transaction date — Optionnel, date ISO 8601. validation.date.'
+                  description: 'transaction date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
               required:
@@ -12634,7 +12634,7 @@ paths:
               properties:
                 receiver_name:
                   type: string
-                  description: 'receiver name — Optionnel. validation.max.'
+                  description: 'receiver name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
     parameters:
@@ -13256,7 +13256,7 @@ paths:
               properties:
                 units:
                   type: array
-                  description: 'units — Requis, tableau. validation.min.'
+                  description: 'units — Requis, tableau. Le champ value doit contenir au moins 1 éléments.'
                   example:
                     - []
                   items:
@@ -13268,7 +13268,7 @@ paths:
                         example: 1
                       quantity:
                         type: integer
-                        description: 'units * quantity — Requis, nombre. validation.min.'
+                        description: 'units * quantity — Requis, nombre. Le champ value doit être supérieur ou égal à 1.'
                         example: 1
                     required:
                       - id
@@ -14613,7 +14613,7 @@ paths:
                   nullable: true
                 storage_location:
                   type: string
-                  description: 'storage location — Optionnel. validation.max.'
+                  description: 'storage location — Optionnel. Le champ value ne doit pas dépasser 64 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -17289,7 +17289,7 @@ paths:
                     - handled
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. This field is required when <code>action</code> is <code>storage_fee</code>. validation.min.'
+                  description: 'amount — Requis, nombre. This field is required when <code>action</code> is <code>storage_fee</code>. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                   nullable: true
               required:
@@ -20108,7 +20108,7 @@ paths:
                         example: 1
                       quantity:
                         type: integer
-                        description: 'units * quantity — Requis, nombre. validation.min.'
+                        description: 'units * quantity — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1
                       verification:
                         type: string
@@ -20132,7 +20132,7 @@ paths:
                   nullable: true
                 remarks:
                   type: string
-                  description: 'remarks — Optionnel. validation.max.'
+                  description: 'remarks — Optionnel. Le champ value ne doit pas dépasser 2000 caractères.'
                   example: exemple
                   nullable: true
                 receiver_type:
@@ -20145,7 +20145,7 @@ paths:
                   nullable: true
                 receiver_name:
                   type: string
-                  description: 'receiver name — Optionnel. validation.max.'
+                  description: 'receiver name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 identity_confirmed:
@@ -20159,7 +20159,7 @@ paths:
                   properties:
                     amount:
                       type: integer
-                      description: 'payment amount — Optionnel, nombre. validation.min.'
+                      description: 'payment amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                       example: 1000
                       nullable: true
                     method:
@@ -20175,12 +20175,12 @@ paths:
                       nullable: true
                     received:
                       type: integer
-                      description: 'payment received — Optionnel, nombre. validation.min.'
+                      description: 'payment received — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                       example: 1
                       nullable: true
                 override_reason:
                   type: string
-                  description: 'override reason — Optionnel. validation.max.'
+                  description: 'override reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
                 notify_sms:
@@ -20838,12 +20838,12 @@ paths:
               properties:
                 phone:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 32 caractères.'
                   example: b
                   nullable: true
                 email:
                   type: string
-                  description: validation.email.
+                  description: 'Le champ value doit être une adresse e-mail valide.'
                   example: zbailey@example.net
                   nullable: true
                 except_id:
@@ -21877,26 +21877,26 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Requis. This field is required when <code>last_name</code> is not present. validation.max.'
+                  description: 'fullname — Requis. This field is required when <code>last_name</code> is not present. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                   nullable: true
                 last_name:
                   type: string
-                  description: 'last name — Requis. This field is required when <code>fullname</code> is not present. validation.max.'
+                  description: 'last name — Requis. This field is required when <code>fullname</code> is not present. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 first_name:
                   type: string
-                  description: 'first name — Optionnel. validation.max.'
+                  description: 'first name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 phone_number:
                   type: string
-                  description: 'phone number — Requis. validation.max.'
+                  description: 'phone number — Requis. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                 email:
                   type: string
-                  description: 'email — Optionnel, e-mail. validation.email.'
+                  description: 'email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example: client@example.com
                   nullable: true
                 address:
@@ -21911,17 +21911,17 @@ paths:
                   nullable: true
                 password:
                   type: string
-                  description: 'password — Optionnel. validation.min.'
+                  description: 'password — Optionnel. Le champ value doit contenir au moins 8 caractères.'
                   example: password
                   nullable: true
                 sponsor_code:
                   type: string
-                  description: 'sponsor code — Optionnel. validation.max.'
+                  description: 'sponsor code — Optionnel. Le champ value ne doit pas dépasser 12 caractères.'
                   example: exemple
                   nullable: true
                 phone_secondary:
                   type: string
-                  description: 'phone secondary — Optionnel. validation.max.'
+                  description: 'phone secondary — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                   nullable: true
                 agency_id:
@@ -21943,6 +21943,14 @@ paths:
                   enum:
                     - null
                   nullable: true
+                loyalty_fcfa_unit:
+                  type: integer
+                  description: 'loyalty fcfa unit — Optionnel, parmi 1, 5.'
+                  example: 1
+                  enum:
+                    - 1
+                    - 5
+                  nullable: true
                 consent_sms:
                   type: boolean
                   description: 'consent sms — Optionnel, booléen.'
@@ -21953,22 +21961,22 @@ paths:
                   example: true
                 pickup_slot:
                   type: string
-                  description: 'pickup slot — Optionnel. validation.max.'
+                  description: 'pickup slot — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 favorite_treatment:
                   type: string
-                  description: 'favorite treatment — Optionnel. validation.max.'
+                  description: 'favorite treatment — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 instructions:
                   type: string
-                  description: 'instructions — Optionnel. validation.max.'
+                  description: 'instructions — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 note:
                   type: string
-                  description: 'note — Optionnel. validation.max.'
+                  description: 'note — Optionnel. Le champ value ne doit pas dépasser 2000 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -23098,25 +23106,25 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Optionnel. validation.max.'
+                  description: 'fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 last_name:
                   type: string
-                  description: 'last name — Optionnel. validation.max.'
+                  description: 'last name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 first_name:
                   type: string
-                  description: 'first name — Optionnel. validation.max.'
+                  description: 'first name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 phone_number:
                   type: string
-                  description: 'phone number — Optionnel. validation.max.'
+                  description: 'phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                 email:
                   type: string
-                  description: 'email — Optionnel, e-mail. validation.email.'
+                  description: 'email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example: client@example.com
                   nullable: true
                 address:
@@ -23135,12 +23143,12 @@ paths:
                   example: true
                 password:
                   type: string
-                  description: 'password — Optionnel. validation.min.'
+                  description: 'password — Optionnel. Le champ value doit contenir au moins 8 caractères.'
                   example: password
                   nullable: true
                 phone_secondary:
                   type: string
-                  description: 'phone secondary — Optionnel. validation.max.'
+                  description: 'phone secondary — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                   nullable: true
                 agency_id:
@@ -23162,6 +23170,14 @@ paths:
                   enum:
                     - null
                   nullable: true
+                loyalty_fcfa_unit:
+                  type: integer
+                  description: 'loyalty fcfa unit — Optionnel, parmi 1, 5.'
+                  example: 1
+                  enum:
+                    - 1
+                    - 5
+                  nullable: true
                 consent_sms:
                   type: boolean
                   description: 'consent sms — Optionnel, booléen.'
@@ -23172,22 +23188,22 @@ paths:
                   example: true
                 pickup_slot:
                   type: string
-                  description: 'pickup slot — Optionnel. validation.max.'
+                  description: 'pickup slot — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 favorite_treatment:
                   type: string
-                  description: 'favorite treatment — Optionnel. validation.max.'
+                  description: 'favorite treatment — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 instructions:
                   type: string
-                  description: 'instructions — Optionnel. validation.max.'
+                  description: 'instructions — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 note:
                   type: string
-                  description: 'note — Optionnel. validation.max.'
+                  description: 'note — Optionnel. Le champ value ne doit pas dépasser 2000 caractères.'
                   example: exemple
                   nullable: true
     delete:
@@ -23953,7 +23969,7 @@ paths:
               properties:
                 body:
                   type: string
-                  description: 'body — Requis. validation.max.'
+                  description: 'body — Requis. Le champ value ne doit pas dépasser 2000 caractères.'
                   example: exemple
               required:
                 - body
@@ -25098,11 +25114,11 @@ paths:
               properties:
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. validation.min.'
+                  description: 'amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                 reason:
                   type: string
-                  description: 'reason — Optionnel. validation.max.'
+                  description: 'reason — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -25267,11 +25283,11 @@ paths:
               properties:
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. validation.min.'
+                  description: 'amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                 reason:
                   type: string
-                  description: 'reason — Optionnel. validation.max.'
+                  description: 'reason — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -25591,7 +25607,7 @@ paths:
                 file:
                   type: string
                   format: binary
-                  description: 'file — Requis, fichier. Must be a file. validation.max.'
+                  description: 'file — Requis, fichier. Must be a file. Le fichier value ne doit pas dépasser 2048 Ko.'
               required:
                 - file
   /api/v1/articles/history:
@@ -25667,6 +25683,252 @@ paths:
                         by:
                           type: string
                           example: 'Nadia Assi'
+                  meta:
+                    type: object
+                    properties: {  }
+                  errors:
+                    type: string
+                    example: null
+                    nullable: true
+        401:
+          description: 'Non authentifié'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: null
+                  meta:
+                    message: 'Non authentifié.'
+                  errors:
+                    -
+                      code: unauthenticated
+                      detail: 'Non authentifié.'
+                properties:
+                  data:
+                    type: string
+                    example: null
+                    nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Non authentifié.'
+                  errors:
+                    type: array
+                    example:
+                      -
+                        code: unauthenticated
+                        detail: 'Non authentifié.'
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthenticated
+                        detail:
+                          type: string
+                          example: 'Non authentifié.'
+      tags:
+        - Catalogue
+  /api/v1/articles/options:
+    get:
+      summary: "Listes de choix du formulaire de création / édition : services associés (`services[]`),\ndéfauts acceptés (`accepted_defects[]`), rendus, priorités, modes de facturation, catégories, agences."
+      operationId: listesDeChoixDuFormulaireDeCrationditionServicesAssocisservicesdfautsAcceptsacceptedDefectsRendusPrioritsModesDeFacturationCatgoriesAgences
+      description: ''
+      parameters:
+        -
+          in: header
+          name: X-Agency-Id
+          description: ''
+          example: '1'
+          schema:
+            type: string
+      responses:
+        200:
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    defects:
+                      -
+                        code: stain
+                        label: Taché
+                    renders:
+                      -
+                        id: 1
+                        title: 'Sur cintre'
+                    services:
+                      -
+                        code: collection
+                        label: Collecte
+                      -
+                        code: delivery
+                        label: Livraison
+                      -
+                        code: anti_odor
+                        label: 'Traitement anti-odeur'
+                    priorities:
+                      -
+                        code: standard
+                        label: Standard
+                      -
+                        code: high
+                        label: Haute
+                      -
+                        code: delicate
+                        label: Délicat
+                    billing_modes:
+                      -
+                        code: piece
+                        label: Pièce
+                      -
+                        code: kilo
+                        label: Kilo
+                      -
+                        code: mixed
+                        label: Mixte
+                    categories:
+                      -
+                        id: 1
+                        name: Cérémonie
+                    agencies:
+                      -
+                        id: 1
+                        name: 'Cocody Angré'
+                  meta: {  }
+                  errors: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      defects:
+                        type: array
+                        example:
+                          -
+                            code: stain
+                            label: Taché
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: stain
+                            label:
+                              type: string
+                              example: Taché
+                      renders:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            title: 'Sur cintre'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            title:
+                              type: string
+                              example: 'Sur cintre'
+                      services:
+                        type: array
+                        example:
+                          -
+                            code: collection
+                            label: Collecte
+                          -
+                            code: delivery
+                            label: Livraison
+                          -
+                            code: anti_odor
+                            label: 'Traitement anti-odeur'
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: collection
+                            label:
+                              type: string
+                              example: Collecte
+                      priorities:
+                        type: array
+                        example:
+                          -
+                            code: standard
+                            label: Standard
+                          -
+                            code: high
+                            label: Haute
+                          -
+                            code: delicate
+                            label: Délicat
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: standard
+                            label:
+                              type: string
+                              example: Standard
+                      billing_modes:
+                        type: array
+                        example:
+                          -
+                            code: piece
+                            label: Pièce
+                          -
+                            code: kilo
+                            label: Kilo
+                          -
+                            code: mixed
+                            label: Mixte
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              example: piece
+                            label:
+                              type: string
+                              example: Pièce
+                      categories:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            name: Cérémonie
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Cérémonie
+                      agencies:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            name: 'Cocody Angré'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Cocody Angré'
                   meta:
                     type: object
                     properties: {  }
@@ -26677,7 +26939,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 description:
                   type: string
@@ -26686,29 +26948,29 @@ paths:
                   nullable: true
                 classic_price:
                   type: integer
-                  description: 'classic price — Requis, nombre. validation.min.'
+                  description: 'classic price — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 express_price:
                   type: integer
-                  description: 'express price — Requis, nombre. validation.min.'
+                  description: 'express price — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 repass_price:
                   type: integer
-                  description: 'repass price — Requis, nombre. validation.min.'
+                  description: 'repass price — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 classic_price_kilo:
                   type: integer
-                  description: 'classic price kilo — Optionnel, nombre. validation.min.'
+                  description: 'classic price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 express_price_kilo:
                   type: integer
-                  description: 'express price kilo — Optionnel, nombre. validation.min.'
+                  description: 'express price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 repass_price_kilo:
                   type: integer
-                  description: 'repass price kilo — Optionnel, nombre. validation.min.'
+                  description: 'repass price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 status:
@@ -26717,7 +26979,7 @@ paths:
                   example: true
                 code:
                   type: string
-                  description: 'code — Optionnel. validation.max.'
+                  description: 'code — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 category_id:
@@ -26734,7 +26996,7 @@ paths:
                   nullable: true
                 icon:
                   type: string
-                  description: 'icon — Optionnel. validation.max.'
+                  description: 'icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 allow_discount:
@@ -26743,7 +27005,7 @@ paths:
                   example: true
                 round_to:
                   type: integer
-                  description: 'round to — Optionnel, nombre. validation.min.'
+                  description: 'round to — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 price_editable:
@@ -26752,17 +27014,17 @@ paths:
                   example: true
                 classic_hours:
                   type: integer
-                  description: 'classic hours — Optionnel, nombre. validation.min.'
+                  description: 'classic hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 express_hours:
                   type: integer
-                  description: 'express hours — Optionnel, nombre. validation.min.'
+                  description: 'express hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 repass_hours:
                   type: integer
-                  description: 'repass hours — Optionnel, nombre. validation.min.'
+                  description: 'repass hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 priority:
@@ -26809,7 +27071,7 @@ paths:
                     properties:
                       min_kg:
                         type: number
-                        description: 'kilo tiers * min kg — Requis, nombre. validation.min.'
+                        description: 'kilo tiers * min kg — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1.0
                       max_kg:
                         type: number
@@ -26818,11 +27080,11 @@ paths:
                         nullable: true
                       classic:
                         type: integer
-                        description: 'kilo tiers * classic — Requis, nombre. validation.min.'
+                        description: 'kilo tiers * classic — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1
                       express:
                         type: integer
-                        description: 'kilo tiers * express — Optionnel, nombre. validation.min.'
+                        description: 'kilo tiers * express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1
                         nullable: true
                     required:
@@ -26846,12 +27108,12 @@ paths:
                         example: true
                       price_adjust_percent:
                         type: integer
-                        description: 'availability * price adjust percent — Optionnel, nombre. validation.min validation.max.'
+                        description: 'availability * price adjust percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à -90. Le champ value ne doit pas être supérieur à 200.'
                         example: 1000
                         nullable: true
                       note:
                         type: string
-                        description: 'availability * note — Optionnel. validation.max.'
+                        description: 'availability * note — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                         example: exemple
                         nullable: true
                     required:
@@ -28001,7 +28263,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 description:
                   type: string
@@ -28010,29 +28272,29 @@ paths:
                   nullable: true
                 classic_price:
                   type: integer
-                  description: 'classic price — Optionnel, nombre. validation.min.'
+                  description: 'classic price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 express_price:
                   type: integer
-                  description: 'express price — Optionnel, nombre. validation.min.'
+                  description: 'express price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 repass_price:
                   type: integer
-                  description: 'repass price — Optionnel, nombre. validation.min.'
+                  description: 'repass price — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 classic_price_kilo:
                   type: integer
-                  description: 'classic price kilo — Optionnel, nombre. validation.min.'
+                  description: 'classic price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 express_price_kilo:
                   type: integer
-                  description: 'express price kilo — Optionnel, nombre. validation.min.'
+                  description: 'express price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 repass_price_kilo:
                   type: integer
-                  description: 'repass price kilo — Optionnel, nombre. validation.min.'
+                  description: 'repass price kilo — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 status:
@@ -28041,7 +28303,7 @@ paths:
                   example: true
                 code:
                   type: string
-                  description: 'code — Optionnel. validation.max.'
+                  description: 'code — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 category_id:
@@ -28058,7 +28320,7 @@ paths:
                   nullable: true
                 icon:
                   type: string
-                  description: 'icon — Optionnel. validation.max.'
+                  description: 'icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 allow_discount:
@@ -28067,7 +28329,7 @@ paths:
                   example: true
                 round_to:
                   type: integer
-                  description: 'round to — Optionnel, nombre. validation.min.'
+                  description: 'round to — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 price_editable:
@@ -28076,17 +28338,17 @@ paths:
                   example: true
                 classic_hours:
                   type: integer
-                  description: 'classic hours — Optionnel, nombre. validation.min.'
+                  description: 'classic hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 express_hours:
                   type: integer
-                  description: 'express hours — Optionnel, nombre. validation.min.'
+                  description: 'express hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 repass_hours:
                   type: integer
-                  description: 'repass hours — Optionnel, nombre. validation.min.'
+                  description: 'repass hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 priority:
@@ -28133,7 +28395,7 @@ paths:
                     properties:
                       min_kg:
                         type: number
-                        description: 'kilo tiers * min kg — Requis, nombre. validation.min.'
+                        description: 'kilo tiers * min kg — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1.0
                       max_kg:
                         type: number
@@ -28142,11 +28404,11 @@ paths:
                         nullable: true
                       classic:
                         type: integer
-                        description: 'kilo tiers * classic — Requis, nombre. validation.min.'
+                        description: 'kilo tiers * classic — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1
                       express:
                         type: integer
-                        description: 'kilo tiers * express — Optionnel, nombre. validation.min.'
+                        description: 'kilo tiers * express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                         example: 1
                         nullable: true
                     required:
@@ -28170,12 +28432,12 @@ paths:
                         example: true
                       price_adjust_percent:
                         type: integer
-                        description: 'availability * price adjust percent — Optionnel, nombre. validation.min validation.max.'
+                        description: 'availability * price adjust percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à -90. Le champ value ne doit pas être supérieur à 200.'
                         example: 1000
                         nullable: true
                       note:
                         type: string
-                        description: 'availability * note — Optionnel. validation.max.'
+                        description: 'availability * note — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                         example: exemple
                         nullable: true
                     required:
@@ -28545,11 +28807,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 icon:
                   type: string
-                  description: 'icon — Optionnel. validation.max.'
+                  description: 'icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 shared:
@@ -28558,7 +28820,7 @@ paths:
                   example: true
                 sort_order:
                   type: integer
-                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  description: 'sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
   '/api/v1/article-categories/{articleCategory_id}':
@@ -28720,11 +28982,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 icon:
                   type: string
-                  description: 'icon — Optionnel. validation.max.'
+                  description: 'icon — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 shared:
@@ -28733,7 +28995,7 @@ paths:
                   example: true
                 sort_order:
                   type: integer
-                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  description: 'sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
     delete:
@@ -29147,15 +29409,15 @@ paths:
                   nullable: true
                 amount_minor:
                   type: integer
-                  description: 'amount minor — Requis, nombre. validation.min.'
+                  description: 'amount minor — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 valid_from:
                   type: string
-                  description: 'valid from — Requis, date ISO 8601. validation.date.'
+                  description: 'valid from — Requis, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                 valid_to:
                   type: string
-                  description: 'valid to — Optionnel, date ISO 8601. validation.date validation.after_or_equal.'
+                  description: 'valid to — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>valid_from</code>.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
               required:
@@ -29386,8 +29648,8 @@ paths:
                   nullable: true
                 at:
                   type: string
-                  description: validation.date.
-                  example: '2026-11-06T04:15:04'
+                  description: 'Le champ value n’est pas une date valide.'
+                  example: '2026-11-14T10:47:47'
                   nullable: true
               required:
                 - agency_id
@@ -29558,7 +29820,7 @@ paths:
               properties:
                 q:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 60 caractères.'
                   example: b
                   nullable: true
                 availability:
@@ -29743,11 +30005,11 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'title — Requis. validation.max.'
+                  description: 'title — Requis. Le champ value ne doit pas dépasser 60 caractères.'
                   example: exemple
                 description:
                   type: string
-                  description: 'description — Optionnel. validation.max.'
+                  description: 'description — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 status:
@@ -29756,7 +30018,7 @@ paths:
                   example: true
                 sort_order:
                   type: integer
-                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  description: 'sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
   /api/v1/laundry-statuses/preview:
     get:
@@ -29876,7 +30138,7 @@ paths:
               properties:
                 title:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 60 caractères.'
                   example: b
                   nullable: true
                 ignore_id:
@@ -30059,11 +30321,11 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'title — Requis. validation.max.'
+                  description: 'title — Requis. Le champ value ne doit pas dépasser 60 caractères.'
                   example: exemple
                 description:
                   type: string
-                  description: 'description — Optionnel. validation.max.'
+                  description: 'description — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 status:
@@ -30072,7 +30334,7 @@ paths:
                   example: true
                 sort_order:
                   type: integer
-                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  description: 'sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
     delete:
       summary: 'Suppression possible uniquement si l’état n’a jamais été utilisé.'
@@ -30418,7 +30680,7 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'title — Requis. validation.max.'
+                  description: 'title — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                 status:
                   type: boolean
@@ -30567,7 +30829,7 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'title — Requis. validation.max.'
+                  description: 'title — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                 status:
                   type: boolean
@@ -30705,13 +30967,15 @@ paths:
                       earn_points_per_1000: 10
                       conversion_points: 200
                       conversion_value: 1000
+                      points_for_1_fcfa: 100
+                      points_for_5_fcfa: 20
                       minimum_points: 500
                       expiration_months: 12
                       credit_after_payment: true
                       stack_with_promotions: false
                       point_value: 5
                       earn_label: '10 points / 1 000 FCFA'
-                      conversion_label: '200 points = 1 000 FCFA'
+                      conversion_label: '100 points = 1 FCFA · 20 points = 5 FCFA'
                     tiers:
                       basis: points
                       levels:
@@ -30841,6 +31105,12 @@ paths:
                           conversion_value:
                             type: integer
                             example: 1000
+                          points_for_1_fcfa:
+                            type: integer
+                            example: 100
+                          points_for_5_fcfa:
+                            type: integer
+                            example: 20
                           minimum_points:
                             type: integer
                             example: 500
@@ -30861,7 +31131,7 @@ paths:
                             example: '10 points / 1 000 FCFA'
                           conversion_label:
                             type: string
-                            example: '200 points = 1 000 FCFA'
+                            example: '100 points = 1 FCFA · 20 points = 5 FCFA'
                       tiers:
                         type: object
                         properties:
@@ -31206,7 +31476,7 @@ paths:
               properties:
                 code:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 32 caractères.'
                   example: b
               required:
                 - code
@@ -31474,11 +31744,11 @@ paths:
               properties:
                 code:
                   type: string
-                  description: 'code — Requis. validation.max.'
+                  description: 'code — Requis. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                   nullable: true
                 type:
@@ -31490,32 +31760,32 @@ paths:
                     - amount
                 rate_percent:
                   type: integer
-                  description: 'rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max.'
+                  description: 'rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
                   nullable: true
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min.'
+                  description: 'amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                   nullable: true
                 starts_at:
                   type: string
-                  description: 'starts at — Optionnel, date ISO 8601. validation.date.'
+                  description: 'starts at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 ends_at:
                   type: string
-                  description: 'ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal.'
+                  description: 'ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>starts_at</code>.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 quota:
                   type: integer
-                  description: 'quota — Optionnel, nombre. validation.min.'
+                  description: 'quota — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 per_client_limit:
                   type: integer
-                  description: 'per client limit — Optionnel, nombre. validation.min.'
+                  description: 'per client limit — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 agency_ids:
@@ -31527,12 +31797,12 @@ paths:
                     type: integer
                 min_amount:
                   type: integer
-                  description: 'min amount — Optionnel, nombre. validation.min.'
+                  description: 'min amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 max_discount:
                   type: integer
-                  description: 'max discount — Optionnel, nombre. validation.min.'
+                  description: 'max discount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 stack_with_loyalty:
@@ -31690,11 +31960,11 @@ paths:
               properties:
                 code:
                   type: string
-                  description: 'code — Requis. validation.max.'
+                  description: 'code — Requis. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                   nullable: true
                 type:
@@ -31706,32 +31976,32 @@ paths:
                     - amount
                 rate_percent:
                   type: integer
-                  description: 'rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. validation.min validation.max.'
+                  description: 'rate percent — Requis, nombre. This field is required unless <code>type</code> is in <code>amount</code>. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
                   nullable: true
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. validation.min.'
+                  description: 'amount — Requis, nombre. This field is required when <code>type</code> is <code>amount</code>. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                   nullable: true
                 starts_at:
                   type: string
-                  description: 'starts at — Optionnel, date ISO 8601. validation.date.'
+                  description: 'starts at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 ends_at:
                   type: string
-                  description: 'ends at — Optionnel, date ISO 8601. validation.date validation.after_or_equal.'
+                  description: 'ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>starts_at</code>.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 quota:
                   type: integer
-                  description: 'quota — Optionnel, nombre. validation.min.'
+                  description: 'quota — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 per_client_limit:
                   type: integer
-                  description: 'per client limit — Optionnel, nombre. validation.min.'
+                  description: 'per client limit — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 agency_ids:
@@ -31743,12 +32013,12 @@ paths:
                     type: integer
                 min_amount:
                   type: integer
-                  description: 'min amount — Optionnel, nombre. validation.min.'
+                  description: 'min amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 max_discount:
                   type: integer
-                  description: 'max discount — Optionnel, nombre. validation.min.'
+                  description: 'max discount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 stack_with_loyalty:
@@ -32112,20 +32382,20 @@ paths:
               properties:
                 code:
                   type: string
-                  description: 'code — Requis. validation.max.'
+                  description: 'code — Requis. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                 rate_percent:
                   type: integer
-                  description: 'rate percent — Requis, nombre. validation.min validation.max.'
+                  description: 'rate percent — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
                 max_clients:
                   type: integer
-                  description: 'max clients — Optionnel, nombre. validation.min.'
+                  description: 'max clients — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 ends_at:
                   type: string
-                  description: 'ends at — Optionnel, date ISO 8601. validation.date.'
+                  description: 'ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 status:
@@ -32279,20 +32549,20 @@ paths:
               properties:
                 code:
                   type: string
-                  description: 'code — Requis. validation.max.'
+                  description: 'code — Requis. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                 rate_percent:
                   type: integer
-                  description: 'rate percent — Requis, nombre. validation.min validation.max.'
+                  description: 'rate percent — Requis, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
                 max_clients:
                   type: integer
-                  description: 'max clients — Optionnel, nombre. validation.min.'
+                  description: 'max clients — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 ends_at:
                   type: string
-                  description: 'ends at — Optionnel, date ISO 8601. validation.date.'
+                  description: 'ends at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 status:
@@ -32652,15 +32922,15 @@ paths:
               properties:
                 lavage_hour:
                   type: integer
-                  description: 'lavage hour — Optionnel, nombre. validation.min.'
+                  description: 'lavage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 express_hour:
                   type: integer
-                  description: 'express hour — Optionnel, nombre. validation.min.'
+                  description: 'express hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 repassage_hour:
                   type: integer
-                  description: 'repassage hour — Optionnel, nombre. validation.min.'
+                  description: 'repassage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 status:
                   type: boolean
@@ -32813,15 +33083,15 @@ paths:
               properties:
                 lavage_hour:
                   type: integer
-                  description: 'lavage hour — Optionnel, nombre. validation.min.'
+                  description: 'lavage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 express_hour:
                   type: integer
-                  description: 'express hour — Optionnel, nombre. validation.min.'
+                  description: 'express hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 repassage_hour:
                   type: integer
-                  description: 'repassage hour — Optionnel, nombre. validation.min.'
+                  description: 'repassage hour — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 status:
                   type: boolean
@@ -33131,7 +33401,7 @@ paths:
               properties:
                 q:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 60 caractères.'
                   example: b
                   nullable: true
                 agency_id:
@@ -33146,8 +33416,8 @@ paths:
                   nullable: true
                 received_at:
                   type: string
-                  description: validation.date.
-                  example: '2026-11-06T04:15:04'
+                  description: 'Le champ value n’est pas une date valide.'
+                  example: '2026-11-14T10:47:47'
                   nullable: true
     post:
       summary: ''
@@ -33909,7 +34179,7 @@ paths:
               properties:
                 q:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 60 caractères.'
                   example: b
                   nullable: true
                 agency_id:
@@ -34083,7 +34353,7 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'title — Requis. validation.max.'
+                  description: 'title — Requis. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                 agency_id:
                   type: integer
@@ -34219,7 +34489,7 @@ paths:
                   example: 16
                 suffix:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 12 caractères.'
                   example: ngzm
                   nullable: true
                 ignore_id:
@@ -34396,7 +34666,7 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'title — Requis. validation.max.'
+                  description: 'title — Requis. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                 agency_id:
                   type: integer
@@ -34800,11 +35070,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 rate_percent:
                   type: integer
-                  description: 'rate percent — Requis, nombre. validation.min validation.max.'
+                  description: 'rate percent — Requis, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
               required:
                 - name
@@ -34956,11 +35226,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 rate_percent:
                   type: integer
-                  description: 'rate percent — Optionnel, nombre. validation.min validation.max.'
+                  description: 'rate percent — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 100.'
                   example: 1
                 status:
                   type: boolean
@@ -35655,9 +35925,9 @@ paths:
       tags:
         - Caisse
     post:
-      summary: ''
-      operationId: postApiV1CashMovements
-      description: ''
+      summary: 'Créer un mouvement de caisse.'
+      operationId: crerUnMouvementDeCaisse
+      description: "`client_uuid` est une clé d’idempotence optionnelle (UUID généré par l’app),\npas l’identifiant d’un client CRM. Si omis, le serveur en génère une."
       parameters:
         -
           in: header
@@ -35824,12 +36094,12 @@ paths:
               properties:
                 client_uuid:
                   type: string
-                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
-                  example: 550e8400-e29b-41d4-a716-446655440000
+                  description: 'Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.'
+                  example: null
                   nullable: true
                 label:
                   type: string
-                  description: 'label — Requis. validation.max.'
+                  description: 'label — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 type:
                   type: string
@@ -35840,7 +36110,7 @@ paths:
                     - out
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. validation.min.'
+                  description: 'amount — Requis, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                 category_id:
                   type: string
@@ -35849,7 +36119,7 @@ paths:
                   nullable: true
                 action_date:
                   type: string
-                  description: 'action date — Optionnel, date ISO 8601. validation.date.'
+                  description: 'action date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 validated:
@@ -35868,23 +36138,23 @@ paths:
                   nullable: true
                 beneficiary:
                   type: string
-                  description: 'beneficiary — Optionnel. validation.max.'
+                  description: 'beneficiary — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 reference:
                   type: string
-                  description: 'reference — Optionnel. validation.max.'
+                  description: 'reference — Optionnel. Le champ value ne doit pas dépasser 64 caractères.'
                   example: exemple
                   nullable: true
                 comment:
                   type: string
-                  description: 'comment — Optionnel. validation.max.'
+                  description: 'comment — Optionnel. Le champ value ne doit pas dépasser 2000 caractères.'
                   example: exemple
                   nullable: true
                 proof:
                   type: string
                   format: binary
-                  description: 'proof — Optionnel, fichier. Must be a file. validation.max.'
+                  description: 'proof — Optionnel, fichier. Must be a file. Le fichier value ne doit pas dépasser 10240 Ko.'
                   nullable: true
               required:
                 - label
@@ -36487,7 +36757,7 @@ paths:
               properties:
                 label:
                   type: string
-                  description: 'label — Optionnel. validation.max.'
+                  description: 'label — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 type:
                   type: string
@@ -36498,7 +36768,7 @@ paths:
                     - out
                 amount:
                   type: integer
-                  description: 'amount — Optionnel, nombre. validation.min.'
+                  description: 'amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1000
                 category_id:
                   type: string
@@ -36507,7 +36777,7 @@ paths:
                   nullable: true
                 action_date:
                   type: string
-                  description: 'action date — Optionnel, date ISO 8601. validation.date.'
+                  description: 'action date — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
     delete:
@@ -37293,8 +37563,8 @@ paths:
               properties:
                 date:
                   type: string
-                  description: validation.date.
-                  example: '2026-11-06T04:15:04'
+                  description: 'Le champ value n’est pas une date valide.'
+                  example: '2026-11-14T10:47:47'
                   nullable: true
   /api/v1/cash/journal:
     get:
@@ -37514,8 +37784,8 @@ paths:
                   nullable: true
                 date:
                   type: string
-                  description: validation.date.
-                  example: '2026-11-06T04:15:04'
+                  description: 'Le champ value n’est pas une date valide.'
+                  example: '2026-11-14T10:47:47'
                   nullable: true
                 period:
                   type: string
@@ -37856,7 +38126,7 @@ paths:
               properties:
                 opening_balance:
                   type: integer
-                  description: 'opening balance — Requis, nombre. validation.min.'
+                  description: 'opening balance — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
               required:
                 - opening_balance
@@ -38806,23 +39076,23 @@ paths:
                   properties:
                     cash:
                       type: integer
-                      description: 'counted cash — Requis, nombre. validation.min.'
+                      description: 'counted cash — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                       example: 1
                     mobile_money:
                       type: integer
-                      description: 'counted mobile money — Optionnel, nombre. validation.min.'
+                      description: 'counted mobile money — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                       example: 1
                       nullable: true
                     card:
                       type: integer
-                      description: 'counted card — Optionnel, nombre. validation.min.'
+                      description: 'counted card — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                       example: 1
                       nullable: true
                   required:
                     - cash
                 difference_reason:
                   type: string
-                  description: 'difference reason — Optionnel. validation.max.'
+                  description: 'difference reason — Optionnel. Le champ value ne doit pas dépasser 2000 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -40176,7 +40446,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 direction:
                   type: string
@@ -42653,13 +42923,13 @@ paths:
               properties:
                 date_from:
                   type: string
-                  description: validation.date.
-                  example: '2026-11-06T04:15:04'
+                  description: 'Le champ value n’est pas une date valide.'
+                  example: '2026-11-14T10:47:47'
                   nullable: true
                 date_to:
                   type: string
-                  description: 'validation.date validation.after_or_equal.'
-                  example: '2052-11-29'
+                  description: 'Le champ value n’est pas une date valide. Le champ value doit être une date postérieure ou égale au <code>date_from</code>.'
+                  example: '2052-12-07'
                   nullable: true
                 preset:
                   type: string
@@ -43059,8 +43329,8 @@ paths:
               properties:
                 date:
                   type: string
-                  description: validation.date.
-                  example: '2026-11-06T04:15:04'
+                  description: 'Le champ value n’est pas une date valide.'
+                  example: '2026-11-14T10:47:47'
                   nullable: true
                 agency_id:
                   type: integer
@@ -43405,7 +43675,7 @@ paths:
                   nullable: true
                 recipients:
                   type: array
-                  description: 'recipients * — Optionnel, e-mail. validation.email.'
+                  description: 'recipients * — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example:
                     - client@example.com
                   items:
@@ -45081,15 +45351,15 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Requis. validation.max.'
+                  description: 'fullname — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 password:
                   type: string
-                  description: 'password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  description: 'password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. Le champ value doit contenir au moins 12 caractères.'
                   example: password
                 phone_number:
                   type: string
-                  description: 'phone number — Optionnel. validation.max.'
+                  description: 'phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                   nullable: true
               required:
@@ -45439,7 +45709,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 details:
                   type: string
@@ -45472,49 +45742,57 @@ paths:
                   example: true
                 loyalty_points_rate:
                   type: integer
-                  description: 'loyalty points rate — Optionnel, nombre. validation.min.'
+                  description: 'loyalty points rate — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                 loyalty_redeem_threshold:
                   type: integer
-                  description: 'loyalty redeem threshold — Optionnel, nombre. validation.min.'
+                  description: 'loyalty redeem threshold — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 loyalty_redeem_value:
                   type: integer
-                  description: 'loyalty redeem value — Optionnel, nombre. validation.min.'
+                  description: 'loyalty redeem value — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
+                  example: 1
+                loyalty_points_for_1:
+                  type: integer
+                  description: 'loyalty points for 1 — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
+                  example: 1
+                loyalty_points_for_5:
+                  type: integer
+                  description: 'loyalty points for 5 — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 hours_classic:
                   type: integer
-                  description: 'hours classic — Optionnel, nombre. validation.min.'
+                  description: 'hours classic — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 hours_express:
                   type: integer
-                  description: 'hours express — Optionnel, nombre. validation.min.'
+                  description: 'hours express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 hours_repass:
                   type: integer
-                  description: 'hours repass — Optionnel, nombre. validation.min.'
+                  description: 'hours repass — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 collection_fee:
                   type: integer
-                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  description: 'collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 delivery_fee:
                   type: integer
-                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  description: 'delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 reporting_currency:
                   type: string
-                  description: 'reporting currency — Optionnel. validation.size.'
+                  description: 'reporting currency — Optionnel. Le champ value doit contenir 3 caractères.'
                   example: exemple
                   nullable: true
                 primary_color:
                   type: string
-                  description: 'primary color — Optionnel. validation.max.'
+                  description: 'primary color — Optionnel. Le champ value ne doit pas dépasser 16 caractères.'
                   example: exemple
                   nullable: true
                 secondary_color:
                   type: string
-                  description: 'secondary color — Optionnel. validation.max.'
+                  description: 'secondary color — Optionnel. Le champ value ne doit pas dépasser 16 caractères.'
                   example: exemple
                   nullable: true
   '/api/v1/settings/agencies/{id}':
@@ -45688,7 +45966,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 address:
                   type: string
@@ -45702,17 +45980,17 @@ paths:
                   nullable: true
                 currency:
                   type: string
-                  description: 'currency — Optionnel. validation.size.'
+                  description: 'currency — Optionnel. Le champ value doit contenir 3 caractères.'
                   example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: 'code prefix — Optionnel. validation.max.'
+                  description: 'code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: 'code suffix — Optionnel. validation.max.'
+                  description: 'code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 opens_at:
@@ -45727,7 +46005,7 @@ paths:
                   nullable: true
                 monthly_revenue_target:
                   type: integer
-                  description: 'monthly revenue target — Optionnel, nombre. validation.min.'
+                  description: 'monthly revenue target — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 status:
@@ -46093,11 +46371,11 @@ paths:
               properties:
                 source_currency:
                   type: string
-                  description: 'source currency — Requis. validation.size.'
+                  description: 'source currency — Requis. Le champ value doit contenir 3 caractères.'
                   example: exemple
                 target_currency:
                   type: string
-                  description: 'target currency — Requis. The value and <code>source_currency</code> must be different. validation.size.'
+                  description: 'target currency — Requis. The value and <code>source_currency</code> must be different. Le champ value doit contenir 3 caractères.'
                   example: exemple
                 rate:
                   type: number
@@ -46105,7 +46383,7 @@ paths:
                   example: 1.0
                 rate_date:
                   type: string
-                  description: 'rate date — Requis, date ISO 8601. validation.date.'
+                  description: 'rate date — Requis, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
               required:
                 - source_currency
@@ -46654,7 +46932,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 address:
                   type: string
@@ -46668,22 +46946,22 @@ paths:
                   nullable: true
                 country_code:
                   type: string
-                  description: 'country code — Optionnel. validation.size.'
+                  description: 'country code — Optionnel. Le champ value doit contenir 2 caractères.'
                   example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: 'currency — Optionnel. validation.size.'
+                  description: 'currency — Optionnel. Le champ value doit contenir 3 caractères.'
                   example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: 'code prefix — Optionnel. validation.max.'
+                  description: 'code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: 'code suffix — Optionnel. validation.max.'
+                  description: 'code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 opens_at:
@@ -46698,7 +46976,7 @@ paths:
                   nullable: true
                 monthly_revenue_target:
                   type: integer
-                  description: 'monthly revenue target — Optionnel, nombre. validation.min.'
+                  description: 'monthly revenue target — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
               required:
@@ -47014,15 +47292,15 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Requis. validation.max.'
+                  description: 'fullname — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 email:
                   type: string
-                  description: 'email — Requis, e-mail. validation.email.'
+                  description: 'email — Requis, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example: client@example.com
                 password:
                   type: string
-                  description: 'password — Requis. validation.min.'
+                  description: 'password — Requis. Le champ value doit contenir au moins 8 caractères.'
                   example: password
                 agency_id:
                   type: string
@@ -47213,15 +47491,15 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Optionnel. validation.max.'
+                  description: 'fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 email:
                   type: string
-                  description: 'email — Optionnel, e-mail. validation.email.'
+                  description: 'email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example: client@example.com
                 password:
                   type: string
-                  description: 'password — Optionnel. validation.min.'
+                  description: 'password — Optionnel. Le champ value doit contenir au moins 8 caractères.'
                   example: password
                   nullable: true
                 agency_id:
@@ -47674,7 +47952,7 @@ paths:
               properties:
                 q:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 100 caractères.'
                   example: b
                   nullable: true
                 agency_id:
@@ -47985,36 +48263,36 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Optionnel. validation.max.'
+                  description: 'fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 first_name:
                   type: string
-                  description: 'first name — Optionnel. validation.max.'
+                  description: 'first name — Optionnel. Le champ value ne doit pas dépasser 80 caractères.'
                   example: exemple
                   nullable: true
                 last_name:
                   type: string
-                  description: 'last name — Optionnel. validation.max.'
+                  description: 'last name — Optionnel. Le champ value ne doit pas dépasser 80 caractères.'
                   example: exemple
                   nullable: true
                 job_title:
                   type: string
-                  description: 'job title — Optionnel. validation.max.'
+                  description: 'job title — Optionnel. Le champ value ne doit pas dépasser 80 caractères.'
                   example: exemple
                   nullable: true
                 employee_number:
                   type: string
-                  description: 'employee number — Optionnel. validation.max.'
+                  description: 'employee number — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 phone_number:
                   type: string
-                  description: 'phone number — Optionnel. validation.max.'
+                  description: 'phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                   nullable: true
                 email:
                   type: string
-                  description: 'email — Optionnel, e-mail. validation.email validation.max.'
+                  description: 'email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères.'
                   example: client@example.com
                 role:
                   type: string
@@ -48905,11 +49183,11 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'email — Requis, e-mail. validation.email validation.max.'
+                  description: 'email — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères.'
                   example: client@example.com
                 fullname:
                   type: string
-                  description: 'fullname — Optionnel. validation.max.'
+                  description: 'fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                   nullable: true
                 role:
@@ -49953,11 +50231,11 @@ paths:
               properties:
                 label:
                   type: string
-                  description: 'label — Requis. validation.max.'
+                  description: 'label — Requis. Le champ value ne doit pas dépasser 80 caractères.'
                   example: Exemple
                 description:
                   type: string
-                  description: 'description — Optionnel. validation.max.'
+                  description: 'description — Optionnel. Le champ value ne doit pas dépasser 250 caractères.'
                   example: exemple
                   nullable: true
                 scope:
@@ -50382,11 +50660,11 @@ paths:
               properties:
                 label:
                   type: string
-                  description: 'label — Optionnel. validation.max.'
+                  description: 'label — Optionnel. Le champ value ne doit pas dépasser 80 caractères.'
                   example: Exemple
                 description:
                   type: string
-                  description: 'description — Optionnel. validation.max.'
+                  description: 'description — Optionnel. Le champ value ne doit pas dépasser 250 caractères.'
                   example: exemple
                   nullable: true
                 scope:
@@ -53369,7 +53647,7 @@ paths:
               properties:
                 q:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 40 caractères.'
                   example: b
                   nullable: true
                 status:
@@ -54294,20 +54572,20 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Optionnel. validation.max.'
+                  description: 'fullname — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 phone_number:
                   type: string
-                  description: 'phone number — Optionnel. validation.max.'
+                  description: 'phone number — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: '690000001'
                 email:
                   type: string
-                  description: 'email — Optionnel, e-mail. validation.email validation.max.'
+                  description: 'email — Optionnel, e-mail. Le champ value doit être une adresse e-mail valide. Le champ value ne doit pas dépasser 191 caractères.'
                   example: client@example.com
                   nullable: true
                 address:
                   type: string
-                  description: 'address — Optionnel. validation.max.'
+                  description: 'address — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
                 agency_id:
@@ -54470,7 +54748,7 @@ paths:
                   example: password
                 password:
                   type: string
-                  description: 'password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. validation.min.'
+                  description: 'password — Requis. Must match the regex /[A-Z]/. Must match the regex /\d/. Le champ value doit contenir au moins 8 caractères.'
                   example: password
               required:
                 - current_password
@@ -55366,7 +55644,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 details:
                   type: string
@@ -55731,7 +56009,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 details:
                   type: string
@@ -55764,19 +56042,19 @@ paths:
                   example: true
                 loyalty_points_rate:
                   type: integer
-                  description: 'loyalty points rate — Optionnel, nombre. validation.min.'
+                  description: 'loyalty points rate — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                 hours_classic:
                   type: integer
-                  description: 'hours classic — Optionnel, nombre. validation.min.'
+                  description: 'hours classic — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 hours_express:
                   type: integer
-                  description: 'hours express — Optionnel, nombre. validation.min.'
+                  description: 'hours express — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 hours_repass:
                   type: integer
-                  description: 'hours repass — Optionnel, nombre. validation.min.'
+                  description: 'hours repass — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
     delete:
       summary: ''
@@ -56189,7 +56467,7 @@ paths:
                   example: 1
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 address:
                   type: string
@@ -56203,22 +56481,22 @@ paths:
                   nullable: true
                 country_code:
                   type: string
-                  description: 'country code — Optionnel. validation.size.'
+                  description: 'country code — Optionnel. Le champ value doit contenir 2 caractères.'
                   example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: 'currency — Optionnel. validation.size.'
+                  description: 'currency — Optionnel. Le champ value doit contenir 3 caractères.'
                   example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: 'code prefix — Optionnel. validation.max.'
+                  description: 'code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: 'code suffix — Optionnel. validation.max.'
+                  description: 'code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -56511,7 +56789,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 address:
                   type: string
@@ -56525,22 +56803,22 @@ paths:
                   nullable: true
                 country_code:
                   type: string
-                  description: 'country code — Optionnel. validation.size.'
+                  description: 'country code — Optionnel. Le champ value doit contenir 2 caractères.'
                   example: exemple
                   nullable: true
                 currency:
                   type: string
-                  description: 'currency — Optionnel. validation.size.'
+                  description: 'currency — Optionnel. Le champ value doit contenir 3 caractères.'
                   example: exemple
                   nullable: true
                 code_prefix:
                   type: string
-                  description: 'code prefix — Optionnel. validation.max.'
+                  description: 'code prefix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 code_suffix:
                   type: string
-                  description: 'code suffix — Optionnel. validation.max.'
+                  description: 'code suffix — Optionnel. Le champ value ne doit pas dépasser 8 caractères.'
                   example: exemple
                   nullable: true
                 status:
@@ -56983,15 +57261,15 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Requis. validation.max.'
+                  description: 'fullname — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 email:
                   type: string
-                  description: 'email — Requis, e-mail. validation.email.'
+                  description: 'email — Requis, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example: client@example.com
                 password:
                   type: string
-                  description: 'password — Requis. validation.min.'
+                  description: 'password — Requis. Le champ value doit contenir au moins 8 caractères.'
                   example: password
                 phone_number:
                   type: string
@@ -57191,15 +57469,15 @@ paths:
               properties:
                 fullname:
                   type: string
-                  description: 'fullname — Requis. validation.max.'
+                  description: 'fullname — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: 'Jean Dupont'
                 email:
                   type: string
-                  description: 'email — Requis, e-mail. validation.email.'
+                  description: 'email — Requis, e-mail. Le champ value doit être une adresse e-mail valide.'
                   example: client@example.com
                 password:
                   type: string
-                  description: 'password — Requis. validation.min.'
+                  description: 'password — Requis. Le champ value doit contenir au moins 8 caractères.'
                   example: password
                 phone_number:
                   type: string
@@ -58399,7 +58677,7 @@ paths:
                   example: 1
                 plan:
                   type: string
-                  description: 'plan — Optionnel. validation.max.'
+                  description: 'plan — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 periodicity:
@@ -58413,22 +58691,22 @@ paths:
                   example: true
                 seats:
                   type: integer
-                  description: 'seats — Optionnel, nombre. validation.min.'
+                  description: 'seats — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 max_agencies:
                   type: integer
-                  description: 'max agencies — Optionnel, nombre. validation.min.'
+                  description: 'max agencies — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 storage_gb:
                   type: integer
-                  description: 'storage gb — Optionnel, nombre. validation.min.'
+                  description: 'storage gb — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 months:
                   type: integer
-                  description: 'months — Optionnel, nombre. validation.min.'
+                  description: 'months — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 activate:
@@ -59676,7 +59954,7 @@ paths:
               properties:
                 plan:
                   type: string
-                  description: 'plan — Optionnel. validation.max.'
+                  description: 'plan — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                 periodicity:
                   type: string
@@ -59688,16 +59966,16 @@ paths:
                   example: true
                 seats:
                   type: integer
-                  description: 'seats — Optionnel, nombre. validation.min.'
+                  description: 'seats — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                 max_agencies:
                   type: integer
-                  description: 'max agencies — Optionnel, nombre. validation.min.'
+                  description: 'max agencies — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 storage_gb:
                   type: integer
-                  description: 'storage gb — Optionnel, nombre. validation.min.'
+                  description: 'storage gb — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 status:
@@ -59706,7 +59984,7 @@ paths:
                   example: true
                 expires_at:
                   type: string
-                  description: 'expires at — Optionnel, date ISO 8601. validation.date.'
+                  description: 'expires at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
     delete:
@@ -60107,7 +60385,7 @@ paths:
               properties:
                 months:
                   type: integer
-                  description: 'months — Optionnel, nombre. validation.min.'
+                  description: 'months — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
     parameters:
@@ -61117,12 +61395,12 @@ paths:
                   example: exemple
                 reference:
                   type: string
-                  description: 'reference — Optionnel. validation.max.'
+                  description: 'reference — Optionnel. Le champ value ne doit pas dépasser 64 caractères.'
                   example: exemple
                   nullable: true
                 effective_at:
                   type: string
-                  description: 'effective at — Optionnel, date ISO 8601. validation.date.'
+                  description: 'effective at — Optionnel, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                   nullable: true
                 auto_renew:
@@ -61457,7 +61735,7 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: 'reason — Optionnel. validation.max.'
+                  description: 'reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
     parameters:
@@ -62680,11 +62958,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 code:
                   type: string
-                  description: 'code — Optionnel. validation.max.'
+                  description: 'code — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 legacy_type_action:
@@ -62698,12 +62976,12 @@ paths:
                   nullable: true
                 sort_order:
                   type: integer
-                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  description: 'sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 default_hours:
                   type: integer
-                  description: 'default hours — Optionnel, nombre. validation.min.'
+                  description: 'default hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 status:
@@ -62873,11 +63151,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 code:
                   type: string
-                  description: 'code — Optionnel. validation.max.'
+                  description: 'code — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 legacy_type_action:
@@ -62891,12 +63169,12 @@ paths:
                   nullable: true
                 sort_order:
                   type: integer
-                  description: 'sort order — Optionnel, nombre. validation.min.'
+                  description: 'sort order — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1
                   nullable: true
                 default_hours:
                   type: integer
-                  description: 'default hours — Optionnel, nombre. validation.min.'
+                  description: 'default hours — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1.'
                   example: 1
                   nullable: true
                 status:
@@ -64623,11 +64901,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Requis. validation.max.'
+                  description: 'name — Requis. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 code:
                   type: string
-                  description: 'code — Optionnel. validation.max.'
+                  description: 'code — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 agency_id:
@@ -64641,29 +64919,29 @@ paths:
                   example: true
                 quarters:
                   type: array
-                  description: 'quarters * — Optionnel. validation.max.'
+                  description: 'quarters * — Optionnel. Le champ value ne doit pas dépasser 100 caractères.'
                   example:
                     - exemple
                   items:
                     type: string
                 radius_km:
                   type: number
-                  description: 'radius km — Optionnel, nombre. validation.min validation.max.'
+                  description: 'radius km — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 500.'
                   example: 1.0
                   nullable: true
                 departure_address:
                   type: string
-                  description: 'departure address — Optionnel. validation.max.'
+                  description: 'departure address — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
                 collection_fee:
                   type: integer
-                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  description: 'collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 delivery_fee:
                   type: integer
-                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  description: 'delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 verified:
@@ -64824,11 +65102,11 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                 code:
                   type: string
-                  description: 'code — Optionnel. validation.max.'
+                  description: 'code — Optionnel. Le champ value ne doit pas dépasser 32 caractères.'
                   example: exemple
                   nullable: true
                 agency_id:
@@ -64842,29 +65120,29 @@ paths:
                   example: true
                 quarters:
                   type: array
-                  description: 'quarters * — Optionnel. validation.max.'
+                  description: 'quarters * — Optionnel. Le champ value ne doit pas dépasser 100 caractères.'
                   example:
                     - exemple
                   items:
                     type: string
                 radius_km:
                   type: number
-                  description: 'radius km — Optionnel, nombre. validation.min validation.max.'
+                  description: 'radius km — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0. Le champ value ne doit pas être supérieur à 500.'
                   example: 1.0
                   nullable: true
                 departure_address:
                   type: string
-                  description: 'departure address — Optionnel. validation.max.'
+                  description: 'departure address — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
                 collection_fee:
                   type: integer
-                  description: 'collection fee — Optionnel, nombre. validation.min.'
+                  description: 'collection fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 delivery_fee:
                   type: integer
-                  description: 'delivery fee — Optionnel, nombre. validation.min.'
+                  description: 'delivery fee — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 verified:
@@ -65131,7 +65409,7 @@ paths:
                   nullable: true
                 amount:
                   type: integer
-                  description: 'amount — Requis, nombre. validation.min.'
+                  description: 'amount — Requis, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                 with_collection:
                   type: boolean
@@ -65415,11 +65693,11 @@ paths:
                   nullable: true
                 round_date:
                   type: string
-                  description: 'round date — Requis, date ISO 8601. validation.date.'
+                  description: 'round date — Requis, date ISO 8601. Le champ value n’est pas une date valide.'
                   example: '2026-11-06T10:00:00+00:00'
                 name:
                   type: string
-                  description: 'name — Optionnel. validation.max.'
+                  description: 'name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                   nullable: true
               required:
@@ -66205,7 +66483,7 @@ paths:
                   nullable: true
                 delivery_address:
                   type: string
-                  description: 'delivery address — Optionnel. validation.max.'
+                  description: 'delivery address — Optionnel. Le champ value ne doit pas dépasser 500 caractères.'
                   example: exemple
                   nullable: true
                 livreur_id:
@@ -66842,12 +67120,12 @@ paths:
                   example: exemple
                 receiver_name:
                   type: string
-                  description: 'receiver name — Optionnel. validation.max.'
+                  description: 'receiver name — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: exemple
                   nullable: true
                 collect_amount:
                   type: integer
-                  description: 'collect amount — Optionnel, nombre. validation.min.'
+                  description: 'collect amount — Optionnel, nombre. Le champ value doit être supérieur ou égal à 0.'
                   example: 1000
                   nullable: true
                 payment_method:
@@ -66867,8 +67145,8 @@ paths:
                   example: true
                 client_uuid:
                   type: string
-                  description: 'client uuid — Optionnel, UUID. validation.uuid.'
-                  example: 550e8400-e29b-41d4-a716-446655440000
+                  description: 'Clé d’idempotence générée par l’app (UUID). Optionnel — le serveur en génère une si omise. Ce n’est pas l’identifiant d’un client CRM. Le champ value doit être un UUID valide.'
+                  example: null
                   nullable: true
               required:
                 - confirmation_type
@@ -67139,7 +67417,7 @@ paths:
                   nullable: true
                 q:
                   type: string
-                  description: validation.max.
+                  description: 'Le champ value ne doit pas dépasser 100 caractères.'
                   example: 'n'
                   nullable: true
   /api/v1/settings/journal:
@@ -67307,7 +67585,7 @@ paths:
                   nullable: true
                 limit:
                   type: integer
-                  description: 'validation.min validation.max.'
+                  description: 'Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 100.'
                   example: 22
                   nullable: true
   /api/v1/settings/devices:
@@ -67714,7 +67992,7 @@ paths:
                   example: 1
                 code:
                   type: string
-                  description: 'code — Requis. validation.max.'
+                  description: 'code — Requis. Le champ value ne doit pas dépasser 40 caractères.'
                   example: exemple
                 type:
                   type: string
@@ -67727,7 +68005,7 @@ paths:
                   nullable: true
                 label:
                   type: string
-                  description: 'label — Optionnel. validation.max.'
+                  description: 'label — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                   nullable: true
                 responsible_id:
@@ -67742,7 +68020,7 @@ paths:
                   nullable: true
                 validity_days:
                   type: integer
-                  description: 'validity days — Optionnel, nombre. validation.min validation.max.'
+                  description: 'validity days — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 365.'
                   example: 1
                   nullable: true
                 pending:
@@ -67899,7 +68177,7 @@ paths:
               properties:
                 days:
                   type: integer
-                  description: 'validation.min validation.max.'
+                  description: 'Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 90.'
                   example: 1
                   nullable: true
                 channel:
@@ -68095,11 +68373,11 @@ paths:
                     - email
                 recipient:
                   type: string
-                  description: 'recipient — Requis, e-mail. validation.email Must match the regex /^\+?[0-9 ]{8,20}$/. validation.max.'
+                  description: 'recipient — Requis, e-mail. Le champ value doit être une adresse e-mail valide. Must match the regex /^\+?[0-9 ]{8,20}$/. Le champ value ne doit pas dépasser 191 caractères.'
                   example: client@example.com
                 message:
                   type: string
-                  description: 'message — Optionnel. validation.max.'
+                  description: 'message — Optionnel. Le champ value ne doit pas dépasser 640 caractères.'
                   example: exemple
                   nullable: true
               required:
@@ -68302,7 +68580,7 @@ paths:
               properties:
                 label:
                   type: string
-                  description: 'label — Optionnel. validation.max.'
+                  description: 'label — Optionnel. Le champ value ne doit pas dépasser 191 caractères.'
                   example: Exemple
                   nullable: true
                 responsible_id:
@@ -68527,7 +68805,7 @@ paths:
               properties:
                 validity_days:
                   type: integer
-                  description: 'validity days — Optionnel, nombre. validation.min validation.max.'
+                  description: 'validity days — Optionnel, nombre. Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 365.'
                   example: 1
                   nullable: true
     parameters:
@@ -68735,7 +69013,7 @@ paths:
               properties:
                 reason:
                   type: string
-                  description: 'reason — Optionnel. validation.max.'
+                  description: 'reason — Optionnel. Le champ value ne doit pas dépasser 255 caractères.'
                   example: exemple
                   nullable: true
     parameters:
@@ -69485,7 +69763,7 @@ paths:
                   nullable: true
                 days:
                   type: integer
-                  description: 'validation.min validation.max.'
+                  description: 'Le champ value doit être supérieur ou égal à 1. Le champ value ne doit pas être supérieur à 90.'
                   example: 22
                   nullable: true
   '/api/v1/sync/batches/{id}':

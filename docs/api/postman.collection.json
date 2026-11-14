@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Spark Pressing API API Documentation",
-        "_postman_id": "99ac3d67-13fb-4d3c-9b3c-24e882813010",
+        "_postman_id": "0e0669e8-ed47-458f-86cb-3b8b8c3ecbc4",
         "description": "API REST Spark Pressing \u2014 multi-tenant (pressing \/ agence), Sanctum, montants en XAF entiers.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -1401,7 +1401,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\",\"client_id\":1,\"discount\":1,\"discount_percent\":1,\"promo_code\":\"exemple\",\"promo_special_code\":\"exemple\",\"points_to_redeem\":1,\"with_collection\":true,\"with_delivery\":true,\"collection_fee\":1000,\"delivery_fee\":1000,\"delivery_zone_id\":1,\"delivery_address\":\"exemple\",\"advanced\":1,\"payment_method\":\"cash\",\"deposit_date\":\"2026-11-06T10:00:00+00:00\",\"retrieve_date\":\"2026-11-06T10:00:00+00:00\",\"notes\":\"exemple\",\"lines\":[{\"article_id\":1,\"service_id\":1,\"quantity\":1,\"type_action\":0,\"pricing_type\":\"piece\",\"weight_kg\":1,\"unit_price\":1000,\"designation\":\"exemple\",\"state\":\"exemple\",\"render_id\":1,\"express\":true,\"color\":\"exemple\",\"defects\":[\"exemple\"],\"internal_notes\":\"exemple\"}],\"terminal\":\"exemple\",\"local_ref\":\"exemple\",\"discount_reason\":\"exemple\"}"
+                            "raw": "{\"client_id\":1,\"discount\":1,\"discount_percent\":1,\"promo_code\":\"exemple\",\"promo_special_code\":\"exemple\",\"points_to_redeem\":1,\"with_collection\":true,\"with_delivery\":true,\"collection_fee\":1000,\"delivery_fee\":1000,\"delivery_zone_id\":1,\"delivery_address\":\"exemple\",\"advanced\":1,\"payment_method\":\"cash\",\"deposit_date\":\"2026-11-06T10:00:00+00:00\",\"retrieve_date\":\"2026-11-06T10:00:00+00:00\",\"notes\":\"exemple\",\"lines\":[{\"article_id\":1,\"service_id\":1,\"quantity\":1,\"type_action\":0,\"pricing_type\":\"piece\",\"weight_kg\":1,\"unit_price\":1000,\"designation\":\"exemple\",\"state\":\"exemple\",\"render_id\":1,\"express\":true,\"color\":\"exemple\",\"defects\":[\"exemple\"],\"internal_notes\":\"exemple\"}],\"terminal\":\"exemple\",\"local_ref\":\"exemple\",\"discount_reason\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -1510,7 +1510,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\",\"amount\":1000,\"payment_method\":\"cash\",\"transaction_date\":\"2026-11-06T10:00:00+00:00\"}"
+                            "raw": "{\"amount\":1000,\"payment_method\":\"cash\",\"transaction_date\":\"2026-11-06T10:00:00+00:00\"}"
                         },
                         "description": ""
                     },
@@ -2494,7 +2494,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"Jean Dupont\",\"last_name\":\"exemple\",\"first_name\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"city\":\"exemple\",\"password\":\"password\",\"sponsor_code\":\"exemple\",\"phone_secondary\":\"690000001\",\"agency_id\":1,\"contact_preference\":\"exemple\",\"loyalty_tier\":\"exemple\",\"consent_sms\":true,\"consent_email\":true,\"pickup_slot\":\"exemple\",\"favorite_treatment\":\"exemple\",\"instructions\":\"exemple\",\"note\":\"exemple\"}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"last_name\":\"exemple\",\"first_name\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"city\":\"exemple\",\"password\":\"password\",\"sponsor_code\":\"exemple\",\"phone_secondary\":\"690000001\",\"agency_id\":1,\"contact_preference\":\"exemple\",\"loyalty_tier\":\"exemple\",\"loyalty_fcfa_unit\":1,\"consent_sms\":true,\"consent_email\":true,\"pickup_slot\":\"exemple\",\"favorite_treatment\":\"exemple\",\"instructions\":\"exemple\",\"note\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -2703,7 +2703,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"fullname\":\"Jean Dupont\",\"last_name\":\"exemple\",\"first_name\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"city\":\"exemple\",\"status\":true,\"password\":\"password\",\"phone_secondary\":\"690000001\",\"agency_id\":1,\"contact_preference\":\"exemple\",\"loyalty_tier\":\"exemple\",\"consent_sms\":true,\"consent_email\":true,\"pickup_slot\":\"exemple\",\"favorite_treatment\":\"exemple\",\"instructions\":\"exemple\",\"note\":\"exemple\"}"
+                            "raw": "{\"fullname\":\"Jean Dupont\",\"last_name\":\"exemple\",\"first_name\":\"exemple\",\"phone_number\":\"690000001\",\"email\":\"client@example.com\",\"address\":\"exemple\",\"city\":\"exemple\",\"status\":true,\"password\":\"password\",\"phone_secondary\":\"690000001\",\"agency_id\":1,\"contact_preference\":\"exemple\",\"loyalty_tier\":\"exemple\",\"loyalty_fcfa_unit\":1,\"consent_sms\":true,\"consent_email\":true,\"pickup_slot\":\"exemple\",\"favorite_treatment\":\"exemple\",\"instructions\":\"exemple\",\"note\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -3466,6 +3466,48 @@
                     ]
                 },
                 {
+                    "name": "Listes de choix du formulaire de cr\u00e9ation \/ \u00e9dition : services associ\u00e9s (`services[]`),\nd\u00e9fauts accept\u00e9s (`accepted_defects[]`), rendus, priorit\u00e9s, modes de facturation, cat\u00e9gories, agences.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/articles\/options",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/articles\/options"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "X-Agency-Id",
+                                "value": "1"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"defects\": [\n            {\n                \"code\": \"stain\",\n                \"label\": \"Tach\u00e9\"\n            }\n        ],\n        \"renders\": [\n            {\n                \"id\": 1,\n                \"title\": \"Sur cintre\"\n            }\n        ],\n        \"services\": [\n            {\n                \"code\": \"collection\",\n                \"label\": \"Collecte\"\n            },\n            {\n                \"code\": \"delivery\",\n                \"label\": \"Livraison\"\n            },\n            {\n                \"code\": \"anti_odor\",\n                \"label\": \"Traitement anti-odeur\"\n            }\n        ],\n        \"priorities\": [\n            {\n                \"code\": \"standard\",\n                \"label\": \"Standard\"\n            },\n            {\n                \"code\": \"high\",\n                \"label\": \"Haute\"\n            },\n            {\n                \"code\": \"delicate\",\n                \"label\": \"D\u00e9licat\"\n            }\n        ],\n        \"billing_modes\": [\n            {\n                \"code\": \"piece\",\n                \"label\": \"Pi\u00e8ce\"\n            },\n            {\n                \"code\": \"kilo\",\n                \"label\": \"Kilo\"\n            },\n            {\n                \"code\": \"mixed\",\n                \"label\": \"Mixte\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"id\": 1,\n                \"name\": \"C\u00e9r\u00e9monie\"\n            }\n        ],\n        \"agencies\": [\n            {\n                \"id\": 1,\n                \"name\": \"Cocody Angr\u00e9\"\n            }\n        ]\n    },\n    \"meta\": {},\n    \"errors\": null\n}",
+                            "name": "Succ\u00e8s"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"data\": null,\n    \"meta\": {\n        \"message\": \"Non authentifi\u00e9.\"\n    },\n    \"errors\": [\n        {\n            \"code\": \"unauthenticated\",\n            \"detail\": \"Non authentifi\u00e9.\"\n        }\n    ]\n}",
+                            "name": "Non authentifi\u00e9"
+                        }
+                    ]
+                },
+                {
                     "name": "\u00ab Catalogue articles et tarifs \u00bb (q, category_id, billing_mode, agency_id, tab=all|kilo|unavailable, active_only).",
                     "request": {
                         "url": {
@@ -3987,7 +4029,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-11-06T04:15:04\"}"
+                            "raw": "{\"agency_id\":\"architecto\",\"article_id\":\"architecto\",\"service_id\":\"architecto\",\"pricing_type\":\"kilo\",\"at\":\"2026-11-14T10:47:47\"}"
                         },
                         "description": ""
                     },
@@ -4543,7 +4585,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"kpis\": {\n            \"active_members\": {\n                \"value\": 2846,\n                \"delta_percent\": 8.4\n            },\n            \"points_issued\": {\n                \"value\": 184620,\n                \"consumable_percent\": 64\n            },\n            \"points_consumed\": {\n                \"value\": 72480,\n                \"share_of_stock\": 39.3\n            },\n            \"discounts_granted\": {\n                \"value\": 3840000,\n                \"period_from\": \"2026-09-01\"\n            },\n            \"active_campaigns\": {\n                \"value\": 2,\n                \"uses\": 422\n            }\n        },\n        \"program\": {\n            \"active\": true,\n            \"earn_points_per_1000\": 10,\n            \"conversion_points\": 200,\n            \"conversion_value\": 1000,\n            \"minimum_points\": 500,\n            \"expiration_months\": 12,\n            \"credit_after_payment\": true,\n            \"stack_with_promotions\": false,\n            \"point_value\": 5,\n            \"earn_label\": \"10 points \/ 1 000 FCFA\",\n            \"conversion_label\": \"200 points = 1 000 FCFA\"\n        },\n        \"tiers\": {\n            \"basis\": \"points\",\n            \"levels\": [\n                {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\",\n                    \"min\": 0,\n                    \"multiplier\": 1,\n                    \"benefit\": \"Aucun bonus\"\n                },\n                {\n                    \"code\": \"argent\",\n                    \"label\": \"Argent\",\n                    \"min\": 1000,\n                    \"multiplier\": 1.1,\n                    \"benefit\": \"+10 % de points\"\n                },\n                {\n                    \"code\": \"or\",\n                    \"label\": \"Or\",\n                    \"min\": 2500,\n                    \"multiplier\": 1.25,\n                    \"benefit\": \"Priorit\u00e9 & retouches\"\n                },\n                {\n                    \"code\": \"platine\",\n                    \"label\": \"Platine\",\n                    \"min\": 4000,\n                    \"multiplier\": 1.5,\n                    \"benefit\": \"Collecte offerte\"\n                }\n            ]\n        },\n        \"history\": [\n            {\n                \"client\": \"Aminata Kon\u00e9\",\n                \"reason\": \"Paiement d\u00e9p\u00f4t DP-2841\",\n                \"points\": 120,\n                \"at\": \"2026-09-28T10:21:00+00:00\"\n            }\n        ],\n        \"auto_groups\": [\n            {\n                \"code\": \"gold_platinum\",\n                \"label\": \"Clients Or & Platine\",\n                \"count\": 486\n            }\n        ],\n        \"promotions\": [\n            {\n                \"id\": 1,\n                \"code\": \"RENTREE15\",\n                \"name\": \"Rentr\u00e9e\",\n                \"type\": \"percent\",\n                \"discount_label\": \"15 %\",\n                \"starts_at\": \"2026-09-01\",\n                \"ends_at\": \"2026-09-30\",\n                \"quota\": 500,\n                \"used\": 312,\n                \"usage_percent\": 62,\n                \"per_client_limit\": 1,\n                \"agencies\": [\n                    \"Toutes les agences\"\n                ],\n                \"min_amount\": 10000,\n                \"max_discount\": 12000,\n                \"stack_with_loyalty\": false,\n                \"status\": \"active\",\n                \"status_label\": \"Active\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"count\": 1,\n        \"previous_period_from\": \"2026-08-01\"\n    },\n    \"errors\": null\n}",
+                            "body": "{\n    \"data\": {\n        \"kpis\": {\n            \"active_members\": {\n                \"value\": 2846,\n                \"delta_percent\": 8.4\n            },\n            \"points_issued\": {\n                \"value\": 184620,\n                \"consumable_percent\": 64\n            },\n            \"points_consumed\": {\n                \"value\": 72480,\n                \"share_of_stock\": 39.3\n            },\n            \"discounts_granted\": {\n                \"value\": 3840000,\n                \"period_from\": \"2026-09-01\"\n            },\n            \"active_campaigns\": {\n                \"value\": 2,\n                \"uses\": 422\n            }\n        },\n        \"program\": {\n            \"active\": true,\n            \"earn_points_per_1000\": 10,\n            \"conversion_points\": 200,\n            \"conversion_value\": 1000,\n            \"points_for_1_fcfa\": 100,\n            \"points_for_5_fcfa\": 20,\n            \"minimum_points\": 500,\n            \"expiration_months\": 12,\n            \"credit_after_payment\": true,\n            \"stack_with_promotions\": false,\n            \"point_value\": 5,\n            \"earn_label\": \"10 points \/ 1 000 FCFA\",\n            \"conversion_label\": \"100 points = 1 FCFA \u00b7 20 points = 5 FCFA\"\n        },\n        \"tiers\": {\n            \"basis\": \"points\",\n            \"levels\": [\n                {\n                    \"code\": \"essentiel\",\n                    \"label\": \"Essentiel\",\n                    \"min\": 0,\n                    \"multiplier\": 1,\n                    \"benefit\": \"Aucun bonus\"\n                },\n                {\n                    \"code\": \"argent\",\n                    \"label\": \"Argent\",\n                    \"min\": 1000,\n                    \"multiplier\": 1.1,\n                    \"benefit\": \"+10 % de points\"\n                },\n                {\n                    \"code\": \"or\",\n                    \"label\": \"Or\",\n                    \"min\": 2500,\n                    \"multiplier\": 1.25,\n                    \"benefit\": \"Priorit\u00e9 & retouches\"\n                },\n                {\n                    \"code\": \"platine\",\n                    \"label\": \"Platine\",\n                    \"min\": 4000,\n                    \"multiplier\": 1.5,\n                    \"benefit\": \"Collecte offerte\"\n                }\n            ]\n        },\n        \"history\": [\n            {\n                \"client\": \"Aminata Kon\u00e9\",\n                \"reason\": \"Paiement d\u00e9p\u00f4t DP-2841\",\n                \"points\": 120,\n                \"at\": \"2026-09-28T10:21:00+00:00\"\n            }\n        ],\n        \"auto_groups\": [\n            {\n                \"code\": \"gold_platinum\",\n                \"label\": \"Clients Or & Platine\",\n                \"count\": 486\n            }\n        ],\n        \"promotions\": [\n            {\n                \"id\": 1,\n                \"code\": \"RENTREE15\",\n                \"name\": \"Rentr\u00e9e\",\n                \"type\": \"percent\",\n                \"discount_label\": \"15 %\",\n                \"starts_at\": \"2026-09-01\",\n                \"ends_at\": \"2026-09-30\",\n                \"quota\": 500,\n                \"used\": 312,\n                \"usage_percent\": 62,\n                \"per_client_limit\": 1,\n                \"agencies\": [\n                    \"Toutes les agences\"\n                ],\n                \"min_amount\": 10000,\n                \"max_discount\": 12000,\n                \"stack_with_loyalty\": false,\n                \"status\": \"active\",\n                \"status_label\": \"Active\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"count\": 1,\n        \"previous_period_from\": \"2026-08-01\"\n    },\n    \"errors\": null\n}",
                             "name": "Succ\u00e8s"
                         },
                         {
@@ -5231,7 +5273,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-11-06T04:15:04\"}"
+                            "raw": "{\"q\":\"b\",\"agency_id\":16,\"received_at\":\"2026-11-14T10:47:47\"}"
                         },
                         "description": ""
                     },
@@ -6109,7 +6151,7 @@
                     ]
                 },
                 {
-                    "name": "POST api\/v1\/cash-movements",
+                    "name": "Cr\u00e9er un mouvement de caisse.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -6136,16 +6178,10 @@
                             "mode": "formdata",
                             "formdata": [
                                 {
-                                    "key": "client_uuid",
-                                    "value": "550e8400-e29b-41d4-a716-446655440000",
-                                    "type": "text",
-                                    "description": "client uuid \u2014 Optionnel, UUID. validation.uuid."
-                                },
-                                {
                                     "key": "label",
                                     "value": "Exemple",
                                     "type": "text",
-                                    "description": "label \u2014 Requis. validation.max."
+                                    "description": "label \u2014 Requis. Le champ value ne doit pas d\u00e9passer 191 caract\u00e8res."
                                 },
                                 {
                                     "key": "type",
@@ -6157,7 +6193,7 @@
                                     "key": "amount",
                                     "value": "1000",
                                     "type": "text",
-                                    "description": "amount \u2014 Requis, nombre. validation.min."
+                                    "description": "amount \u2014 Requis, nombre. Le champ value doit \u00eatre sup\u00e9rieur ou \u00e9gal \u00e0 1."
                                 },
                                 {
                                     "key": "category_id",
@@ -6169,7 +6205,7 @@
                                     "key": "action_date",
                                     "value": "2026-11-06T10:00:00+00:00",
                                     "type": "text",
-                                    "description": "action date \u2014 Optionnel, date ISO 8601. validation.date."
+                                    "description": "action date \u2014 Optionnel, date ISO 8601. Le champ value n\u2019est pas une date valide."
                                 },
                                 {
                                     "key": "validated",
@@ -6187,19 +6223,19 @@
                                     "key": "beneficiary",
                                     "value": "exemple",
                                     "type": "text",
-                                    "description": "beneficiary \u2014 Optionnel. validation.max."
+                                    "description": "beneficiary \u2014 Optionnel. Le champ value ne doit pas d\u00e9passer 191 caract\u00e8res."
                                 },
                                 {
                                     "key": "reference",
                                     "value": "exemple",
                                     "type": "text",
-                                    "description": "reference \u2014 Optionnel. validation.max."
+                                    "description": "reference \u2014 Optionnel. Le champ value ne doit pas d\u00e9passer 64 caract\u00e8res."
                                 },
                                 {
                                     "key": "comment",
                                     "value": "exemple",
                                     "type": "text",
-                                    "description": "comment \u2014 Optionnel. validation.max."
+                                    "description": "comment \u2014 Optionnel. Le champ value ne doit pas d\u00e9passer 2000 caract\u00e8res."
                                 },
                                 {
                                     "key": "proof",
@@ -6208,7 +6244,7 @@
                                 }
                             ]
                         },
-                        "description": ""
+                        "description": "`client_uuid` est une cl\u00e9 d\u2019idempotence optionnelle (UUID g\u00e9n\u00e9r\u00e9 par l\u2019app),\npas l\u2019identifiant d\u2019un client CRM. Si omis, le serveur en g\u00e9n\u00e8re une."
                     },
                     "response": [
                         {
@@ -6472,7 +6508,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-11-06T04:15:04\"}"
+                            "raw": "{\"date\":\"2026-11-14T10:47:47\"}"
                         },
                         "description": ""
                     },
@@ -6517,7 +6553,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-11-06T04:15:04\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
+                            "raw": "{\"q\":\"architecto\",\"date\":\"2026-11-14T10:47:47\",\"period\":\"day\",\"category_id\":16,\"payment_method\":\"architecto\",\"status\":\"to_validate\",\"flow\":\"in\"}"
                         },
                         "description": ""
                     },
@@ -7619,7 +7655,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date_from\":\"2026-11-06T04:15:04\",\"date_to\":\"2052-11-29\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date_from\":\"2026-11-14T10:47:47\",\"date_to\":\"2052-12-07\",\"preset\":\"month\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -7664,7 +7700,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"date\":\"2026-11-06T04:15:04\",\"agency_id\":16,\"format\":\"json\"}"
+                            "raw": "{\"date\":\"2026-11-14T10:47:47\",\"agency_id\":16,\"format\":\"json\"}"
                         },
                         "description": ""
                     },
@@ -8244,7 +8280,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"Exemple\",\"details\":\"exemple\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"qr_labels_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":1,\"loyalty_redeem_threshold\":1,\"loyalty_redeem_value\":1,\"hours_classic\":1,\"hours_express\":1,\"hours_repass\":1,\"collection_fee\":1000,\"delivery_fee\":1000,\"reporting_currency\":\"exemple\",\"primary_color\":\"exemple\",\"secondary_color\":\"exemple\"}"
+                            "raw": "{\"name\":\"Exemple\",\"details\":\"exemple\",\"pricing_mode\":\"piece\",\"workflow_laveur_enabled\":true,\"workflow_classeur_enabled\":true,\"qr_labels_enabled\":true,\"block_retrieve_if_unpaid\":true,\"loyalty_points_rate\":1,\"loyalty_redeem_threshold\":1,\"loyalty_redeem_value\":1,\"loyalty_points_for_1\":1,\"loyalty_points_for_5\":1,\"hours_classic\":1,\"hours_express\":1,\"hours_repass\":1,\"collection_fee\":1000,\"delivery_fee\":1000,\"reporting_currency\":\"exemple\",\"primary_color\":\"exemple\",\"secondary_color\":\"exemple\"}"
                         },
                         "description": ""
                     },
@@ -13016,7 +13052,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"confirmation_type\":\"signature\",\"confirmation_value\":\"exemple\",\"receiver_name\":\"exemple\",\"collect_amount\":1000,\"payment_method\":\"cash\",\"require_settled\":true,\"client_uuid\":\"550e8400-e29b-41d4-a716-446655440000\"}"
+                            "raw": "{\"confirmation_type\":\"signature\",\"confirmation_value\":\"exemple\",\"receiver_name\":\"exemple\",\"collect_amount\":1000,\"payment_method\":\"cash\",\"require_settled\":true}"
                         },
                         "description": ""
                     },

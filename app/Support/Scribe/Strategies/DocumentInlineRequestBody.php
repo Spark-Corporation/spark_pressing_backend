@@ -211,6 +211,14 @@ class DocumentInlineRequestBody extends GetFromInlineValidator
 
     private function describe(string $name, string $rules): string
     {
+        if ($name === 'client_uuid' || str_ends_with($name, '.client_uuid')) {
+            $required = str_contains($rules, 'required');
+
+            return 'Clé d’idempotence générée par l’app (UUID). '
+                .($required ? 'Requis' : 'Optionnel — le serveur en génère une si omise')
+                .'. Ce n’est pas l’identifiant d’un client CRM.';
+        }
+
         $bits = [str_contains($rules, 'required') ? 'Requis' : 'Optionnel'];
         if (preg_match('/(?:^|\|)exists:(\w+)/', $rules, $m)) {
             $bits[] = 'id existant ('.$m[1].')';
@@ -242,6 +250,10 @@ class DocumentInlineRequestBody extends GetFromInlineValidator
     {
         if (str_contains($rules, 'array') || str_contains($rules, 'file') || str_contains($rules, 'image')) {
             return null;
+        }
+        // Optionnel : ne pas le mettre dans l’exemple curl (évite la confusion « UUID client CRM »).
+        if (($name === 'client_uuid' || str_ends_with($name, '.client_uuid')) && ! str_contains($rules, 'required')) {
+            return 'No-example';
         }
         if (preg_match('/(?:^|\|)in:([^|]+)/', $rules, $m)) {
             return explode(',', $m[1])[0];
